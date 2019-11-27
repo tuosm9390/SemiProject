@@ -21,6 +21,7 @@
 <script src="js/jquery.stickyheader.js"></script>
 <style>
 #menuheader {
+
 	position: fixed;
 	top: 0px;
 	left: 7%;
@@ -34,6 +35,7 @@
 	align-items: center;
 	font-family: "Do Hyeon";
 	z-index: 1;
+
 }
 
 #mid {
@@ -146,6 +148,7 @@ body {
 </style>
 </head>
 <body>
+
 	<!-- 상단 메뉴 바 -->
 	<header id="menuheader">
 		<a href="<%= request.getContextPath()%>/index.jsp"><img src="<%= request.getContextPath()%>/images/hagong.png"
@@ -247,6 +250,7 @@ body {
 			}
 		});
 	</script>
+
 </body>
 </html>
 
