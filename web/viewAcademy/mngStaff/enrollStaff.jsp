@@ -14,7 +14,6 @@
 </style>
 </head>
 <body>
-	<h1>쉬발제바아라아악</h1>
 	<header>
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
