@@ -138,7 +138,7 @@ body {
 <body>
    <!-- 상단 메뉴 바 -->
    <header id="menuheader">
-      <a href="hagongmain.jsp"><img src="images/hagong.png"
+      <a href="index.jsp"><img src="/hagong/images/hagong.png"
          style="height: 85px;"></a>
       <h2 id="student">학생관리</h2>
       <h2 id="employee">직원관리</h2>
@@ -201,6 +201,7 @@ body {
 
       //직원 관리 메뉴 클릭 시
       $("#employee").click(function() {
+    	 location.href = "viewAcademy/mngStaff/staffList.jsp";
          $(".detailmenu").css("display", "none");
       });
 
