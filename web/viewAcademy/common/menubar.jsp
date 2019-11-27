@@ -13,6 +13,7 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 #menuheader {
+	z-index: 1;
    position: fixed;
    top: 0px;
    left: 7%;
