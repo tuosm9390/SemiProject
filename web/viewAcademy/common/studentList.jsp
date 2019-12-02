@@ -49,7 +49,12 @@ tr:not(:first-child){
 	<section>
 		<h2 align="left" style="width: 150px;">전체 학생</h2>
 		<button id="addexcel">엑셀로 성적 일괄 등록</button>
-		<button id="addstudent">학생 등록</button>
+		<button id="addstudent" onclick="insertStudent();">학생 등록</button>
+		<script>
+			function insertStudent() {
+				location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/tempStudentInsert.jsp";
+			};
+		</script>
 		<input type="file" id="exelfile">
 		<table>
 			<tr>
