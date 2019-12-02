@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 section button {
 	float: right;
 	margin-bottom: 5px;
@@ -36,7 +35,6 @@ table {
 tr, th {
 	height: 40px;
 }
-
 tr:not(:first-child){
 	cursor: pointer;
 }
@@ -44,7 +42,7 @@ tr:not(:first-child){
 </head>
 <body>
 	<header>
-		<%@ include file="menubar.jsp"%>
+		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
 		<h2 align="left" style="width: 150px;">전체 학생</h2>
@@ -99,14 +97,19 @@ tr:not(:first-child){
 			</tr>
 		</table>
 	</section>
-	<footer> </footer>
+	<footer>
+	</footer>
 	<script>
+		$("#addstudent").click(function(){
+			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/enrollStudent.jsp";
+		});
+		
 		$("#addexcel").click(function() {
 			$("#exelfile").click();
 		});
 
-		$("tr:not(first-child)").click(function() {
-			location.href = "<%=request.getContextPath()%>/viewAcademy/common/studentInfo.jsp";
+		$("tr td:not(first-child)").click(function() {
+			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/studentInfo.jsp";
 		});
 	</script>
 </body>
