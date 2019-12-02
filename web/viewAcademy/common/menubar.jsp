@@ -12,9 +12,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="css/demo.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/component.css" />
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
