@@ -54,7 +54,7 @@
 		<script>
 			$(function(){
 				$("#classlist td").click(function(){
-					location.href = "<%= request.getContextPath()%>/viewAcademy/mngClass/detailClassList.jsp";
+					location.href = "<%= request.getContextPath()%>/viewAcademy/mngClass/mngClassList/detailClassList.jsp";
 				});
 			})
 		</script>

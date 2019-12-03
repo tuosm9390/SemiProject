@@ -43,9 +43,9 @@
 			</div>
 			<script>
 				function conslist(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/studentConsDetail.jsp";					
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentConsDetail.jsp";					
 				};
-			</script>
+		</script>
 		</div>
 		<!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
