@@ -29,7 +29,6 @@
 <script src="js/jquery.stickyheader.js"></script>
 <style>
 #menuheader {
-<<<<<<< HEAD
 	position: fixed;
 	top: 0px;
 	left: 7%;
@@ -42,20 +41,6 @@
 	align-items: center;
 	font-family: "Do Hyeon";
 	z-index: 1;
-=======
-   position: fixed;
-   top: 0px;
-   left: 7%;
-   right: 7%;
-   height: 75px;
-   padding-top: 1rem;
-   font-weight: bold;
-   background: white;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   font-family: "Do Hyeon";
->>>>>>> parent of dddcc4e... first
 }
 
 #mid {
@@ -167,7 +152,8 @@ body {
 	margin-left: 7%;
 	margin-right: 7%;
 }
-td, th{
+
+td, th {
 	text-align: center;
 }
 </style>
@@ -198,8 +184,8 @@ td, th{
 				style="height: 30px;">
 		</h3>
 		<%-- <% if(loginMember != null) { %> --%>
-      	<button id="logout" style="margin-left: 5px;">로그아웃</button>
-      	<%-- <% }else { %>
+		<button id="logout" style="margin-left: 5px;">로그아웃</button>
+		<%-- <% }else { %>
       	<button id="login" style="margin-left: 5px;">로그인</button>
       	<% } %> --%>
 
@@ -210,20 +196,29 @@ td, th{
 				<a
 					href="<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp"
 					class="menu1">개인정보</a> <a>|</a> <a href="#" class="menu1">수납</a> <a>|</a>
-				<a href="#" class="menu1">상담</a> <a>|</a> <a href="#" class="menu1">블랙리스트</a>
+				<a
+					href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
+					class="menu1">상담</a> <a>|</a> <a href="#" class="menu1">블랙리스트</a>
 			</div>
 			<!-- 수업관리 메뉴 -->
 			<div class="detailmenu" id="classdetailmenu">
-				<a href="#" class="menu3">수강생 관리</a> <a>|</a> <a href="#"
-					class="menu3">출결 관리</a> <a>|</a> <a href="<%= request.getContextPath() %>/viewAcademy/mngClass/classInfo.jsp" class="menu3">강좌목록
+				<a
+					href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classStudent.jsp"
+					class="menu3">수강생 관리</a> <a>|</a> <a href="#" class="menu3">출결
 					관리</a> <a>|</a> <a
-					href="<%=request.getContextPath()%>/viewAcademy/mngStudent/satisfactionList.jsp"
+					href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
+					class="menu3">강좌목록 관리</a> <a>|</a> <a
+					href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
 					class="menu3">만족도</a>
 			</div>
 			<!-- 관리자 메뉴 -->
 			<div class="detailmenu" id="admindetailmenu">
 				<a href="#" class="menu4">학원 현황</a> <a>|</a> <a href="#"
-					class="menu4">메뉴 권한 관리</a> <a>|</a> <a href="<%= request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp" class="menu4">연간계획</a>
+
+					class="menu4">메뉴 권한 관리</a> <a>|</a> <a 
+					href="<%= request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp" 
+					class="menu4">연간계획</a>
+
 			</div>
 
 			<div id="member">

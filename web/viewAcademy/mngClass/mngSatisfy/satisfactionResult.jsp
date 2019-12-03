@@ -35,7 +35,7 @@ section button:hover {
 			<li>실시 기간 : 2019.01.10 ~ 2019.02.20
 		</div>
 		<button style="margin-right: 20%;"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/satisfactionList.jsp'">닫기</button>
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">닫기</button>
 		<button>삭제</button>
 		
 		<!-- 문항 목록 작성 -->

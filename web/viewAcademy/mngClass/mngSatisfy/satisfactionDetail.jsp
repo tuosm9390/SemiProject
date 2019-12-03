@@ -54,7 +54,7 @@ th, td {
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 		<h2 style="margin-left: 5%;">만족도 조사 조회</h2>
@@ -67,14 +67,16 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td><input type="text" value="전체 원생 및 학부모 대상" size="50">
+					<td><input type="text" value="전체 원생 및 학부모 대상" size="50">&emsp;
 						<select>
 							<option>대상 인원 입력</option>
-					</select></td>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
-					<td><input type="date"> ~ <input type="date"></td>	
+					<td><input type="date">&emsp;~
+					&emsp;<input type="date"></td>
 				</tr>
 				<tr>
 					<td><li>문항 및 결과</td>
@@ -87,21 +89,21 @@ th, td {
 							<input type="button" value="+">
 							<br>
 							<br> &emsp;
-							<input type="text" value="진도와 내용이 적당했다" size="50">
+							<input type="text" value="진도와 내용이 적당했다" size="50">&emsp;
 							<select>
 									<option>선택자 수</option>
 							</select>
 							<input type="button" value="-">
 							<input type="button" value="+">
 							<br> &emsp;
-							<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">
+							<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">&emsp;
 							<select>
 									<option>선택자 수</option>
 							</select>
 							<input type="button" value="-">
 							<input type="button" value="+">
 							<br> &emsp;
-							<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">
+							<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">&emsp;
 							<select>
 									<option>선택자 수</option>
 							</select>

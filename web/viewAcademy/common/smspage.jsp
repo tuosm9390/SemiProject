@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 .div1 {
 	display: inline-block;
@@ -53,6 +50,11 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
+td{
+	color: black !important;
+	background: white;
+}
 </style>
 </head>
 <body>
@@ -60,7 +62,7 @@
 		<%@ include file="menubar.jsp"%>
 	</header>
 	<section align="center">
-		<h1 align="left" style="margin-left: 15%;">SMS 테스트 페이지</h1>
+		<h1 align="left" style="margin-left: 10%;">SMS 테스트 페이지</h1>
 		<div class="div1" style="float: left; margin-left: 15%;" id="div1">
 			<label style="float: left;">항목 선택</label>
 			<button id="addlistbtn" style="float: right;">+</button>
@@ -76,20 +78,24 @@
 		<div id="addlist" class="modal">
 
 			<div class="modal-content" align="center">
-				<span class="close">&times;</span> <br>
+				<span class="close">&times;</span>
+				<h3 style="margin-left:35px;">항목 추가하기</h3>
 				<table>
 					<tr>
-						<td align="right">항목 이름 :</td>
+						<td align="right !important">항목 이름 :</td>
 						<td align="left"><input type="text" style="width: 200px"></td>
 					</tr>
 					<tr>
 						<td align="right">발송 내용 지정 :</td>
-						<td align="left"><input type="text" style="height: 100px; width:200px"></td>
+						<td align="left"><input type="text"
+							style="height: 100px; width: 200px"></td>
 					</tr>
 				</table>
 				<br> <br>
-				<button class="cancelbtn" style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
-				<button class="okbtn" style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
+				<button class="cancelbtn"
+					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
+				<button class="okbtn"
+					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
 				<br>
 			</div>
 		</div>
@@ -106,10 +112,15 @@
 		<!-- 대상 추가 -->
 		<div id="addperson" class="modal">
 
-			<div class="modal-content">
+			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-				<div id="selectgrade">
-					<h4>학년 선택</h4>
+				<h3 style="margin-left:15px;">수신인 추가하기</h3>
+				<table>
+				<tr>
+					<td>학년 / 반 선택</td>
+				</tr>
+				<tr>
+					<td>
 					<select>
 						<option>중등 1학년</option>
 						<option>중등 2학년</option>
@@ -117,23 +128,42 @@
 						<option>고등 1학년</option>
 						<option>고등 2학년</option>
 						<option>고등 3학년</option>
-					</select>
-				</div>
-				<div id="selectgroup">
-					<h4>대상 선택</h4>
+					</select>&emsp;
 					<select>
-						<option>학생</option>
-						<option>학부모</option>
-					</select><br> <br> <input type="checkbox" id="student1"> <label
-						for="student1">학생 1</label> <input type="checkbox" id="student2">
-					<label for="student2">학생 2</label><br> <input type="checkbox"
-						id="student3"> <label for="student3">학생 3</label> <input
-						type="checkbox" id="student4"> <label for="student4">학생
-						4</label><br>
-				</div>
-				<br> <br>
-				<button class="cancelbtn" style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
-				<button class="okbtn" style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
+							<option>1반</option>
+							<option>2반</option>
+							<option>3반</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>대상 선택</td>
+				</tr>
+				<tr>
+					<td>
+						<select>
+							<option>학생</option>
+							<option>학부모</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="student1">
+						<label for="student1">학생 1</label>
+						<input type="checkbox" id="student2">
+						<label for="student2">학생 2</label><br>
+						<input type="checkbox" id="student3">
+						<label for="student3">학생 3</label>
+						<input type="checkbox" id="student4">
+						<label for="student4">학생 4</label>
+					</td>
+				</tr>
+				</table>
+				<button class="cancelbtn"
+					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
+				<button class="okbtn"
+					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
 				<br>
 			</div>
 		</div>
@@ -143,18 +173,18 @@
 			<label style="float: left;">발송 내용</label><br> <br>
 			<textarea id="smstext"
 				style="resize: none; height: 250px; width: 100%;" readonly></textarea>
-			<button style="height: 25px; float:right;" onclick="send();">전송하기</button>
+			<button style="margin-top: 10px; height: 25px; float: right;" onclick="send();">전송하기</button>
 		</div>
 	</section>
 	<footer> </footer>
 	<!-- 스크립트 -->
 	<script>
-		function send(){
+		function send() {
 			swal("전송하시겠습니까?", {
-				buttons: ["취소", "확인"],
+				buttons : [ "취소", "확인" ],
 			});
 		};
-		
+
 		//항목 추가
 		function addoption() {
 			var optionName = window.prompt("추가할 목록 입력", "이름 입력");
