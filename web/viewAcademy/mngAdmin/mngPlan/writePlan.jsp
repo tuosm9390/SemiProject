@@ -23,7 +23,7 @@
 		}
 	</style>
 	</head>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<body>			
 		<div class="container">
 			<!-- Top Navigation -->
