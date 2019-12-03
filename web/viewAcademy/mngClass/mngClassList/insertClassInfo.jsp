@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<div class="header">
 		<h2 align="center">수업 정보 등록</h2>		
 	</div>	<!-- header end -->
