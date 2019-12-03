@@ -16,7 +16,7 @@
 	<link rel='stylesheet' href='Nwagon.css' type='text/css'>
 	<script src='Nwagon.js'></script>
 </head>
-<%@ include file="../menubar.jsp"%>
+
 <body>
 	<section>
 			<h2>학생수 변동 추이</h2>	
