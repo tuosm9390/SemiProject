@@ -198,7 +198,7 @@ td, th {
 					class="menu1">개인정보</a> <a>|</a> <a href="#" class="menu1">수납</a> <a>|</a>
 				<a
 					href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
-					class="menu1">상담</a> <a>|</a> <a href="#" class="menu1">블랙리스트</a>
+					class="menu1">상담</a> <a>|</a> <a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp" class="menu1">블랙리스트</a>
 			</div>
 			<!-- 수업관리 메뉴 -->
 			<div class="detailmenu" id="classdetailmenu">
