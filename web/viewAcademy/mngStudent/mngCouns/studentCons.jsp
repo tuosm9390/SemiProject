@@ -13,7 +13,7 @@
 	}
 </style>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../../common/menubar.jsp" %>
 	<div class="container">
 	<!-- Top Navigation -->
 	<header>

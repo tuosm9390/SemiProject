@@ -192,7 +192,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../../common/menubar.jsp"%>
 
 	<div class="wrap">
 		<h2 align="center">학생 상담 리스트</h2>
