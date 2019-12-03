@@ -17,7 +17,7 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 	<div id="head">
-		<h2 align="center">강좌 정보 관리</h2>
+		<h2 align="center">강좌 정보 관리</h2> 안녕~
 		<select>
 			<option value="" selected disabled hidden>기간별 검색</option>
 			<option value="year">2019</option>

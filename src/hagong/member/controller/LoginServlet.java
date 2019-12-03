@@ -15,7 +15,6 @@ import lombok.extern.log4j.Log4j2;
 /**
  * Servlet implementation class LoginServlet
  */
-@Log4j2
 @WebServlet("/login.me")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,8 +33,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId = request.getParameter("memberId");
 		String password = request.getParameter("password");
-		
-		log.debug("memberId : " + memberId + ", password : " + password);
 		
 		Member m = new Member();
 		m.setMemberId(memberId);
