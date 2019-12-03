@@ -12,17 +12,19 @@
 	#head > select {
 		float:left;
 	}
+	
 </style>
 </head>
 <body>
 	<%@ include file="../../common/menubar.jsp" %>
 	<div id="head">
-		<h2 align="center">강좌 정보 관리</h2> 안녕~
+		<h2 align="center">강좌 정보 관리</h2>
 		<select>
 			<option value="" selected disabled hidden>기간별 검색</option>
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
+		<button id="addColsBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:left" !important>행 추가</button>
 		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
 		<input type="search" id="searchClass" name="searchClass">

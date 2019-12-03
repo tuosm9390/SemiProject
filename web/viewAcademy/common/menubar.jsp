@@ -204,7 +204,7 @@ td, th {
 			<div class="detailmenu" id="classdetailmenu">
 				<a
 					href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classStudent.jsp"
-					class="menu3">수강생 관리</a> <a>|</a> <a href="#" class="menu3">출결
+					class="menu3">수강생 관리</a> <a>|</a> <a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/manageAttend.jsp" class="menu3">출결
 					관리</a> <a>|</a> <a
 					href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
 					class="menu3">강좌목록 관리</a> <a>|</a> <a

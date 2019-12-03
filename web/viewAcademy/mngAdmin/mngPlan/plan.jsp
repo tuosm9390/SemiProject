@@ -14,9 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<!--[if IE]>
-  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
 		#head > button {
 			float:right;
@@ -44,8 +42,9 @@
 						<option value="year">2019</option>
 						<option value="year">2018</option>
 					</select>
-					<button id="delete" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="deletePlan();">삭제</button>
+					<button class="deleteBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">삭제</button>
 					<button id="write" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="writePlan();">입력 및 수정</button>
+					<a href="#" class="input-user-name" data-user-id ="1">방문자명 입력</a>
 				</div>
 				<table id="planTableArea">
 					<thead>
@@ -85,12 +84,16 @@
 		<script src="js/jquery.stickyheader.js"></script>
 		<script>
 			function writePlan(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/writePlan.jsp";
+				location.href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
 			}
 			
 			function deletePlan(){
-				//팝업창을 이용해 삭제 띄움
-			}
+				swal("삭제하시겠습니까?", {
+					buttons : [ "취소", "확인" ],
+				});
+			};
+				
+			
 		</script>
-	</body>
+</body>
 </html>
