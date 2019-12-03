@@ -105,7 +105,7 @@ th, td {
 			</table>
 		</form>
 		<button style="margin-right: 5%; margin-bottom: 50px;">추가 완료</button>
-		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/satisfactionList.jsp'">취소</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
 	</section>
 	<footer> </footer>
 </body>

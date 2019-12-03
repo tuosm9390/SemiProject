@@ -113,8 +113,8 @@ tr:not(:first-child){
 			$("#exelfile").click();
 		});
 
-		$("tr td:not(first-child)").click(function() {
-			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/studentInfo.jsp";
+		$("tr:not(first-child)").click(function() {
+			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp";
 		});
 		
 		

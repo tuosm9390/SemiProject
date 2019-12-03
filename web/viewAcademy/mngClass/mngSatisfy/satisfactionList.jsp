@@ -148,11 +148,11 @@ tr:not(:first-child){
 	<footer> </footer>
 	<script>
 		$("#addSatisfaction").click(function(){
-			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/addSatisfaction.jsp";
+			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 		});
 		
 		$("tr td:not(first-child)").click(function() {
-			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/satisfactionDetail.jsp";
+			location.href = "<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";
 		});
 		
 		$("tr td:last-child").click(function(){
