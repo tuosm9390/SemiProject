@@ -50,17 +50,17 @@
 <body>
 	<div class="background">	
 	<div align="center" id="container">
-		<form id="loginArea" action="<%=request.getContextPath() %>/login.me" method="post">
+		<form id="middle">
 			<ul>
 				<li><img src="../images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
 				<li><label>아이디 &nbsp;&nbsp;&nbsp;</label>
-				<input type="text" id="memberId" name="memberId" placeholder="  고유번호(아이디)를 입력해주세요" 
+				<input type="text" id="userId" name="userId" placeholder="  고유번호(아이디)를 입력해주세요" 
 				style="padding-top:10px;padding-bottom:5px;width:250px"></li><br>
 				<li><label>비밀번호&nbsp;&nbsp;</label>
 				<input type="password" id="password" name="password" placeholder="  비밀번호를 입력해주세요"
 				style="padding-top:10px;padding-bottom:5px;width:250px;margin-bottom:10px"></li>
 			</ul>
-		
+		</form>
 		<div id="container-footer">
 			<ul>
 				<li>
@@ -72,11 +72,10 @@
 				</li>
 				<br><br>
 				<li>
-				<input type="submit" id="loginBtn" value="로그인"> <!-- onClick="location.href='../views/newPwd.jsp'"> -->
+				<input type="submit" id="loginBtn" value="로그인" action="" method="" onClick="location.href='../views/newPwd.jsp'">
 				</li>
 			</ul>
 		</div>
-		</form>
 	</div>
 	</div>
 </body>
