@@ -27,7 +27,7 @@ section{
 }
 </style>
 </head>
-<%@ include file="../menubar.jsp"%>
+
 <body>
 	<!-- 리스트 게시판 시작-->
 <section>

@@ -38,7 +38,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../../common/menubar.jsp" %>
 	<section id="detailClass">
 	<form id="classForm" action="" method="post">
 	<div id="classInfo">

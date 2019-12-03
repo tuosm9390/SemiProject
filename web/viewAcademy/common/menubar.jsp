@@ -214,9 +214,11 @@ td, th {
 			<!-- 관리자 메뉴 -->
 			<div class="detailmenu" id="admindetailmenu">
 				<a href="#" class="menu4">학원 현황</a> <a>|</a> <a href="#"
-					class="menu4">메뉴 권한 관리</a> <a>|</a> <a
-					href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
+
+					class="menu4">메뉴 권한 관리</a> <a>|</a> <a 
+					href="<%= request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp" 
 					class="menu4">연간계획</a>
+
 			</div>
 
 			<div id="member">
