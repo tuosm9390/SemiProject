@@ -29,6 +29,7 @@
 <script src="js/jquery.stickyheader.js"></script>
 <style>
 #menuheader {
+<<<<<<< HEAD
 	position: fixed;
 	top: 0px;
 	left: 7%;
@@ -41,6 +42,20 @@
 	align-items: center;
 	font-family: "Do Hyeon";
 	z-index: 1;
+=======
+   position: fixed;
+   top: 0px;
+   left: 7%;
+   right: 7%;
+   height: 75px;
+   padding-top: 1rem;
+   font-weight: bold;
+   background: white;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   font-family: "Do Hyeon";
+>>>>>>> parent of dddcc4e... first
 }
 
 #mid {
