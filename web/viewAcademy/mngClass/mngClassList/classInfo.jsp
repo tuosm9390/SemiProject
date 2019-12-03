@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../../common/menubar.jsp" %>
 	<div id="head">
 		<h2 align="center">강좌 정보 관리</h2> 안녕~
 		<select>
