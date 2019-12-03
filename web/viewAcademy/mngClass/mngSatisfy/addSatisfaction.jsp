@@ -50,7 +50,7 @@ th, td {
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 		<h2 style="margin-left: 5%;">만족도 조사 등록</h2>
@@ -63,14 +63,15 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td><input type="text" placeholder="만족도 조사 대상 입력" size="80">
+					<td><input type="text" placeholder="만족도 조사 대상 입력" size="80">&emsp;
 						<select>
 							<option>대상 인원 입력</option>
 					</select></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
-					<td><input type="date"> ~ <input type="date"></td>
+					<td><input type="date">&emsp;~
+					&emsp;<input type="date"></td>
 				</tr>
 				<tr>
 					<td><li>문항 및 결과</td>
@@ -83,7 +84,7 @@ th, td {
 							<input type="button" value="+">
 							<br>
 							<br> &emsp;
-							<input type="text" placeholder="선택항목 입력">
+							<input type="text" placeholder="선택항목 입력">&emsp;
 							<select>
 									<option>선택자 수</option>
 							</select>

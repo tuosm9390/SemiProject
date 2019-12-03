@@ -54,7 +54,7 @@ th, td {
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 		<h2 style="margin-left: 5%;">만족도 조사 수정</h2>

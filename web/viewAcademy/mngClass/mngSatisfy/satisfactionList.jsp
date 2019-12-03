@@ -81,7 +81,7 @@ tr:not(:first-child){
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 		<h2 style="margin-left: 5%;">만족도 조사 목록</h2>
@@ -151,12 +151,12 @@ tr:not(:first-child){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 		});
 		
-		$("tr td:not(first-child)").click(function() {
+		$("tr:not(first-child)").click(function() {
 			location.href = "<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";
 		});
 		
-		$("tr td:last-child").click(function(){
-			
+		$("tr:last-child").click(function(){
+			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionResult.jsp";
 		});
 		
 		
