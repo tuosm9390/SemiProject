@@ -116,7 +116,7 @@ th, td {
 								<input type="button" value="-">
 								<input type="button" value="+"><br><br>
 								&emsp;
-								<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" style="resize: none;"></textarea>
+								<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" style="resize: none; "></textarea>
 							</li>
 						</ol>
 					</td>
