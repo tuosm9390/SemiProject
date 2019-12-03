@@ -122,8 +122,8 @@ th, td {
 			</table>
 		</form>
 		<button style="margin-right: 5%; margin-bottom: 50px;"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/updateSatisfaction.jsp'">수정하기</button>
-		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/satisfactionList.jsp'">돌아가기</button>
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정하기</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">돌아가기</button>
 	</section>
 	<footer> </footer>
 </body>

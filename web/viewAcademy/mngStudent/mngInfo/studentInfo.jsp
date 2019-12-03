@@ -36,7 +36,7 @@ section button:hover {
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="/viewAcademy/common/menubar.jsp"%>
 	</header>
 	<section style="margin-left: 15%; margin-right: 15%;">
 		<div id="studentInfo">
