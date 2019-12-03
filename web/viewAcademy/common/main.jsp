@@ -8,7 +8,7 @@
 <style>
 </style>
 </head>
-<%@ include file="../viewAcademy/common/menubar.jsp"%>
+<%@ include file="../../viewAcademy/common/menubar.jsp"%>
 <body align="center">
 </body>
 </html>
