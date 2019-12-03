@@ -15,7 +15,6 @@ import hagong.member.model.vo.Member;
 
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 public class MemberDao {
 	private Properties prop = new Properties();
 	
@@ -71,7 +70,6 @@ public class MemberDao {
 			close(pstmt);
 			close(rset);
 		}
-		log.debug("test : " + loginUser);
 		
 		return loginUser;
 	}
