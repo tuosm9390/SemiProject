@@ -13,29 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import hagong.wrapper.LoginWrapper;
 
-/**
- * Servlet Filter implementation class EncryptFilter
- */
 @WebFilter("*.me")
 public class EncryptFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
     public EncryptFilter() {
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hRequest = (HttpServletRequest) request;
 		
@@ -44,11 +30,7 @@ public class EncryptFilter implements Filter {
 		chain.doFilter(lw, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }
