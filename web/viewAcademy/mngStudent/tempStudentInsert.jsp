@@ -43,7 +43,7 @@
 		<form id="joinForm" action="<%=request.getContextPath()%>/insertMember.me" method="post">
 			<table align="center">
 				<tr>
-					<td width="200px">* 아이디</td> 수정되길바래요~
+					<td width="200px">* 아이디</td>
 					<td><input type="text" maxlength="13" name="userId" id="userId"></td>
 					<td width="200px"><div id="idCheck">중복확인</div></td>
 				</tr>

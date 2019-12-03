@@ -42,7 +42,7 @@
 						<th>담당 강사</th>
 						<th>대상 학생</th>
 						<th>정원</th>
-						<th>기간</th> 수정되길바래요
+						<th>기간</th>
 					</tr>
 				</thead>
 				<tbody>

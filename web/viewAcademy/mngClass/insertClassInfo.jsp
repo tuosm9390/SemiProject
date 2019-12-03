@@ -21,7 +21,7 @@
 				</tr>
 				<tr>
 					<td>
-					<label>담당 강사 : </label> 수정되길바래요~
+					<label>담당 강사 : </label>
 					<select>
 						<option value="김상찬">김상찬</option>
 						<option value="서범수">서범수</option>
