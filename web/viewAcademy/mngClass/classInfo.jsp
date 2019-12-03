@@ -36,27 +36,30 @@
 			<table>
 				<thead>
 					<tr>
-						<th>내용</th>
-						<th>강의명</th>
-						<th>개설 기간</th>
-						<th>강의실</th>
+						<th>No.</th>
+						<th>과목</th>
+						<th>강좌명</th>
+						<th>담당 강사</th>
+						<th>대상 학생</th>
+						<th>정원</th>
+						<th>기간</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td class="user-name">No.</td>
+						<td class="user-name">주요 이슈</td>
 						<td class="user-email" contenteditable="true">수학 기초반1</td>
 						<td class="user-phone">(398)-332-5385</td>
 						<td class="user-mobile">(888)-677-3719</td>
 					</tr>
 					<tr>
-						<td class="user-name">과목</td>
+						<td class="user-name">입시</td>
 						<td class="user-email" contenteditable="true">수학 기초반2</td>
 						<td class="user-phone">(293)-873-2247</td>
 						<td class="user-mobile">(216)-889-4933</td>
 					</tr>
 					<tr>
-						<td class="user-name">강사</td>
+						<td class="user-name">중등</td>
 						<td class="user-email" contenteditable="true">영어 ABC 클래스-오전</td>
 						<td class="user-phone">(957)-213-3499</td>
 						<td class="user-mobile">(207)-516-4474</td>
