@@ -15,7 +15,6 @@
 		position:absolute; top:27%;
 		display:inline;
 		overflow:auto;
-		margin-bottom:10px;
 	}
 	.studentListTable {
 		overflow:auto;
@@ -30,7 +29,7 @@
 		border:1px solid lightgray;
 		background:white;
 		position:absolute;
-		top:110%;
+		top:100%;
 		left:7%;
 		margin-bottom:30px;
 		overflow:auto;
@@ -42,7 +41,7 @@
 		border:1px solid lightgray;
 		background:lightgray;
 		position:absolute;
-		top:110%;
+		top:100%;
 		left:50%;
 		margin-bottom:30px;
 		visibility:hidden;
@@ -279,16 +278,23 @@
 	</div> <!-- container end -->
 	<script>
 		$(function(){
-			$("#checkAll").click(function(){
-				$("input:checkbox[id='checkOne']").prop("checked",true);
-			}); 
+			$("input:checkbox[id='checkAll']").change(function(){			
+				if(this.checked){
+					$("input:checkbox[id='checkOne']").prop("checked",true);				
+				}else {
+					$("input:checkbox[id='checkOne']").prop("checked",false);
+				}
+			});
 		});
 		
 		$(function(){
 			$(".studentListTable td").click(function(){
 				$(".attendDetailArea").css("visibility","visible");
-				/* $(".detailReasonArea").css("visibility","visible"); */
 			});
+			
+			$(".attendDetailArea").click(function(){
+				$(".detailReasonArea").css("visibility","visible");
+			})
 		});
 	</script>
 </body>
