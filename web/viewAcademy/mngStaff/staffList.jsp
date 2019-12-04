@@ -9,6 +9,7 @@
 <style>
 .btnArea {
 	margin-left: 77.5%;
+	margin-bottom: 5px;
 }
 
 .enrollStaff {
@@ -31,12 +32,19 @@
 .staffList {
 	width: 90%;
 }
+
+input[type=file] {
+	display: none;
+}
 </style>
 <script>
 		$(function(){
 			$("#enrollPage").click(function(){
 				location.href = "../mngStaff/enrollStaff.jsp";
-				
+			});
+			
+			$("#enrollExcel").click(function(){
+				$("#btnExcel").click();
 			});
 		});
 </script>
@@ -46,11 +54,12 @@
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+		<h2 align="left" style="width: 150px; margin-left:5%;">전체 직원</h2>
 		<div class="btnArea">
-			<button class="enrollStaff">엑셀로 직원 등록</button>
 			<button class="enrollStaff" id="enrollPage">직원 등록</button>	
+			<button class="enrollStaff" id="enrollExcel">엑셀로 직원 등록</button>
+			<input type="file" id="btnExcel">
 		</div> <!-- btnArea end -->
-		<br>
 		<div class="listArea">
 			<table class="staffList" align="center">
 				<tr>

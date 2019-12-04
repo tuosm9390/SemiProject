@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 #profile {
 	width: 200px;
@@ -16,67 +17,98 @@ td {
 	/* background: white; */
 	text-align: left !important;
 }
+
+input[type=file] {
+	display: none;
+	align-items: center;
+}
+
+.outArea {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bottomBtn {
+	display: inline-block;	
+}
+
 </style>
+<script>
+	$(function(){
+		$("#imgBtn").click(function(){
+			$("#imgFile").click();
+		});
+		
+		$("#payBtn").click(function(){
+			$("#payFile").click();
+		});
+		
+		$("#docBtn").click(function(){
+			$("#docFile").click();
+	});
+</script>
 </head>
 <body>
 	<header>
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-		<form action="" method="post">
-		<table align="center">
-			<tr>
-				<td rowspan="6" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-				<td>★ 직원 ID</td>
-				<td><input type="text" name="userId" id="userId"></td>
-				<td><div>중복 확인</div></td>
-			</tr>
-			<tr>
-				<td>● 이름</td>
-				<td colspan="3"><input type="text" name="userName" id="userName"></td>
-			</tr>
-			<tr>
-				<td>● 생년월일</td>
-				<td colspan="3"><input type="date" name="birth" id="birth"></td>
-			</tr>
-			<tr>
-				<td>● 전화번호</td>
-				<td colspan="3"><input type="text" maxlength="3" size="4" name="tel1"> - 
-				    			<input type="text" maxlength="4" size="4" name="tel2"> - 
-				    			<input type="text" maxlength="4" size="4" name="tel3"></td>
-			</tr>
-			<tr>
-				<td>● 담당업무</td>
-				<td colspan="3">
-					<select name="subject">
-						<option value="korea">국어</option>
-						<option value="math">수학</option>
-						<option value="english">영어</option>
-						<option value="social">사회탐구</option>
-						<option value="science">과학탐구</option>
-						<option value="foreign">제2외국어</option>
-						<option value="desk">행정</option>
-						<option value="cram">입시</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>● 주소</td>
-				<td colspan="3"><input type="text"></td>
-			</tr>
-			<tr>
-				<td><input type="file"></td>
-				<td>● 이메일</td>
-				<td colspan="2"><input type="email"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>● 개인정보 제공 동의<br>
-					<input type="checkbox"><label>동의함</label>
-				</td>
-				<td colspan="2">
-					<div style="width:500px; height:200px; overflow:auto; border:1px solid lightgray;">
-						<pre align="left">【 개인정보처리방침 】
+		<div class="outArea">
+			<form action="" method="post">
+			<table>
+				<tr>
+					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+					<td>★ 직원 ID</td>
+					<td><input type="text" name="userId" id="userId"></td>
+					<td><div>중복 확인</div></td>
+				</tr>
+				<tr>
+					<td width="200px">● 이름</td>
+					<td colspan="3"><input type="text" name="userName" id="userName"></td>
+				</tr>
+				<tr>
+					<td>● 생년월일</td>
+					<td colspan="3"><input type="date" name="birth" id="birth"></td>
+				</tr>
+				<tr>
+					<td>● 전화번호</td>
+					<td colspan="3"><input type="text" maxlength="3" size="4" name="tel1"> - 
+					    			<input type="text" maxlength="4" size="4" name="tel2"> - 
+					    			<input type="text" maxlength="4" size="4" name="tel3"></td>
+				</tr>
+				<tr>
+					<td>● 담당업무</td>
+					<td colspan="3">
+						<select name="subject">
+							<option value="korea">국어</option>
+							<option value="math">수학</option>
+							<option value="english">영어</option>
+							<option value="social">사회탐구</option>
+							<option value="science">과학탐구</option>
+							<option value="foreign">제2외국어</option>
+							<option value="desk">행정</option>
+							<option value="cram">입시</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
+					<td>● 주소</td>
+					<td colspan="3"><input type="text" name="address" id="address"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>● 이메일</td>
+					<td colspan="2"><input type="email" name="email" id="email"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>● 개인정보 제공<br>　및 활용 동의
+					</td>
+					<td colspan="2">
+						<div style="width:500px; height:200px; overflow:auto; border:1px solid lightgray;">
+							<pre align="left">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -164,24 +196,30 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 이 개인정보취급방침은 2011년 O월 OO일에 제정되었으며 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의 추가ㆍ삭제 및 수정이 있을 시에는 변경되는 개인정보취급방침을 시행하기 최소 7일전에 학원 홈페이지를 통해 변경이유 및 내용 등을 공지하도록 하겠습니다.
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일</pre>
-					</div>
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>● 급여 계약서 </td>
-				<td colspan="2"><input type="file"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>● 경력 등 기타 서류</td>
-				<td colspan="2"><input type="file"></td>
-			</tr>
-		</table>		
-		</form>
-		<button>등록</button>
-		<button>취소</button>
+						</div>
+						<div align="right"><input type="checkbox" name="accept" id="accept"><label for="accept"> 동의합니다.</label></div>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>● 급여 계약서 </td>
+					<td colspan="2"><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>● 경력 등 기타 서류</td>
+					<td colspan="2"><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+				</tr>
+			</table>		
+			</form>
+			
+			<div class="btnArea" align="right">
+				<button class="bottomBtn">등록</button>
+				<button class="bottomBtn">취소</button>
+			</div> <!-- btnArea end -->
+		</div> <!-- outArea end -->
+		
 	</section>
 	<footer>
 	</footer>
