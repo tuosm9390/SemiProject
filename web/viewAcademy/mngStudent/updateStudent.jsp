@@ -93,7 +93,7 @@ th, td{
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="date"></td>
+					<td><input type="text"></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>

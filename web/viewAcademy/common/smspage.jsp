@@ -55,6 +55,18 @@ td{
 	color: black !important;
 	background: white;
 }
+
+input[type=text] {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	width: 200px;
+	height: 30px;
+}
+select{
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	height: 30px;
+}
 </style>
 </head>
 <body>
@@ -121,7 +133,9 @@ td{
 				</tr>
 				<tr>
 					<td>
+					<!-- 학년 선택 -->
 					<select class="grade">
+						<option value="0" selected>--선택--</option>
 						<option value="mid1">중등 1학년</option>
 						<option value="mid2">중등 2학년</option>
 						<option value="mid3">중등 3학년</option>
@@ -129,19 +143,19 @@ td{
 						<option value="high2">고등 2학년</option>
 						<option value="high3">고등 3학년</option>
 					</select>&emsp;
-					<select class="class">
-					
+					<!-- 반 선택 -->
+					<select class="class" style="display: none;">
 					</select>
 					</td>
 				</tr>
 				<tr>
-					<td>대상 선택</td>
+					<td class="person" style="display: none;">대상 선택</td>
 				</tr>
 				<tr>
 					<td>
-						<select>
-							<option>학생</option>
-							<option>학부모</option>
+					<!-- 대상 선택 -->
+						<select class="person" style="display: none;">
+							
 						</select>
 					</td>
 				</tr>
@@ -240,23 +254,47 @@ td{
 			addperson.style.display = "none";
 		}
 		
+		//학년 반 선택
 		$(function(){
 			var class1 = ['1반', '2반'];
 			var class2 = ['1반', '2반', '3반', '4반'];
 			$(".grade").change(function(){
 				var sel = $(this).val();
 				if(sel == 'mid1'){
+					$(".class").show();
 					$(".op").remove();
+					$(".class").append("<option class='op' value='0' selected>-선택-</option>");
 					$.each(class1,function(i, item){
-						$(".class").append("<option class='op'>" + item + "</option>");
+						$(".class").append("<option class='op' value='" + (i + 1) + "'>" + item + "</option>");
 					});
 				} else if(sel == 'mid2'){
+					$(".class").show();
 					$(".op").remove();
+					$(".class").append("<option class='op' value='0' selected>-선택-</option>");
 					$.each(class2,function(i, item){
-						$(".class").append("<option class='op'>" + item + "</option>");
+						$(".class").append("<option class='op' value='" + (i + 1) + "'>" + item + "</option>");
 					});
+				} else {
+					$(".op").remove();
+					$(".class").hide();
 				}
 			});
+		});
+		
+		//대상 선택
+		$(function(){
+			var person = ['학생', '학부모'];
+			$(".class").change(function(){
+				var sel = $(this).val();
+				var grade = $(".grade").val();
+				if(sel != 0){
+					$(".person").show();
+					
+				} else if(sel == 0 || grade == 0){
+					$(".person").hide();
+				}
+			});
+			
 		});
 	</script>
 </body>
