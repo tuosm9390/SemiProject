@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css' type='text/css'>
+<link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css'
+	type='text/css'>
 <script src='../../mngAdmin/mngStatus/Nwagon.js'></script>
 <style>
 table {
@@ -66,11 +67,13 @@ section button:hover {
 		<div id="studentPoint">
 			<h2 style="width: 150px;">학생 성적</h2>
 			<button id="pointAddBtn" style="float: right;">성적 추가</button>
-			<button style="float:right;">검색</button>
-			<select class="classify" style="float: right; width: 100px; margin-left: 1%; display: none;">
-				
+			<button style="float: right;">검색</button>
+			<!-- 조건 선택시 옵션 -->
+			<select class="classify"
+				style="float: right; width: 100px; margin-left: 1%; display: none;">
+
 			</select>
-			<select class="so" style="float: right; width: 60px; height:25px;">
+			<select class="so" style="float: right; width: 60px; height: 25px;">
 				<option value="0" selected>-선택-</option>
 				<option value="1">구분</option>
 				<option value="2">년도</option>
@@ -146,37 +149,49 @@ section button:hover {
 		};
 
 		Nwagon.chart(options);
-		
-		$("#pointAddBtn").click(function(){
-			$("#point").append("<tr><td>3</td><td>내신</td><td>1</td><td>2018</td><td>40</td><td>0</td><td>30</td></tr>");
-		});
-		
-		$(function(){
-			var class1 = ['1반', '2반'];
-			var class2 = ['1반', '2반', '3반', '4반'];
-			$(".so").change(function(){
-				var sel = $(this).val();
-				if(sel == 0){
-					$(".classify").hide();
-					$(".op").remove();
-				} else if(sel == 1){
-					$(".classify").show();
-					$(".op").remove();
-					$.each(class1,function(i, item){
-						$(".classify").append("<option class='op'>" + item + "</option>");
-					});
-				} else if(sel == 2){
-					$(".classify").hide();
-					$(".op").remove();
-					$(".classify").after("<input type='month' class='op' style='float: right; margin-left: 1%;'>");
-				} else if(sel == 3){
-					$(".classify").show();
-					$(".op").remove();
-					$.each(class2,function(i, item){
-						$(".classify").append("<option class='op'>" + item + "</option>");
-					});
-				}
-			});
+
+		$("#pointAddBtn")
+				.click(
+						function() {
+							$("#point")
+									.append(
+											"<tr><td>3</td><td>내신</td><td>1</td><td>2018</td><td>40</td><td>0</td><td>30</td></tr>");
+						});
+
+		$(function() {
+			var class1 = [ '1반', '2반' ];
+			var class2 = [ '1반', '2반', '3반', '4반' ];
+			$(".so")
+					.change(
+							function() {
+								var sel = $(this).val();
+								if (sel == 0) {
+									$(".classify").hide();
+									$(".op").remove();
+								} else if (sel == 1) {
+									$(".classify").show();
+									$(".op").remove();
+									$.each(class1, function(i, item) {
+										$(".classify").append(
+												"<option class='op'>" + item
+														+ "</option>");
+									});
+								} else if (sel == 2) {
+									$(".classify").hide();
+									$(".op").remove();
+									$(".classify")
+											.after(
+													"<input type='month' class='op' style='float: right; margin-left: 1%;'>");
+								} else if (sel == 3) {
+									$(".classify").show();
+									$(".op").remove();
+									$.each(class2, function(i, item) {
+										$(".classify").append(
+												"<option class='op'>" + item
+														+ "</option>");
+									});
+								}
+							});
 		});
 	</script>
 </body>
