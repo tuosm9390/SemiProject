@@ -23,7 +23,7 @@ section button:hover {
 	color: white;
 }
 
-input[type=button]{
+.Addbenefit {
 	width: 26px;
 	margin-bottom: 5px;
 	margin-left: 1%;
@@ -137,7 +137,7 @@ tr:not(:first-child){
 					<option>학원비 5%</option>
 					<option>학원비 10%</option>
 				</select>&emsp;
-				<input type="button" value="+">
+				<input type="button" class="Addbenefit" value="+">
 				<br> <br>
 				<button class="cancelbtn" style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
 				<button class="okbtn" style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>

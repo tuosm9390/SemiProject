@@ -121,19 +121,17 @@ td{
 				</tr>
 				<tr>
 					<td>
-					<select>
-						<option>중등 1학년</option>
-						<option>중등 2학년</option>
-						<option>중등 3학년</option>
-						<option>고등 1학년</option>
-						<option>고등 2학년</option>
-						<option>고등 3학년</option>
+					<select class="grade">
+						<option value="mid1">중등 1학년</option>
+						<option value="mid2">중등 2학년</option>
+						<option value="mid3">중등 3학년</option>
+						<option value="high1">고등 1학년</option>
+						<option value="high2">고등 2학년</option>
+						<option value="high3">고등 3학년</option>
 					</select>&emsp;
-					<select>
-							<option>1반</option>
-							<option>2반</option>
-							<option>3반</option>
-						</select>
+					<select class="class">
+					
+					</select>
 					</td>
 				</tr>
 				<tr>
@@ -241,6 +239,25 @@ td{
 		cancelperson.onclick = function() {
 			addperson.style.display = "none";
 		}
+		
+		$(function(){
+			var class1 = ['1반', '2반'];
+			var class2 = ['1반', '2반', '3반', '4반'];
+			$(".grade").change(function(){
+				var sel = $(this).val();
+				if(sel == 'mid1'){
+					$(".op").remove();
+					$.each(class1,function(i, item){
+						$(".class").append("<option class='op'>" + item + "</option>");
+					});
+				} else if(sel == 'mid2'){
+					$(".op").remove();
+					$.each(class2,function(i, item){
+						$(".class").append("<option class='op'>" + item + "</option>");
+					});
+				}
+			});
+		});
 	</script>
 </body>
 </html>
