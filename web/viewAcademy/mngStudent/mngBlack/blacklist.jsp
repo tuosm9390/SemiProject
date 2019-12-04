@@ -14,7 +14,7 @@
 
 	</header>
 			<div class="component" id="consilArea">
-				<h2>학생상담 리스트</h2>
+				<h2>블랙리스트</h2>
 				<table id="classlist">
 					<thead>
 						<tr>
@@ -36,7 +36,7 @@
 			<script>
 				$(function(){
 					$("#consList td").click(function(){
-						location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngBlack/blacklistDetail.jsp";
+						location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklistDetail.jsp";
 					});
 				})
 			</script>
@@ -44,6 +44,6 @@
 		<!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="js/jquery.stickyheader.js"></script>
+		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 </body>
 </html>
