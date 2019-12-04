@@ -19,7 +19,7 @@ td{
 input {
 	border: 1px solid lightgray;
 	border-radius: 5px;
-	height: 20px;
+	height: 30px;
 }
 
 input[type=tel] {
@@ -73,7 +73,7 @@ th, td{
 					<td rowspan="7">
 						<div align="center">
 							<img id="profile" src="<%=request.getContextPath()%>/images/user.png">
-							<button id="addimg"
+							<button type="button" id="addimg"
 								style="height: 1.5em; margin-top: 3%;">사진
 								선택</button>
 							<input type="file" id="imgfile"> <select
@@ -97,7 +97,7 @@ th, td{
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel"> - <input type="tel"> -
+					<td><input type="tel">  -  <input type="tel">  -  
 						<input type="tel"></td>
 				</tr>
 				<tr>
