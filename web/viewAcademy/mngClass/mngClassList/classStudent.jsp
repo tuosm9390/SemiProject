@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>HAGONG</title>
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<!-- 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" /> -->
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -50,7 +50,7 @@
 		<!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="js/jquery.stickyheader.js"></script>
+		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 		<script>
 			$(function(){
 				$("#classlist td").click(function(){
