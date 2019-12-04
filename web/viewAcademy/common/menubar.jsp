@@ -185,7 +185,8 @@ td, th {
 				<img src="<%=request.getContextPath()%>/images/sms.png"
 					style="height: 30px;">
 			</h3>
-			<h3 id="calendar">
+			<h3 id="calendar"
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/common/calendar.jsp'">
 				<img src="<%=request.getContextPath()%>/images/calendar.png"
 					style="height: 30px;">
 			</h3>
@@ -222,7 +223,10 @@ td, th {
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
-					<a href="#" class="menu4">학원 현황</a> <a>|</a> <a href="#"
+						<a 
+						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/presentCondition.jsp" 
+						class="menu4">학원 현황</a> <a>|</a> <a 
+						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/menuLevel.jsp"
 						class="menu4">메뉴 권한 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
 						class="menu4">연간계획</a>
