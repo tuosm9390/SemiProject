@@ -72,6 +72,7 @@ ul > li {
 			<header>
 
 			</header>
+			<section>
 				<div class="head">
 					<h2 align="center">연간계획</h2>
 					<div class="btnArea">
@@ -86,7 +87,7 @@ ul > li {
 					</div> <!-- btnArea end -->
 				</div> <!-- head end -->
 			<div class="body">
-				<table id="planTableArea">
+				<table id="planTableArea" class="table">
 					<thead>
 						<tr>
 							<th></th>
@@ -231,12 +232,15 @@ ul > li {
 					</form>
 				</div> <!-- monthCheckArea end -->
 				<button id="cancelbtn"
-					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
+					style="margin-left: 100px; width: 100px; height: 30px; float: left; display:inline;" !important>취소</button>
 				<button id="okbtn"
-					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
+					style="margin-right: 100px; float: right; width: 100px; height: 30px; display:inline;" !important>확인</button>
 				<br>
 			</div>
-		</div>
+		</div> <!-- deleteArea end -->
+		</section>
+		<footer>
+		</footer>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 		<script src="js/jquery.stickyheader.js"></script>

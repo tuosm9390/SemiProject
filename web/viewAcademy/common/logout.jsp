@@ -11,7 +11,7 @@
 <style>
 	.background {
 		position: absolute;
-    	top: 50%;
+    	top: 55%;
     	left: 50%;
     	transform: translate(-50%, -50%)
 	}
@@ -48,17 +48,18 @@
 </style>
 </head>
 <body>
+	<%@ include file="../common/menubar.jsp" %>
 	<div class="background">	
 	<div align="center" id="container">
 		<form id="middle">
 			<ul>
-				<li><img src="../images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
+				<li><img src="<%=request.getContextPath()%>/images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
 				<li style="margin-bottom:50px"><%= userId %><label>님 로그아웃 되었습니다.</label></li>
 			</ul>
 		</form>
 		<div id="container-footer">
 			<ul>
-				<li><input type="button" id="reLoginBtn" value="재로그인 하기" action="" method="" onClick="location.href='../views/login.jsp'"></li>
+				<li><input type="button" id="reLoginBtn" value="재로그인 하기" action="" method="" onClick="location.href='<%=request.getContextPath()%>/viewAcademy/common/login.jsp'"></li>
 			</ul>
 		</div>
 	</div>

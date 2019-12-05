@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(loginMember != null) {
 			request.getSession().setAttribute("loginMember", loginMember);
-			response.sendRedirect(request.getContextPath()+"/index.jsp");
+			response.sendRedirect(request.getContextPath()+"/viewAcademy/common/academyMain.jsp");
 		}else {
 			System.out.println("로그인 실패!");
 		}

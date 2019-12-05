@@ -48,11 +48,12 @@
 </style>
 </head>
 <body>
+	<%@ include file="../common/menubar.jsp" %>
 	<div class="background">	
 	<div align="center" id="container">
 		<form id="loginArea" action="<%=request.getContextPath() %>/login.me" method="post">
 			<ul>
-				<li><img src="../images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
+				<li><img src="<%=request.getContextPath()%>/images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
 				<li><label>아이디 &nbsp;&nbsp;&nbsp;</label>
 				<input type="text" id="memberId" name="memberId" placeholder="  고유번호(아이디)를 입력해주세요" 
 				style="padding-top:10px;padding-bottom:5px;width:250px"></li><br>

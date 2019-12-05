@@ -8,14 +8,16 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-	input[type="text"], input[type="number"], input[type="data"] {
+	input[type="text"], input[type="number"], input[type="date"] {
 		width: 300px;
 		padding:10px;
+		margin-bottom:20px;
 	}
 	input[type="checkbox"] {
 		margin-left: 10px;
 		width:20px;
 		height:20px;
+		margin-bottom:20px;
 	}
 	.bottomArea > input {
 		padding:10px;
@@ -37,7 +39,7 @@
 <body>
 	<%@ include file="../../common/menubar.jsp" %>
 	<div class="header">
-		<h2 align="center">수업 정보 등록</h2>		
+		<h2>수업 정보 등록</h2>		
 	</div>	<!-- header end -->
 	<div class="body" align="center">
 		<form id="classInfo" action="" method="post">
@@ -50,7 +52,7 @@
 				<tr>
 					<td>
 					<label for="selectTeacher">담당 강사 : </label>
-					<select id="selectTeacher" style="width:300px; padding:10px;">
+					<select id="selectTeacher" style="width:300px; padding:10px; margin-bottom:20px">
 						<option value="김상찬">김상찬</option>
 						<option value="서범수">서범수</option>
 						<option value="박재영">박재영</option>
@@ -88,7 +90,7 @@
 				<tr>
 					<td>
 					<label for="classroom">강의실 : </label>
-					<select id="classroom" name="classroom" style="width:300px; padding:10px;">
+					<select id="classroom" name="classroom" style="width:300px; padding:10px; margin-bottom:20px">
 						<option>A</option>
 						<option>B</option>
 						<option>C</option>
@@ -98,7 +100,7 @@
 				<tr>
 					<td>
 						<label for="classTime">강의 시간 : </label>
-						<select id="classTime" style="width:300px; padding:10px;">
+						<select id="classTime" style="width:300px; padding:10px; margin-bottom:20px">
 							<option>15:00 ~ 16:00</option>
 							<option>16:00 ~ 17:00</option>
 							<option>17:00 ~ 18:00</option>
