@@ -81,9 +81,10 @@ input[size] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+		<h2 align="left" style="width: 150px; margin-left: 5%;">직원 상세정보</h2>
 		<div class="outArea">
 			<form action="" method="post">
-			<table>
+			<table class="table">
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 					<td width="20%"><li>직원 ID</li></td>
