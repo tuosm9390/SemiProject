@@ -11,7 +11,7 @@
 	
 	.upperArea {
 		width:86%;
-		height:650px;
+		height:550px;
 		position:absolute; top:27%;
 		display:inline;
 		overflow:auto;
@@ -268,7 +268,7 @@
 				<h4>&nbsp;&nbsp;출결 상세 사유</h4>
 				<div class="reasonContent">
 					<form action="" method="post">
-						<textarea style="margin: 0px; width: 815px; height: 282px; resize:none;"></textarea>
+						<textarea style="margin: 0px; width: 677px; height: 282px; resize:none;"></textarea>
 						<br>
 						<input type="submit" value="입력" style="float:right; padding:5px; width:100px">
 					</form>

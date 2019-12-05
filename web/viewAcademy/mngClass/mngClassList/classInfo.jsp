@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	#head > button, input{
@@ -24,7 +26,6 @@
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
-		<button id="addColsBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:left" !important>행 추가</button>
 		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
 		<input type="search" id="searchClass" name="searchClass">
@@ -35,7 +36,7 @@
 			<option name="searchClassCondition">담당 강사</option>
 		</select>
 		<form>
-			<table>
+			<table id="classInfoTable">
 				<thead>
 					<tr>
 						<th>No.</th>
@@ -50,67 +51,81 @@
 				<tbody>
 					<tr>
 						<td class="user-name">주요 이슈</td>
-						<td class="user-email" contenteditable="true">수학 기초반1</td>
+						<td class="user-email" >수학 기초반1</td>
 						<td class="user-phone">(398)-332-5385</td>
 						<td class="user-mobile">(888)-677-3719</td>
 					</tr>
 					<tr>
 						<td class="user-name">입시</td>
-						<td class="user-email" contenteditable="true">수학 기초반2</td>
+						<td class="user-email" >수학 기초반2</td>
 						<td class="user-phone">(293)-873-2247</td>
 						<td class="user-mobile">(216)-889-4933</td>
 					</tr>
 					<tr>
 						<td class="user-name">중등</td>
-						<td class="user-email" contenteditable="true">영어 ABC 클래스-오전</td>
+						<td class="user-email" >영어 ABC 클래스-오전</td>
 						<td class="user-phone">(957)-213-3499</td>
 						<td class="user-mobile">(207)-516-4474</td>
 					</tr>
 					<tr>
 						<td class="user-name">고등</td>
-						<td class="user-email" contenteditable="true">영어 ABC 클래스-오후</td>
+						<td class="user-email" >영어 ABC 클래스-오후</td>
 						<td class="user-phone">(897)-762-9782</td>
 						<td class="user-mobile">(565)-627-3002</td>
 					</tr>
 					<tr>
 						<td class="user-name">중.고 경시</td>
-						<td class="user-email" contenteditable="true">여름방학 고2 선행 특강</td>
+						<td class="user-email" >여름방학 고2 선행 특강</td>
 						<td class="user-phone">(231)-391-6269</td>
 						<td class="user-mobile">(790)-838-2130</td>
 					</tr>
 					<tr>
 						<td class="user-name">행사</td>
-						<td class="user-email" contenteditable="true">고3 수능 직전 벼락치기반</td>
+						<td class="user-email" >고3 수능 직전 벼락치기반</td>
 						<td class="user-phone">(204)-488-5204</td>
 						<td class="user-mobile">(508)-463-6811</td>
 					</tr>
 					<tr>
 						<td class="user-name"></td>
-						<td class="user-email" contenteditable="true"></td>
+						<td class="user-email" ></td>
 						<td class="user-phone">(436)-578-2946</td>
 						<td class="user-mobile">(906)-412-3302</td>
 					</tr>
 					<tr>
 						<td class="user-name"></td>
-						<td class="user-email" contenteditable="true"></td>
+						<td class="user-email"></td>
 						<td class="user-phone">(724)-705-3555</td>
 						<td class="user-mobile">(764)-841-2531</td>
 					</tr>
 					<tr>
 						<td class="user-name"></td>
-						<td class="user-email" contenteditable="true"></td>
+						<td class="user-email" ></td>
 						<td class="user-phone">(774)-205-7754</td>
 						<td class="user-mobile">(639)-267-9728</td>
 					</tr>
 					<tr>
 						<td class="user-name"></td>
-						<td class="user-email" contenteditable="true"></td>
+						<td class="user-email" ></td>
 						<td class="user-phone">(723)-243-7706</td>
 						<td class="user-mobile">(172)-597-3422</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
+		<button>강의실 관리</button>
 	</div>
+	
+	<script>
+		$(function(){
+			$("#classInfoTable td").mouseenter(function(){
+				$(this).parent().css("cursor","pointer");
+			}).click(function(){
+				<%-- var num = $(this).parent().children().eq(0).text();
+				
+				location.href="<%=request.getContextPath()%>/selectOne.at?num=" + num; --%>
+				location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/detailClassInfo.jsp";
+			})
+		});
+	</script>
 </body>
 </html>

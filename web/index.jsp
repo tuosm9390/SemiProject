@@ -12,6 +12,7 @@
 <body>
 	<header>
 		<%@ include file="../viewAcademy/common/menubar.jsp"%>
+		<%-- <%@ include file="../viewAcademy/common/academyMain.jsp" %> --%>
 	</header>
 	<section>
 	</section>

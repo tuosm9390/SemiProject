@@ -27,7 +27,6 @@
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
-		<button id="addColsBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:left" !important>행 추가</button>
 		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
 		<input type="search" id="searchClass" name="searchClass">
@@ -124,7 +123,6 @@
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
-		<button id="addColsBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:left" !important>행 추가</button>
 		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
 		<input type="search" id="searchClass" name="searchClass">
