@@ -152,6 +152,8 @@
 .btnArea button{
 	display:inline-block;
 	margin:0 2px;
+	width: 70px;
+	height: 22px;
 }
 .btnArea .updateCons {
 	display:none;
@@ -162,13 +164,14 @@
 	margin:0 2px;
 	width: 70px;
 	height: 22px;
-	line-height: 22px;
+	line-height: 19px;
 	text-decoration: none;
 	border: 1px solid green;
 	border-radius: 5px;
 	background: none;
 	color: black;
 	position: relative;
+	padding: 1px 6px;
 }
 
 .updateBtn:focus {

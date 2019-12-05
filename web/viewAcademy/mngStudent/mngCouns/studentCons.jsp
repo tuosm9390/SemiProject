@@ -107,7 +107,7 @@
 	</header>
 			<div class="component" id="consilArea">
 				<h2>학생상담 리스트</h2>
-				<table id="classlist">
+				<table id="classlist" class="table">
 					<thead>
 						<tr>
 							<th>원생명</th>
