@@ -96,7 +96,7 @@
 .dArea .dCtn .consCate{padding: 4px;width: 162px;}
 .dArea .dTit{display: block;padding-bottom: 5px;font-weight: bold;font-size: 15px;}
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
-.btnArea{padding: 24px 0 13px;}
+.btnArea{padding: 10px 40px 40px 40px;}
 </style>
 <body>
 	<%@ include file="../../common/menubar.jsp" %>
@@ -137,63 +137,57 @@
 		<div id="addlist" class="modal">
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-			<!-- formArea -->
-			<div>
-				<form class="accordion__content" method="post">
-					<div class="detailArea">
-						<div class="dArea dArea1">
-							<div class="dCtn consTitle">
-								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
+					<form class="accordion__content" method="post">
+						<div class="detailArea" align="left">
+							<div class="dArea dArea1">
+								<div class="dCtn consTitle">
+									<label class="dTit">상담제목</label>
+									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
+								</div>
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
+							<div class="dArea dArea2">
+								<div class="dCtn consDate"> 
+									<label class="dTit">상담일자</label>
+									<input type="text" class="inputCons" value="2019.11.11">
+								</div>
+								<div class="dCtn category">
+									<label class="dTit">상담종류</label>
+									<select name="consCategory" class="consCate">
+										<option value="class">수업</option>
+										<option value="life">학원생활</option>
+										<option value="atit">태도</option>
+										<option value="etc">기타</option>
+									</select>
+								</div>
 							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
+							<div class="dArea dArea3">
+								<div class="dCtn content">
+									<label class="dTit">내용</label>
+									<textarea class="inputCons" name="consreq">상담내용입니다.</textarea>
+								</div>
+								<div class="dCtn answer">
+									<label class="dTit">상담자의 대응내용</label>
+									<textarea class="inputCons" name="consres">상담대응내용입니다.</textarea>
+								</div>
 							</div>
 						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
-							</div>
-							<div class="dCtn category">
-								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
-								</select>
-							</div>
+						<div class="btnArea">
+							<button class="cancelbtn"
+								style="margin-left: 150px; width: 100px; height: 30px; float: left;">취소</button>
+							<button class="okbtn"
+								style="margin-right: 150px; float: right; width: 100px; height: 30px;">확인</button>
 						</div>
-						<div class="dArea dArea3">
-							<div class="dCtn content">
-								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
-							</div>
-							<div class="dCtn answer">
-								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
-						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
-					</div> <!-- btnArea -->
-				</form>
-				</div> <!-- formArea end -->
-				<button class="cancelbtn"
-					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
-				<button class="okbtn"
-					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
+					</form>
+				</div>
 			</div>
-		</div>
 		</section>
 	<footer> </footer>
 	<!-- 스크립트 -->

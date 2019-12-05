@@ -65,10 +65,10 @@
 .bInfo .btitle{text-align:left; font-size:20px;font-weight: bold;}
 .bInfo .bDetail .bContent {text-align:left;}
 .bInfo .bTable{width:600px;}
-.bInfo .bTable td{background:floralwhite;}
+.bInfo .bTable td{background:snow;}
 .bInfo .blacklist_content{}
 .btnArea{padding: 24px 0 13px;}
-.blacklist_content {background:floralwhite; padding:10px 10px 0 10px;}
+.blacklist_content {background:snow; padding:10px 10px 0 10px;}
 </style>
 </head>
 <body>
