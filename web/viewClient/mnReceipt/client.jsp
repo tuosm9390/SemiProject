@@ -169,7 +169,7 @@
 	
 	
 </head>
-
+<%@ include file="/viewAcademy/common/menubar.jsp" %>
 <body>
 <div id="titlemsg">
 	<h3>빛상찬 님의 수강과목</h3>
