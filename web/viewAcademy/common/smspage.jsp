@@ -135,13 +135,13 @@ select{
 					<td>
 					<!-- 학년 선택 -->
 					<select class="grade">
-						<option value="0" selected>--선택--</option>
-						<option value="mid1">중등 1학년</option>
-						<option value="mid2">중등 2학년</option>
-						<option value="mid3">중등 3학년</option>
-						<option value="high1">고등 1학년</option>
-						<option value="high2">고등 2학년</option>
-						<option value="high3">고등 3학년</option>
+						<option class="op2" value="0" selected>--선택--</option>
+						<option class="op2" value="mid1">중등 1학년</option>
+						<option class="op2" value="mid2">중등 2학년</option>
+						<option class="op2" value="mid3">중등 3학년</option>
+						<option class="op2" value="high1">고등 1학년</option>
+						<option class="op2" value="high2">고등 2학년</option>
+						<option class="op2" value="high3">고등 3학년</option>
 					</select>&emsp;
 					<!-- 반 선택 -->
 					<select class="class" style="display: none;">
@@ -274,6 +274,10 @@ select{
 					$.each(class2,function(i, item){
 						$(".class").append("<option class='op' value='" + (i + 1) + "'>" + item + "</option>");
 					});
+					//학년 미 선택시 대상 선택 메뉴 숨김
+				} else if($(".op2").val() == 0){
+					$(".person").hide();
+					$(".class").hide();
 				} else {
 					$(".op").remove();
 					$(".class").hide();
@@ -286,15 +290,14 @@ select{
 			var person = ['학생', '학부모'];
 			$(".class").change(function(){
 				var sel = $(this).val();
-				var grade = $(".grade").val();
+				var op2 = $(".op2").val();
 				if(sel != 0){
 					$(".person").show();
-					
-				} else if(sel == 0 || grade == 0){
+					//반 미 선택시 대상 선택 메뉴 숨김
+				} else if(sel == 0 && op2 == 0){
 					$(".person").hide();
 				}
 			});
-			
 		});
 	</script>
 </body>
