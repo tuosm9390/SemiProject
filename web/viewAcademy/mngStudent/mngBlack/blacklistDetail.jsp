@@ -19,6 +19,8 @@
 	background:white;
 	display:inline-block;
 	margin:0 2px;
+	width: 80px;
+    height: 25px;
 }
 .btnArea .updateCons {
 	display:none;
@@ -58,7 +60,7 @@
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 24px 0 13px;}
 .bInfo .bDetail{display: inline-flex;}
-.bInfo .bDetail .bDate{border:1px solid #333;padding:0 20px 0 20px;margin-right: 25px;border-color: rgb(169, 169, 169);}
+.bInfo .bDetail .bDate{border:1px solid #333;padding:0 20px 0 20px;margin-right: 25px;border-color: rgb(169, 169, 169);height: fit-content;}
 .bInfo .bDetail .bDate p{font-size:18px; margin: 10px 0;color:#333;}
 .bInfo .bDetail .bContent{width: 700px;}
 .bInfo {text-align:center;}
@@ -76,12 +78,12 @@
 	<div class="bInfo">
 		<p class="btitle">블랙리스트 조회</p>
 		<div class="bTable">
-			<table>
+			<table class="table">
 				<tr>
 					<th>학교</th>
 					<th>학년</th>
 					<th>연락처</th>
-					<th>학부모</th>					
+					<th>학부모연락처</th>					
 				</tr>
 				<tr>
 					<td>KH중학교</td>

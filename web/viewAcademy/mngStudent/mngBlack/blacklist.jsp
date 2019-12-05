@@ -108,7 +108,7 @@
 				<div class="addBtn">				
 					<button class="addBlist" onclick="addBlist();">추 가</button>
 				</div>
-				<table id="classlist">
+				<table id="classlist" class="table">
 					<thead>
 						<tr>
 							<th>원생명</th>

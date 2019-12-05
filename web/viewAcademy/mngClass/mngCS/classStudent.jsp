@@ -12,7 +12,7 @@
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	<style>
-		#classStudent table *{
+		#classStudent .table *{
 			text-align:center;
 			text-align: -webkit-center;
 		}
@@ -27,7 +27,7 @@
 			</header>
 			<div class="component">
 				<h2>개설강좌 리스트</h2>
-				<table id="classlist">
+				<table id="classlist" class="table">
 					<thead>
 						<tr>
 							<th>Index</th>
