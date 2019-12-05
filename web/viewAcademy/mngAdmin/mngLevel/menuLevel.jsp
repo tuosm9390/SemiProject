@@ -19,7 +19,7 @@
 	}
 	.tdclass{
 		font-weight: bold;
-		font-style: color:;
+		
 		color:black;
 	
 	}
@@ -38,6 +38,13 @@
 		float: right;
 		margin-left: 10px;
 	}
+	
+	tr{
+		height: 50px;
+	}
+	td{
+		font-weight: normal;
+	}
 </style>
 </head>
 <body>
@@ -50,7 +57,7 @@
 		<article>
 			<div>
 			<form>
-				<table>
+				<table class="table">
 					<tr align="right">
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>

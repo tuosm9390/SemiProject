@@ -10,123 +10,185 @@
 <style>
 	html, body { height: 100%; background-color: #fff; }
 
-.wrap { position: absolute; width: 100%; padding: 30px; max-width: 700px; top: 30%; left: 45%; transform: translateX(-50%); }
+.wrap {
+   position: absolute;
+   width: 100%;
+   padding: 30px;
+   max-width: 700px;
+   top: 25%;
+   left: 43%;
+   transform: translateX(-50%);
+   margin-top: 10px;
+}
 
 .accordion {
-	display: block;
-	position: relative;
-	width: 120%; }
+   display: block;
+   position: relative;
+   width: 130%;
+}
 
 .accordion__item {
-	display: block;
-	width: 100%;
-	margin-bottom: 15px;
-	
-	&:last-child {
-		margin-bottom: 0; }}
+   display: block;
+   width: 100%;
+   margin-bottom: 15px;
+}
+
+.accordion__item:last-child {
+   margin-bottom: 0;
+}
 
 .accordion__title {
-	display: block;
-	position: relative;
-	height: 40px;
-	line-height: 40px;
-	padding: 0px 50px 0 20px;
-	font-size: .875em;
-	font-weight: 500;
-	color: #333;
-	border-bottom: 1px solid #eee;
-	overflow: hidden;
-	transition: background-color .2s;
+   display: block;
+   position: relative;
+   height: 40px;
+   width:100%;
+   line-height: 40px;
+   padding: 0px 50px 0 20px;
+   font-size: .875em;
+   font-weight: 500;
+   color: #333;
+   border-bottom: 1px solid #eee;
+   overflow: hidden;
+   transition: background-color .2s;
+   text-decoration:none;
+  
+}
 
-	&:hover {
-		background-color: #fafafa; }
+.accordion__title:hover {
+   background-color: #fafafa;
+}
 
-	&.active {
-		background: hsl(95,70%,90%);
-	
-		& .x7 {
-		transform: rotate(-90deg);
-		
-		& .btop {
-			width: 67%;
-			top: 2px;
-			transform: translateY(-50%) rotate(-45deg);
-			transform-origin: 50% 50%; }
-		& .bmid {
-			opacity: 0; }
-		& .bbot {
-			width: 67%;
-			bottom: 2px;
-			transform: translateY(50%) rotate(45deg);
-			transform-origin: 50% 50%; }}}}
+.accordion__title.active {
+   background: #31bc86;
+   color:white;
+}
+
+.accordion__title.active .x7 {
+   transform: rotate(-90deg); 
+}
+
+.accordion__title.active .btop { width :
+   67%;
+   top: 2px;
+   transform: translateY(-50%) rotate(-45deg);
+   transform-origin: 50% 50%;}
+.accordion__title.active .bmid {
+   opacity: 0;
+}
+
+.accordion__title.active .bbot {
+   width: 67%;
+   bottom: 2px;
+   transform: translateY(50%) rotate(45deg);
+   transform-origin: 50% 50%;
+}
+
 
 .accordion__content {
-	display: none;
-	position: relative;
-	overflow: hidden;
-	border: 1px solid #eee;
-	border-top: none;
-	line-height: 1.65;
-	padding: 25px;
-	background-color: #fff;
-	font-size: .875em; }
-.accordion__content2 {
-	display: none;
-	
-	overflow: hidden;
-	border: 1px solid #eee;
-	border-top: none;
-	line-height: 1.65;
-	padding: 25px;
-	background-color: #fff;
-	font-size: .875em; }
+   display: none;
+   position: relative;
+   overflow: hidden;
+   border: 1px solid #eee;
+   border-top: none;
+   line-height: 1.65;
+   padding: 25px;
+   background-color: #fff;
+   font-size: .875em;
+}
 
-// --- Icon ---
-.bmenu { 
-	width: 26px; 
-	height: 16px; 
-	display: block; 
-	position: absolute;
-	right: 15px;
-	top: 12px; }
+
+.bmenu {
+   width: 26px;
+   height: 16px;
+   display: block;
+   position: absolute;
+   right: 15px;
+   top: 12px;
+}
 
 .btop, .bmid, .bbot {
-	right: 0;
-	width: 100%;
-	height: 2px;
-	position: absolute;
-	background-color: #333;
-	border-radius: 1px; }
+   right: 0;
+   width: 100%;
+   height: 2px;
+   position: absolute;
+   background-color: #333;
+   border-radius: 1px;
+}
 
 .btop {
-	width: 40%; }
+   width: 40%;
+}
 
 .bmid {
-	width: 60%; }
+   width: 60%;
+}
 
 .bbot {
-	width: 80%; }
+   width: 80%;
+}
 
 .x7 {
-	transition: transform .3s ease-out;
-	transform-origin: 60% 75%;
+   transition: transform .3s ease-out;
+   transform-origin: 60% 75%; 
+}
+.x7 .btop { top : 0;
+   transition: width .3s, transform .3s, top .0s;
+   transition-timing-function: ease-out;}
+   
+.x7 .bmid {
+   top: calc(50% - 1px);
+   transform-origin: 100% 50%;
+   transition: opacity .1s;
+   transition-timing-function: ease-out;
+}
+
+.x7 .bbot {
+   bottom: 0;
+   transition: width .3s, transform .3s, bottom .0s;
+   transition-timing-function: ease-out;
+}
+.detailArea {
+   display: table-caption;
+}
+.inputCons {
+   resize:none;
+}
+.btnArea {
+   text-align:center;
+}
+.btnArea button{
+   display:inline-block;
+   margin:0 2px;
+}
+.btnArea .updateCons {
+   display:none;
+}
+
+.updateBtn {
+   display:inline-block;
+   margin:0 2px;
+   width: 70px;
+   height: 22px;
+   line-height: 22px;
+   text-decoration: none;
+   border: 1px solid green;
+   border-radius: 5px;
+   background: none;
+   color: black;
+   position: relative;
+}
+
+.updateBtn:focus {
+   outline: none;
+}
+
+.updateBtn:hover {
+   cursor: pointer;
+   background: green;
+   border: 1px solid green;
+   color: white;
+}
 	
-	& .btop {
-		top: 0;
-		transition: width .3s, transform .3s, top .0s;
-		transition-timing-function: ease-out; }
-
-	& .bmid {
-		top: calc(50% - 1px);
-		transform-origin: 100% 50%;
-		transition: opacity .1s;
-		transition-timing-function: ease-out; }
-
-	& .bbot {
-		bottom: 0;
-		transition: width .3s, transform .3s, bottom .0s;
-		transition-timing-function: ease-out; }}
-		
 		#md1{
 		border:1px solid black;
 		heiht:300px;
@@ -162,9 +224,20 @@
             border:1px solid black;
        }
        #titlemsg{
-       	padding-left: 190px;
+       	padding-left: 22%;
+      	
        }
+.detailArea{display: block;width: 100%;}
+.dArea .dCtn{padding-bottom: 20px;}
+.dArea .dCtn .inputCons{padding: 4px;}
+.dArea .dCtn.consTitle .inputCons{display: block;width: 100%;}
+.dArea .dCtn .consCate{padding: 4px;width: 162px;}
+.dArea .dTit{display: block;padding-bottom: 5px;font-weight: bold;font-size: 15px;}
+.dArea textarea.inputCons{width: 100%;min-height: 100px;}
+.btnArea{padding: 24px 0 13px;}
 </style>
+
+
 
 	
 	
@@ -176,6 +249,7 @@
 	<button style="float: left;">현재수강</button>
 	<button style="float: left;">과거수강</button>
 </div>
+
 <div class="wrap">
 	
 	<ul class="accordion">
@@ -252,7 +326,7 @@
     <div id="tablebox">
       <pre> 		            	                위와  같이 영수하였음을 증명합니다.
         		                           		     2019/ㅁㄴㅇ/ㄴㄴ
-        			             	학원설립 운영자 교습자 또는 개인과외 교습자       (서명또는 인) </pre>
+        			          	학원설립 운영자 교습자 또는 개인과외 교습자       (서명또는 인) </pre>
     </div>
 			
 			</div> 
