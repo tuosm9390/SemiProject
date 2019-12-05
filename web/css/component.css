@@ -32,13 +32,13 @@ td, th {
     text-align: center;
     color: #7c8d87;
 }
-	td.err {
-		background-color: #e992b9;
-		color: #fff;
-		font-size: 0.75em;
-		text-align: center;
-		line-height: 1;
-	}
+td.err {
+	background-color: #e992b9;
+	color: #fff;
+	font-size: 0.75em;
+	text-align: center;
+	line-height: 1;
+}
 th {
     background-color: #31bc86;
     font-weight: bold;
