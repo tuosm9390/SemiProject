@@ -62,6 +62,7 @@ tr:not(:first-child){
 	border: 1px solid #888;
 	width: 30%;
 	background-color: #fefefe;
+	border-radius: 10px;
 	/* Could be more or less, depending on screen size */
 }
 /* 모달 닫기 버튼 */

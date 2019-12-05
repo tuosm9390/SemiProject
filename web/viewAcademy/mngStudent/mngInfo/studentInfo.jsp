@@ -159,15 +159,17 @@ section button:hover {
 						});
 
 		$(function() {
-			var class1 = [ '1반', '2반' ];
-			var class2 = [ '1반', '2반', '3반', '4반' ];
+			var class1 = [ '모의고사', '내신' ];
+			var class2 = [ '과목1', '과목2', '과목3' ];
 			$(".so")
 					.change(
 							function() {
 								var sel = $(this).val();
+								//구분 미선택
 								if (sel == 0) {
 									$(".classify").hide();
 									$(".op").remove();
+								//구분 선택
 								} else if (sel == 1) {
 									$(".classify").show();
 									$(".op").remove();
@@ -176,12 +178,14 @@ section button:hover {
 												"<option class='op'>" + item
 														+ "</option>");
 									});
+									//년도 선택
 								} else if (sel == 2) {
 									$(".classify").hide();
 									$(".op").remove();
 									$(".classify")
 											.after(
 													"<input type='month' class='op' style='float: right; margin-left: 1%;'>");
+									//과목 선택
 								} else if (sel == 3) {
 									$(".classify").show();
 									$(".op").remove();

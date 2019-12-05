@@ -23,6 +23,10 @@ input {
 	height: 30px;
 }
 
+input[type='checkbox']{
+	height: 15px;
+}
+
 input[type=tel] {
 	width: 50px;
 }
@@ -62,12 +66,13 @@ section button:hover {
 	<header>
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
-	<h2 style="margin-left: 10%;">학생 등록</h2>
+	<h2 style="margin-left: 5%;">학생 등록</h2>
 	<section style="margin-bottom: 10%;">
+	<div style="width: 80%; margin: auto auto;">
 		<form id="enrollStudentForm">
-			<table align="center" style="width: 100%;">
+			<table align="center">
 				<tr align="center">
-					<td rowspan="6">
+					<td rowspan="7">
 						<div align="center">
 							<img id="profile"
 								src="<%=request.getContextPath()%>/images/user.png">
@@ -78,9 +83,12 @@ section button:hover {
 					</td>
 				</tr>
 				<tr>
-					<td><li>이름 / 아이디</li></td>
-					<td><input type="text" placeholder="이름 입력"> &nbsp; <input
-						type="text" placeholder="아이디 입력"></td>
+					<td><li>아이디</li></td>
+					<td><input type="text" placeholder="아이디 입력"></td>
+				</tr>
+				<tr>
+					<td><li>이름</li></td>
+					<td><input type="text" placeholder="이름 입력"></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
@@ -88,8 +96,9 @@ section button:hover {
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel"> - <input type="tel"> -
-						<input type="tel"></td>
+					<td><input type="tel" maxlength="3"> - 
+					<input type="tel" maxlength="4"> -
+					<input type="tel" maxlength="4"></td>
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
@@ -106,15 +115,20 @@ section button:hover {
 				</tr>
 				<tr>
 					<td></td>
-					<td><li>학부모 이름 / 아이디</li></td>
-					<td><input type="text" placeholder="학부모 이름 입력"> &nbsp;
-						<input type="text" placeholder="학부모 아이디 입력"></td>
+					<td><li>학부모 이름</li></td>
+					<td><input type="text" placeholder="학부모 이름 입력"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><li>학부모 아이디</li></td>
+					<td><input type="text" placeholder="학부모 아이디 입력"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 전화번호</li></td>
-					<td><input type="tel"> - <input type="tel"> -
-						<input type="tel"></td>
+					<td><input type="tel" maxlength="3"> - 
+					<input type="tel" maxlength="4"> -
+					<input type="tel" maxlength="4"></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -139,7 +153,7 @@ section button:hover {
 					<td><li>개인정보 제공 및 활용 동의</li></td>
 					<td>
 						<div style="width: 500px; height: 200px; overflow: auto;">
-							<pre align="left">【 개인정보처리방침 】
+							<pre align="left" style="color: black;">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -236,6 +250,9 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 시행일자 : 2019년 12월 20일
 						</pre>
 						</div>
+						<div align="right">
+                     		<input type="checkbox" name="accept" id="accept"><label for="accept">동의합니다.</label>
+                     	</div>
 					</td>
 				</tr>
 			</table>
@@ -245,6 +262,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		<button id="cancelbtn"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp'"
 			style="float: right; width: 80px; height: 30px;">취소</button>
+	</div>
 	</section>
 
 	<footer> </footer>
@@ -259,10 +277,27 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 
 		//DatePicker
 		$(function() {
-			$("#datepicker").datepicker({
-				changeMonth : true,
-				changeYear : true
+			$("#datepicker").datepicker( {
+			    dateFormat: "yy-mm-dd",
+			    startView: "months", 
+			    minViewMode: "months",
+			    showOtherMonths: true,
+			    showMonthAfterYear: true,
+			    changeMonth : true,
+				changeYear : true,
+				constrainInput: false,
+				yearRange: "1900:"
 			});
+		});
+		
+		//숫자만 입력
+		$("input[type='number']").keyup(function(event){
+		    var inputVal = $(this).val();
+		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
+		});
+		$("input[type='tel']").keyup(function(event){
+		    var inputVal = $(this).val();
+		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
 		});
 	</script>
 </body>

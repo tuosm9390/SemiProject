@@ -8,8 +8,8 @@
 <style>
 .div1 {
 	display: inline-block;
-	height: 400px;
-	width: 200px;
+	height: 500px;
+	width: 300px;
 	margin: auto auto;
 }
 
@@ -35,6 +35,7 @@
 	border: 1px solid #888;
 	width: 30%;
 	background-color: #fefefe;
+	border-radius: 10px;
 	/* Could be more or less, depending on screen size */
 }
 /* 모달 닫기 버튼 */
@@ -62,10 +63,25 @@ input[type=text] {
 	width: 200px;
 	height: 30px;
 }
-select{
+
+textarea {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+select, option{
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	height: 30px;
+}
+
+/* 학생목록 */
+.student{
+	display: none;
+}
+
+/* 학부모 목록 */
+.parent{
+	display: none;
 }
 </style>
 </head>
@@ -74,12 +90,13 @@ select{
 		<%@ include file="menubar.jsp"%>
 	</header>
 	<section align="center">
-		<h1 align="left" style="margin-left: 10%;">SMS 테스트 페이지</h1>
-		<div class="div1" style="float: left; margin-left: 15%;" id="div1">
-			<label style="float: left;">항목 선택</label>
+		<h1 align="left" style="margin-left: 5%;">SMS 발송</h1>
+		<div class="div1" style="float: left; margin-left: 5%;">
+			<h2 style="float: left;">항목 선택</h2><br><br>
+			<br> <br>
 			<button id="addlistbtn" style="float: right;">+</button>
-			<br> <br> <select style="width: 100%; height: 25px;"
-				id="select">
+			<select style="width: 70%; height: 25px; float: left;" id="select">
+				<option selected>-------------선택-------------</option>
 				<option>수강료납부</option>
 				<option>학생 등하원</option>
 				<option>수동 발송</option>
@@ -91,7 +108,7 @@ select{
 
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-				<h3 style="margin-left:35px;">항목 추가하기</h3>
+				<h2 style="margin-left:35px;">항목 추가하기</h2>
 				<table>
 					<tr>
 						<td align="right !important">항목 이름 :</td>
@@ -99,11 +116,11 @@ select{
 					</tr>
 					<tr>
 						<td align="right">발송 내용 지정 :</td>
-						<td align="left"><input type="text"
-							style="height: 100px; width: 200px"></td>
+						<td align="left">
+						<textarea style="height: 200px; width: 200px; resize: none;"></textarea>
+						</td>
 					</tr>
 				</table>
-				<br> <br>
 				<button class="cancelbtn"
 					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
 				<button class="okbtn"
@@ -112,13 +129,14 @@ select{
 			</div>
 		</div>
 
+		<!-- 수신인 목록 -->
 		<div class="div1">
-			<label style="float: left;">수신인 목록</label>
+			<h2 style="float: left;">수신인 목록</h2><br><br>
 			<button id="addpersonbtn" style="float: right;">+</button>
 			<br> <br>
 			<textarea id="persontext"
-				style="resize: none; width: 100%; height: 200px;" readonly></textarea>
-			<br> <br> <label style="float: right;">인원 : </label>
+				style="resize: none; width: 100%; height: 350px;" readonly></textarea>
+			<br> <h3 style="float: right;">인원 : </h3>
 		</div>
 
 		<!-- 대상 추가 -->
@@ -126,10 +144,10 @@ select{
 
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-				<h3 style="margin-left:15px;">수신인 추가하기</h3>
+				<h2 style="margin-left:15px;">수신인 추가하기</h2>
 				<table>
 				<tr>
-					<td>학년 / 반 선택</td>
+					<td><h3 style="margin: 0 0;">학년 / 반 선택</h3></td>
 				</tr>
 				<tr>
 					<td>
@@ -149,26 +167,43 @@ select{
 					</td>
 				</tr>
 				<tr>
-					<td class="person" style="display: none;">대상 선택</td>
+					<td class="person" style="display: none;"><h3 style="margin: 0 0;">대상 선택</h3></td>
 				</tr>
 				<tr>
 					<td>
 					<!-- 대상 선택 -->
 						<select class="person" style="display: none;">
-							
+							<option value="0" selected>-선택-</option>
+							<option value="student">학생</option>
+							<option value="parent">학부모</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
+						<!-- 학생 목록 -->
+						<div class="student">
 						<input type="checkbox" id="student1">
-						<label for="student1">학생 1</label>
+						<label for="student1">학생 1</label>&emsp;
 						<input type="checkbox" id="student2">
 						<label for="student2">학생 2</label><br>
 						<input type="checkbox" id="student3">
-						<label for="student3">학생 3</label>
+						<label for="student3">학생 3</label>&emsp;
 						<input type="checkbox" id="student4">
 						<label for="student4">학생 4</label>
+						</div>
+						
+						<!-- 학부모 목록 -->
+						<div class="parent">
+						<input type="checkbox" id="parent1">
+						<label for="parent1">학부모 1</label>&emsp;
+						<input type="checkbox" id="parent2">
+						<label for="parent2">학부모 2</label><br>
+						<input type="checkbox" id="parent3">
+						<label for="parent3">학부모 3</label>&emsp;
+						<input type="checkbox" id="parent4">
+						<label for="parent4">학부모 4</label>
+						</div>
 					</td>
 				</tr>
 				</table>
@@ -180,11 +215,12 @@ select{
 			</div>
 		</div>
 
+		<!-- 발송 내용 -->
 		<div class="div1"
-			style="float: right; margin-right: 15%; width: 200px;">
-			<label style="float: left;">발송 내용</label><br> <br>
+			style="float: right; margin-right: 5%;">
+			<h2 style="float: left;">발송 내용</h2><br><br>
 			<textarea id="smstext"
-				style="resize: none; height: 250px; width: 100%;" readonly></textarea>
+				style="resize: none; height: 350px; width: 100%;" readonly></textarea><br>
 			<button style="margin-top: 10px; height: 25px; float: right;" onclick="send();">전송하기</button>
 		</div>
 	</section>
@@ -254,48 +290,84 @@ select{
 			addperson.style.display = "none";
 		}
 		
-		//학년 반 선택
+		//학년 선택
 		$(function(){
 			var class1 = ['1반', '2반'];
 			var class2 = ['1반', '2반', '3반', '4반'];
+			//학년 값 변경 시
 			$(".grade").change(function(){
 				var sel = $(this).val();
 				if(sel == 'mid1'){
-					$(".class").show();
-					$(".op").remove();
+					$(".student").hide();	//학생목록 숨김
+					$(".parent").hide();	//학부모목록 숨김
+					$(".person").hide();	//대상선택 숨김
+					$(".class").show();		//반 선택 보임
+					$(".op").remove();		//반 선택 옵션 삭제
+					//반 선택 옵션 생성
 					$(".class").append("<option class='op' value='0' selected>-선택-</option>");
 					$.each(class1,function(i, item){
 						$(".class").append("<option class='op' value='" + (i + 1) + "'>" + item + "</option>");
 					});
 				} else if(sel == 'mid2'){
+					$(".student").hide();
+					$(".parent").hide();
+					$(".person").hide();
 					$(".class").show();
 					$(".op").remove();
 					$(".class").append("<option class='op' value='0' selected>-선택-</option>");
 					$.each(class2,function(i, item){
 						$(".class").append("<option class='op' value='" + (i + 1) + "'>" + item + "</option>");
 					});
-					//학년 미 선택시 대상 선택 메뉴 숨김
+				//학년 미 선택시 대상 선택 메뉴 숨김
 				} else if($(".op2").val() == 0){
 					$(".person").hide();
 					$(".class").hide();
+					$(".student").hide();
+					$(".parent").hide();
 				} else {
+					$(".person").hide();
 					$(".op").remove();
 					$(".class").hide();
+					$(".student").hide();
+					$(".parent").hide();
+				}
+			});
+		});
+		
+		//반 선택
+		$(function(){
+			var person = ['학생', '학부모'];
+			//반 값 변경 시
+			$(".class").change(function(){
+				var sel = $(this).val();
+				var op2 = $(".op2").val();
+				if(sel != 0){
+					$(".student").hide();
+					$(".parent").hide();
+					$(".person").show();
+					$(".person").val(0).attr("selectd", "selected");
+					//반 미 선택시 대상 선택 메뉴 숨김
+				} else if(sel == 0 && op2 == 0){
+					$(".student").hide();
+					$(".parent").hide();
+					$(".person").hide();
 				}
 			});
 		});
 		
 		//대상 선택
 		$(function(){
-			var person = ['학생', '학부모'];
-			$(".class").change(function(){
+			$(".person").change(function(){
 				var sel = $(this).val();
-				var op2 = $(".op2").val();
-				if(sel != 0){
-					$(".person").show();
-					//반 미 선택시 대상 선택 메뉴 숨김
-				} else if(sel == 0 && op2 == 0){
-					$(".person").hide();
+				if(sel == 'student'){
+					$(".student").show();
+					$(".parent").hide();
+				} else if(sel == 'parent'){
+					$(".student").hide();
+					$(".parent").show();
+				} else {
+					$(".student").hide();
+					$(".parent").hide();
 				}
 			});
 		});

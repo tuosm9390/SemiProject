@@ -78,6 +78,10 @@ button:focus {
 	outline: none;
 }
 
+input:focus {
+	outline: none;
+}
+
 button:hover {
 	cursor: pointer;
 	background: green;
@@ -162,6 +166,10 @@ td, th {
 	cursor: default;
 	color: black;
 }
+
+section{
+	font-family: "Nanum Gothic" !important;
+}
 </style>
 </head>
 <body>
@@ -192,55 +200,50 @@ td, th {
 					style="height: 30px;">
 			</h3>
 			<%-- <% if(loginMember != null) { %> --%>
-			<button id="logout" style="margin-left: 5px;">로그아웃</button>
-			<%-- <% }else { %>
+			<!-- <button id="logout" style="margin-left: 5px;">로그아웃</button> -->
+			<%-- <% }else { %> --%>
       	<button id="login" style="margin-left: 5px;">로그인</button>
-      	<% } %> --%>
-
+      	<%-- <% } --%>
+      	
 			<!-- 하단 회색 바 -->
 			<div id="mid">
 				<!-- 학생관리 메뉴 -->
 				<div class="detailmenu" id="studentdetailmenu">
-					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp"
-						class="menu1">개인정보</a> <a>|</a> <a href="#" class="menu1">수납</a> <a>|</a>
-					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
-						class="menu1">상담</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp"
+						class="menu1">개인정보</a> <a>|</a>
+					<a href="#" class="menu1">수납</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
+						class="menu1">상담</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
 						class="menu1">블랙리스트</a>
 				</div>
 				<!-- 수업관리 메뉴 -->
 				<div class="detailmenu" id="classdetailmenu">
-					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classStudent.jsp"
-						class="menu3">수강생 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/manageAttend.jsp"
-						class="menu3">출결 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
-						class="menu3">강좌목록 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp"
+						class="menu3">수강생 관리</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/manageAttend.jsp"
+						class="menu3">출결 관리</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
+						class="menu3">강좌목록 관리</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
 						class="menu3">만족도</a>
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
-						<a 
-						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/presentCondition.jsp" 
-						class="menu4">학원 현황</a> <a>|</a> <a 
-						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/menuLevel.jsp"
-						class="menu4">메뉴 권한 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/presentCondition.jsp" 
+						class="menu4">학원 현황</a> <a>|</a>
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/menuLevel.jsp"
+						class="menu4">메뉴 권한 관리</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
 						class="menu4">연간계획</a>
-
 				</div>
 
 				<div id="member">
 					<button type="button" id="name"
-						style="margin-right: 4%; background: none; border: none; font-size: x-large;"
-						>관리자님</button>
-					<button
-						style="margin-left: 15px; background: none; border: none; text-decoration: underline;">내
-						정보 수정</button>
+						style="margin-right: 4%; background: none; border: none; font-size: x-large;">관리자님</button>
+					<button style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
+					onclick="location.href='<%= request.getContextPath() %>/viewAcademy/commonMenu/updateStaffInfo.jsp'">내
+					정보 수정</button>
 				</div>
 			</div>
 		</div>
