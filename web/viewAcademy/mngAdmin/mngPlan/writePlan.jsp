@@ -37,7 +37,7 @@
 					<button id="update" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">입력 완료</button>
 				</div>
 				<form>
-					<table>
+					<table class="table">
 						<thead>
 							<tr>
 								<th>내용</th>
