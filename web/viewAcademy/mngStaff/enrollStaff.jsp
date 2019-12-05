@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-#profile {
-	width: 200px;
-	height: 200px;
-	radius: 50%;
+td {
+	background: white;
+	text-align: left !important;
 }
 
-td {
-	/* background: white; */
-	text-align: left !important;
+input, select {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	height: 30px;
 }
 
 input[type=file] {
@@ -23,31 +23,60 @@ input[type=file] {
 	align-items: center;
 }
 
+input[type=text], input[type=email], select {
+	width: 300px;
+}
+
+input[size] {
+	width: 90px;
+}
+
 .outArea {
-	width: 90%;
+	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.bottomBtn {
-	display: inline-block;	
+.acceptText {
+	width: 500px;
+	height: 200px;
+	overflow: auto;
+	border: 1px solid lightgray;
+	border-radius: 5px;
 }
 
+.bottomBtn {
+	font-size: 18px;
+	margin-left: 1%;
+	font-family: "Nanum Gothic";
+	font-weight: bold;
+	border: 2px solid green;
+	display: inline;
+}
+
+.bottomBtn:hover {
+	cursor: pointer;
+	background: green;
+	border: 2px solid green;
+	color: white;
+	display: inline;
+}
+
+
+#profile {
+	width: 200px;
+	height: 200px;
+	radius: 50%;
+}
+
+#userId {
+	width: 300px;
+}
+
+#address {
+	width: 500px;
+}
 </style>
-<script>
-	$(function(){
-		$("#imgBtn").click(function(){
-			$("#imgFile").click();
-		});
-		
-		$("#payBtn").click(function(){
-			$("#payFile").click();
-		});
-		
-		$("#docBtn").click(function(){
-			$("#docFile").click();
-	});
-</script>
 </head>
 <body>
 	<header>
@@ -59,28 +88,29 @@ input[type=file] {
 			<table>
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-					<td>★ 직원 ID</td>
-					<td><input type="text" name="userId" id="userId"></td>
-					<td><div>중복 확인</div></td>
+					<td width="190px">★ 직원 ID</td>
+					<td width="300px"><input type="text" name="userId" id="userId" placeholder="직원 ID 입력"></td>
+					<td width="200px"><button id="idCheck">중복 확인</button></td>
 				</tr>
 				<tr>
-					<td width="200px">● 이름</td>
-					<td colspan="3"><input type="text" name="userName" id="userName"></td>
+					<td>● 이름</td>
+					<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력"></td>
 				</tr>
 				<tr>
 					<td>● 생년월일</td>
-					<td colspan="3"><input type="date" name="birth" id="birth"></td>
+					<td colspan="2"><input type="text" name="birth" id="datepicker" placeholder="생년월일 입력"></td>
 				</tr>
 				<tr>
 					<td>● 전화번호</td>
-					<td colspan="3"><input type="text" maxlength="3" size="4" name="tel1"> - 
+					<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" placeholder="010"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel2"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel3"></td>
 				</tr>
 				<tr>
 					<td>● 담당업무</td>
-					<td colspan="3">
+					<td colspan="2">
 						<select name="subject">
+							<option value="select">담당업무 선택</option>
 							<option value="korea">국어</option>
 							<option value="math">수학</option>
 							<option value="english">영어</option>
@@ -94,20 +124,19 @@ input[type=file] {
 				</tr>
 				<tr>
 					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-					<td>● 주소</td>
-					<td colspan="3"><input type="text" name="address" id="address"></td>
-				</tr>
-				<tr>
-					<td></td>
 					<td>● 이메일</td>
-					<td colspan="2"><input type="email" name="email" id="email"></td>
+					<td colspan="2"><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 개인정보 제공<br>　및 활용 동의
-					</td>
+					<td>● 주소</td>
+					<td colspan="2"><input type="text" name="address" id="address" placeholder="주소 입력"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>● 개인정보 제공<br>　및 활용 동의</td>
 					<td colspan="2">
-						<div style="width:500px; height:200px; overflow:auto; border:1px solid lightgray;">
+						<div class="acceptText">
 							<pre align="left">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
@@ -199,7 +228,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						</div>
 						<div align="right"><input type="checkbox" name="accept" id="accept"><label for="accept"> 동의합니다.</label></div>
 					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -215,11 +243,37 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			</form>
 			
 			<div class="btnArea" align="right">
-				<button class="bottomBtn">등록</button>
-				<button class="bottomBtn">취소</button>
+				<button class="bottomBtn" onclick="goList();">취소</button>
+				<button class="bottomBtn" onclick="doEnroll();">등록</button>
 			</div> <!-- btnArea end -->
+			<br>
+			
 		</div> <!-- outArea end -->
-		
+		<script>
+			$(function(){
+				$("#imgBtn").click(function(){
+					$("#imgFile").click();
+				});
+				
+				$("#payBtn").click(function(){
+					$("#payFile").click();
+				});
+				
+				$("#docBtn").click(function(){
+					$("#docFile").click();
+				});
+				
+				$("#idCheck").click(function(){
+					
+				});
+			});
+			
+			function doEnroll(){}
+			
+			function goList(){
+				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+			}
+		</script>
 	</section>
 	<footer>
 	</footer>
