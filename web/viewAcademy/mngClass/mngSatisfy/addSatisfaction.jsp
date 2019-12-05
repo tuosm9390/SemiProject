@@ -56,7 +56,7 @@ th, td {
 		<h2 style="margin-left: 5%;">만족도 조사 등록</h2>
 		<br>
 		<form>
-			<table align="center" style="width: 90%;">
+			<table class="table" align="center" style="width: 90%;">
 				<tr>
 					<td><li>만족도 조사 제목</td>
 					<td><input type="text" placeholder="만족도 조사 제목 입력" size="50"></td>
@@ -112,6 +112,7 @@ th, td {
 	<footer> </footer>
 	
 	<script>
+		//DatePicker
 		$(function() {
 	    	var dateFormat = "mm/dd/yy",
 	    		from = $( "#from" )

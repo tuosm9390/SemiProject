@@ -7,12 +7,14 @@
 <title>Insert title here</title>
 <style>
 </style>
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400" rel="stylesheet">
 </head>
 <body>
 	<header>
+		<!-- 관계자 메뉴 -->
 		<%@ include file="../viewAcademy/common/menubar.jsp"%>
 		<%-- <%@ include file="../viewAcademy/common/academyMain.jsp" %> --%>
+		<!-- 고객 메뉴 -->
+		<%-- <%@ include file="../viewClient/common/menubar.jsp"%> --%>
 	</header>
 	<section>
 	</section>

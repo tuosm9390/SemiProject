@@ -751,6 +751,7 @@ var Nwagon = {
                     }
                 }
             }
+            //우리가 쓸 차트
             else if(chartType == 'multi_column')
             {
                 var colors = dataset['colorset'];

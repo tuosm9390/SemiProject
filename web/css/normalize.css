@@ -17,7 +17,6 @@ audio:not ([controls] ){
 }
 
 html {
-	font-family: sans-serif;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
@@ -63,7 +62,6 @@ mark {
 }
 
 code, kbd, pre, samp {
-	font-family: monospace, serif;
 	font-size: 1em;
 }
 

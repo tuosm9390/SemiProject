@@ -45,7 +45,8 @@ tr:not(:first-child){
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 align="left" style="width: 150px;">전체 학생</h2>
+	<h2 align="left" style="width: 150px; margin-left: 5%;">전체 학생</h2>
+	<div style="width: 90%; margin: auto auto;">
 		<button id="addexcel">엑셀로 성적 일괄 등록</button>
 		<button id="addstudent">학생 등록</button>
 		<script>
@@ -54,7 +55,7 @@ tr:not(:first-child){
 			};
 		</script>
 		<input type="file" id="exelfile">
-		<table>
+		<table class="table">
 			<tr>
 				<th>학생 ID</th>
 				<th>학생 이름</th>
@@ -101,6 +102,7 @@ tr:not(:first-child){
 				<td>사망</td>
 			</tr>
 		</table>
+	</div>
 	</section>
 	<footer>
 	</footer>
@@ -113,7 +115,7 @@ tr:not(:first-child){
 			$("#exelfile").click();
 		});
 
-		$("tr:not(first-child)").click(function() {
+		$(".table tr:not(:first-child)").click(function() {
 			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp";
 		});
 		

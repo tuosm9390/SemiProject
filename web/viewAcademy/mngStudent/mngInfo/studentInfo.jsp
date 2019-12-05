@@ -39,13 +39,15 @@ section button:hover {
 	<header>
 		<%@ include file="/viewAcademy/common/menubar.jsp"%>
 	</header>
-	<section style="margin-left: 15%; margin-right: 15%;">
-		<div id="studentInfo">
-			<h2 style="width: 150px;">박상준</h2>
+	<section>
+		<!-- 학생 정보 -->
+		<div id="studentInfo" style="width: 80%; margin: auto auto;">
+		<h1 style="width: 150px;">박상준</h1><br>
+		<h2 style="width: 150px;">학생 정보</h2>
 			<button id="updatebtn"
 				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/updateStudent.jsp'"
 				style="float: right;">수정</button>
-			<table>
+			<table class="table">
 				<tr>
 					<th>학교</th>
 					<th>학년</th>
@@ -64,7 +66,8 @@ section button:hover {
 				</tr>
 			</table>
 		</div>
-		<div id="studentPoint">
+		<!-- 학생 성적 -->
+		<div id="studentPoint" style="width: 80%; margin: auto auto;">
 			<h2 style="width: 150px;">학생 성적</h2>
 			<button id="pointAddBtn" style="float: right;">성적 추가</button>
 			<button style="float: right;">검색</button>
@@ -79,7 +82,8 @@ section button:hover {
 				<option value="2">년도</option>
 				<option value="3">과목</option>
 			</select>
-			<table id="point">
+			<!-- 학생 성적 테이블 -->
+			<table class="table" id="point">
 				<tr>
 					<th></th>
 					<th>구분</th>
@@ -118,15 +122,17 @@ section button:hover {
 				</tr>
 			</table>
 		</div>
-
-		<div id="chart" style="margin-left: 10%;">
-			<h2>성적 그래프</h2>
+	
+		<!-- 성적 그래프 -->
+		<div id="chart" style="width: 80%; margin: auto auto;" align="center">
+			<h2 align="left">성적 그래프</h2>
 			<div id="chart19"></div>
 		</div>
 	</section>
 	<footer></footer>
 
 	<script>
+		//차트
 		var options = {
 			'legend' : {
 				names : [ '2019년도 1학기', '2019년도 2학기' ],
@@ -150,6 +156,7 @@ section button:hover {
 
 		Nwagon.chart(options);
 
+		//학생 성적 추가 버튼
 		$("#pointAddBtn")
 				.click(
 						function() {
@@ -158,6 +165,7 @@ section button:hover {
 											"<tr><td>3</td><td>내신</td><td>1</td><td>2018</td><td>40</td><td>0</td><td>30</td></tr>");
 						});
 
+		//검색 옵션별 함수
 		$(function() {
 			var class1 = [ '모의고사', '내신' ];
 			var class2 = [ '과목1', '과목2', '과목3' ];
