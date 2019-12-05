@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 .btnArea {
-	margin-left: 77.5%;
+	margin-left: 80.2%;
 	margin-bottom: 5px;
 }
 
@@ -37,17 +37,6 @@ input[type=file] {
 	display: none;
 }
 </style>
-<script>
-		$(function(){
-			$("#enrollPage").click(function(){
-				location.href = "../mngStaff/enrollStaff.jsp";
-			});
-			
-			$("#enrollExcel").click(function(){
-				$("#btnExcel").click();
-			});
-		});
-</script>
 </head>
 <body>
 	<header>
@@ -80,6 +69,23 @@ input[type=file] {
 				<% } %>
 			</table>
 		</div> <!-- listArea end -->
+		<script>
+		$(function(){
+			$("#enrollPage").click(function(){
+				location.href = "../mngStaff/enrollStaff.jsp";
+			});
+			
+			$("#enrollExcel").click(function(){
+				$("#btnExcel").click();
+			});
+			
+			$(".listArea td").mouseenter(function(){
+				$(this).parent().css({"cursor":"pointer"});
+			}).click(function(){
+				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffInfo.jsp";
+			})
+		});
+	</script>
 	</section>
 	<footer>
 	</footer>
