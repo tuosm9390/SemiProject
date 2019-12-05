@@ -8,6 +8,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
+.listArea {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
 .btnArea {
 	margin-left: 77%;
 	margin-bottom: 5px;
@@ -52,7 +57,7 @@ input[type=file] {
 		</div>
 		<!-- btnArea end -->
 		<div class="listArea">
-			<table class="staffList" align="center">
+			<table class="staffList table" align="center">
 				<tr>
 					<th>ID</th>
 					<th>이름</th>

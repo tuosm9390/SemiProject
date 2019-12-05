@@ -94,7 +94,7 @@ input[size] {
 		<h2 align="left" style="width: 150px; margin-left: 5%;">직원 등록</h2>
 		<div class="outArea">
 			<form action="" method="post">
-			<table>
+			<table class="table">
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 					<td width="25%"><li>직원 ID</li></td>
@@ -283,7 +283,9 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			function doEnroll(){}
 			
 			function goList(){
-				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				if(window.confirm("직원 등록을 정말 취소하시겠습니까?")) {
+					location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				}
 			}
 		</script>
 	</section>

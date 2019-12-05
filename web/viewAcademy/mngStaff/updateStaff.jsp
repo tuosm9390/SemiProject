@@ -97,9 +97,10 @@ input[size] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+		<h2 align="left" style="width: 150px; margin-left: 5%;">직원정보 수정</h2>
 		<div class="outArea">
 			<form action="" method="post">
-			<table>
+			<table class="table">
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 					<td width="20%"><li>직원 ID</li></td>
@@ -172,10 +173,10 @@ input[size] {
 				<button class="bottomBtn" id="deleteBtn">삭제</button>
 			</div>
 			<div class="btnArea" style="margin-left:80%;">
-				<button class="bottomBtn" onclick="goModify();">수정</button>
+				<button class="bottomBtn" onclick="doModify();">수정</button>
 				<button class="bottomBtn" onclick="goList();">목록</button>
 			</div> <!-- btnArea end -->
-			<br>
+			<br> <br>
 			
 		</div> <!-- outArea end -->
 		<script>
@@ -191,14 +192,24 @@ input[size] {
 				$("#docBtn").click(function(){
 					$("#docFile").click();
 				});
+				
+				$("#deleteBtn").click(function(){
+					if(window.confirm("정말로 삭제하시겠습니까?")) {
+						location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+					}
+				});
 			});
 			
 			function doModify(){
-				location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/updateStaff.jsp";
+				if(window.confirm("정말로 수정하시겠습니까?")) {
+					location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffInfo.jsp";
+				}
 			}
 			
 			function goList(){
-				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				if(window.confirm("수정을 취소하시겠습니까?")) {
+					location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				}
 			}
 		</script>
 	</section>
