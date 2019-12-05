@@ -16,6 +16,11 @@ input, select {
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	height: 30px;
+	display: inline;
+}
+
+input[type=checkbox] {
+	height: 15px;
 }
 
 input[type=file] {
@@ -32,7 +37,7 @@ input[size] {
 }
 
 .outArea {
-	width: 60%;
+	width: 75%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -62,7 +67,6 @@ input[size] {
 	display: inline;
 }
 
-
 #profile {
 	width: 200px;
 	height: 200px;
@@ -71,6 +75,10 @@ input[size] {
 
 #userId {
 	width: 300px;
+}
+
+#idCheck {
+	display:inline;
 }
 
 #address {
@@ -83,31 +91,33 @@ input[size] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+		<h2 align="left" style="width: 150px; margin-left: 5%;">직원 등록</h2>
 		<div class="outArea">
 			<form action="" method="post">
 			<table>
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-					<td width="190px">★ 직원 ID</td>
-					<td width="300px"><input type="text" name="userId" id="userId" placeholder="직원 ID 입력"></td>
-					<td width="200px"><button id="idCheck">중복 확인</button></td>
+					<td width="25%"><li>직원 ID</li></td>
+					<td width="30%">
+						<input type="text" name="userId" id="userId" placeholder="직원 ID 입력">
+						<button id="idCheck">중복 확인</button></td>
 				</tr>
 				<tr>
-					<td>● 이름</td>
+					<td><li>이름</li></td>
 					<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력"></td>
 				</tr>
 				<tr>
-					<td>● 생년월일</td>
+					<td><li>생년월일</li></td>
 					<td colspan="2"><input type="text" name="birth" id="datepicker" placeholder="생년월일 입력"></td>
 				</tr>
 				<tr>
-					<td>● 전화번호</td>
+					<td><li>전화번호</li></td>
 					<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" placeholder="010"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel2"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel3"></td>
 				</tr>
 				<tr>
-					<td>● 담당업무</td>
+					<td><li>담당업무</li></td>
 					<td colspan="2">
 						<select name="subject">
 							<option value="select">담당업무 선택</option>
@@ -124,18 +134,18 @@ input[size] {
 				</tr>
 				<tr>
 					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-					<td>● 이메일</td>
-					<td colspan="2"><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
+					<td><li>이메일</li></td>
+					<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 주소</td>
-					<td colspan="2"><input type="text" name="address" id="address" placeholder="주소 입력"></td>
+					<td><li>주소</li></td>
+					<td><input type="text" name="address" id="address" placeholder="주소 입력"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 개인정보 제공<br>　및 활용 동의</td>
-					<td colspan="2">
+					<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
+					<td>
 						<div class="acceptText">
 							<pre align="left">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
@@ -226,18 +236,20 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일</pre>
 						</div>
-						<div align="right"><input type="checkbox" name="accept" id="accept"><label for="accept"> 동의합니다.</label></div>
+						<div align="right">
+							<input type="checkbox" name="accept" id="accept"><label for="accept">동의합니다.</label>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 급여 계약서 </td>
-					<td colspan="2"><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+					<td><li>급여 계약서</li> </td>
+					<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 경력 등 기타 서류</td>
-					<td colspan="2"><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+					<td><li>경력 등 기타 서류</li></td>
+					<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
 				</tr>
 			</table>		
 			</form>
