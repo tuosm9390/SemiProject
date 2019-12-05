@@ -22,9 +22,7 @@
 		#head > select {
 			float:left;
 		}
-		.component {
-			overflow:auto;
-		}
+		
 	</style>
 	</head>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
@@ -34,8 +32,7 @@
 			<header>
 
 			</header>
-			<div class="component">
-				<div id="head">
+				<div class="head">
 					<h2 align="center">연간계획</h2>
 					<select>
 						<option value="" selected disabled hidden>년도별 검색</option>
@@ -44,8 +41,8 @@
 					</select>
 					<button class="deleteBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">삭제</button>
 					<button id="write" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="writePlan();">입력 및 수정</button>
-					<a href="#" class="input-user-name" data-user-id ="1">방문자명 입력</a>
-				</div>
+				</div> <!-- head end -->
+			<div class="body">
 				<table id="planTableArea">
 					<thead>
 						<tr>
@@ -76,9 +73,8 @@
 						<tr><td class="user-name"></td><td class="user-email"></td><td class="user-phone"></td><td class="user-mobile"></td></tr>
 					</tbody>
 				</table>
-			</div>
-		</div>
-		<!-- /container -->
+			</div> <!-- body end -->
+		</div> <!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 		<script src="js/jquery.stickyheader.js"></script>
