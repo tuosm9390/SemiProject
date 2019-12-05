@@ -7,17 +7,31 @@
 <title>Insert title here</title>
 	<style>
 	.outer{
-		border: 3px solid black;
-	
-		width: 100%;
-	}
-	
-	.chart{
-		border : 3px solid gold;
-		display : 
-		width:50%;
-	}
+		width:100%;
 		
+		height:100%;
+	}
+	.chart{
+		display: inline-block;
+		
+		width:49%;
+		height:600px;
+	}
+	#chart19{
+	margin-left: 25%;
+	}
+	#chart17{
+	margin-left: 10%;
+	margin-top: 20px;
+	}
+	.avgtable{
+		width:50%;
+		margin-left: 30%;
+	}
+	.text{
+		margin-left: 10px;		
+	}
+	
 		
 		
 		
@@ -38,17 +52,49 @@
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 <body>
 	<section>
-	<div class="outer">
-
+<div class="outer">
 	<div class="chart">
-			<h2>학생수 변동 추이</h2>	
-	<div id="chart19"></div>
-	</div><!-- left chart end -->
+	<h3 class="text">학생수 변동 추이</h3>
+		<div id="chart19"></div>
+		<h3 class="text">학생 유입 경로 순위</h3>
+		<div class="avg">
+				<table class="avgtable">
+					<tr>
+						<th>순위</th>
+						<th>경로</th>
+						<th>비중</th>
+					</tr>
+					<tr>	
+						<td>1</td>
+						<td>친구</td>
+						<td>42</td>
+					</tr>
+					<tr>	
+						<td>2</td>
+						<td>전단지</td>
+						<td>37</td>
+					</tr>
+					<tr>	
+						<td>3</td>
+						<td>인터넷</td>
+						<td>12</td>
+					</tr>
+					<tr>	
+						<td>4</td>
+						<td>기타</td>
+						<td>6</td>
+					</tr>
+				</table>
+			</div>	
+	</div>
+	<div class="chart">
+	<h3 id="text2">인기 과목 추세</h3>
+		<div id="chart17"></div>
+		
+	</div>
 	
-	<div class="chart">
-		<h1>asdasdasdsadads</h1>
-	</div><!-- right chart end-->
-	</div><!-- outer end -->
+
+</div><!-- outer end -->
 	<script>
 		var options = {
 			'legend':{
@@ -63,9 +109,31 @@
 				},
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
-			'chartSize' : {width:700, height:300},
+			'chartSize' : {width:500, height:300},
 			'maxValue' : 10,
 			'increment' : 1
+		};
+
+		Nwagon.chart(options);
+
+	</script>
+	<script>
+		var options = {
+			'legend':{
+				names: ['중1국어', '중2국어', '중3국어','중1국어', '중2국어', '중3국어'],
+				hrefs: []
+					},
+			'dataset':{
+				title:'Playing time per day', 
+				values: [[5,7,2,6], [2,5,7,4], [7,2,3,6],[5,7,2,6], [2,5,7,4], [7,2,3,6]],
+				colorset: ['#DC143C','#FF8C00', '#2EB400', '#666666'],
+				fields:['Working Time', 'Late count', 'Blah','Vacation']
+				},
+			'chartDiv' : 'chart17',
+			'chartType' : 'stacked_column',
+			'chartSize' : {width:500, height:480},
+			'maxValue' : 30,
+			'increment' : 3
 		};
 
 		Nwagon.chart(options);
