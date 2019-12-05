@@ -180,72 +180,16 @@ section{
 			<a href="<%=request.getContextPath()%>/index.jsp"> <img
 				src="<%=request.getContextPath()%>/images/hagong.png"
 				style="height: 85px;"></a>
-			<h2 class="topmenu" id="student">학생관리</h2>
-			<h2 class="topmenu" id="employee">직원관리</h2>
-			<h2 class="topmenu" id="class">수업관리</h2>
-			<h2 class="topmenu" id="admin">관리자</h2>
+			<h2 class="topmenu" id="attendance">출결조회</h2>
+			<h2 class="topmenu" id="score">성적조회</h2>
+			<h2 class="topmenu" id="satisfy">만족도조사</h2>
+			<h2 class="topmenu" id="receipt">고지서/영수증</h2>
 			&nbsp;
-			<h3 id="notice">
-				<img src="<%=request.getContextPath()%>/images/notice.png"
-					style="height: 30px;">
-			</h3>
-			<h3 id="sms"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/common/smspage.jsp'">
-				<img src="<%=request.getContextPath()%>/images/sms.png"
-					style="height: 30px;">
-			</h3>
-			<h3 id="calendar"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/common/calendar.jsp'">
-				<img src="<%=request.getContextPath()%>/images/calendar.png"
-					style="height: 30px;">
-			</h3>
 			<%-- <% if(loginMember != null) { %> --%>
 			<!-- <button id="logout" style="margin-left: 5px;">로그아웃</button> -->
 			<%-- <% }else { %> --%>
       	<button id="login" style="margin-left: 5px;">로그인</button>
       	<%-- <% } --%>
-      	
-			<!-- 하단 회색 바 -->
-			<div id="mid">
-				<!-- 학생관리 메뉴 -->
-				<div class="detailmenu" id="studentdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp"
-						class="menu1">개인정보</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
-						class="menu1">수납</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
-						class="menu1">상담</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
-						class="menu1">블랙리스트</a>
-				</div>
-				<!-- 수업관리 메뉴 -->
-				<div class="detailmenu" id="classdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp"
-						class="menu3">수강생 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/manageAttend.jsp"
-						class="menu3">출결 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
-						class="menu3">강좌목록 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
-						class="menu3">만족도</a>
-				</div>
-				<!-- 관리자 메뉴 -->
-				<div class="detailmenu" id="admindetailmenu">
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/presentCondition.jsp" 
-						class="menu4">학원 현황</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/menuLevel.jsp"
-						class="menu4">메뉴 권한 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
-						class="menu4">연간계획</a>
-				</div>
-
-				<div id="member">
-					<button type="button" id="name"
-						style="margin-right: 4%; background: none; border: none; font-size: x-large;">관리자님</button>
-					<button style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
-               		onclick="myInfo();">개인정보 관리</button>
-				</div>
-			</div>
 		</div>
 	</header>
 	<section></section>
@@ -268,45 +212,6 @@ section{
 	    	});
 	    });
 
-		//학생 관리 메뉴 클릭 시
-		$("#student").click(function() {
-			$('#classdetailmenu').hide();
-			$('#admindetailmenu').hide();
-			if ($(".detailmenu").css("display") == "none") {
-				$("#studentdetailmenu").show();
-			} else {
-				$("#studentdetailmenu").hide();
-			}
-		});
-
-		//직원 관리 메뉴 클릭 시
-	     $("#employee").click(function() {
-	        $(".detailmenu").css("display", "none");
-	        location.href="<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
-	     });
-
-		//수업 관리 메뉴 클릭 시
-		$("#class").click(function() {
-			$("#studentdetailmenu").hide();
-			$('#admindetailmenu').hide();
-			if ($("#classdetailmenu").css("display") == "none") {
-				$('#classdetailmenu').show();
-			} else {
-				$('#classdetailmenu').hide();
-			}
-		});
-
-		//관리자 메뉴 클릭 시
-		$("#admin").click(function() {
-			$("#studentdetailmenu").hide();
-			$('#classdetailmenu').hide();
-			if ($("#admindetailmenu").css("display") == "none") {
-				$('#admindetailmenu').show();
-			} else {
-				$('#admindetailmenu').hide();
-			}
-		});
-		
 		//내 정보 수정
 		function myInfo(){
 	    	location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/UserInfo.jsp";

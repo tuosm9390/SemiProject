@@ -121,6 +121,7 @@ select, option{
 						</td>
 					</tr>
 				</table>
+				<br>
 				<button class="cancelbtn"
 					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
 				<button class="okbtn"
@@ -207,6 +208,7 @@ select, option{
 					</td>
 				</tr>
 				</table>
+				<br>
 				<button class="cancelbtn"
 					style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
 				<button class="okbtn"
@@ -219,8 +221,8 @@ select, option{
 		<div class="div1"
 			style="float: right; margin-right: 5%;">
 			<h2 style="float: left;">발송 내용</h2><br><br>
-			<textarea id="smstext"
-				style="resize: none; height: 350px; width: 100%;" readonly></textarea><br>
+			<textarea id="smstext" placeholder="내용을 입력해주세요"
+				style="resize: none; height: 350px; width: 100%;"></textarea><br>
 			<button style="margin-top: 10px; height: 25px; float: right;" onclick="send();">전송하기</button>
 		</div>
 	</section>

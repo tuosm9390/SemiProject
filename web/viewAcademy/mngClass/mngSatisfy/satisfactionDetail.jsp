@@ -60,7 +60,7 @@ th, td {
 		<h2 style="margin-left: 5%;">만족도 조사 조회</h2>
 		<br>
 		<form>
-			<table align="center" style="width: 90%;">
+			<table class="table" align="center" style="width: 90%;">
 				<tr>
 					<td><li>만족도 조사 제목</td>
 					<td><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
@@ -75,8 +75,9 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
-					<td><input type="date">&emsp;~
-					&emsp;<input type="date"></td>
+					<td>
+					<input type="text" id="from" name="from">&emsp;~
+					&emsp;<input type="text" id="to" name="to"></td>
 				</tr>
 				<tr>
 					<td><li>문항 및 결과</td>
@@ -128,5 +129,39 @@ th, td {
 		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">돌아가기</button>
 	</section>
 	<footer> </footer>
+	<script>
+	//DatePicker
+	$(function() {
+    	var dateFormat = "mm/dd/yy",
+    		from = $( "#from" )
+    		.datepicker({
+    			defaultDate: "+1w",
+    			changeMonth: true,
+    			numberOfMonths: 3
+    		})
+    		.on( "change", function() {
+    			to.datepicker( "option", "minDate", getDate( this ) );
+    		}),
+    			to = $( "#to" ).datepicker({
+    			defaultDate: "+1w",
+    			changeMonth: true,
+    			numberOfMonths: 3
+    		})
+    		.on( "change", function() {
+    			from.datepicker( "option", "maxDate", getDate( this ) );
+    		});
+ 
+    	function getDate( element ) {
+    		var date;
+    			try {
+    				date = $.datepicker.parseDate( dateFormat, element.value );
+    			} catch( error ) {
+    				date = null;
+    			}
+ 
+    		return date;
+    	}
+	});
+	</script>
 </body>
 </html>

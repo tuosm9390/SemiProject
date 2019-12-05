@@ -28,7 +28,8 @@ input[type='checkbox']{
 }
 
 input[type=tel] {
-	width: 50px;
+	text-align: center;
+	width: 90px;
 }
 
 input[type=text], select {
@@ -49,7 +50,6 @@ input[type='file'] {
 section button {
 	font-size: 18px;
 	margin-left: 1%;
-	font-family: "Nanum Gothic";
 	font-weight: bold;
 	border: 2px solid green;
 }
@@ -66,11 +66,11 @@ section button:hover {
 	<header>
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
+	<section>
 	<h2 style="margin-left: 5%;">학생 등록</h2>
-	<section style="margin-bottom: 10%;">
 	<div style="width: 80%; margin: auto auto;">
 		<form id="enrollStudentForm">
-			<table align="center">
+			<table class="table" align="center">
 				<tr align="center">
 					<td rowspan="7">
 						<div align="center">
@@ -102,8 +102,16 @@ section button:hover {
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
-					<td><input type="text" placeholder="학교 입력"> &nbsp; <input
-						type="number" min="1" max="3" style="width: 40px;"></td>
+					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;"> &nbsp;
+					<select style="width: 120px;">
+						<option value="mid1">중학교 1학년</option>
+						<option value="mid2">중학교 2학년</option>
+						<option value="mid3">중학교 3학년</option>
+						<option value="high1">고등학교 1학년</option>
+						<option value="high2">고등학교 2학년</option>
+						<option value="high3">고등학교 3학년</option>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<td><li>계열</li></td>

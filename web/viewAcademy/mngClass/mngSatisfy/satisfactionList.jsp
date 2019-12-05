@@ -23,6 +23,16 @@ section button:hover {
 	color: white;
 }
 
+select {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	height: 30px;
+}
+
+select:focus{
+	outline: none;
+}
+
 .Addbenefit {
 	width: 26px;
 	margin-bottom: 5px;
@@ -89,7 +99,7 @@ tr:not(:first-child){
 		<button id="addSatisfaction" style="margin-right: 5%;">만족도 조사 등록</button>
 		<button id="benefitBtn">혜택 관리</button>
 		<form>
-			<table align="center" style="width: 90%;">
+			<table class="table" align="center" style="width: 90%;">
 				<tr>
 					<th>No.</th>
 					<th>만족도 조사 내용</th>
@@ -133,7 +143,7 @@ tr:not(:first-child){
 
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-				<h4>혜택 관리</h4>
+				<h2 style="margin-left:35px;">혜택 관리</h2>
 				<select style="height: 26px;">
 					<option>학원비 5%</option>
 					<option>학원비 10%</option>

@@ -23,15 +23,19 @@ input {
 }
 
 input[type=tel] {
-	text-align: center;
-	width: 90px;
+	border: none;
+	width: 50px;
 }
 
 input[type=text], select {
-	border: 1px solid lightgray;
+	border: none;
 	border-radius: 5px;
 	width: 200px;
 	height: 30px;
+}
+
+input[type='email']{
+	border: none;
 }
 
 #studentStatus {
@@ -67,23 +71,18 @@ th, td {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section style="margin-bottom: 10%;">
-	<h2 style="margin-left: 5%;">학생 정보 수정</h2>
+	<h2 style="margin-left: 5%;">내정보 보기</h2>
 	<div style="width: 80%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">
 				<tr align="center">
-					<td rowspan="8">
+					<td rowspan="7">
 						<div align="center">
 							<img id="profile"
 								src="<%=request.getContextPath()%>/images/user.png">
 							<button type="button" id="addimg"
 								style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-							<input type="file" id="imgfile"> <select
-								id="studentStatus" style="height: 25px; margin-top: 5%;">
-								<option selected>재원</option>
-								<option>퇴원</option>
-								<option>휴원</option>
-							</select>
+							<input type="file" id="imgfile"> 
 						</div>
 					</td>
 				</tr>
@@ -97,20 +96,20 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" style="border: none;" readonly></td>
+					<td><input type="text" style="border: none;" value="2020년 3월 33일" readonly></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
+					<td><input type="tel" maxlength="3" value="000" readonly> - 
+					<input type="tel" maxlength="4" value="0000" readonly> -
+					<input type="tel" maxlength="4" value="0000" readonly></td>
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
-					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;"> &nbsp;
-					<select style="width: 120px;">
+					<td><input type="text" value="kh" style="width: 120px;" readonly> &nbsp;
+					<select style="width: 120px;" disabled>
 						<option value="mid1">중학교 1학년</option>
-						<option value="mid2">중학교 2학년</option>
+						<option value="mid2" selected>중학교 2학년</option>
 						<option value="mid3">중학교 3학년</option>
 						<option value="high1">고등학교 1학년</option>
 						<option value="high2">고등학교 2학년</option>
@@ -123,42 +122,26 @@ th, td {
 					<td><select disabled>
 							<option>인문</option>
 							<option>자연</option>
-							<option>예체능</option>
+							<option selected>예체능</option>
 					</select></td>
-				</tr>
-				<tr>
-					<td><li>학부모 이름</li></td>
-					<td><input type="text" value="박상찬" style="border: none;" readonly></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>학부모 아이디</li></td>
-					<td><input type="text" value="scpark9999" style="border: none;" readonly></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>학부모 전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>희망대학 / 학과</li></td>
-					<td><input type="text" value="군대"> &nbsp;
-						<input type="text" value="사망"></td>
+					<td><input type="text" value="군대" readonly> &nbsp;
+						<input type="text" value="사망" readonly></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" placeholder="학생 거주지 입력"
-						style="width: 400px;"></td>
+					<td><input type="text" value="천호"
+						style="width: 400px;" readonly></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" placeholder="helloworld@kakao.com"
-						style="width: 400px;"></td>
+					<td><input type="email" value="helloworld@kakao.com"
+						style="width: 400px;" readonly></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -167,11 +150,11 @@ th, td {
 				</tr>
 			</table>
 		</form>
-		<button id="okbtn"
-			style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
-		<button id="cancelbtn"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp'"
-			style="float: right; width: 80px; height: 30px;">취소</button>
+		<button type="button" id="okbtn"
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/UpdateUserInfo.jsp'"
+			style="float: right; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정하기</button>
+		<button type="button" id="cancelbtn" onclick="historyBack();"
+			style="float: right; height: 30px;">뒤로가기</button>
 	</div>
 	</section>
 	<footer> </footer>
@@ -193,6 +176,11 @@ th, td {
 		    var inputVal = $(this).val();
 		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
 		});
+		
+		//뒤로가기
+		function historyBack(){
+			history.back();
+		};
 	</script>
 </body>
 </html>
