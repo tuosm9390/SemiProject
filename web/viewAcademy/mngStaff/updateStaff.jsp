@@ -18,8 +18,9 @@ input, select {
 	height: 30px;
 }
 
-input[readonly] {
+input[readonly], input[readonly]:focus {
 	border: none;
+	outline: none;
 }
 
 input[type=file] {
@@ -37,7 +38,7 @@ input[size] {
 }
 
 .outArea {
-	width: 70%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -101,26 +102,26 @@ input[size] {
 			<table>
 				<tr>
 					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-					<td width="190px">★ 직원 ID</td>
-					<td width="300px"><input type="text" name="userId" id="userId" value="KJH001205" readoonly></td>
-					<td width="300px"></td>
+					<td width="20%"><li>직원 ID</li></td>
+					<td width="40%"><input type="text" name="userId" id="userId" value="KJH001205" readonly></td>
+					<td width="20%"></td>
 				</tr>
 				<tr>
-					<td>● 이름</td>
+					<td><li>이름</li></td>
 					<td colspan="2"><input type="text" name="userName" id="userName" value="김진호"></td>
 				</tr>
 				<tr>
-					<td>● 생년월일</td>
+					<td><li>생년월일</li></td>
 					<td colspan="2"><input type="text" name="birth" id="datepicker" value="2000.12.05." readonly></td>
 				</tr>
 				<tr>
-					<td>● 전화번호</td>
+					<td><li>전화번호</li></td>
 					<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="010"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel2" value="0000"> - 
 					    			<input type="text" maxlength="4" size="4" name="tel3" value="7771"></td>
 				</tr>
 				<tr>
-					<td>● 담당업무</td>
+					<td><li>담당업무</li></td>
 					<td colspan="2">
 						<select name="subject">
 							<option value="select">담당업무 선택</option>
@@ -137,30 +138,30 @@ input[size] {
 				</tr>
 				<tr>
 					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-					<td>● 이메일</td>
+					<td><li>이메일</li></td>
 					<td colspan="2"><input type="email" name="email" id="email" value="kjh7771@gmail.com"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 주소</td>
+					<td><li>주소</li></td>
 					<td colspan="2"><input type="text" name="address" id="address" value="강남구 역삼동 KH정보교육원 C class"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 개인정보 제공<br>　및 활용 동의</td>
+					<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
 					<td colspan="2">
 						<div class="acceptText">Y</div>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 급여 계약서 </td>
+					<td><li>급여 계약서</li></td>
 					<td>20191205_김진호_급여_계약서.hwp　<button class="delete">삭제</button></td>
 					<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>● 경력 등 기타 서류</td>
+					<td><li>경력 등 기타 서류</li></td>
 					<td>20191205_김진호_이력서.hwp　<button class="delete">삭제</button></td>
 					<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
 				</tr>
