@@ -10,20 +10,33 @@
 		display: inline-block;
 	}
 	.totalStaff {
-		width:200px;
+		border:2px solid lightgray;
+		width:400px;
 		height:200px;
-		background:pink;
+		position:absolute;
+		top:25%;
+		left:28%;
 	}
 	.totalStudent {
-		width:200px;
+		border:2px solid lightgray;
+		width:400px;
 		height:200px;
-		background:skyblue;
+		position:absolute;
+		top:25%;
+		left:53%;
+	}
+	.clockArea {
+		border:2px solid lightgray;
+		width:600px;
+		height:200px;
+		position:absolute;
+		top:60%;
+		left:35%;
 	}
 </style>
 </head>
 <%@ include file="../../viewAcademy/common/menubar.jsp"%>
 <body align="center">
-	<h1>관계자 메인</h1>
 	<div class="outer">
 		<div class="totalArea">
 			<div class="totalStaff">
