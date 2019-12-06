@@ -16,14 +16,14 @@
 		display:inline;
 		overflow:auto;
 	}
-	.studentListTable {
+	#studentListTable {
 		overflow:auto;
 	}
 	.bottomArea {
 		background:white;
 		position:static;
 	}
-	.attendDetailArea {
+	#attendDetailArea {
 		width:43%;
 		height:400px;
 		border:1px solid lightgray;
@@ -64,7 +64,7 @@
 			</div>
 			<div class="studentListArea">
 				<form>
-					<table class="studentListTable">
+					<table id="studentListTable" class="table">
 						<tr>
 							<th><input type="checkbox" id="checkAll"></th>
 							<th>이름</th>
@@ -225,7 +225,7 @@
 		<div class="bottomArea">
 			<div class="attendDetailArea">
 				<h4>&nbsp;&nbsp;학생별 출결 상세</h4>
-				<table class="detailAreaTable">
+				<table id="detailAreaTable" class="table">
 					<tr>
 						<td>12/1</td>
 						<td>결석</td>
@@ -288,11 +288,11 @@
 		});
 		
 		$(function(){
-			$(".studentListTable td").click(function(){
-				$(".attendDetailArea").css("visibility","visible");
+			$("#studentListTable td").click(function(){
+				$("#attendDetailArea").css("visibility","visible");
 			});
 			
-			$(".attendDetailArea").click(function(){
+			$("#attendDetailArea").click(function(){
 				$(".detailReasonArea").css("visibility","visible");
 			})
 		});
