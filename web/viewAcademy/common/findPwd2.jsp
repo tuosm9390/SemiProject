@@ -9,7 +9,7 @@
 <style>
 	.background {
 		position: absolute;
-    	top: 50%;
+    	top: 48%;
     	left: 50%;
     	transform: translate(-50%, -50%)
 	}
@@ -46,6 +46,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="../../viewAcademy/common/menubar.jsp"%>
 	<div class="background">	
 	<div align="center" id="container">
 		<h2 style="color:green">비밀번호 변경</h2>
@@ -63,25 +64,32 @@
 		<div id="container-footer">
 			<ul>
 				<li>
-				<input type="button" id="okBtn" value="확인" action="" method="" onClick="">
+				<input type="button" id="okBtn" value="확인" action="" method="">
 				</li>
 			</ul>
 		</div>
 	</div>
 	</div>
 	<script>
-		$("input").keyup(function(){
-				var pwd1 = $("#newPwd").val();
-				var pwd2 = $("#newPwd2").val();
+		$("input[type='password']").keyup(function(){
+			var pwd1 = $("#newPwd").val();
+			var pwd2 = $("#newPwd2").val();
 			
-				if(pwd1 != "" || pwd2 != "") {
-					if(pwd1 != pwd2) {
-						$("#checkPwd").show();
-					}else {
-						$("#checkPwd").hide();
-					}
-				}	
-			});
+			if(pwd1 != "" || pwd2 != "") {
+				if(pwd1 != pwd2) {
+					$("#checkPwd").show();
+				}else {
+					$("#checkPwd").hide();
+					
+					$("#okBtn").click(function(){
+						//서블릿으로 변경할 비밀번호 전송 후 결과 성공이면 변경되었다는 팝업, 실패면 실패 팝업..?                                                                                                      
+						console.log(pwd2);
+						//int result = new MemberService().updatePassword(pwd2);
+						
+					});
+				}
+			}
+		});
 	</script>
 </body>
 </html>

@@ -4,51 +4,117 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>관계자 메인</title>
 <style>
+	body {
+		background:url("/hagong/images/mainImage.jpg") no-repeat top;
+		background-size:86%;
+	}
 	.totalArea div{
 		display: inline-block;
 	}
 	.totalStaff {
-		border:2px solid lightgray;
-		width:400px;
-		height:200px;
+		width:300px;
+		height:100px;
 		position:absolute;
 		top:25%;
-		left:28%;
+		left:30%;
 	}
 	.totalStudent {
-		border:2px solid lightgray;
-		width:400px;
-		height:200px;
+		width:300px;
+		height:100px;
 		position:absolute;
 		top:25%;
 		left:53%;
+		display:inline;
 	}
 	.clockArea {
-		border:2px solid lightgray;
 		width:600px;
 		height:200px;
 		position:absolute;
 		top:60%;
-		left:35%;
+		left:32%;
+	}
+	#clock {
+		width:600px;
+		height:400px;
+		line-height:250px;
+		color:#666;
+		font-size:400px;
+		font-style:bold;
+		text-align:center;
+		position:absolute;
+		top:55%;
+		left:31%;
 	}
 </style>
 </head>
 <%@ include file="../../viewAcademy/common/menubar.jsp"%>
-<body align="center">
+<body align="center" onload="printClock()">
 	<div class="outer">
 		<div class="totalArea">
 			<div class="totalStaff">
-				<h1>총 직원 수 : 30</h1>
+				<table>
+				<tr>
+					<td><img src="<%=request.getContextPath()%>/images/teacher.png"
+						 style="height: 70px; display:inline;"></td>
+					<td><h2>총 직원 수 : 30</h2></td>
+				</tr>
+				</table>
 			</div>
 			<div class="totalStudent">
-				<h1>총 학생 수 : 231</h1>
+				<table>
+				<tr>
+					<td><img src="<%=request.getContextPath()%>/images/student.png"
+						 style="height: 70px; display:inline;"></td>
+					<td><h2>총 학생 수 : 231</h2></td>
+				</tr>
+				</table>
 			</div>
 		</div> <!-- totalArea end -->
-		<div class="clockArea">
-			<h1>21:49:59 PM</h1>
-		</div> <!-- clockArea end -->
+<!-- 		<div class="clockArea">
+			<h1 style="font-size:70px">21:49:59 PM</h1>
+		</div> clockArea end -->
+		<div style="width:600px; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock">
+		</div>
 	</div> <!-- outer end -->
+	
+	<script>
+		function printClock() {
+		    
+		    var clock = document.getElementById("clock");            // 출력할 장소 선택
+		    var currentDate = new Date();                                     // 현재시간
+		    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+		    var amPm = 'AM'; // 초기값 AM
+		    var currentHours = addZeros(currentDate.getHours(),2); 
+		    var currentMinute = addZeros(currentDate.getMinutes() ,2);
+		    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+		    
+		    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+		    	amPm = 'PM';
+		    	currentHours = addZeros(currentHours - 12,2);
+		    }
+	
+		    if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
+		       currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
+		    }
+		    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+		    
+		    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+		}
+	
+		function addZeros(num, digit) { // 자릿수 맞춰주기
+			  var zero = '';
+			  num = num.toString();
+			  if (num.length < digit) {
+			    for (i = 0; i < digit - num.length; i++) {
+			      zero += '0';
+			    }
+			  }
+			  return zero + num;
+		}
+	</script>
 </body>
 </html>

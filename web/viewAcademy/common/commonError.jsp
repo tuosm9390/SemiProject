@@ -11,7 +11,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String errorCode = (String) request.getAttribute("errorCode"); %>
+ <% String errorCode = (String) request.getAttribute("errorCode"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +22,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-	$(function(){
-		if(errorCode == "loginFail"){
-			console.log("되나?");
-		}
-	});
-</script>
+	<% if(errorCode == "loginFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "로그인 실패",
+				text: "아이디와 비밀번호를 확인하세요.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/common/academyMain.jsp";
+			});
+		});
+	</script>
+	
+	<% } %>
 </body>
 </html>

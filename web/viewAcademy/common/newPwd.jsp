@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="hagong.member.model.vo.*"%>
 <%@ include file="../common/menubar.jsp"%>
-<% 
+<%-- <% 
 	Member loginMember = (Member) request.getAttribute("loginMember");
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 <style>
 	.background {
 		position: absolute;
-    	top: 50%;
+    	top: 48%;
     	left: 50%;
     	transform: translate(-50%, -50%)
 	}
@@ -52,7 +52,7 @@
 <body>
 	<div class="background">	
 	<div align="center" id="container">
-		<h2 style="color:green"><%=loginMember.getMemberId() %>님의 새 비밀번호 설정</h2>
+		<h2 style="color:green"><%-- <%=loginMember.getMemberId() %> --%>님의 새 비밀번호 설정</h2>
 		<form id="middle">
 			<ul>
 				<li><input type="password" id="newPwd" name="newPwd" placeholder="  새로운 비밀번호를 입력해주세요" 

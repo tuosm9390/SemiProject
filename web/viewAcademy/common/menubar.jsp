@@ -177,7 +177,7 @@ section{
 	<!-- 상단 메뉴 바 -->
 	<header>
 		<div id="menuheader">
-			<a href="<%=request.getContextPath()%>/index.jsp"> <img
+			<a href="<%=request.getContextPath()%>/viewAcademy/common/academyMain.jsp"> <img
 				src="<%=request.getContextPath()%>/images/hagong.png"
 				style="height: 85px;"></a>
 			<h2 class="topmenu" id="student">학생관리</h2>

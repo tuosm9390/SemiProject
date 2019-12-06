@@ -9,7 +9,7 @@
 <style>
 	.background {
 		position: absolute;
-    	top: 50%;
+    	top: 48%;
     	left: 50%;
     	transform: translate(-50%, -50%)
 	}
@@ -20,7 +20,7 @@
 		border:1px solid gray;
 		padding-top:50px;
 		padding-bottom:30px;
-		margin-top:150px;
+		margin-top:140px;
 		margin-bottom:50px;
 		margin-left:auto;
 		margin-right:auto;
@@ -46,6 +46,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="../../viewAcademy/common/menubar.jsp"%>
 	<div class="background">	
 	<div align="center" id="container">
 		<h2 style="color:green">비밀번호 찾기</h2>
@@ -63,7 +64,7 @@
 		<div id="container-footer">
 			<ul>
 				<li>
-				<input type="button" id="okBtn" value="확인" action="" method="" onClick="location.href='../views/findPwd2.jsp'">
+				<input type="button" id="okBtn" value="확인" action="" method="" onClick="location.href='<%=request.getContextPath()%>/viewAcademy/common/findPwd2.jsp'">
 				</li>
 			</ul>
 		</div>
