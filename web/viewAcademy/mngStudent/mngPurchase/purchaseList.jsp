@@ -98,13 +98,14 @@
 }
 
 .btnmenu {
-	position: absoulute;
+	float:right;
 	font-size: 12px;
-	width: 300px;
-	height: 15px;
+	width: 500px;
+	height: 30px;
 	display: inline;
 	right: 15px;
 	top: 1px;
+	margin-top:0.5%;
 }
 
 .outArea {
@@ -122,7 +123,54 @@
 }
 
 .actionBtn {
+	font-size: 15px;
 	display: inline;
+	width: 100px;
+	height: 25px;
+}
+
+/* 모달 배경 */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* 모달 내부 상자 */
+.modal-content {
+	background-color: #fefefe;
+	margin: 5% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 60%;
+	background-color: #fefefe;
+	border-radius: 10px;
+	/* Could be more or less, depending on screen size */
+}
+/* 모달 닫기 버튼 */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+table, th, td {
+	border: 1px solid lightgray;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 </style>
 </head>
@@ -148,27 +196,85 @@
 			</div> <!-- monthArea end -->
 			
 			<div class="btnArea">
-				<div style="float:left;"><button>환불규정 확인</button></div>
+				<div style="float:left;"><button id="refundRuleBtn">환불규정 확인</button></div>
 				<div style="float:right;"><button>미납자 모아보기</button></div>
 			</div> <!-- btnArea end -->
+			
+			<div id="refundRule" class="modal">
+				<div class="modal-content" align="center">
+					<span class="close">&times;</span>
+					<h2 style="margin-left:35px;">교습비등 반환기준</h2>
+					<p>공정거래위원회 고시 제2019-3호, 2019.4.3.발령·시행</p>
+					<table style="width:90%">
+						<tr>
+							<th colspan="2" width="50%">수강료 반환원인</th>
+							<th width="50%">수강료 반환기준</th>
+						</tr>
+						<tr>
+							<td rowspan="3" width="25%">사업자의 부당행위 후<br>수강자가 즉시 계약해제를 요구한 경우</td>
+							<td width="25%">허위·과장광고에 의한<br>수강계약의 체결</td>
+							<td width="50%">계약 해제 및 수강료 전액환급</td>
+						</tr>
+						<tr>
+							<td>정원을 초과한 수강생<br>모집 및 교습</td>
+							<td>계약 해제 및 수강료 전액환급</td>
+						</tr>
+						<tr>
+							<td>무자격 또는 자격미달<br>강사에 의한 교습</td>
+							<td>계약 해제 및 수강료 전액환급</td>
+						</tr>
+						<tr>
+							<td colspan="2">사업자의 부당행위 후 수강자가 계속 수강하다가<br>계약 해제를 요구한 경우</td>
+							<td>남은 기간에 대해 일할 계산해 수강료 환급</td>
+						</tr>
+						<tr>
+							<td colspan="2">수강기간 도중 학원 인가 또는 등록 취소,<br>일정기간 교습정지 등 행정처분이나 학원의 이전, 폐강,<br>그 밖에 사업자의 사정으로 인한 수강불능의 경우</td>
+							<td>남은 기간에 대해 일할 계산해 수강료 환급<br>(사유발생일로부터 5일 내)</td>
+						</tr>
+						<tr>
+							<td colspan="2">교습개시 전 수강자의 귀책사유로<br>계약을 해제하는 경우</td>
+							<td>기 납부한 수강료 전액 환급</td>
+						</tr>
+						<tr>
+							<td rowspan="3">계약한 수강 개월이<br>1개월 이내인 경우<br>(수강자 귀책사유 해지 시)</td>
+							<td>총 교습시간의 1/3 경과 전</td>
+							<td>수강료의 2/3 해당액 환급</td>
+						</tr>
+						<tr>
+							<td>총 교습시간의 1/2 경과 전</td>
+							<td>수강료의 1/2 해당액 환급</td>
+						</tr>
+						<tr>
+							<td>총 교습시간의 1/2 경과 후</td>
+							<td>환급하지 않음</td>
+						</tr>
+						<tr>
+							<td colspan="2">계약 수강 기간이 1개월 초과하는 경우<br>(교습개시 이후 수강자의 귀책사유로 해지 시)</td>
+							<td>반환사유가 발생한 월의 환급액 (수강료 징수기간이<br>1개월 이내인 경우에 따라 산출된 수강료)와<br>나머지 월의 수강료 전액을 합산한 금액</td>
+						</tr>
+					</table>
+					<br>
+				</div>
+			</div> <!-- refundRule end -->
 			
 			<div class="wrap">
 				<ul class="accordion">
 					<% for(int j = 0; j < 10; j++) { %>
 					<li class="accordion__item">
-						<a class="accordion__title" href="javascript:void(0)" align="center">김진호의 국어 교실
+						<div class="accordion__title" href="javascript:void(0)">
+							<label style="margin-left:10px">김진호의 국어 교실</label>
+							<div class="bmenu">▼</div>
+						</div>
+						<div class="accordion__content">
 							<div class="btnmenu">
 								<button class="actionBtn">수납 처리</button>
 								<button class="actionBtn">고지서 발급</button>
 								<button class="actionBtn">영수증 발급</button>
 							</div>
-							<div class="bmenu">▼</div>
-						</a>
-						<div class="accordion__content">
 							<div class="tableArea">
 								<table class="table" style="width:100%; float:left;">
 									<tr>
-										<th><input type="checkbox" id="selectAll"><label for="selectAll">전체선택</label></th>
+										<th><input type="checkbox" class="selectAll"><label for="selectAll">전체선택</label></th>
 										<th>학생 이름</th>
 										<th>학생 ID</th>
 										<th>청구 금액</th>
@@ -177,7 +283,7 @@
 									</tr>
 									<% for(int k = 0; k < 10; k++) { %>
 									<tr>
-										<td><input type="checkbox"></td>
+										<td><input type="checkbox" class="selectOne"></td>
 										<td>남윤진</td>
 										<td>NYJ970708</td>
 										<td>300,000원</td>
@@ -204,12 +310,32 @@
 					$('.accordion__title').not($(this)).removeClass('active');
 				});
 				
-				$("#selectAll").click(function(){
-					$(this).parent().parent().children().children().eq(0).prop("checked", true);
+				
+				$(".selectAll").change(function(){
+					if($(this).prop("checked")) {
+						$(".selectOne").prop("checked", true);
+					} else {
+						$(".selectOne").prop("checked", false);
+					}
 				});
+				
+				// 대상 추가 모달
+				var refundRule = document.getElementById("refundRule");
+				// 모달 실행 버튼
+				var refundRuleBtn = document.getElementById("refundRuleBtn");
+				// 모달 닫기 버튼
+				var close = document.getElementsByClassName("close")[0];
+				// 모달 실행
+				refundRuleBtn.onclick = function() {
+					refundRule.style.display = "block";
+				}
+				// x버튼 클릭 시 종료
+				close.onclick = function() {
+					refundRule.style.display = "none";
+				}
 			});
+			
 		</script>
-		
 		</div> <!-- outArea end -->
 	</section>
 	<footer>
