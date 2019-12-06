@@ -11,12 +11,15 @@
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-	<style>
-		#classStudent .table *{
-			text-align:center;
-			text-align: -webkit-center;
-		}
-	</style>
+<style>
+	#classStudent .table *{
+		text-align:center;
+		text-align: -webkit-center;
+	}
+	.srchArea{margin-bottom:10px;}
+	.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
+	.srchArea button{float:right;width:60px; height:25px;}
+</style>
 	</head>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<body>			
@@ -27,6 +30,15 @@
 			</header>
 			<div class="component">
 				<h2>개설강좌 리스트</h2>
+				<div class="srchArea">
+					<button class="srchBtn">검색</button>
+					<input type="search" id="searchStudent" name="searchStudent">
+					<select style="float:right">
+						<option value="" selected disabled hidden>조건별 검색</option>
+						<option name="searchClassCondition" value="title">강의명</option>
+						<option name="searchClassCondition" value="place">강의실</option>
+					</select>
+				</div>
 				<table id="classlist" class="table">
 					<thead>
 						<tr>
