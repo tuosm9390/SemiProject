@@ -83,13 +83,13 @@
 					
 					$("#okBtn").click(function(){
 						//서블릿으로 변경할 비밀번호 전송 후 결과 성공이면 변경되었다는 팝업, 실패면 실패 팝업..?                                                                                                      
-						console.log(pwd2);
-						//int result = new MemberService().updatePassword(pwd2);
-						
+						//console.log(pwd2);
+						href.location="<%=request.getContextPath()%>/update.me";
 					});
 				}
 			}
 		});
+		
 	</script>
 </body>
 </html>

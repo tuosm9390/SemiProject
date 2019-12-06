@@ -17,5 +17,12 @@ public class MemberService {
 		
 		return loginMember;
 	}
+	
+	public String updatePassword(String password) {
+		
+		String newPwd =  password;
+		
+		return newPwd;
+	}
 
 }

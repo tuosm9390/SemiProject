@@ -72,7 +72,7 @@
 		<div id="container-footer">
 			<ul>
 				<li>
-				<input type="button" id="okBtn" value="확인" action="" method="" onClick="">
+				<input type="button" id="okBtn" value="확인" action="" method="">
 				</li>
 			</ul>
 		</div>
@@ -88,6 +88,13 @@
 						$("#checkPwd").show();
 					}else {
 						$("#checkPwd").hide();
+						
+						$("#okBtn").click(function(){
+							//서블릿으로 변경할 비밀번호 전송 후 결과 성공이면 변경되었다는 팝업, 실패면 실패 팝업..?                                                                                                      
+							console.log(pwd2);
+							var result = new MemberService().updatePassword(pwd2);
+							
+						});
 					}
 				}	
 			});

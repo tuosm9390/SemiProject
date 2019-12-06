@@ -8,7 +8,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-	
+	body {
+		font-family: "Nanum Gothic";
+	}
 	.upperArea {
 		width:86%;
 		height:550px;
@@ -23,7 +25,7 @@
 		background:white;
 		position:static;
 	}
-	#attendDetailArea {
+	.attendDetailArea {
 		width:43%;
 		height:400px;
 		border:1px solid lightgray;
@@ -38,8 +40,7 @@
 	.detailReasonArea {
 		width:43%;
 		height:400px;
-		border:1px solid lightgray;
-		background:lightgray;
+		border:1px solid green;
 		position:absolute;
 		top:100%;
 		left:50%;
@@ -50,7 +51,7 @@
 </head>
 <body>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
-	<h1>수강 학생 목록</h1>
+	<h2>수강 학생 목록</h2>
 	<button style="float:right; margin-bottom:10px;">출결 처리</button>
 	<div class="container">
 		<div class="upperArea">
@@ -225,7 +226,7 @@
 		<div class="bottomArea">
 			<div class="attendDetailArea">
 				<h4>&nbsp;&nbsp;학생별 출결 상세</h4>
-				<table id="detailAreaTable" class="table">
+				<table class="detailAreaTable table">
 					<tr>
 						<td>12/1</td>
 						<td>결석</td>
@@ -270,7 +271,7 @@
 					<form action="" method="post">
 						<textarea style="margin: 0px; width: 677px; height: 282px; resize:none;"></textarea>
 						<br>
-						<input type="submit" value="입력" style="float:right; padding:5px; width:100px">
+						<input type="submit" value="입력" style="float:right; padding:5px; width:100px; border:1px solid green; background:white; border-radius:3px;">
 					</form>
 				</div>
 			</div> <!-- detailReasonArea end -->
@@ -289,10 +290,10 @@
 		
 		$(function(){
 			$("#studentListTable td").click(function(){
-				$("#attendDetailArea").css("visibility","visible");
+				$(".attendDetailArea").css("visibility","visible");
 			});
 			
-			$("#attendDetailArea").click(function(){
+			$(".attendDetailArea").click(function(){
 				$(".detailReasonArea").css("visibility","visible");
 			})
 		});

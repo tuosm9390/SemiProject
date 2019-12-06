@@ -63,6 +63,9 @@ ul > li {
 	display:block;
 	padding-bottom: 20px;
 }
+
+
+
 </style>
 </head>
 <%@ include file="/viewAcademy/common/menubar.jsp" %>
@@ -74,7 +77,7 @@ ul > li {
 			</header>
 			<section>
 				<div class="head">
-					<h2 align="center">연간계획</h2>
+					<h2>연간계획</h2>
 					<div class="btnArea">
 					<select style="display:inline; float:left; margin-right:10px">
 						<option value="" selected disabled hidden>년도별 검색</option>
