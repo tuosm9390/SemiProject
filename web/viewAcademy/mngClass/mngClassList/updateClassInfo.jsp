@@ -45,61 +45,56 @@
 		<form id="classInfo" action="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp" method="post">
 			<table class="insertTable">
 				<tr>
+					<td>과목 : </td>
+					<td><input type="text" id="subject"></td>
+				</tr>
+				<tr>
+					<td>담당 강사 : </td>
 					<td>
-					<label>과목 : <input type="text" id="subject"></label>
+						<select id="selectTeacher" style="width:300px; padding:10px; margin-bottom:20px">
+							<option value="김상찬">김상찬</option>
+							<option value="서범수">서범수</option>
+							<option value="박재영">박재영</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
+					<td>강좌명 : </td>
+					<td><input type="text" id="classTitle" name="classTitle"></td>
+				</tr>
+				<tr>
+					<td>정원 : </td>
+					<td><input type="number" id="numOfClass" name="numOfClass"></td>
+				</tr>
+				<tr>
+					<td>기간 : </td>
+					<td><input type="date" id="dateOfClass" name="dateOfClass"></td>
+				</tr>
+				<tr>
+					<td>요일 : </td>
 					<td>
-					<label for="selectTeacher">담당 강사 : </label>
-					<select id="selectTeacher" style="width:300px; padding:10px; margin-bottom:20px">
-						<option value="김상찬">김상찬</option>
-						<option value="서범수">서범수</option>
-						<option value="박재영">박재영</option>
-					</select>
+						<input type="checkbox" id="mon" name="day" value="monday"><label for="mon">월</label>
+						<input type="checkbox" id="tue" name="day" value="tuesday"><label for="tue">화</label>
+						<input type="checkbox" id="wed" name="day" value="wednesday"><label for="wed">수</label>
+						<input type="checkbox" id="thur" name="day" value="thursday"><label for="thur">목</label>
+						<input type="checkbox" id="fri" name="day" value="friday"><label for="fri">금</label>
+						<input type="checkbox" id="sat" name="day" value="saturday"><label for="sat">토</label>
+						<input type="checkbox" id="sun" name="day" value="sunday"><label for="sun">일</label>
 					</td>
 				</tr>
 				<tr>
+					<td>강의실 : </td>
 					<td>
-					<label>강좌명 : </label><input type="text" id="classTitle" name="classTitle">
+						<select id="classroom" name="classroom" style="width:300px; padding:10px; margin-bottom:20px">
+							<option>A</option>
+							<option>B</option>
+							<option>C</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>
-					<label>정원 : <input type="number" id="numOfClass" name="numOfClass"></label><br>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<label>기간 : </label>
-					<input type="date" id="dateOfClass" name="dateOfClass">
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<label>요일 : </label>
-					<input type="checkbox" id="mon" name="day" value="monday"><label for="mon">월</label>
-					<input type="checkbox" id="tue" name="day" value="tuesday"><label for="tue">화</label>
-					<input type="checkbox" id="wed" name="day" value="wednesday"><label for="wed">수</label>
-					<input type="checkbox" id="thur" name="day" value="thursday"><label for="thur">목</label>
-					<input type="checkbox" id="fri" name="day" value="friday"><label for="fri">금</label>
-					<input type="checkbox" id="sat" name="day" value="saturday"><label for="sat">토</label>
-					<input type="checkbox" id="sun" name="day" value="sunday"><label for="sun">일</label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<label for="classroom">강의실 : </label>
-					<select id="classroom" name="classroom" style="width:300px; padding:10px; margin-bottom:20px">
-						<option>A</option>
-						<option>B</option>
-						<option>C</option>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="classTime">강의 시간 : </label>
+					<td>강의 시간 : </td>
+					<td>	
 						<select id="classTime" style="width:300px; padding:10px; margin-bottom:20px">
 							<option>15:00 ~ 16:00</option>
 							<option>16:00 ~ 17:00</option>
@@ -108,10 +103,8 @@
 					</td>
 				</tr> 	
 				<tr>
-					<td>
-						<label>수업료 : </label>
-						<input type="number" id="money">
-					</td>
+					<td>수업료 : </td>
+					<td><input type="number" id="money"></td>
 				</tr>	
 			</table>
 		<div class="bottomArea">
