@@ -185,7 +185,8 @@ section{
 			<h2 class="topmenu" id="class">수업관리</h2>
 			<h2 class="topmenu" id="admin">관리자</h2>
 			&nbsp;
-			<h3 id="notice">
+			<h3 id="notice"
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" >
 				<img src="<%=request.getContextPath()%>/images/notice.png"
 					style="height: 30px;">
 			</h3>
