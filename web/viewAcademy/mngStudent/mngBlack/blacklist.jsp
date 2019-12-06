@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	.component .addBtn{diaplay:inline-block; margin-bottom:5px; float:right;}
-	.component .addBtn .addBlist{width:70px;font-size:16px;height:25px;}
+	.component .addBtn .addBlist{width:60px;font-size:16px;height:25px;}
 		/* 모달 배경 */
 .modal {
 	display: none; /* Hidden by default */
@@ -94,6 +94,9 @@
 .dArea .dTit{display: block;padding-bottom: 5px;font-weight:bold;font-size: 15px;}
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 10px 40px 40px 40px;}
+.srchArea{margin-bottom:10px;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
+.srchArea button{float:right;width:60px; height:25px;margin-right:10px;}
 </style>
 </head>
 <body>
@@ -106,7 +109,18 @@
 			<div class="component" id="consilArea">
 				<h2 class="btitle">블랙리스트</h2>
 				<div class="addBtn">				
-					<button class="addBlist" onclick="addBlist();">추 가</button>
+					<button class="addBlist" onclick="addBlist();">추가</button>
+				</div>
+				<div class="srchArea">
+					<button class="srchBtn">검색</button>
+					<input type="search" id="searchStudent" name="searchStudent">
+					<select style="float:right">
+						<option value="" selected disabled hidden>조건별 검색</option>
+						<option name="searchClassCondition" value="name">원생명</option>
+						<option name="searchClassCondition" value="phone">전화번호</option>
+						<option name="searchClassCondition" value="school">학교</option>
+						<option name="searchClassCondition" value="grade">학년</option>
+					</select>
 				</div>
 				<table id="classlist" class="table">
 					<thead>

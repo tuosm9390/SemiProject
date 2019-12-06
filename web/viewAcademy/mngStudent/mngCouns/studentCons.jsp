@@ -97,6 +97,9 @@
 .dArea .dTit{display: block;padding-bottom: 5px;font-weight: bold;font-size: 15px;}
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 10px 40px 40px 40px;}
+.srchArea{margin-bottom:10px;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
+.srchArea button{float:right;width:60px; height:25px;}
 </style>
 <body>
 	<%@ include file="../../common/menubar.jsp" %>
@@ -107,6 +110,15 @@
 	</header>
 			<div class="component" id="consilArea">
 				<h2>학생상담 리스트</h2>
+				<div class="srchArea">
+					<button class="srchBtn">검색</button>
+					<input type="search" id="searchStudent" name="searchStudent">
+					<select style="float:right">
+						<option value="" selected disabled hidden>조건별 검색</option>
+						<option name="searchClassCondition" value="name">원생명</option>
+						<option name="searchClassCondition" value="phone">전화번호</option>
+					</select>
+				</div>
 				<table id="classlist" class="table">
 					<thead>
 						<tr>
