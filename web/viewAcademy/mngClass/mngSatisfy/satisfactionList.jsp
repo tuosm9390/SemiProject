@@ -88,6 +88,7 @@ tr:not(:first-child){
 	text-decoration: none;
 	cursor: pointer;
 }
+<%int test = 2;%>
 </style>
 </head>
 <body>
@@ -96,8 +97,11 @@ tr:not(:first-child){
 	</header>
 	<section>
 		<h2 style="margin-left: 5%;">만족도 조사 목록</h2>
+		<!-- 권한별 버튼 -->
+		<%if(test==1){%>
 		<button id="addSatisfaction" style="margin-right: 5%;">만족도 조사 등록</button>
 		<button id="benefitBtn">혜택 관리</button>
+		<% } %>
 		<form>
 			<table class="table" align="center" style="width: 90%;">
 				<tr>

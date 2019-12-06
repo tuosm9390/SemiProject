@@ -5,7 +5,9 @@
 <head>
 <meta  charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
+
 	.outer{
 	
 		width:80%;
@@ -42,13 +44,14 @@
     cursor:pointer;
 }
 #botbtn{
-	margin-left: 25px;
+	margin-left: 12px;
+	width:70px;
+	height:30px;
 }
 #space{
 	margin-top: 10px;
 	width:100%;
 	display: inline-flex;
-	border: 1px solid black;
 
 }
 #text2{
@@ -56,7 +59,9 @@
 	margin-left: 20%; 
 }
 #rsetbtn{
-	margin-left: 80%;
+	margin-left: 75%;
+	width:70px;
+	height:30px;
 }
 </style>
 </head>
@@ -71,7 +76,7 @@
 								<p> ● 실시 기간 : 213123123 </p>
 			</div>
 			<div class="article" align="center">
-			<form>
+			<form id="sendForm" method="post">
 				
 				<div style="overflow:auto; width:850px; height:500px; padding:10px; background-color:lightgray;" align="left">
 					<%for(int i=0;i<6;i++) {%>
@@ -89,19 +94,50 @@
 					<textarea placeholder="내용을 입력해 주세요." style="width: 700px; height:100px; resize:none; overflow:auto;" ></textarea>
 					</div>
 				</div>
+				</form>
 					<div id="space">
 					<button id="rsetbtn" onclick="goList();">닫기</button>
-					<button type="submit" id="botbtn">제출</button>
+					<button id="botbtn" onclick="submit();">제출</button>
 					</div>
-				</form>
 			</div>
 	</div><!-- outer end -->
+
 	</div>
 </section>	
 <script>
-	function goList(){
-		location.href="/viewAcademy/mngClass/mngSatisfy/satisfactionList.jps";
+	
+	
+	function submit(){
+		swal({
+			
+			  text: "제출 하시겠습니까?",
+			  buttons: true,
+			})
+			.then((value) =>{
+			  if (value) {
+			    swal("제출되었습니다!", {});
+			    //ok 눌렀을떄 폼 전송
+			    $("#sendForm").attr("action", "<%=request.getContextPath()%>/insertSatisfy.sf");
+			   
+			  } 
+			});
 	}
+	function goList(){
+		swal({
+			
+			  text: "작업을 중단하시겠습니까?",
+			  buttons: true,
+			})
+			.then((value) =>{
+			  if (value) {
+			  location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp";
+			    //ok 눌렀을떄 폼 전
+			  } 
+			});
+		
+	}
+	
+
 </script>
 	
 </body>
