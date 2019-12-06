@@ -33,6 +33,18 @@ section button:hover {
 	border: 2px solid green;
 	color: white;
 }
+
+#datepicker{
+	float: right;
+	margin-left: 1%;
+	width: 80px;
+	display: none;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    margin: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -71,6 +83,8 @@ section button:hover {
 			<h2 style="width: 150px;">학생 성적</h2>
 			<button id="pointAddBtn" style="float: right;">성적 추가</button>
 			<button style="float: right;">검색</button>
+			<!-- DatePicker -->
+			<input type='text' id='datepicker' readonly>
 			<!-- 조건 선택시 옵션 -->
 			<select class="classify"
 				style="float: right; width: 100px; margin-left: 1%; display: none;">
@@ -178,10 +192,12 @@ section button:hover {
 								if (sel == 0) {
 									$(".classify").hide();
 									$(".op").remove();
+									$("#datepicker").hide();
 								//구분 선택
 								} else if (sel == 1) {
 									$(".classify").show();
 									$(".op").remove();
+									$("#datepicker").hide();
 									$.each(class1, function(i, item) {
 										$(".classify").append(
 												"<option class='op'>" + item
@@ -191,13 +207,12 @@ section button:hover {
 								} else if (sel == 2) {
 									$(".classify").hide();
 									$(".op").remove();
-									$(".classify")
-											.after(
-													"<input type='month' class='op' style='float: right; margin-left: 1%;'>");
+									$("#datepicker").show();
 									//과목 선택
 								} else if (sel == 3) {
 									$(".classify").show();
 									$(".op").remove();
+									$("#datepicker").hide();
 									$.each(class2, function(i, item) {
 										$(".classify").append(
 												"<option class='op'>" + item
@@ -205,6 +220,25 @@ section button:hover {
 									});
 								}
 							});
+		});
+		
+		//DatePicker
+		$(function() {
+			$("#datepicker").datepicker({
+			    dateFormat: "yy년",
+			    startView: "years",
+			    minViewMode: "years",
+			    showOtherMonths: true,
+			    showMonthAfterYear: true,
+			    changeMonth : true,
+				changeYear : true,
+				constrainInput: false,
+				showButtonPanel: true,
+				dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], // 요일의 한글 형식.
+				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], // 월의 한글 형식.
+				currentText: '오늘 날짜',
+				yearRange: "c-5:c"
+			});
 		});
 	</script>
 </body>

@@ -46,6 +46,10 @@ th, td {
 	background: white;
 	text-align: left !important;
 }
+
+.qo li{
+	margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
@@ -71,26 +75,24 @@ th, td {
 				<tr>
 					<td><li>만족도 조사 날짜</td>
 					<td>
-					<input type="text" id="from" name="from">&emsp;~
-					&emsp;<input type="text" id="to" name="to"></td>
+					<input type="text" id="from" name="from" readonly>&emsp;~
+					&emsp;<input type="text" id="to" name="to" readonly></td>
 				</tr>
 				<tr>
 					<td><li>문항 및 결과</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<ol>
+					<td colspan="2" class="question">
+						<ol class="qo">
 							<li>&emsp;
-							<input type="text" placeholder="질문 문항 입력" size="100"> <input type="button" value="-">
-							<input type="button" value="+">
+							<input class="insertQ" type="text" placeholder="질문 문항 입력" size="100">
+							<input type="button" class="qdelete" value="-">
+							<input type="button" class="qadd" value="+">
 							<br>
 							<br> &emsp;
-							<input type="text" placeholder="선택항목 입력">&emsp;
-							<select>
-									<option>선택자 수</option>
-							</select>
-							<input type="button" value="-">
-							<input type="button" value="+">
+							<input class="insertA" type="text" placeholder="선택항목 입력">&emsp;
+							<input type="button" class="adelete" value="-">
+							<input type="button" class="aadd" value="+"><br>
 							</li>
 						</ol>
 					</td>
@@ -113,37 +115,42 @@ th, td {
 	
 	<script>
 		//DatePicker
+		$.datepicker.setDefaults({
+    		dateFormat: 'yy-mm-dd',
+    		prevText: '이전 달',
+    		nextText: '다음 달',
+    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    		showMonthAfterYear: true,
+    		changeMonth : true,
+			changeYear : true,
+			constrainInput: false,
+    		yearSuffix: '년'
+  		});
 		$(function() {
-	    	var dateFormat = "mm/dd/yy",
-	    		from = $( "#from" )
-	    		.datepicker({
-	    			defaultDate: "+1w",
-	    			changeMonth: true,
-	    			numberOfMonths: 3
-	    		})
-	    		.on( "change", function() {
-	    			to.datepicker( "option", "minDate", getDate( this ) );
-	    		}),
-	    			to = $( "#to" ).datepicker({
-	    			defaultDate: "+1w",
-	    			changeMonth: true,
-	    			numberOfMonths: 3
-	    		})
-	    		.on( "change", function() {
-	    			from.datepicker( "option", "maxDate", getDate( this ) );
-	    		});
-	 
-	    	function getDate( element ) {
-	    		var date;
-	    			try {
-	    				date = $.datepicker.parseDate( dateFormat, element.value );
-	    			} catch( error ) {
-	    				date = null;
-	    			}
-	 
-	    		return date;
-	    	}
+			$("#from, #to").datepicker();
 		});
+		
+		//설문 문항 추가
+		$(".question").on("click", ".qadd", function(){
+			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
+		});
+		//설문 문항 제거
+		$(".question").on("click", ".qdelete", function(){
+			if($(".qo li").size() != 1){
+				$(this).closest(".qo li").remove();
+			};
+		});
+		
+		//문항 선택항목 추가
+		$(".question").on("click", ".aadd", function(){
+			console.log("aadd실행");
+			$(this).closest(".insertA .aadd").append("<input type='button' class='aadd' value='+'><br>");
+		});
+		//문항 선택항목 삭제
 	</script>
 </body>
 </html>

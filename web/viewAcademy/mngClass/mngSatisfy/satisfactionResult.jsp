@@ -29,25 +29,31 @@ section button:hover {
 .resultArea {
 	position: relative;
 	background: rgba(211, 211, 211, .4);
-	margin: 2% auto;
+	margin-left: 15%;
 	width: 70%;
 	overflow: auto;
 	border-radius: 20px;
 }
 
 .resultTable tr{
-	height: 300px;
+	height: 280px;
 }
 
 .resultTable tr>td:first-child {
+	vertical-align: top;
 	text-align: left;
-	font-size: x-large;
-	padding-bottom: 18%;
+	font-size: large;
+	padding-top: 7%;
+	padding-left: 2%;
 	width: 400px;
 }
 
 .resultTable tr:not(:last-child){
 	border-bottom: 1px solid black;
+}
+
+ul.accessibility{
+	height: 0px;
 }
 </style>
 </head>
@@ -55,7 +61,7 @@ section button:hover {
 	<header>
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
-	<section align="center">
+	<section>
 		<h1 align="center">2019 겨울방학 특강 만족도 조사</h1>
 		<div align="center">
 			<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반></li>
@@ -94,7 +100,11 @@ section button:hover {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<li>수업 및 강사에 대한 개선 의견</li>
+						<li>수업 및 강사에 대한 개선 의견</li><br>
+						<ul>
+							<li>수업 시간이 너무 길어서 졸려요!</li><br>
+							<li>윤진쌤 숙제 넘 많이 내줘요 ㅠㅠ 방학인데!</li>
+						</ul>
 					</td>
 				</tr>
 			</table>
@@ -105,10 +115,10 @@ section button:hover {
 	<script>
 		var options = {
 			'dataset' : {
-				title : 'Web accessibility status',
+				title : '수업 커리큘럼에 대한 만족도',
 				values : [ 25, 3, 10, 7 ],
 				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
-				fields : [ 'A', 'B', 'C', 'D' ],
+				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
 			},
 			'donut_width' : 35,
 			'core_circle_radius' : 50,
@@ -123,10 +133,10 @@ section button:hover {
 
 		var options = {
 			'dataset' : {
-				title : 'Web accessibility status',
-				values : [ 25, 3, 10, 7 ],
+				title : '수업 진도에 대한 만족도',
+				values : [ 22, 1, 1, 1 ],
 				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
-				fields : [ 'A', 'B', 'C', 'D' ],
+				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
 			},
 			'donut_width' : 35,
 			'core_circle_radius' : 50,
@@ -141,10 +151,10 @@ section button:hover {
 
 		var options = {
 			'dataset' : {
-				title : 'Web accessibility status',
-				values : [ 25, 3, 10, 7 ],
+				title : '강사에 대한 만족도',
+				values : [ 13, 15, 6, 3 ],
 				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
-				fields : [ 'A', 'B', 'C', 'D' ],
+				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
 			},
 			'donut_width' : 35,
 			'core_circle_radius' : 50,

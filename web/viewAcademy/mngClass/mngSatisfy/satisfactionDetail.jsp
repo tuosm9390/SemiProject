@@ -50,6 +50,10 @@ th, td {
 	background: white;
 	text-align: left !important;
 }
+
+.qo li{
+	margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
@@ -76,46 +80,37 @@ th, td {
 				<tr>
 					<td><li>만족도 조사 날짜</td>
 					<td>
-					<input type="text" id="from" name="from">&emsp;~
-					&emsp;<input type="text" id="to" name="to"></td>
+					<input type="text" id="from" name="from" readonly>&emsp;~
+					&emsp;<input type="text" id="to" name="to" readonly></td>
 				</tr>
 				<tr>
 					<td><li>문항 및 결과</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<ol>
+					<td colspan="2" class="question">
+						<ol class="qo">
 							<li>&emsp;
-							<input type="text" value="수업 커리큘럼에 대한 만족도" size="100"> <input type="button" value="-">
-							<input type="button" value="+">
+							<input type="text" value="수업 커리큘럼에 대한 만족도" size="100">
+							<input type="button" class="qdelete" value="-">
+							<input type="button" class="qadd" value="+">
 							<br>
 							<br> &emsp;
 							<input type="text" value="진도와 내용이 적당했다" size="50">&emsp;
-							<select>
-									<option>선택자 수</option>
-							</select>
-							<input type="button" value="-">
-							<input type="button" value="+">
+							<input type="button" class="adelete" value="-">
+							<input type="button" class="aadd" value="+">
 							<br> &emsp;
 							<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">&emsp;
-							<select>
-									<option>선택자 수</option>
-							</select>
-							<input type="button" value="-">
-							<input type="button" value="+">
+							<input type="button" class="adelete" value="-">
+							<input type="button" class="aadd" value="+">
 							<br> &emsp;
 							<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">&emsp;
-							<select>
-									<option>선택자 수</option>
-							</select>
-							<input type="button" value="-">
-							<input type="button" value="+">
+							<input type="button" class="adelete" value="-">
+							<input type="button" class="aadd" value="+">
 							</li>
-							<br>
 							<li>&emsp;
 								<input type="text" value="수업 및 강사에 대한 개선 의견" size="100">
-								<input type="button" value="-">
-								<input type="button" value="+"><br><br>
+								<input type="button" class="qdelete" value="-">
+								<input type="button" class="qadd" value="+"><br><br>
 								&emsp;
 								<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" style="resize: none; "></textarea>
 							</li>
@@ -130,38 +125,40 @@ th, td {
 	</section>
 	<footer> </footer>
 	<script>
-	//DatePicker
-	$(function() {
-    	var dateFormat = "mm/dd/yy",
-    		from = $( "#from" )
-    		.datepicker({
-    			defaultDate: "+1w",
-    			changeMonth: true,
-    			numberOfMonths: 3
-    		})
-    		.on( "change", function() {
-    			to.datepicker( "option", "minDate", getDate( this ) );
-    		}),
-    			to = $( "#to" ).datepicker({
-    			defaultDate: "+1w",
-    			changeMonth: true,
-    			numberOfMonths: 3
-    		})
-    		.on( "change", function() {
-    			from.datepicker( "option", "maxDate", getDate( this ) );
-    		});
- 
-    	function getDate( element ) {
-    		var date;
-    			try {
-    				date = $.datepicker.parseDate( dateFormat, element.value );
-    			} catch( error ) {
-    				date = null;
-    			}
- 
-    		return date;
-    	}
-	});
+		//DatePicker
+		$.datepicker.setDefaults({
+    		dateFormat: 'yy-mm-dd',
+    		prevText: '이전 달',
+    		nextText: '다음 달',
+    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    		showMonthAfterYear: true,
+    		changeMonth : true,
+			changeYear : true,
+			constrainInput: false,
+    		yearSuffix: '년'
+  		});
+		$(function() {
+			$("#from, #to").datepicker();
+		});
+		
+		//설문 문항 추가
+		$(".question").on("click", ".qadd", function(){
+			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
+		});
+		//설문 문항 제거
+		$(".question").on("click", ".qdelete", function(){
+			if($(".qo li").size() != 1){
+				$(this).closest(".qo li").remove();
+			};
+		});
+		
+		//문항 선택항목 추가
+		
+		//문항 선택항목 삭제
 	</script>
 </body>
 </html>

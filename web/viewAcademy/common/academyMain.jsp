@@ -38,7 +38,6 @@
 		left:32%;
 	}
 	#clock {
-		width:600px;
 		height:400px;
 		line-height:250px;
 		color:#666;
@@ -46,8 +45,8 @@
 		font-style:bold;
 		text-align:center;
 		position:absolute;
-		top:55%;
-		left:31%;
+		top:40%;
+		left:15.5%;
 	}
 </style>
 </head>
@@ -77,7 +76,7 @@
 <!-- 		<div class="clockArea">
 			<h1 style="font-size:70px">21:49:59 PM</h1>
 		</div> clockArea end -->
-		<div style="width:600px; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock">
+		<div style="width:60%; height:250px; line-height:250px; color:black;font-size:170px; text-align:center;" id="clock">
 		</div>
 	</div> <!-- outer end -->
 	
@@ -100,7 +99,7 @@
 		    if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
 		       currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
 		    }
-		    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+		    clock.innerHTML = " <span style='font-size:50px;'>"+ amPm+"</span>" + " " + currentHours+":"+currentMinute+":"+currentSeconds; //날짜를 출력해 줌
 		    
 		    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
 		}
