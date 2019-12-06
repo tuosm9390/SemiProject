@@ -347,9 +347,9 @@ select, option{
 					$(".student").hide();
 					$(".parent").hide();
 					$(".person").show();
-					$(".person").val(0).attr("selectd", "selected");
+					$(".person").val(0).attr("selected", "selected");
 					//반 미 선택시 대상 선택 메뉴 숨김
-				} else if(sel == 0 && op2 == 0){
+				} else if(op2 == 0){
 					$(".student").hide();
 					$(".parent").hide();
 					$(".person").hide();
@@ -361,15 +361,10 @@ select, option{
 		$(function(){
 			$(".person").change(function(){
 				var sel = $(this).val();
-				if(sel == 'student'){
-					$(".student").show();
-					$(".parent").hide();
-				} else if(sel == 'parent'){
-					$(".student").hide();
-					$(".parent").show();
-				} else {
-					$(".student").hide();
-					$(".parent").hide();
+				switch(sel){
+				case 'student' : $(".student").show(); $(".parent").hide(); break;
+				case 'parent' : $(".student").hide(); $(".parent").show(); break;
+				default : $(".student").hide(); $(".parent").hide(); break;
 				}
 			});
 		});
