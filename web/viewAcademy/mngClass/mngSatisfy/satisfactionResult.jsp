@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css'
+	type='text/css'>
+<script src='../../mngAdmin/mngStatus/Nwagon.js'></script>
 <style>
 section button {
 	float: right;
@@ -22,6 +25,30 @@ section button:hover {
 	border: 2px solid green;
 	color: white;
 }
+
+.resultArea {
+	position: relative;
+	background: rgba(211, 211, 211, .4);
+	margin: 2% auto;
+	width: 70%;
+	overflow: auto;
+	border-radius: 20px;
+}
+
+.resultTable tr{
+	height: 300px;
+}
+
+.resultTable tr>td:first-child {
+	text-align: left;
+	font-size: x-large;
+	padding-bottom: 18%;
+	width: 400px;
+}
+
+.resultTable tr:not(:last-child){
+	border-bottom: 1px solid black;
+}
 </style>
 </head>
 <body>
@@ -29,17 +56,106 @@ section button:hover {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section align="center">
-		<h2 align="center">2019 겨울방학 특강 만족도 조사</h2>
+		<h1 align="center">2019 겨울방학 특강 만족도 조사</h1>
 		<div align="center">
-			<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반>
-			<li>실시 기간 : 2019.01.10 ~ 2019.02.20
+			<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반></li>
+			<li>실시 기간 : 2019.01.10 ~ 2019.02.20</li>
 		</div>
 		<button style="margin-right: 20%;"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">닫기</button>
 		<button>삭제</button>
-		
+
 		<!-- 문항 목록 작성 -->
+		<div align="center" class="resultArea">
+			<table align="center" class="resultTable">
+				<tr>
+					<td>
+						<li><label>수업 커리큘럼에 대한 만족도</label></li>
+					</td>
+					<td>
+						<div id="cursatis1"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<li>수업 진도에 대한 만족도</li>
+					</td>
+					<td>
+						<div id="cursatis2"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<li>강사에 대한 만족도</li>
+					</td>
+					<td>
+						<div id="cursatis3"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<li>수업 및 강사에 대한 개선 의견</li>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</section>
 	<footer></footer>
+
+	<script>
+		var options = {
+			'dataset' : {
+				title : 'Web accessibility status',
+				values : [ 25, 3, 10, 7 ],
+				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
+				fields : [ 'A', 'B', 'C', 'D' ],
+			},
+			'donut_width' : 35,
+			'core_circle_radius' : 50,
+			'chartDiv' : 'cursatis1',
+			'chartType' : 'donut',
+			'chartSize' : {
+				width : 400,
+				height : 200
+			}
+		};
+		Nwagon.chart(options);
+
+		var options = {
+			'dataset' : {
+				title : 'Web accessibility status',
+				values : [ 25, 3, 10, 7 ],
+				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
+				fields : [ 'A', 'B', 'C', 'D' ],
+			},
+			'donut_width' : 35,
+			'core_circle_radius' : 50,
+			'chartDiv' : 'cursatis2',
+			'chartType' : 'donut',
+			'chartSize' : {
+				width : 400,
+				height : 200
+			}
+		};
+		Nwagon.chart(options);
+
+		var options = {
+			'dataset' : {
+				title : 'Web accessibility status',
+				values : [ 25, 3, 10, 7 ],
+				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
+				fields : [ 'A', 'B', 'C', 'D' ],
+			},
+			'donut_width' : 35,
+			'core_circle_radius' : 50,
+			'chartDiv' : 'cursatis3',
+			'chartType' : 'donut',
+			'chartSize' : {
+				width : 400,
+				height : 200
+			}
+		};
+		Nwagon.chart(options);
+	</script>
 </body>
 </html>
