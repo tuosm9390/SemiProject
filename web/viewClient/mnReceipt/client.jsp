@@ -242,8 +242,10 @@
 	
 	
 </head>
-<%@ include file="/viewAcademy/common/menubar.jsp" %>
 <body>
+<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
+
+<section>
 <div id="titlemsg">
 	<h3>빛상찬 님의 수강과목</h3>
 	<button style="float: left;">현재수강</button>
@@ -253,6 +255,7 @@
 <div class="wrap">
 	
 	<ul class="accordion">
+	<%for(int i=0; i<6; i++){ %>
 		<li class="accordion__item">
 			<a class="accordion__title" href="javascript:void(0)">중1국어 완벽정리
 			<div class="bmenu x7"><span class="btop"></span><span class="bmid"></span><span class="bbot"></span></div>
@@ -334,6 +337,7 @@
 			
 			
 			</li>
+			<% } %>
 		<li class="accordion__item">
 			<a class="accordion__title" href="javascript:void(0)">중2국어 정리안함
 			<div class="bmenu x7"><span class="btop"></span><span class="bmid"></span><span class="bbot"></span></div>
@@ -357,6 +361,9 @@
 	</ul>
 	
 </div>
+</section>
+
+</body>
 <script>
 $(function() {
 	$('.accordion').find('.accordion__title').click(function(){
@@ -371,7 +378,7 @@ $(function() {
 		$('.accordion__title').not($(this)).removeClass('active');		
 	});
 });
-</script>
 
-</body>
+
+</script>
 </html>

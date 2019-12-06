@@ -25,7 +25,7 @@
 	margin-top: 20px;
 	}
 	.avgtable{
-		width:50%;
+		width:60% !important;
 		margin-left: 30%;
 	}
 	.text{
@@ -49,8 +49,8 @@
 
 </head>
 
-	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 <body>
+	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 	<section>
 <div class="outer">
 	<div class="chart">
@@ -58,7 +58,7 @@
 		<div id="chart19"></div>
 		<h3 class="text">학생 유입 경로 순위</h3>
 		<div class="avg">
-				<table class="avgtable">
+				<table class="table avgtable">
 					<tr>
 						<th>순위</th>
 						<th>경로</th>

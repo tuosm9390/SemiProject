@@ -48,13 +48,13 @@
 </style>
 </head>
 <body>
-	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<header>
-		<h3>권한부여관리</h3>
+	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	
 	</header>
 	<section>
 		<article>
+		<h3>권한부여관리</h3>
 			<div>
 			<form>
 				<table class="table">
@@ -142,6 +142,7 @@
 							<option value="pclient">학부모</option>
 							<option value="sclient">학생</option>
 						</select>
+						
 						</td>
 						<td>
 							<select class="modifyInfo" id="modifyInfo2">
