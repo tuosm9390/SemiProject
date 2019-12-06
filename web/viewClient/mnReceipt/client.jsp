@@ -91,7 +91,7 @@
    border: 1px solid #eee;
    border-top: none;
    line-height: 1.65;
-   padding: 25px;
+   padding: 15px;
    background-color: #fff;
    font-size: .875em;
 }
