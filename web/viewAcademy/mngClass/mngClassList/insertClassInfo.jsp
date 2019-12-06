@@ -8,6 +8,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
+	body {
+		font-family: "Nanum Gothic";
+	}
 	input[type="text"], input[type="number"], input[type="date"] {
 		width: 300px;
 		padding:10px;
@@ -42,16 +45,21 @@
 		<h2>수업 정보 등록</h2>		
 	</div>	<!-- header end -->
 	<div class="body" align="center">
-		<form id="classInfo" action="" method="post">
+		<form id="classInfo" action="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp" method="get">
 			<table class="insertTable">
 				<tr>
 					<td>
-					<label>과목 : <input type="text" id="subject"></label>
+					<label>과목 : </label>
+					</td>
+					<td>
+					<input type="text" id="subject">
 					</td>
 				</tr>
 				<tr>
 					<td>
 					<label for="selectTeacher">담당 강사 : </label>
+					</td>
+					<td>
 					<select id="selectTeacher" style="width:300px; padding:10px; margin-bottom:20px">
 						<option value="김상찬">김상찬</option>
 						<option value="서범수">서범수</option>
@@ -61,23 +69,33 @@
 				</tr>
 				<tr>
 					<td>
-					<label>강좌명 : </label><input type="text" id="classTitle" name="classTitle">
+					<label>강좌명 : </label>
+					</td>
+					<td>
+					<input type="text" id="classTitle" name="classTitle">
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<label>정원 : <input type="number" id="numOfClass" name="numOfClass"></label><br>
+					<label>정원 : </label>
+					</td>
+					<td>
+					<input type="number" id="numOfClass" name="numOfClass">
 					</td>
 				</tr>
 				<tr>
 					<td>
 					<label>기간 : </label>
+					</td>
+					<td>
 					<input type="date" id="dateOfClass" name="dateOfClass">
 					</td>
 				</tr>
 				<tr>
 					<td>
 					<label>요일 : </label>
+					</td>
+					<td>
 					<input type="checkbox" id="mon" name="day" value="monday"><label for="mon">월</label>
 					<input type="checkbox" id="tue" name="day" value="tuesday"><label for="tue">화</label>
 					<input type="checkbox" id="wed" name="day" value="wednesday"><label for="wed">수</label>
@@ -90,6 +108,8 @@
 				<tr>
 					<td>
 					<label for="classroom">강의실 : </label>
+					</td>
+					<td>
 					<select id="classroom" name="classroom" style="width:300px; padding:10px; margin-bottom:20px">
 						<option>A</option>
 						<option>B</option>
@@ -100,6 +120,8 @@
 				<tr>
 					<td>
 						<label for="classTime">강의 시간 : </label>
+					</td>
+					<td>
 						<select id="classTime" style="width:300px; padding:10px; margin-bottom:20px">
 							<option>15:00 ~ 16:00</option>
 							<option>16:00 ~ 17:00</option>
@@ -110,15 +132,18 @@
 				<tr>
 					<td>
 						<label>수업료 : </label>
+					</td>
+					<td>
 						<input type="number" id="money">
 					</td>
 				</tr>	
 			</table>
-		</form>
-		<div class="bottomArea">
+		<div class="bottomArea" style="margin-bottom:20px">
 			<input type="reset" value="취소" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp'">
 			<input type="submit" id="insertClassInfoBtn" value="등록">
 		</div>
+		</form>
 	</div> <!-- body end -->
+	
 </body>
 </html>

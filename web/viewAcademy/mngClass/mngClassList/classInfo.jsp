@@ -8,6 +8,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
+	body {
+		font-family: "Nanum Gothic";
+	}
 	#head>button, input {
 		float: right;
 	}
@@ -40,7 +43,7 @@
 		margin: 13% auto; /* 15% from the top and centered */
 		padding: 40px;
 		border: 1px solid #888;
-		width: 30%;
+		width: 40%;
 		background-color: #fefefe;
 		/* Could be more or less, depending on screen size */
 	}
@@ -57,6 +60,17 @@
 		text-decoration: none;
 		cursor: pointer;
 	}
+	#infoModal td {
+		padding:15px;
+			
+	}
+	/* #infoModal td:nth-child(1) {
+		text-align:right;
+	}
+	#infoModal td:nth-child(2) {
+		text-align:left;
+	} */
+	
 </style>
 </head>
 <body>
@@ -92,64 +106,94 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td class="user-name">주요 이슈</td>
+						<td>1</td>
+						<td>수학</td>
 						<td class="user-email" >수학 기초반1</td>
-						<td class="user-phone">(398)-332-5385</td>
-						<td class="user-mobile">(888)-677-3719</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name">입시</td>
-						<td class="user-email" >수학 기초반2</td>
-						<td class="user-phone">(293)-873-2247</td>
-						<td class="user-mobile">(216)-889-4933</td>
+						<td>2</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name">중등</td>
-						<td class="user-email" >영어 ABC 클래스-오전</td>
-						<td class="user-phone">(957)-213-3499</td>
-						<td class="user-mobile">(207)-516-4474</td>
+						<td>3</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name">고등</td>
-						<td class="user-email" >영어 ABC 클래스-오후</td>
-						<td class="user-phone">(897)-762-9782</td>
-						<td class="user-mobile">(565)-627-3002</td>
+						<td>4</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name">중.고 경시</td>
-						<td class="user-email" >여름방학 고2 선행 특강</td>
-						<td class="user-phone">(231)-391-6269</td>
-						<td class="user-mobile">(790)-838-2130</td>
+						<td>5</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name">행사</td>
-						<td class="user-email" >고3 수능 직전 벼락치기반</td>
-						<td class="user-phone">(204)-488-5204</td>
-						<td class="user-mobile">(508)-463-6811</td>
+						<td>6</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(436)-578-2946</td>
-						<td class="user-mobile">(906)-412-3302</td>
+						<td>7</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name"></td>
-						<td class="user-email"></td>
-						<td class="user-phone">(724)-705-3555</td>
-						<td class="user-mobile">(764)-841-2531</td>
+						<td>8</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(774)-205-7754</td>
-						<td class="user-mobile">(639)-267-9728</td>
+						<td>9</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(723)-243-7706</td>
-						<td class="user-mobile">(172)-597-3422</td>
+						<td>10</td>
+						<td>수학</td>
+						<td class="user-email" >수학 기초반1</td>
+						<td class="user-name">김상찬</td>
+						<td class="user-phone">중1</td>
+						<td class="user-mobile">30명</td>
+						<td>2019.12.06~2020.02.28</td>
 					</tr>
 				</tbody>
 			</table>
@@ -162,12 +206,12 @@
 
 		<div class="modal-content" align="center">
 			<span id="xBtn">&times;</span>
-			<h2 style="margin-left: 15px;">강좌 정보 확인</h2>
-			<div class="classDetail" align="center">
+			<h2>강좌 정보 확인</h2>
+			<div class="classDetail">
 				<form>
-					<table>
+					<table id="infoModal">
 						<tr>
-							<td>과목 : </td><td>국어</td>
+							<td width="200px">과목 : </td><td width="300px">국어</td>
 						</tr>
 						<tr>
 							<td>강좌명 : </td><td>국어의 숲</td>
@@ -191,11 +235,9 @@
 							<td>수업료 : </td><td>300,000원</td>
 						</tr>
 						<tr>
-							<td>
-							<button id="deleteBtn" style="margin-top:20px; margin-left:60px; width: 100px; height: 30px; float:right;">삭제</button>
-							</td>						
-							<td>
-							<button type="button" id="updateBtn" style="margin-top:20px; width: 100px; height: 30px; float:left;">수정</button>
+							<td colspan="2">
+							<button id="deleteBtn" style="display:inline; margin-left:20px; width: 100px; height: 30px;">삭제</button>
+							<button type="button" id="updateBtn" style="display:inline; width: 100px; height: 30px;">수정</button>
 							</td>
 						</tr>
 					</table>

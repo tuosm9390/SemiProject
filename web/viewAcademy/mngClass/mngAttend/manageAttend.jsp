@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	body {
+		font-family: "Nanum Gothic";
+	}
 	#head > button, input{
 		float:right;
 	}
@@ -21,14 +24,14 @@
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<%-- <%= if(loginUser.getUserId() == "admin") { %> --%>
 	<div id="head">
-		<h2 align="center">출결 관리</h2>
+		<h2>출결 관리</h2>
 		<select>
 			<option value="" selected disabled hidden>기간별 검색</option>
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
-		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
+		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
 		<select style="float:right">
 			<option value="" selected disabled hidden>조건별 검색</option>
