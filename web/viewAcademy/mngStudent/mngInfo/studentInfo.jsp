@@ -135,19 +135,20 @@ section button:hover {
 		//차트
 		var options = {
 			'legend' : {
-				names : [ '2019년도 1학기', '2019년도 2학기' ],
-				hrefs : []
+				//x축 항목이름
+				names : [ '과목1', '과목2', '과목3']
 			},
 			'dataset' : {
 				title : '학생 성적 그래프',
-				values : [ [ 50, 70 ], [ 20, 50 ] ],
-				colorset : [ '#DC143C', '#2EB400' ],
+				values : [ [ 50, 70 ], [ 20, 50 ] , [30, 60] ],
+				colorset : [ '#749ee3', '#70db8e' ],
+				//y축 항목 이름
 				fields : [ '모의고사', '내신' ]
 			},
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {
-				width : 700,
+				width : 800,
 				height : 500
 			},
 			'maxValue' : 100,
