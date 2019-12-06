@@ -42,17 +42,21 @@
     cursor:pointer;
 }
 #botbtn{
-	margin-left: 78%;
+	margin-left: 25px;
 }
 #space{
 	margin-top: 10px;
+	width:100%;
+	display: inline-flex;
+	border: 1px solid black;
+
 }
 #text2{
 	text-align : left;
 	margin-left: 20%; 
 }
 #rsetbtn{
-	margin-left: 77%;
+	margin-left: 80%;
 }
 </style>
 </head>
@@ -68,9 +72,9 @@
 			</div>
 			<div class="article" align="center">
 			<form>
-				<button id="rsetbtn" onclick="goList();">닫기</button>
+				
 				<div style="overflow:auto; width:850px; height:500px; padding:10px; background-color:lightgray;" align="left">
-					
+					<%for(int i=0;i<6;i++) {%>
 					<h4 class="q">1. 질문 123123123213213</h4>
 					<div align="center">
 					<input type="radio" value="1" class="btns" width="100px" height="100px"><label>매우만족</label>
@@ -78,38 +82,7 @@
 					<input type="radio" value="3" class="btns"><label>보통</label>
 					<input type="radio" value="4" class="btns"><label>불만족</label>
 					</div><!-- 질문1 끝 -->
-					
-					<h4 class="q">2. 질문 123123123213213</h4>
-					<div align="center">
-					<input type="radio" value="1" class="btns"><label>매우만족</label>
-					<input type="radio" value="2" class="btns"><label>만족</label>
-					<input type="radio" value="3" class="btns"><label>보통</label>
-					<input type="radio" value="4" class="btns"><label>불만족</label>
-					</div><!-- 질문1 끝 -->
-					
-					<h4 class="q">3. 질문 123123123213213</h4>
-					<div align="center">
-					<input type="radio" value="1" class="btns"><label>매우만족</label>
-					<input type="radio" value="2" class="btns"><label>만족</label>
-					<input type="radio" value="3" class="btns"><label>보통</label>
-					<input type="radio" value="4" class="btns"><label>불만족</label>
-					</div><!-- 질문1 끝 -->
-					
-						<h4 class="q">3. 질문 123123123213213</h4>
-					<div align="center">
-					<input type="radio" value="1" class="btns"><label>매우만족</label>
-					<input type="radio" value="2" class="btns"><label>만족</label>
-					<input type="radio" value="3" class="btns"><label>보통</label>
-					<input type="radio" value="4" class="btns"><label>불만족</label>
-					</div><!-- 질문1 끝 -->
-					
-						<h4 class="q">3. 질문 123123123213213</h4>
-					<div align="center">
-					<input type="radio" value="1" class="btns"><label>매우만족</label>
-					<input type="radio" value="2" class="btns"><label>만족</label>
-					<input type="radio" value="3" class="btns"><label>보통</label>
-					<input type="radio" value="4" class="btns"><label>불만족</label>
-					</div><!-- 질문1 끝 -->
+					<%} %>
 					
 					<div align="center">
 					<h4 class="q">4. 수업 및 강사에 대한 개선 의견</h4>
@@ -117,6 +90,7 @@
 					</div>
 				</div>
 					<div id="space">
+					<button id="rsetbtn" onclick="goList();">닫기</button>
 					<button type="submit" id="botbtn">제출</button>
 					</div>
 				</form>
