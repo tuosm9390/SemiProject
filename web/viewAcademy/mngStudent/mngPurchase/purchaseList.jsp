@@ -100,11 +100,9 @@
 .btnmenu {
 	float:right;
 	font-size: 12px;
-	width: 500px;
+	width: 350px;
 	height: 30px;
 	display: inline;
-	right: 15px;
-	top: 1px;
 	margin-top:0.5%;
 }
 
@@ -129,6 +127,10 @@
 	height: 25px;
 }
 
+.viewDetailBtn:hover {
+	cursor: pointer;
+}
+
 /* 모달 배경 */
 .modal {
 	display: none; /* Hidden by default */
@@ -149,10 +151,15 @@
 	margin: 5% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 60%;
 	background-color: #fefefe;
 	border-radius: 10px;
 	/* Could be more or less, depending on screen size */
+}
+.refundModal {
+	width: 60%;
+}
+.detailModal {
+	width: 40%;
 }
 /* 모달 닫기 버튼 */
 .close {
@@ -182,6 +189,7 @@ table, th, td {
 		<h2 align="left" style="width: 150px; margin-left: 5%;">수납 내역</h2>
 		<div class="outArea">
 		
+			<!-- 년/월 선택 부분 -->
 			<div align="center" class="monthArea">
 				<button class="month">◀</button>
 				<select class="month">
@@ -195,13 +203,15 @@ table, th, td {
 				<button class="month">▶</button>
 			</div> <!-- monthArea end -->
 			
+			<!-- 환불규정 확인 버튼 / 미납자 모아보기 버튼 -->
 			<div class="btnArea">
 				<div style="float:left;"><button id="refundRuleBtn">환불규정 확인</button></div>
 				<div style="float:right;"><button>미납자 모아보기</button></div>
 			</div> <!-- btnArea end -->
 			
+			<!-- 환불규정 모달 -->
 			<div id="refundRule" class="modal">
-				<div class="modal-content" align="center">
+				<div class="modal-content refundModal" align="center">
 					<span class="close">&times;</span>
 					<h2 style="margin-left:35px;">교습비등 반환기준</h2>
 					<p>공정거래위원회 고시 제2019-3호, 2019.4.3.발령·시행</p>
@@ -257,6 +267,7 @@ table, th, td {
 				</div>
 			</div> <!-- refundRule end -->
 			
+			<!-- 과목별 수납내역 아코디언 영역 (내용 영역) -->
 			<div class="wrap">
 				<ul class="accordion">
 					<% for(int j = 0; j < 10; j++) { %>
@@ -267,9 +278,9 @@ table, th, td {
 						</div>
 						<div class="accordion__content">
 							<div class="btnmenu">
-								<button class="actionBtn">수납 처리</button>
-								<button class="actionBtn">고지서 발급</button>
-								<button class="actionBtn">영수증 발급</button>
+								<button class="actionBtn" id="doComplete">수납 처리</button>
+								<button class="actionBtn" id="giveBill">고지서 발급</button>
+								<button class="actionBtn" id="giveRecipt">영수증 발급</button>
 							</div>
 							<div class="tableArea">
 								<table class="table" style="width:100%; float:left;">
@@ -288,19 +299,134 @@ table, th, td {
 										<td>NYJ970708</td>
 										<td>300,000원</td>
 										<td>미납</td>
-										<td><a href="#">상세보기</a></td>
+										<td><label style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
 									</tr>
 									<% } %>
 								</table>
 							</div> <!-- tableArea -->
 						</div>
-					</li>
+					
 					<br>
 					<% } %>					
 				</ul>
 			</div> <!-- wrap end -->
+			
+			<!-- 상세보기 모달 -->
+			<div id="viewDetail" class="modal">
+				
+				<!-- 상세보기 조회  -->
+				<div id="detailView" class="modal-content detailModal" align="center">
+					<span class="close">&times;</span>
+					<h2 style="margin-left:35px;">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<table style="width:90%">
+						<tr>
+							<td width="40%" style="font-weight:bold;">수강 강좌</td>
+							<td>고3 수학 단과</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">강좌 비용</td>
+							<td>300,000 원</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">납부 고지일</td>
+							<td>2019.10.01.</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">상태</td>
+							<td>완납 후 환불</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">특이사항</td>
+							<td>2019.10.15. 퇴원으로 인한 환불</td>
+						</tr>
+					</table> <br>
+					<table style="width:90%">
+						<tr>
+							<td width="40%" style="font-weight:bold;">청구 금액</td>
+							<td>300,000 원</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">수납 금액</td>
+							<td>300,000 원</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">환불 시점</td>
+							<td>수업 시작 1/2 경과 전</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">환불 금액</td>
+							<td>150,000 원</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">차액 (수납 금액 - 환불 금액)</td>
+							<td>150,000 원</td>
+						</tr>
+					</table>
+					<br>
+					<button id="modifyDetailBtn">수정</button>
+				</div>
+				
+				<!-- 상세보기 수정 -->
+				<div id="detailModify" class="modal-content detailModal" align="center">
+					<span class="close">&times;</span>
+					<h2 style="margin-left:35px;">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<table style="width:90%">
+						<tr>
+							<td width="40%" style="font-weight:bold;">수강 강좌</td>
+							<td>고3 수학 단과</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">강좌 비용</td>
+							<td>300,000 원</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">납부 고지일</td>
+							<td>2019.10.01.</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">상태</td>
+							<td>완납 후 환불</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">특이사항</td>
+							<td>
+								<select id="note">
+									<option>특이사항 선택</option>
+									<option value="student">학생 퇴원</option>
+									<option value="coupon">쿠폰 사용</option>
+									<option value="academy">학원 귀책</option>
+								</select>
+								
+								<div id="studentArea">
+									<br><label>퇴원일 선택</label><input type="date">
+								</div>
+								
+								<div id="couponArea">
+									<br><label>사용한 쿠폰</label>
+									<input type="text" value="수학 강의 만족도 조사 참여 [10% 할인]" readonly>
+								</div>
+								
+								<div id="academyArea" style="display:inline;">
+									&nbsp; &nbsp; <label>환불 일수</label>
+									<input type="number" max="31" min="1" value="환불일수">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">수납 금액</td>
+							<td><input type="number" placeholder="300000" style="width:100px;">원</td>
+						</tr>
+					</table>
+					<br>
+					<button id="modifyDoneBtn">수정 완료</button>
+					<br>
+				</div>
+				
+			</div> <!-- viewDetail end -->
+			
 		<script>
 			$(function() {
+				//아코디언 스크립트
 				$('.accordion').find('.accordion__title').click(function() {
 					// Adds active class
 					$(this).toggleClass('active');
@@ -310,7 +436,7 @@ table, th, td {
 					$('.accordion__title').not($(this)).removeClass('active');
 				});
 				
-				
+				//전체선택 버튼 스크립트
 				$(".selectAll").change(function(){
 					if($(this).prop("checked")) {
 						$(".selectOne").prop("checked", true);
@@ -319,20 +445,64 @@ table, th, td {
 					}
 				});
 				
-				// 대상 추가 모달
+				// 모달페이지
 				var refundRule = document.getElementById("refundRule");
+				var viewDetail = document.getElementById("viewDetail");
 				// 모달 실행 버튼
 				var refundRuleBtn = document.getElementById("refundRuleBtn");
 				// 모달 닫기 버튼
-				var close = document.getElementsByClassName("close")[0];
+				var close = document.getElementsByClassName("close");
 				// 모달 실행
 				refundRuleBtn.onclick = function() {
 					refundRule.style.display = "block";
 				}
+				$(".viewDetailBtn").each(function(){
+					$(this).click(function(){
+						viewDetail.style.display = "block";
+					});
+				});
 				// x버튼 클릭 시 종료
-				close.onclick = function() {
-					refundRule.style.display = "none";
-				}
+				$(".close").each(function(){
+					$(this).click(function(){
+						refundRule.style.display = "none";
+						viewDetail.style.display = "none";
+					});
+				});
+				
+				$("#doComplete").click(function(){
+					window.confirm("선택한 학생들의 수납을 완납 처리하시겠습니까?");
+					window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
+				});
+				
+				$("#giveBill").click(function(){
+					window.confirm("선택한 학생들에게 고지서를 발송하시겠습니까?");
+				});
+				
+				$("#giveRecipt").click(function(){
+					window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
+				});
+				
+				$("#detailModify").hide();
+				$("#modifyDetailBtn").click(function(){
+					$("#detailView").hide();
+					$("#detailModify").show();
+				});
+				$("#modifyDoneBtn").click(function(){
+					if(window.confirm("수정을 완료하시겠습니까?")) {
+						$("#detailView").show();
+						$("#detailModify").hide();
+					}
+				});
+				
+				$("#studentArea").hide(); $("#couponArea").hide(); $("#academyArea").hide();
+				$("#note").change(function(){
+					switch($(this).val()) {
+					case 'student' : $("#studentArea").show(); $("#couponArea").hide(); $("#academyArea").hide(); break;
+					case 'coupon' : $("#studentArea").hide(); $("#couponArea").show(); $("#academyArea").hide(); break;
+					case 'academy' : $("#studentArea").hide(); $("#couponArea").hide(); $("#academyArea").show(); break;
+					}
+				});
+				
 			});
 			
 		</script>
