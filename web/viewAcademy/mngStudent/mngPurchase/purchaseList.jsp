@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 .wrap {
-	margin:auto auto;
+	margin: auto auto;
 	width: 100%;
 	padding: 30px;
 }
@@ -29,7 +29,7 @@
 }
 
 .accordion__title {
-	width:100%;
+	width: 100%;
 	display: block;
 	position: relative;
 	height: 40px;
@@ -41,7 +41,8 @@
 	border-bottom: 1px solid #eee;
 	overflow: hidden;
 	transition: background-color .2s;
-	text-decoration:none;
+	text-decoration: none;
+	display: block;
 }
 
 .accordion__title:hover {
@@ -50,18 +51,20 @@
 
 .accordion__title.active {
 	background: #31bc86;
-	color:white;
+	color: white;
 }
 
 .accordion__title.active .x7 {
-	transform: rotate(-90deg); 
+	transform: rotate(-90deg);
 }
 
 .accordion__title.active .btop {
 	width: 67%;
 	top: 2px;
 	transform: translateY(-50%) rotate(-45deg);
-	transform-origin: 50% 50%;}
+	transform-origin: 50% 50%;
+}
+
 .accordion__title.active .bmid {
 	opacity: 0;
 }
@@ -72,7 +75,6 @@
 	transform: translateY(50%) rotate(45deg);
 	transform-origin: 50% 50%;
 }
-
 
 .accordion__content {
 	display: none;
@@ -85,63 +87,41 @@
 	font-size: .875em;
 }
 
-
 .bmenu {
+	position: absolute;
+	font-size: 20px;
 	width: 26px;
 	height: 16px;
 	display: block;
-	position: absolute;
 	right: 15px;
-	top: 12px;
+	top: 1px;
 }
 
-.btop, .bmid, .bbot {
-	right: 0;
-	width: 100%;
-	height: 2px;
-	position: absolute;
-	background-color: #333;
-	border-radius: 1px;
-}
-
-.btop {
-	width: 40%;
-}
-
-.bmid {
-	width: 60%;
-}
-
-.bbot {
-	width: 80%;
-}
-
-.x7 {
-	transition: transform .3s ease-out;
-	transform-origin: 60% 75%; 
-}
-.x7 .btop { top : 0;
-	transition: width .3s, transform .3s, top .0s;
-	transition-timing-function: ease-out;}
-	
-.x7 .bmid {
-	top: calc(50% - 1px);
-	transform-origin: 100% 50%;
-	transition: opacity .1s;
-	transition-timing-function: ease-out;
-}
-
-.x7 .bbot {
-	bottom: 0;
-	transition: width .3s, transform .3s, bottom .0s;
-	transition-timing-function: ease-out;
+.btnmenu {
+	position: absoulute;
+	font-size: 12px;
+	width: 300px;
+	height: 15px;
+	display: inline;
+	right: 15px;
+	top: 1px;
 }
 
 .outArea {
-	width:90%;
-	margin:auto auto;
+	width: 90%;
+	margin: auto auto;
 }
+
+.btnArea {
+	width: 90%;
+	margin-left:6.5%;
+}
+
 .month {
+	display: inline;
+}
+
+.actionBtn {
 	display: inline;
 }
 </style>
@@ -167,37 +147,46 @@
 				<button class="month">▶</button>
 			</div> <!-- monthArea end -->
 			
+			<div class="btnArea">
+				<div style="float:left;"><button>환불규정 확인</button></div>
+				<div style="float:right;"><button>미납자 모아보기</button></div>
+			</div> <!-- btnArea end -->
+			
 			<div class="wrap">
 				<ul class="accordion">
 					<% for(int j = 0; j < 10; j++) { %>
 					<li class="accordion__item">
 						<a class="accordion__title" href="javascript:void(0)" align="center">김진호의 국어 교실
-							<div class="bmenu x7">	<span class="btop"></span><span class="bmid"></span><span class="bbot"></span>	</div>
+							<div class="btnmenu">
+								<button class="actionBtn">수납 처리</button>
+								<button class="actionBtn">고지서 발급</button>
+								<button class="actionBtn">영수증 발급</button>
+							</div>
+							<div class="bmenu">▼</div>
 						</a>
 						<div class="accordion__content">
-							<table class="table" style="width:100%;">
-								<tr>
-									<th><input type="checkbox" id="selectAll"><label for="selectAll">전체선택</label></th>
-									<th>학생 이름</th>
-									<th>학생 ID</th>
-									<th>청구 금액</th>
-									<th>납부 여부</th>
-									<th>상세</th>
-								</tr>
-								<% for(int k = 0; k < 10; k++) { %>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>남윤진</td>
-									<td>NYJ970708</td>
-									<td>300,000원</td>
-									<td>미납</td>
-									<td>상세보기</td>
-								</tr>
-								<% } %>
-							</table>
-							<div class="btnArea">
-								<button></button>
-							</div> <!-- btnArea end -->
+							<div class="tableArea">
+								<table class="table" style="width:100%; float:left;">
+									<tr>
+										<th><input type="checkbox" id="selectAll"><label for="selectAll">전체선택</label></th>
+										<th>학생 이름</th>
+										<th>학생 ID</th>
+										<th>청구 금액</th>
+										<th>납부 여부</th>
+										<th>상세</th>
+									</tr>
+									<% for(int k = 0; k < 10; k++) { %>
+									<tr>
+										<td><input type="checkbox"></td>
+										<td>남윤진</td>
+										<td>NYJ970708</td>
+										<td>300,000원</td>
+										<td>미납</td>
+										<td><a href="#">상세보기</a></td>
+									</tr>
+									<% } %>
+								</table>
+							</div> <!-- tableArea -->
 						</div>
 					</li>
 					<br>
@@ -213,6 +202,10 @@
 					$(this).next().slideToggle('fast');
 					// Removes active class from other titles
 					$('.accordion__title').not($(this)).removeClass('active');
+				});
+				
+				$("#selectAll").click(function(){
+					$(this).parent().parent().children().children().eq(0).prop("checked", true);
 				});
 			});
 		</script>

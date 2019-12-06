@@ -280,7 +280,10 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				});
 			});
 			
-			function doEnroll(){}
+			function doEnroll(){
+				window.alert("@@@ 직원이 등록되었습니다!");
+				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+			}
 			
 			function goList(){
 				if(window.confirm("직원 등록을 정말 취소하시겠습니까?")) {
