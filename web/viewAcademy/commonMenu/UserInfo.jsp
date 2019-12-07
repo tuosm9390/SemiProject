@@ -6,20 +6,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+		background:url("/hagong/images/backModifySample.png") no-repeat top;
+		background-size:86%;
+	}
 #profile {
 	width: 200px;
 	height: 200px;
 	radius: 50%;
 }
 
-td {
-	background: white;
+tr {
+	background: none !important;
 }
 
 input {
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	height: 30px;
+	background: none;
 }
 
 input[type=tel] {
@@ -32,6 +37,7 @@ input[type=text], select {
 	border-radius: 5px;
 	width: 200px;
 	height: 30px;
+	background: none;
 }
 
 input[type='email']{
@@ -64,6 +70,10 @@ section button:hover {
 th, td {
 	text-align: left !important;
 }
+
+fieldset {
+	width:80%;
+}
 </style>
 </head>
 <body>
@@ -71,8 +81,11 @@ th, td {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section style="margin-bottom: 10%;">
-	<h2 style="margin-left: 5%;">내정보 보기</h2>
-	<div style="width: 80%; margin: auto auto;">
+
+	<div align="center">
+	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+		<legend align="center"><h2>　@@@ 님의 개인정보　</h2></legend>
+		<div style="width: 100%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">
 				<tr align="center">
@@ -148,14 +161,24 @@ th, td {
 					<td><li>개인정보 동의여부</li></td>
 					<td>Y</td>
 				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<div align="center">
+							<button type="button" id="cancelbtn" onclick="historyBack();"
+							style="height: 30px;  display:inline;">메인</button>
+							<button type="button" id="okbtn" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/UpdateUserInfo.jsp'"
+							style="height: 30px; display:inline;">수정</button>
+						</div>
+					</td>
+				</tr>
 			</table>
 		</form>
-		<button type="button" id="okbtn"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/UpdateUserInfo.jsp'"
-			style="float: right; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정하기</button>
-		<button type="button" id="cancelbtn" onclick="historyBack();"
-			style="float: right; height: 30px;">뒤로가기</button>
+		
 	</div>
+	</fieldset>
+	</div>
+	
 	</section>
 	<footer> </footer>
 	<script>
@@ -179,7 +202,7 @@ th, td {
 		
 		//뒤로가기
 		function historyBack(){
-			history.back();
+			location.href='<%=request.getContextPath() %>/index.jsp';
 		};
 	</script>
 </body>

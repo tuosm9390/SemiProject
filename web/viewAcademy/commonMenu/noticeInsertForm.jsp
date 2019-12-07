@@ -39,9 +39,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<div class="outer">
-		<br>
-		<h2 align="center">공지사항 작성</h2>
+	<header>
+      <%@ include file="/viewAcademy/common/menubar.jsp"%>
+   </header>
+   <section>
+   <div align="center">
+      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 작성　</h1></legend>
+      </fieldset>
+    </div>
+	<div style="width:90%; margin:auto auto;" class="outer">
 		<div class="tableArea">
 			<form>
 				<table class="table">
@@ -97,5 +104,9 @@
 				});
 			}
 		</script>
+	</div>
+	</section>
+	<footer>
+	</footer>
 </body>
 </html>

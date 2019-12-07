@@ -34,6 +34,7 @@
 	}
 	
 	ul { list-style:none; margin-right:25px;}
+	input {border: 1px solid lightgray; border-radius: 5px;}
 	
 	#userId:hover { border:2px solid green; }
 	#password:hover { border:2px solid green; }
@@ -55,10 +56,10 @@
 			<ul>
 				<li><img src="<%=request.getContextPath()%>/images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
 				<li><label>아이디 &nbsp;&nbsp;&nbsp;</label>
-				<input type="text" id="memberId" name="memberId" placeholder="  고유번호(아이디)를 입력해주세요" 
+				<input type="text" id="memberId" name="memberId" placeholder=" 아이디 입력" 
 				style="padding-top:10px;padding-bottom:5px;width:250px"></li><br>
 				<li><label>비밀번호&nbsp;&nbsp;</label>
-				<input type="password" id="password" name="password" placeholder="  비밀번호를 입력해주세요"
+				<input type="password" id="password" name="password" placeholder=" 비밀번호 입력"
 				style="padding-top:10px;padding-bottom:5px;width:250px;margin-bottom:10px"></li>
 			</ul>
 		
@@ -68,7 +69,7 @@
 				<div style="display:inline">
 				<input type="checkbox" name="loginMaintain" checked><label for="loginMaintain">로그인 상태 유지</label>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label><a href="../views/findPwd.jsp" style="color:black">비밀번호 찾기</a></label>
+				<label><a href="../common/findPwd1.jsp" style="color:black">비밀번호 찾기</a></label>
 				</div>
 				</li>
 				<br><br>

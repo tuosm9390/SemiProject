@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+		background:url("/hagong/images/backSms.png") no-repeat top;
+		background-size:86%;
+}
 .div1 {
 	display: inline-block;
 	height: 500px;
