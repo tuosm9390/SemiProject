@@ -93,9 +93,6 @@ fieldset {
 						<div align="center">
 							<img id="profile"
 								src="<%=request.getContextPath()%>/images/user.png">
-							<button type="button" id="addimg"
-								style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-							<input type="file" id="imgfile"> 
 						</div>
 					</td>
 				</tr>

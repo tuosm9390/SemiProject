@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+#boardBack{
+	background: url("/hagong/images/board.png") no-repeat top;
+	background-size: 25%;
+	
+}
+
 section button {
 	float: right;
 	margin-bottom: 5px;
@@ -42,8 +48,8 @@ section button:hover {
 	color: white;
 }
 
-th, td {
-	background: white;
+tr, td {
+	background: none !important;
 	text-align: left !important;
 }
 
@@ -57,10 +63,13 @@ th, td {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 style="margin-left: 5%;">만족도 조사 등록</h2>
-		<br>
+	<div id="boardBack" align="center" style="height: 180px;">
+	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
+					width: 20%;">
+		<legend align="center"><h1>　만족도 조사 등록　</h1></legend></fieldset>
+	</div>
 		<form>
-			<table class="table" align="center" style="width: 90%;">
+			<table class="table" align="center" style="width: 80%;">
 				<tr>
 					<td><li>만족도 조사 제목</td>
 					<td><input type="text" placeholder="만족도 조사 제목 입력" size="50"></td>
@@ -68,9 +77,7 @@ th, td {
 				<tr>
 					<td><li>만족도 조사 대상</td>
 					<td><input type="text" placeholder="만족도 조사 대상 입력" size="80">&emsp;
-						<select>
-							<option>대상 인원 입력</option>
-					</select></td>
+					</td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
@@ -116,7 +123,7 @@ th, td {
 	<script>
 		//DatePicker
 		$.datepicker.setDefaults({
-    		dateFormat: 'yy-mm-dd',
+			dateFormat:'yy-mm-dd',
     		prevText: '이전 달',
     		nextText: '다음 달',
     		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -124,15 +131,40 @@ th, td {
     		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
     		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
     		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-    		showMonthAfterYear: true,
     		changeMonth : true,
 			changeYear : true,
-			constrainInput: false,
-    		yearSuffix: '년'
   		});
-		$(function() {
-			$("#from, #to").datepicker();
-		});
+		$( function() {
+		    var dateFormat = "yy-mm-dd",
+		      from = $( "#from" )
+		        .datepicker({
+		          defaultDate: "+1w",
+		          changeMonth: true,
+		          numberOfMonths: 2
+		        })
+		        .on( "change", function() {
+		          to.datepicker( "option", "minDate", getDate( this ) );
+		        }),
+		      to = $( "#to" ).datepicker({
+		        defaultDate: "+1w",
+		        changeMonth: true,
+		        numberOfMonths: 2
+		      })
+		      .on( "change", function() {
+		        from.datepicker( "option", "maxDate", getDate( this ) );
+		      });
+		 
+		    function getDate( element ) {
+		      var date;
+		      try {
+		        date = $.datepicker.parseDate( dateFormat, element.value );
+		      } catch( error ) {
+		        date = null;
+		      }
+		 
+		      return date;
+		    }
+		  } );
 		
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
