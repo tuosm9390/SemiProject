@@ -45,7 +45,12 @@ tr:not(:first-child){
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<h2 align="left" style="width: 150px; margin-left: 5%;">전체 학생</h2>
+	<div align="center">
+	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
+					width: 20%; font-family:'Do Hyeon'">
+		<legend align="center"><h1>　전체 학생　</h1></legend>
+	</fieldset>
+	</div>
 	<div style="width: 90%; margin: auto auto;">
 		<button id="addexcel">엑셀로 성적 일괄 등록</button>
 		<button id="addstudent">학생 등록</button>

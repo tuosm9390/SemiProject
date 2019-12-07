@@ -18,6 +18,13 @@ tr {
 	height: 40px;
 }
 
+input[type=text], select {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	width: 200px;
+	height: 30px;
+}
+
 section button {
 	font-size: 18px;
 	margin-bottom: 5px;
@@ -45,6 +52,17 @@ section button:hover {
     margin: inherit !important;
 }
 
+h2{
+	margin-bottom: 0;
+}
+
+#score tr th:last-child, #score tr td:last-child{
+	background: white !important;
+}
+	
+#score tr th:last-child:hover, #score tr td:last-child:hover{
+	background: white !important;
+}
 </style>
 </head>
 <body>
@@ -52,9 +70,14 @@ section button:hover {
 		<%@ include file="/viewAcademy/common/menubar.jsp"%>
 	</header>
 	<section>
+	<div align="center">
+	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
+					width: 16%; font-family:'Do Hyeon'">
+		<legend align="center"><h1>　박상준　</h1></legend>
+	</fieldset>
+	</div>
 		<!-- 학생 정보 -->
 		<div id="studentInfo" style="width: 80%; margin: auto auto;">
-		<h1 style="width: 150px;">박상준</h1><br>
 		<h2 style="width: 150px;">학생 정보</h2>
 			<button id="updatebtn"
 				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/updateStudent.jsp'"
@@ -79,9 +102,9 @@ section button:hover {
 			</table>
 		</div>
 		<!-- 학생 성적 -->
-		<div id="studentPoint" style="width: 80%; margin: auto auto;">
+		<div id="studentPoint" style="width: 90%; margin: auto 10%;">
 			<h2 style="width: 150px;">학생 성적</h2>
-			<button id="pointAddBtn" style="float: right;">성적 추가</button>
+			<button id="pointAddBtn" style="float: right; margin-right: 11.2%;">성적 추가</button>
 			<button style="float: right;">검색</button>
 			<!-- DatePicker -->
 			<input type='text' id='datepicker' readonly>
@@ -90,14 +113,14 @@ section button:hover {
 				style="float: right; width: 100px; margin-left: 1%; display: none;">
 
 			</select>
-			<select class="so" style="float: right; width: 60px; height: 25px;">
+			<select class="so" style="float: right; width: 60px;">
 				<option value="0" selected>-선택-</option>
 				<option value="1">구분</option>
 				<option value="2">년도</option>
 				<option value="3">과목</option>
 			</select>
 			<!-- 학생 성적 테이블 -->
-			<table class="table" id="point">
+			<table id="score" class="table" id="point" style="width:96%;">
 				<tr>
 					<th></th>
 					<th>구분</th>
@@ -106,6 +129,7 @@ section button:hover {
 					<th>과목 1</th>
 					<th>과목 2</th>
 					<th>과목 3</th>
+					<th></th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -115,6 +139,7 @@ section button:hover {
 					<td>0</td>
 					<td>50</td>
 					<td>60</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>2</td>
@@ -124,6 +149,7 @@ section button:hover {
 					<td>40</td>
 					<td>60</td>
 					<td>20</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>3</td>
@@ -133,6 +159,7 @@ section button:hover {
 					<td>40</td>
 					<td>0</td>
 					<td>30</td>
+					<td></td>
 				</tr>
 			</table>
 		</div>
@@ -170,15 +197,18 @@ section button:hover {
 		};
 
 		Nwagon.chart(options);
-
+		
+		var $select1 = "<select style='width: 85px;'>";
+		var $op1 = "<option>내신</option><option>모의고사</option>";
+		var $select2 = "<select style='width: 50px;'>";
+		var $op2 = "<option>1</option><option>2</option>";
+		var $text = "<input type='text' style='width: 50px; text-align:center;'>";
+		var $check = "<input type='checkbox'>"
 		//학생 성적 추가 버튼
-		$("#pointAddBtn")
-				.click(
-						function() {
-							$("#point")
-									.append(
-											"<tr><td>3</td><td>내신</td><td>1</td><td>2018</td><td>40</td><td>0</td><td>30</td></tr>");
-						});
+		$("#pointAddBtn").click(function() {
+			$("#score").append(
+				"<tr><td>3</td><td style='width:229px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:166px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td>" +$text + "</td><td>" + $text + "</td><td>" + $text + "</td><td style='width: 100px;'>" + $check + "</td></tr>");
+		});
 
 		//검색 옵션별 함수
 		$(function() {

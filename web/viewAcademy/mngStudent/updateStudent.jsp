@@ -6,14 +6,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+	background: url("/hagong/images/abc.jpg") no-repeat top;
+	background-size: 86%;
+}
+
 #profile {
 	width: 200px;
 	height: 200px;
 	radius: 50%;
 }
 
-td {
-	background: white;
+td, tr{
+	background: none !important;
+	text-align: left !important;
 }
 
 input {
@@ -66,8 +72,14 @@ th, td {
 	<header>
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
-	<section style="margin-bottom: 10%;">
-	<h2 style="margin-left: 5%;">학생 정보 수정</h2>
+	<section>
+	<div align="center">
+	<fieldset
+			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
+					width: 80%;">
+			<legend align="center">
+				<h1 style="font-family:'Do Hyeon'">　학생 정보 수정　</h1>
+			</legend>
 	<div style="width: 80%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">
@@ -97,7 +109,7 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" style="border: none;" readonly></td>
+					<td><input type="text" id="datepicker" readonly></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
@@ -120,7 +132,7 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>계열</li></td>
-					<td><select disabled>
+					<td><select>
 							<option>인문</option>
 							<option>자연</option>
 							<option>예체능</option>
@@ -151,13 +163,13 @@ th, td {
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" placeholder="학생 거주지 입력"
+					<td><input type="text" value="학생 거주지 입력"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" placeholder="helloworld@kakao.com"
+					<td><input type="email" value="helloworld@kakao.com"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
@@ -167,11 +179,13 @@ th, td {
 				</tr>
 			</table>
 		</form>
+		</div>
 		<button id="okbtn"
 			style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
 		<button id="cancelbtn"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp'"
 			style="float: right; width: 80px; height: 30px;">취소</button>
+		</fieldset>
 	</div>
 	</section>
 	<footer> </footer>
@@ -182,6 +196,29 @@ th, td {
 
 		$("#okbtn").click(function() {
 			$("#updateForm").submit();
+		});
+		
+		//DatePicker
+		$(function() {
+			$("#datepicker").datepicker(
+					{
+						dateFormat : 'yy-mm-dd',
+						prevText : '이전 달',
+						nextText : '다음 달',
+						monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+						showMonthAfterYear : true,
+						changeMonth : true,
+						changeYear : true,
+						constrainInput : false,
+						yearSuffix : '년',
+						yearRange : 'c-20:c'
+					});
 		});
 		
 		//숫자만 입력
