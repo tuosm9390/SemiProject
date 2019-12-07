@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400"
@@ -180,10 +180,10 @@ section{
 			<a href="<%=request.getContextPath()%>/index.jsp"> <img
 				src="<%=request.getContextPath()%>/images/hagong.png"
 				style="height: 85px;"></a>
-			<h2 class="topmenu" id="attendance">출결조회</h2>
-			<h2 class="topmenu" id="score">성적조회</h2>
-			<h2 class="topmenu" id="satisfy">만족도조사</h2>
-			<h2 class="topmenu" id="receipt">고지서/영수증</h2>
+			<h2 class="topmenu" id="attendance" onclick="GoAttendance();">출결조회</h2>
+			<h2 class="topmenu" id="score" onclick="goScore();">성적조회</h2>
+			<h2 class="topmenu" id="satisfy" onclick="goSaisfy();">만족도조사</h2>
+			<h2 class="topmenu" id="receipt" onclick="goReceipt();">고지서/영수증</h2>
 			&nbsp;
 			<%-- <% if(loginMember != null) { %> --%>
 			<!-- <button id="logout" style="margin-left: 5px;">로그아웃</button> -->
@@ -216,6 +216,19 @@ section{
 		function myInfo(){
 	    	location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/UserInfo.jsp";
 	    };
+	    
+	    function GoAttendance(){
+	    	location.href = "<%= request.getContextPath() %>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp";
+	    }
+	    function goScore(){
+	    	location.href="<%= request.getContextPath() %>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp";
+	    }
+	    function goSaisfy(){
+	    	location.href="<%= request.getContextPath() %>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp";
+	    }
+	    function goReceipt(){
+	    	location.href="<%= request.getContextPath() %>/viewClient/mnReceipt/client.jsp";
+	    }
 	</script>
 
 </body>
