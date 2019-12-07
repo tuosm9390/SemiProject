@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +20,11 @@
 </head>
 
 <body>
-	<header>
-		<%@ include file="../common/menubar.jsp" %>
-	</header>
-	<section>
-	 <div class="container">
+   <header>
+      
+   </header>
+   <section>
+    <div class="container">
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
@@ -182,8 +182,9 @@
     <script src="js/addEvent.js"></script>
     <script src="js/editEvent.js"></script>
     <script src="js/etcSetting.js"></script>
-	</section>
+   </section>
    
 </body>
+    <%@ include file="../common/menubar.jsp" %>
 
 </html>

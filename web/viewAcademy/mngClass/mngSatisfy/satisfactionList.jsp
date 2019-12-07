@@ -88,7 +88,7 @@ tr:not(:first-child){
 	text-decoration: none;
 	cursor: pointer;
 }
-<%int test = 2;%>
+<%int test = 1;%>
 </style>
 </head>
 <body>
