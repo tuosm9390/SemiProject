@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 </head>
 <style>
 	#consilArea table *{
@@ -100,16 +100,24 @@
 .srchArea{margin-bottom:10px;}
 .srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
 .srchArea button{float:right;width:60px; height:25px;}
+.names{display:flex;}
+.names .dCtn.tName{margin-right:160px;}
+.dArea.dArea2{display:flex;}
+.dArea.dArea2 .dCtn.consDate{margin-right:160px;}
 </style>
 <body>
-	<%@ include file="../../common/menubar.jsp" %>
-	<div class="container">
-	<!-- Top Navigation -->
 	<header>
-
+		<%@ include file="../../common/menubar.jsp" %>
 	</header>
+	<section>
+		<div class="container">
+	<!-- Top Navigation -->
 			<div class="component" id="consilArea">
-				<h2>학생상담 리스트</h2>
+				<div align="center">
+      				<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         				<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　학생상담 리스트　</h1></legend>
+     	 			</fieldset>
+      			</div>
 				<div class="srchArea">
 					<button class="srchBtn">검색</button>
 					<input type="search" id="searchStudent" name="searchStudent">
@@ -123,6 +131,7 @@
 					<thead>
 						<tr>
 							<th>원생명</th>
+							<th>ID</th>
 							<th>상담횟수</th>
 							<th>마지막 상담일자</th>
 							<th>상담일지</th>
@@ -130,18 +139,20 @@
 						</tr>
 					</thead>
 					<tbody id="consList">
-						<tr><td class="user-name">강동원(010-7777-8888)</td><td class="cons-count">1회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">주지훈(010-7777-8888)</td><td class="cons-count">4회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">조진웅(010-7777-8888)</td><td class="cons-count">11회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">정유미(010-7777-8888)</td><td class="cons-count">31회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">전지현(010-7777-8888)</td><td class="cons-count">3회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">김지원(010-7777-8888)</td><td class="cons-count">0회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">강동원(010-7777-8888)</td><td>qwer123</td><td class="cons-count">1회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">주지훈(010-7777-8888)</td><td>qwer124</td><td class="cons-count">4회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">조진웅(010-7777-8888)</td><td>qwer125</td><td class="cons-count">11회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">정유미(010-7777-8888)</td><td>qwer126</td><td class="cons-count">31회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">전지현(010-7777-8888)</td><td>qwer127</td><td class="cons-count">3회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">김지원(010-7777-8888)</td><td>qwer128</td><td class="cons-count">0회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
 					</tbody>
 				</table>
 			</div>
 
 		</div>
 		
+	</section>
+
 		<!-- 모달기능 -->
 		<section align="center">
 
@@ -149,6 +160,11 @@
 		<div id="addlist" class="modal">
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
+				<div align="center">
+			      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+			         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　상담추가　</h1></legend>
+			      </fieldset>
+     			 </div>
 					<form class="accordion__content" method="post">
 						<div class="detailArea" align="left">
 							<div class="dArea dArea1">
@@ -156,6 +172,7 @@
 									<label class="dTit">상담제목</label>
 									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
 								</div>
+							<div class="names">
 								<div class="dCtn tName">
 									<label class="dTit">상담자 이름</label>
 									<input type="text" class="inputCons" value="서범수" readonly>
@@ -165,10 +182,11 @@
 									<input type="text" class="inputCons" value="김지원" readonly>
 								</div>
 							</div>
+							</div>
 							<div class="dArea dArea2">
 								<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" value="2019.11.11">
+									<input type="text" class="inputCons" id="from" name="from" value="" readonly>
 								</div>
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
@@ -210,9 +228,10 @@
 				function addCouns() {
 					$("#addlist").css("display","block");
 				};
+
 		</script>
-		<!-- /container -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<!-- /container --><!-- 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 		<script>
@@ -233,6 +252,26 @@
 		cancellist.onclick = function() {
 			addlist.style.display = "none";
 		}
+		
+		//DatePicker
+		$.datepicker.setDefaults({
+    		dateFormat: 'yy-mm-dd',
+    		prevText: '이전 달',
+    		nextText: '다음 달',
+    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    		showMonthAfterYear: true,
+    		changeMonth : true,
+			changeYear : true,
+			constrainInput: false,
+    		yearSuffix: '년'
+  		});
+		$(function() {
+			$("#from").datepicker();
+		});
 		</script>
 </body>
 </html>

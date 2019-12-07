@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 	.component .addBtn{diaplay:inline-block; margin-bottom:5px; float:right;}
 	.component .addBtn .addBlist{width:60px;font-size:16px;height:25px;}
@@ -97,17 +97,25 @@
 .srchArea{margin-bottom:10px;}
 .srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
 .srchArea button{float:right;width:60px; height:25px;margin-right:10px;}
+.names{display:flex;}
+.names .dCtn.tName{margin-right:160px;}
+.dArea.dArea2{display:flex;}
+.dArea.dArea2 .dCtn.consDate{margin-right:160px;}
 </style>
 </head>
 <body>
-	<%@ include file="../../common/menubar.jsp" %>
-		<div class="container">
-	<!-- Top Navigation -->
 	<header>
-
+		<%@ include file="../../common/menubar.jsp" %>
 	</header>
+	<section>
+			<div class="container">
+		<!-- Top Navigation -->
 			<div class="component" id="consilArea">
-				<h2 class="btitle">블랙리스트</h2>
+				<div align="center">
+					<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+				    	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트　</h1></legend>
+				    </fieldset>
+			    </div>
 				<div class="addBtn">				
 					<button class="addBlist" onclick="addBlist();">추가</button>
 				</div>
@@ -126,17 +134,18 @@
 					<thead>
 						<tr>
 							<th>원생명</th>
+							<th>ID</th>
 							<th>학교</th>
 							<th>학년</th>
 							<th>휴대폰번호</th>
 						</tr>
 					</thead>
 					<tbody id="consList">
-						<tr><td class="user-name">강동원</td><td class="last-cons">KH고등학교</td><td class="cons-list">1학년</td><td>010-7777-8888</td></tr>
-						<tr><td class="user-name">주지훈</td><td class="last-cons">정교중학교</td><td class="cons-list">2학년</td><td>010-7777-8887</td></tr>
-						<tr><td class="user-name">조진웅</td><td class="last-cons">케에고등학고</td><td class="cons-list">1학년</td><td>010-7777-8886</td></tr>
-						<tr><td class="user-name">정유미</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8885</td></tr>
-						<tr><td class="user-name">전지현</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8884</td></tr>
+						<tr><td class="user-name">강동원</td><td>zxcv999</td><td class="last-cons">KH고등학교</td><td class="cons-list">1학년</td><td>010-7777-8888</td></tr>
+						<tr><td class="user-name">주지훈</td><td>zxcv995</td><td class="last-cons">정교중학교</td><td class="cons-list">2학년</td><td>010-7777-8887</td></tr>
+						<tr><td class="user-name">조진웅</td><td>zxcv996</td><td class="last-cons">케에고등학고</td><td class="cons-list">1학년</td><td>010-7777-8886</td></tr>
+						<tr><td class="user-name">정유미</td><td>zxcv997</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8885</td></tr>
+						<tr><td class="user-name">전지현</td><td>zxcv998</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8884</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -148,8 +157,10 @@
 				})
 			</script>
 		</div>
-		<!-- /container -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	</section>
+
+		<!-- /container --><!-- 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 				<!-- 모달기능 -->
@@ -158,6 +169,11 @@
 		<div id="addlist" class="modal">
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
+				<div align="center">
+			      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+			         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트 추가　</h1></legend>
+			      </fieldset>
+			     </div>
 					<form class="accordion__content" method="post">
 						<div class="detailArea" align="left">
 							<div class="dArea dArea1">
@@ -165,23 +181,21 @@
 									<label class="dTit">상담제목</label>
 									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
 								</div>
-								<div class="dCtn tName">
-									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
-								</div>
-								<div class="dCtn sName">
-									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원">
-								</div>
-								<div class="dCtn tPhone">
-									<label class="dTit">학생 휴대폰 번호</label>
-									<input type="text" class="inputCons" value="010-8888-7777">
+								<div class="names">
+									<div class="dCtn tName">
+										<label class="dTit">상담자 이름</label>
+										<input type="text" class="inputCons" value="서범수" readonly>
+									</div>
+									<div class="dCtn sName">
+										<label class="dTit">상담학생명</label>
+										<input type="text" class="inputCons" value="김지원" readonly>
+									</div>
 								</div>
 							</div>
 							<div class="dArea dArea2">
 								<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" value="2019.11.11">
+									<input type="text" class="inputCons" id="from" name="from" value="" readonly>
 								</div>
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
@@ -194,6 +208,10 @@
 								</div>
 							</div>
 							<div class="dArea dArea3">
+								<div class="dCtn tPhone">
+									<label class="dTit">학생 휴대폰 번호</label>
+									<input type="text" class="inputCons" value="010-8888-7777">
+								</div>
 								<div class="dCtn content">
 									<label class="dTit">내용</label>
 									<textarea class="inputCons" name="consreq">상담내용입니다.</textarea>
@@ -240,6 +258,25 @@
 				cancellist.onclick = function() {
 					addlist.style.display = "none";
 				}
+				//DatePicker
+				$.datepicker.setDefaults({
+		    		dateFormat: 'yy-mm-dd',
+		    		prevText: '이전 달',
+		    		nextText: '다음 달',
+		    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		    		showMonthAfterYear: true,
+		    		changeMonth : true,
+					changeYear : true,
+					constrainInput: false,
+		    		yearSuffix: '년'
+		  		});
+				$(function() {
+					$("#from").datepicker();
+				});
 		</script>
 </body>
 </html>
