@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
 <style>
    #write{
       
       margin-left:90%;
    }
-   .searchArea > button{
-      display:inline;
-      margin-left:auto;
+   .searchArea{
+      display:inline-flex;
+      float: right;
+      margin-right: 5%;
+      margin-bottom: 10px;
    }
    fieldset {
       width:25%
@@ -83,18 +85,6 @@
       <div id="write">
          <button type="button" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
       </div>
-      <div class="searchArea">
-            <select id="searchCondition" name="searchCondition">
-               <option value="writer">작성자</option>
-               <option value="title">제목</option>
-               <option value="content">내용</option>
-            </select>
-            <input type="search">
-            <button type="submit">검색하기</button>
-            <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
-            <button onclick="location.href='views/notice/noticeInsertForm.jsp'">작성하기</button>
-            <% } %>
-      </div> <!— searchArea end —>
       <script>
       $(function(){
          $("#noticeList td").click(function(){
