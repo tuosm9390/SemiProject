@@ -7,61 +7,72 @@
 <title>Insert title here</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
-
-	.outer{
-	
-		width:80%;
-		height:800px;
-		margin-left: auto;
-		margin-right: auto;
-		
-	}
-	.top{
-
-	}
-	.article {
-	
-	}
-	.btns{
-		margin-left: 50px;
-	}
-	.q{
-		margin-left: 8%;
-		text-align: left;
-	}
-	.tarea{
-		content: center;
-		text-align: center;
-	}
-	input[type="radio"] {
-    display:inline-block;
-    width:19px;
-    height:19px;
-    margin:-2px 10px 0 0;
-    margin-left:30px;
-    vertical-align:middle;
-    background:url(check_radio_sheet.png) left top no-repeat;
-    cursor:pointer;
+.outer {
+	width: 80%;
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
-#botbtn{
+
+.top {
+	
+}
+
+.article {
+	
+}
+
+.btns {
+	margin-left: 50px;
+}
+
+.q {
+	margin-left: 8%;
+	text-align: left;
+}
+
+.tarea {
+	content: center;
+	text-align: center;
+}
+
+input[type="radio"] {
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	margin: -2px 10px 0 0;
+	margin-left: 30px;
+	vertical-align: middle;
+	background: url(check_radio_sheet.png) left top no-repeat;
+	cursor: pointer;
+}
+
+#botbtn {
 	margin-left: 12px;
-	width:70px;
-	height:30px;
+	width: 70px;
+	height: 30px;
 }
-#space{
-	margin-top: 10px;
-	width:100%;
-	display: inline-flex;
 
+#space {
+	margin-top: 10px;
+	width: 100%;
+	display: inline-flex;
 }
-#text2{
-	text-align : left;
-	margin-left: 20%; 
+
+#text2 {
+	text-align: left;
+	margin-left: 20%;
 }
-#rsetbtn{
+
+#rsetbtn {
 	margin-left: 75%;
-	width:70px;
-	height:30px;
+	width: 70px;
+	height: 30px;
+}
+
+#int {
+border-radius: 25px;
+	
 }
 </style>
 </head>
@@ -78,7 +89,7 @@
 			<div class="article" align="center">
 			<form id="sendForm" method="post">
 				
-				<div style="overflow:auto; width:850px; height:500px; padding:10px; background-color:lightgray;" align="left">
+				<div style="overflow:auto; width:850px; height:500px; padding:10px; background-color:lightgray; " align="left"id="int">
 					<%for(int i=0;i<6;i++) {%>
 					<h4 class="q">1. 질문 123123123213213</h4>
 					<div align="center">

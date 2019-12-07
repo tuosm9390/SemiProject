@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta  charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 
 <link href="woco.accordion.css" rel="stylesheet">
 <style>
@@ -224,8 +224,15 @@
             border:1px solid black;
        }
        #titlemsg{
-       	padding-left: 22%;
+       
+      
+       	width:70%;
+       	margin-left: 10%;
+       	text-align: left;
       	
+       }
+       #toptext{
+       	margin-left: 18%;
        }
 .detailArea{display: block;width: 100%;}
 .dArea .dCtn{padding-bottom: 20px;}
@@ -246,10 +253,10 @@
 <header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 
 <section>
-<div id="titlemsg">
-	<h3>빛상찬 님의 수강과목</h3>
-	<button style="float: left;">현재수강</button>
-	<button style="float: left;">과거수강</button>
+<div id="titlemsg" align="center">
+	<h3 id="toptext">빛상찬 학생 수강비/고지서</h3>
+	<button style="float: right;">현재수강</button>
+	<button style="float: right;">과거수강</button>
 </div>
 
 <div class="wrap">

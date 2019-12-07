@@ -41,7 +41,7 @@ td:first-child {
 .btns {
    display: inline-block;
    float: right;
-   margin-left: 10px;
+  
 }
 
 tr {
@@ -60,6 +60,9 @@ td {
 #mtext {
    margin-left: 5%;
 }
+.btndiv{
+	margin-right: 5%;
+}
 </style>
 </head>
 <body>
@@ -74,7 +77,7 @@ td {
             <fieldset
                style="margin-top: -25px; margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
                <legend align="center">
-                  <h1 align="center" style="font-family: 'Do Hyeon';">권한부여관리</h1>
+                  <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여관리　</h1>
                </legend>
             </fieldset>
          </div>
@@ -431,8 +434,10 @@ td {
 
 
                </table>
+               <div class="btndiv">
                <button type="submit" class="btns">적용하기</button>
                <button type="reset" class="btns">기본값으로 변경</button>
+               </div>
             </form>
          </div>
       </article>

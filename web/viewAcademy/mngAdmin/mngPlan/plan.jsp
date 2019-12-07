@@ -4,7 +4,7 @@
 <html class="no-js">
 	<head>
 		<meta charset="UTF-8" />
-		<title>연간계획</title>
+		<title>HAGONG</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
@@ -68,16 +68,22 @@ ul > li {
 
 </style>
 </head>
-<%@ include file="/viewAcademy/common/menubar.jsp" %>
 <body>			
-		<div class="container">
-			<!-- Top Navigation -->
 			<header>
-
+<%@ include file="/viewAcademy/common/menubar.jsp" %>
 			</header>
+		<div class="container">
+					<!--  -->
+					<div align="center">
+    					  <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
+        						 <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　연간계획　</h1></legend>
+        						 
+    	 				 </fieldset>
+     				 </div>
+					<!--  -->
+			<!-- Top Navigation -->
 			<section>
 				<div class="head">
-					<h2>연간계획</h2>
 					<div class="btnArea">
 					<select style="display:inline; float:left; margin-right:10px">
 						<option value="" selected disabled hidden>년도별 검색</option>
@@ -107,7 +113,7 @@ ul > li {
 							<th>11월</th>
 							<th>12월</th>
 					</thead>
-					<tbody>
+					<tbody id="tbody">
 						<tr>
 							<td>주요 이슈</td>
 							<td>이달의 주요 이슈 컬럼 내에 내용이 길어지면 어떻게 될까?</td>
@@ -213,23 +219,25 @@ ul > li {
 				<div class="monthCheckArea">
 					<form>
 						<ul>
+						<li><input type="checkbox" name="0" id="alls"><label for="1">전체선택</label>
+						</li>
 							<li>
-								<input type="checkbox" name="1" id="jan"><label for="1">1월</label>
-								<input type="checkbox" name="2" id="feb"><label for="2">2월</label>
-								<input type="checkbox" name="3" id="mar"><label for="3">3월</label>
-								<input type="checkbox" name="4" id="apr"><label for="4">4월</label>
+								<input type="checkbox" name="1" id="jan" class="monthBtn"><label for="1">1월</label>
+								<input type="checkbox" name="2" id="feb" class="monthBtn"><label for="2">2월</label>
+								<input type="checkbox" name="3" id="mar" class="monthBtn"><label for="3">3월</label>
+								<input type="checkbox" name="4" id="apr" class="monthBtn"><label for="4">4월</label>
 							</li>
 							<li>
-								<input type="checkbox" name="5" id="may"><label for="5">5월</label>
-								<input type="checkbox" name="6" id="jun"><label for="6">6월</label>
-								<input type="checkbox" name="7" id="jul"><label for="7">7월</label>
-								<input type="checkbox" name="8" id="aug"><label for="8">8월</label>
+								<input type="checkbox" name="5" id="may" class="monthBtn"><label for="5">5월</label>
+								<input type="checkbox" name="6" id="jun" class="monthBtn"><label for="6">6월</label>
+								<input type="checkbox" name="7" id="jul" class="monthBtn"><label for="7">7월</label>
+								<input type="checkbox" name="8" id="aug" class="monthBtn"><label for="8">8월</label>
 							</li>
 							<li>
-								<input type="checkbox" name="9" id="sep"><label for="9">9월</label>
-								<input type="checkbox" name="10" id="oct"><label for="10">10월</label>
-								<input type="checkbox" name="11" id="dec"><label for="11">11월</label>
-								<input type="checkbox" name="12" id="nov"><label for="12">12월</label>
+								<input type="checkbox" name="9" id="sep" class="monthBtn"><label for="9">9월</label>
+								<input type="checkbox" name="10" id="oct" class="monthBtn"><label for="10">10월</label>
+								<input type="checkbox" name="11" id="dec" class="monthBtn"><label for="11">11월</label>
+								<input type="checkbox" name="12" id="nov" class="monthBtn"><label for="12">12월</label>
 							</li>
 						</ul>
 					</form>
@@ -279,8 +287,22 @@ ul > li {
 					deleteArea.style.display = "none";
 				}
 			});
-
-			
+				//삭제 > 달 전체선택
+				$(function(){
+					$("#alls").click(function(){
+						var check = $(this).is(":checked");
+						 if(check) $(".monthBtn").prop('checked', true);
+					        else  $(".monthBtn").prop('checked', false);
+					})
+				});
+			//행추가하고싶어요
+			$(function(){
+				$("#addRow").click(function(){
+					$(".table #tbody").append(){
+						"<tr><td>aaaaaaaaa</td ><td>asdasd</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+					}
+				})
+			})
 			
 				
 			
