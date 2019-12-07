@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <%@ include file="/viewAcademy/common/menubar.jsp"%>
 <style>
 	.completeDelete > button{
