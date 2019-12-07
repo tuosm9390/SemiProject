@@ -157,10 +157,6 @@ body {
 	margin-right: 7%;
 }
 
-td, th {
-	text-align: center;
-}
-
 #name:focus, #name:hover {
 	outline: none;
 	cursor: default;
