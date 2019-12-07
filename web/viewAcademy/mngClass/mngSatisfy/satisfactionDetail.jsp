@@ -71,11 +71,7 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td><input type="text" value="전체 원생 및 학부모 대상" size="50">&emsp;
-						<select>
-							<option>대상 인원 입력</option>
-					</select>
-					</td>
+					<td><input type="text" value="전체 원생 및 학부모 대상" size="50">&emsp;</td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>

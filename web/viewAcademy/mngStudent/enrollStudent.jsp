@@ -23,7 +23,7 @@ input {
 	height: 30px;
 }
 
-input[type='checkbox']{
+input[type='checkbox'] {
 	height: 15px;
 }
 
@@ -67,101 +67,106 @@ section button:hover {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<h2 style="margin-left: 5%;">학생 등록</h2>
-	<div style="width: 80%; margin: auto auto;">
-		<form id="enrollStudentForm">
-			<table class="table" align="center">
-				<tr align="center">
-					<td rowspan="7">
-						<div align="center">
-							<img id="profile"
-								src="<%=request.getContextPath()%>/images/user.png">
-							<button type="button" id="addimg"
-								style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-							<input type="file" id="imgfile">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td><li>아이디</li></td>
-					<td><input type="text" placeholder="아이디 입력"></td>
-				</tr>
-				<tr>
-					<td><li>이름</li></td>
-					<td><input type="text" placeholder="이름 입력"></td>
-				</tr>
-				<tr>
-					<td><li>생년월일</li></td>
-					<td><input type="text" id="datepicker" readonly></td>
-				</tr>
-				<tr>
-					<td><li>전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
-				</tr>
-				<tr>
-					<td><li>학교 / 학년</li></td>
-					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;"> &nbsp;
-					<select style="width: 120px;">
-						<option value="mid1">중학교 1학년</option>
-						<option value="mid2">중학교 2학년</option>
-						<option value="mid3">중학교 3학년</option>
-						<option value="high1">고등학교 1학년</option>
-						<option value="high2">고등학교 2학년</option>
-						<option value="high3">고등학교 3학년</option>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td><li>계열</li></td>
-					<td><select>
-							<option>인문</option>
-							<option>자연</option>
-							<option>예체능</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>학부모 이름</li></td>
-					<td><input type="text" placeholder="학부모 이름 입력"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>학부모 아이디</li></td>
-					<td><input type="text" placeholder="학부모 아이디 입력"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>학부모 전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>희망대학 / 학과</li></td>
-					<td><input type="text" placeholder="희망 대학 입력"> &nbsp;
-						<input type="text" placeholder="희망 학과 입력"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>주소</li></td>
-					<td><input type="text" placeholder="주소 입력"
-						style="width: 400px;"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>이메일</li></td>
-					<td><input type="email" placeholder="이메일 입력"
-						style="width: 400px;"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>개인정보 제공 및 활용 동의</li></td>
-					<td>
-						<div style="width: 500px; height: 200px; overflow: auto;">
-							<pre align="left" style="color: black;">【 개인정보처리방침 】
+	<div align="center">
+		<fieldset
+			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black; width: 90%;">
+			<legend align="center">
+				<h2>　학생 등록　</h2>
+			</legend>
+			<div style="width: 100%; margin: auto auto;">
+				<form id="enrollStudentForm">
+					<table class="table" align="center">
+						<tr align="center">
+							<td rowspan="7">
+								<div align="center">
+									<img id="profile"
+										src="<%=request.getContextPath()%>/images/user.png">
+									<button type="button" id="addimg"
+										style="height: 1.5em; margin-top: 3%;">사진 선택</button>
+									<input type="file" id="imgfile">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><li>아이디</li></td>
+							<td><input type="text" placeholder="아이디 입력"></td>
+						</tr>
+						<tr>
+							<td><li>이름</li></td>
+							<td><input type="text" placeholder="이름 입력"></td>
+						</tr>
+						<tr>
+							<td><li>생년월일</li></td>
+							<td><input type="text" id="datepicker" readonly></td>
+						</tr>
+						<tr>
+							<td><li>전화번호</li></td>
+							<td><input type="tel" maxlength="3"> - <input
+								type="tel" maxlength="4"> - <input type="tel"
+								maxlength="4"></td>
+						</tr>
+						<tr>
+							<td><li>학교 / 학년</li></td>
+							<td><input type="text" placeholder="학교 이름 입력"
+								style="width: 120px;"> &nbsp; <select
+								style="width: 120px;">
+									<option value="mid1">중학교 1학년</option>
+									<option value="mid2">중학교 2학년</option>
+									<option value="mid3">중학교 3학년</option>
+									<option value="high1">고등학교 1학년</option>
+									<option value="high2">고등학교 2학년</option>
+									<option value="high3">고등학교 3학년</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td><li>계열</li></td>
+							<td><select>
+									<option>인문</option>
+									<option>자연</option>
+									<option>예체능</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>학부모 이름</li></td>
+							<td><input type="text" placeholder="학부모 이름 입력"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>학부모 아이디</li></td>
+							<td><input type="text" placeholder="학부모 아이디 입력"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>학부모 전화번호</li></td>
+							<td><input type="tel" maxlength="3"> - <input
+								type="tel" maxlength="4"> - <input type="tel"
+								maxlength="4"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>희망대학 / 학과</li></td>
+							<td><input type="text" placeholder="희망 대학 입력">
+								&nbsp; <input type="text" placeholder="희망 학과 입력"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>주소</li></td>
+							<td><input type="text" placeholder="주소 입력"
+								style="width: 400px;"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>이메일</li></td>
+							<td><input type="email" placeholder="이메일 입력"
+								style="width: 400px;"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>개인정보 제공 및 활용 동의</li></td>
+							<td>
+								<div style="width: 500px; height: 200px; overflow: auto;">
+									<pre align="left" style="color: black;">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -257,19 +262,22 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일
 						</pre>
-						</div>
-						<div align="right">
-                     		<input type="checkbox" name="accept" id="accept"><label for="accept">동의합니다.</label>
-                     	</div>
-					</td>
-				</tr>
-			</table>
-		</form>
-		<button id="okbtn"
-			style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
-		<button id="cancelbtn"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp'"
-			style="float: right; width: 80px; height: 30px;">취소</button>
+								</div>
+								<div align="right">
+									<input type="checkbox" name="accept" id="accept"><label
+										for="accept">동의합니다.</label>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<button id="okbtn"
+					style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
+				<button id="cancelbtn"
+					onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp'"
+					style="float: right; width: 80px; height: 30px;">취소</button>
+			</div>
+		</fieldset>
 	</div>
 	</section>
 
@@ -285,32 +293,35 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 
 		//DatePicker
 		$(function() {
-			$("#datepicker").datepicker( {
-				dateFormat: 'yy-mm-dd',
-	    		prevText: '이전 달',
-	    		nextText: '다음 달',
-	    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-	    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-	    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-	    		showMonthAfterYear: true,
-	    		changeMonth : true,
-				changeYear : true,
-				constrainInput: false,
-	    		yearSuffix: '년',
-	    		yearRange: 'c-20:c'
-			});
+			$("#datepicker").datepicker(
+					{
+						dateFormat : 'yy-mm-dd',
+						prevText : '이전 달',
+						nextText : '다음 달',
+						monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+						showMonthAfterYear : true,
+						changeMonth : true,
+						changeYear : true,
+						constrainInput : false,
+						yearSuffix : '년',
+						yearRange : 'c-20:c'
+					});
 		});
-		
+
 		//숫자만 입력
-		$("input[type='number']").keyup(function(event){
-		    var inputVal = $(this).val();
-		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
+		$("input[type='number']").keyup(function(event) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 		});
-		$("input[type='tel']").keyup(function(event){
-		    var inputVal = $(this).val();
-		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
+		$("input[type='tel']").keyup(function(event) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 		});
 	</script>
 </body>

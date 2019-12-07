@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 <style>
 .div1 {
-	display: inline-block;
-	height: 500px;
 	width: 300px;
-	margin: auto auto;
 }
 
 /* 모달 배경 */
@@ -89,19 +86,43 @@ select, option{
 	<header>
 		<%@ include file="menubar.jsp"%>
 	</header>
-	<section align="center">
-		<h1 align="left" style="margin-left: 5%;">SMS 발송</h1>
-		<div class="div1" style="float: left; margin-left: 5%;">
-			<h2 style="float: left;">항목 선택</h2><br><br>
-			<br> <br>
-			<button id="addlistbtn" style="float: right;">+</button>
-			<select style="width: 70%; height: 25px; float: left;" id="select">
+	<section>
+	<div align="center">
+	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
+					width: 20%;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon';">　SMS　</h1></legend>
+	</fieldset>
+	</div>
+		<div style="display: inline-table; margin:0 20%;"> <!-- 전체 div -->
+		<div style="display: table-cell;"> <!-- 항목 수신인 div -->
+		<div class="div1">
+			<h2 style="float: left;">항목 선택</h2>
+			<select style="width: 70%; height: 25px;" id="select">
 				<option selected>-------------선택-------------</option>
 				<option>수강료납부</option>
 				<option>학생 등하원</option>
 				<option>수동 발송</option>
 			</select>
+			<button id="addlistbtn" style="float: right;">+</button>
 		</div>
+		<!-- 수신인 목록 -->
+		<div class="div1">
+			<h2 style="float: left;">수신인 목록</h2><br><br>
+			<button id="addpersonbtn" style="float: right;">+</button>
+			<textarea id="persontext"
+				style="resize: none; width: 100%; height: 350px;" readonly></textarea>
+			<br> <h3 style="float: right;">인원 : </h3>
+		</div>
+		</div> <!-- 항목 수신인 div -->
+		
+		<!-- 발송 내용 -->
+		<div class="div1" style="margin-left: 120%;">
+			<h2 style="float: left;">발송 내용</h2>
+			<textarea id="smstext" placeholder="내용을 입력해주세요"
+				style="resize: none; height: 440px; width: 100%;"></textarea><br>
+			<button style="margin-top: 10px; height: 30px; float: right;" onclick="send();">전송하기</button>
+		</div>
+		</div> <!-- 전체 div -->
 
 		<!-- 항목 추가 -->
 		<div id="addlist" class="modal">
@@ -128,16 +149,6 @@ select, option{
 					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
 				<br>
 			</div>
-		</div>
-
-		<!-- 수신인 목록 -->
-		<div class="div1">
-			<h2 style="float: left;">수신인 목록</h2><br><br>
-			<button id="addpersonbtn" style="float: right;">+</button>
-			<br> <br>
-			<textarea id="persontext"
-				style="resize: none; width: 100%; height: 350px;" readonly></textarea>
-			<br> <h3 style="float: right;">인원 : </h3>
 		</div>
 
 		<!-- 대상 추가 -->
@@ -215,15 +226,6 @@ select, option{
 					style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
 				<br>
 			</div>
-		</div>
-
-		<!-- 발송 내용 -->
-		<div class="div1"
-			style="float: right; margin-right: 5%;">
-			<h2 style="float: left;">발송 내용</h2><br><br>
-			<textarea id="smstext" placeholder="내용을 입력해주세요"
-				style="resize: none; height: 350px; width: 100%;"></textarea><br>
-			<button style="margin-top: 10px; height: 25px; float: right;" onclick="send();">전송하기</button>
 		</div>
 	</section>
 	<footer> </footer>

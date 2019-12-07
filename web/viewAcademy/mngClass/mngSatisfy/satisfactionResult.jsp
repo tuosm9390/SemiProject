@@ -55,6 +55,10 @@ section button:hover {
 ul.accessibility{
 	height: 0px;
 }
+
+li{
+	list-style: decimal;
+}
 </style>
 </head>
 <body>
@@ -76,7 +80,7 @@ ul.accessibility{
 			<table align="center" class="resultTable">
 				<tr>
 					<td>
-						<li><label>수업 커리큘럼에 대한 만족도</label></li>
+						<li><label style="font-weight: bold;">수업 커리큘럼에 대한 만족도</label></li>
 					</td>
 					<td>
 						<div id="cursatis1"></div>
