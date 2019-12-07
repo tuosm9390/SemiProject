@@ -4,12 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
+body {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	background-size:85.9%;
+}
+
+tr {
+	background: none !important;
+}
+
 td {
-	background: white;
 	text-align: left !important;
+}
+
+pre {
+	background: white;
+	color: black;
 }
 
 input, select {
@@ -37,14 +50,14 @@ input[size] {
 }
 
 .outArea {
-	width: 75%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .acceptText {
 	width: 500px;
-	height: 200px;
+	height: 100px;
 	overflow: auto;
 	border: 1px solid lightgray;
 	border-radius: 5px;
@@ -84,6 +97,10 @@ input[size] {
 #address {
 	width: 500px;
 }
+
+fieldset {
+	width: 80%;
+}
 </style>
 </head>
 <body>
@@ -91,63 +108,65 @@ input[size] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 align="left" style="width: 150px; margin-left: 5%;">직원 등록</h2>
-		<div class="outArea">
-			<form action="" method="post">
-			<table class="table">
-				<tr>
-					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-					<td width="25%"><li>직원 ID</li></td>
-					<td width="30%">
-						<input type="text" name="userId" id="userId" placeholder="직원 ID 입력">
-						<button id="idCheck">중복 확인</button></td>
-				</tr>
-				<tr>
-					<td><li>이름</li></td>
-					<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력"></td>
-				</tr>
-				<tr>
-					<td><li>생년월일</li></td>
-					<td colspan="2"><input type="text" name="birth" id="datepicker" placeholder="생년월일 입력"></td>
-				</tr>
-				<tr>
-					<td><li>전화번호</li></td>
-					<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" placeholder="010"> - 
-					    			<input type="text" maxlength="4" size="4" name="tel2"> - 
-					    			<input type="text" maxlength="4" size="4" name="tel3"></td>
-				</tr>
-				<tr>
-					<td><li>담당업무</li></td>
-					<td colspan="2">
-						<select name="subject">
-							<option value="select">담당업무 선택</option>
-							<option value="korea">국어</option>
-							<option value="math">수학</option>
-							<option value="english">영어</option>
-							<option value="social">사회탐구</option>
-							<option value="science">과학탐구</option>
-							<option value="foreign">제2외국어</option>
-							<option value="desk">행정</option>
-							<option value="cram">입시</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-					<td><li>이메일</li></td>
-					<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>주소</li></td>
-					<td><input type="text" name="address" id="address" placeholder="주소 입력"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
-					<td>
-						<div class="acceptText">
-							<pre align="left">【 개인정보처리방침 】
+		<div align="center">
+      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　직원 등록　</h1></legend>
+         		<div class="outArea">
+					<form action="" method="post">
+					<table class="table">
+						<tr>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+							<td width="25%"><li>직원 ID</li></td>
+							<td width="30%">
+								<input type="text" name="userId" id="userId" placeholder="직원 ID 입력">
+								<button id="idCheck">중복 확인</button></td>
+						</tr>
+						<tr>
+							<td><li>이름</li></td>
+							<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력"></td>
+						</tr>
+						<tr>
+							<td><li>생년월일</li></td>
+							<td colspan="2"><input type="text" name="birth" id="datepicker" placeholder="생년월일 입력"></td>
+						</tr>
+						<tr>
+							<td><li>전화번호</li></td>
+							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" placeholder="010"> - 
+							    			<input type="text" maxlength="4" size="4" name="tel2"> - 
+							    			<input type="text" maxlength="4" size="4" name="tel3"></td>
+						</tr>
+						<tr>
+							<td><li>담당업무</li></td>
+							<td colspan="2">
+								<select name="subject">
+									<option value="select">담당업무 선택</option>
+									<option value="korea">국어</option>
+									<option value="math">수학</option>
+									<option value="english">영어</option>
+									<option value="social">사회탐구</option>
+									<option value="science">과학탐구</option>
+									<option value="foreign">제2외국어</option>
+									<option value="desk">행정</option>
+									<option value="cram">입시</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
+							<td><li>이메일</li></td>
+							<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>주소</li></td>
+							<td><input type="text" name="address" id="address" placeholder="주소 입력"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
+							<td>
+								<div class="acceptText" style="background:white;">
+									<pre align="left">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -235,32 +254,39 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 이 개인정보취급방침은 2011년 O월 OO일에 제정되었으며 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의 추가ㆍ삭제 및 수정이 있을 시에는 변경되는 개인정보취급방침을 시행하기 최소 7일전에 학원 홈페이지를 통해 변경이유 및 내용 등을 공지하도록 하겠습니다.
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일</pre>
-						</div>
-						<div align="right">
-							<input type="checkbox" name="accept" id="accept"><label for="accept">동의합니다.</label>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>급여 계약서</li> </td>
-					<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>경력 등 기타 서류</li></td>
-					<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
-				</tr>
-			</table>		
-			</form>
-			
-			<div class="btnArea" align="right">
-				<button class="bottomBtn" onclick="goList();">취소</button>
-				<button class="bottomBtn" onclick="doEnroll();">등록</button>
-			</div> <!-- btnArea end -->
-			<br>
-			
-		</div> <!-- outArea end -->
+								</div>
+								<div align="left">
+									<input type="checkbox" name="accept" id="accept"><label for="accept" style="color:red;">동의합니다.</label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>급여 계약서</li> </td>
+							<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>경력 등 기타 서류</li></td>
+							<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="2">
+								<div class="btnArea" align="right">
+									<button type="button" class="bottomBtn" onclick="goList();">취소</button>
+									<button type="button" class="bottomBtn" onclick="doEnroll();">등록</button>
+								</div> <!-- btnArea end -->
+							</td>
+						</tr>
+					</table>		
+					</form>
+				</div> <!-- outArea end -->
+         		
+         	</fieldset>
+         </div>
+		
+		
 		<script>
 			$(function(){
 				$("#imgBtn").click(function(){

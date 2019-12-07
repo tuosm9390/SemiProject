@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 .wrap {
 	margin: auto auto;
 	width: 100%;
 	padding: 30px;
+	padding-top: 5px;
 }
 
 .accordion {
@@ -120,6 +121,23 @@
 	display: inline;
 }
 
+.selectMonth {
+	border: none;
+	font-size: 30px;
+	height: 50px;
+}
+
+.nextBtn {
+	border:none;
+	color:green;
+}
+
+.nextBtn:focus, .nextBtn:hover {
+	border:none;
+	background: white;
+	color:red;
+}
+
 .actionBtn {
 	font-size: 15px;
 	display: inline;
@@ -179,6 +197,10 @@ table, th, td {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
+fieldset {
+	width: 16%;
+}
 </style>
 </head>
 <body>
@@ -186,21 +208,29 @@ table, th, td {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 align="left" style="width: 150px; margin-left: 5%;">수납 내역</h2>
+		<div align="center">
+	      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+	         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수납 내역　</h1></legend>
+	      </fieldset>
+	    </div>
 		<div class="outArea">
 		
 			<!-- 년/월 선택 부분 -->
 			<div align="center" class="monthArea">
-				<button class="month">◀</button>
-				<select class="month">
+				<button class="month nextBtn">◀</button>&nbsp;
+				<select class="month selectMonth">
 					<option>2019</option>
-				</select>
-				<select class="month">
+				</select> <label style="font-size:20px">년</label>
+				<select class="month selectMonth">
 					<% for(int i = 1; i < 13; i++) { %>
-					<option><%= i %></option>
+						<% if(i < 10) { %>
+						<option>0<%= i %></option>
+						<% } else { %>
+						<option><%= i %></option>
+						<% } %>
 					<% } %>
-				</select>
-				<button class="month">▶</button>
+				</select> <label style="font-size:20px">월</label>&nbsp;
+				<button class="month nextBtn">▶</button>
 			</div> <!-- monthArea end -->
 			
 			<!-- 환불규정 확인 버튼 / 미납자 모아보기 버튼 -->
@@ -208,6 +238,7 @@ table, th, td {
 				<div style="float:left;"><button id="refundRuleBtn">환불규정 확인</button></div>
 				<div style="float:right;"><button>미납자 모아보기</button></div>
 			</div> <!-- btnArea end -->
+			<br><br><hr width="90%" style="margin-right:40px;">
 			
 			<!-- 환불규정 모달 -->
 			<div id="refundRule" class="modal">

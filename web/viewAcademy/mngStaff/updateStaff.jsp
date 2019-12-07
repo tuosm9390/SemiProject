@@ -4,12 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
+body {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	background-size:85.9%;
+}
+
+tr {
+	background: none !important;
+}
+
 td {
-	background: white;
 	text-align: left !important;
+}
+
+label {
+	color: black;
 }
 
 input, select {
@@ -21,6 +33,7 @@ input, select {
 input[readonly], input[readonly]:focus {
 	border: none;
 	outline: none;
+	background: none;
 }
 
 input[type=file] {
@@ -38,7 +51,7 @@ input[size] {
 }
 
 .outArea {
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -90,6 +103,18 @@ input[size] {
 	background: red;
 	color: white;
 }
+
+#payBtn, #docBtn {
+	background: #f9f3f0;
+}
+
+#payBtn:hover, #docBtn:hover {
+	background: green;
+}
+
+fieldset {
+	width: 80%;
+}
 </style>
 </head>
 <body>
@@ -97,88 +122,93 @@ input[size] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 align="left" style="width: 150px; margin-left: 5%;">직원정보 수정</h2>
-		<div class="outArea">
-			<form action="" method="post">
-			<table class="table">
-				<tr>
-					<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-					<td width="20%"><li>직원 ID</li></td>
-					<td width="40%"><input type="text" name="userId" id="userId" value="KJH001205" readonly></td>
-					<td width="20%"></td>
-				</tr>
-				<tr>
-					<td><li>이름</li></td>
-					<td colspan="2"><input type="text" name="userName" id="userName" value="김진호"></td>
-				</tr>
-				<tr>
-					<td><li>생년월일</li></td>
-					<td colspan="2"><input type="text" name="birth" id="datepicker" value="2000.12.05." readonly></td>
-				</tr>
-				<tr>
-					<td><li>전화번호</li></td>
-					<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="010"> - 
-					    			<input type="text" maxlength="4" size="4" name="tel2" value="0000"> - 
-					    			<input type="text" maxlength="4" size="4" name="tel3" value="7771"></td>
-				</tr>
-				<tr>
-					<td><li>담당업무</li></td>
-					<td colspan="2">
-						<select name="subject">
-							<option value="select">담당업무 선택</option>
-							<option value="korea" selected>국어</option>
-							<option value="math">수학</option>
-							<option value="english">영어</option>
-							<option value="social">사회탐구</option>
-							<option value="science">과학탐구</option>
-							<option value="foreign">제2외국어</option>
-							<option value="desk">행정</option>
-							<option value="cram">입시</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-					<td><li>이메일</li></td>
-					<td colspan="2"><input type="email" name="email" id="email" value="kjh7771@gmail.com"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>주소</li></td>
-					<td colspan="2"><input type="text" name="address" id="address" value="강남구 역삼동 KH정보교육원 C class"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
-					<td colspan="2">
-						<div class="acceptText">Y</div>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>급여 계약서</li></td>
-					<td>20191205_김진호_급여_계약서.hwp　<button class="delete">삭제</button></td>
-					<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><li>경력 등 기타 서류</li></td>
-					<td>20191205_김진호_이력서.hwp　<button class="delete">삭제</button></td>
-					<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
-				</tr>
-			</table>		
-			</form>
-			
-			<div class="btnArea">
-				<button class="bottomBtn" id="deleteBtn">삭제</button>
-			</div>
-			<div class="btnArea" style="margin-left:80%;">
-				<button class="bottomBtn" onclick="doModify();">수정</button>
-				<button class="bottomBtn" onclick="goList();">목록</button>
-			</div> <!-- btnArea end -->
-			<br> <br>
-			
-		</div> <!-- outArea end -->
+		<div align="center">
+      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　정보 수정　</h1></legend>
+         		<div class="outArea">
+					<form action="" method="post">
+					<table class="table">
+						<tr>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+							<td width="20%"><li>직원 ID</li></td>
+							<td width="40%"><input type="text" name="userId" id="userId" value="KJH001205" readonly></td>
+							<td width="20%"></td>
+						</tr>
+						<tr>
+							<td><li>이름</li></td>
+							<td colspan="2"><input type="text" name="userName" id="userName" value="김진호"></td>
+						</tr>
+						<tr>
+							<td><li>생년월일</li></td>
+							<td colspan="2"><input type="text" name="birth" id="datepicker" value="2000.12.05." readonly></td>
+						</tr>
+						<tr>
+							<td><li>전화번호</li></td>
+							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="010"> - 
+							    			<input type="text" maxlength="4" size="4" name="tel2" value="0000"> - 
+							    			<input type="text" maxlength="4" size="4" name="tel3" value="7771"></td>
+						</tr>
+						<tr>
+							<td><li>담당업무</li></td>
+							<td colspan="2">
+								<select name="subject">
+									<option value="select">담당업무 선택</option>
+									<option value="korea" selected>국어</option>
+									<option value="math">수학</option>
+									<option value="english">영어</option>
+									<option value="social">사회탐구</option>
+									<option value="science">과학탐구</option>
+									<option value="foreign">제2외국어</option>
+									<option value="desk">행정</option>
+									<option value="cram">입시</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
+							<td><li>이메일</li></td>
+							<td colspan="2"><input type="email" name="email" id="email" value="kjh7771@gmail.com"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>주소</li></td>
+							<td colspan="2"><input type="text" name="address" id="address" value="강남구 역삼동 KH정보교육원 C class"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
+							<td colspan="2">
+								<div class="acceptText"><label>Y</label></div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>급여 계약서</li></td>
+							<td><label>20191205_김진호_급여_계약서.hwp</label>　<button class="delete">삭제</button></td>
+							<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><li>경력 등 기타 서류</li></td>
+							<td><label>20191205_김진호_이력서.hwp</label>　<button class="delete">삭제</button></td>
+							<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="3">
+								<div class="btnArea" style="margin-left:70%;">
+									<button type="button" class="bottomBtn" id="deleteBtn">삭제</button>
+									<button type="button" class="bottomBtn" onclick="doModify();">수정</button>
+									<button type="button" class="bottomBtn" onclick="goList();">취소</button>
+								</div> <!-- btnArea end -->
+							</td>
+						</tr>
+					</table>		
+					</form>
+				</div> <!-- outArea end -->
+         		
+         	</fieldset>
+         </div>
 		<script>
 			$(function(){
 				$("#imgBtn").click(function(){
