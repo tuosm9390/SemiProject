@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
@@ -42,6 +42,10 @@
 input[type=file] {
 	display: none;
 }
+
+fieldset {
+	width:16%;
+}
 </style>
 </head>
 <body>
@@ -49,7 +53,11 @@ input[type=file] {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 align="left" style="width: 150px; margin-left: 5%;">전체 직원</h2>
+		<div align="center">
+      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　전체 직원　</h1></legend>
+      		</fieldset>
+      	</div>
 		<div class="btnArea">
 			<button class="enrollStaff" id="enrollPage">직원 등록</button>
 			<button class="enrollStaff" id="enrollExcel">엑셀로 직원 등록</button>
