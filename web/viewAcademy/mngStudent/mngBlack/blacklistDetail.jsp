@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 .detailArea {
 	display: table-caption;
@@ -66,7 +66,7 @@
 .bInfo {text-align:center;}
 .bInfo .btitle{text-align:left; font-size:20px;font-weight: bold;}
 .bInfo .bDetail .bContent {text-align:left;}
-.bInfo .bTable{width:600px;}
+.bInfo .bTable{width:90%;margin:0 auto;}
 .bInfo .bTable td{background:snow;}
 .bInfo .blacklist_content{}
 .btnArea{padding: 24px 0 13px;}
@@ -74,18 +74,27 @@
 </style>
 </head>
 <body>
-	<%@ include file="../../common/menubar.jsp" %>
-	<div class="bInfo">
-		<p class="btitle">블랙리스트 조회</p>
+	<header>
+		<%@ include file="../../common/menubar.jsp" %>	
+	</header>
+	<section>
+		<div class="bInfo">
+			<div align="center">
+		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:90%;">
+		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트 조회　</h1></legend>
+		      </fieldset>
+	    	</div>
 		<div class="bTable">
 			<table class="table">
 				<tr>
+					<th>학생명</th>
 					<th>학교</th>
 					<th>학년</th>
 					<th>연락처</th>
 					<th>학부모연락처</th>					
 				</tr>
 				<tr>
+					<td>김지원</td>
 					<td>KH중학교</td>
 					<td>2학년</td>
 					<td>010-5555-5555</td>
@@ -115,10 +124,6 @@
 							<div class="dCtn tName">
 								<label class="dTit">상담자 이름</label>
 								<input type="text" class="inputCons" value="서범수" readonly>
-							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
 							</div>
 						</div>
 						<div class="dArea dArea2">
@@ -157,6 +162,8 @@
 		</div>
 		
 	</div> <!-- 블랙리스트 전체정보  end-->
+	</section>
+
 	
 </body>
 </html>

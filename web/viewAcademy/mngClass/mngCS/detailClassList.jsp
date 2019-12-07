@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 	.detailClass {
 		width:1080px;
@@ -53,6 +53,30 @@
 					<li>강의실 : 2층 D강의실</li>
 					<li>제한 인원 : 30명</li>
 				</ul>
+					<div class="bInfo">
+			<div align="center">
+		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:90%;">
+		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수업정보　</h1></legend>
+		      </fieldset>
+	    	</div>
+		<div class="bTable">
+			<table class="table">
+				<tr>
+					<th>담당강사</th>
+					<th>대상학생</th>
+					<th>개설 기간</th>
+					<th>강의실</th>
+					<th>제한인원</th>					
+				</tr>
+				<tr>
+					<td>김진호</td>
+					<td>중학교 1학년</td>
+					<td>2019.03.02 ~ 2019.06.17</td>
+					<td>2층 D강의실</td>
+					<td>30명</td>
+				</tr>
+			</table>
+		</div> <!-- 블랙리스트 정보 end -->	
 			</div>
 			<div class="cArea allStudentList" align="center">
 				<h3>전체 학생 목록</h3>

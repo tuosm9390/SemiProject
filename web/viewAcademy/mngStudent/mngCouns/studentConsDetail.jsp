@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 .wrap {
 	position: absolute;
@@ -20,6 +20,7 @@
 	display: block;
 	position: relative;
 	width: 100%;
+	padding-inline-start: 0;
 }
 
 .accordion__item {
@@ -192,13 +193,22 @@
 .dArea .dTit{display: block;padding-bottom: 5px;font-weight: bold;font-size: 15px;}
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 24px 0 13px;}
+.names{display:flex;}
+.names .dCtn.tName{margin-right:160px;}
+.dArea.dArea2{display:flex;}
+.dArea.dArea2 .dCtn.consDate{margin-right:160px;}
+
 </style>
 </head>
 <body>
 	<%@ include file="../../common/menubar.jsp"%>
-
-	<div class="wrap">
-		<h2 align="center">학생 상담 리스트</h2>
+	<section>
+		<div class="wrap">
+		<div align="center">
+      		<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　상담일지　</h1></legend>
+      		</fieldset>
+      	</div>
 		<ul class="accordion">
 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
@@ -214,19 +224,22 @@
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
+							<div class="names">
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
-							</div>
+
 						</div>
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
@@ -275,19 +288,21 @@
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
-							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
+							<div class="names">
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
 						</div>
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
@@ -330,19 +345,21 @@
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
-							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
+							<div class="names">
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
 						</div>
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
@@ -385,19 +402,21 @@
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
-							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
+							<div class="names">
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
 						</div>
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
@@ -440,19 +459,21 @@
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
-							<div class="dCtn tName">
-								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
-							</div>
-							<div class="dCtn sName">
-								<label class="dTit">상담학생명</label>
-								<input type="text" class="inputCons" value="김지원" readonly>
+							<div class="names">
+								<div class="dCtn tName">
+									<label class="dTit">상담자 이름</label>
+									<input type="text" class="inputCons" value="서범수" readonly>
+								</div>
+								<div class="dCtn sName">
+									<label class="dTit">상담학생명</label>
+									<input type="text" class="inputCons" value="김지원" readonly>
+								</div>
 							</div>
 						</div>
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
@@ -482,8 +503,9 @@
 					</div> <!-- btnArea -->
 				</form></li>
 		</ul>
-
 	</div>
+	</section>
+
 	<script>
 		$(function() {
 			$('.accordion').find('.accordion__title').click(function() {
@@ -497,6 +519,27 @@
 				$('.accordion__title').not($(this)).removeClass('active');
 			});
 		});
+		
+		//DatePicker
+		$.datepicker.setDefaults({
+    		dateFormat: 'yy-mm-dd',
+    		prevText: '이전 달',
+    		nextText: '다음 달',
+    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    		showMonthAfterYear: true,
+    		changeMonth : true,
+			changeYear : true,
+			constrainInput: false,
+    		yearSuffix: '년'
+  		});
+		$(function() {
+			$("#from").datepicker();
+		});
+		
 	</script>
 </body>
 </html>
