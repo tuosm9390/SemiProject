@@ -29,55 +29,49 @@
 	.detailClass button:hover {
 		background:green; color:white;
 	}
-	.detailClass .classListArea{display:flex;margin-top: 250px;margin-right: 100px;}
-	.cArea{margin: 60px auto 0 auto;}
-	.cArea.addDel{margin:185px 0 0 0;}
+	.detailClass .classListArea{display:flex;}
+	.cArea{margin:0 auto;}
+	.cArea.addDel{margin:auto 0;}
 	.classListArea li {padding:2px;}
-	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0; width:220px; height:250px;border-radius: 10px;}
+	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0; width:220px; height:350px;border-radius: 10px;}
 	.detailClass .classListArea .inputSrch{height:30px;border-radius: 20px;text-align:center;border:1px solid #333;}
-	
+	.cArea h3 {margin:10px auto;}
 </style>
 </head>
 <!-- <body> -->
 <body>
-	<%@ include file="../../common/menubar.jsp" %>
-	<div class="detailClass">
+	<header>
+		<%@ include file="../../common/menubar.jsp" %>	
+	</header>
+	<section>
+		<div class="detailClass">
 	<form id="classForm" action="" method="post">
-		<div class="classListArea">
-			<div class="classInfo">
-				<h1>수학기초반</h1>
-				<ul>
-					<li>담당강사 : 김진호</li>
-					<li>대상학생 : 중학교 1학년</li>
-					<li>개설 기간 : 2019.03.02 ~ 2019.06.17</li>
-					<li>강의실 : 2층 D강의실</li>
-					<li>제한 인원 : 30명</li>
-				</ul>
-					<div class="bInfo">
+		<div class="classInfo">
 			<div align="center">
-		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:90%;">
-		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수업정보　</h1></legend>
+		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
+		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수학기초반　</h1></legend>
 		      </fieldset>
 	    	</div>
-		<div class="bTable">
-			<table class="table">
-				<tr>
-					<th>담당강사</th>
-					<th>대상학생</th>
-					<th>개설 기간</th>
-					<th>강의실</th>
-					<th>제한인원</th>					
-				</tr>
-				<tr>
-					<td>김진호</td>
-					<td>중학교 1학년</td>
-					<td>2019.03.02 ~ 2019.06.17</td>
-					<td>2층 D강의실</td>
-					<td>30명</td>
-				</tr>
-			</table>
-		</div> <!-- 블랙리스트 정보 end -->	
-			</div>
+   			<div class="bTable">
+				<table class="table">
+					<tr>
+						<th>담당강사</th>
+						<th>대상학생</th>
+						<th>개설 기간</th>
+						<th>강의실</th>
+						<th>제한인원</th>					
+					</tr>
+					<tr>
+						<td>김진호</td>
+						<td>중학교 1학년</td>
+						<td>2019.03.02 ~ 2019.06.17</td>
+						<td>2층 D강의실</td>
+						<td>30명</td>
+					</tr>
+				</table>
+			</div> <!-- 블랙리스트 정보 end -->	
+		</div>
+		<div class="classListArea">
 			<div class="cArea allStudentList" align="center">
 				<h3>전체 학생 목록</h3>
 				<div class="studentList">
@@ -118,6 +112,7 @@
 		</div>
 	</form>
 	</div>
-	
+	</section>
+
 </body>
 </html>

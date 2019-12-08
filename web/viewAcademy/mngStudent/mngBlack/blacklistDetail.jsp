@@ -6,51 +6,16 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-.detailArea {
-	display: table-caption;
-}
-.inputCons {
-	resize:none;
-}
-.btnArea {
-	text-align:center;
-}
-.btnArea button{
-	background:white;
-	display:inline-block;
-	margin:0 2px;
-	width: 80px;
-    height: 25px;
-}
-.btnArea .updateCons {
-	display:none;
-}
-
-.updateBtn {
-	display:inline-block;
-	margin:0 2px;
-	width: 80px;
-    height: 25px;
-	line-height: 22px;
-	text-decoration: none;
-	border: 1px solid green;
-	border-radius: 5px;
-	background: white;
-	color: black;
-	position: relative;
-	padding: 1px 6px;
-}
-
-.updateBtn:focus {
-	outline: none;
-}
-
-.updateBtn:hover {
-	cursor: pointer;
-	background: green;
-	border: 1px solid green;
-	color: white;
-}
+.detailArea {display: table-caption;}
+.inputCons {resize:none;}
+.btnArea {text-align:center;}
+.btnArea button{background:white;display:inline-block;margin:0 2px;width: 80px;
+    height: 25px;}
+.btnArea .updateCons {display:none;}
+.updateBtn {display:inline-block;margin:0 2px;width: 80px;
+    height: 25px;line-height: 22px;text-decoration: none;border: 1px solid green;border-radius: 5px;background: white;color: black;position: relative;padding: 1px 6px;}
+.updateBtn:focus {outline: none;}
+.updateBtn:hover {cursor: pointer;background: green;border: 1px solid green;color: white;}
 .detailArea{display: block;width: 100%;}
 .dArea .dCtn{padding-bottom: 20px;}
 .dArea .dCtn .inputCons{padding: 4px;}
@@ -80,7 +45,7 @@
 	<section>
 		<div class="bInfo">
 			<div align="center">
-		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:90%;">
+		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:25%;">
 		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트 조회　</h1></legend>
 		      </fieldset>
 	    	</div>
