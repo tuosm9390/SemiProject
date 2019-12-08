@@ -82,7 +82,7 @@
     </div>
 	<div class="listArea">
 	<div class="btnArea">
-		<select style="display:inline; float:left; margin-right:10px">
+		<select style="display:inline; float:left; margin-right:10px; border-radius:5px;">
 			<option value="" selected disabled hidden>년도별 검색</option>
 			<option value="year">2019</option>
 			<option value="year">2018</option>

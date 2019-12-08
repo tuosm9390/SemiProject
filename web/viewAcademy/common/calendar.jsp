@@ -3,8 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+padding:0 !important;
+}
+
+button, button:focus {
+z-index:0 !important;
+}
+</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
     <link rel=" shortcut icon" href="image/favicon.ico">
 
     <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />

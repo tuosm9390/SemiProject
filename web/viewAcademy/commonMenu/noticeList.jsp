@@ -34,12 +34,12 @@
       </fieldset>
       </div>
       <div class="searchArea">
-            <select id="searchCondition" name="searchCondition">
+            <select id="searchCondition" name="searchCondition" style="border-radius:5px;">
                <option value="writer">작성자</option>
                <option value="title">제목</option>
                <option value="content">내용</option>
-            </select>
-            <input type="search">
+            </select> &nbsp;&nbsp;
+            <input type="search" style="border:1px solid lightgray; border-radius:5px;"> &nbsp;&nbsp;
             <button type="submit">검색하기</button>
       </div> <!-- searchArea end -->
       
@@ -83,7 +83,7 @@
          </table>
       </div>
       <div id="write">
-         <button type="button" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
+         <button type="button" onclick="location.href='noticeInsertForm.jsp'" style="font-size:18px;">글쓰기</button>
       </div>
       <script>
       $(function(){

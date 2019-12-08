@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 td {
    font-weight: bold;
@@ -41,6 +41,8 @@ td:first-child {
 .btns {
    display: inline-block;
    float: right;
+   margin-left: 10px;
+   font-size: 18px;
   
 }
 
@@ -438,6 +440,7 @@ td {
                <button type="submit" class="btns">적용하기</button>
                <button type="reset" class="btns">기본값으로 변경</button>
                </div>
+               <br> <br>
             </form>
          </div>
       </article>

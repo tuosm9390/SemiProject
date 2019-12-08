@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
 <style>
 	.background {
@@ -36,7 +36,7 @@
 	ul { list-style:none; margin-right:25px;}
 	input {border: 1px solid lightgray; border-radius: 5px;}
 	
-	#userId:hover { border:2px solid green; }
+	#memberId:hover { border:2px solid green; }
 	#password:hover { border:2px solid green; }
 	#loginBtn { width:250px; height:40px; background:white; border:1px solid green; border-radius:5px/5px;}
 	#loginBtn:hover { background:green; color:white; }

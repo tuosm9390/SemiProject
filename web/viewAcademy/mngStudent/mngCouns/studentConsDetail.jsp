@@ -11,7 +11,6 @@
 	width: 100%;
 	padding: 30px;
 	max-width: 700px;
-	top: 25%;
 	left: 50%;
 	transform: translateX(-50%);
 }

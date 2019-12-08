@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 body {
 		background:url("/hagong/images/backModifySample.png") no-repeat top;
