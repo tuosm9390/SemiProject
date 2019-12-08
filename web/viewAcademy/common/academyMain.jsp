@@ -7,15 +7,18 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>관계자 메인</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+<title>HAGONG</title>
 <style>
 body {
 	background: url("/hagong/images/mainImage.jpg") no-repeat top;
 	background-size: 86%;
+	font-family: "Do Hyeon";
 }
 
 .totalArea div {
 	display: inline-block;
+	font-size: 20px;
 }
 
 .totalStaff {
