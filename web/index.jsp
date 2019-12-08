@@ -14,7 +14,7 @@
 		<!-- 관계자 메뉴 -->
 		<%-- <%@ include file="../viewAcademy/common/academyMain.jsp" %> --%>
 		<!-- 고객 메뉴 -->
-		<%-- <%@ include file="../viewClient/common/menubar.jsp"%> --%>
+		<%-- <%@ include file="../viewClient/common/clientMain.jsp"%> --%>
 	</header>
 	<section>
 	</section>

@@ -2,163 +2,160 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<title>HAGONG</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
-		<meta name="keywords" content="Sticky Table Headers Revisited" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
+<meta charset="UTF-8" />
+<title>HAGONG</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-/* 모달 배경 */
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* 모달 내부 상자 */
+	.listArea {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	/* 모달 배경 */
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto; 
+		background-color: rgb(0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	/* 모달 내부 상자 */
 	.modal-content {
 		background-color: #fefefe;
-		margin: 13% auto; /* 15% from the top and centered */
+		margin: 13% auto;
 		padding: 20px;
 		border: 1px solid #888;
 		width: 30%;
-		background-color: #fefefe;
-		/* Could be more or less, depending on screen size */
+		background-color: #fefefe;	
 	}
-/* 모달 닫기 버튼 */
-#xBtn {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
+	/* 모달 닫기 버튼 */
+	#xBtn {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+		
+	#xBtn:hover, #xBtn:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
 	
-#xBtn:hover, #xBtn:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-ul {
-	list-style:none;
-	font-size: 20px;
-}
-
-ul > li {
-	display:block;
-	padding-bottom: 20px;
-}
-
-
-
+	ul {
+		list-style:none;
+		font-size: 20px;
+	}
+	
+	ul > li {
+		display:block;
+		padding-bottom: 20px;
+	}
+	
+	.btnArea > button {
+		font-size: 18px;
+		margin-left: 1%;
+		margin-bottom: 1%;
+		font-family: "Nanum Gothic";
+		font-weight: bold;
+		border: 2px solid green;
+		display: inline;
+	}
 </style>
 </head>
 <body>			
-			<header>
+<header>
 <%@ include file="/viewAcademy/common/menubar.jsp" %>
-			</header>
-		<div class="container">
-					<!--  -->
-					<div align="center">
-    					  <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
-        						 <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　연간계획　</h1></legend>
-        						 
-    	 				 </fieldset>
-     				 </div>
-					<!--  -->
-			<!-- Top Navigation -->
-			<section>
-				<div class="head">
-					<div class="btnArea">
-					<select style="display:inline; float:left; margin-right:10px">
-						<option value="" selected disabled hidden>년도별 검색</option>
-						<option value="year">2019</option>
-						<option value="year">2018</option>
-					</select>
-					<button id="addRow" style="display:inline; float:left">행 추가</button>
-					<button id="deleteBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:right">삭제</button>
-					<button id="writeBtn" style="margin:10px; border:1px solid green; background:white; color:black; display:inline; float:right" onclick="writePlan();">입력 및 수정</button>
-					</div> <!-- btnArea end -->
-				</div> <!-- head end -->
-			<div class="body">
-				<table id="planTableArea" class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th>1월</th>
-							<th>2월</th>
-							<th>3월</th>
-							<th>4월</th>
-							<th>5월</th>
-							<th>6월</th>
-							<th>7월</th>
-							<th>8월</th>
-							<th>9월</th>
-							<th>10월</th>
-							<th>11월</th>
-							<th>12월</th>
-					</thead>
-					<tbody id="tbody">
-						<tr>
-							<td>주요 이슈</td>
-							<td>이달의 주요 이슈 컬럼 내에 내용이 길어지면 어떻게 될까?</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-							<td>이달의 주요 이슈</td>
-						</tr>
-						<tr>
-							<td>입시</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-							<td>이달의 입시계획</td>
-						</tr>
-						<tr>
-							<td>중등</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-							<td>이달의 중등계획</td>
-						</tr>
+</header>
+<section>
+	<div align="center">
+    	<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
+        	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획　</h1></legend>
+   	    </fieldset>
+    </div>
+	<div class="listArea">
+	<div class="btnArea">
+		<select style="display:inline; float:left; margin-right:10px">
+			<option value="" selected disabled hidden>년도별 검색</option>
+			<option value="year">2019</option>
+			<option value="year">2018</option>
+		</select>
+		<button id="addRow" style="float:left">행 추가</button>
+		<button id="deleteBtn" style="float:right">삭제</button>
+		<button id="writeBtn" style="float:right">입력 및 수정</button>
+	</div> <!-- btnArea end -->
+	<div class="body">
+		<table id="planTableArea" class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>1월</th>
+					<th>2월</th>
+					<th>3월</th>
+					<th>4월</th>
+					<th>5월</th>
+					<th>6월</th>
+					<th>7월</th>
+					<th>8월</th>
+					<th>9월</th>
+					<th>10월</th>
+					<th>11월</th>
+					<th>12월</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				<tr>
+					<td>주요 이슈</td>
+					<td>이달의 주요 이슈 컬럼 내에 내용이 길어지면 어떻게 될까?</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+				</tr>
+				<tr>
+					<td>입시</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+				</tr>
+				<tr>
+					<td>중등</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+				</tr>
 						<tr>
 							<td>고등</td>
 							<td>이달의 고등계획</td>
@@ -207,7 +204,7 @@ ul > li {
 					</tbody>
 				</table>
 			</div> <!-- body end -->
-		</div> <!-- /container -->
+		</div>
 
 		<!-- 연간계획 삭제 -->
 		<div id="deleteArea" class="modal">
@@ -243,22 +240,18 @@ ul > li {
 					</form>
 				</div> <!-- monthCheckArea end -->
 				<button id="cancelbtn"
-					style="margin-left: 100px; width: 100px; height: 30px; float: left; display:inline;" !important>취소</button>
+					style="margin-left: 100px; width: 100px; height: 30px; float: left; display:inline;">취소</button>
 				<button id="okbtn"
-					style="margin-right: 100px; float: right; width: 100px; height: 30px; display:inline;" !important>확인</button>
+					style="margin-right: 100px; float: right; width: 100px; height: 30px; display:inline;">확인</button>
 				<br>
 			</div>
 		</div> <!-- deleteArea end -->
-		</section>
-		<footer>
-		</footer>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="js/jquery.stickyheader.js"></script>
 		<script>
-			function writePlan(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
-			}
+			$(function(){
+				$("#writeBtn").click(function(){
+					location.href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
+				});
+			});		
 			
 			$(function(){
 				var deleteBtn = document.getElementById('deleteBtn');
@@ -302,10 +295,9 @@ ul > li {
 						"<tr><td>aaaaaaaaa</td ><td>asdasd</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 					}
 				})
-			})
-			
-				
-			
+			});		
 		</script>
+</section>
+<footer></footer>	
 </body>
 </html>

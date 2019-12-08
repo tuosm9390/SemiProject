@@ -25,8 +25,8 @@
       margin-left:auto;
       margin-right:auto;
       border-radius: 10px/10px;
-        box-shadow:2px 2px 2px 2px #999;
-        font-family:"Nanum Gothic Coding"; */
+      box-shadow:2px 2px 2px 2px #999;
+      font-family:"Nanum Gothic Coding";
    }
    
    #container-footer {
@@ -64,7 +64,7 @@
          
          </tr>
          <tr>
-            <td colspan="2"><label id="checkPwd" style="display:none; background:pink; color:red">비밀번호가 일치하지 않습니다.</label></td>
+            <td colspan="2" align="center"><label id="checkPwd" style="display:none; background:pink; color:red">비밀번호가 일치하지 않습니다.</label></td>
          </tr>
       </table>
    </form>
