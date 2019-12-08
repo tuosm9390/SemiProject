@@ -46,7 +46,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/viewAcademy/common/menubar.jsp" %>
+	<%@ include file="/viewClient/common/menubar.jsp" %>
 	<div class="upperArea">
 		<div class="satisfyArea">
 			<h3>만족도 조사</h3>

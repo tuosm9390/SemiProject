@@ -6,17 +6,16 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 	body {
 		font-family: "Nanum Gothic";
 	}
-	#head>button, input {
-		float: right;
-	}
 	
-	#head>select {
-		float: left;
+	.listArea {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	
 	.classDetailBottom > button {
@@ -43,7 +42,7 @@
 		margin: 13% auto; /* 15% from the top and centered */
 		padding: 40px;
 		border: 1px solid #888;
-		width: 40%;
+		width: 35%;
 		background-color: #fefefe;
 		/* Could be more or less, depending on screen size */
 	}
@@ -60,30 +59,63 @@
 		text-decoration: none;
 		cursor: pointer;
 	}
-	#infoModal td {
-		padding:15px;
-			
-	}
-	/* #infoModal td:nth-child(1) {
-		text-align:right;
-	}
-	#infoModal td:nth-child(2) {
-		text-align:left;
-	} */
 	
+	#modalTable td {
+		padding: 10px;
+		border: 1px solid lightgray;
+		text-align: center;		
+	}
+	
+	#modalTable td {
+		text-weight: bold;
+	}
+	
+	#modalBtnTable {
+		margin-top: 20px;
+	}
+	
+	fieldset {
+		width:16%;
+	}
+	
+	#searchBtn, #writeBtn, #classroomBtn {
+		font-size: 18px;
+		margin-left: 1%;
+		margin-bottom: 1%;
+		font-family: "Nanum Gothic";
+		font-weight: bold;
+		border: 2px solid green;
+		display: inline;
+		float: right;
+	}
+	
+	#searchBtn:hover, #writeBtn:hover, #classroomBtn:hover {
+		cursor: pointer;
+		background: green;
+		border: 2px solid green;
+		color: white;
+		display: inline;
+	}
 </style>
 </head>
 <body>
-	<%@ include file="../../common/menubar.jsp" %>
-	<div id="head">
-		<h2>강좌 정보 관리</h2>
+	<header>
+		<%@ include file="../../common/menubar.jsp" %>
+	</header>
+	<section>
+	<div class="listArea">
+		<div align="center">
+      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;강좌 관리&nbsp;</h1></legend>
+      		</fieldset>
+      	</div>
 		<select>
 			<option value="" selected disabled hidden>기간별 검색</option>
 			<option value="year">2019</option>
 			<option value="year">2018</option>
 		</select>
-		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
-		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
+		<button id="writeBtn" onclick="location.href='insertClassInfo.jsp'">입력</button>
+		<button id="searchBtn">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
 				<select style="float:right">
 			<option value="" selected disabled hidden>조건별 검색</option>
@@ -91,8 +123,7 @@
 			<option name="searchClassCondition">강좌명</option>
 			<option name="searchClassCondition">담당 강사</option>
 		</select>
-		<form>
-			<table id="classInfoTable" class="table">
+			<table class="classInfoTable table">
 				<thead>
 					<tr>
 						<th>No.</th>
@@ -105,151 +136,79 @@
 					</tr>
 				</thead>
 				<tbody>
+					<% for(int i=0; i<10; i++) { %>
 					<tr>
-						<td>1</td>
+						<td><%= i+1 %></td>
 						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
+						<td>수학 기초반1</td>
+						<td>김상찬</td>
+						<td>중1</td>
+						<td>30명</td>
 						<td>2019.12.06~2020.02.28</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>수학</td>
-						<td class="user-email" >수학 기초반1</td>
-						<td class="user-name">김상찬</td>
-						<td class="user-phone">중1</td>
-						<td class="user-mobile">30명</td>
-						<td>2019.12.06~2020.02.28</td>
-					</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</form>
-		<button>강의실 관리</button>
-	</div>
-	
-	<!-- 모달 -->
-	<div id="detailClassInfo" class="modal">
+		<button id="classroomBtn" style="margin-bottom:3%;">강의실 관리</button>
+	</div> <!-- listArea end -->
 
+	<!-- 강좌 상세정보 모달 -->
+	<div id="detailClassInfo" class="modal">
 		<div class="modal-content" align="center">
 			<span id="xBtn">&times;</span>
 			<h2>강좌 정보 확인</h2>
-			<div class="classDetail">
-				<form>
-					<table id="infoModal">
-						<tr>
-							<td width="200px">과목 : </td><td width="300px">국어</td>
-						</tr>
-						<tr>
-							<td>강좌명 : </td><td>국어의 숲</td>
-						</tr>
-						<tr>
-							<td>담당 강사 : </td><td>김상찬</td>
-						</tr>
-						<tr>
-							<td>대상 학생 : </td><td>고등국어 / 3학년</td>
-						</tr>
-						<tr>
-							<td>정원 : </td><td>30명</td>
-						</tr>
-						<tr>
-							<td>기간 : </td><td>2019.12.01 ~ 2020.02.28</td>
-						</tr>
-						<tr>
-							<td>강의 시간 : </td><td>15:00 ~ 17:00</td>
-						</tr>
-						<tr>
-							<td>수업료 : </td><td>300,000원</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-							<button id="deleteBtn" style="display:inline; margin-left:20px; width: 100px; height: 30px;">삭제</button>
-							<button type="button" id="updateBtn" style="display:inline; width: 100px; height: 30px;">수정</button>
-							</td>
-						</tr>
-					</table>
-				</form>
-				
-			</div> <!-- classDetail end -->
+			<table id="modalTable">
+				<tr>
+					<td width="100px">과목</td>
+					<td width="250px">국어</td>
+				</tr>
+				<tr>
+					<td>강좌명</td>
+					<td>국어의 숲</td>
+				</tr>
+				<tr>
+					<td>담당 강사</td>
+					<td>김상찬</td>
+				</tr>
+				<tr>
+					<td>대상 학생</td>
+					<td>고등국어 / 3학년</td>
+				</tr>
+				<tr>
+					<td>정원</td>
+					<td>30명</td>
+				</tr>
+				<tr>
+					<td>기간</td>
+					<td>2019.12.01 ~ 2020.02.28</td>
+				</tr>
+				<tr>
+					<td>강의 시간</td>
+					<td>15:00 ~ 17:00</td>
+				</tr>
+				<tr>
+					<td>수업료</td>
+					<td>300,000원</td>
+				</tr>
+			</table>
+			<table id="modalBtnTable">
+				<tr>
+					<td colspan="2">
+						<button id="deleteBtn"
+							style="display: inline; margin-left: 20px; width: 100px; height: 30px;">삭제</button>
+						<button type="button" id="updateBtn"
+							style="display: inline; width: 100px; height: 30px;">수정</button>
+					</td>
+				</tr>
+			</table>
 		</div>
-	</div> <!-- detailClassInfo end -->
-	
-	<script>
+	</div>
+	<!-- detailClassInfo end -->
+
+		<script>
 		$(function(){
-			$("#classInfoTable td").mouseenter(function(){
+			$(".classInfoTable td").mouseenter(function(){
 				$(this).parent().css("cursor","pointer");
 			}).click(function(){
 				<%-- var num = $(this).parent().children().eq(0).text();
@@ -266,7 +225,27 @@
 					modal.style.display = "none";
 				}
 				deleteBtn.onclick = function() {
-					//딜리트 서블릿으로 이동 후 결과에 따라 페이지 요청
+					var form = document.getElementById("classInfo");
+			
+					swal({
+						title: "강좌 삭제",
+						text: "강좌 정보를 영구적으로 삭제하시겠습니까?",
+						icon: "warning",
+			    		buttons : [ "취소", "삭제" ],
+			    		dangerMode: true,
+			    	}).then(function(isConfirm) {
+			    		if(isConfirm) {
+			    			console.log("삭제가 먼저 되고 swal 떠야돼");
+			    			//딜리트 서블릿으로 이동 후 결과에 따라 페이지 요청
+			    			swal ({
+			    				title: "삭제되었습니다.",
+			    				icon: "success"
+			    			})
+			    		}else {
+			    			swal ("강좌 삭제가 취소되었습니다.");
+			    		}
+			    	});
+					
 					modal.style.display = "none";
 					
 				}
@@ -278,9 +257,10 @@
 				}
 
 			});
-			
-			
+	
 		});
 	</script>
+	</section>
+	<footer></footer>
 </body>
 </html>

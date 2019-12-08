@@ -28,12 +28,12 @@ public class LoginServlet extends HttpServlet {
 		m.setMemberId(memberId);
 		m.setMemberPwd(password);
 		
-		Member loginMember = new MemberService().loginCheck(m);
+		Member loginUser = new MemberService().loginCheck(m);
 	
 		String page = "";
 		
-		if(loginMember != null) {
-			request.getSession().setAttribute("loginMember", loginMember);
+		if(loginUser != null) {
+			request.getSession().setAttribute("loginUser", loginUser);
 			response.sendRedirect(request.getContextPath()+"/viewAcademy/common/academyMain.jsp");
 		}else {
 			//로그인 실패 시 팝업창..
