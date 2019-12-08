@@ -38,16 +38,20 @@
 	padding: 0px 50px 0 20px;
 	font-size: .875em;
 	font-weight: 500;
-	color: #333;
+	color: lightgray;
 	border-bottom: 1px solid #eee;
 	overflow: hidden;
 	transition: background-color .2s;
 	text-decoration: none;
 	display: block;
+	background:green;
+	opacity:50%;
+	border-radius:10px;
 }
 
 .accordion__title:hover {
 	background-color: #fafafa;
+	color:black;
 }
 
 .accordion__title.active {
@@ -196,6 +200,7 @@ table, th, td {
 	border: 1px solid lightgray;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	text-align: center;
 }
 
 fieldset {
@@ -316,9 +321,9 @@ fieldset {
 							<div class="tableArea">
 								<table class="table" style="width:100%; float:left;">
 									<tr>
-										<th><input type="checkbox" class="selectAll"><label for="selectAll">전체선택</label></th>
-										<th>학생 이름</th>
+										<th width="8%"><input type="checkbox" class="selectAll"><label for="selectAll">전체선택</label></th>
 										<th>학생 ID</th>
+										<th>학생 이름</th>
 										<th>청구 금액</th>
 										<th>납부 여부</th>
 										<th>상세</th>
@@ -326,8 +331,8 @@ fieldset {
 									<% for(int k = 0; k < 10; k++) { %>
 									<tr>
 										<td><input type="checkbox" class="selectOne"></td>
-										<td>남윤진</td>
 										<td>NYJ970708</td>
+										<td>남윤진</td>
 										<td>300,000원</td>
 										<td>미납</td>
 										<td><label style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
@@ -459,13 +464,20 @@ fieldset {
 			$(function() {
 				//아코디언 스크립트
 				$('.accordion').find('.accordion__title').click(function() {
+					//$('.accordion__title').css({"background":"coral", "opacity":"100%", "color":"white"});
 					// Adds active class
-					$(this).toggleClass('active');
 					// Expand or collapse this panel
 					$(this).next().slideToggle('fast');
 					// Removes active class from other titles
 					$('.accordion__title').not($(this)).removeClass('active');
+					//$('.accordion__title').not($(this)).css({"background":"green", "opacity":"50%", "color":"lightgray"});
 				});
+				
+				if($(".accordion__content").is(":visible")) {
+					$('.accordion__title').css({"background":"coral", "opacity":"100%", "color":"white"});
+				} else {
+					$('.accordion__title').css({"background":"green", "opacity":"50%", "color":"lightgray"});
+				}
 				
 				//전체선택 버튼 스크립트
 				$(".selectAll").change(function(){
@@ -497,6 +509,8 @@ fieldset {
 					$(this).click(function(){
 						refundRule.style.display = "none";
 						viewDetail.style.display = "none";
+						$("#detailView").show();
+						$("#detailModify").hide();
 					});
 				});
 				
