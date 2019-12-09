@@ -90,8 +90,8 @@ body {
 			<h1 style="font-size:70px">21:49:59 PM</h1>
 		</div> clockArea end -->
 		<div
-			style="width: 60%; height: 250px; line-height: 250px; color: black; font-size: 170px; text-align: center;"
-			id="clock"></div>
+			style="margin-top: 50px; width: 60%; height: 250px; line-height: 250px; color: black; font-size: 170px; 
+			text-align: center;" id="clock"></div>
 	</div>
 	<!-- outer end -->
 

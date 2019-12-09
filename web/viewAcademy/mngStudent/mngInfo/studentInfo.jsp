@@ -203,12 +203,11 @@ h2{
 		var $op1 = "<option>내신</option><option>모의고사</option>";
 		var $select2 = "<select style='width: 50px;'>";
 		var $op2 = "<option>1</option><option>2</option>";
-		var $text = "<input type='text' style='width: 50px; text-align:center;'>";
 		var $button = "<button type='button'>등록</button>";
 		//학생 성적 추가 버튼
 		$("#pointAddBtn").click(function() {
 			$("#score").append(
-				"<tr><td>3</td><td style='width:229px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:166px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td>" +$text + "</td><td>" + $text + "</td><td>" + $text + "</td><td style='width: 100px;'>" + $button + "</td></tr>");
+				"<tr><td>3</td><td style='width:194px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:140px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td style='width: 100px;'>" + $button + "</td></tr>");
 		});
 
 		//검색 옵션별 함수

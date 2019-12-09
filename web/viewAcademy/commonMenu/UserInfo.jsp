@@ -30,6 +30,7 @@ input {
 input[type=tel] {
 	border: none;
 	width: 50px;
+	text-align: center;
 }
 
 input[type=text], select {
@@ -84,7 +85,7 @@ fieldset {
 
 	<div align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-		<legend align="center"><h2 style="font-family:'Do Hyeon'">　@@@ 님의 개인정보　</h2></legend>
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　@@@ 님의 개인정보　</h1></legend>
 		<div style="width: 100%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">
@@ -97,7 +98,7 @@ fieldset {
 					</td>
 				</tr>
 				<tr>
-					<td><li>아이디</li></td>
+					<td><li>ID</li></td>
 					<td><input type="text" value="bbogak" style="border: none;" readonly></td>
 				</tr>
 				<tr>
@@ -156,7 +157,7 @@ fieldset {
 				<tr>
 					<td></td>
 					<td><li>개인정보 동의여부</li></td>
-					<td>Y</td>
+					<td style="color: black;">Y</td>
 				</tr>
 				<tr>
 					<td></td>

@@ -97,7 +97,7 @@ input[readonly] {
 					</td>
 				</tr>
 				<tr>
-					<td><li>아이디</li></td>
+					<td><li>ID</li></td>
 					<td><input type="text" value="bbogak" style="border: none;" readonly></td>
 				</tr>
 				<tr>
@@ -156,7 +156,7 @@ input[readonly] {
 				<tr>
 					<td></td>
 					<td><li>개인정보 동의여부</li></td>
-					<td>Y</td>
+					<td style="color: black;">Y</td>
 				</tr>
 				<tr>
 					<td></td>

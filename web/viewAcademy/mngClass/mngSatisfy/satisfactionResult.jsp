@@ -28,8 +28,9 @@ section button:hover {
 
 .resultArea {
 	position: relative;
-	background: rgba(211, 211, 211, .4);
+	background: rgba(211, 211, 211, .3);
 	margin-left: 15%;
+	margin-bottom: 5%;
 	width: 70%;
 	overflow: auto;
 	border-radius: 20px;

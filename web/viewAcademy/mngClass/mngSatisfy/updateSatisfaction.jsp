@@ -71,29 +71,34 @@ tr, td {
 					width: 80%;">
 		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 수정　</h1></legend>
 		<form>
-			<table class="table" align="center" style="width: 90%;">
+			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목</td>
-					<td><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
+					<td colspan="#"><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td><input type="text" value="전체 원생 및 학부모 대상" size="50">
-						<select>
-							<option>대상 인원 입력</option>
-					</select></td>
+					<td colspan="3"><input type="text" value="전체 원생 및 학부모 대상" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
 					<td>
 					<input type="text" id="from" name="from" readonly>&emsp;~
 					&emsp;<input type="text" id="to" name="to" readonly></td>
+					<td style="text-align: center !important;"><label>쿠폰 선택</label></td>
+					<td>
+					<select>
+						<option>학원비 5%</option>
+						<option>학원비 10%</option>
+					</select>
+					</td>
+					<td></td>
 				</tr>
 				<tr>
-					<td><li>문항 및 결과</td>
+					<td colspan="4"><li>문항 및 결과</td>
 				</tr>
 				<tr>
-					<td colspan="2" class="question">
+					<td colspan="4" class="question">
 						<ol class="qo">
 							<li>&emsp;
 							<input type="text" value="수업 커리큘럼에 대한 만족도" size="100">
