@@ -13,7 +13,7 @@
    }
    .searchArea{
       display:inline-flex;
-      float: right;
+      float: right; 
       margin-right: 5%;
       margin-bottom: 10px;
    }
@@ -29,17 +29,17 @@
    </header>
    <section>
       <div align="center">
-      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 게시판　</h1></legend>
       </fieldset>
       </div>
       <div class="searchArea">
-            <select id="searchCondition" name="searchCondition" style="border-radius:5px;">
+            <select id="searchCondition" name="searchCondition">
                <option value="writer">작성자</option>
                <option value="title">제목</option>
                <option value="content">내용</option>
-            </select> &nbsp;&nbsp;
-            <input type="search" style="border:1px solid lightgray; border-radius:5px;"> &nbsp;&nbsp;
+            </select>
+            <input type="search">
             <button type="submit">검색하기</button>
       </div> <!-- searchArea end -->
       
@@ -83,7 +83,7 @@
          </table>
       </div>
       <div id="write">
-         <button type="button" onclick="location.href='noticeInsertForm.jsp'" style="font-size:18px;">글쓰기</button>
+         <button type="button" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
       </div>
       <script>
       $(function(){
