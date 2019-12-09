@@ -119,7 +119,7 @@
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;강좌 관리&nbsp;</h1></legend>
       		</fieldset>
       	</div>
-		<input type="date" style="float:left">
+		<input type="date" style="float:left; width:120px;">
 		<button id="writeBtn" onclick="location.href='insertClassInfo.jsp'">강좌 등록</button>
 		<button id="classroomBtn">강의실 관리</button>
 			<table class="classInfoTable table">
