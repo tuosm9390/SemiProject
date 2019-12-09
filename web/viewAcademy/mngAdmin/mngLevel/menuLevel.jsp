@@ -77,7 +77,7 @@ td {
          <!--  -->
          <div align="center">
             <fieldset
-               style="margin-top: -25px; margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
+               style="margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
                <legend align="center">
                   <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여관리　</h1>
                </legend>
@@ -120,7 +120,7 @@ td {
                   <!-- 관리자 -->
                   <tr class="trid">
                
-                     <td class="tdclass" colspan="5">관계자</td>
+                     <td class="tdclass" colspan="5">　　관계자</td>
 
                   </tr>
                   <!-- 학생개인정보 -->
@@ -402,7 +402,7 @@ td {
                   </tr>
                   <tr class="trid">
                      
-                     <td class="tdclass" colspan="5">고객</td>
+                     <td class="tdclass" colspan="5">　　고객</td>
 
                   </tr>
                   <tr>

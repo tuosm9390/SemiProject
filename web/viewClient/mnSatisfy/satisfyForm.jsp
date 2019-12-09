@@ -15,7 +15,7 @@
 }
 
 .top {
-	
+
 }
 
 .article {
@@ -86,11 +86,12 @@ border-radius: 25px;
 						      <p>	● 대상 : 강남고등학교 2 학년 고3대비 선핵 ㅇㅇ</p>
 								<p> ● 실시 기간 : 213123123 </p>
 			</div>
+			
 			<div class="article" align="center">
 			<form id="sendForm" method="post">
 				
-				<div style="overflow:auto; width:850px; height:500px; padding:10px; background-color:lightgray; " align="left"id="int">
-					<%for(int i=0;i<6;i++) {%>
+				<div style=" padding:10px; background-color:lightgray; " align="left"id="int">
+					<%for(int i=0;i<8;i++) {%>
 					<h4 class="q">1. 질문 123123123213213</h4>
 					<div align="center">
 					<input type="radio" value="1" class="btns" width="100px" height="100px"><label>매우만족</label>

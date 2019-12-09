@@ -29,26 +29,25 @@
 		margin-left: 30%;
 	}
 	.text1{
-		color: white;
-		width:20%;
-		background:skyblue;
+	
+		width:30%;
+		
 	}
 	.text2{
-		color: white;
-		width:23.8%;
-		background:skyblue;
+		
+		width:30%;
+	
 	}
 	.text3{
-		color: white;
-		width:17.8%;
-		background:skyblue;
+		
+		width:30%;
+		
 	}
-	
+	section{
+		margin-left: 8%;
+		margin-top:10%;
 		
-		
-		
-		
-		
+	}
 		*{margin:0;padding:0;}
 		div{padding:0px; overflow: hidden; height: auto;}
 		.hgroup{padding:20px;background-color:#e9e9e9;}
@@ -66,9 +65,9 @@
 	<section>
 <div class="outer">
 	<div class="chart">
-	<h3 class="text1">학생수 변동 추이</h3>
+	<h3 class="text1"><li>학생수 변동 추이</li></h3>
 		<div id="chart19"></div>
-		<h3 class="text2">학생 유입 경로 순위</h3>
+		<h3 class="text2"><li>학생 유입 경로 순위</li></h3>
 		<div class="avg">
 				<table class="table avgtable">
 					<tr>
@@ -100,7 +99,7 @@
 			</div>	
 	</div>
 	<div class="chart">
-	<h3 class="text3">인기 과목 추세</h3>
+	<h3 class="text3"><li>인기 과목 추세</li></h3>
 		<div id="chart17"></div>
 		
 	</div>
