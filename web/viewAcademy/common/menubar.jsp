@@ -168,6 +168,9 @@ body {
 section{
 	font-family: "Nanum Gothic" !important;
 }
+.boder{
+	border-right: 1px solid black;
+}
 </style>
 </head>
 <body>

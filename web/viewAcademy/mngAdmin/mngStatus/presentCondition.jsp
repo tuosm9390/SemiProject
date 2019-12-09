@@ -59,11 +59,19 @@
 	<script src='Nwagon.js'></script>
 
 </head>
-
+ 
 <body>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 	<section>
 <div class="outer">
+  	 	<div align="center">
+            <fieldset
+               style="margin-right:30px; margin-bottom: -10px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
+               <legend align="center">
+                  <h1 align="center" style="font-family: 'Do Hyeon';">　학원 현황　</h1>
+               </legend>
+            </fieldset>
+         </div>
 	<div class="chart">
 	<h3 class="text1"><li>학생수 변동 추이</li></h3>
 		<div id="chart19"></div>

@@ -14,7 +14,7 @@
    position: absolute;
    width: 100%;
    padding: 30px;
-   max-width: 700px;
+   max-width: 700px; 
    top: 25%;
    left: 43%;
    transform: translateX(-50%);
