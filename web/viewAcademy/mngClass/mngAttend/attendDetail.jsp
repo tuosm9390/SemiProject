@@ -40,7 +40,7 @@
 		top:105%;
 		left:7%;
 		margin-bottom:30px;
-		overflow:auto;
+	
 		visibility:hidden;
 	}
 	
@@ -76,6 +76,9 @@
 		border: 2px solid green;
 		color: white;
 		display: inline;
+	}
+	td{
+		width::10px !important;
 	}
 </style>
 </head>

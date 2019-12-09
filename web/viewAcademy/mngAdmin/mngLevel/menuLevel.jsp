@@ -6,33 +6,6 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-td {
-   font-weight: bold;
-}
-
-td:first-child {
-   font-weight: bold;
-   border-right: 1px solid black;
-}
-
-
-
-.tdclass {
-   font-weight: bold;
-   color: black;
-   border-top: 1px solid black;
-   border-bottom: 1px solid black;
-   border-right: none !important;
-}
-
-#qqtr {
-   border-top: none;
-   border-bottom: none;
-}
-
-#qqtd {
-   font-size: 120% !important;
-}
 
 #btd {
    border-bottom: none !important;
@@ -50,9 +23,7 @@ tr {
    height: 50px;
 }
 
-td {
-   font-weight: normal;
-}
+
 
 .table {
    width: 90% !important;
@@ -65,6 +36,14 @@ td {
 .btndiv{
 	margin-right: 5%;
 }
+.border{
+	font-weight: bold;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.
 </style>
 </head>
 <body>
@@ -96,7 +75,7 @@ td {
                   </tr>
                   <!-- 공통 -->
                   <tr class="trid">
-                     <td>공통</td>
+                     <td class="border">공통</td>
                      <td>개인정보수정</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -125,7 +104,7 @@ td {
                   </tr>
                   <!-- 학생개인정보 -->
                   <tr>
-                     <td>학생관리</td>
+                     <td rowspan="4" class="border">학생관리</td>
                      <td>개인정보</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -148,7 +127,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                    
                      <td>수납</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -171,7 +150,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                   
                      <td>상담</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -194,7 +173,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                     
                      <td>블랙리스트</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -218,7 +197,7 @@ td {
                   <!--  -->
 
                   <tr class="trid" id="qqtr">
-                     <td>직원관리</td>
+                     <td class="border" style="background-color:250,250,250;">직원관리</td>
                      <td>직원관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -243,7 +222,7 @@ td {
 
                   <!--  -->
                   <tr>
-                     <td>수업관리</td>
+                     <td rowspan="4" class="border" style="background-color:250,250,250;">수업관리</td>
                      <td>수강생관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -266,7 +245,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                     
                      <td>출결관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -289,7 +268,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                   
                      <td>강좌목록관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -312,7 +291,7 @@ td {
                   </tr>
                   <!--  -->
                   <tr>
-                     <td></td>
+                    
                      <td>만족도</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -335,7 +314,7 @@ td {
                   </tr>
 
                   <tr>
-                     <td>관리자</td>
+                     <td rowspan="3" class="border">관리자</td>
                      <td>학원현황</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -357,7 +336,7 @@ td {
                      </select></td>
                   </tr>
                   <tr>
-                     <td></td>
+                  
                      <td>메뉴권한관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -379,7 +358,7 @@ td {
                      </select></td>
                   </tr>
                   <tr>
-                     <td></td>
+                    
                      <td>연간계획</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -402,32 +381,32 @@ td {
                   </tr>
                   <tr class="trid">
                      
-                     <td class="tdclass" colspan="5">　　고객</td>
+                     <td class="tdclass" colspan="5" class="border">　　고객</td>
 
                   </tr>
                   <tr>
-                     <td>학생정보</td>
+                     <td rowspan="4" class="border">학생정보</td>
                      <td>출결정보</td>
                      <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
                      <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
-                     <td></td>
+                   
                      <td>성적정보</td>
                      <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
                      <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
-                     <td></td>
+                 
                      <td>만족도조사</td>
                      <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
                      <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
-                     <td></td>
+                 
                      <td>고지서/영수증</td>
                      <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
                      <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
