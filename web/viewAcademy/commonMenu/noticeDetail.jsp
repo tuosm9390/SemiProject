@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,9 +28,9 @@
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 내용　</h1></legend>
       </fieldset>
     </div>
-	<div style="width:90%; background:none; margin:auto auto;" class="outer" >
-		<div class="tableArea">
-			<table class="table" >
+	<div style="width:90%; margin:auto auto;" class="outer" >
+		<div class="tableArea" align="center">
+			<table>
 				<tr>
 					<td>제목</td>
 					<td colspan="3">

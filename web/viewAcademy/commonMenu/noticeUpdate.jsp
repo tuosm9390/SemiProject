@@ -32,9 +32,9 @@
       </fieldset>
     </div>
 	<div style="width:90%; margin:auto auto;" class="outer">
-			<div class="tableArea">
+		<div class="tableArea" align="center">
 			<form id="updateForm" method="post">
-				<table class="table">
+				<table>
 					<tr>
 						<td>제목</td>
 						<td colspan="3">
