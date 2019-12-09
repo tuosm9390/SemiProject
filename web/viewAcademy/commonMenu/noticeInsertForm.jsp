@@ -16,6 +16,7 @@
 	} */
 	table {
 		border:1px solid white;
+		
 	}
 	.tableArea {
 		width:700px;
@@ -30,12 +31,12 @@
 		margin-right:10px;
 		margin-bottom:50px;
 	}
-	.file > button{
-		margin-left:10%;
-	}
 	fieldset {
       width:25%
    }
+   /* #important{
+   	   float:right;
+   } */
 </style>
 <%@ include file="/viewAcademy/common/menubar.jsp"%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -47,14 +48,14 @@
    </header>
    <section>
    <div align="center">
-      <fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      <fieldset style=" margin-bottom:-15px; border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 작성　</h1></legend>
       </fieldset>
     </div>
 	<div style="width:90%; margin:auto auto;" class="outer">
-		<div class="tableArea">
+		<div class="tableArea" align="center">
 			<form>
-				<table class="table">
+				<table>
 					<tr>
 						<td>제목</td>
 						<td colspan="3"><input type="text" size="50" name="title"></td>
@@ -62,11 +63,20 @@
 					<tr>
 						<td>작성자</td>
 						<td>
-							<input type="text" name="writer" readonly>
+							<input style="border-radius:5px;" type="text" name="writer" readonly>
 							<input type="hidden" name="uno"> <!-- 실제 서버로는 uno값이 전달됨(uno값을 이용하여 닉네임을 찾기 위해서), type="hidden"을 사용하면 사용자에게는 보여지지 않음 -->
 						</td>
 						<td>작성일</td>
 						<td><input type="date" name="date"></td>
+					</tr>
+					<tr >
+					    <td></td>
+						<td></td>
+						<td></td>
+						
+						<td style="text-align:right">
+							<input type="checkbox" > 중요공지
+						</td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -76,17 +86,22 @@
 							<textarea name="content" cols="60" rows="15" style="resize:none;"></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td style="padding-top:10px" colspan="4">
+							<input type="file">
+						</td>
+					</tr>
+					
 				</table>
-				<div class="file">
-					<button type="file">첨부 파일</button>
-				</div>
+				<br><br>
 				<div class="cancleSubmit" align="center">
 					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">취소하기</button>
 					<button type="button" id="submit" onclick="insertNotice();" >등록하기</button>
-					<input type="checkbox"> 중요공지
 				</div>
 			</form>
 		</div> <!-- tableArea end -->
+		
+		
 		<script>
 			function insertNotice(){
 				swal({
