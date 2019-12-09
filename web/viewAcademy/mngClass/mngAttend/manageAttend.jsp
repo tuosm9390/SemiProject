@@ -17,12 +17,19 @@
 		overflow: auto;
 	}
 	
-	.listArea > button, input{
+	.listArea > button {
 		float: right;
+	}
+	
+	.listArea > input {
+		float: right;
+		border: 1px solid lightgray;
+		border-radius: 5px;
 	}
 	
 	.listArea > select {
 		float: left;
+		margin-right: 1%;
 	}
 	
 	fieldset {
