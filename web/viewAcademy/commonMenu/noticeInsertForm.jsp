@@ -33,6 +33,9 @@
 	.file > button{
 		margin-left:10%;
 	}
+	fieldset {
+      width:25%
+   }
 </style>
 <%@ include file="/viewAcademy/common/menubar.jsp"%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -44,7 +47,7 @@
    </header>
    <section>
    <div align="center">
-      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      <fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 작성　</h1></legend>
       </fieldset>
     </div>
@@ -75,11 +78,12 @@
 					</tr>
 				</table>
 				<div class="file">
-					<button type="file">파일 선택</button>
+					<button type="file">첨부 파일</button>
 				</div>
 				<div class="cancleSubmit" align="center">
 					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">취소하기</button>
 					<button type="button" id="submit" onclick="insertNotice();" >등록하기</button>
+					<input type="checkbox"> 중요공지
 				</div>
 			</form>
 		</div> <!-- tableArea end -->

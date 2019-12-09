@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,9 @@
 		margin-right:10px;
 		margin-bottom:30px;
 	}
+	fieldset {
+      width:25%
+   }
 </style>
 </head>
 <body>
@@ -21,27 +25,27 @@
    </header>
    <section>
    <div align="center">
-      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      <fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 내용　</h1></legend>
       </fieldset>
     </div>
-	<div style="width:90%; margin:auto auto;" class="outer">
+	<div style="width:90%; background:none; margin:auto auto;" class="outer" >
 		<div class="tableArea">
-			<table class="table">
+			<table class="table" >
 				<tr>
 					<td>제목</td>
 					<td colspan="3">
-						<input type="text" size="50" name="title" <%-- value="<%= n.getnTitle() %>" --%> readonly>
+						<input type="label" size="50" name="title" <%-- value="<%= n.getnTitle() %>" --%> readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>작성자</td>
 					<td>
-						<input type="text" <%-- value="<%=n.getnWriter() %>" --%> name="writer" readonly>
+						<input type="label" <%-- value="<%=n.getnWriter() %>" --%> name="writer" readonly>
 					</td>
 					<td>작성일</td>
 					<td>
-						<input type="date" name="date" <%-- value="<%= n.getnDate() %>" --%> readonly>
+						<input type="text" name="date" <%-- value="<%= n.getnDate() %>" --%> readonly>
 					</td>
 				</tr>
 				<tr>

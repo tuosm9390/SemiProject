@@ -14,6 +14,9 @@
 		margin-right:10px;
 		margin-bottom:30px;
 	}
+	fieldset {
+      width:25%
+   }
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -24,7 +27,7 @@
    </header>
    <section>
    <div align="center">
-      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      <fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 수정　</h1></legend>
       </fieldset>
     </div>
