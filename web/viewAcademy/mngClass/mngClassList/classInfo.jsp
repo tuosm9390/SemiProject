@@ -78,7 +78,7 @@
 		width:16%;
 	}
 	
-	#searchBtn, #writeBtn, #classroomBtn {
+	#writeBtn, #classroomBtn {
 		font-size: 18px;
 		margin-left: 1%;
 		margin-bottom: 1%;
@@ -87,6 +87,16 @@
 		border: 2px solid green;
 		display: inline;
 		float: right;
+	}
+	
+	#searchBtn {
+		font-size: 18px;
+		margin-bottom: 1%;
+		font-family: "Nanum Gothic";
+		font-weight: bold;
+		border: 2px solid green;
+		display: inline;
+		align: center;
 	}
 	
 	#searchBtn:hover, #writeBtn:hover, #classroomBtn:hover {
@@ -105,24 +115,13 @@
 	<section>
 	<div class="listArea">
 		<div align="center">
-      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;강좌 관리&nbsp;</h1></legend>
       		</fieldset>
       	</div>
-		<select>
-			<option value="" selected disabled hidden>기간별 검색</option>
-			<option value="year">2019</option>
-			<option value="year">2018</option>
-		</select>
-		<button id="writeBtn" onclick="location.href='insertClassInfo.jsp'">입력</button>
-		<button id="searchBtn">검색</button>
-		<input type="search" id="searchClass" name="searchClass">
-				<select style="float:right">
-			<option value="" selected disabled hidden>조건별 검색</option>
-			<option name="searchClassCondition">과목</option>
-			<option name="searchClassCondition">강좌명</option>
-			<option name="searchClassCondition">담당 강사</option>
-		</select>
+		<input type="date" style="float:left">
+		<button id="writeBtn" onclick="location.href='insertClassInfo.jsp'">강좌 등록</button>
+		<button id="classroomBtn">강의실 관리</button>
 			<table class="classInfoTable table">
 				<thead>
 					<tr>
@@ -150,7 +149,16 @@
 				</tbody>
 			</table>
 		</form>
-		<button id="classroomBtn" style="margin-bottom:3%;">강의실 관리</button>
+		<div align="center">
+			<select>
+				<option value="" selected disabled hidden>조건별 검색</option>
+				<option name="searchClassCondition">과목</option>
+				<option name="searchClassCondition">강좌명</option>
+				<option name="searchClassCondition">담당 강사</option>
+			</select>
+			<input type="search" id="searchClass" name="searchClass">
+			<button id="searchBtn">검색</button>
+		</div>
 	</div> <!-- listArea end -->
 
 	<!-- 강좌 상세정보 모달 -->

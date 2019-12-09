@@ -46,16 +46,11 @@
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<%-- <%= if(loginUser.getUserId() == "admin") { %> --%>
 	<div align="center">
-      		<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;출결 관리&nbsp;</h1></legend>
       		</fieldset>
     </div>
 	<div class="listArea">
-		<select>
-			<option value="" selected disabled hidden>기간별 검색</option>
-			<option value="year">2019</option>
-			<option value="year">2018</option>
-		</select>
 		<button class="searchBtn">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
 		<select style="float:right">
