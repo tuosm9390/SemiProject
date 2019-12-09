@@ -33,7 +33,7 @@
 
 			<div class="component">
 				<div align="center">
-	      			<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
+	      			<fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
 	         			<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　강좌 리스트　</h1></legend>
 	      			</fieldset>
 	      		</div>

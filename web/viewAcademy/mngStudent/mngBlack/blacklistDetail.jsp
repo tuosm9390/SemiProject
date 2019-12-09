@@ -38,6 +38,7 @@
 .blacklist_content {background:snow; padding:10px 10px 0 10px;}
 .names{display:flex;}
 .names .dCtn{margin-right:auto;}
+.bInfo .bTable{margin-left:auto;margin-right:auto;width:70%;}
 </style>
 </head>
 <body>
