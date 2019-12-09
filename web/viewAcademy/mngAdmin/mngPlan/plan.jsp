@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>HAGONG</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
@@ -11,6 +11,13 @@
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
+		overflow: auto;
+	}
+	.btnArea {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: auto;
 	}
 	/* 모달 배경 */
 	.modal {
@@ -68,6 +75,15 @@
 		border: 2px solid green;
 		display: inline;
 	}
+	
+	#planTableArea th {
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+	#mainTh {
+		padding-left: 60px !important;
+		padding-right: 60px !important;
+	}
 </style>
 </head>
 <body>			
@@ -80,18 +96,21 @@
         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획　</h1></legend>
    	    </fieldset>
     </div>
-	<div class="listArea">
-	<div class="btnArea">
-		<input type="date" style="border-radius:5px; float:left; border:1px solid lightgray">
-		<button id="addRow" style="float:left">행 추가</button>
+    <div class="btnArea">
+    	<select style="border:1px solid lightgray; border-radius:5px; float:left">
+			<option>2019</option>
+			<option>2018</option>
+			<option>2017</option>
+		</select>
 		<button id="deleteBtn" style="float:right">삭제</button>
 		<button id="writeBtn" style="float:right">입력 및 수정</button>
 	</div> <!-- btnArea end -->
+	<div class="listArea">
 	<div class="body">
 		<table id="planTableArea" class="table">
 			<thead>
 				<tr>
-					<th></th>
+					<th id="mainTh"></th>
 					<th>1월</th>
 					<th>2월</th>
 					<th>3월</th>
@@ -245,6 +264,7 @@
 		<script>	
 			$(function(){
 				var writeBtn = document.getElementById('writeBtn');
+				var addRowBtn = document.getElementById('addRow');
 				var deleteBtn = document.getElementById('deleteBtn');
 				var deleteArea = document.getElementById('deleteArea');
 				var deleteOk = document.getElementById('okbtn');
@@ -253,6 +273,13 @@
 				
 				writeBtn.onclick = function() {
 					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
+				}
+				
+				addRowBtn.onclick = function() {
+					var addRowName = window.prompt('행 이름 입력');
+					
+					$("#tbody").append("<tr><td>"+ addRowName + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+						
 				}
 				
 				deleteBtn.onclick = function() {
@@ -275,22 +302,6 @@
 					deleteArea.style.display = "none";
 				}
 			});
-				/* //삭제 > 달 전체선택
-				$(function(){
-					$("#alls").click(function(){
-						var check = $(this).is(":checked");
-						 if(check) { $(".monthBtn").prop('checked', true);
-						 } else { $(".monthBtn").prop('checked', false);
-					})
-				}); */
-			//행추가하고싶어요
-			/* $(function(){
-				$("#addRow").click(function(){
-					$(".table #tbody").append(){
-						"<tr><td>aaaaaaaaa</td ><td>asdasd</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
-					}
-				});
-			});	 */	
 		</script>
 </section>
 <footer></footer>	

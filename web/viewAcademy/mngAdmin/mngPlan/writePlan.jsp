@@ -3,45 +3,86 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-<meta charset="UTF-8" />
-<title>연간계획 입력</title>
+<meta charset="UTF-8">
+<title>HAGONG</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-	body {
-		font-family: "Nanum Gothic";
-	}
-	#head {
-		position:absolute;
-		top:20%;
-		width:86%;
-	}
-	.text {
-		background:none;
-		border:none;
-	}
-	/* .body {
-		width:86%;
-		height:520px;
-		position:absolute; top:35%;
-		display:inline;
-		overflow:auto;
-		
-	} */
-	.planTableArea {
-		overflow:auto;
-	}
-	#cancle:hover, #update:hover {
-		background:green;
-		color:white;
-	}
-	
-	fieldset {
-		width:16%;
-	}
-	
 	.listArea {
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
+		overflow: auto;
+	}
+	.btnArea {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: auto;
+	}
+	/* 모달 배경 */
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto; 
+		background-color: rgb(0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	/* 모달 내부 상자 */
+	.modal-content {
+		background-color: #fefefe;
+		margin: 13% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 30%;
+		background-color: #fefefe;	
+	}
+	/* 모달 닫기 버튼 */
+	#xBtn {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+		
+	#xBtn:hover, #xBtn:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	ul {
+		list-style:none;
+		font-size: 20px;
+	}
+	
+	ul > li {
+		display:block;
+		padding-bottom: 20px;
+	}
+	
+	.btnArea > button {
+		font-size: 18px;
+		margin-left: 1%;
+		margin-bottom: 1%;
+		font-family: "Nanum Gothic";
+		font-weight: bold;
+		border: 2px solid green;
+		display: inline;
+	}
+	
+	#planTableArea th {
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+	#mainTh {
+		padding-left: 60px !important;
+		padding-right: 60px !important;
 	}
 </style>
 </head>
@@ -50,21 +91,22 @@
 <%@ include file="/viewAcademy/common/menubar.jsp" %>
 </header>
 <section>
-
-	<div id="head">
-		<div align="center">
-    		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
-        		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획 작성　</h1></legend>
-   	    	</fieldset>
-    	</div>
-    	<div class="listArea">
-		<button id="cancle" style="float:right; margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='plan.jsp'">취소</button>
-		<button id="update" style="float:right; margin:10px; border:1px solid green; background:white; color:black; display:inline">입력 완료</button>
-		<form>
-		<table class="planTableArea table">
+	<div align="center">
+    	<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
+        	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획 작성　</h1></legend>
+   	    </fieldset>
+    </div>
+    <div class="btnArea">
+		<button id="addRow" style="float:left">행 추가</button>
+		<button id="deleteRow" style="float:left">행 삭제</button>
+		<button id="writeBtn" style="float:right">저장</button>
+	</div> <!-- btnArea end -->
+	<div class="listArea">
+	<div class="body">
+		<table id="planTableArea" class="table">
 			<thead>
 				<tr>
-					<th></th>
+					<th id="mainTh"></th>
 					<th>1월</th>
 					<th>2월</th>
 					<th>3월</th>
@@ -79,52 +121,184 @@
 					<th>12월</th>
 				</tr>
 			</thead>
-					<tbody>
-						<tr>
-							<td>주요 이슈</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
-						</tr>
-						<tr>
-							<td>입시</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
-						</tr>
-						<tr>
-							<td>중등</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
-						</tr>
+			<tbody id="tbody">
+				<tr>
+					<td>주요 이슈</td>
+					<% for(int i=0; i<12; i++) { %>
+					<td contenteditable="true"></td>
+					<% } %>
+				</tr>
+				<tr>
+					<td>입시</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+					<td>이달의 입시계획</td>
+				</tr>
+				<tr>
+					<td>중등</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+					<td>이달의 중등계획</td>
+				</tr>
 						<tr>
 							<td>고등</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
+							<td>이달의 고등계획</td>
 						</tr>
 						<tr>
 							<td>중.고 경시</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
 						</tr>
 						<tr>
 							<td>행사</td>
-							<% for(int i=0; i<12; i++) { %>
-								<td><input type="text" class="text"></td>
-							<% } %>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
+							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
 						</tr>
 					</tbody>
 				</table>
-				</form>
-			</div>
-			</div>
+			</div> <!-- body end -->
+		</div>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="js/jquery.stickyheader.js"></script>
+		<!-- 연간계획 삭제 -->
+		<div id="deleteArea" class="modal">
+
+			<div class="modal-content" align="center">
+				<span id="xBtn">&times;</span>
+				<h2 style="margin-left:15px;">연간계획 삭제하기</h2>
+				<span>연간계획 삭제를 원하는 달을 선택하세요.</span>
+				<div class="monthCheckArea">
+					<form>
+						<ul>
+						<li><input type="checkbox" name="0" id="alls"><label for="1">전체선택</label>
+						</li>
+							<li>
+								<input type="checkbox" name="1" id="jan" class="monthBtn"><label for="1">1월</label>
+								<input type="checkbox" name="2" id="feb" class="monthBtn"><label for="2">2월</label>
+								<input type="checkbox" name="3" id="mar" class="monthBtn"><label for="3">3월</label>
+								<input type="checkbox" name="4" id="apr" class="monthBtn"><label for="4">4월</label>
+							</li>
+							<li>
+								<input type="checkbox" name="5" id="may" class="monthBtn"><label for="5">5월</label>
+								<input type="checkbox" name="6" id="jun" class="monthBtn"><label for="6">6월</label>
+								<input type="checkbox" name="7" id="jul" class="monthBtn"><label for="7">7월</label>
+								<input type="checkbox" name="8" id="aug" class="monthBtn"><label for="8">8월</label>
+							</li>
+							<li>
+								<input type="checkbox" name="9" id="sep" class="monthBtn"><label for="9">9월</label>
+								<input type="checkbox" name="10" id="oct" class="monthBtn"><label for="10">10월</label>
+								<input type="checkbox" name="11" id="dec" class="monthBtn"><label for="11">11월</label>
+								<input type="checkbox" name="12" id="nov" class="monthBtn"><label for="12">12월</label>
+							</li>
+						</ul>
+					</form>
+				</div> <!-- monthCheckArea end -->
+				<button id="cancelbtn"
+					style="margin-left: 100px; width: 100px; height: 30px; float: left; display:inline;">취소</button>
+				<button id="okbtn"
+					style="margin-right: 100px; float: right; width: 100px; height: 30px; display:inline;">확인</button>
+				<br>
+			</div>
+		</div> <!-- deleteArea end -->
+		<script>	
+			$(function(){
+				var writeBtn = document.getElementById('writeBtn');
+				var addRowBtn = document.getElementById('addRow');
+				var deleteRowBtn = document.getElementById('deleteRow');
+				var deleteBtn = document.getElementById('deleteBtn');
+				var deleteArea = document.getElementById('deleteArea');
+				var deleteOk = document.getElementById('okbtn');
+				var cancleDelete = document.getElementById('cancelbtn');
+				var closeBtn = document.getElementById('xBtn');
+				
+				writeBtn.onclick = function() {
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
+				}
+				
+				addRowBtn.onclick = function() {
+					var addRowName = window.prompt('행 이름 입력');
+					
+					$("#tbody").append("<tr><td>"+ addRowName + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+						
+				}
+				
+				deleteRowBtn.onclick = function() {
+					var deleteRowName = window.prompt('삭제할 행 이름 입력');
+					
+					//시험용 삭제
+					$("tbody tr:last-child").remove();
+					
+				}
+				
+				deleteBtn.onclick = function() {
+					deleteArea.style.display = "block";
+				}
+				
+				closeBtn.onclick = function() {
+					deleteArea.style.display = "none";
+				}
+				
+				cancleDelete.onclick = function() {
+					deleteArea.style.display = "none";
+				}
+				
+				deleteOk.onclick = function() {
+					//체크된 월 삭제 기능 실행됨
+					
+					
+					//기능이 다 실행된 후 결과값에 따라 성공 시, 삭제 결과가 반영된 연간계획 페이지 / 실패 시 에러페이지로 이동
+					deleteArea.style.display = "none";
+				}
+			});
+		</script>
 </section>
 <footer></footer>	
 </body>
