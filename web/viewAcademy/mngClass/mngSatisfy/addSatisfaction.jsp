@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 <style>
 #boardBack{
-	background: url("/hagong/images/board.png") no-repeat top;
-	background-size: 25%;
-	
+	background: url("/hagong/images/board.png") no-repeat center;
+	background-size: cover;
 }
 
 section button {
@@ -63,10 +62,10 @@ tr, td {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-	<div id="boardBack" align="center" style="height: 180px;">
+	<div id="boardBack" align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
-					width: 20%;">
-		<legend align="center"><h1>　만족도 조사 등록　</h1></legend></fieldset>
+					width: 25%; background: none;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 등록　</h1></legend></fieldset>
 	</div>
 		<form>
 			<table class="table" align="center" style="width: 80%;">

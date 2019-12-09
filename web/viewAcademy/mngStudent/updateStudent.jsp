@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
-body {
-	background: url("/hagong/images/abc.jpg") no-repeat top;
-	background-size: 86%;
+section {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	/* background-size:85.9%; */
+	/* background-size: 1333px 1200px; */
+	background-size: cover;
 }
 
 #profile {
@@ -76,7 +78,7 @@ th, td {
 	<div align="center">
 	<fieldset
 			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
-					width: 80%;">
+					width: 90%;">
 			<legend align="center">
 				<h1 style="font-family:'Do Hyeon'">　학생 정보 수정　</h1>
 			</legend>

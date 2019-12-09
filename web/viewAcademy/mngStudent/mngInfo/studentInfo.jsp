@@ -70,9 +70,10 @@ h2{
 		<%@ include file="/viewAcademy/common/menubar.jsp"%>
 	</header>
 	<section>
+	<!-- 제목 -->
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
-					width: 16%; font-family:'Do Hyeon'">
+					width: 16%; height: 80px; font-family:'Do Hyeon'">
 		<legend align="center"><h1>　박상준　</h1></legend>
 	</fieldset>
 	</div>
@@ -165,7 +166,7 @@ h2{
 		</div>
 	
 		<!-- 성적 그래프 -->
-		<div id="chart" style="width: 80%; margin: auto auto;" align="center">
+		<div id="chart" align="center">
 			<h2 align="left">성적 그래프</h2>
 			<div id="chart19"></div>
 		</div>

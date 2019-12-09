@@ -152,7 +152,7 @@ a {
 }
 
 body {
-	margin-top: 150px;
+	margin-top: 120px;
 	margin-left: 7%;
 	margin-right: 7%;
 }
