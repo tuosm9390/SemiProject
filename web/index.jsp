@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 </style>
 <%@ include file="../viewAcademy/common/academyMain.jsp" %>
