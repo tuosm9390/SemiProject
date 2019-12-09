@@ -76,17 +76,13 @@
 </header>
 <section>
 	<div align="center">
-    	<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
+    	<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획　</h1></legend>
    	    </fieldset>
     </div>
 	<div class="listArea">
 	<div class="btnArea">
-		<select style="display:inline; float:left; margin-right:10px; border-radius:5px;">
-			<option value="" selected disabled hidden>년도별 검색</option>
-			<option value="year">2019</option>
-			<option value="year">2018</option>
-		</select>
+		<input type="date" style="border-radius:5px; float:left; border:1px solid lightgray">
 		<button id="addRow" style="float:left">행 추가</button>
 		<button id="deleteBtn" style="float:right">삭제</button>
 		<button id="writeBtn" style="float:right">입력 및 수정</button>
@@ -246,19 +242,18 @@
 				<br>
 			</div>
 		</div> <!-- deleteArea end -->
-		<script>
+		<script>	
 			$(function(){
-				$("#writeBtn").click(function(){
-					location.href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
-				});
-			});		
-			
-			$(function(){
+				var writeBtn = document.getElementById('writeBtn');
 				var deleteBtn = document.getElementById('deleteBtn');
 				var deleteArea = document.getElementById('deleteArea');
 				var deleteOk = document.getElementById('okbtn');
 				var cancleDelete = document.getElementById('cancelbtn');
 				var closeBtn = document.getElementById('xBtn');
+				
+				writeBtn.onclick = function() {
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
+				}
 				
 				deleteBtn.onclick = function() {
 					deleteArea.style.display = "block";
@@ -280,22 +275,22 @@
 					deleteArea.style.display = "none";
 				}
 			});
-				//삭제 > 달 전체선택
+				/* //삭제 > 달 전체선택
 				$(function(){
 					$("#alls").click(function(){
 						var check = $(this).is(":checked");
-						 if(check) $(".monthBtn").prop('checked', true);
-					        else  $(".monthBtn").prop('checked', false);
+						 if(check) { $(".monthBtn").prop('checked', true);
+						 } else { $(".monthBtn").prop('checked', false);
 					})
-				});
+				}); */
 			//행추가하고싶어요
-			$(function(){
+			/* $(function(){
 				$("#addRow").click(function(){
 					$(".table #tbody").append(){
 						"<tr><td>aaaaaaaaa</td ><td>asdasd</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 					}
-				})
-			});		
+				});
+			});	 */	
 		</script>
 </section>
 <footer></footer>	

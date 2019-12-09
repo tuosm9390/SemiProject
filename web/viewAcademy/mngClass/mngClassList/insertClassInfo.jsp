@@ -10,13 +10,16 @@
 <style>
 	body {
 		font-family: "Nanum Gothic";
+		background:url("/hagong/images/classInsert.jpg") no-repeat top;
+		background-size:85.9%;
 	}
+	
 	input[type="text"], input[type="number"], input[type="date"] {
 		width: 300px;
 		height: 30px;
 		margin-bottom:20px;
 		border-radius: 5px;
-		background:none;
+		border: 1px solid lightgray;
 	}
 	
 	input[type="checkbox"] {
@@ -55,6 +58,15 @@
 		width: 300px;
 		margin-bottom: 20px;
 		border-radius: 5px;
+		border: 1px solid lightgray;
+	}
+	
+	.tableArea {
+		border: double gray;
+		padding: 10px;
+		width: 550px;
+    	border-radius: 5px;
+   		margin-bottom: 10px;
 	}
 </style>
 </head>
@@ -64,11 +76,12 @@
 	</header>
 	<section>
 	<div align="center">
-      	<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      	<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;수업정보 등록&nbsp;</h1></legend>
       	</fieldset>
     </div>
 	<div class="body" align="center">
+		<div class="tableArea">
 		<form id="classInfo" action="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp" method="get">
 			<table class="insertTable">
 				<tr>
@@ -167,6 +180,7 @@
 					</td>
 				</tr>	
 			</table>
+		</div>
 		<div class="bottomArea" style="margin-bottom:20px">
 			<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp'">취소</button>
 			<button id="insertClassInfoBtn">등록</button>

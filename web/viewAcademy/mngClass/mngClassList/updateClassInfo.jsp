@@ -9,12 +9,19 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
+	section {
+		background:url("/hagong/images/classInsert.jpg") no-repeat top;
+		/* background-size:85.9%; */
+		/* background-size: 1333px 1200px; */
+		background-size: cover;
+	}
+	
 	input[type=text], input[type=number], input[type=date] {
 		width: 300px;
 		height: 30px;
 		margin-bottom:20px;
 		border-radius: 5px;
-		background:none;
+		border: 1px solid lightgray;
 	}
 	
 	input[type="checkbox"] {
@@ -53,6 +60,15 @@
 		width: 300px;
 		margin-bottom: 20px;
 		border-radius: 5px;
+		border: 1px solid lightgray;
+	}
+	
+	.tableArea {
+		border: double gray;
+		padding: 10px;
+		width: 550px;
+    	border-radius: 5px;
+   		margin-bottom: 10px;
 	}
 </style>
 </head>
@@ -62,12 +78,13 @@
 	</header>
 	<section>
 	<div align="center">
-      	<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      	<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;수업정보 수정&nbsp;</h1></legend>
       	</fieldset>
     </div>
 		<div class="body" align="center">
 		<form id="classInfo" action="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp" method="post">
+			<div class="tableArea">
 			<table class="insertTable">
 				<tr>
 					<td>과목 : </td>
@@ -141,6 +158,7 @@
 					<td><input type="number" step="1000"></td>
 				</tr>	
 			</table>
+			</div>
 		<div class="bottomArea">
 			<button type="button">취소</button>
 			<button id="insertClassInfoBtn">수정 완료</button>

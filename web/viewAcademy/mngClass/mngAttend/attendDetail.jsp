@@ -60,7 +60,7 @@
 	}
 	
 	.attendBtn {
-		float:right;
+		
 		margin-bottom:10px;
 		font-size: 18px;
 		margin-left: 1%;
@@ -85,18 +85,18 @@
 	</header>
 	<section>
 	<div align="center">
-      		<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;출결 상세&nbsp;</h1></legend>
       		</fieldset>
     </div> <!-- center end -->
-	<button class="attendBtn">출결 처리</button>
 	<div class="selectArea">
-		<select style="margin-bottom:10px">
+		<select style="margin-bottom:1%;">
 			<option>출석</option>
 			<option>결석</option>
 			<option>지각</option>
 			<option>조퇴</option>
 		</select>
+		<button class="attendBtn">출결 처리</button>
 	</div>
 	
 	<div class="outer">
@@ -177,7 +177,7 @@
 					<form action="" method="post">
 						<textarea style="margin: 0px; width: 677px; height: 282px; resize:none;"></textarea>
 						<br>
-						<input type="submit" value="입력" style="float:right; padding:5px; width:100px; border:1px solid green; background:white; border-radius:3px;">
+						<input type="submit" id="write" value="입력" style="float:right; padding:5px; width:100px; border:1px solid green; background:white; border-radius:3px;">
 					</form>
 				</div>
 			</div> <!-- detailReasonArea end -->
