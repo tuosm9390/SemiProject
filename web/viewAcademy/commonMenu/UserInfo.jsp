@@ -7,7 +7,7 @@
 <title>HAGONG</title>
 <style>
 section {
-		background:url("/hagong/images/backModifySample.png") no-repeat top;
+		background:url("/hagong/images/backModifySample.png") no-repeat center;
 		background-size: cover;
 	}
 #profile {
