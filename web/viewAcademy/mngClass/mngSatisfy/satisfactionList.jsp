@@ -108,7 +108,7 @@ tr:not(:first-child){
 		<button id="benefitBtn">혜택 관리</button>
 		<% } %>
 		<form>
-			<table class="table" align="center" style="width: 90%;">
+			<table class="table" align="center" style="width: 80%;">
 				<tr>
 					<th>No.</th>
 					<th>만족도 조사 내용</th>
@@ -171,11 +171,11 @@ tr:not(:first-child){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 		});
 		
-		$("tr:not(first-child)").click(function() {
+		$(".table tr:not(:first-child)").click(function() {
 			location.href = "<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";
 		});
 		
-		$("tr:last-child").click(function(){
+		$(".table tr:last-child").click(function(){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionResult.jsp";
 		});
 		

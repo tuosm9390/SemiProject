@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+section {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	/* background-size:85.9%; */
+	/* background-size: 1333px 1200px; */
+	background-size: cover;
+}
+
 section button {
 	float: right;
 	margin-bottom: 5px;
@@ -46,8 +53,8 @@ section button:hover {
 	color: white;
 }
 
-th, td {
-	background: white;
+tr, td {
+	background: none !important;
 	text-align: left !important;
 }
 
@@ -61,8 +68,10 @@ th, td {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 style="margin-left: 5%;">만족도 조사 수정</h2>
-		<br>
+	<div align="center">
+	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
+					width: 80%;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 수정　</h1></legend>
 		<form>
 			<table class="table" align="center" style="width: 90%;">
 				<tr>
@@ -120,6 +129,8 @@ th, td {
 		</form>
 		<button style="margin-right: 5%; margin-bottom: 50px;" onclick="">수정하기</button>
 		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
+		</fieldset>
+	</div>
 	</section>
 	<footer> </footer>
 	<script>

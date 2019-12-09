@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#boardBack{
-	background: url("/hagong/images/board.png") no-repeat center;
+section{
+	background: url("/hagong/images/") no-repeat center;
 	background-size: cover;
 }
 
@@ -62,11 +62,10 @@ tr, td {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-	<div id="boardBack" align="center">
+	<div align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
-					width: 25%; background: none;">
-		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 등록　</h1></legend></fieldset>
-	</div>
+						width: 80%; background: none;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 등록　</h1></legend>
 		<form>
 			<table class="table" align="center" style="width: 80%;">
 				<tr>
@@ -90,11 +89,10 @@ tr, td {
 				<tr>
 					<td colspan="2" class="question">
 						<ol class="qo">
-							<li>&emsp;
+							<li class="ql">&emsp;
 							<input class="insertQ" type="text" placeholder="질문 문항 입력" size="100">
 							<input type="button" class="qdelete" value="-">
-							<input type="button" class="qadd" value="+">
-							<br>
+							<input type="button" class="qadd" value="+"><br>
 							<br> &emsp;
 							<input class="insertA" type="text" placeholder="선택항목 입력">&emsp;
 							<input type="button" class="adelete" value="-">
@@ -116,6 +114,8 @@ tr, td {
 		</form>
 		<button style="margin-right: 5%; margin-bottom: 50px;">추가 완료</button>
 		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
+		</fieldset>
+	</div>
 	</section>
 	<footer> </footer>
 	
@@ -179,7 +179,7 @@ tr, td {
 		//문항 선택항목 추가
 		$(".question").on("click", ".aadd", function(){
 			console.log("aadd실행");
-			$(this).closest(".insertA .aadd").append("<input type='button' class='aadd' value='+'><br>");
+			$(this).closest(".qo .ql").append("&emsp;&nbsp;<input class='insertA' type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br>");
 		});
 		//문항 선택항목 삭제
 	</script>

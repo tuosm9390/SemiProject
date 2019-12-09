@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+section {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	/* background-size:85.9%; */
+	/* background-size: 1333px 1200px; */
+	background-size: cover;
+}
+
 section button {
 	float: right;
 	margin-bottom: 5px;
@@ -46,8 +53,8 @@ section button:hover {
 	color: white;
 }
 
-th, td {
-	background: white;
+tr, td {
+	background: none !important;
 	text-align: left !important;
 }
 
@@ -63,10 +70,8 @@ th, td {
 	<section>
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
-					width: 25%; font-family:'Do Hyeon'">
-		<legend align="center"><h1>　만족도 조사 수정　</h1></legend>
-	</fieldset>
-	</div>
+					width: 80%;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 수정　</h1></legend>
 		<form>
 			<table class="table" align="center" style="width: 80%;">
 				<tr>
@@ -119,11 +124,12 @@ th, td {
 				</tr>
 			</table>
 		</form>
-		<button style="margin-right: 5%; margin-bottom: 50px;"
+		<button style="margin-right: 5%;"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정하기</button>
 		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">돌아가기</button>
+		</fieldset>
+	</div>
 	</section>
-	<footer> </footer>
 	<script>
 	//DatePicker
 	$.datepicker.setDefaults({
@@ -136,14 +142,15 @@ th, td {
 		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 		changeMonth : true,
-		changeYear : true,
+		changeYear : true
 		});
 	$( function() {
 	    var dateFormat = "yy-mm-dd",
 	      from = $( "#from" )
 	        .datepicker({
 	          defaultDate: "+1w",
-	          changeMonth: true,
+	          changeMonth : true,
+	  		  changeYear : true,
 	          numberOfMonths: 2
 	        })
 	        .on( "change", function() {
@@ -151,7 +158,8 @@ th, td {
 	        }),
 	      to = $( "#to" ).datepicker({
 	        defaultDate: "+1w",
-	        changeMonth: true,
+	        changeMonth : true,
+			changeYear : true,
 	        numberOfMonths: 2
 	      })
 	      .on( "change", function() {

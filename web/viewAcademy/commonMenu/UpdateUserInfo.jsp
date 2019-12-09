@@ -7,7 +7,7 @@
 <title>HAGONG</title>
 <style>
 section {
-		background:url("/hagong/images/backModifySample.png") no-repeat top;
+		background:url("/hagong/images/backModifySample.png") no-repeat center;
 		background-size: cover;
 	}
 #profile {
@@ -81,7 +81,6 @@ input[readonly] {
 	<section style="margin-bottom: 10%;">
 	<div align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-	
 	<legend align="center"><h2 style="font-family:'Do Hyeon'">　개인정보 수정　</h2></legend>
 	<div style="width:100%; margin: auto auto;">
 		<form id="UpdateStudentForm">
@@ -172,10 +171,8 @@ input[readonly] {
 		</form>
 		</div>
 	</fieldset>
-		
 	</div>
 	</section>
-	
 	<footer> </footer>
 	<script>
 		$("#addimg").click(function() {
