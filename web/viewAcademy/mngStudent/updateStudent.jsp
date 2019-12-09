@@ -102,16 +102,16 @@ th, td {
 					</td>
 				</tr>
 				<tr>
-					<td><li>아이디</li></td>
-					<td><input type="text" value="bbogak" style="border: none;" readonly></td>
+					<td><li>ID</li></td>
+					<td><input type="text" value="bbogak"></td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
-					<td><input type="text" value="박상준" style="border: none;" readonly></td>
+					<td><input type="text" value="박상준"></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" id="datepicker" readonly></td>
+					<td><input type="text" id="datepicker"></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
@@ -142,12 +142,12 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>학부모 이름</li></td>
-					<td><input type="text" value="박상찬" style="border: none;" readonly></td>
+					<td><input type="text" value="박상찬"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 아이디</li></td>
-					<td><input type="text" value="scpark9999" style="border: none;" readonly></td>
+					<td><input type="text" value="scpark9999"></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -177,7 +177,7 @@ th, td {
 				<tr>
 					<td></td>
 					<td><li>개인정보 동의여부</li></td>
-					<td>Y</td>
+					<td style="color: black;">Y</td>
 				</tr>
 			</table>
 		</form>

@@ -10,44 +10,29 @@
  */
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>고객용 메인</title>
 <style>
-	.upperArea { display:inline; }
-	.satisfyArea {
-		border:2px solid lightgray;
-		width:40%;
-		height:400px;
-		position:absolute; top:18%;
-		margin-right:5px;
-	}
-	.receiptArea {
-		border:2px solid lightgray;
-		width:43%;
-		height:400px;
-		position:absolute; top:18%; left:50%;
-	}
-	.bottomArea { 
-		position:static;
-	}
-	.classArea {
-		border:2px solid lightgray;
-		width:86%;
-		height:300px;
-		position:absolute;
-		top:62%;
-		left:7%;
-		margin-bottom:30px;
-	}
+body {
+	background: url("/hagong/images/mainImage.jpg") no-repeat top;
+	background-size: 86%;
+	font-family: "Jua";
+}
+
+.classArea {
+	border: 2px solid lightgray;
+	text-align: center;
+	margin-bottom: 30px;
+}
 </style>
 </head>
 <body>
-	<%@ include file="/viewClient/common/menubar.jsp" %>
-	<div class="upperArea">
+	<%@ include file="/viewClient/common/menubar.jsp"%>
+	<!-- <div class="upperArea">
 		<div class="satisfyArea">
 			<h3>만족도 조사</h3>
 			<ul>
@@ -68,17 +53,19 @@
 				<li>07월 수강료 납부내역</li>
 			</ul>
 		</div>
-	</div> <!-- upperArea end -->
-	<div class="bottomArea">
-		<div class="classArea">
-			<h3>개설 예정 강좌</h3>
-			<ul>
+	</div> -->
+	<!-- upperArea end -->
+	<div class="classArea">
+		<h2>개설 예정 강좌</h2>
+		<div align="center">
+			<ul align="left" style="width: 25%;">
 				<li>2020년 수능 대비 영어 집중반</li>
 				<li>중3 수학 정복</li>
 				<li>고1 영어 문법반</li>
 				<li>중3 과학 기말고사 대비반</li>
 			</ul>
 		</div>
-	</div> <!-- bottomArea end -->
+	</div>
+	<!-- bottomArea end -->
 </body>
 </html>

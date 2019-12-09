@@ -8,7 +8,7 @@
 <style>
 section {
    background:url("/hagong/images/backSms.png") no-repeat top;
-   background-size: cover;
+   background-size: 100% 100%;
 }
 .div1 {
    width: 300px;
@@ -100,7 +100,7 @@ select, option{
       <div style="display: inline-table; margin:0 20%;"> <!-- 전체 div -->
          <div style="display: table-cell; width: 30%;"> <!-- 항목 수신인 div -->
             <div class="div1" style="display: flex; justify-content: space-between;">
-               <h2 style="margin: 0 0;"><li>항목 선택</h2>
+               <h2 style="margin-top: 0;"><li>항목 선택</h2>
                <select style="width: 50%; height: 25px;" id="select">
                   <option selected>--------선택--------</option>
                   <option>수강료납부</option>
@@ -120,14 +120,14 @@ select, option{
       
          <!-- 발송 내용 -->
          <div class="div1" style="margin-left: 42%;">
-            <h2 style="float: left;"><li>발송 내용</h2>
+            <h2 style="float: left; margin-top: 0;"><li>발송 내용</h2>
+            <input type="checkbox" id="savecontent" style="height:15px; width: 15px; 
+            		margin-left: 70px; margin-top: 8px;">
+            <label for="savecontent" style="color: lightgray;">내용 저장</label>
+            <input type="text" placeholder="제목 입력" id="contentname" style="width: 100%; margin-bottom: 5px; display: none;">
             <textarea id="smstext" placeholder="내용을 입력해주세요"
                style="resize: none; height: 440px; width: 100%;"></textarea><br>
-            <div style="display: flex; margin-top: 10px;">
-            <input type="checkbox" style="height:15px; width: 15px;">
-            <input type="text" placeholder="제목 입력" style="width: 100px; margin-left: 5px;">
-            <button style="font-size:18px; width:30%; height: 30px; margin-left: 75px;" onclick="send();">전송하기</button>
-            </div>
+            <button style="float: right; font-size:18px; width:30%; height: 30px; margin: 20px 0;" onclick="send();">전송하기</button>
          </div>
       </div> <!-- 전체 div -->
 
@@ -166,11 +166,11 @@ select, option{
             <h2 style="margin-left:15px;">수신인 추가하기</h2>
             <table>
             <tr>
-               <td><h3 style="margin: 0 0;">학년 / 반 선택</h3></td>
+               <td style="text-align:center;"><h3 style="margin: 0 0;">학년 / 반 선택</h3></td>
             </tr>
             <tr>
-               <td>
                <!-- 학년 선택 -->
+               <td>
                <select class="grade">
                   <option class="op2" value="0" selected>--선택--</option>
                   <option class="op2" value="mid1">중등 1학년</option>
@@ -186,11 +186,11 @@ select, option{
                </td>
             </tr>
             <tr>
-               <td class="person" style="display: none;"><h3 style="margin: 0 0;">대상 선택</h3></td>
+               <td class="person" style="text-align: center; display: none;"><h3 style="margin: 0 0;">대상 선택</h3></td>
             </tr>
             <tr>
-               <td>
                <!-- 대상 선택 -->
+               <td style="text-align: center;">
                   <select class="person" style="display: none;">
                      <option value="0" selected>-선택-</option>
                      <option value="student">학생</option>
@@ -199,8 +199,8 @@ select, option{
                </td>
             </tr>
             <tr>
-               <td>
-                  <!-- 학생 목록 -->
+               <!-- 학생 목록 -->
+               <td style="text-align: center;">
                   <div class="student">
                   <input type="checkbox" id="student1">
                   <label for="student1">학생 1</label>&emsp;
@@ -245,7 +245,7 @@ select, option{
       };
 
       //항목 추가
-      function addoption() {
+      /* function addoption() {
          var optionName = window.prompt("추가할 목록 입력", "이름 입력");
          var result = false;
          $("#select option").each(
@@ -263,7 +263,7 @@ select, option{
          if (result) {
             $("#select").append("<option>" + optionName + "</option>");
          }
-      };
+      }; */
 
       // 대상 추가 모달
       //var addlist = document.getElementById('addlist');
@@ -276,8 +276,8 @@ select, option{
       // 모달 닫기 버튼
       //var closelist = document.getElementsByClassName("close")[0];
       //var cancellist = document.getElementsByClassName("cancelbtn")[0];
-      var closeperson = document.getElementsByClassName("close")[1];
-      var cancelperson = document.getElementsByClassName("cancelbtn")[1];
+      var closeperson = document.getElementsByClassName("close")[0];
+      var cancelperson = document.getElementsByClassName("cancelbtn")[0];
 
       // 모달 실행
       addpersonbtn.onclick = function() {
@@ -296,9 +296,23 @@ select, option{
       } */
       closeperson.onclick = function() {
          addperson.style.display = "none";
+         $(".student").hide();
+         $(".parent").hide();
+         $(".person").hide();
+         $(".class").hide();
+         $(".op").hide();
+         $(".person").val(0).attr("selected", "selected");
+         $(".grade").val(0).attr("selected", "selected");
       }
       cancelperson.onclick = function() {
          addperson.style.display = "none";
+         $(".student").hide();
+         $(".parent").hide();
+         $(".person").hide();
+         $(".class").hide();
+         $(".op").hide();
+         $(".person").val(0).attr("selected", "selected");
+         $(".grade").val(0).attr("selected", "selected");
       }
       
       //학년 선택
@@ -376,6 +390,20 @@ select, option{
             default : $(".student").hide(); $(".parent").hide(); break;
             }
          });
+      });
+      
+      //내용 저장
+      $(function(){
+    	  $("#savecontent").click(function(){
+			if($("#savecontent").prop("checked") == true){
+			         swal("제목을 입력해주세요", {
+			            buttons : [ "취소", "확인" ],
+			         });
+				$("#contentname").show();
+			} else {
+				$("#contentname").hide();
+			};
+    	  });
       });
    </script>
 </body>
