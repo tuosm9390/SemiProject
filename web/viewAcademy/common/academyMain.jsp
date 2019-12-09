@@ -8,12 +8,13 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
 <title>HAGONG</title>
 <style>
 body {
 	background: url("/hagong/images/mainImage.jpg") no-repeat top;
 	background-size: 86%;
-	font-family: "Do Hyeon";
+	font-family: "Jua";
 }
 
 .totalArea div {
