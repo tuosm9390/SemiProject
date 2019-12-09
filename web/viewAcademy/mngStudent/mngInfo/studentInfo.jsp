@@ -166,9 +166,9 @@ h2{
 		</div>
 	
 		<!-- 성적 그래프 -->
-		<div id="chart" align="center">
+		<div id="chart" style="width: 90%; margin: auto 10%;">
 			<h2 align="left">성적 그래프</h2>
-			<div id="chart19"></div>
+			<div id="chart19" align="center"></div>
 		</div>
 	</section>
 	<footer></footer>
@@ -204,11 +204,11 @@ h2{
 		var $select2 = "<select style='width: 50px;'>";
 		var $op2 = "<option>1</option><option>2</option>";
 		var $text = "<input type='text' style='width: 50px; text-align:center;'>";
-		var $check = "<input type='checkbox'>"
+		var $button = "<button type='button'>등록</button>";
 		//학생 성적 추가 버튼
 		$("#pointAddBtn").click(function() {
 			$("#score").append(
-				"<tr><td>3</td><td style='width:229px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:166px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td>" +$text + "</td><td>" + $text + "</td><td>" + $text + "</td><td style='width: 100px;'>" + $check + "</td></tr>");
+				"<tr><td>3</td><td style='width:229px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:166px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td>" +$text + "</td><td>" + $text + "</td><td>" + $text + "</td><td style='width: 100px;'>" + $button + "</td></tr>");
 		});
 
 		//검색 옵션별 함수

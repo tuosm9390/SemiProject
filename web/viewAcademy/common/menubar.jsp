@@ -66,12 +66,14 @@
 }
 
 button {
-	border: 1px solid green;
+	border: 2px solid green;
 	border-radius: 5px;
 	background: none;
 	color: black;
 	display: block;
 	position: relative;
+	font-weight:bold; 
+	background: snow;
 }
 
 button:focus {

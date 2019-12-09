@@ -249,7 +249,7 @@ fieldset {
 			<div id="refundRule" class="modal">
 				<div class="modal-content refundModal" align="center">
 					<span class="close">&times;</span>
-					<h2 style="margin-left:35px;">교습비등 반환기준</h2>
+					<h2 style="margin-left:35px; font-style:italic;">◎ 교습비등 반환기준 ◎</h2>
 					<p>공정거래위원회 고시 제2019-3호, 2019.4.3.발령·시행</p>
 					<table style="width:90%">
 						<tr>
