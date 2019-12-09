@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-body {
+section {
 		background:url("/hagong/images/backModifySample.png") no-repeat top;
-		background-size:86%;
+		background-size: cover;
 	}
 #profile {
 	width: 200px;
@@ -84,7 +84,7 @@ fieldset {
 
 	<div align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-		<legend align="center"><h2>　@@@ 님의 개인정보　</h2></legend>
+		<legend align="center"><h2 style="font-family:'Do Hyeon'">　@@@ 님의 개인정보　</h2></legend>
 		<div style="width: 100%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">

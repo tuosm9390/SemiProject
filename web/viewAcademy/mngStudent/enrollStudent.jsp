@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-body {
-	background: url("/hagong/images/abc.jpg") no-repeat top;
-	background-size: 86%;
+section {
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	/* background-size:85.9%; */
+	/* background-size: 1333px 1200px; */
+	background-size: cover;
 }
 
 #profile {
@@ -75,7 +77,7 @@ section button:hover {
 	<div align="center">
 		<fieldset
 			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
-					width: 80%;">
+					width: 90%;">
 			<legend align="center">
 				<h1 style="font-family:'Do Hyeon'">　학생 등록　</h1>
 			</legend>
@@ -171,7 +173,7 @@ section button:hover {
 							<td></td>
 							<td><li>개인정보 제공 및 활용 동의</li></td>
 							<td>
-								<div style="width: 660px; height: 200px; overflow: auto;">
+								<div style="width: 500px; height: 200px; overflow: auto;">
 									<pre align="left" style="color: black;">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------

@@ -55,10 +55,6 @@ section button:hover {
 ul.accessibility{
 	height: 0px;
 }
-
-li{
-	list-style: decimal;
-}
 </style>
 </head>
 <body>
@@ -66,11 +62,16 @@ li{
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h1 align="center">2019 겨울방학 특강 만족도 조사</h1>
-		<div align="center">
-			<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반></li>
-			<li>실시 기간 : 2019.01.10 ~ 2019.02.20</li>
-		</div>
+	<div align="center">
+	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
+					width: 38%;">
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　2019 겨울방학 특강 만족도 조사　</h1></legend>
+			<div align="left">
+				<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반></li>
+				<li>실시 기간 : 2019.01.10 ~ 2019.02.20</li>
+			</div>
+		</fieldset>
+	</div>
 		<button style="margin-right: 20%;"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">닫기</button>
 		<button>삭제</button>

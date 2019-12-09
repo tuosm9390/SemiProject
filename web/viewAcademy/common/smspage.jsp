@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
-body {
-		background:url("/hagong/images/backSms.png") no-repeat top;
-		background-size:86%;
+section {
+	background:url("/hagong/images/backSms.png") no-repeat top;
+	background-size: cover;
 }
 .div1 {
 	width: 300px;
@@ -98,34 +98,34 @@ select, option{
 	</fieldset>
 	</div>
 		<div style="display: inline-table; margin:0 20%;"> <!-- 전체 div -->
-		<div style="display: table-cell;"> <!-- 항목 수신인 div -->
-		<div class="div1">
-			<h2 style="float: left;">항목 선택</h2>
-			<select style="width: 70%; height: 25px;" id="select">
-				<option selected>-------------선택-------------</option>
-				<option>수강료납부</option>
-				<option>학생 등하원</option>
-				<option>수동 발송</option>
-			</select>
-			<button id="addlistbtn" style="float: right;">+</button>
-		</div>
-		<!-- 수신인 목록 -->
-		<div class="div1">
-			<h2 style="float: left;">수신인 목록</h2><br><br>
-			<button id="addpersonbtn" style="float: right;">+</button>
-			<textarea id="persontext"
-				style="resize: none; width: 100%; height: 350px;" readonly></textarea>
-			<br> <h3 style="float: right;">인원 : </h3>
-		</div>
-		</div> <!-- 항목 수신인 div -->
+			<div style="display: table-cell; width: 30%;"> <!-- 항목 수신인 div -->
+				<div class="div1">
+					<h2 style="float: left;">항목 선택</h2>
+					<select style="width: 70%; height: 25px;" id="select">
+						<option selected>-------------선택-------------</option>
+						<option>수강료납부</option>
+						<option>학생 등하원</option>
+						<option>수동 발송</option>
+					</select>
+					<button id="addlistbtn" style="float: right;">+</button>
+				</div>
+			<!-- 수신인 목록 -->
+			<div class="div1">
+				<h2 style="float: left;">수신인 목록</h2><br><br>
+				<button id="addpersonbtn" style="float: right;">+</button>
+				<textarea id="persontext"
+					style="resize: none; width: 100%; height: 350px;" readonly></textarea>
+				<br> <h3 style="float: right;">인원 : </h3>
+			</div>
+			</div> <!-- 항목 수신인 div -->
 		
-		<!-- 발송 내용 -->
-		<div class="div1" style="margin-left: 120%;">
-			<h2 style="float: left;">발송 내용</h2>
-			<textarea id="smstext" placeholder="내용을 입력해주세요"
-				style="resize: none; height: 440px; width: 100%;"></textarea><br>
-			<button style="margin-top: 10px; height: 30px; float: right;" onclick="send();">전송하기</button>
-		</div>
+			<!-- 발송 내용 -->
+			<div class="div1" style="margin-left: 42%;">
+				<h2 style="float: left;">발송 내용</h2>
+				<textarea id="smstext" placeholder="내용을 입력해주세요"
+					style="resize: none; height: 440px; width: 100%;"></textarea><br>
+				<button style="margin-top: 10px; height: 30px; float: right;" onclick="send();">전송하기</button>
+			</div>
 		</div> <!-- 전체 div -->
 
 		<!-- 항목 추가 -->

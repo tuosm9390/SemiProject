@@ -63,7 +63,7 @@ th, td {
 	<section>
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
-					width: 20%; font-family:'Do Hyeon'">
+					width: 25%; font-family:'Do Hyeon'">
 		<legend align="center"><h1>　만족도 조사 수정　</h1></legend>
 	</fieldset>
 	</div>

@@ -96,7 +96,12 @@ tr:not(:first-child){
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-		<h2 style="margin-left: 5%;">만족도 조사 목록</h2>
+	<div align="center">
+	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
+					width: 25%;">
+	<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 목록　</h1></legend>
+	</fieldset>
+	</div>
 		<!-- 권한별 버튼 -->
 		<%if(test==1){%>
 		<button id="addSatisfaction" style="margin-right: 5%;">만족도 조사 등록</button>
