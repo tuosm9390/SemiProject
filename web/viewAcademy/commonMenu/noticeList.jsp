@@ -13,7 +13,7 @@
    }
    .searchArea{
       display:inline-flex;
-      float: right;
+      float: right; 
       margin-right: 5%;
       margin-bottom: 10px;
    }
