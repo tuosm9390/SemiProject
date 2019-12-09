@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-section {
-	background:url("/hagong/images/backInfo.jpg") no-repeat top;
-	/* background-size:85.9%; */
-	/* background-size: 1333px 1200px; */
-	background-size: cover;
+section{
+	background: url("/hagong/images/satisfy.png") no-repeat center;
+	background-size: 100% 100%;
 }
 
 section button {
