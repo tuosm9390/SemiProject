@@ -33,9 +33,11 @@
 	.cArea{margin:0 auto;}
 	.cArea.addDel{margin:auto 0;}
 	.classListArea li {padding:2px;}
-	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0; width:220px; height:350px;border-radius: 10px;}
-	.detailClass .classListArea .inputSrch{height:30px;border-radius: 20px;text-align:center;border:1px solid #333;}
+	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0;width:450px; height:350px;border-radius: 10px;overflow:hidden;}
+	.detailClass .classListArea .inputSrch{height:30px;border-radius: 20px;text-align:center;border:1px solid #333;margin-bottom: 10px;}
 	.cArea h3 {margin:10px auto;}
+	.studentList .tableArea {height:350px;overflow:auto;}
+	.studentList .table{margin-bottom:0;}
 </style>
 </head>
 <!-- <body> -->
@@ -48,9 +50,7 @@
 	<form id="classForm" action="" method="post">
 		<div class="classInfo">
 			<div align="center">
-		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
-		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수학기초반　</h1></legend>
-		      </fieldset>
+		      <h1 align="center" style="font-family:'Do Hyeon';"><　수학기초반　></h1>
 	    	</div>
    			<div class="bTable">
 				<table class="table">
@@ -76,7 +76,7 @@
 				<h3>전체 학생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-					<ul style="list-style-type: none;padding-inline-start: 0px;">
+					<!-- <ul style="list-style-type: none;padding-inline-start: 0px;">
 						<li>강동원(010-1111-2222)</li>
 						<li>강동원(010-1111-2222)</li>
 						<li>강동원(010-1111-2222)</li>
@@ -84,7 +84,132 @@
 						<li>강동원(010-1111-2222)</li>
 						<li>강동원(010-1111-2222)</li>
 						<li>강동원(010-1111-2222)</li>
-					</ul>
+					</ul> -->
+				<div class="tableArea">
+					<table class="table">
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+						<tr>
+							<td>강동원</td>
+							<td>kdw123</td>
+							<td>KH중학교</td>
+							<td>1학년</td>
+						</tr>
+					</table>
+				</div>
+					
 				</div>
 			</div>
 			<div class="cArea addDel">
@@ -95,13 +220,72 @@
 				<h3>해당 강좌 수강생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-					<ul style="list-style-type: none;padding-inline-start: 0px;">
+					<!-- <ul style="list-style-type: none;padding-inline-start: 0px;">
 						<li>아이린(010-1234-4567)</li>
 						<li>아이린(010-1234-4567)</li>
 						<li>아이린(010-1234-4567)</li>
 						<li>아이린(010-1234-4567)</li>
 						<li>아이린(010-1234-4567)</li>
-					</ul>
+					</ul> -->
+					<div class="tableArea">
+					<table class="table">
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+						<tr>
+							<td>아이린</td>
+							<td>ier456</td>
+							<td>KH고등학교</td>
+							<td>3학년</td>
+						</tr>
+					</table>
+					</div>
+					
 				</div>
 				<input type="text" name="count" value="(29/30)" style="border:none;float:right;width:57px;" readonly>
 			</div>
