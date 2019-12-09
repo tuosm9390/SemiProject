@@ -56,7 +56,7 @@ body {
 	</div> -->
 	<!-- upperArea end -->
 	<div class="classArea">
-		<h2>개설 예정 강좌</h2>
+		<h2>개설 예정 강좌</h2> 
 		<div align="center">
 			<ul align="left" style="width: 25%;">
 				<li>2020년 수능 대비 영어 집중반</li>
