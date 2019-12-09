@@ -39,11 +39,15 @@ tr {
 .border{
 	font-weight: bold;
 	border-right: 1px solid black;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
 }
 
-.
+.trid{
+	border-top: 1px solid black;
+	border-bottom:1px solid black;
+}
+#tst{
+border-right: none; 
+}
 </style>
 </head>
 <body>
@@ -104,7 +108,8 @@ tr {
                   </tr>
                   <!-- 학생개인정보 -->
                   <tr>
-                     <td rowspan="4" class="border">학생관리</td>
+                     <td rowspan="4" class="border even" style="background:rgba(245,244,242)">학생관리</td>
+                     
                      <td>개인정보</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -197,7 +202,7 @@ tr {
                   <!--  -->
 
                   <tr class="trid" id="qqtr">
-                     <td class="border" style="background-color:250,250,250;">직원관리</td>
+                     <td class="border odd">직원관리</td>
                      <td>직원관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -222,7 +227,7 @@ tr {
 
                   <!--  -->
                   <tr>
-                     <td rowspan="4" class="border" style="background-color:250,250,250;">수업관리</td>
+                     <td rowspan="4" class="border even" style="background:rgba(245,244,242)">수업관리</td>
                      <td>수강생관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -314,7 +319,7 @@ tr {
                   </tr>
 
                   <tr>
-                     <td rowspan="3" class="border">관리자</td>
+                     <td rowspan="3" class="border odd" style="background:white">관리자</td>
                      <td>학원현황</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
@@ -381,7 +386,7 @@ tr {
                   </tr>
                   <tr class="trid">
                      
-                     <td class="tdclass" colspan="5" class="border">　　고객</td>
+                     <td colspan="5" class="border" id="tst">　　고객</td>
 
                   </tr>
                   <tr>
