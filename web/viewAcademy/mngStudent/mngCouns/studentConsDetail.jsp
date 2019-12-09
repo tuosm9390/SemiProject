@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
+.backSection{
+	width:100%;
+	background: url("/hagong/images/consBackImg.jpg") no-repeat top;
+	background-size: 100%;
+	height:900px;
+}
 .wrap {
 	position: absolute;
 	width: 100%;
@@ -13,6 +19,9 @@
 	max-width: 700px;
 	left: 50%;
 	transform: translateX(-50%);
+    background: rgba(255,255,255,97%);
+    border-radius: 5px;
+    margin-top: 100px;
 }
 
 .accordion {
@@ -48,7 +57,7 @@
 }
 
 .accordion__title:hover {
-	background-color: #fafafa;
+	background-color: rgba(129,208,177,.3);
 }
 
 .accordion__title.active {
@@ -201,7 +210,7 @@
 </head>
 <body>
 	<%@ include file="../../common/menubar.jsp"%>
-	<section>
+	<section class="backSection">
 		<div class="wrap">
 		<div align="center">
       		<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width: 30%;">
