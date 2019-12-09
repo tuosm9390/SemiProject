@@ -108,7 +108,7 @@ tr:not(:first-child){
 		<button id="benefitBtn">혜택 관리</button>
 		<% } %>
 		<form>
-			<table class="table" align="center" style="width: 80%;">
+			<table class="table" align="center" style="width: 90%;">
 				<tr>
 					<th>No.</th>
 					<th>만족도 조사 내용</th>

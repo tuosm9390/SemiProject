@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
 section{
-	background: url("/hagong/images/") no-repeat center;
-	background-size: cover;
+	background: url("/hagong/images/satisfy.png") no-repeat center;
+	background-size: 100% 100%;
 }
 
 section button {
@@ -67,47 +67,50 @@ tr, td {
 						width: 80%; background: none;">
 		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 등록　</h1></legend>
 		<form>
-			<table class="table" align="center" style="width: 80%;">
+			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목</td>
-					<td><input type="text" placeholder="만족도 조사 제목 입력" size="50"></td>
+					<td colspan="3"><input type="text" placeholder="만족도 조사 제목 입력" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td><input type="text" placeholder="만족도 조사 대상 입력" size="80">&emsp;
+					<td colspan="3"><input type="text" placeholder="만족도 조사 대상 입력" size="80">&emsp;
 					</td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
 					<td>
 					<input type="text" id="from" name="from" readonly>&emsp;~
-					&emsp;<input type="text" id="to" name="to" readonly></td>
-				</tr>
-				<tr>
-					<td><li>문항 및 결과</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="question">
-						<ol class="qo">
-							<li class="ql">&emsp;
-							<input class="insertQ" type="text" placeholder="질문 문항 입력" size="100">
-							<input type="button" class="qdelete" value="-">
-							<input type="button" class="qadd" value="+"><br>
-							<br> &emsp;
-							<input class="insertA" type="text" placeholder="선택항목 입력">&emsp;
-							<input type="button" class="adelete" value="-">
-							<input type="button" class="aadd" value="+"><br>
-							</li>
-						</ol>
+					&emsp;<input type="text" id="to" name="to" readonly>
 					</td>
-				</tr>
-				<tr>
-					<td><li>쿠폰 선택</td>
+					<td style="text-align: center !important;"><label>쿠폰 선택</label></td>
 					<td>
 					<select>
 						<option>학원비 5%</option>
 						<option>학원비 10%</option>
 					</select>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="4"><li>문항 및 결과</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="question">
+						<ol class="qo">
+							<li class="ql">
+								<span class="que" style="display: contents;">
+									<input type="text" placeholder="질문 문항 입력" size="100">
+									<input type="button" class="qdelete" value="-">
+									<input type="button" class="qadd" value="+"><br>
+								</span>
+								<span class="answer" style="display: contents;">
+									<input type="text" placeholder="선택항목 입력">
+									<input type="button" class="adelete" value="-">
+									<input type="button" class="aadd" value="+"><br>
+								</span>
+							</li>
+						</ol>
 					</td>
 				</tr>
 			</table>
@@ -167,21 +170,25 @@ tr, td {
 		
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
+			$(".qo").append("<li class='ql'><span class='que' style='display: contents'><input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br></span><span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></li>");
 		});
 		//설문 문항 제거
 		$(".question").on("click", ".qdelete", function(){
-			if($(".qo li").size() != 1){
-				$(this).closest(".qo li").remove();
+			if($(".que").size() != 1){
+				$(this).closest(".qo .ql").remove();
 			};
 		});
 		
 		//문항 선택항목 추가
 		$(".question").on("click", ".aadd", function(){
-			console.log("aadd실행");
-			$(this).closest(".qo .ql").append("&emsp;&nbsp;<input class='insertA' type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br>");
+			$(this).closest("span").append("<span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
 		});
 		//문항 선택항목 삭제
+		$(".question").on("click", ".adelete", function(){
+			if($(this).parents("span").size() != 1){
+				$(this).closest("span").remove();
+			}
+		});
 	</script>
 </body>
 </html>
