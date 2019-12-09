@@ -17,8 +17,10 @@
 		text-align: -webkit-center;
 	}
 	.srchArea{margin-bottom:10px;}
-	.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
+	.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
+	.srchArea select{border-radius:5px;border:1px solid gray;}
 	.srchArea button{float:right;width:60px; height:25px;}
+	
 </style>
 	</head>
 	<body>

@@ -98,7 +98,8 @@
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 10px 40px 40px 40px;}
 .srchArea{margin-bottom:10px;}
-.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
+.srchArea select{float:right;border-radius:5px;border:1px solid gray;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
 .srchArea button{float:right;width:60px; height:25px;}
 .names{display:flex;}
 .names .dCtn.tName{margin-right:160px;}

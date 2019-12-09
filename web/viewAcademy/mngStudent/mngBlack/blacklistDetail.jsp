@@ -36,6 +36,8 @@
 .bInfo .blacklist_content{}
 .btnArea{padding: 24px 0 13px;}
 .blacklist_content {background:snow; padding:10px 10px 0 10px;}
+.names{display:flex;}
+.names .dCtn{margin-right:auto;}
 </style>
 </head>
 <body>
@@ -68,34 +70,30 @@
 			</table>
 		</div> <!-- 블랙리스트 정보 end -->
 		<div class="bDetail">
-			<div class="bDate">
-				<p>2019.09.11</p>
-				<p>2019.09.13</p>
-				<p>2019.09.14</p>
-				<p>2019.09.15</p>
-				<p>2019.09.16</p>
-				<p>2019.09.17</p>
-				<p>2019.09.18</p>
-				<p>2019.09.19</p>
-			</div> <!-- 블랙리스트 상담날짜 end -->
 			<div class="bContent">
 				<form class="blacklist_content" method="post">
 					<div class="detailArea">
 						<div class="dArea dArea1">
+							<div class="dCtn consDate"> 
+								<label class="dTit">상담일자</label>
+								<select class="dCtn inputCons">
+									<option value="">2019-11-11</option>
+									<option value="">2019-11-11</option>
+									<option value="">2019-11-11</option>
+									<option value="">2019-11-11</option>
+								</select>
+								<input type="text" class="inputCons" id="from" name="from" value="2019-11-11" style="display:none;" readonly>
+							</div>
 							<div class="dCtn consTitle">
 								<label class="dTit">상담제목</label>
 								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
 							</div>
+					<div class="names">
 							<div class="dCtn tName">
 								<label class="dTit">상담자 이름</label>
 								<input type="text" class="inputCons" value="서범수" readonly>
 							</div>
-						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" value="2019.11.11" readonly>
-							</div>
+
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
 								<select name="consCategory" disabled class="consCate">
@@ -105,6 +103,11 @@
 									<option value="etc">기타</option>
 								</select>
 							</div>
+					</div>
+
+						</div>
+						<div class="dArea dArea2">
+
 						</div>
 						<div class="dArea dArea3">
 							<div class="dCtn content">
@@ -128,7 +131,28 @@
 		
 	</div> <!-- 블랙리스트 전체정보  end-->
 	</section>
-
+	
+	<script>
+	//DatePicker
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		changeMonth : true,
+		changeYear : true,
+		constrainInput: false,
+		yearSuffix: '년'
+		});
+	$(function() {
+		$("#from").datepicker();
+	});
+	</script>
 	
 </body>
 </html>

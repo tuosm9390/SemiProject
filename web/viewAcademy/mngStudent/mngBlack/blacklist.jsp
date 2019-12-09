@@ -95,8 +95,9 @@
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 10px 40px 40px 40px;}
 .srchArea{margin-bottom:10px;}
-.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;}
-.srchArea button{float:right;width:60px; height:25px;margin-right:10px;}
+.srchArea input{float:left;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
+.srchArea select{float:left;border-radius:5px;border:1px solid gray;}
+.srchArea button{float:left;width:60px; height:25px;margin-right:10px;}
 .names{display:flex;}
 .names .dCtn.tName{margin-right:160px;}
 .dArea.dArea2{display:flex;}
@@ -120,15 +121,15 @@
 					<button class="addBlist" onclick="addBlist();">추가</button>
 				</div>
 				<div class="srchArea">
-					<button class="srchBtn">검색</button>
-					<input type="search" id="searchStudent" name="searchStudent">
-					<select style="float:right">
+					<select>
 						<option value="" selected disabled hidden>조건별 검색</option>
 						<option name="searchClassCondition" value="name">원생명</option>
 						<option name="searchClassCondition" value="phone">전화번호</option>
 						<option name="searchClassCondition" value="school">학교</option>
 						<option name="searchClassCondition" value="grade">학년</option>
 					</select>
+					<input type="search" id="searchStudent" name="searchStudent">
+					<button class="srchBtn">검색</button>
 				</div>
 				<table id="classlist" class="table">
 					<thead>
