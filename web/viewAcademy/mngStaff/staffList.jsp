@@ -54,7 +54,7 @@ fieldset {
 	</header>
 	<section>
 		<div align="center">
-      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;전체 직원&nbsp;</h1></legend>
       		</fieldset>
       	</div>

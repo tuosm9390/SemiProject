@@ -38,7 +38,7 @@
 	padding: 0px 50px 0 20px;
 	font-size: .875em;
 	font-weight: 500;
-	color: lightgray;
+	color: white;
 	border-bottom: 1px solid #eee;
 	overflow: hidden;
 	transition: background-color .2s;
@@ -50,8 +50,8 @@
 }
 
 .accordion__title:hover {
-	background-color: #fafafa;
-	color:black;
+	background-color: coral;
+	opacity:100%;
 }
 
 .accordion__title.active {
@@ -214,7 +214,7 @@ fieldset {
 	</header>
 	<section>
 		<div align="center">
-	      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+	      <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 	         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수납 내역　</h1></legend>
 	      </fieldset>
 	    </div>
@@ -464,20 +464,11 @@ fieldset {
 			$(function() {
 				//아코디언 스크립트
 				$('.accordion').find('.accordion__title').click(function() {
-					//$('.accordion__title').css({"background":"coral", "opacity":"100%", "color":"white"});
-					// Adds active class
 					// Expand or collapse this panel
 					$(this).next().slideToggle('fast');
 					// Removes active class from other titles
 					$('.accordion__title').not($(this)).removeClass('active');
-					//$('.accordion__title').not($(this)).css({"background":"green", "opacity":"50%", "color":"lightgray"});
 				});
-				
-				if($(".accordion__content").is(":visible")) {
-					$('.accordion__title').css({"background":"coral", "opacity":"100%", "color":"white"});
-				} else {
-					$('.accordion__title').css({"background":"green", "opacity":"50%", "color":"lightgray"});
-				}
 				
 				//전체선택 버튼 스크립트
 				$(".selectAll").change(function(){

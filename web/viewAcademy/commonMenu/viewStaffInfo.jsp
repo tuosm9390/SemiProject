@@ -7,9 +7,9 @@
 <title>HAGONG</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-body {
+section {
 	background: url("/hagong/images/backModifySample.png") no-repeat top;
-	background-size: 86%;
+	background-size: cover;
 }
 
 tr {

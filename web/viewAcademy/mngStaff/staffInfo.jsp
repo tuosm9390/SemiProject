@@ -7,9 +7,9 @@
 <title>HAGONG</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-body {
+section {
 	background:url("/hagong/images/backInfo.jpg") no-repeat top;
-	background-size:85.9%;
+	background-size:cover;
 }
 
 tr {
@@ -95,7 +95,7 @@ fieldset {
 	</header>
 	<section>
 		<div align="center">
-      		<fieldset style="margin-top:-25px; margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+      		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　상세정보　</h1></legend>
          		<div class="outArea">
 					<form action="" method="post">
