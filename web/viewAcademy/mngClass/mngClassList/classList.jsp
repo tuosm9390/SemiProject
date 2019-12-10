@@ -40,10 +40,11 @@
 	.modal-content {
 		background-color: #fefefe;
 		margin: 13% auto; /* 15% from the top and centered */
-		padding: 40px;
+		padding: 10px;
 		border: 1px solid #888;
 		width: 35%;
 		background-color: #fefefe;
+		border-radius: 5px;
 		/* Could be more or less, depending on screen size */
 	}
 	/* 모달 닫기 버튼 */
@@ -222,7 +223,7 @@
    <div id="mngClass" class="modal">
       <div class="modal-content" align="center">
          <span id="xBtn2">&times;</span>
-         <h2>강의실 관리</h2>
+         <h2 style="font-style:italic; padding-bottom:10px;">◎ 강의실 관리 ◎</h2>
          <table id="modalTable">
             <tr>
                <td colspan="2">
@@ -243,12 +244,13 @@
             <tr>
                <td colspan="2">
                   <button id="deleteBtn2"
-                     style="display: inline; margin-left: 20px; width: 100px; height: 30px;">삭제</button>
+                     style="display: inline; margin-left: 20px; width: 100px; height: 30px;">삭제</button> &nbsp; &nbsp;
                   <button type="button" id="updateBtn2"
                      style="display: inline; width: 100px; height: 30px;">추가</button>
                </td>
             </tr>
          </table>
+         <br>
       </div>
    </div> <!-- mngClass end -->
 

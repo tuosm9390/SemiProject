@@ -6,7 +6,11 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-
+	.bottomBtn {
+		width:100px !important;
+		height:30px !important;
+		font-size:18px;
+	}
 	section {
 		background: snow;
 	}
@@ -19,7 +23,8 @@
 	.detailClass .classbtn {
 		display:flex;
 		float: right;
-		margin-top:30px;
+		margin-top:10px;
+		margin-bottom:10px;
 	}
 	.detailClass .classbtn button{
 		margin-right:10px;
@@ -41,7 +46,7 @@
 	.detailClass .classListArea .inputSrch{height:30px;border-radius: 20px;text-align:center;border:1px solid #333;margin-bottom: 10px;}
 	.cArea h3 {margin:10px auto;}
 	.studentList .tableArea {height:350px;overflow:auto;}
-	.studentList .table{margin-bottom:0;}
+	.table {margin-bottom:2px !important;}
 </style>
 </head>
 <!-- <body> -->
@@ -54,7 +59,7 @@
 	<form id="classForm" action="" method="post">
 		<div class="classInfo">
 			<div align="center">
-		      <h1 align="center" style="font-family:'Do Hyeon';"><　수학기초반　></h1>
+		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　수학기초반　></h1>
 	    	</div>
    			<div class="bTable">
 				<table class="table">
@@ -289,17 +294,18 @@
 						</tr>
 					</table>
 					</div>
-					
 				</div>
 				<input type="text" name="count" value="(29/30)" style="border:none;float:right;width:57px;" readonly>
 			</div>
 		</div> <!-- classListArea end -->
 		<div class="classbtn">
-			<button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp'">취소</button>
-			<button type="submit">저장</button>
+			<button class="bottomBtn" type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp'">취소</button>
+			<button class="bottomBtn" type="submit">저장</button>
+			<br><br>
 		</div>
 	</form>
 	</div>
+	
 	</section>
 
 </body>

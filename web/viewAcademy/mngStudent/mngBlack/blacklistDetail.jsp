@@ -6,14 +6,15 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
+input, select, textarea {
+	border-radius:5px;
+	border:1px solid lightgray;
+}
 .detailArea {display: table-caption;}
 .inputCons {resize:none;}
 .btnArea {text-align:center;}
-.btnArea button{background:white;display:inline-block;margin:0 2px;width: 80px;
-    height: 25px;}
+.btnArea button{background:white;display:inline-block;margin:0 2px;width: 80px;font-size:18px;}
 .btnArea .updateCons {display:none;}
-.updateBtn {display:inline-block;margin:0 2px;width: 80px;
-    height: 25px;line-height: 22px;text-decoration: none;border: 1px solid green;border-radius: 5px;background: white;color: black;position: relative;padding: 1px 6px;}
 .updateBtn:focus {outline: none;}
 .updateBtn:hover {cursor: pointer;background: green;border: 1px solid green;color: white;}
 .detailArea{display: block;width: 100%;}
@@ -53,7 +54,7 @@
 		      </fieldset>
 	    	</div>
 		<div class="bTable">
-			<table class="table">
+			<table class="table" style="margin-bottom:5px;">
 				<tr>
 					<th>학생ID</th>
 					<th>학생명</th>
@@ -124,9 +125,9 @@
 						</div>
 					</div>
 					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
+						<button class="updateBtn" onclick="updateCons();">수정</button>
 						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
+						<button>삭제</button>
 					</div> <!-- btnArea -->
 				</form>
 			</div> <!-- 블랙리스트 상담내용 end -->

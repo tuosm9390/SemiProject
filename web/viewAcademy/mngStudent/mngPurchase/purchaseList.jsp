@@ -353,7 +353,7 @@ fieldset {
 				<!-- 상세보기 조회  -->
 				<div id="detailView" class="modal-content detailModal" align="center">
 					<span class="close">&times;</span>
-					<h2 style="margin-left:35px;">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<h2 style="margin-left:35px; font-style:italic">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
 					<table style="width:90%">
 						<tr>
 							<td width="40%" style="font-weight:bold;">수강 강좌</td>
@@ -399,13 +399,13 @@ fieldset {
 						</tr>
 					</table>
 					<br>
-					<button id="modifyDetailBtn">수정</button>
+					<button id="modifyDetailBtn" style="font-size:18px; width:100px;">수정</button>
 				</div>
 				
 				<!-- 상세보기 수정 -->
 				<div id="detailModify" class="modal-content detailModal" align="center">
 					<span class="close">&times;</span>
-					<h2 style="margin-left:35px;">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<h2 style="margin-left:35px; font-style:italic">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
 					<table style="width:90%">
 						<tr>
 							<td width="40%" style="font-weight:bold;">수강 강좌</td>
@@ -454,7 +454,7 @@ fieldset {
 						</tr>
 					</table>
 					<br>
-					<button id="modifyDoneBtn">수정 완료</button>
+					<button id="modifyDoneBtn" style="font-size:18px; width:100px;">완료</button>
 					<br>
 				</div>
 				

@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
+.bottomBtn {
+	font-size:18px;
+}
+input, select, textarea {
+	border-radius:5px;
+	border:1px solid lightgray;
+}
 .backSection{
 	width:100%;
 	background: url("/hagong/images/consBackImg.jpg") no-repeat top;
@@ -30,10 +37,8 @@
 }
 
 .accordionArea {
-	border-radius:5px;
-	background: snow;
+	background:rgba(268, 268, 268, 50%);
 }
-
 .accordion__item {
 	display: block;
 	width: 100%;
@@ -45,6 +50,7 @@
 }
 
 .accordion__title {
+	width:100%;
 	display: block;
 	position: relative;
 	height: 40px;
@@ -90,6 +96,7 @@
 
 
 .accordion__content {
+width:100%;
 	display: none;
 	position: relative;
 	overflow: hidden;
@@ -162,10 +169,10 @@
 	text-align:center;
 }
 .btnArea button{
+font-size:18px;
 	display:inline-block;
 	margin:0 2px;
 	width: 70px;
-	height: 22px;
 }
 .btnArea .updateCons {
 	display:none;
@@ -275,9 +282,9 @@
 						</div>
 					</div>
 					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
+						<button class="bottomBtn">삭제</button>
+						<button class="bottomBtn">수정</button>
 						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
 					</div> <!-- btnArea -->
 				</form>
 				<script>
