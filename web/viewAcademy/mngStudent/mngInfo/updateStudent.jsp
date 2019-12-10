@@ -103,26 +103,26 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>ID</li></td>
-					<td><input type="text" value="bbogak"></td>
+					<td><input type="text" value="bbogak" name="userId"></td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
-					<td><input type="text" value="박상준"></td>
+					<td><input type="text" value="박상준" name="userName"></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" id="datepicker"></td>
+					<td><input type="text" id="datepicker" name="birth"></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
+					<td><input type="tel" maxlength="3" name="tel1"> - 
+					<input type="tel" maxlength="4" name="tel2"> -
+					<input type="tel" maxlength="4" name="tel3"></td>
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
-					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;"> &nbsp;
-					<select style="width: 120px;">
+					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;" name="school"> &nbsp;
+					<select style="width: 120px;" name="grade">
 						<option value="mid1">중학교 1학년</option>
 						<option value="mid2">중학교 2학년</option>
 						<option value="mid3">중학교 3학년</option>
@@ -134,7 +134,7 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>계열</li></td>
-					<td><select>
+					<td><select name="track">
 							<option>인문</option>
 							<option>자연</option>
 							<option>예체능</option>
@@ -142,36 +142,36 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>학부모 이름</li></td>
-					<td><input type="text" value="박상찬"></td>
+					<td><input type="text" value="박상찬" name="refName"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 아이디</li></td>
-					<td><input type="text" value="scpark9999"></td>
+					<td><input type="text" value="scpark9999" name="refId"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 전화번호</li></td>
-					<td><input type="tel" maxlength="3"> - 
-					<input type="tel" maxlength="4"> -
-					<input type="tel" maxlength="4"></td>
+					<td><input type="tel" maxlength="3" name="reftel1"> - 
+					<input type="tel" maxlength="4" name="reftel2"> -
+					<input type="tel" maxlength="4" name="reftel3"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>희망대학 / 학과</li></td>
-					<td><input type="text" value="군대"> &nbsp;
-						<input type="text" value="사망"></td>
+					<td><input type="text" value="군대" name="college"> &nbsp;
+						<input type="text" value="사망" name="major"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" value="학생 거주지 입력"
+					<td><input type="text" value="학생 거주지 입력" name="address"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" value="helloworld@kakao.com"
+					<td><input type="email" value="helloworld@kakao.com" name="email"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>

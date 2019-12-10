@@ -74,7 +74,7 @@ tr, td {
 			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목</td>
-					<td colspan="#"><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
+					<td colspan="3"><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
@@ -92,7 +92,6 @@ tr, td {
 						<option>학원비 10%</option>
 					</select>
 					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td colspan="4"><li>문항 및 결과</td>
@@ -100,30 +99,37 @@ tr, td {
 				<tr>
 					<td colspan="4" class="question">
 						<ol class="qo">
-							<li>&emsp;
-							<input type="text" value="수업 커리큘럼에 대한 만족도" size="100">
-							<input type="button" class="qdelete" value="-">
-							<input type="button" class="qadd" value="+">
-							<br>
-							<br> &emsp;
-							<input type="text" value="진도와 내용이 적당했다" size="50">
-							<input type="button" class="adelete" value="-">
-							<input type="button" class="aadd" value="+">
-							<br> &emsp;
-							<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">
-							<input type="button" class="adelete" value="-">
-							<input type="button" class="aadd" value="+">
-							<br> &emsp;
-							<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">
-							<input type="button" class="adelete" value="-">
-							<input type="button" class="aadd" value="+">
+							<li class="ql">
+								<span class="que" style="display: contents;">
+									<input type="text" value="수업 커리큘럼에 대한 만족도" size="100">
+									<input type="button" class="qdelete" value="-">
+									<input type="button" class="qadd" value="+"><br>
+								</span>
+								<span class="answer" style="display: contents;">
+									<input type="text" value="진도와 내용이 적당했다" size="50">
+									<input type="button" class="adelete" value="-">
+									<input type="button" class="aadd" value="+"><br>
+								</span>
+								<span class="answer" style="display: contents;">
+									<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">
+									<input type="button" class="adelete" value="-">
+									<input type="button" class="aadd" value="+"><br>
+								</span>
+								<span class="answer" style="display: contents;">
+									<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">
+									<input type="button" class="adelete" value="-">
+									<input type="button" class="aadd" value="+"><br>
+								</span>
 							</li>
-							<li>&emsp;
-								<input type="text" value="수업 및 강사에 대한 개선 의견" size="100">
-								<input type="button" class="qdelete" value="-">
-							<input type="button" class="qadd" value="+"><br><br>
-								&emsp;
-								<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" style="resize: none;"></textarea>
+							<li>
+								<span class="que" style="display: contents;">
+									<input type="text" value="수업 및 강사에 대한 개선 의견" size="100">
+									<input type="button" class="qdelete" value="-">
+									<input type="button" class="qadd" value="+"><br>
+								</span>
+								<span class="answer" style="display: contents;">
+									<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" style="resize: none;"></textarea>
+								</span>
 							</li>
 						</ol>
 					</td>
@@ -139,38 +145,70 @@ tr, td {
 	<script>
 		//DatePicker
 		$.datepicker.setDefaults({
-    		dateFormat: 'yy-mm-dd',
-    		prevText: '이전 달',
-    		nextText: '다음 달',
-    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-    		showMonthAfterYear: true,
-    		changeMonth : true,
+			dateFormat:'yy-mm-dd',
+			prevText: '이전 달',
+			nextText: '다음 달',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			changeMonth : true,
 			changeYear : true,
-			constrainInput: false,
-    		yearSuffix: '년'
-  		});
-		$(function() {
-			$("#from, #to").datepicker();
+			});
+		$( function() {
+		    var dateFormat = "yy-mm-dd",
+		      from = $( "#from" )
+		        .datepicker({
+		          defaultDate: "+1w",
+		          changeMonth: true,
+		          numberOfMonths: 2
+		        })
+		        .on( "change", function() {
+		          to.datepicker( "option", "minDate", getDate( this ) );
+		        }),
+		      to = $( "#to" ).datepicker({
+		        defaultDate: "+1w",
+		        changeMonth: true,
+		        numberOfMonths: 2
+		      })
+		      .on( "change", function() {
+		        from.datepicker( "option", "maxDate", getDate( this ) );
+		      });
+		 
+		    function getDate( element ) {
+		      var date;
+		      try {
+		        date = $.datepicker.parseDate( dateFormat, element.value );
+		      } catch( error ) {
+		        date = null;
+		      }
+		 
+		      return date;
+			}
 		});
-		
+
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
+			$(".qo").append("<li class='ql'><div class='que' style='display: contents'><input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br><span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
 		});
 		//설문 문항 제거
 		$(".question").on("click", ".qdelete", function(){
-			if($(".qo li").size() != 1){
-				$(this).closest(".qo li").remove();
+			if($(".que").size() != 1){
+				$(this).closest(".qo .ql").remove();
 			};
 		});
 		
 		//문항 선택항목 추가
-		
+		$(".question").on("click", ".aadd", function(){
+			$(this).closest(".que").append("<span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
+		});
 		//문항 선택항목 삭제
+		$(".question").on("click", ".adelete", function(){
+			if($(this).closest("div span").siblings().size() != 4){
+				$(this).closest("span").remove();
+			}
+		});
 	</script>
 </body>
 </html>

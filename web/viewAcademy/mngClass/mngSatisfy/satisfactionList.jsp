@@ -33,20 +33,8 @@ select:focus {
 	outline: none;
 }
 
-tr
-:not
- 
-(
-:first-child
- 
-){
-cursor
-:
- 
-pointer
-;
-
-
+.table tr:not(:first-child){
+	cursor:pointer;
 }
 
 /* 모달 배경 */
@@ -100,6 +88,10 @@ pointer
 
 #modalBtnTable {
 	margin-top: 20px;
+}
+
+#modalBtnTable td{
+	display: inline-flex;
 }
 <%int test = 1;%>
 </style>
@@ -182,7 +174,10 @@ pointer
 					</tr>
 					<tr>
 						<td width="100px">혜택구분</td>
-						<td width="250px"><input type="text" id="benefitType"></td>
+						<td width="250px">
+						<select id="benefitType">
+							<option value="수강비" selected>수강비</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td>할인률</td>
@@ -193,9 +188,9 @@ pointer
 					<tr>
 						<td colspan="2">
 							<button id="deleteBtn2"
-								style="display: inline; margin-left: 20px; width: 100px; height: 30px;">삭제</button>
+								style="margin-left: 20px; width: 100px; height: 30px;">삭제</button>
 							<button type="button" id="updateBtn2"
-								style="display: inline; width: 100px; height: 30px;">추가</button>
+								style="width: 100px; height: 30px;">추가</button>
 						</td>
 					</tr>
 				</table>
@@ -230,17 +225,19 @@ pointer
 			benefit.style.display = "none";
 		};
 
-		updateBtn2.onclick = function() {
+		updateBtn2.onclick = function(i) {
 			var benefitType = $("#benefitType").val();
 			var benefitRate = $("#benefitRate").val();
 
 			$("#benefitSelect").append(
-					"<option value=" + benefitType + ">" + benefitType + " / " + benefitRate + "%</option>");
+					"<option value=" + benefitType + benefitRate + ">" + benefitType + " / " + benefitRate + "%</option>");
 		};
 
 		deleteBtn2.onclick = function() {
-			var deleteBen = window.prompt('삭제할 강의실명 입력');
-			$("select[id='benefitSelect'] option[value='" + deleteBen + "']").remove();
+			var benefitType = $("#benefitType").val();
+			
+			var deleteBen = window.prompt('삭제할 할인율 입력');
+			$("select[id='benefitSelect'] option[value=" + benefitType + deleteBen + "]").remove();
 		};
 
 		//select option 가운데정렬
