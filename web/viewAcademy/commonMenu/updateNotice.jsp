@@ -15,7 +15,7 @@
 		margin-bottom:30px;
 	}
 	fieldset {
-      width:20%
+      width:25%
    }
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" <%-- value="<%=n.getnWriter()%>" --%> name="writer" style="border-radius:5px; border:1px solid lightgray;" readonly></td>
+						<td><input type="text" <%-- value="<%=n.getnWriter()%>" --%> name="writer" style="border-radius:5px; border:none;" readonly></td>
 						<td>작성일</td>
 						<td><input type="date" name="date" <%-- value="<%=n.getnDate()%>" --%> style="border-radius:5px; border:1px solid lightgray;" readonly></td>
 					</tr>
@@ -56,8 +56,8 @@
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
-					<button type="button" onclick="updateNotice();" style="font-size:18px;">삭제</button>
-					<button type="button" id="complete" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="font-size:18px;">완료</button>
+					<button type="button" onclick="updateNotice();" style="margin-right:5px;">삭제하기</button>
+					<button type="button" id="complete" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">수정 완료</button>
 				</div>
 				<%-- <script>
 					function complete() {

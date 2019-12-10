@@ -32,12 +32,13 @@
 		margin-bottom:50px;
 	}
 	fieldset {
-      width:20%
+      width:25%
    }
    /* #important{
    	   float:right;
    } */
 </style>
+<%@ include file="/viewAcademy/common/menubar.jsp"%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -57,7 +58,7 @@
 				<table>
 					<tr>
 						<td>제목</td>
-						<td colspan="3" style="padding-bottom:1%;"  ><input type="text" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;"></td>
+						<td colspan="3" style="padding-bottom:1%;"><input type="text" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -68,17 +69,11 @@
 						<td>작성일</td>
 						<td><input type="date" name="date" style="border-radius:5px; border:1px solid lightgray;"></td>
 					</tr>
-					<tr >
-					    <td></td>
-						<td></td>
-						<td></td>
-						
-						<td style="text-align:right">
-							<input type="checkbox"> 중요공지
-						</td>
-					</tr>
 					<tr>
 						<td>내용</td>
+						<td colspan="3" style="text-align:right">
+							<input type="checkbox"> 중요공지
+						</td>
 					</tr>
 					<tr>
 						<td colspan="4">
@@ -87,15 +82,15 @@
 					</tr>
 					<tr>
 						<td style="padding-top:10px" colspan="4">
-							<input type="file">
+							<input type="file" style="border-radius:5px; border:1px solid lightgray;">
 						</td>
 					</tr>
 					
 				</table>
 				<br><br>
 				<div class="cancleSubmit" align="center">
-					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="font-size:18px;">취소</button>
-					<button type="button" id="submit" onclick="insertNotice();" style="font-size:18px;">등록</button>
+					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="margin-right:5px;">취소하기</button>
+					<button type="button" id="submit" onclick="insertNotice();" >등록하기</button>
 				</div>
 			</form>
 		</div> <!-- tableArea end -->

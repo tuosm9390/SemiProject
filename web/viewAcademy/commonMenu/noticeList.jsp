@@ -18,7 +18,7 @@
       margin-bottom: 10px;
    }
    fieldset {
-      width:20%
+      width:25%
    }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -30,18 +30,17 @@
    <section>
       <div align="center">
       <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 목록　</h1></legend>
+         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 게시판　</h1></legend>
       </fieldset>
       </div>
       <div class="searchArea">
-            <select id="searchCondition" name="searchCondition" style="border-radius:5px;">
-            	<option option value="" selected disabled hidden>검색 조건</option>
+            <select id="searchCondition" name="searchCondition">
                <option value="writer">작성자</option>
                <option value="title">제목</option>
                <option value="content">내용</option>
             </select>&nbsp;&nbsp;
             <input type="search" style="border-radius:5px; border:1px solid lightgray;">&nbsp;&nbsp;
-            <button type="submit">검색</button>
+            <button type="submit">검색하기</button>
       </div> <!-- searchArea end -->
       
       <div style="width:90%; margin:auto auto;">
@@ -82,9 +81,9 @@
                <td>23</td>
             </tr>
          </table>
-	      <div id="write">
-	         <button type="button" onclick="location.href='insertNotice.jsp'" style="font-size:18px;">공지사항 작성</button>
-	      </div>
+      </div>
+      <div id="write">
+         <button type="button" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
       </div>
       <script>
       $(function(){
