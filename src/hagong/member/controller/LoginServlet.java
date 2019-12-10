@@ -21,14 +21,14 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("memberId");
+		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
-		Member m = new Member();
-		m.setMemberId(memberId);
-		m.setMemberPwd(password);
+		Member requestMember = new Member();
+		requestMember.setUserId(userId);
+		requestMember.setUserPwd(password);
 		
-		Member loginUser = new MemberService().loginCheck(m);
+		Member loginUser = new MemberService().loginCheck(requestMember);
 	
 		String page = "";
 		
