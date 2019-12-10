@@ -105,6 +105,11 @@
 		color: white;
 		display: inline;
 	}
+	
+	#mngClass input {
+		border-radius: 5px;
+		border: 1px solid lightgray;
+	}
 </style>
 </head>
 <body>

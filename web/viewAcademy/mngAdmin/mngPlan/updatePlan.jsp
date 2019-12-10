@@ -80,6 +80,12 @@
 		padding-left: 100px;
 		padding-right: 100px;
 	}
+	
+	#planTableArea td {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	
 	#mainTh {
 		padding-left: 60px !important;
 		padding-right: 60px !important;
@@ -128,81 +134,6 @@
 					<td contenteditable="true"></td>
 					<% } %>
 				</tr>
-				<tr>
-					<td>입시</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-					<td>이달의 입시계획</td>
-				</tr>
-				<tr>
-					<td>중등</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-					<td>이달의 중등계획</td>
-				</tr>
-						<tr>
-							<td>고등</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-							<td>이달의 고등계획</td>
-						</tr>
-						<tr>
-							<td>중.고 경시</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-						</tr>
-						<tr>
-							<td>행사</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-							<td>이달의 행사계획 행사 내용이 길어지면 자동으로 조절되는건가 이상함</td>
-						</tr>
 					</tbody>
 				</table>
 			</div> <!-- body end -->
@@ -266,15 +197,17 @@
 				addRowBtn.onclick = function() {
 					var addRowName = window.prompt('행 이름 입력');
 					
-					$("#tbody").append("<tr><td>"+ addRowName + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-						
+					$("#tbody").append("<tr value='" + addRowName + "'><td>"+ addRowName + "</td>"
+										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
+										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
+										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td></tr>");
 				}
 				
 				deleteRowBtn.onclick = function() {
 					var deleteRowName = window.prompt('삭제할 행 이름 입력');
 					
 					//시험용 삭제
-					$("tbody tr:last-child").remove();
+					$("tbody tr[value='"+ deleteRowName + "']").remove();
 					
 				}
 				

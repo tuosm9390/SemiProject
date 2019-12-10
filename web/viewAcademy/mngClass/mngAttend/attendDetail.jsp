@@ -13,10 +13,9 @@
     }
     
    .studentListArea {
-      width: 86%;
-      margin-left: auto;
-      margin-right: auto;
-      height:550px;
+      width: 74%;
+      margin-left: 7%;
+      height:500px;
       position:absolute;
       display:inline;
       overflow:auto;
@@ -24,6 +23,7 @@
    
    .selectArea {
       top:30%;
+      margin-left: 8.7%;
    }
    
    .bottomArea {
@@ -31,26 +31,11 @@
       position:static;
    }
    
-   .attendDetailArea {
-      width:30%;
-      height:300px;
-      border:1px solid lightgray;
-      border-radius: 5px;
-      background:white;
-      position:absolute;
-      top:105%;
-      left:7%;
-      margin-bottom:30px;
-      overflow:auto;
-      visibility:hidden;
-   }
-   
    .detailReasonArea {
-      width:43%;
-      height:400px;
+      width:74%;
+      margin-left: 7%;
       position:absolute;
-      top:105%;
-      left:50%;
+      top:95%;
       margin-bottom:30px;
       visibility:hidden;
       background: #f5f5f5;
@@ -62,8 +47,6 @@
    }
    
    .attendBtn {
-      
-      margin-bottom:10px;
       font-size: 18px;
       margin-left: 1%;
       font-family: "Nanum Gothic";
@@ -92,8 +75,7 @@
       padding-right:100px;
    }
    
-   #writeBtn {
-   	 float:right; 
+   #writeBtn { 
    	 border:2px solid green; 
    	 background: white; 
    	 border-radius: 5px;
@@ -103,6 +85,20 @@
    #writeBtn:hover {
 	background: green;
 	color: white;
+   }
+   
+   td.fixed {
+   	position: relative;
+   	left: 0;
+   	z-index: 1;
+   }
+   
+   .fixed {
+   	position: fixed;
+   }
+   
+   #reasonWrite:hover {
+   	cursor: pointer;
    }
 </style>
 </head>
@@ -126,8 +122,7 @@
       <button class="attendBtn">적용</button>
    </div>
    
-   <div class="outer">
-      <div class="studentListArea">
+      <div align="center" class="studentListArea">
          <form>
             <table class="studentListTable table">
                <tr class="fixed-header">
@@ -142,48 +137,37 @@
                   <th>12/<%=i+1%></th>
                   <% } %>
                </tr>
-                  
-               <% for(int j=0; j<20; j++) { %>
-               <tr>
+               	<% for(int i=0; i<10; i++) { %>
+               	<tr>
                   <td><input type="checkbox" id="checkOne"></td>
                   <td>빛상찬</td>
                   <td id="infoCol">kh중학교<br>4학년<br>010-4444-4444</td>
                   <% for(int k=0; k<dayOfMonth; k++) { %>
-                  <td>결석</td>
+                  <td style="padding:20px"><a id="reasonWrite">결석</a></td>
                   <% } %>
                </tr>
                <% } %>
-            </table>
+             </table>
          </form>
       </div>
    <div class="bottomArea">
-      <div class="attendDetailArea">
-         <ul>
-         <li style="font-size:18px;">@@@ 학생 출결 상세</li>
-         </ul>
-         <table class="detailAreaTable table">
-            <% for(int i=0; i<dayOfMonth; i++) { %>
-            <tr>
-               <td>12/<%= i+1 %></td>
-               <td>결석</td>
-            </tr>
-            <% } %>
-         </table>
-      </div>   <!-- attendDetailArea end -->
          <div class="detailReasonArea">
+         	<div class="btnArea" style="display:flex;">
             <ul>
             <li style="font-size:18px;">출결 상세 사유</li>
             </ul>
+            
+            	<button id="writeBtn" style="height:30px; margin:14px">수정</button>
+ 
+            </div>
             <div align="center" class="reasonContent">
                <form action="" method="post">
-                  <textarea style="border-radius: 5px; margin-bottom: 1%; width: 80%; height: 282px; resize:none;"></textarea>
-                  <br>
-                  <button id="writeBtn">수정</button>
+                  <textarea style="border-radius: 5px; margin-bottom: 1%; width: 80%; height: 50px; resize:none;"></textarea>
+
                </form>
             </div>
          </div> <!-- detailReasonArea end -->
       </div> <!-- bottomArea end -->
-      </div> <!-- outer end -->
    <script>
       $(function(){
          $("input:checkbox[id='checkAll']").change(function(){         
@@ -194,16 +178,19 @@
             }
          });
       });
-      
+/*       
       $(function(){
          $(".studentListTable td").click(function(){
-            $(".attendDetailArea").css("visibility","visible");
+        	 $(".detailReasonArea").css("visibility","visible");
          });
-         
-         $(".attendDetailArea").click(function(){
-            $(".detailReasonArea").css("visibility","visible");
-         })
       });
+       */
+      $(function() {
+    	  $("#reasonWrite").click(function() {
+    		  $(".detailReasonArea").css("visibility","visible");
+    	  });
+      });
+      
    </script>
    </section>
    <footer></footer>
