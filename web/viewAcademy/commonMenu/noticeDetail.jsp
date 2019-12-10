@@ -14,7 +14,7 @@
 		margin-bottom:30px;
 	}
 	fieldset {
-      width:16%
+      width:25%
    }
 </style>
 </head>
@@ -25,7 +25,7 @@
    <section>
    <div align="center">
       <fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항　</h1></legend>
+         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　공지사항 내용　</h1></legend>
       </fieldset>
     </div>
 	<div style="width:90%; margin:auto auto;" class="outer" >
@@ -34,17 +34,17 @@
 				<tr>
 					<td>제목</td>
 					<td style="padding-bottom:1%" colspan="3">
-						<input type="label" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;"<%-- value="<%= n.getnTitle() %>" --%> readonly>
+						<input type="label" size="50" name="title" style="border-radius:5px; border:none;"<%-- value="<%= n.getnTitle() %>" --%> readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>작성자</td>
 					<td>
-						<input type="label" <%-- value="<%=n.getnWriter() %>" --%> name="writer" style="border-radius:5px; border:1px solid lightgray;" readonly>
+						<input type="label" <%-- value="<%=n.getnWriter() %>" --%> name="writer" style="border-radius:5px; border:none;" readonly>
 					</td>
 					<td>작성일</td>
 					<td>
-						<input type="text" name="date" <%-- value="<%= n.getnDate() %>" --%> style="border-radius:5px; border:1px solid lightgray;" readonly>
+						<input type="text" name="date" <%-- value="<%= n.getnDate() %>" --%> style="border-radius:5px; border:none;" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -58,15 +58,16 @@
 			</table>
 			<br>
 			<div class="returnUpdate" align="center">
-				<button id="return" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="font-size:18px;">목록</button>
+				<button id="return" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="margin-right:5px;">목록으로 돌아가기</button>
 				<%-- <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %> --%>
-				<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/updateNotice.jsp'" style="font-size:18px;">수정</button>
+				<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeUpdate.jsp'">수정하기</button>
 				<%-- <% } %> --%>
 			</div>
-		</div> <!— tableArea end —>
-	</div> <!— outer end —>
+		</div> <!-- tableArea end -->
+	</div> <!-- outer end -->
 	</section>
 	<footer>
 	</footer>
 </body>
 </html>
+
