@@ -17,6 +17,7 @@ section button {
 	font-family: "Nanum Gothic";
 	font-weight: bold;
 	border: 2px solid green;
+	width:100px;
 }
 
 section button:hover {

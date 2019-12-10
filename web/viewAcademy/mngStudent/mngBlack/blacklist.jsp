@@ -21,15 +21,19 @@
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-
+input, select, textarea {
+	border-radius:5px;
+	border:1px solid lightgray;
+}
 /* 모달 내부 상자 */
 .modal-content {
 	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
+	margin: 3% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
 	width: 50%;
 	background-color: #fefefe;
+	border-radius:5px;
 	/* Could be more or less, depending on screen size */
 }
 /* 모달 닫기 버튼 */
@@ -99,7 +103,8 @@
 .srchArea select{float:left;border-radius:5px;border:1px solid gray;}
 .srchArea button{float:left;width:60px; height:25px;margin-right:10px;}
 .names{display:flex;}
-.names .dCtn.tName{margin-right:160px;}
+.names input{margin-right:13px;}
+.names select{margin-right:13px;}
 .dArea.dArea2{display:flex;}
 .dArea.dArea2 .dCtn.consDate{margin-right:160px;}
 </style>
@@ -118,7 +123,7 @@
 				    </fieldset>
 			    </div>
 				<div class="addBtn">				
-					<button class="addBlist" onclick="addBlist();">추가</button>
+					<button class="addBlist" onclick="addBlist();" style="font-size:18px;">추가</button>
 				</div>
 				<div class="srchArea">
 					<select>
@@ -170,11 +175,7 @@
 		<div id="addlist" class="modal">
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
-				<div align="center">
-			      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-			         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트 추가　</h1></legend>
-			      </fieldset>
-			     </div>
+				<h2 align="center" style="font-style:italic">◎ 블랙리스트 추가 ◎</h2>
 					<form class="accordion__content" method="post">
 						<div class="detailArea" align="left">
 							<div class="dArea dArea1">
@@ -183,18 +184,7 @@
 									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
 								</div>
 								<div class="names">
-									<div class="dCtn tName">
-										<label class="dTit">상담자 이름</label>
-										<input type="text" class="inputCons" value="서범수" readonly>
-									</div>
-									<div class="dCtn sName">
-										<label class="dTit">상담학생명</label>
-										<input type="text" class="inputCons" value="김지원" readonly>
-									</div>
-								</div>
-							</div>
-							<div class="dArea dArea2">
-								<div class="dCtn consDate"> 
+																<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
 									<input type="text" class="inputCons" id="from" name="from" value="" readonly>
 								</div>
@@ -207,6 +197,18 @@
 										<option value="etc">기타</option>
 									</select>
 								</div>
+									<div class="dCtn tName">
+										<label class="dTit">상담자 이름</label>
+										<input type="text" class="inputCons" value="서범수" readonly>
+									</div>
+									<div class="dCtn sName">
+										<label class="dTit">상담학생명</label>
+										<input type="text" class="inputCons" value="김지원" readonly>
+									</div>
+								</div>
+							</div>
+							<div class="dArea dArea2">
+
 							</div>
 							<div class="dArea dArea3">
 								<div class="dCtn tPhone">
@@ -225,9 +227,9 @@
 						</div>
 						<div class="btnArea">
 							<button class="cancelbtn"
-								style="margin-left: 150px; width: 100px; height: 30px; float: left;">취소</button>
+								style="width: 100px; height: 30px;">취소</button>&nbsp;&nbsp;
 							<button class="okbtn"
-								style="margin-right: 150px; float: right; width: 100px; height: 30px;">확인</button>
+								style="width: 100px; height: 30px;">확인</button>
 						</div>
 					</form>
 				</div>

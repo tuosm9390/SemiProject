@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+.bottomBtn {
+	width: 100px;
+	font-size:18px;
+}
+input {
+	border: none !important;
+}
 section{
 	background: url("/hagong/images/satisfy.png") no-repeat center;
 	background-size: 100% 100%;
@@ -85,9 +92,9 @@ tr, td {
 					<td>
 					<input type="text" id="from" name="from" readonly>&emsp;~
 					&emsp;<input type="text" id="to" name="to" readonly></td>
-					<td style="text-align: center !important;"><label>쿠폰 선택</label></td>
+					<td style="text-align: center !important;"><label><li>쿠폰 선택</li></label></td>
 					<td>
-					<select>
+					<select disabled>
 						<option>학원비 5%</option>
 						<option>학원비 10%</option>
 					</select>
@@ -121,60 +128,13 @@ tr, td {
 				</tr>
 			</table>
 		</form>
-		<button style="margin-right: 5%;"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정하기</button>
-		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">돌아가기</button>
+		<button class="bottomBtn" style="margin-right: 5%;"
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정</button>
+		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
 		</fieldset>
 	</div>
 	</section>
-	<script>
-	//DatePicker
-	$.datepicker.setDefaults({
-		dateFormat:'yy-mm-dd',
-		prevText: '이전 달',
-		nextText: '다음 달',
-		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		changeMonth : true,
-		changeYear : true
-		});
-	$( function() {
-	    var dateFormat = "yy-mm-dd",
-	      from = $( "#from" )
-	        .datepicker({
-	          defaultDate: "+1w",
-	          changeMonth : true,
-	  		  changeYear : true,
-	          numberOfMonths: 2
-	        })
-	        .on( "change", function() {
-	          to.datepicker( "option", "minDate", getDate( this ) );
-	        }),
-	      to = $( "#to" ).datepicker({
-	        defaultDate: "+1w",
-	        changeMonth : true,
-			changeYear : true,
-	        numberOfMonths: 2
-	      })
-	      .on( "change", function() {
-	        from.datepicker( "option", "maxDate", getDate( this ) );
-	      });
-	 
-	    function getDate( element ) {
-	      var date;
-	      try {
-	        date = $.datepicker.parseDate( dateFormat, element.value );
-	      } catch( error ) {
-	        date = null;
-	      }
-	 
-	      return date;
-	    }
-	  } );
-		
+	<script>		
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
 			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
