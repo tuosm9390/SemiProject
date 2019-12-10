@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%-- <%
-   Member loginMember = (Member) request.getSession().getAttribute("loginMember");
-%> --%>
+	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
+<%
+	Member loginUser = (Member) session.getAttribute("loginUser");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,11 +201,13 @@ section{
 				<img src="<%=request.getContextPath()%>/images/calendar.png"
 					style="height: 30px;">
 			</h3>
-			<%-- <% if(loginMember != null) { %> --%>
-			<!-- <button id="logout" style="margin-left: 5px;">로그아웃</button> -->
-			<%-- <% }else { %> --%>
-      	<button id="login" style="margin-left: 5px;">로그인</button>
-      	<%-- <% } --%>
+			
+			<!-- 로그인 버튼 -->
+			<% if(loginUser != null) { %>
+			<button id="logout" style="margin-left: 5px;">로그아웃</button>
+			<% }else { %>
+      		<button id="login" style="margin-left: 5px;">로그인</button>
+      		<% } %>
       	
 			<!-- 하단 회색 바 -->
 			<div id="mid">
@@ -243,7 +245,12 @@ section{
 
 				<div id="member">
 					<button type="button" id="name"
-						style="margin-right: 4%; background: none; border: none; font-size: x-large;">관리자님</button>
+						style="margin-right: 4%; background: none; border: none; font-size: large;">
+					<% if(loginUser != null) {  %>
+					<%= loginUser.getName() %>
+					<% }else {	%>
+						비회원
+					<% } %>님</button>
 					<button style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
                		onclick="myInfo();">개인정보 관리</button>
 				</div>
@@ -259,12 +266,13 @@ section{
 
 	<!-- 스크립트 -->
 	<script>
+		//로그인 버튼 클릭 시
 		$("#login").click(function() {
        		location.href="<%=request.getContextPath()%>/viewAcademy/common/login.jsp";
      	});
 
 		$("#logout").click(function() {
-	    	<%-- location.href="<%=request.getContextPath()%>/logout.me"; --%>
+	    	location.href="<%=request.getContextPath()%>/logout.cm";
 	    	swal("로그아웃 하시겠습니까?", {
 	    		buttons : [ "취소", "확인" ],
 	    	});
