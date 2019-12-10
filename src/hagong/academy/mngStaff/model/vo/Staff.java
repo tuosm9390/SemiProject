@@ -30,7 +30,7 @@ public class Staff implements java.io.Serializable {
 	private String status;
 	private String userType;
 	
-	private String dept;
+	private String dept; 
 	private int fileNo;
 	private String fileType;
 	private Date docDate;

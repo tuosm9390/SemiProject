@@ -284,7 +284,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				</div> <!-- outArea end -->
          		
          	</fieldset>
-         </div>
+         </div> 
 		
 		
 		<script>
