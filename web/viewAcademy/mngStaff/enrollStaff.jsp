@@ -112,14 +112,14 @@ fieldset {
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　직원 등록　</h1></legend>
          		<div class="outArea">
-					<form action="" method="post">
+					<form action="<%= request.getContextPath() %>/ainsert.staff" method="post">
 					<table class="table">
 						<tr>
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 							<td width="25%"><li>직원 ID</li></td>
 							<td width="30%">
 								<input type="text" name="userId" id="userId" placeholder="직원 ID 입력">
-								<button id="idCheck">중복 확인</button></td>
+								<button type="button" id="idCheck">중복 확인</button></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
@@ -152,8 +152,8 @@ fieldset {
 							</td>
 						</tr>
 						<tr>
-							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
-							<td><li>이메일</li></td>
+							<td><div align="center"><button type="button" id="imgBtn">사진 선택</button></div><input type="file" id="imgFile" name="imgFile" onchange="loadImg(this)"></td>
+							<td>⦁　이메일</td>
 							<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
 						</tr>
 						<tr>
@@ -262,13 +262,13 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						</tr>
 						<tr>
 							<td></td>
-							<td><li>급여 계약서</li> </td>
-							<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button><input type="file" id="payFile" name="payFile" onchange="loadFile(this, 1)"></td>
+							<td><input type="hidden" name="payFiles" id="payFiles" value=""></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><li>경력 등 기타 서류</li></td>
-							<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button><input type="file" id="docFile" name="docFile" onchange="loadFile(this, 2)"></td>
+							<td><input type="hidden" name="docFiles" id="docFiles" value=""></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -284,10 +284,40 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				</div> <!-- outArea end -->
          		
          	</fieldset>
-         </div>
+         </div> 
 		
 		
 		<script>
+			function loadImg(value) {
+				if(value.files && value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$("#profile").attr("src", e.target.result);
+						$("#profile").css({"border-radius":"50%"})
+					};
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+			function loadFile(value, num) {
+				/* switch(num) {
+				case 1 : $("#assignFile").val().append(e.target.result + "/"); break;
+				} */
+				
+				var fileName = $(value).val();
+				var last = fileName.lastIndexOf("\\");
+				if(value.files && value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e){
+						switch(num) {
+						case 1 : $("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>"); break;
+						case 2 : $("#docFiles").after("<br><label>" + $("#docFile").val() + "</label>"); break;
+						}
+					};
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+		
 			$(function(){
 				$("#imgBtn").click(function(){
 					$("#imgFile").click();
