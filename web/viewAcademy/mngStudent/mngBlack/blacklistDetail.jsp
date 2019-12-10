@@ -48,20 +48,22 @@
 	<section>
 		<div class="bInfo">
 			<div align="center">
-		      <fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:25%;">
+		      <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:23%;">
 		         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트 조회　</h1></legend>
 		      </fieldset>
 	    	</div>
 		<div class="bTable">
 			<table class="table">
 				<tr>
+					<th>학생ID</th>
 					<th>학생명</th>
 					<th>학교</th>
 					<th>학년</th>
-					<th>연락처</th>
-					<th>학부모연락처</th>					
+					<th>학생 연락처</th>
+					<th>학부모 연락처</th>					
 				</tr>
 				<tr>
+					<td>STU12345</td>
 					<td>김지원</td>
 					<td>KH중학교</td>
 					<td>2학년</td>

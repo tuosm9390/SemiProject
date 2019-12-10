@@ -178,7 +178,7 @@ section{
 	<!-- 상단 메뉴 바 -->
 	<header>
 		<div id="menuheader">
-			<a href="<%=request.getContextPath()%>/viewAcademy/common/academyMain.jsp"> <img
+			<a href="<%=request.getContextPath()%>/viewAcademy/main.jsp"> <img
 				src="<%=request.getContextPath()%>/images/hagong.png"
 				style="height: 85px;"></a>
 			<h2 class="topmenu" id="student">학생관리</h2>
@@ -192,12 +192,12 @@ section{
 					style="height: 30px;">
 			</h3>
 			<h3 id="sms"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/common/smspage.jsp'">
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/SMS.jsp'">
 				<img src="<%=request.getContextPath()%>/images/sms.png"
 					style="height: 30px;">
 			</h3>
 			<h3 id="calendar"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/common/calendar.jsp'">
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar.jsp'">
 				<img src="<%=request.getContextPath()%>/images/calendar.png"
 					style="height: 30px;">
 			</h3>
@@ -211,33 +211,33 @@ section{
 			<div id="mid">
 				<!-- 학생관리 메뉴 -->
 				<div class="detailmenu" id="studentdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
 						class="menu1">개인정보</a> <a>|</a>
 					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
 						class="menu1">수납</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentCons.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsList.jsp"
 						class="menu1">상담</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
 						class="menu1">블랙리스트</a>
 				</div>
 				<!-- 수업관리 메뉴 -->
 				<div class="detailmenu" id="classdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
 						class="menu3">수강생 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/manageAttend.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendList.jsp"
 						class="menu3">출결 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp"
 						class="menu3">강좌목록 관리</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
 						class="menu3">만족도</a>
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/presentCondition.jsp" 
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/viewStatus.jsp" 
 						class="menu4">학원 현황</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/menuLevel.jsp"
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
 						class="menu4">메뉴 권한 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/plan.jsp"
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
 						class="menu4">연간계획</a>
 				</div>
 
@@ -311,7 +311,7 @@ section{
 		
 		//내 정보 수정
 		function myInfo(){
-	    	location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/UserInfo.jsp";
+	    	location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/viewUserInfo.jsp";
 	    };
 	</script>
 

@@ -44,7 +44,7 @@ input[type=file] {
 }
 
 fieldset {
-	width:16%;
+	width:17%;
 }
 </style>
 </head>
@@ -55,7 +55,7 @@ fieldset {
 	<section>
 		<div align="center">
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;전체 직원&nbsp;</h1></legend>
+         		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　전체 직원　</h1></legend>
       		</fieldset>
       	</div>
 		<div class="btnArea">
@@ -102,7 +102,7 @@ fieldset {
 			$(".listArea td").mouseenter(function(){
 				$(this).parent().css({"cursor":"pointer"});
 				}).click(function(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStaff/staffInfo.jsp";
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStaff/staffDetail.jsp";
 				});
 			});
 		</script>

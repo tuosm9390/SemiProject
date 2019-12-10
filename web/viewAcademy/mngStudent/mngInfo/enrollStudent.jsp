@@ -71,7 +71,7 @@ section button:hover {
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 	<div align="center">
@@ -173,8 +173,9 @@ section button:hover {
 							<td></td>
 							<td><li>개인정보 제공 및 활용 동의</li></td>
 							<td>
-								<div style="width: 500px; height: 200px; overflow: auto;">
-									<pre align="left" style="color: black;">【 개인정보처리방침 】
+								<div style="border: 1px solid lightgray; width: 600px; height: 200px;
+                                 overflow: auto; background: white;">
+                           <pre align="left" style="color: black;">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -269,8 +270,8 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 이 개인정보취급방침은 2011년 O월 OO일에 제정되었으며 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의 추가ㆍ삭제 및 수정이 있을 시에는 변경되는 개인정보취급방침을 시행하기 최소 7일전에 학원 홈페이지를 통해 변경이유 및 내용 등을 공지하도록 하겠습니다.
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일
-						</pre>
-								</div>
+                  </pre>
+                        </div>
 								<div align="left">
 									<input type="checkbox" name="accept" id="accept"><label
 										for="accept" style="color: red;">동의합니다.</label>

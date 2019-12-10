@@ -32,8 +32,8 @@
    }
    
    .attendDetailArea {
-      width:43%;
-      height:400px;
+      width:30%;
+      height:300px;
       border:1px solid lightgray;
       border-radius: 5px;
       background:white;
@@ -112,8 +112,8 @@
    </header>
    <section>
    <div align="center">
-            <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-            <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;출결 상세&nbsp;</h1></legend>
+            <fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+            <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 상세　</h1></legend>
             </fieldset>
     </div> <!-- center end -->
    <div class="selectArea">
@@ -159,7 +159,7 @@
    <div class="bottomArea">
       <div class="attendDetailArea">
          <ul>
-         <li style="font-size:18px;">학생별 출결 상세</li>
+         <li style="font-size:18px;">@@@ 학생 출결 상세</li>
          </ul>
          <table class="detailAreaTable table">
             <% for(int i=0; i<dayOfMonth; i++) { %>
@@ -174,9 +174,9 @@
             <ul>
             <li style="font-size:18px;">출결 상세 사유</li>
             </ul>
-            <div class="reasonContent">
+            <div align="center" class="reasonContent">
                <form action="" method="post">
-                  <textarea style="border-radius: 5px; margin-bottom: 1%; width: 677px; height: 282px; resize:none;"></textarea>
+                  <textarea style="border-radius: 5px; margin-bottom: 1%; width: 80%; height: 282px; resize:none;"></textarea>
                   <br>
                   <button id="writeBtn">수정</button>
                </form>

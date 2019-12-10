@@ -78,11 +78,11 @@ body {
 		
 		<script>
 			function goAcademy(){
-				location.href="viewAcademy/academyMain.jsp";
+				location.href="viewAcademy/main.jsp";
 			}
 			
 			function goClient(){
-				location.href="viewClient/clientMain.jsp";
+				location.href="viewClient/main.jsp";
 			}
 		</script>
 	</section>

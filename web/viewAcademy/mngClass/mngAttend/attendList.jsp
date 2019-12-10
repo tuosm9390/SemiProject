@@ -37,7 +37,6 @@
 	}
 	
 	.searchBtn {
-		font-size: 18px;
    		margin-left: 1%;
    		margin-bottom: 1%;
 	    font-family: "Nanum Gothic";
@@ -54,14 +53,14 @@
 	<%-- <%= if(loginUser.getUserId() == "admin") { %> --%>
 	<div align="center">
       		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;출결 관리&nbsp;</h1></legend>
+         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 관리　</h1></legend>
       		</fieldset>
     </div>
 	<div class="listArea">
 		<button class="searchBtn">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
-		<select style="float:right">
-			<option value="" selected disabled hidden>조건별 검색</option>
+		<select style="float:right; border-radius:5px;">
+			<option value="" selected disabled hidden>검색 조건</option>
 			<option name="searchClassCondition">과목</option>
 			<option name="searchClassCondition">강좌명</option>
 			<option name="searchClassCondition">담당 강사</option>

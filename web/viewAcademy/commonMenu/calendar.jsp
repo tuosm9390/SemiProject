@@ -14,12 +14,12 @@ z-index:0 !important;
 </style>
 <meta charset="UTF-8">
 <title>HAGONG</title>
-    <link rel=" shortcut icon" href="image/favicon.ico">
+    <link rel=" shortcut icon" href="../common/image/favicon.ico">
 
-    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="../common/vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="../common/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='../common/vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='../common/vendor/css/bootstrap-datetimepicker.min.css' />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -180,17 +180,17 @@ z-index:0 !important;
     </div>
     <!-- /.container -->
 
-    <script src="vendor/js/jquery.min.js"></script>
-    <script src="vendor/js/bootstrap.min.js"></script>
-    <script src="vendor/js/moment.min.js"></script>
-    <script src="vendor/js/fullcalendar.min.js"></script>
-    <script src="vendor/js/ko.js"></script>
-    <script src="vendor/js/select2.min.js"></script>
-    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/addEvent.js"></script>
-    <script src="js/editEvent.js"></script>
-    <script src="js/etcSetting.js"></script>
+    <script src="../common/vendor/js/jquery.min.js"></script>
+    <script src="../common/vendor/js/bootstrap.min.js"></script>
+    <script src="../common/vendor/js/moment.min.js"></script>
+    <script src="../common/vendor/js/fullcalendar.min.js"></script>
+    <script src="../common/vendor/js/ko.js"></script>
+    <script src="../common/vendor/js/select2.min.js"></script>
+    <script src="../common/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../common/js/main.js"></script>
+    <script src="../common/js/addEvent.js"></script>
+    <script src="../common/js/editEvent.js"></script>
+    <script src="../common/js/etcSetting.js"></script>
    </section>
    
 </body>

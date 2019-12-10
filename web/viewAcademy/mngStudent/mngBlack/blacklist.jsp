@@ -113,7 +113,7 @@
 		<!-- Top Navigation -->
 			<div class="component" id="consilArea">
 				<div align="center">
-					<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
+					<fieldset style="margin-top:-25px; margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
 				    	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트　</h1></legend>
 				    </fieldset>
 			    </div>
@@ -122,8 +122,8 @@
 				</div>
 				<div class="srchArea">
 					<select>
-						<option value="" selected disabled hidden>조건별 검색</option>
-						<option name="searchClassCondition" value="name">원생명</option>
+						<option value="" selected disabled hidden>검색 조건</option>
+						<option name="searchClassCondition" value="name">학생명</option>
 						<option name="searchClassCondition" value="phone">전화번호</option>
 						<option name="searchClassCondition" value="school">학교</option>
 						<option name="searchClassCondition" value="grade">학년</option>

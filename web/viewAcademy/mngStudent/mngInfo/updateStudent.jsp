@@ -7,17 +7,21 @@
 <title>HAGONG</title>
 <style>
 section {
-		background:url("/hagong/images/backModifySample.png") no-repeat center;
-		background-size: cover;
-	}
+	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	/* background-size:85.9%; */
+	/* background-size: 1333px 1200px; */
+	background-size: cover;
+}
+
 #profile {
 	width: 200px;
 	height: 200px;
 	radius: 50%;
 }
 
-tr {
+td, tr{
 	background: none !important;
+	text-align: left !important;
 }
 
 input {
@@ -64,55 +68,56 @@ section button:hover {
 th, td {
 	text-align: left !important;
 }
-
-fieldset {
-	width:80%;
-}
-
-input[readonly] {
-	background:none;
-}
 </style>
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
-	<section style="margin-bottom: 10%;">
+	<section>
 	<div align="center">
-	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-	<legend align="center"><h2 style="font-family:'Do Hyeon'">　개인정보 수정　</h2></legend>
-	<div style="width:100%; margin: auto auto;">
+	<fieldset
+			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
+					width: 90%;">
+			<legend align="center">
+				<h1 style="font-family:'Do Hyeon'">　학생 정보 수정　</h1>
+			</legend>
+	<div style="width: 80%; margin: auto auto;">
 		<form id="UpdateStudentForm">
 			<table class="table" align="center">
 				<tr align="center">
-					<td rowspan="7">
+					<td rowspan="8">
 						<div align="center">
 							<img id="profile"
 								src="<%=request.getContextPath()%>/images/user.png">
 							<button type="button" id="addimg"
 								style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-							<input type="file" id="imgfile"> 
+							<input type="file" id="imgfile"> <select
+								id="studentStatus" style="height: 25px; margin-top: 5%;">
+								<option selected>재원</option>
+								<option>퇴원</option>
+								<option>휴원</option>
+							</select>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td><li>ID</li></td>
-					<td><input type="text" value="bbogak" style="border: none;" readonly></td>
+					<td><input type="text" value="bbogak"></td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
-					<td><input type="text" value="박상준" style="border: none;" readonly></td>
+					<td><input type="text" value="박상준"></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" style="border: none;" value="2020년 3월 33일" readonly></td>
+					<td><input type="text" id="datepicker"></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel" maxlength="3" placeholder="000"> - 
-					<input type="tel" maxlength="4" placeholder="0000"> -
-					<input type="tel" maxlength="4" placeholder="0000"></td>
+					<td><input type="tel" maxlength="3"> - 
+					<input type="tel" maxlength="4"> -
+					<input type="tel" maxlength="4"></td>
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
@@ -136,6 +141,22 @@ input[readonly] {
 					</select></td>
 				</tr>
 				<tr>
+					<td><li>학부모 이름</li></td>
+					<td><input type="text" value="박상찬"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><li>학부모 아이디</li></td>
+					<td><input type="text" value="scpark9999"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><li>학부모 전화번호</li></td>
+					<td><input type="tel" maxlength="3"> - 
+					<input type="tel" maxlength="4"> -
+					<input type="tel" maxlength="4"></td>
+				</tr>
+				<tr>
 					<td></td>
 					<td><li>희망대학 / 학과</li></td>
 					<td><input type="text" value="군대"> &nbsp;
@@ -144,13 +165,13 @@ input[readonly] {
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" placeholder="학생 거주지 입력"
+					<td><input type="text" value="학생 거주지 입력"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" placeholder="helloworld@kakao.com"
+					<td><input type="email" value="helloworld@kakao.com"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
@@ -158,19 +179,15 @@ input[readonly] {
 					<td><li>개인정보 동의여부</li></td>
 					<td style="color: black;">Y</td>
 				</tr>
-				<tr>
-					<td></td>
-					<td colspan="2">
-					<div align="center">
-						<button type="button" id="cancelbtn" onclick="historyBack();" style="height: 30px; display:inline;">취소</button>
-						<button id="okbtn" style="height: 30px;display:inline;">수정완료</button>
-					</div>
-					</td>
-				</tr>
 			</table>
 		</form>
 		</div>
-	</fieldset>
+		<button id="okbtn"
+			style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
+		<button id="cancelbtn"
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp'"
+			style="float: right; width: 80px; height: 30px;">취소</button>
+		</fieldset>
 	</div>
 	</section>
 	<footer> </footer>
@@ -183,6 +200,29 @@ input[readonly] {
 			$("#updateForm").submit();
 		});
 		
+		//DatePicker
+		$(function() {
+			$("#datepicker").datepicker(
+					{
+						dateFormat : 'yy-mm-dd',
+						prevText : '이전 달',
+						nextText : '다음 달',
+						monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+						dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+						showMonthAfterYear : true,
+						changeMonth : true,
+						changeYear : true,
+						constrainInput : false,
+						yearSuffix : '년',
+						yearRange : 'c-20:c'
+					});
+		});
+		
 		//숫자만 입력
 		$("input[type='number']").keyup(function(event){
 		    var inputVal = $(this).val();
@@ -192,11 +232,6 @@ input[readonly] {
 		    var inputVal = $(this).val();
 		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
 		});
-		
-		//뒤로가기
-		function historyBack(){
-			history.back();
-		};
 	</script>
 </body>
 </html>

@@ -79,9 +79,9 @@ h2{
 	</div>
 		<!-- 학생 정보 -->
 		<div id="studentInfo" style="width: 80%; margin: auto auto;">
-		<h2 style="width: 150px;">학생 정보</h2>
+		<h2 style="width: 150px;"><li>학생 정보</li></h2>
 			<button id="updatebtn"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/updateStudent.jsp'"
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp'"
 				style="float: right;">수정</button>
 			<table class="table">
 				<tr>
@@ -104,7 +104,7 @@ h2{
 		</div>
 		<!-- 학생 성적 -->
 		<div id="studentPoint" style="width: 90%; margin: auto 10%;">
-			<h2 style="width: 150px;">학생 성적</h2>
+			<h2 style="width: 150px;"><li>학생 성적</li></h2>
 			<button id="pointAddBtn" style="float: right; margin-right: 11.2%;">성적 추가</button>
 			<button style="float: right;">검색</button>
 			<!-- DatePicker -->
@@ -167,7 +167,7 @@ h2{
 	
 		<!-- 성적 그래프 -->
 		<div id="chart" style="width: 90%; margin: auto 10%;">
-			<h2 align="left">성적 그래프</h2>
+			<h2 align="left"><li>성적 그래프</li></h2>
 			<div id="chart19" align="center"></div>
 		</div>
 	</section>
