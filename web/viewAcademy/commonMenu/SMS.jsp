@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
-section {
+body {
    background:url("/hagong/images/backSms.png") no-repeat top;
-   background-size: 100% 100%;
+   background-size: 86%;
 }
 .div1 {
    width: 300px;
@@ -26,6 +26,7 @@ section {
    overflow: auto; /* Enable scroll if needed */
    background-color: rgb(0, 0, 0); /* Fallback color */
    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+   font-family: "Nanum Gothic";
 }
 
 /* 모달 내부 상자 */
@@ -88,12 +89,12 @@ select, option{
 </head>
 <body>
    <header>
-      <%@ include file="menubar.jsp"%>
+      <%@ include file="../common/menubar.jsp"%>
    </header>
    <section>
    <div align="center">
    <fieldset style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
-               width: 20%; height:65px;">
+               width: 13%; height:65px; margin-bottom:1%;">
       <legend align="center"><h1 style="font-family:'Do Hyeon';">　SMS　</h1></legend>
    </fieldset>
    </div>
@@ -122,12 +123,12 @@ select, option{
          <div class="div1" style="margin-left: 42%;">
             <h2 style="float: left; margin-top: 0;"><li>발송 내용</h2>
             <input type="checkbox" id="savecontent" style="height:15px; width: 15px; 
-            		margin-left: 70px; margin-top: 8px;">
+                  margin-left: 70px; margin-top: 8px;">
             <label for="savecontent" style="color: lightgray;">내용 저장</label>
-            <input type="text" placeholder="제목 입력" id="contentname" style="width: 100%; margin-bottom: 5px; display: none;">
-            <textarea id="smstext" placeholder="내용을 입력해주세요"
-               style="resize: none; height: 440px; width: 100%;"></textarea><br>
-            <button style="float: right; font-size:18px; width:30%; height: 30px; margin: 20px 0;" onclick="send();">전송하기</button>
+            <input type="text" placeholder=" 제목 입력" id="contentname" style="width: 100%; margin-bottom: 5px; display: none;">
+            <textarea id="smstext" placeholder=" 내용을 입력해주세요"
+               style="resize: none; height: 410px; width: 100%;"></textarea><br>
+            <button style="float: right; font-size:18px; width:30%; height: 30px; margin: 20px 0; margin-bottom:1px;" onclick="send();">전송하기</button>
          </div>
       </div> <!-- 전체 div -->
 
@@ -163,7 +164,7 @@ select, option{
 
          <div class="modal-content" align="center">
             <span class="close">&times;</span>
-            <h2 style="margin-left:15px;">수신인 추가하기</h2>
+            <h2 style="margin-left:15px; font-style:italic;">◎ 수신인 추가 ◎</h2>
             <table>
             <tr>
                <td style="text-align:center;"><h3 style="margin: 0 0;">학년 / 반 선택</h3></td>
@@ -394,16 +395,16 @@ select, option{
       
       //내용 저장
       $(function(){
-    	  $("#savecontent").click(function(){
-			if($("#savecontent").prop("checked") == true){
-			         swal("제목을 입력해주세요", {
-			            buttons : [ "취소", "확인" ],
-			         });
-				$("#contentname").show();
-			} else {
-				$("#contentname").hide();
-			};
-    	  });
+         $("#savecontent").click(function(){
+         if($("#savecontent").prop("checked") == true){
+                  swal("제목을 입력해주세요", {
+                     buttons : [ "취소", "확인" ],
+                  });
+            $("#contentname").show();
+         } else {
+            $("#contentname").hide();
+         };
+         });
       });
    </script>
 </body>

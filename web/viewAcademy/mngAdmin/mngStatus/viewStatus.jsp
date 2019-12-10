@@ -8,7 +8,7 @@
 	<style>
 	.outer{
 		width:100%;
-		
+		margin-left: 5%;
 		height:100%;
 	}
 	.chart{
@@ -44,9 +44,7 @@
 		
 	}
 	section{
-		margin-left: 8%;
-		margin-top:10%;
-		
+		background: snow;
 	}
 		*{margin:0;padding:0;}
 		div{padding:0px; overflow: hidden; height: auto;}
@@ -66,7 +64,7 @@
 <div class="outer">
   	 	<div align="center">
             <fieldset
-               style="margin-right:30px; margin-bottom: -10px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
+               style="margin-right:100px; margin-bottom: -10px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 16%;">
                <legend align="center">
                   <h1 align="center" style="font-family: 'Do Hyeon';">　학원 현황　</h1>
                </legend>

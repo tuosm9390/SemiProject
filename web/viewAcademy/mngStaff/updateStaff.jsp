@@ -232,7 +232,7 @@ fieldset {
 			
 			function doModify(){
 				if(window.confirm("정말로 수정하시겠습니까?")) {
-					location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffInfo.jsp";
+					location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffDetail.jsp";
 				}
 			}
 			

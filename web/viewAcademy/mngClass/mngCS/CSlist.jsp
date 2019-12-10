@@ -31,17 +31,17 @@
 			<div class="container" id="classStudent">
 			<!-- Top Navigation -->
 
-			<div class="component">
+			<div class="component" style="padding-top:1%;">
 				<div align="center">
-	      			<fieldset style=" margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
-	         			<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　강좌 리스트　</h1></legend>
+	      			<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;width:20%;">
+	         			<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　강좌 목록　</h1></legend>
 	      			</fieldset>
 	      		</div>
 				<div class="srchArea">
 					<button class="srchBtn">검색</button>
 					<input type="search" id="searchStudent" name="searchStudent">
 					<select style="float:right">
-						<option value="" selected disabled hidden>조건별 검색</option>
+						<option value="" selected disabled hidden>검색 조건</option>
 						<option name="searchClassCondition" value="title">강의명</option>
 						<option name="searchClassCondition" value="place">강의실</option>
 					</select>
@@ -76,7 +76,7 @@
 		<script>
 			$(function(){
 				$("#classlist td").click(function(){
-					location.href = "<%= request.getContextPath()%>/viewAcademy/mngClass/mngCS/detailClassList.jsp";
+					location.href = "<%= request.getContextPath()%>/viewAcademy/mngClass/mngCS/enrollCS.jsp";
 				});
 			})
 		</script>

@@ -7,6 +7,10 @@
 <title>HAGONG</title>
 <style>
 
+select {
+	border-radius:5px;
+}
+
 #btd {
    border-bottom: none !important;
 }
@@ -60,9 +64,9 @@ border-right: none;
          <!--  -->
          <div align="center">
             <fieldset
-               style="margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 250px;">
+               style="margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 20%">
                <legend align="center">
-                  <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여관리　</h1>
+                  <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여 관리　</h1>
                </legend>
             </fieldset>
          </div>
@@ -108,7 +112,7 @@ border-right: none;
                   </tr>
                   <!-- 학생개인정보 -->
                   <tr>
-                     <td rowspan="4" class="border even" style="background:rgba(245,244,242)">학생관리</td>
+                     <td rowspan="4" class="border even" style="background:rgba(245,244,242); border-bottom:none !important;">학생관리</td>
                      
                      <td>개인정보</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
@@ -201,7 +205,7 @@ border-right: none;
                   </tr>
                   <!--  -->
 
-                  <tr class="trid" id="qqtr">
+                  <tr id="qqtr">
                      <td class="border odd">직원관리</td>
                      <td>직원관리</td>
                      <td><select class="modifyInfo" id="modifyInfo1">
@@ -421,8 +425,8 @@ border-right: none;
 
                </table>
                <div class="btndiv">
-               <button type="submit" class="btns">적용하기</button>
-               <button type="reset" class="btns">기본값으로 변경</button>
+               <button type="submit" class="btns">적용</button>
+               <button type="reset" class="btns">기본값 설정</button>
                </div>
                <br> <br>
             </form>

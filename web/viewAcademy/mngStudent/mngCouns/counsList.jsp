@@ -123,8 +123,8 @@
 					<button class="srchBtn">검색</button>
 					<input type="search" id="searchStudent" name="searchStudent">
 					<select style="float:right">
-						<option value="" selected disabled hidden>조건별 검색</option>
-						<option name="searchClassCondition" value="name">원생명</option>
+						<option value="" selected disabled hidden>검색 조건</option>
+						<option name="searchClassCondition" value="name">학생명</option>
 						<option name="searchClassCondition" value="phone">전화번호</option>
 					</select>
 				</div>
@@ -224,7 +224,7 @@
 	<!-- 스크립트 -->
 			<script>
 				function conslist(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentConsDetail.jsp";					
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsDetail.jsp";					
 				};
 				function addCouns() {
 					$("#addlist").css("display","block");

@@ -32,13 +32,12 @@
 		margin-bottom:50px;
 	}
 	fieldset {
-      width:25%
+      width:20%
    }
    /* #important{
    	   float:right;
    } */
 </style>
-<%@ include file="/viewAcademy/common/menubar.jsp"%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -58,16 +57,16 @@
 				<table>
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input type="text" size="50" name="title"></td>
+						<td colspan="3" style="padding-bottom:1%;"  ><input type="text" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td>
-							<input style="border-radius:5px;" type="text" name="writer" readonly>
+							<input style="border-radius:5px; border:1px solid lightgray;" type="text" name="writer" readonly>
 							<input type="hidden" name="uno"> <!-- 실제 서버로는 uno값이 전달됨(uno값을 이용하여 닉네임을 찾기 위해서), type="hidden"을 사용하면 사용자에게는 보여지지 않음 -->
 						</td>
 						<td>작성일</td>
-						<td><input type="date" name="date"></td>
+						<td><input type="date" name="date" style="border-radius:5px; border:1px solid lightgray;"></td>
 					</tr>
 					<tr >
 					    <td></td>
@@ -75,7 +74,7 @@
 						<td></td>
 						
 						<td style="text-align:right">
-							<input type="checkbox" > 중요공지
+							<input type="checkbox"> 중요공지
 						</td>
 					</tr>
 					<tr>
@@ -83,7 +82,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea name="content" cols="60" rows="15" style="resize:none;"></textarea>
+							<textarea name="content" cols="60" rows="15" style="resize:none; border-radius:5px; border:1px solid lightgray;" ></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -95,8 +94,8 @@
 				</table>
 				<br><br>
 				<div class="cancleSubmit" align="center">
-					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">취소하기</button>
-					<button type="button" id="submit" onclick="insertNotice();" >등록하기</button>
+					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="font-size:18px;">취소</button>
+					<button type="button" id="submit" onclick="insertNotice();" style="font-size:18px;">등록</button>
 				</div>
 			</form>
 		</div> <!-- tableArea end -->

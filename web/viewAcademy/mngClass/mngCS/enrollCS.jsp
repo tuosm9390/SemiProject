@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>HAGONG</title>
 <style>
+
+	section {
+		background: snow;
+	}
 	.detailClass {
 		width:1080px;
 		margin-left:auto;

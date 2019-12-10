@@ -19,9 +19,7 @@
 	max-width: 700px;
 	left: 50%;
 	transform: translateX(-50%);
-    background: rgba(255,255,255,97%);
     border-radius: 5px;
-    margin-top: 100px;
 }
 
 .accordion {
@@ -29,6 +27,11 @@
 	position: relative;
 	width: 100%;
 	padding-inline-start: 0;
+}
+
+.accordionArea {
+	border-radius:5px;
+	background: snow;
 }
 
 .accordion__item {
@@ -217,6 +220,7 @@
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　상담일지　</h1></legend>
       		</fieldset>
       	</div>
+      	<div class="accordionArea">
 		<ul class="accordion">
 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
@@ -511,6 +515,7 @@
 					</div> <!-- btnArea -->
 				</form></li>
 		</ul>
+		</div>
 	</div>
 	</section>
 

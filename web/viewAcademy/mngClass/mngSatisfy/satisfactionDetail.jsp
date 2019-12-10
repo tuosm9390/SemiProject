@@ -69,7 +69,7 @@ tr, td {
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
 					width: 80%;">
-		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 상세보기　</h1></legend>
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 상세　</h1></legend>
 		<form>
 			<table class="table" align="center">
 				<tr>

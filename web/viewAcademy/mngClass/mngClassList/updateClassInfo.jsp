@@ -32,18 +32,11 @@
 	}
 	
 	.bottomArea > button {
-		padding:10px;
-		margin-right:10px;
-		margin-bottom:50px;
 		width:100px;
 		border-radius:5px;
-		background:white;
-		color:black;
 		display:inline;
 		font-size: 18px;
 		font-family: "Nanum Gothic";
-		font-weight: bold;
-		border: 2px solid green;
 	}
 	
 	.bottomArea > button:hover {
@@ -52,7 +45,7 @@
 	}
 	
 	fieldset {
-		width:16%;
+		width:20%;
 	}
 	
 	select {
@@ -64,8 +57,8 @@
 	}
 	
 	.tableArea {
-		border: double gray;
-		padding: 10px;
+		background:rgba(268,268,268,50%);
+		padding-top: 20px;
 		width: 550px;
     	border-radius: 5px;
    		margin-bottom: 10px;
@@ -79,7 +72,7 @@
 	<section>
 	<div align="center">
       	<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
-         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">&nbsp;수업정보 수정&nbsp;</h1></legend>
+         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수업정보 수정　</h1></legend>
       	</fieldset>
     </div>
 		<div class="body" align="center">

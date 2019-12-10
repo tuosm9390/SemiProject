@@ -42,27 +42,22 @@ tr:not(:first-child){
 </head>
 <body>
 	<header>
-		<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
 	<div align="center">
-	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
-					width: 20%; font-family:'Do Hyeon'">
+	<fieldset style="margin-bottom: -25px; border-bottom: none; border-left: none; border-right: none; border-top-color: black;
+					width: 18%; font-family:'Do Hyeon'">
 		<legend align="center"><h1>　전체 학생　</h1></legend>
 	</fieldset>
 	</div>
 	<div style="width: 90%; margin: auto auto;">
 		<button id="addexcel">엑셀로 성적 일괄 등록</button>
 		<button id="addstudent">학생 등록</button>
-		<script>
-			function insertStudent() {
-				location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/tempStudentInsert.jsp";
-			};
-		</script>
 		<input type="file" id="exelfile">
 		<table class="table">
 			<tr>
-				<th>학생 ID</th>
+				<th>ID</th>
 				<th>학생 이름</th>
 				<th>나이</th>
 				<th>전화번호</th>
@@ -113,7 +108,7 @@ tr:not(:first-child){
 	</footer>
 	<script>
 		$("#addstudent").click(function(){
-			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/enrollStudent.jsp";
+			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/enrollStudent.jsp";
 		});
 		
 		$("#addexcel").click(function() {
@@ -121,7 +116,7 @@ tr:not(:first-child){
 		});
 
 		$(".table tr:not(:first-child)").click(function() {
-			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp";
+			location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp";
 		});
 		
 		

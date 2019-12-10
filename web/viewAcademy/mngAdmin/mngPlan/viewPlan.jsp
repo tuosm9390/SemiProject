@@ -92,14 +92,18 @@
 </header>
 <section>
 	<div align="center">
-    	<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 20%">
-        	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획 작성　</h1></legend>
+    	<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 15%">
+        	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획　</h1></legend>
    	    </fieldset>
     </div>
     <div class="btnArea">
-		<button id="addRow" style="float:left">행 추가</button>
-		<button id="deleteRow" style="float:left">행 삭제</button>
-		<button id="writeBtn" style="float:right">저장</button>
+    	<select style="border:1px solid lightgray; border-radius:5px; float:left">
+			<option>2019</option>
+			<option>2018</option>
+			<option>2017</option>
+		</select>
+		<button id="deleteBtn" style="float:right">삭제</button>
+		<button id="writeBtn" style="float:right">입력 및 수정</button>
 	</div> <!-- btnArea end -->
 	<div class="listArea">
 	<div class="body">
@@ -124,9 +128,18 @@
 			<tbody id="tbody">
 				<tr>
 					<td>주요 이슈</td>
-					<% for(int i=0; i<12; i++) { %>
-					<td contenteditable="true"></td>
-					<% } %>
+					<td>이달의 주요 이슈 컬럼 내에 내용이 길어지면 어떻게 될까?</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
+					<td>이달의 주요 이슈</td>
 				</tr>
 				<tr>
 					<td>입시</td>
@@ -252,7 +265,6 @@
 			$(function(){
 				var writeBtn = document.getElementById('writeBtn');
 				var addRowBtn = document.getElementById('addRow');
-				var deleteRowBtn = document.getElementById('deleteRow');
 				var deleteBtn = document.getElementById('deleteBtn');
 				var deleteArea = document.getElementById('deleteArea');
 				var deleteOk = document.getElementById('okbtn');
@@ -260,7 +272,7 @@
 				var closeBtn = document.getElementById('xBtn');
 				
 				writeBtn.onclick = function() {
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/writePlan.jsp";
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp";
 				}
 				
 				addRowBtn.onclick = function() {
@@ -268,14 +280,6 @@
 					
 					$("#tbody").append("<tr><td>"+ addRowName + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 						
-				}
-				
-				deleteRowBtn.onclick = function() {
-					var deleteRowName = window.prompt('삭제할 행 이름 입력');
-					
-					//시험용 삭제
-					$("tbody tr:last-child").remove();
-					
 				}
 				
 				deleteBtn.onclick = function() {
