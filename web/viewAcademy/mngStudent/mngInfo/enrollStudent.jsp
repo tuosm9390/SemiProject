@@ -82,91 +82,101 @@ section button:hover {
 				<h1 style="font-family:'Do Hyeon'">　학생 등록　</h1>
 			</legend>
 			<div style="width: 100%; margin: auto auto;">
-				<form id="enrollStudentForm">
+				<form id="enrollStudentForm" action="<%= request.getContextPath()%>/ainsert.info" method="post">
 					<table class="table" align="center">
 						<tr align="center">
-							<td rowspan="7">
+							<td rowspan="6">
 								<div align="center">
 									<img id="profile"
 										src="<%=request.getContextPath()%>/images/user.png">
 									<button type="button" id="addimg"
 										style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-									<input type="file" id="imgfile">
+									<input type="file" id="imgfile" onchange="loadImg(this);">
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td><li>ID</li></td>
-							<td><input type="text" placeholder="아이디 입력"></td>
+							<td><input type="text" placeholder="아이디 입력" name="userId"></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
-							<td><input type="text" placeholder="이름 입력"></td>
+							<td><input type="text" placeholder="이름 입력" name="userName"></td>
 						</tr>
 						<tr>
 							<td><li>생년월일</li></td>
-							<td><input type="text" id="datepicker" readonly></td>
+							<td><input type="text" id="datepicker" name="birth" readonly></td>
 						</tr>
 						<tr>
 							<td><li>전화번호</li></td>
-							<td><input type="tel" maxlength="3"> - <input
-								type="tel" maxlength="4"> - <input type="tel"
-								maxlength="4"></td>
+							<td>
+							<input type="tel" maxlength="3" name="tel1"> - 
+							<input type="tel" maxlength="4" name="tel2"> - 
+							<input type="tel" maxlength="4" name="tel3"></td>
 						</tr>
 						<tr>
 							<td><li>학교 / 학년</li></td>
-							<td><input type="text" placeholder="학교 이름 입력"
-								style="width: 120px;"> &nbsp; <select
-								style="width: 120px;">
-									<option value="mid1">중학교 1학년</option>
-									<option value="mid2">중학교 2학년</option>
-									<option value="mid3">중학교 3학년</option>
-									<option value="high1">고등학교 1학년</option>
-									<option value="high2">고등학교 2학년</option>
-									<option value="high3">고등학교 3학년</option>
+							<td>
+							<input type="text" name="school" placeholder="학교 이름 입력"
+								style="width: 120px;"> &nbsp; 
+							<select name="grade" style="width: 120px;">
+									<option value="1">중학교 1학년</option>
+									<option value="2">중학교 2학년</option>
+									<option value="3">중학교 3학년</option>
+									<option value="4">고등학교 1학년</option>
+									<option value="5">고등학교 2학년</option>
+									<option value="6">고등학교 3학년</option>
 							</select></td>
 						</tr>
 						<tr>
+							<td rowspan="2" style="text-align: center !important;"><li>유입 경로</li><br>
+							<select name="inflowPath" style="width: 100px;">
+									<option value="friend">친구소개</option>
+									<option value="internet">인터넷</option>
+									<option value="picket">전단지</option>
+									<option value="pcard">플래카드</option>
+									<option value="etc">기타</option>
+								</select></td>
 							<td><li>계열</li></td>
-							<td><select>
+							<td><select name="track">
 									<option>인문</option>
 									<option>자연</option>
 									<option>예체능</option>
 							</select></td>
 						</tr>
 						<tr>
-							<td></td>
 							<td><li>학부모 이름</li></td>
-							<td><input type="text" placeholder="학부모 이름 입력"></td>
+							<td><input type="text" placeholder="학부모 이름 입력" name="refName"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>학부모 아이디</li></td>
-							<td><input type="text" placeholder="학부모 아이디 입력"></td>
+							<td><input type="text" placeholder="학부모 아이디 입력" name="refId"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>학부모 전화번호</li></td>
-							<td><input type="tel" maxlength="3"> - <input
-								type="tel" maxlength="4"> - <input type="tel"
-								maxlength="4"></td>
+							<td>
+							<input type="tel" maxlength="3" name="reftel1"> - 
+							<input type="tel" maxlength="4" name="reftel2"> - 
+							<input type="tel" maxlength="4" name="reftel3"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>희망대학 / 학과</li></td>
-							<td><input type="text" placeholder="희망 대학 입력">
-								&nbsp; <input type="text" placeholder="희망 학과 입력"></td>
+							<td><input type="text" placeholder="희망 대학 입력" name="college">
+								&nbsp; <input type="text" placeholder="희망 학과 입력" name="major"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>주소</li></td>
-							<td><input type="text" placeholder="주소 입력"
+							<td><input type="text" placeholder="주소 입력" name="address"
 								style="width: 400px;"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>이메일</li></td>
-							<td><input type="email" placeholder="이메일 입력"
+							<td><input type="email" placeholder="이메일 입력" name="email"
 								style="width: 400px;"></td>
 						</tr>
 						<tr>
@@ -332,6 +342,18 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			var inputVal = $(this).val();
 			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 		});
+		
+		//프로필이미지
+		function loadImg(value) {
+            if(value.files && value.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function(e) {
+                  $("#profile").attr("src", e.target.result);
+                  $("#profile").css({"border-radius":"50%"})
+               };
+               reader.readAsDataURL(value.files[0]);
+            }
+         }
 	</script>
 </body>
 </html>

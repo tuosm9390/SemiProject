@@ -99,16 +99,16 @@ tr, td {
 					<td colspan="4" class="question">
 						<ol class="qo">
 							<li class="ql">
-								<span class="que" style="display: contents;">
+								<div class="que" style="display: contents;">
 									<input type="text" placeholder="질문 문항 입력" size="100">
 									<input type="button" class="qdelete" value="-">
 									<input type="button" class="qadd" value="+"><br>
-								</span>
-								<span class="answer" style="display: contents;">
-									<input type="text" placeholder="선택항목 입력">
-									<input type="button" class="adelete" value="-">
-									<input type="button" class="aadd" value="+"><br>
-								</span>
+									<span class="answer" style="display: contents;">
+										<input type="text" placeholder="선택항목 입력">
+										<input type="button" class="adelete" value="-">
+										<input type="button" class="aadd" value="+"><br>
+									</span>
+								</div>
 							</li>
 						</ol>
 					</td>
@@ -170,7 +170,7 @@ tr, td {
 		
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li class='ql'><span class='que' style='display: contents'><input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br></span><span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></li>");
+			$(".qo").append("<li class='ql'><div class='que' style='display: contents'><input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br><span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
 		});
 		//설문 문항 제거
 		$(".question").on("click", ".qdelete", function(){
@@ -181,11 +181,11 @@ tr, td {
 		
 		//문항 선택항목 추가
 		$(".question").on("click", ".aadd", function(){
-			$(this).closest("span").append("<span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
+			$(this).closest(".que").append("<span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
 		});
 		//문항 선택항목 삭제
 		$(".question").on("click", ".adelete", function(){
-			if($(this).parents("span").size() != 1){
+			if($(this).closest("div span").siblings().size() != 4){
 				$(this).closest("span").remove();
 			}
 		});
