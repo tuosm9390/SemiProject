@@ -34,6 +34,7 @@ body {
    background-color: #fefefe;
    margin: 15% auto; /* 15% from the top and centered */
    padding: 20px;
+   padding-bottom: 30px;
    border: 1px solid #888;
    width: 30%;
    background-color: #fefefe;
@@ -56,7 +57,7 @@ body {
 
 td{
    color: black !important;
-   background: white;
+   background: none;
 }
 
 input[type=text] {
@@ -84,6 +85,9 @@ select, option{
 /* 학부모 목록 */
 .parent{
    display: none;
+}
+.persontable {
+	margin-left: 20px;
 }
 </style>
 </head>
@@ -161,13 +165,16 @@ select, option{
 
       <!-- 대상 추가 -->
       <div id="addperson" class="modal">
-
          <div class="modal-content" align="center">
             <span class="close">&times;</span>
-            <h2 style="margin-left:15px; font-style:italic;">◎ 수신인 추가 ◎</h2>
-            <table>
+            <table class="persontable">
             <tr>
-               <td style="text-align:center;"><h3 style="margin: 0 0;">학년 / 반 선택</h3></td>
+	            <td colspan="3">
+	            	<h2 align="center" style="font-style:italic;">◎ 수신인 추가 ◎</h2>
+	            </td>
+            </tr>
+            <tr>
+               <td colspan="3" style="text-align:center;"><h3 style="margin: 0 0;">학년 / 반 / 대상 선택</h3><br></td>
             </tr>
             <tr>
                <!-- 학년 선택 -->
@@ -181,18 +188,16 @@ select, option{
                   <option class="op2" value="high2">고등 2학년</option>
                   <option class="op2" value="high3">고등 3학년</option>
                </select>&emsp;
-               <!-- 반 선택 -->
-               <select class="class" style="display: none;">
-               </select>
                </td>
-            </tr>
-            <tr>
-               <td class="person" style="text-align: center; display: none;"><h3 style="margin: 0 0;">대상 선택</h3></td>
-            </tr>
-            <tr>
+               <!-- 반 선택 -->
+               <td>
+               <select class="class">
+					<option class='op' value='0' selected>-선택-</option>
+               </select>&emsp;
+               </td>
                <!-- 대상 선택 -->
                <td style="text-align: center;">
-                  <select class="person" style="display: none;">
+                  <select class="person">
                      <option value="0" selected>-선택-</option>
                      <option value="student">학생</option>
                      <option value="parent">학부모</option>
@@ -201,37 +206,38 @@ select, option{
             </tr>
             <tr>
                <!-- 학생 목록 -->
-               <td style="text-align: center;">
+               <td colspan="3" style="text-align: center;">
+               	<br>
                   <div class="student">
                   <input type="checkbox" id="student1">
-                  <label for="student1">학생 1</label>&emsp;
+                  <label for="student1">학생 1</label><br>
                   <input type="checkbox" id="student2">
                   <label for="student2">학생 2</label><br>
                   <input type="checkbox" id="student3">
-                  <label for="student3">학생 3</label>&emsp;
+                  <label for="student3">학생 3</label><br>
                   <input type="checkbox" id="student4">
-                  <label for="student4">학생 4</label>
+                  <label for="student4">학생 4</label><br>
                   </div>
                   
                   <!-- 학부모 목록 -->
                   <div class="parent">
                   <input type="checkbox" id="parent1">
-                  <label for="parent1">학부모 1</label>&emsp;
+                  <label for="parent1">학부모 1</label><br>
                   <input type="checkbox" id="parent2">
                   <label for="parent2">학부모 2</label><br>
                   <input type="checkbox" id="parent3">
-                  <label for="parent3">학부모 3</label>&emsp;
+                  <label for="parent3">학부모 3</label><br>
                   <input type="checkbox" id="parent4">
-                  <label for="parent4">학부모 4</label>
+                  <label for="parent4">학부모 4</label><br>
                   </div>
                </td>
             </tr>
             </table>
             <br>
             <button class="cancelbtn"
-               style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
+               style="margin-left: 150px; width: 100px; height: 30px; float: left;">취소</button>
             <button class="okbtn"
-               style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
+               style="margin-right: 150px; float: right; width: 100px; height: 30px;">확인</button>
             <br>
          </div>
       </div>
@@ -326,8 +332,6 @@ select, option{
             if(sel == 'mid1'){
                $(".student").hide();   //학생목록 숨김
                $(".parent").hide();   //학부모목록 숨김
-               $(".person").hide();   //대상선택 숨김
-               $(".class").show();      //반 선택 보임
                $(".op").remove();      //반 선택 옵션 삭제
                //반 선택 옵션 생성
                $(".class").append("<option class='op' value='0' selected>-선택-</option>");
@@ -337,8 +341,6 @@ select, option{
             } else if(sel == 'mid2'){
                $(".student").hide();
                $(".parent").hide();
-               $(".person").hide();
-               $(".class").show();
                $(".op").remove();
                $(".class").append("<option class='op' value='0' selected>-선택-</option>");
                $.each(class2,function(i, item){
@@ -346,16 +348,14 @@ select, option{
                });
             //학년 미 선택시 대상 선택 메뉴 숨김
             } else if($(".op2").val() == 0){
-               $(".person").hide();
-               $(".class").hide();
                $(".student").hide();
                $(".parent").hide();
+               $(".class").append("<option class='op' value='0' selected>-선택-</option>");
             } else {
-               $(".person").hide();
                $(".op").remove();
-               $(".class").hide();
                $(".student").hide();
                $(".parent").hide();
+               $(".class").append("<option class='op' value='0' selected>-선택-</option>");
             }
          });
       });
@@ -370,13 +370,11 @@ select, option{
             if(sel != 0){
                $(".student").hide();
                $(".parent").hide();
-               $(".person").show();
                $(".person").val(0).attr("selected", "selected");
                //반 미 선택시 대상 선택 메뉴 숨김
             } else if(op2 == 0){
                $(".student").hide();
                $(".parent").hide();
-               $(".person").hide();
             }
          });
       });
