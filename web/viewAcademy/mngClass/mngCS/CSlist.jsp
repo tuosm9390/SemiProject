@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html class="no-js">
 	<head>
@@ -57,6 +58,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					
 						<tr><td class="user-name">1</td><td class="user-email">수학 기초반1</td><td>빛상찬</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
 						<tr><td class="user-name">2</td><td class="user-email">수학 기초반2</td><td>빛상준</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
 						<tr><td class="user-name">3</td><td class="user-email">영어 ABC 클래스-오전</td><td>킹진호</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
