@@ -64,7 +64,6 @@
 						<td>작성자</td>
 						<td>
 							<input style="border-radius:5px; border:1px solid lightgray;" type="text" name="writer" readonly>
-							<input type="hidden" name="uno"> <!-- 실제 서버로는 uno값이 전달됨(uno값을 이용하여 닉네임을 찾기 위해서), type="hidden"을 사용하면 사용자에게는 보여지지 않음 -->
 						</td>
 						<td>작성일</td>
 						<td><input type="date" name="date" style="border-radius:5px; border:1px solid lightgray;"></td>
