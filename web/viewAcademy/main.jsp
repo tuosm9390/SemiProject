@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="hagong.member.model.vo.*"%>
-<%-- <%@ Member loginUser = (Member) session.getAttribute("loginUser"); %> --%>
+	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +60,8 @@ body {
 }
 </style>
 </head>
-<%@ include file="../../viewAcademy/common/menubar.jsp"%>
 <body align="center" onload="printClock()">
+<%@ include file="../viewAcademy/common/menubar.jsp" %>
 	<div class="outer">
 		<div class="totalArea">
 			<div class="totalStaff">

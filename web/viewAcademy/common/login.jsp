@@ -52,11 +52,11 @@
 	<%@ include file="../common/menubar.jsp" %>
 	<div class="background">	
 	<div align="center" id="container">
-		<form id="loginArea" action="<%=request.getContextPath() %>/login.me" method="post">
+		<form id="loginArea" action="<%=request.getContextPath()%>/login.cm" method="post">
 			<ul>
 				<li><img src="<%=request.getContextPath()%>/images/hagong.png" style="width:120px; heigh:120px; margin-bottom:50px"></li>
 				<li><label>아이디 &nbsp;&nbsp;&nbsp;</label>
-				<input type="text" id="memberId" name="memberId" placeholder=" 아이디 입력" 
+				<input type="text" id="memberId" name="userId" placeholder=" 아이디 입력" 
 				style="padding-top:10px;padding-bottom:5px;width:250px"></li><br>
 				<li><label>비밀번호&nbsp;&nbsp;</label>
 				<input type="password" id="password" name="password" placeholder=" 비밀번호 입력"

@@ -11,5 +11,13 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/cos.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/dsn.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/gimap.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/imap.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/javax.mail-api-1.4.7.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/lombok-1.18.8.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/pop3.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/smtp.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

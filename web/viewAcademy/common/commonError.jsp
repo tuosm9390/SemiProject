@@ -1,14 +1,3 @@
-<%--
-/**
- * <pre>
- * 1. Author      : Hyerin
- * 2. CreateDate  : 2019. 12. 6. 오전 10:54:19
- * 3. ModifyDate  : 2019. 12. 6. 오전 10:54:19
- * 4. FileName    : 
- * 4. Description : 
- * </pre>
- */
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <% String errorCode = (String) request.getAttribute("errorCode"); %>
