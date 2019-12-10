@@ -283,7 +283,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				<button id="okbtn"
 					style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
 				<button id="cancelbtn"
-					onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/studentList.jsp'"
+					onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp'"
 					style="float: right; width: 80px; height: 30px;">취소</button>
 			</div>
 		</fieldset>

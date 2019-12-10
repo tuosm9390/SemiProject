@@ -185,7 +185,7 @@ th, td {
 		<button id="okbtn"
 			style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
 		<button id="cancelbtn"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentInfo.jsp'"
+			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp'"
 			style="float: right; width: 80px; height: 30px;">취소</button>
 		</fieldset>
 	</div>
