@@ -57,7 +57,7 @@
 	<script src='Nwagon.js'></script>
 
 </head>
- 
+ <%= %>
 <body>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 	<section>
