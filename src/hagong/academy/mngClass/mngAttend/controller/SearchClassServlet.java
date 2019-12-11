@@ -12,33 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import hagong.academy.mngClass.mngAttend.model.service.AttendService;
 import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
 
-@WebServlet("/classlist.attend")
-public class SelectClassListServlet extends HttpServlet {
+@WebServlet("/searchClass.attend")
+public class SearchClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SelectClassListServlet() {
+    public SearchClassServlet() {
         super();
-
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ClassSubject> list = new ArrayList<ClassSubject>();
+		String selectCondition = request.getParameter("selectCondition");
+		String searchWord = request.getParameter("searchWord");
 		
-		list = new AttendService().selectClassList();
+		System.out.println(selectCondition + ", " + searchWord);
+		
+		ArrayList<ClassSubject> list = new AttendService().searchClass(selectCondition, searchWord);
 		
 		String page = "";
 		if(list != null) {
 			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";
 			request.setAttribute("list", list);
 		}else {
-			System.out.println("강좌 리스트 조회 실패");
+			System.out.println("검색어로 강좌 조회 실패!");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

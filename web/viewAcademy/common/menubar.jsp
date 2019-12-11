@@ -180,7 +180,7 @@ section {
 	<!-- 상단 메뉴 바 -->
 	<header>
 		<div id="menuheader">
-			<a href="<%=request.getContextPath()%>/viewAcademy/main.jsp"> <img
+			<a href="<%=request.getContextPath()%>/allStaff.cm"> <img
 				src="<%=request.getContextPath()%>/images/hagong.png"
 				style="height: 85px;"></a>
 			<h2 class="topmenu" id="student">학생관리</h2>
@@ -231,7 +231,7 @@ section {
 					<a
 						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
 						class="menu3">수강생 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendList.jsp"
+						href="<%=request.getContextPath()%>/classlist.attend"
 						class="menu3">출결 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp"
 						class="menu3">강좌목록 관리</a> <a>|</a> <a
