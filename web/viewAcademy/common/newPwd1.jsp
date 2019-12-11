@@ -59,13 +59,12 @@
          <table>
             <tr>
                <td width="20%">아이디</td>
-               <td colspan="2" width="80%"><input type="password" name="userId" placeholder=" 아이디 입력"></td>
+               <td colspan="2" width="80%"><input type="text" name="userId" placeholder=" 아이디 입력"></td>
             </tr>
             <tr>
                   <td>이메일</td>
                   <td style="width:180px; text-align: center;">
-                  <input type="email" name="email" placeholder="example@naver.com">
-            </td>
+                  <input type="email" name="email" placeholder="example@naver.com"></td>
                   <td style="align-items: center;"><div align="right">
                   <button style="height: 30px;">인증하기</button></div></td>
             </tr>
