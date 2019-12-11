@@ -217,7 +217,7 @@ section{
 						class="menu1">개인정보</a> <a>|</a>
 					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
 						class="menu1">수납</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsList.jsp"
+					<a href="<%=request.getContextPath()%>/alist.couns"
 						class="menu1">상담</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
 						class="menu1">블랙리스트</a>

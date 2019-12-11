@@ -1,4 +1,4 @@
-package hagong.academy.mngClass.mngCS.model.vo;
+package hagong.academy.mngStudent.mngCouns.model.vo;
 
 
 import java.sql.Date;
