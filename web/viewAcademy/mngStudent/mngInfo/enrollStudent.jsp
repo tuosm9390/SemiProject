@@ -7,7 +7,7 @@
 <title>HAGONG</title>
 <style>
 section {
-	background:url("/hagong/images/backInfo.jpg") no-repeat top;
+	background: url("/hagong/images/backInfo.jpg") no-repeat top;
 	/* background-size:85.9%; */
 	/* background-size: 1333px 1200px; */
 	background-size: cover;
@@ -19,7 +19,7 @@ section {
 	radius: 50%;
 }
 
-td, tr{
+td, tr {
 	background: none !important;
 	text-align: left !important;
 }
@@ -67,6 +67,18 @@ section button:hover {
 	border: 2px solid green;
 	color: white;
 }
+
+.redText {
+	display: block;
+	color: red;
+	margin-left: 10px;
+}
+
+.greenText {
+	display: block;
+	color: green;
+	margin-left: 10px;
+}
 </style>
 </head>
 <body>
@@ -74,118 +86,122 @@ section button:hover {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-	<div align="center">
-		<fieldset
-			style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black;
-					width: 90%;">
-			<legend align="center">
-				<h1 style="font-family:'Do Hyeon'">　학생 등록　</h1>
-			</legend>
-			<div style="width: 100%; margin: auto auto;">
-				<form id="enrollStudentForm" action="<%= request.getContextPath()%>/ainsert.info" method="post">
-					<table class="table" align="center">
-						<tr align="center">
-							<td rowspan="6">
-								<div align="center">
-									<img id="profile"
-										src="<%=request.getContextPath()%>/images/user.png">
-									<button type="button" id="addimg"
-										style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-									<input type="file" id="imgfile" onchange="loadImg(this);">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><li>ID</li></td>
-							<td><input type="text" placeholder="아이디 입력" name="userId"></td>
-						</tr>
-						<tr>
-							<td><li>이름</li></td>
-							<td><input type="text" placeholder="이름 입력" name="userName"></td>
-						</tr>
-						<tr>
-							<td><li>생년월일</li></td>
-							<td><input type="text" id="datepicker" name="birth" readonly></td>
-						</tr>
-						<tr>
-							<td><li>전화번호</li></td>
-							<td>
-							<input type="tel" maxlength="3" name="tel1"> - 
-							<input type="tel" maxlength="4" name="tel2"> - 
-							<input type="tel" maxlength="4" name="tel3"></td>
-						</tr>
-						<tr>
-							<td><li>학교 / 학년</li></td>
-							<td>
-							<input type="text" name="school" placeholder="학교 이름 입력"
-								style="width: 120px;"> &nbsp; 
-							<select name="grade" style="width: 120px;">
-									<option value="1">중학교 1학년</option>
-									<option value="2">중학교 2학년</option>
-									<option value="3">중학교 3학년</option>
-									<option value="4">고등학교 1학년</option>
-									<option value="5">고등학교 2학년</option>
-									<option value="6">고등학교 3학년</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td rowspan="2" style="text-align: center !important;"><li>유입 경로</li><br>
-							<select name="inflowPath" style="width: 100px;">
-									<option value="friend">친구소개</option>
-									<option value="internet">인터넷</option>
-									<option value="picket">전단지</option>
-									<option value="pcard">플래카드</option>
-									<option value="etc">기타</option>
+		<div align="center">
+			<fieldset
+				style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black; width: 90%;">
+				<legend align="center">
+					<h1 style="font-family: 'Do Hyeon'">학생 등록</h1>
+				</legend>
+				<div style="width: 100%; margin: auto auto;">
+					<form id="enrollStudentForm"
+						action="<%=request.getContextPath()%>/ainsert.info" method="post">
+						<table class="table" align="center">
+							<tr align="center">
+								<td rowspan="6">
+									<div align="center">
+										<img id="profile"
+											src="<%=request.getContextPath()%>/images/user.png">
+										<button type="button" id="addimg"
+											style="height: 1.5em; margin-top: 3%;">사진 선택</button>
+										<input type="file" id="imgfile" onchange="loadImg(this);">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><li>ID</li></td>
+								<td><input type="text" placeholder="아이디 입력" id="userId" name="userId"><br>
+								<span id="idSpan" class="redText"></span></td>
+							</tr>
+							<tr>
+								<td><li>이름</li></td>
+								<td><input type="text" placeholder="이름 입력" id="userName" name="userName"><br>
+								<span id="nameSpan" class="redText"></span></td>
+							</tr>
+							<tr>
+								<td><li>생년월일</li></td>
+								<td><input type="text" id="datepicker" name="birth"
+									readonly></td>
+							</tr>
+							<tr>
+								<td><li>전화번호</li></td>
+								<td><input type="tel" maxlength="3" name="tel1"> -
+									<input type="tel" maxlength="4" name="tel2"> - <input
+									type="tel" maxlength="4" name="tel3"></td>
+							</tr>
+							<tr>
+								<td><li>학교 / 학년</li></td>
+								<td><input type="text" name="school" placeholder="학교 이름 입력"
+									style="width: 120px;"> &nbsp; <select name="grade"
+									style="width: 120px;">
+										<option value="1">중학교 1학년</option>
+										<option value="2">중학교 2학년</option>
+										<option value="3">중학교 3학년</option>
+										<option value="4">고등학교 1학년</option>
+										<option value="5">고등학교 2학년</option>
+										<option value="6">고등학교 3학년</option>
 								</select></td>
-							<td><li>계열</li></td>
-							<td><select name="track">
-									<option>인문</option>
-									<option>자연</option>
-									<option>예체능</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td><li>학부모 이름</li></td>
-							<td><input type="text" placeholder="학부모 이름 입력" name="refName"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>학부모 아이디</li></td>
-							<td><input type="text" placeholder="학부모 아이디 입력" name="refId"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>학부모 전화번호</li></td>
-							<td>
-							<input type="tel" maxlength="3" name="reftel1"> - 
-							<input type="tel" maxlength="4" name="reftel2"> - 
-							<input type="tel" maxlength="4" name="reftel3"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>희망대학 / 학과</li></td>
-							<td><input type="text" placeholder="희망 대학 입력" name="college">
-								&nbsp; <input type="text" placeholder="희망 학과 입력" name="major"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>주소</li></td>
-							<td><input type="text" placeholder="주소 입력" name="address"
-								style="width: 400px;"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>이메일</li></td>
-							<td><input type="email" placeholder="이메일 입력" name="email"
-								style="width: 400px;"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><li>개인정보 제공 및 활용 동의</li></td>
-							<td>
-								<div style="border: 1px solid lightgray; width: 600px; height: 200px;
-                                 overflow: auto; background: white;">
-                           <pre align="left" style="color: black;">【 개인정보처리방침 】
+							</tr>
+							<tr>
+								<td rowspan="2" style="text-align: center !important;"><li>유입
+										경로</li>
+								<br> <select name="inflowPath" style="width: 100px;">
+										<option value="friend">친구소개</option>
+										<option value="internet">인터넷</option>
+										<option value="picket">전단지</option>
+										<option value="pcard">플래카드</option>
+										<option value="etc">기타</option>
+								</select></td>
+								<td><li>계열</li></td>
+								<td><select name="track">
+										<option>인문</option>
+										<option>자연</option>
+										<option>예체능</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td><li>학부모 이름</li></td>
+								<td><input type="text" placeholder="학부모 이름 입력"
+									name="refName"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>학부모 아이디</li></td>
+								<td><input type="text" placeholder="학부모 아이디 입력"
+									name="refId"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>학부모 전화번호</li></td>
+								<td><input type="tel" maxlength="3" name="reftel1">
+									- <input type="tel" maxlength="4" name="reftel2"> - <input
+									type="tel" maxlength="4" name="reftel3"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>희망대학 / 학과</li></td>
+								<td><input type="text" placeholder="희망 대학 입력"
+									name="college"> &nbsp; <input type="text"
+									placeholder="희망 학과 입력" name="major"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>주소</li></td>
+								<td><input type="text" placeholder="주소 입력" name="address"
+									style="width: 400px;"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>이메일</li></td>
+								<td><input type="email" placeholder="이메일 입력" name="email"
+									style="width: 400px;"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><li>개인정보 제공 및 활용 동의</li></td>
+								<td>
+									<div
+										style="border: 1px solid lightgray; width: 600px; height: 200px; overflow: auto; background: white;">
+										<pre align="left" style="color: black;">【 개인정보처리방침 】
 '하공학원'은(이하 학원 이라 함) 귀하의 개인정보보호를 중요시하며, 『개인정보보호법』을 준수하고 있습니다. 학원은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 이 개인정보처리방침의 순서는 다음과 같습니다.
 ----------------------------------------------------
 1. 수집하는 개인정보의 항목 및 수집방법
@@ -281,23 +297,23 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 공고일자 : 2019년 12월 20일
 시행일자 : 2019년 12월 20일
                   </pre>
-                        </div>
-								<div align="left">
-									<input type="checkbox" name="accept" id="accept"><label
-										for="accept" style="color: red;">동의합니다.</label>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-				<button id="okbtn"
-					style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
-				<button id="cancelbtn"
-					onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp'"
-					style="float: right; width: 80px; height: 30px;">취소</button>
-			</div>
-		</fieldset>
-	</div>
+									</div>
+									<div align="left">
+										<input type="checkbox" name="accept" id="accept"><label
+											for="accept" style="color: red;">동의합니다.</label>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+					<button id="okbtn"
+						style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
+					<button id="cancelbtn"
+						onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp'"
+						style="float: right; width: 80px; height: 30px;">취소</button>
+				</div>
+			</fieldset>
+		</div>
 	</section>
 
 	<footer> </footer>
@@ -342,18 +358,157 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			var inputVal = $(this).val();
 			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 		});
-		
+
 		//프로필이미지
 		function loadImg(value) {
-            if(value.files && value.files[0]) {
-               var reader = new FileReader();
-               reader.onload = function(e) {
-                  $("#profile").attr("src", e.target.result);
-                  $("#profile").css({"border-radius":"50%"})
-               };
-               reader.readAsDataURL(value.files[0]);
-            }
-         }
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#profile").attr("src", e.target.result);
+					$("#profile").css({
+						"border-radius" : "50%"
+					})
+				};
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
+
+		//유효성검사
+		// 아이디 정규식
+		function idcheck(str) {
+			var check = /^[a-z][a-z0-9_-]{3,11}$/;
+			if (check.test(str)) {
+				return true;
+			}
+			return false;
+		}
+
+		// 이름 정규식
+		function namecheck(str) {
+			var check = /^[가-힝]{2,4}$/;
+			if (check.test(str)) {
+				return true;
+			}
+			return false;
+		}
+		$(document).ready(
+				function() {
+					// 검증에 사용할 함수명들을 배열에 담아준다.
+					var idFuncArray = [ "idcheck" ];
+					var nameFuncArray = [ "namecheck" ];
+
+					// 1. span태그 obj, 2. input태그 obj, 3. 위에서 정의한 함수명 배열, 4. 검증에 걸렸을 때 나타날 텍스트, 5. 검증을 통과했을 때 나타날 텍스트, 6. span태그의 좌측 폭 위치.
+					spanIdValidation($("#idSpan"), $("#userId"), idFuncArray,
+							"아이디는 영문과 숫자로 공백없이 입력하십시오!", "사용 가능한 ID입니다.",
+							"15px");
+					spanNameValidation($("#nameSpan"), $("#userName"),
+							nameFuncArray, "이름은 한글로 입력해주세요!",
+							"", "15px");
+				});
+
+		function spanIdValidation(spanObj, inputObj, validFuncArray, redMsg,
+				greenMsg, marginLeftPx) {
+			spanObj.css("margin-left", marginLeftPx); // span태그의 좌측 폭을 설정해준다.
+
+			var confirmCheck = false; // 검증에 통과 여부에 사용할 flag
+
+			spanObj.hide(); // span태그를 숨긴다.
+
+			inputObj.bind('focusin keyup', function() { // input태그에 포커스가 들어오거나 키가 눌렸을 때 실행됨
+				var inputValue = inputObj.val();
+
+				var funcResult = true; // 함수 실행 결과를 담을 flag
+
+				for (i = 0; i < validFuncArray.length; i++) { // 검증에 사용할 함수명 배열을 반복문으로 돌린다.
+					var funcName = validFuncArray[i]; // 배열에서 함수명을 하나씩 뽑아낸다. 
+					var funcObj = window[funcName]; // 함수명(string)을 객체(object)로 받는다.
+					funcResult = funcObj(inputValue); // 해당 함수를 실행하여 결과값(true/false)을 변수에 담는다. 만약 함수 하나라도 통과를 하지 못하면 false가 된다.
+					if (!funcResult) { // 검증에 통과하지 못한 함수가 있을 경우 반복문 탈출
+						break;
+					}
+				}
+
+				if (!funcResult) { // 검증에 통과하지 못했을 때,
+					spanObj.show(); // span태그 보여준다.
+					spanObj.removeClass('greenText'); // span태그에 greenText 클래스를 삭제한다.
+					spanObj.addClass('redText'); // span태그에 redText 클래스를 추가한다.
+
+					spanObj.text(""); //  span태그의 텍스트를 지운다.
+					spanObj.append(redMsg); // span태그에  검증에 통과하지 못했을 때 나타나는 텍스트를 넣는다.
+
+					confirmCheck = false; // 검증 통과 여부 flag에 false를 대입한다.
+				} else { // 검증에 통과했을 때,
+					spanObj.show();
+					spanObj.removeClass('redText');
+					spanObj.addClass('greenText');
+
+					spanObj.text("");
+					spanObj.append(greenMsg);
+
+					confirmCheck = true;
+				}
+
+			});
+
+			inputObj.focusout(function() { // 포커스가 input태그에서 벗어났을 때 실행,
+				var inputValue = inputObj.val();
+				if (confirmCheck || inputValue == "") { // 검증에 통과를 했거나 input태그에 입력 값이 없을 경우,
+					spanObj.hide(); // span태그를 숨긴다.
+				}
+			});
+		}
+
+		function spanNameValidation(spanObj, inputObj, validFuncArray, redMsg,
+				greenMsg, marginLeftPx) {
+			spanObj.css("margin-left", marginLeftPx); // span태그의 좌측 폭을 설정해준다.
+
+			var confirmCheck = false; // 검증에 통과 여부에 사용할 flag
+
+			spanObj.hide(); // span태그를 숨긴다.
+
+			inputObj.bind('focusin keyup', function() { // input태그에 포커스가 들어오거나 키가 눌렸을 때 실행됨
+				var inputValue = inputObj.val();
+
+				var funcResult = true; // 함수 실행 결과를 담을 flag
+
+				for (i = 0; i < validFuncArray.length; i++) { // 검증에 사용할 함수명 배열을 반복문으로 돌린다.
+					var funcName = validFuncArray[i]; // 배열에서 함수명을 하나씩 뽑아낸다. 
+					var funcObj = window[funcName]; // 함수명(string)을 객체(object)로 받는다.
+					funcResult = funcObj(inputValue); // 해당 함수를 실행하여 결과값(true/false)을 변수에 담는다. 만약 함수 하나라도 통과를 하지 못하면 false가 된다.
+					if (!funcResult) { // 검증에 통과하지 못한 함수가 있을 경우 반복문 탈출
+						break;
+					}
+				}
+
+				if (!funcResult) { // 검증에 통과하지 못했을 때,
+					spanObj.show(); // span태그 보여준다.
+					spanObj.removeClass('greenText'); // span태그에 greenText 클래스를 삭제한다.
+					spanObj.addClass('redText'); // span태그에 redText 클래스를 추가한다.
+
+					spanObj.text(""); //  span태그의 텍스트를 지운다.
+					spanObj.append(redMsg); // span태그에  검증에 통과하지 못했을 때 나타나는 텍스트를 넣는다.
+
+					confirmCheck = false; // 검증 통과 여부 flag에 false를 대입한다.
+				} else { // 검증에 통과했을 때,
+					spanObj.show();
+					spanObj.removeClass('redText');
+					spanObj.addClass('greenText');
+
+					spanObj.text("");
+					spanObj.append(greenMsg);
+
+					confirmCheck = true;
+				}
+
+			});
+
+			inputObj.focusout(function() { // 포커스가 input태그에서 벗어났을 때 실행,
+				var inputValue = inputObj.val();
+				if (confirmCheck || inputValue == "") { // 검증에 통과를 했거나 input태그에 입력 값이 없을 경우,
+					spanObj.hide(); // span태그를 숨긴다.
+				}
+			});
+		}
 	</script>
 </body>
 </html>

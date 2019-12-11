@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,8 @@
 	href="<%=request.getContextPath()%>/css/component.css" />
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
@@ -72,7 +73,7 @@ button {
 	color: black;
 	display: block;
 	position: relative;
-	font-weight:bold; 
+	font-weight: bold;
 	background: snow;
 }
 
@@ -165,10 +166,11 @@ body {
 	color: black;
 }
 
-section{
+section {
 	font-family: "Nanum Gothic" !important;
 }
-.boder{
+
+.boder {
 	border-right: 1px solid black;
 }
 </style>
@@ -187,7 +189,7 @@ section{
 			<h2 class="topmenu" id="admin">관리자</h2>
 			&nbsp;
 			<h3 id="notice"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" >
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">
 				<img src="<%=request.getContextPath()%>/images/notice.png"
 					style="height: 30px;">
 			</h3>
@@ -197,63 +199,66 @@ section{
 					style="height: 30px;">
 			</h3>
 			<h3 id="calendar"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar.jsp'">
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar.jsp'">
 				<img src="<%=request.getContextPath()%>/images/calendar.png"
 					style="height: 30px;">
 			</h3>
-			
+
 			<!-- 로그인 버튼 -->
 			<% if(loginUser != null) { %>
 			<button id="logout" style="margin-left: 5px;">로그아웃</button>
 			<% }else { %>
-      		<button id="login" style="margin-left: 5px;">로그인</button>
-      		<% } %>
-      	
+			<button id="login" style="margin-left: 5px;">로그인</button>
+			<% } %>
+
 			<!-- 하단 회색 바 -->
 			<div id="mid">
 				<!-- 학생관리 메뉴 -->
 				<div class="detailmenu" id="studentdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
-						class="menu1">개인정보</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
-						class="menu1">수납</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsList.jsp"
-						class="menu1">상담</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
+					<a
+						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
+						class="menu1">개인정보</a> <a>|</a> <a
+						href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
+						class="menu1">수납</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsList.jsp"
+						class="menu1">상담</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
 						class="menu1">블랙리스트</a>
 				</div>
 				<!-- 수업관리 메뉴 -->
 				<div class="detailmenu" id="classdetailmenu">
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
-						class="menu3">수강생 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendList.jsp"
-						class="menu3">출결 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp"
-						class="menu3">강좌목록 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
+					<a
+						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
+						class="menu3">수강생 관리</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendList.jsp"
+						class="menu3">출결 관리</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp"
+						class="menu3">강좌목록 관리</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
 						class="menu3">만족도</a>
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/viewStatus.jsp" 
-						class="menu4">학원 현황</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
-						class="menu4">메뉴 권한 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
+					<a
+						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/viewStatus.jsp"
+						class="menu4">학원 현황</a> <a>|</a> <a
+						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
+						class="menu4">메뉴 권한 관리</a> <a>|</a> <a
+						href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
 						class="menu4">연간계획</a>
 				</div>
 
+				<% if(loginUser != null) {  %>
 				<div id="member">
 					<button type="button" id="name"
 						style="margin-right: 4%; background: none; border: none; font-size: large;">
-					<% if(loginUser != null) {  %>
-					<%= loginUser.getName() %>
-					<% }else {	%>
-						비회원
-					<% } %>님</button>
-					<button style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
-               		onclick="myInfo();">개인정보 관리</button>
+						<%= loginUser.getName() %>님
+					</button>
+					<button
+						style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
+						onclick="myInfo();">개인정보 관리</button>
 				</div>
+				<% }%>
 			</div>
 		</div>
 	</header>
@@ -320,7 +325,7 @@ section{
 		//내 정보 수정
 		function myInfo(){
 	    	location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/viewUserInfo.jsp";
-	    };
+		};
 	</script>
 
 </body>
