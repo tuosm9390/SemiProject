@@ -35,6 +35,10 @@ public class SelectMngStatusServlet extends HttpServlet {
 		
 		String page ="";
 		
+		System.out.println();
+	
+
+
 		if(status != null) {
 			page = "viewAcademy/mngAdmin/mngStatus/viewStatus.jsp";
 			request.getSession().setAttribute("status", status); 

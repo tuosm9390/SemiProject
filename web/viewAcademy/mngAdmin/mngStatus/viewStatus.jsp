@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngStatus.model.vo.*"%>
     
    <% MngStatus status = (MngStatus)request.getSession().getAttribute("status"); 
-   
+   	System.out.println(status);
    %>
    
 <!DOCTYPE html>
@@ -63,7 +63,14 @@
 	<script src='Nwagon.js'></script>
 
 </head>
+
 <body>
+<% int sum = status.getInFriend() + status.getInInternet() + status.getInPcard() + status.getInPicket()+status.getInEtc();
+int fr = Math.round((status.getInFriend()*100)/sum);
+int in = Math.round((status.getInInternet()*100)/sum);
+int pi = Math.round((status.getInPicket()*100)/sum);
+int pc = Math.round((status.getInPcard()*100)/sum);
+int etc =Math.round((status.getInEtc()*100)/sum);%>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
  <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>
 	<section>
@@ -90,27 +97,27 @@
 					<tr>	
 						<td>1</td>
 						<td>친구</td>
-						<td><%=status.getInFriend() %></td>
+						<td><%=fr%>　%</td>
 					</tr>
 					<tr>	
 						<td>2</td>
 						<td>전단지</td>
-						<td><%=status.getInPcard() %></td>
+						<td><%=pi%>　%</td>
 					</tr>
 					<tr>	
 						<td>3</td>
 						<td>인터넷</td>
-						<td><%=status.getInInternet() %></td>
+						<td><%=in %>　%</td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>광고판</td>
-						<td><%=status.getInPicket() %></td>
+						<td><%=pc %>　%</td>
 					</tr>
 					<tr>	
 						<td>5</td>
 						<td>기타</td>
-						<td><%=status.getInEtc() %></td>
+						<td><%=etc%>　%</td>
 					</tr>
 				</table>
 			</div>	
@@ -121,15 +128,7 @@
 		
 	</div>
 	
-<% 	int friend = status.getInFriend();
-	int internet = status.getInInternet();
-	int pcard = status.getInPcard();
-	int picket = status.getInPicket();
-	int etc = status.getInEtc();
-	
-	
 
-%>
 </div><!-- outer end -->
 	<script>
 		var options = {

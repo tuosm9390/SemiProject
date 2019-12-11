@@ -17,6 +17,7 @@ public class MngStatusService {
 		MngStatus status = new MngStatusDao().selectList(con);
 		
 		close(con);
+		
 		return status;
 	}
 }
