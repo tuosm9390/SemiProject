@@ -115,7 +115,7 @@ fieldset {
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　직원 등록　</h1></legend>
          		<div class="outArea">
-					<form action="<%= request.getContextPath() %>/ainsert.staff" method="post">
+					<form action="<%= request.getContextPath() %>/ainsert.staff" method="post" id="insertForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
@@ -136,15 +136,15 @@ fieldset {
 						</tr>
 						<tr>
 							<td><li>전화번호</li></td>
-							<td colspan="2"><input type="tel" maxlength="3" size="4" name="tel1" placeholder="010"> - 
-							    			<input type="tel" maxlength="4" size="4" name="tel2"> - 
-							    			<input type="tel" maxlength="4" size="4" name="tel3">
+							<td colspan="2"><input type="tel" maxlength="3" size="4" name="tel1" id="tel1" placeholder="010"> - 
+							    			<input type="tel" maxlength="4" size="4" name="tel2" id="tel2"> - 
+							    			<input type="tel" maxlength="4" size="4" name="tel3" id="tel3">
 						</tr>
 						<tr>
 							<td><li>담당업무</li></td>
 							<td colspan="2">
-								<select name="subject">
-									<option value="select" hidden>담당업무 선택</option>
+								<select name="subject" id="subject">
+									<option value="select" hidden selected>담당업무 선택</option>
 									<option value="korea">국어</option>
 									<option value="math">수학</option>
 									<option value="english">영어</option>
@@ -280,7 +280,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 							<td></td>
 							<td colspan="2">
 								<div class="btnArea" align="right">
-									<button type="button" class="bottomBtn" onclick="goList();">취소</button>
+									<button type="button" class="bottomBtn" id="goList" onclick="goList();">취소</button>
 									<button type="button" class="bottomBtn" onclick="doEnroll();">등록</button>
 								</div> <!-- btnArea end -->
 							</td>
@@ -328,7 +328,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		
 			$("#userId").keyup(function(event) {
 				var userId = $("#userId").val();
-				var check = /^[a-z][a-z0-9]{3,11}$/;
+				var check = /^[a-z][a-z0-9A-Z]{3,11}$/;
 				if(check.test(userId)){
 					$.ajax({
 						url:"/hagong/idCheck.cm",
@@ -355,13 +355,15 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			
 			$("#userName").keyup(function(event){
 				var userName = $("#userName").val();
-				var check = /[a-zA-Z가-힣]{2,}/;
-				if(check.test(userName)){
+				var check = /[\Da-zA-Z가-힣]{2,}/;
+				var check2 = /^[^0-9]+$/;
+				var check3 = /[~!@#$%^&*()-_=+|<>?:{}\[\]\\\'\"]/;
+				if(check.test(userName) && check2.test(userName) && !check3.test(userName)){
 					$("#nameSpan").removeClass('redText').addClass('greenText');
 					$("#nameSpan").text("");
 				} else {
 					$("#nameSpan").removeClass('greenText').addClass('redText');
-					$("#nameSpan").text("이름은 2글자 이상으로 설정해 주세요.");
+					$("#nameSpan").text("2글자 이상의 문자로 설정해 주세요.");
 				}
 			});
 			
@@ -405,8 +407,21 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			});
 				
 			function doEnroll(){
-				window.alert("@@@ 직원이 등록되었습니다!");
-				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				if($("#idSpan").prop("class") === "redText") {
+					alert("ID를 확인해 주세요.");
+				} else if($("#nameSpan").prop("class") === "redText") {
+					alert("이름을 확인해 주세요.");
+				} else if($("#datepicker").val() === "") {
+					alert("생년월일을 확인해 주세요.");
+				} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
+					alert("전화번호를 확인해 주세요.");
+				} else if($("#subject").val() === "select") {
+					alert("담당 업무를 선택해 주세요.");
+				} else if($("#accept").prop("checked") === false) {
+					alert("개인정보 제공 및 활용에 동의해 주세요.");
+				} else {
+					$("#insertForm").submit();
+				}
 			}
 			
 			function goList(){
