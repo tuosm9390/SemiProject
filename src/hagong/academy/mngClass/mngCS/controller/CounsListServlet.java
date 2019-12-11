@@ -33,8 +33,11 @@ public class CounsListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("접속 테스트");
 		
-		//상담관련 학생들의 정보를 어레이리스트에 담아 저장
+		//전체 학생들의 정보를 상담정보와 같이 어레이리스트에 담아 저장
 		ArrayList<MemberCouns> counsList = new CounselingService().counsList();
+		
+		System.out.println(counsList);
+		
 		
 		//성공 실패 실행  작성
 		String page = "";
@@ -45,7 +48,7 @@ public class CounsListServlet extends HttpServlet {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("msg", "삼담페이지 조회실패");
 		}
-		request.getRequestDispatcher(page).forward(request, response);
+		//request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}
