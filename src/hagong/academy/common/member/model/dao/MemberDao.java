@@ -1,14 +1,14 @@
 package hagong.academy.common.member.model.dao;
 
-import static hagong.common.JDBCTemplate.*;
+import static hagong.common.JDBCTemplate.close;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import hagong.academy.common.member.model.vo.Member;
@@ -112,6 +112,55 @@ public class MemberDao {
 		
 		
 		return requestMember;
+	}
+
+	public int changePwd(Connection con, Member changePwdMember) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("changePwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, changePwdMember.getUserPwd());
+			pstmt.setString(2, changePwdMember.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}	
+		
+		return result;
+	}
+
+	public int allStaff(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int total = 0;
+		
+		String query = prop.getProperty("allStaff");
+		
+		try {
+			stmt = con.createStatement();
+			
+			total = stmt.executeUpdate(query);
+			
+			while(rset.next()) {
+				total = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return total;
 	}
 
 }

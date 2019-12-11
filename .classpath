@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/mailapi.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/pop3.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/smtp.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/json-simple-1.1.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>
