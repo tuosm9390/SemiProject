@@ -126,7 +126,7 @@ select, option{
          <!-- 발송 내용 -->
          <div class="div1" style="margin-left: 42%;">
             <h2 style="float: left; margin-top: 0;"><li>발송 내용</h2>
-            <input type="checkbox" id="savecontent" style="height:15px; width: 15px; 
+            <input type="checkbox" id="savecontent" style="height:15px; width: 15px;
                   margin-left: 70px; margin-top: 8px;">
             <label for="savecontent" style="color: lightgray;">내용 저장</label>
             <input type="text" placeholder=" 제목 입력" id="contentname" style="width: 100%; margin-bottom: 5px; display: none;">

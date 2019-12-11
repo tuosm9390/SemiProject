@@ -68,6 +68,16 @@ section button:hover {
 th, td {
 	text-align: left !important;
 }
+
+.redText {
+	display: block;
+	color: red;
+}
+
+.greenText {
+	display: block;
+	color: green;
+}
 </style>
 </head>
 <body>
@@ -103,11 +113,13 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>ID</li></td>
-					<td><input type="text" value="bbogak" name="userId"></td>
+					<td><input type="text" placeholder="ID 입력" value="bbogak" id="userId" name="userId"><br>
+					<span class="idSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
-					<td><input type="text" value="박상준" name="userName"></td>
+					<td><input type="text" placeholder="이름 입력" value="박상준" id="userName" name="userName"><br>
+					<span class="nameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
@@ -141,13 +153,15 @@ th, td {
 					</select></td>
 				</tr>
 				<tr>
-					<td><li>학부모 이름</li></td>
-					<td><input type="text" value="박상찬" name="refName"></td>
+					<td><li>학부모 아이디</li></td>
+					<td><input type="text" placeholder="학부모 아이디 입력" value="scpark9999" id="refId" name="refId"><br>
+					<span class="idSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><li>학부모 아이디</li></td>
-					<td><input type="text" value="scpark9999" name="refId"></td>
+					<td><li>학부모 이름</li></td>
+					<td><input type="text" placeholder="학부모 이름 입력" value="박상찬" id="refName" name="refName"><br>
+					<span class="nameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -159,19 +173,20 @@ th, td {
 				<tr>
 					<td></td>
 					<td><li>희망대학 / 학과</li></td>
-					<td><input type="text" value="군대" name="college"> &nbsp;
-						<input type="text" value="사망" name="major"></td>
+					<td><input type="text" placeholder="희망 대학 입력" value="군대" name="college" style="width: 100px;">
+						<label style="color: black;">대학교</label>&emsp;
+						<input type="text" placeholder="희망 학과 입력" value="사망" name="major" style="width: 100px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" value="학생 거주지 입력" name="address"
+					<td><input type="text" placeholder="학생 거주지 입력" value="학생 거주지 입력" name="address"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" value="helloworld@kakao.com" name="email"
+					<td><input type="email" placeholder="helloworld@kakao.com" value="helloworld@kakao.com" name="email"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
@@ -232,6 +247,96 @@ th, td {
 		    var inputVal = $(this).val();
 		    $(this).val(inputVal.replace(/[^0-9]/gi,''));
 		});
+		
+		//프로필이미지
+		function loadImg(value) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#profile").attr("src", e.target.result);
+					$("#profile").css({
+						"border-radius" : "50%"
+					})
+				};
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
+
+		//유효성검사
+		// 아이디 정규식
+		function idcheck(str) {
+			var check = /^[a-z][a-z0-9_-]{3,11}$/;
+			if (check.test(str)) {
+				return true;
+			}
+			return false;
+		}
+
+		// 이름 정규식
+		function namecheck(str) {
+			var check = /^[가-힝]{2,4}$/;
+			if (check.test(str)) {
+				return true;
+			}
+			return false;
+		}
+		// 정규식 검사
+		$("#userId").keyup(function(event) {
+            var userId = $("#userId").val();
+            var check = /^[a-z][a-z0-9]{3,11}$/;
+            if(check.test(userId)){
+               $.ajax({
+                  url:"/hagong/idCheck.cm",
+                  type:"post",
+                  data:{userId:$("#userId").val()},
+                  success:function(data){
+                     if(data === "success") {
+                        $("#idSpan").removeClass('redText').addClass('greenText');
+                        $("#idSpan").text("사용 가능한 ID 입니다.");
+                     } else {
+                        $("#idSpan").removeClass('greenText').addClass('redText');
+                        $("#idSpan").text("이미 사용중인 ID 입니다. 다시 설정해 주세요!");
+                     }
+                  },
+                  error:function(){
+                     console.log("Failed");
+                  }
+               });
+            } else {
+               $("#idSpan").removeClass('greenText').addClass('redText');
+               $("#idSpan").text("부적합한 ID 입니다. 다시 설정해 주세요!");
+            }
+         });
+         
+         $("#userName").keyup(function(event){
+            var userName = $("#userName").val();
+            var check = /[a-zA-Z가-힣]{2,}/;
+            if(check.test(userName)){
+               $("#nameSpan").removeClass('redText').addClass('greenText');
+               $("#nameSpan").text("");
+            } else {
+               $("#nameSpan").removeClass('greenText').addClass('redText');
+               $("#nameSpan").text("이름은 2글자 이상으로 설정해 주세요.");
+            }
+         });
+         
+         $("#email").keyup(function(event){
+            var email = $("#email").val();
+            var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
+            if(check.test(email)){
+               $("#emailSpan").removeClass('redText').addClass('greenText');
+               $("#emailSpan").text("");
+            } else {
+               $("#emailSpan").removeClass('greenText').addClass('redText');
+               $("#emailSpan").text("부적합한 Email 입니다. 다시 설정해 주세요!");
+            }
+         });
+            
+          $("input[type='tel']").keyup(function(event) {
+             var inputVal = $(this).val();
+             $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+          });
+		
 	</script>
 </body>
 </html>

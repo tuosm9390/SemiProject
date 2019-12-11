@@ -71,13 +71,11 @@ section button:hover {
 .redText {
 	display: block;
 	color: red;
-	margin-left: 10px;
 }
 
 .greenText {
 	display: block;
 	color: green;
-	margin-left: 10px;
 }
 </style>
 </head>
@@ -109,13 +107,13 @@ section button:hover {
 							</tr>
 							<tr>
 								<td><li>ID</li></td>
-								<td><input type="text" placeholder="아이디 입력" id="userId" name="userId"><br>
-								<span id="idSpan" class="redText"></span></td>
+								<td><input type="text" placeholder="ID 입력" id="userId" name="userId"><br>
+								<span class="idSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td><li>이름</li></td>
 								<td><input type="text" placeholder="이름 입력" id="userName" name="userName"><br>
-								<span id="nameSpan" class="redText"></span></td>
+								<span class="nameSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td><li>생년월일</li></td>
@@ -159,15 +157,17 @@ section button:hover {
 								</select></td>
 							</tr>
 							<tr>
-								<td><li>학부모 이름</li></td>
-								<td><input type="text" placeholder="학부모 이름 입력"
-									name="refName"></td>
+								<td><li>학부모 아이디</li></td>
+								<td><input type="text" placeholder="학부모 아이디 입력" id="refId"
+									name="refId"><br>
+									<span class="idSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><li>학부모 아이디</li></td>
-								<td><input type="text" placeholder="학부모 아이디 입력"
-									name="refId"></td>
+								<td><li>학부모 이름</li></td>
+								<td><input type="text" placeholder="학부모 이름 입력" id="refName"
+									name="refName"><br>
+									<span class="nameSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -179,9 +179,9 @@ section button:hover {
 							<tr>
 								<td></td>
 								<td><li>희망대학 / 학과</li></td>
-								<td><input type="text" placeholder="희망 대학 입력"
-									name="college"> &nbsp; <input type="text"
-									placeholder="희망 학과 입력" name="major"></td>
+								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 100px;">
+									<label style="color: black;">대학교</label>&emsp;
+									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 100px;"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -391,124 +391,71 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			}
 			return false;
 		}
-		$(document).ready(
-				function() {
-					// 검증에 사용할 함수명들을 배열에 담아준다.
-					var idFuncArray = [ "idcheck" ];
-					var nameFuncArray = [ "namecheck" ];
-
-					// 1. span태그 obj, 2. input태그 obj, 3. 위에서 정의한 함수명 배열, 4. 검증에 걸렸을 때 나타날 텍스트, 5. 검증을 통과했을 때 나타날 텍스트, 6. span태그의 좌측 폭 위치.
-					spanIdValidation($("#idSpan"), $("#userId"), idFuncArray,
-							"아이디는 영문과 숫자로 공백없이 입력하십시오!", "사용 가능한 ID입니다.",
-							"15px");
-					spanNameValidation($("#nameSpan"), $("#userName"),
-							nameFuncArray, "이름은 한글로 입력해주세요!",
-							"", "15px");
-				});
-
-		function spanIdValidation(spanObj, inputObj, validFuncArray, redMsg,
-				greenMsg, marginLeftPx) {
-			spanObj.css("margin-left", marginLeftPx); // span태그의 좌측 폭을 설정해준다.
-
-			var confirmCheck = false; // 검증에 통과 여부에 사용할 flag
-
-			spanObj.hide(); // span태그를 숨긴다.
-
-			inputObj.bind('focusin keyup', function() { // input태그에 포커스가 들어오거나 키가 눌렸을 때 실행됨
-				var inputValue = inputObj.val();
-
-				var funcResult = true; // 함수 실행 결과를 담을 flag
-
-				for (i = 0; i < validFuncArray.length; i++) { // 검증에 사용할 함수명 배열을 반복문으로 돌린다.
-					var funcName = validFuncArray[i]; // 배열에서 함수명을 하나씩 뽑아낸다. 
-					var funcObj = window[funcName]; // 함수명(string)을 객체(object)로 받는다.
-					funcResult = funcObj(inputValue); // 해당 함수를 실행하여 결과값(true/false)을 변수에 담는다. 만약 함수 하나라도 통과를 하지 못하면 false가 된다.
-					if (!funcResult) { // 검증에 통과하지 못한 함수가 있을 경우 반복문 탈출
-						break;
-					}
-				}
-
-				if (!funcResult) { // 검증에 통과하지 못했을 때,
-					spanObj.show(); // span태그 보여준다.
-					spanObj.removeClass('greenText'); // span태그에 greenText 클래스를 삭제한다.
-					spanObj.addClass('redText'); // span태그에 redText 클래스를 추가한다.
-
-					spanObj.text(""); //  span태그의 텍스트를 지운다.
-					spanObj.append(redMsg); // span태그에  검증에 통과하지 못했을 때 나타나는 텍스트를 넣는다.
-
-					confirmCheck = false; // 검증 통과 여부 flag에 false를 대입한다.
-				} else { // 검증에 통과했을 때,
-					spanObj.show();
-					spanObj.removeClass('redText');
-					spanObj.addClass('greenText');
-
-					spanObj.text("");
-					spanObj.append(greenMsg);
-
-					confirmCheck = true;
-				}
-
-			});
-
-			inputObj.focusout(function() { // 포커스가 input태그에서 벗어났을 때 실행,
-				var inputValue = inputObj.val();
-				if (confirmCheck || inputValue == "") { // 검증에 통과를 했거나 input태그에 입력 값이 없을 경우,
-					spanObj.hide(); // span태그를 숨긴다.
-				}
-			});
-		}
-
-		function spanNameValidation(spanObj, inputObj, validFuncArray, redMsg,
-				greenMsg, marginLeftPx) {
-			spanObj.css("margin-left", marginLeftPx); // span태그의 좌측 폭을 설정해준다.
-
-			var confirmCheck = false; // 검증에 통과 여부에 사용할 flag
-
-			spanObj.hide(); // span태그를 숨긴다.
-
-			inputObj.bind('focusin keyup', function() { // input태그에 포커스가 들어오거나 키가 눌렸을 때 실행됨
-				var inputValue = inputObj.val();
-
-				var funcResult = true; // 함수 실행 결과를 담을 flag
-
-				for (i = 0; i < validFuncArray.length; i++) { // 검증에 사용할 함수명 배열을 반복문으로 돌린다.
-					var funcName = validFuncArray[i]; // 배열에서 함수명을 하나씩 뽑아낸다. 
-					var funcObj = window[funcName]; // 함수명(string)을 객체(object)로 받는다.
-					funcResult = funcObj(inputValue); // 해당 함수를 실행하여 결과값(true/false)을 변수에 담는다. 만약 함수 하나라도 통과를 하지 못하면 false가 된다.
-					if (!funcResult) { // 검증에 통과하지 못한 함수가 있을 경우 반복문 탈출
-						break;
-					}
-				}
-
-				if (!funcResult) { // 검증에 통과하지 못했을 때,
-					spanObj.show(); // span태그 보여준다.
-					spanObj.removeClass('greenText'); // span태그에 greenText 클래스를 삭제한다.
-					spanObj.addClass('redText'); // span태그에 redText 클래스를 추가한다.
-
-					spanObj.text(""); //  span태그의 텍스트를 지운다.
-					spanObj.append(redMsg); // span태그에  검증에 통과하지 못했을 때 나타나는 텍스트를 넣는다.
-
-					confirmCheck = false; // 검증 통과 여부 flag에 false를 대입한다.
-				} else { // 검증에 통과했을 때,
-					spanObj.show();
-					spanObj.removeClass('redText');
-					spanObj.addClass('greenText');
-
-					spanObj.text("");
-					spanObj.append(greenMsg);
-
-					confirmCheck = true;
-				}
-
-			});
-
-			inputObj.focusout(function() { // 포커스가 input태그에서 벗어났을 때 실행,
-				var inputValue = inputObj.val();
-				if (confirmCheck || inputValue == "") { // 검증에 통과를 했거나 input태그에 입력 값이 없을 경우,
-					spanObj.hide(); // span태그를 숨긴다.
-				}
-			});
-		}
+		// 정규식 검사
+		$("#userId").keyup(function(event) {
+            var userId = $("#userId").val();
+            var check = /^[a-z][a-z0-9]{3,11}$/;
+            if(check.test(userId)){
+               $.ajax({
+                  url:"/hagong/idCheck.cm",
+                  type:"post",
+                  data:{userId:$("#userId").val()},
+                  success:function(data){
+                     if(data === "success") {
+                        $("#idSpan").removeClass('redText').addClass('greenText');
+                        $("#idSpan").text("사용 가능한 ID 입니다.");
+                     } else {
+                        $("#idSpan").removeClass('greenText').addClass('redText');
+                        $("#idSpan").text("이미 사용중인 ID 입니다. 다시 설정해 주세요!");
+                     }
+                  },
+                  error:function(){
+                     console.log("Failed");
+                  }
+               });
+            } else {
+               $("#idSpan").removeClass('greenText').addClass('redText');
+               $("#idSpan").text("부적합한 ID 입니다. 다시 설정해 주세요!");
+            }
+         });
+         
+         $("#userName").keyup(function(event){
+            var userName = $("#userName").val();
+            var check = /[a-zA-Z가-힣]{2,}/;
+            if(check.test(userName)){
+               $("#nameSpan").removeClass('redText').addClass('greenText');
+               $("#nameSpan").text("");
+            } else {
+               $("#nameSpan").removeClass('greenText').addClass('redText');
+               $("#nameSpan").text("이름은 2글자 이상으로 설정해 주세요.");
+            }
+         });
+         
+         $("#email").keyup(function(event){
+            var email = $("#email").val();
+            var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
+            if(check.test(email)){
+               $("#emailSpan").removeClass('redText').addClass('greenText');
+               $("#emailSpan").text("");
+            } else {
+               $("#emailSpan").removeClass('greenText').addClass('redText');
+               $("#emailSpan").text("부적합한 Email 입니다. 다시 설정해 주세요!");
+            }
+         });
+            
+          $("input[type='tel']").keyup(function(event) {
+             var inputVal = $(this).val();
+             $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+          });
+		
+		//개인정보약관 동의
+		$("#accept").click(function(){
+               if($("#accept").prop("checked")) {
+                  $("#acceptLabel").css({"color":"green"});
+               } else {
+                  $("#acceptLabel").css({"color":"red"});
+        		}
+        });
 	</script>
 </body>
 </html>
