@@ -161,20 +161,16 @@ input, select, textarea {
 							<td class="cons-list"><button onclick="conslist();">상담일지</button></td>
 							<td><button onclick="addCouns();">상담추가</button></td>
 						</tr>
-					<% } %>
-					
-<!-- 						<tr><td class="user-name">강동원(010-7777-8888)</td><td>qwer123</td><td class="cons-count">1회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">주지훈(010-7777-8888)</td><td>qwer124</td><td class="cons-count">4회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">조진웅(010-7777-8888)</td><td>qwer125</td><td class="cons-count">11회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">정유미(010-7777-8888)</td><td>qwer126</td><td class="cons-count">31회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">전지현(010-7777-8888)</td><td>qwer127</td><td class="cons-count">3회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">김지원(010-7777-8888)</td><td>qwer128</td><td class="cons-count">0회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr> -->
+					<% } %>					
 					</tbody>
 				</table>
 			</div>
-
 		</div>
-		
+		<div class="pagingArea" align="center">
+		<script>
+			
+		</script>
+		</div>
 	</section>
 
 		<!-- 모달기능 -->

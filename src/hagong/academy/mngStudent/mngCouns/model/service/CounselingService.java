@@ -16,6 +16,7 @@ public class CounselingService {
 		Connection con = getConnection();
 		ArrayList<MemberCouns> counsList = new CounselingDao().counsList(con);
 		
+		
 		close(con);
 		
 		return counsList;
@@ -68,6 +69,7 @@ public class CounselingService {
 		
 		return allCounsList;
 	}
+
 
 }
 
