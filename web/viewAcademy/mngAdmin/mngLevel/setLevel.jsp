@@ -88,20 +88,18 @@ border-right: none;
                      <td><select class="modifyInfo" id="modifyInfo1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient" selected>학생</option>
+                      	   <option value="parent">학부모</option>
+                           <option value="student">학생</option>
                      </select></td>
                      <td><select class="modifyInfo" id="modifyInfo2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                        
                      </select></td>
                      <td><select class="modifyInfo" id="modifyInfo3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                          
                      </select></td>
                   </tr>
                   <!-- 관리자 -->
@@ -115,92 +113,72 @@ border-right: none;
                      <td rowspan="4" class="border even" style="background:rgba(245,244,242); border-bottom:none !important;">학생관리</td>
                      
                      <td>개인정보</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="info" id="info1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                     
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="info" id="info2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                       
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="info" id="info3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                     
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                     
                      <td>수납</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="purchase" id="purchase1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
+                          
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="purchase" id="purchase2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="purchase" id="purchase3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                    
                      <td>상담</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="counseling" id="counsel1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="counseling" id="counsel2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="counseling" id="counsel3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                      
                      <td>블랙리스트</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="black" id="black1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="black" id="black2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="black" id="black3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -208,23 +186,17 @@ border-right: none;
                   <tr id="qqtr">
                      <td class="border odd">직원관리</td>
                      <td>직원관리</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="staff" id="staff1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="staff" id="staff2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="staff" id="staff3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -233,159 +205,117 @@ border-right: none;
                   <tr>
                      <td rowspan="4" class="border even" style="background:rgba(245,244,242)">수업관리</td>
                      <td>수강생관리</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="enroll" id="enroll1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="enroll" id="enroll2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="enroll" id="enroll3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                      
                      <td>출결관리</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="attend" id="attend1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="attend" id="attend2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="attend" id="attend3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                    
                      <td>강좌목록관리</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="class" id="class1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="class" id="class2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="class" id="class3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <!--  -->
                   <tr>
                     
                      <td>만족도</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="satisfy" id="satisfy1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="satisfy" id="satisfy2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="satisfy" id="satisfy3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
 
                   <tr>
                      <td rowspan="3" class="border odd" style="background:white">관리자</td>
                      <td>학원현황</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="condition" id="condition1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="condition" id="condition2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="condition" id="condition3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <tr>
                   
                      <td>메뉴권한관리</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="menu" id="menu1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="menu" id="menu2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="menu" id="menu3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <tr>
                     
                      <td>연간계획</td>
-                     <td><select class="modifyInfo" id="modifyInfo1">
+                     <td><select class="plan" id="plan1">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo2">
+                     <td><select class="plan" id="plan2">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" id="modifyInfo3">
+                     <td><select class="plan" id="plan3">
                            <option value="admin">행정</option>
                            <option value="manager">강사</option>
-                           <option value="pclient">학부모</option>
-                           <option value="sclient">학생</option>
                      </select></td>
                   </tr>
                   <tr class="trid">
@@ -396,29 +326,29 @@ border-right: none;
                   <tr>
                      <td rowspan="4" class="border">학생정보</td>
                      <td>출결정보</td>
-                     <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
-                     <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
+                     <td><input type="checkbox" value="pAtt" id="cul">&nbsp;&nbsp;학부모</td>
+                     <td><input type="checkbox" value="sAtt" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
                    
                      <td>성적정보</td>
-                     <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
-                     <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
+                     <td><input type="checkbox" value="pScore" id="cul">&nbsp;&nbsp;학부모</td>
+                     <td><input type="checkbox" value="sScore" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
                  
                      <td>만족도조사</td>
-                     <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
-                     <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
+                     <td><input type="checkbox" value="pSatisfy" id="cul">&nbsp;&nbsp;학부모</td>
+                     <td><input type="checkbox" value="sSatisfy" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
                   <tr>
                  
                      <td>고지서/영수증</td>
-                     <td><input type="checkbox" value="학부모" id="cul">&nbsp;&nbsp;학부모</td>
-                     <td><input type="checkbox" value="학생" id="cul">&nbsp;&nbsp;학생</td>
+                     <td><input type="checkbox" value="pReceipt" id="cul">&nbsp;&nbsp;학부모</td>
+                     <td><input type="checkbox" value="sReceipt" id="cul">&nbsp;&nbsp;학생</td>
                      <td></td>
                   </tr>
 

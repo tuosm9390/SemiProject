@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChangeMenuLevelServlet
+ * Servlet implementation class UpdateDefaultMenuLevelServlet
  */
-@WebServlet("/aupdate.level")
-public class UpdateMenuLevelServlet extends HttpServlet {
+@WebServlet("/updateDefault.level")
+public class UpdateDefaultMenuLevelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateMenuLevelServlet() {
+    public UpdateDefaultMenuLevelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,12 +26,8 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String modifyInfo1 = request.getParameter("modifyInfo1");
-		String modifyInfo2 = request.getParameter("modifyInfo2");
-		String modifyInfo3 = request.getParameter("modifyInfo3");
-		String info1 = request.getParameter("info1");
-		String info2 = request.getParameter("info2");
-		String info3 = request.getParameter("info3");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
