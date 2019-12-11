@@ -65,14 +65,18 @@
 </head>
 
 <body>
-<% int sum = status.getInFriend() + status.getInInternet() + status.getInPcard() + status.getInPicket()+status.getInEtc();
-int fr = Math.round((status.getInFriend()*100)/sum);
-int in = Math.round((status.getInInternet()*100)/sum);
-int pi = Math.round((status.getInPicket()*100)/sum);
-int pc = Math.round((status.getInPcard()*100)/sum);
-int etc =Math.round((status.getInEtc()*100)/sum);%>
+<%
+int sum = status.getInFriend() + status.getInInternet() + status.getInPcard() + status.getInPicket()+status.getInEtc();
+int fr = (int)Math.round((status.getInFriend()/(double)sum)*100);
+int in = (int)Math.round((status.getInInternet()/(double)sum)*100);
+int pi = (int)Math.round((status.getInPicket()/(double)sum)*100);
+int pc = (int)Math.round((status.getInPcard()/(double)sum)*100);
+int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
+
+
+%>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>
+<%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>/ --%>
 	<section>
 <div class="outer">
   	 	<div align="center">
@@ -138,7 +142,7 @@ int etc =Math.round((status.getInEtc()*100)/sum);%>
 					},
 			'dataset':{
 				title:'학생수 변동 추이', 
-				values: [[<%=status.getAllStudent()%>,<%=status.getEnrollDate()%>,<%=status.getLeaveDate()%>], [2,5,7], [7,2,3]],
+				values: [[<%=status.getAllStudent1()%>,<%=status.getEnrollDate1()%>,<%=status.getLeaveDate1()%>], [2,5,7], [7,2,3]],
 				colorset: ['#DC143C','#FF8C00', '#2EB400'],
 				fields:['전체학생', '입학', '퇴원']
 				},
@@ -174,10 +178,10 @@ int etc =Math.round((status.getInEtc()*100)/sum);%>
 		Nwagon.chart(options);
 
 	</script>
-	<% } else{ 
+<%-- 	<% } else{ 
 		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
 		request.getRequestDispatcher("../common/errorPage.jsp").forward(request,response);
-	}%>
+	}%> --%>
 	</section>
 </body>
 </html>

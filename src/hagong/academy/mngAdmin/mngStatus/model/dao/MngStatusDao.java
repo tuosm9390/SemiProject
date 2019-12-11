@@ -39,9 +39,9 @@ public class MngStatusDao {
 				
 				status = new MngStatus();
 				
-				status.setAllStudent(rset.getInt("ALL_STUDENT"));
-				status.setEnrollDate(rset.getInt("ENROLL_COUNT"));
-				status.setLeaveDate(rset.getInt("LEAVE_COUNT"));
+				status.setAllStudent1(rset.getInt("ALL_STUDENT"));
+				status.setEnrollDate1(rset.getInt("ENROLL_COUNT"));
+				status.setLeaveDate1(rset.getInt("LEAVE_COUNT"));
 				
 				status.setInFriend(rset.getInt("INFRIEND"));
 				status.setInInternet(rset.getInt("ININTERNET"));
