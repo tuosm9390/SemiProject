@@ -37,12 +37,13 @@ public class SelectMngStatusServlet extends HttpServlet {
 		
 		if(status != null) {
 			page = "viewAcademy/mngAdmin/mngStatus/viewStatus.jsp";
-			request.setAttribute("status", status);
+			request.getSession().setAttribute("status", status); 
+			response.sendRedirect(page);
 		}else {
 			page = "errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
-		
+	
 		
 	}
 

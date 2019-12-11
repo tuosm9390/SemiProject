@@ -15,11 +15,7 @@ public class MngStatusService {
 	public MngStatus selectList(){
 		Connection con = getConnection();
 		MngStatus status = new MngStatusDao().selectList(con);
-		if(status !=null) {
-			commit(con);
-		}else {
-			rollback(con);
-		}
+		
 		close(con);
 		return status;
 	}

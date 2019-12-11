@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngStatus.model.vo.*"%>
+    
+   <% MngStatus status = (MngStatus)request.getSession().getAttribute("status"); 
+   
+   %>
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta  charset="UTF-8">
 <title>HAGONG</title>
 	<style>
+
 	.outer{
 		width:100%;
 		margin-left: 5%;
@@ -57,9 +63,9 @@
 	<script src='Nwagon.js'></script>
 
 </head>
- <%= %>
 <body>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
+ <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>
 	<section>
 <div class="outer">
   	 	<div align="center">
@@ -84,22 +90,27 @@
 					<tr>	
 						<td>1</td>
 						<td>친구</td>
-						<td>42</td>
+						<td><%=status.getInFriend() %></td>
 					</tr>
 					<tr>	
 						<td>2</td>
 						<td>전단지</td>
-						<td>37</td>
+						<td><%=status.getInPcard() %></td>
 					</tr>
 					<tr>	
 						<td>3</td>
 						<td>인터넷</td>
-						<td>12</td>
+						<td><%=status.getInInternet() %></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>광고판</td>
+						<td><%=status.getInPicket() %></td>
 					</tr>
 					<tr>	
-						<td>4</td>
+						<td>5</td>
 						<td>기타</td>
-						<td>6</td>
+						<td><%=status.getInEtc() %></td>
 					</tr>
 				</table>
 			</div>	
@@ -110,7 +121,15 @@
 		
 	</div>
 	
+<% 	int friend = status.getInFriend();
+	int internet = status.getInInternet();
+	int pcard = status.getInPcard();
+	int picket = status.getInPicket();
+	int etc = status.getInEtc();
+	
+	
 
+%>
 </div><!-- outer end -->
 	<script>
 		var options = {
@@ -120,7 +139,7 @@
 					},
 			'dataset':{
 				title:'학생수 변동 추이', 
-				values: [[5,7,2], [2,5,7], [7,2,3]],
+				values: [[<%=status.getAllStudent()%>,<%=status.getEnrollDate()%>,<%=status.getLeaveDate()%>], [2,5,7], [7,2,3]],
 				colorset: ['#DC143C','#FF8C00', '#2EB400'],
 				fields:['전체학생', '입학', '퇴원']
 				},
@@ -156,6 +175,10 @@
 		Nwagon.chart(options);
 
 	</script>
+	<% } else{ 
+		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+		request.getRequestDispatcher("../common/errorPage.jsp").forward(request,response);
+	}%>
 	</section>
 </body>
 </html>
