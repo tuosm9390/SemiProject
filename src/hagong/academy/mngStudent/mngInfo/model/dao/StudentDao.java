@@ -13,7 +13,7 @@ import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 
 public class StudentDao {
 	private Properties prop = new Properties();
-	
+
 	public StudentDao() {
 		String fileName = StudentDao.class.getResource("/sql/student/student-query.properties").getPath();
 
@@ -23,47 +23,75 @@ public class StudentDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int insertStudent(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertStudent");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+		return result;
+	}
+
+	public int insertMember(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertMember");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public int insertStudentHope(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertStudentHope");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 
 	public int updateStudent(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
-		
+
 		return result;
 	}
 
 	public int deleteStudent(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
-		
+
 		return result;
 	}
 
 	public int insertStudent(Connection con) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("select");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			result = pstmt.executeUpdate();
@@ -72,7 +100,7 @@ public class StudentDao {
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 

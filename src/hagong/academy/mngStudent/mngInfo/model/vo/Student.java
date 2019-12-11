@@ -2,7 +2,6 @@ package hagong.academy.mngStudent.mngInfo.model.vo;
 
 import java.sql.Date;
 
-import hagong.member.model.vo.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student extends Member {
+public class Student{
 	// 멤버 테이블
 	private int userNo; // 회원번호
 	private String name; // 이름

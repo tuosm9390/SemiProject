@@ -8,8 +8,6 @@
 <style>
 section {
 	background:url("/hagong/images/backInfo.jpg") no-repeat top;
-	/* background-size:85.9%; */
-	/* background-size: 1333px 1200px; */
 	background-size: cover;
 }
 
@@ -93,7 +91,7 @@ th, td {
 				<h1 style="font-family:'Do Hyeon'">　학생 정보 수정　</h1>
 			</legend>
 	<div style="width: 80%; margin: auto auto;">
-		<form id="UpdateStudentForm">
+		<form id="UpdateStudentForm" action="<%= request.getContextPath() %>/aupdate.info" method="post">
 			<table class="table" align="center">
 				<tr align="center">
 					<td rowspan="8">
@@ -113,13 +111,14 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>ID</li></td>
-					<td><input type="text" placeholder="ID 입력" value="bbogak" id="userId" name="userId"><br>
-					<span class="idSpan" class="redText"></span></td>
+					<td><input type="text" placeholder="ID 입력" value="bbogak" id="userId" name="userId" readonly
+						style="background: none; border: none;"><br>
+					</td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
 					<td><input type="text" placeholder="이름 입력" value="박상준" id="userName" name="userName"><br>
-					<span class="nameSpan" class="redText"></span></td>
+					<span id="usernameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
@@ -154,14 +153,15 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>학부모 아이디</li></td>
-					<td><input type="text" placeholder="학부모 아이디 입력" value="scpark9999" id="refId" name="refId"><br>
-					<span class="idSpan" class="redText"></span></td>
+					<td><input type="text" placeholder="학부모 아이디 입력" value="scpark9999" id="refId" name="refId" readonly
+						style="background: none; border: none;"><br>
+					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 이름</li></td>
 					<td><input type="text" placeholder="학부모 이름 입력" value="박상찬" id="refName" name="refName"><br>
-					<span class="nameSpan" class="redText"></span></td>
+					<span id="refnameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -197,7 +197,7 @@ th, td {
 			</table>
 		</form>
 		</div>
-		<button id="okbtn"
+		<button id="okbtn" type="button" onclick="doUpdate();"
 			style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
 		<button id="cancelbtn"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp'"
@@ -209,10 +209,6 @@ th, td {
 	<script>
 		$("#addimg").click(function() {
 			$("#imgfile").click();
-		});
-
-		$("#okbtn").click(function() {
-			$("#updateForm").submit();
 		});
 		
 		//DatePicker
@@ -262,81 +258,91 @@ th, td {
 			}
 		}
 
-		//유효성검사
-		// 아이디 정규식
-		function idcheck(str) {
-			var check = /^[a-z][a-z0-9_-]{3,11}$/;
-			if (check.test(str)) {
-				return true;
-			}
-			return false;
-		}
-
-		// 이름 정규식
-		function namecheck(str) {
-			var check = /^[가-힝]{2,4}$/;
-			if (check.test(str)) {
-				return true;
-			}
-			return false;
-		}
+		// 유효성검사
 		// 정규식 검사
-		$("#userId").keyup(function(event) {
-            var userId = $("#userId").val();
-            var check = /^[a-z][a-z0-9]{3,11}$/;
-            if(check.test(userId)){
-               $.ajax({
-                  url:"/hagong/idCheck.cm",
-                  type:"post",
-                  data:{userId:$("#userId").val()},
-                  success:function(data){
-                     if(data === "success") {
-                        $("#idSpan").removeClass('redText').addClass('greenText');
-                        $("#idSpan").text("사용 가능한 ID 입니다.");
-                     } else {
-                        $("#idSpan").removeClass('greenText').addClass('redText');
-                        $("#idSpan").text("이미 사용중인 ID 입니다. 다시 설정해 주세요!");
-                     }
-                  },
-                  error:function(){
-                     console.log("Failed");
-                  }
-               });
-            } else {
-               $("#idSpan").removeClass('greenText').addClass('redText');
-               $("#idSpan").text("부적합한 ID 입니다. 다시 설정해 주세요!");
-            }
-         });
-         
-         $("#userName").keyup(function(event){
-            var userName = $("#userName").val();
-            var check = /[a-zA-Z가-힣]{2,}/;
-            if(check.test(userName)){
-               $("#nameSpan").removeClass('redText').addClass('greenText');
-               $("#nameSpan").text("");
-            } else {
-               $("#nameSpan").removeClass('greenText').addClass('redText');
-               $("#nameSpan").text("이름은 2글자 이상으로 설정해 주세요.");
-            }
-         });
-         
-         $("#email").keyup(function(event){
-            var email = $("#email").val();
-            var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
-            if(check.test(email)){
-               $("#emailSpan").removeClass('redText').addClass('greenText');
-               $("#emailSpan").text("");
-            } else {
-               $("#emailSpan").removeClass('greenText').addClass('redText');
-               $("#emailSpan").text("부적합한 Email 입니다. 다시 설정해 주세요!");
-            }
-         });
-            
-          $("input[type='tel']").keyup(function(event) {
-             var inputVal = $(this).val();
-             $(this).val(inputVal.replace(/[^0-9]/gi, ''));
-          });
-		
+		// 학생 이름
+		$("#userName").keyup(
+				function(event) {
+					var userName = $("#userName").val();
+					var check = /[a-zA-Z가-힣]{2,}/;
+					var check2 = /^[^0-9]+$/;
+					var check3 = /[`~!@#$%^&*()_+{}\[\]\\';:",./<>?|]/;
+					if (check.test(userName) && check2.test(userName)
+							&& !check3.test(userName)) {
+						$("#usernameSpan").removeClass('redText').addClass(
+								'greenText');
+						$("#usernameSpan").text("");
+					} else {
+						$("#usernameSpan").removeClass('greenText').addClass(
+								'redText');
+						$("#usernameSpan").text("이름은 2글자 이상의 문자로 설정해 주세요.");
+					}
+				});
+
+		// 학생 이메일
+		$("#email").keyup(function(event) {
+			var email = $("#email").val();
+			var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
+			if (check.test(email)) {
+				$("#emailSpan").removeClass('redText').addClass('greenText');
+				$("#emailSpan").text("");
+			} else {
+				$("#emailSpan").removeClass('greenText').addClass('redText');
+				$("#emailSpan").text("부적합한 Email 입니다. 다시 설정해 주세요!");
+			}
+		});
+
+		// 학생 전화번호
+		$("input[type='tel']").keyup(function(event) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		});
+
+		// 학부모 이름
+		$("#refName").keyup(
+				function(event) {
+					var refName = $("#refName").val();
+					var check = /[a-zA-Z가-힣]{2,}/;
+					var check2 = /^[^0-9]+$/;
+					var check3 = /[`~!@#$%^&*()_+{}\[\]\\';:",./<>?|]/;
+					if (check.test(refName) && check2.test(refName)
+							&& !check3.test(refName)) {
+						$("#refnameSpan").removeClass('redText').addClass(
+								'greenText');
+						$("#refnameSpan").text("");
+					} else {
+						$("#refnameSpan").removeClass('greenText').addClass(
+								'redText');
+						$("#refnameSpan").text("이름은 2글자 이상의 문자로 설정해 주세요.");
+					}
+				});
+
+		function doUpdate() {
+			if ($("#usernameSpan").prop("class") === "redText") {
+				alert("학생 이름을 확인해 주세요.");
+				return false;
+			} else if ($("#datepicker").val() === "") {
+				alert("생년월일을 확인해 주세요.");
+				return false;
+			} else if ($("#refnameSpan").prop("class") === "redText") {
+				alert("학부모 이름을 확인해 주세요.");
+				return false;
+			} else if ($("#tel1").val() === "" || $("#tel2").val() === ""
+					|| $("#tel3").val() === "") {
+				alert("전화번호를 확인해 주세요.");
+				return false;
+			} else if ($("#reftel1").val() === "" || $("#reftel2").val() === ""
+					|| $("#reftel3").val() === "") {
+				alert("학부모 전화번호를 확인해 주세요.");
+				return false;
+			} else if ($("#accept").prop("checked") === false) {
+				alert("개인정보 제공 및 활용에 동의해 주세요.");
+				return false;
+			} else {
+				alert("된다!");
+				return true;
+			}
+		};
 	</script>
 </body>
 </html>
