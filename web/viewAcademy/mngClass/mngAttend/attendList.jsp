@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
+<% 
+	ArrayList<ClassSubject> list = (ArrayList<ClassSubject>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +62,7 @@
 	<div class="listArea">
 		<button class="searchBtn">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
-		<select style="float:right; border-radius:5px;">
+		<select id="selectCondition" style="float:right; border-radius:5px;">
 			<option value="" selected disabled hidden>검색 조건</option>
 			<option name="searchClassCondition">과목</option>
 			<option name="searchClassCondition">강좌명</option>
@@ -75,15 +78,19 @@
 					<th>정원</th>
 					<th>기간</th>
 				</tr>
-				<% for (int i=0; i<10; i++) { %>
+				<% for (int i=0; i<list.size(); i++) { %>
 					<tr>
-						<td>3</td>
-						<td>영어</td>
-						<td>영어 ABC 클래스-오전</td>
-						<td>문혜린</td>
-						<td>고등학교 1학년</td>
-						<td>30명</td>
-						<td>2019.12.01 ~ 2020.02.28</td>
+						<td><%= i+1 %></td>
+						<td><%=list.get(i).getSubId()%></td>
+						<td><%=list.get(i).getClsName()%></td>
+						<td><%=list.get(i).getName()%></td>
+						<% if(list.get(i).getClsStudent().equals("MID1")) { %>
+							<td>중학교 1학년</td>		
+						<% }else if(list.get(i).getClsStudent().equals("MID2")) {%>
+							<td>중학교 2학년</td>
+						<% } %>
+						<td><%=list.get(i).getClsMax()%></td>
+						<td><%=list.get(i).getClsStart()%> ~ <%=list.get(i).getClsEnd()%></td>
 					</tr>
 				<% } %>
 			</table>
@@ -191,7 +198,22 @@
 				
 				location.href="<%=request.getContextPath()%>/selectOne.at?num=" + num; --%>
 				location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendDetail.jsp";
-			})
+			});
+			
+			$(".searchBtn").click(function(){
+				var selectCondition = $("#selectCondition option:selected").val();
+				var searchWord = $("input[type=search]").val();
+				
+				location.href = "<%=request.getContextPath()%>/searchClass.attend?selectCondition=" + selectCondition + "&searchWord=" + searchWord;
+				if(selectCondition == "과목") {
+					console.log(searchWord);
+				}else if(selectCondition == "강좌명") {
+					console.log('강좌명 선택함');
+				}else if(selectCondition == "담당 강사") {
+					console.log('담당 강사 선택함');
+				}
+					
+			});
 		});
 	</script>
 </body>
