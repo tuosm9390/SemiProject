@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngCouns.model.vo.*, java.util.*"%>
+<% ArrayList<MemberCouns> allCounsList = (ArrayList<MemberCouns>) request.getAttribute("allCounsList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,12 +148,27 @@ input, select, textarea {
 						</tr>
 					</thead>
 					<tbody id="consList">
-						<tr><td class="user-name">강동원(010-7777-8888)</td><td>qwer123</td><td class="cons-count">1회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+					<% for(int i = 0; i < allCounsList.size(); i++) { %>
+						<tr>
+							<td class="user-name"><%= allCounsList.get(i).getName() %></td>
+							<td><%= allCounsList.get(i).getUserId() %></td>
+							<td class="cons-count"><%= allCounsList.get(i).getCount() %>회</td>
+						<% if(allCounsList.get(i).getCouDate() != null) {%>
+							<td class="last-cons"><%= allCounsList.get(i).getCouDate() %></td>
+						<% } else { %>
+							<td class="last-cons"> - </td>
+						<% } %>
+							<td class="cons-list"><button onclick="conslist();">상담일지</button></td>
+							<td><button onclick="addCouns();">상담추가</button></td>
+						</tr>
+					<% } %>
+					
+<!-- 						<tr><td class="user-name">강동원(010-7777-8888)</td><td>qwer123</td><td class="cons-count">1회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
 						<tr><td class="user-name">주지훈(010-7777-8888)</td><td>qwer124</td><td class="cons-count">4회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
 						<tr><td class="user-name">조진웅(010-7777-8888)</td><td>qwer125</td><td class="cons-count">11회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
 						<tr><td class="user-name">정유미(010-7777-8888)</td><td>qwer126</td><td class="cons-count">31회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
 						<tr><td class="user-name">전지현(010-7777-8888)</td><td>qwer127</td><td class="cons-count">3회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
-						<tr><td class="user-name">김지원(010-7777-8888)</td><td>qwer128</td><td class="cons-count">0회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr>
+						<tr><td class="user-name">김지원(010-7777-8888)</td><td>qwer128</td><td class="cons-count">0회</td><td class="last-cons">2019.03.02.</td><td class="cons-list"><button onclick="conslist();">상담일지</button></td><td><button onclick="addCouns();">상담추가</button></td></tr> -->
 					</tbody>
 				</table>
 			</div>

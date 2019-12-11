@@ -20,11 +20,24 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/common/academyMain.jsp";
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
 			});
 		});
 	</script>
 	
+	<% }else if(errorCode == "pwdUpdateFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "비밀번호 변경 실패",
+				text: "비밀번호 변경에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+			});
+		});
+	</script>
 	<% } %>
 </body>
 </html>

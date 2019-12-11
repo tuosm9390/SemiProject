@@ -101,6 +101,9 @@ input[size] {
 fieldset {
 	width: 80%;
 }
+
+.redText{display: block;color: red;margin-left:10px;}
+.greenText{display: block;color: green;margin-left:10px;}
 </style>
 </head>
 <body>
@@ -118,12 +121,15 @@ fieldset {
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 							<td width="25%"><li>직원 ID</li></td>
 							<td width="30%">
-								<input type="text" name="userId" id="userId" placeholder="직원 ID 입력">
-								<button type="button" id="idCheck">중복 확인</button></td>
+								<input type="text" name="userId" id="userId" placeholder="영소문자, 숫자 조합의 4~12글자">
+								<button type="button" id="idCheck">중복 확인</button>
+								<span id="idSpan" class="redText"></span></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
-							<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력"></td>
+							<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력">
+							<span id="nameSpan" class="redText"></span>
+							</td>
 						</tr>
 						<tr>
 							<td><li>생년월일</li></td>
@@ -133,7 +139,8 @@ fieldset {
 							<td><li>전화번호</li></td>
 							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" placeholder="010"> - 
 							    			<input type="text" maxlength="4" size="4" name="tel2"> - 
-							    			<input type="text" maxlength="4" size="4" name="tel3"></td>
+							    			<input type="text" maxlength="4" size="4" name="tel3">
+							    			<span id="phoneSpan" class="redText"></span></td>
 						</tr>
 						<tr>
 							<td><li>담당업무</li></td>
@@ -154,7 +161,8 @@ fieldset {
 						<tr>
 							<td><div align="center"><button type="button" id="imgBtn">사진 선택</button></div><input type="file" id="imgFile" name="imgFile" onchange="loadImg(this)"></td>
 							<td>⦁　이메일</td>
-							<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력"></td>
+							<td><input type="email" name="email" id="email" placeholder="이메일 전체 입력">
+							<span id="emailSpan" class="redText"></span></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -300,18 +308,20 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			}
 			
 			function loadFile(value, num) {
-				/* switch(num) {
-				case 1 : $("#assignFile").val().append(e.target.result + "/"); break;
-				} */
-				
 				var fileName = $(value).val();
 				var last = fileName.lastIndexOf("\\");
 				if(value.files && value.files[0]) {
 					var reader = new FileReader();
 					reader.onload = function(e){
 						switch(num) {
-						case 1 : $("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>"); break;
-						case 2 : $("#docFiles").after("<br><label>" + $("#docFile").val() + "</label>"); break;
+						case 1 :
+							$("#payFiles").attr("value", $("#payFiles").val() + fileName + " * ");
+							$("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							break;
+						case 2 :
+							$("#docFiles").attr("value", $("#docFiles").val() + fileName + " * ");
+							$("#docFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							break;
 						}
 					};
 				}
@@ -319,6 +329,11 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			}
 		
 			$(function(){
+			    /* $("input[type='tel']").keyup(function(event) {
+			       var inputVal = $(this).val();
+			       $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+			    }); */
+			      
 				$("#imgBtn").click(function(){
 					$("#imgFile").click();
 				});
@@ -345,6 +360,137 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				if(window.confirm("직원 등록을 정말 취소하시겠습니까?")) {
 					location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
 				}
+			}
+			
+			//DatePicker
+			$(function() {
+				$("#datepicker").datepicker(
+						{
+							dateFormat : 'yy-mm-dd',
+							prevText : '이전 달',
+							nextText : '다음 달',
+							monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+									'7월', '8월', '9월', '10월', '11월', '12월' ],
+							monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+									'7월', '8월', '9월', '10월', '11월', '12월' ],
+							dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+							dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+							dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+							showMonthAfterYear : true,
+							changeMonth : true,
+							changeYear : true,
+							constrainInput : false,
+							yearSuffix : '년',
+							yearRange : 'c-20:c'
+						});
+			});
+			
+			$(document).ready(function(){
+				// 검증에 사용할 함수명들을 배열에 담아준다.
+				var idFuncArray = ["idCheck"];
+				var nameFuncArray = ["nameCheck"];
+				var phoneFuncArray = ["phoneCheck"];
+				var emailFuncArray = ["emailCheck"]; //여기까지헀음!!!!!!!!!!!!!!!!!뺴얘얘얘얭얘얘얘얘ㅒㅇㄲ!!!!!!!!!1
+				// 1. span태그 obj, 2. input태그 obj, 3. 위에서 정의한 함수명 배열, 4. 검증에 걸렸을 때 나타날 텍스트, 5. 검증을 통과했을 때 나타날 텍스트, 6. span태그의 좌측 폭 위치.
+				spanValidation($("#idSpan"), $("#userId"), idFuncArray, "잘못된 형식의 ID입니다. 다시 확인해 주세요!", "사용 가능한 ID입니다.", "15px");
+			});
+
+			function spanValidation(spanObj, inputObj, validFuncArray, redMsg, greenMsg, marginLeftPx){
+				spanObj.css("margin-left", marginLeftPx); // span태그의 좌측 폭을 설정해준다.
+				var confirmCheck = false; // 검증에 통과 여부에 사용할 flag
+				spanObj.hide(); // span태그를 숨긴다.
+				inputObj.bind('focusin keyup', function(){ // input태그에 포커스가 들어오거나 키가 눌렸을 때 실행됨
+					var inputValue = inputObj.val();
+					var funcResult = true; // 함수 실행 결과를 담을 flag
+					
+					for(i=0; i<validFuncArray.length; i++){ // 검증에 사용할 함수명 배열을 반복문으로 돌린다.
+						var funcName = validFuncArray[i]; // 배열에서 함수명을 하나씩 뽑아낸다. 
+						var funcObj = window[funcName]; // 함수명(string)을 객체(object)로 받는다.
+						funcResult = funcObj(inputValue); // 해당 함수를 실행하여 결과값(true/false)을 변수에 담는다. 만약 함수 하나라도 통과를 하지 못하면 false가 된다.
+						if(!funcResult){ // 검증에 통과하지 못한 함수가 있을 경우 반복문 탈출
+							break;
+						}
+					}
+					
+					if(!funcResult){ // 검증에 통과하지 못했을 때,
+						spanObj.show(); // span태그 보여준다.
+						spanObj.removeClass('greenText'); // span태그에 greenText 클래스를 삭제한다.
+						spanObj.addClass('redText'); // span태그에 redText 클래스를 추가한다.
+						
+						spanObj.text(""); //  span태그의 텍스트를 지운다.
+						spanObj.append(redMsg); // span태그에  검증에 통과하지 못했을 때 나타나는 텍스트를 넣는다.
+						
+						confirmCheck = false; // 검증 통과 여부 flag에 false를 대입한다.
+					}else{ // 검증에 통과했을 때,
+						spanObj.show();
+						spanObj.removeClass('redText');
+						spanObj.addClass('greenText');
+						
+						spanObj.text("");
+						spanObj.append(greenMsg);
+						
+						confirmCheck = true;
+					}
+					
+				});
+				
+				inputObj.focusout(function(){ // 포커스가 input태그에서 벗어났을 때 실행,
+					var inputValue = inputObj.val();
+					if(confirmCheck || inputValue == ""){ // 검증에 통과를 했거나 input태그에 입력 값이 없을 경우,
+						spanObj.hide(); // span태그를 숨긴다.
+					}
+				});
+			}
+
+			// ID 검증
+			function idCheck(str){
+				var check = /^[a-z][a-z0-9]{3,11}$/;
+				if(check.test(str)){
+				} else {
+					return false;
+				}
+				return true;
+			}
+			
+			// 이름 검증
+			function nameCheck(str){
+				var check = /[가-힣]{2,}/;
+				if(check.test(str)){
+				} else {
+					return false;
+				}
+				return true;
+			}
+			
+			// 이메일 검증
+			function emailCheck(str){
+				var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
+				if(check.test(str)){
+				} else {
+					return false;
+				}
+				return true;
+			}
+			
+			// 전화번호 검증
+			function telCheck(str1, str2, str3){
+				var check1 = /[0-9]{2,3}/;
+				var check2 = /[0-9]{3,4}/;
+				var check3 = /[0-9]{4}/;
+				
+				if(check1.test(str1)){
+				} else {
+					return false;
+				}
+				if(check2.test(str2)){
+				} else {
+					return false;
+				}
+				if(check3.test(str3)){
+				} else {
+					return false;
+				}
+				return true;
 			}
 		</script>
 	</section>

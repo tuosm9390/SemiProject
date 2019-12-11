@@ -215,14 +215,15 @@ section {
 			<div id="mid">
 				<!-- 학생관리 메뉴 -->
 				<div class="detailmenu" id="studentdetailmenu">
-					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
-						class="menu1">개인정보</a> <a>|</a> <a
-						href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
-						class="menu1">수납</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsList.jsp"
-						class="menu1">상담</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
+
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
+						class="menu1">개인정보</a> <a>|</a>
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
+						class="menu1">수납</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/alist.couns"
+						class="menu1">상담</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
+
 						class="menu1">블랙리스트</a>
 				</div>
 				<!-- 수업관리 메뉴 -->
@@ -239,12 +240,13 @@ section {
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
-					<a
-						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngStatus/viewStatus.jsp"
-						class="menu4">학원 현황</a> <a>|</a> <a
-						href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
-						class="menu4">메뉴 권한 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
+
+					<a href="<%=request.getContextPath() %>/adetail.status" 
+						class="menu4">학원 현황</a> <a>|</a>
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
+						class="menu4">메뉴 권한 관리</a> <a>|</a>
+					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
+
 						class="menu4">연간계획</a>
 				</div>
 
