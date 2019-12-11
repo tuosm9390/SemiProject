@@ -96,6 +96,7 @@ public class CounselingDao {
 			
 			for(int j = 0; j < counsCountList.size(); j++) {
 				
+				//유저아이디가 일치한 행에 대하여 상담횟수 추가
 				if(counsList.get(i).getUserId().equals(counsCountList.get(j).getUserId())) {
 					counsList.get(i).setCount(counsCountList.get(j).getCount());
 				}

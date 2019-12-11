@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngCouns.model.vo.*, java.util.*"%>
-<% ArrayList<MemberCouns> allCounsList = (ArrayList<MemberCouns>) request.getAttribute("allCounsList"); %>
+<% 
+	ArrayList<MemberCouns> allCounsList = (ArrayList<MemberCouns>) request.getAttribute("allCounsList"); 
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,6 +121,16 @@ input, select, textarea {
 .names select{margin-right:13px;}
 .dArea.dArea2{display:flex;}
 .dArea.dArea2 .dCtn.consDate{margin-right:160px;}
+.pagingArea {margin-bottom:30px;}
+.pagingArea button{display:inline-block;}
+#consilArea{
+    line-height: 1.5em;
+    margin: 0 auto;
+    padding: 2em 0 0 0;
+    width: 90%;
+    max-width: 1600px;
+    overflow: hidden;
+}
 </style>
 <body>
 	<header>
@@ -127,15 +145,17 @@ input, select, textarea {
          				<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　학생상담 리스트　</h1></legend>
      	 			</fieldset>
       			</div>
-				<div class="srchArea">
-					<button class="srchBtn">검색</button>
-					<input type="search" id="searchStudent" name="searchStudent">
-					<select style="float:right">
-						<option value="" selected disabled hidden>검색 조건</option>
-						<option name="searchClassCondition" value="name">학생명</option>
-						<option name="searchClassCondition" value="phone">전화번호</option>
-					</select>
-				</div>
+				<form action="<%= request.getContextPath()%>/asearch.couns" method="post">
+					<div class="srchArea">
+						<button type="submit" class="srchBtn">검색</button>
+						<input type="search" id="search" name="searchCnt">
+						<select style="float:right" id="searchCondition" name="searchCondition">
+							<option selected disabled hidden>검색 조건</option>
+							<option value="name">학생명</option>
+							<option value="userId">ID</option>
+						</select>
+					</div>
+				</form>
 				<table id="classlist" class="table">
 					<thead>
 						<tr>
@@ -167,10 +187,31 @@ input, select, textarea {
 			</div>
 		</div>
 		<div class="pagingArea" align="center">
-		<script>
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=1'"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage - 1%>'"><</button>
+			<% }%>
 			
-		</script>
-		</div>
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=p%>'"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=<%=maxPage%>'">>></button>
+		</div> <!-- pagingArea end  -->
 	</section>
 
 		<!-- 모달기능 -->
@@ -246,6 +287,8 @@ input, select, textarea {
 				function addCouns() {
 					$("#addlist").css("display","block");
 				};
+				
+
 
 		</script>
 		<!-- /container --><!-- 

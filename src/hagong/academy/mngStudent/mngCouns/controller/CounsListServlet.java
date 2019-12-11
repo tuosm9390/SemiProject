@@ -32,22 +32,22 @@ public class CounsListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("접속 테스트");
+		//System.out.println("접속 테스트");
 		
 		//전체 학생들의 정보를 상담정보와 같이 어레이리스트에 담아 저장
 		ArrayList<MemberCouns> counsList = new CounselingService().counsList();
 		
-		System.out.println(counsList);
+		//System.out.println(counsList);
 		
 		ArrayList<MemberCouns> counsCountList = new CounselingService().selectCount(counsList);
 		
-		System.out.println(counsCountList);
+		//System.out.println(counsCountList);
 		
 		ArrayList<MemberCouns> allCounsList = new CounselingService().selectRecentDate(counsCountList);
 		
 		allCounsList = new CounselingService().selectUserInfo(allCounsList);
 		
-		System.out.println(allCounsList);
+		//System.out.println(allCounsList);
 		
 		//----------------------------------------------------------------------------------------------------
 		
@@ -73,7 +73,7 @@ public class CounsListServlet extends HttpServlet {
 		//전체 목록 갯수 조회
 		int listCount = counsList.size();
 		
-		System.out.println("listCount : " + listCount);
+		//System.out.println("listCount : " + listCount);
 				
 		//		System.out.println("listCount : " + listCount);
 		
@@ -97,6 +97,25 @@ public class CounsListServlet extends HttpServlet {
 		//페이지 정보를 담을 vo 객체 생성
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit -1;
+		
+		System.out.println("startRow : " + startRow);
+		System.out.println("endRow : " + endRow);
+		
+		ArrayList<MemberCouns> pagingCounsList = new ArrayList<MemberCouns>();
+		
+		
+		
+		for(int i = startRow-1; i < endRow; i++) {
+			if(i >= allCounsList.size()) {
+				break;
+			}else {
+				pagingCounsList.add(allCounsList.get(i));		
+			}
+			
+		}
 		
 		//----------------------------------------------------------------------------------------------------
 		
@@ -106,8 +125,8 @@ public class CounsListServlet extends HttpServlet {
 		String page = "";
 		if(allCounsList != null) {
 			page = "viewAcademy/mngStudent/mngCouns/counsList.jsp";
-			
-			request.setAttribute("allCounsList", allCounsList);
+			request.setAttribute("pi", pi);
+			request.setAttribute("allCounsList", pagingCounsList);
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("msg", "삼담페이지 조회실패");
