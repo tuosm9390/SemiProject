@@ -37,6 +37,8 @@ public class MngStatus implements java.io.Serializable{
 	private int highForeign;
 	private int highEtc;
 	
+	public MngStatus() {};
+	
 	public MngStatus(int allStudent, int enrollDate, int leaveDate, int inFriend, int inInternet, int inPicket,
 			int inPcard, int inEtc, int midKor, int midMath, int midEng, int midSocial, int midScience, int midForeign,
 			int midEtc, int highKor, int highMath, int highEng, int highSocial, int highScience, int highForeign,

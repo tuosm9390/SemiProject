@@ -35,27 +35,20 @@ public class MngStatusDao {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
 			
-			if(rset.next()) {
+			while(rset.next()) {
+				
 				status = new MngStatus();
+				
 				status.setAllStudent(rset.getInt("ALL_STUDENT"));
 				status.setEnrollDate(rset.getInt("ENROLL_COUNT"));
 				status.setLeaveDate(rset.getInt("LEAVE_COUNT"));
 				
-				status.setMidKor(rset.getInt("MKOR"));
-				status.setMidEng(rset.getInt("MENG"));
-				status.setMidMath(rset.getInt("MMATH"));
-				status.setMidSocial(rset.getInt("MSOCIAL"));
-				status.setMidScience(rset.getInt("MSCIENCE"));
-				status.setMidForeign(rset.getInt("MFOREIGN"));
-				status.setMidEtc(rset.getInt("METC"));
-				
-				status.setHighKor(rset.getInt("HKOR"));
-				status.setHighEng(rset.getInt("HENG"));
-				status.setHighMath(rset.getInt("HMATH"));
-				status.setHighSocial(rset.getInt("HSOCIAL"));
-				status.setHighScience(rset.getInt("HSCIENCE"));
-				status.setHighForeign(rset.getInt("HFOREIGN"));
-				status.setHighEtc(rset.getInt("HETC"));
+				status.setInFriend(rset.getInt("INFRIEND"));
+				status.setInInternet(rset.getInt("ININTERNET"));
+				status.setInPicket(rset.getInt("INPICKET"));
+				status.setInPcard(rset.getInt("INPCARD"));
+				status.setInEtc(rset.getInt("INETC"));
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +57,6 @@ public class MngStatusDao {
 			close(stmt);
 			close(rset);
 		}
-		
 		return status;
 	}
 
