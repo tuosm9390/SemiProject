@@ -49,6 +49,7 @@ public class MngStatusDao {
 				status.setInPcard(rset.getInt("INPCARD"));
 				status.setInEtc(rset.getInt("INETC"));
 			
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
