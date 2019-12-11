@@ -71,7 +71,7 @@
       <div id="container-footer">
          <ul>
             <li>
-            <input type="button" id="okBtn" value="확인" action="" method="">
+            <button id="okBtn"></button>
             </li>
          </ul>
       </div>
@@ -91,7 +91,7 @@
                $("#okBtn").click(function(){
                   //서블릿으로 변경할 비밀번호 전송 후 결과 성공이면 변경되었다는 팝업, 실패면 실패 팝업..?                                                                                                      
                   //console.log(pwd2);
-                  href.location="<%=request.getContextPath()%>/update.me";
+                  href.location="<%=request.getContextPath()%>/firstUpdate2.cm";
                });
             }
          }
