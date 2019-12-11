@@ -28,7 +28,22 @@ public class SelectAllStaffServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int total = new MemberService().allStaff();
+		int totalStaff = new MemberService().allStaff();
+		int totalStudent = new MemberService().allStudent();
+		
+		System.out.println(totalStaff + ", " + totalStudent);
+		
+		String page = "";
+		if(totalStaff > 0) {
+			page = "viewAcademy/main.jsp";
+			request.getSession().setAttribute("totalStaff", new Integer(totalStaff));
+			request.getSession().setAttribute("totalStudent", new Integer(totalStudent));
+		}else {
+			System.out.println("총 직원 수 조회 실패");
+			
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}

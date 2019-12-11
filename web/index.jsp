@@ -78,12 +78,13 @@ body {
 		
 		<script>
 			function goAcademy(){
-				location.href="viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			}
 			
 			function goClient(){
 				location.href="viewClient/main.jsp";
 			}
+			
 		</script>
 	</section>
 	<footer>
