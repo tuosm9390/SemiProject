@@ -1,4 +1,4 @@
-package hagong.academy.mngClass.mngCS.model.vo;
+package hagong.academy.mngStudent.mngCouns.model.vo;
 
 import java.sql.Date;
 
@@ -21,11 +21,12 @@ public class MemberCouns {
 	private int userNo;
 	private String name;
 	private String userId;
+	private int count = 0;
 	
 	public MemberCouns() {}
 
 	public MemberCouns(int couNo, String couTitle, Date couDate, int couUserNo, String couType, String couContent,
-			String couAction, String couBlack, int userNo, String name, String userId) {
+			String couAction, String couBlack, int userNo, String name, String userId, int count) {
 		super();
 		this.couNo = couNo;
 		this.couTitle = couTitle;
@@ -38,6 +39,7 @@ public class MemberCouns {
 		this.userNo = userNo;
 		this.name = name;
 		this.userId = userId;
+		this.count = count;
 	}
 
 	public int getCouNo() {
@@ -127,13 +129,26 @@ public class MemberCouns {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
+	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberCouns [couNo=" + couNo + ", couTitle=" + couTitle + ", couDate=" + couDate + ", couUserNo="
 				+ couUserNo + ", couType=" + couType + ", couContent=" + couContent + ", couAction=" + couAction
-				+ ", couBlack=" + couBlack + ", userNo=" + userNo + ", name=" + name + ", userId=" + userId + "]";
+				+ ", couBlack=" + couBlack + ", userNo=" + userNo + ", name=" + name + ", userId=" + userId + ", count="
+				+ count + "]";
 	}
+
+
 	
 	
 	

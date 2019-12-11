@@ -1,4 +1,4 @@
-package hagong.academy.mngClass.mngCS.controller;
+package hagong.academy.mngStudent.mngCouns.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hagong.academy.mngClass.mngCS.model.service.CounselingService;
-import hagong.academy.mngClass.mngCS.model.vo.MemberCouns;
+import hagong.academy.mngStudent.mngCouns.model.service.CounselingService;
+import hagong.academy.mngStudent.mngCouns.model.vo.MemberCouns;
 
 /**
  * Servlet implementation class CounsListServlet
@@ -38,17 +38,27 @@ public class CounsListServlet extends HttpServlet {
 		
 		System.out.println(counsList);
 		
+		ArrayList<MemberCouns> counsCountList = new CounselingService().selectCount(counsList);
+		
+		System.out.println(counsCountList);
+		
+		ArrayList<MemberCouns> allCounsList = new CounselingService().selectRecentDate(counsCountList);
+		
+		allCounsList = new CounselingService().selectUserInfo(allCounsList);
+		
+		System.out.println(allCounsList);
 		
 		//성공 실패 실행  작성
 		String page = "";
 		if(counsList != null) {
-			page = "viewAcademy/mngClass/mngCS/CSlist.jsp";
-			request.setAttribute("counsList", counsList);
+			page = "viewAcademy/mngStudent/mngCouns/counsList.jsp";
+			
+			request.setAttribute("allCounsList", allCounsList);
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("msg", "삼담페이지 조회실패");
 		}
-		//request.getRequestDispatcher(page).forward(request, response);
+		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}
