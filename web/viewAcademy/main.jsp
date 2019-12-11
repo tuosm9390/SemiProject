@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
-
+<% 
+	int totalStaff = ((Integer)(session.getAttribute("totalStaff"))).intValue();
+	int totalStudent = ((Integer)(session.getAttribute("totalStudent"))).intValue();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +73,7 @@ body {
 						<td><img
 							src="<%=request.getContextPath()%>/images/teacher.png"
 							style="height: 70px; display: inline;"></td>
-						<td><h2>총 직원 수 : </h2></td>
+						<td><h2>총 직원 수 : <%=totalStaff%>명</h2></td>
 					</tr>
 				</table>
 			</div>
@@ -80,7 +83,7 @@ body {
 						<td><img
 							src="<%=request.getContextPath()%>/images/student.png"
 							style="height: 70px; display: inline;"></td>
-						<td><h2>총 학생 수 : 231</h2></td>
+						<td><h2>총 학생 수 : <%=totalStudent%>명</h2></td>
 					</tr>
 				</table>
 			</div>

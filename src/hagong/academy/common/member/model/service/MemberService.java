@@ -59,4 +59,14 @@ public class MemberService {
 		return total;
 	}
 
+	public int allStudent() {
+		Connection con = getConnection();
+		
+		int total = new MemberDao().allStudent(con);
+		
+		close(con);
+		
+		return total;
+	}
+
 }

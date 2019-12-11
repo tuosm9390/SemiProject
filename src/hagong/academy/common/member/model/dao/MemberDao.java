@@ -17,7 +17,7 @@ public class MemberDao {
 	private Properties prop = new Properties();
 	
 	public MemberDao() {
-		String fileName = MemberDao.class.getResource("/sql/member/cm-member-query.properties").getPath();
+		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
 	
 		try {
 			prop.load(new FileReader(fileName));
@@ -146,10 +146,37 @@ public class MemberDao {
 		try {
 			stmt = con.createStatement();
 			
-			total = stmt.executeUpdate(query);
+			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				total = rset.getInt("COUNT(*)");
+				total = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return total;
+	}
+
+	public int allStudent(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int total = 0;
+		
+		String query = prop.getProperty("allStudent");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				total = rset.getInt(1);
 			}
 			
 		} catch (SQLException e) {
