@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>HAGONG</title>
-<%@ include file="/viewAcademy/common/menubar.jsp"%>
 <style>
 	.completeDelete > button{
 		display:inline;

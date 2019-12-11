@@ -41,10 +41,10 @@ public class InsertNoticeServlet extends HttpServlet {
 		day = java.sql.Date.valueOf(date);
 		
 		Notice n = new NoticeService().insertNotice(n);
-		n.setNTitle(title);
-		n.setNAuthor(writer);
-		n.setNDate(day);
-		n.setNContent(content);
+		n.setnTitle(title);
+		n.setnAuthor(writer);
+		n.setnDate(day);
+		n.setnContent(content);
 		
 		int result = new NoticeService().insertNotice(n);
 		
