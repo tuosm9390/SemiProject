@@ -70,7 +70,7 @@ body {
 						<td><img
 							src="<%=request.getContextPath()%>/images/teacher.png"
 							style="height: 70px; display: inline;"></td>
-						<td><h2>총 직원 수 : 30</h2></td>
+						<td><h2>총 직원 수 : </h2></td>
 					</tr>
 				</table>
 			</div>
