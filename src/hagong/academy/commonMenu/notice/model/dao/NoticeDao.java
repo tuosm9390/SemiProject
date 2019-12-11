@@ -1,6 +1,6 @@
 package hagong.academy.commonMenu.notice.model.dao;
 
-import static hagong.common.JDBCTemplate.*;
+import static hagong.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import hagong.academy.commonMenu.notice.model.vo.Notice;
 
@@ -41,11 +42,11 @@ public class NoticeDao {
 		while(rset.next()) {
 			Notice n = new Notice();
 			n.setNno(rset.getInt("NOT_NO"));
-			n.setNTitle(rset.getString("NOT_TITLE"));
-			n.setNContent(rset.getString("NOT_CONTENT"));
-			n.setNAuthor(rset.getString("AUTHOR"));
-			n.setNCount(rset.getInt("COUNT"));
-			n.setNDate(rset.getDate("NOT_DATE"));
+			n.setnTitle(rset.getString("NOT_TITLE"));
+			n.setnContent(rset.getString("NOT_CONTENT"));
+			n.setnAuthor(rset.getString("AUTHOR"));
+			n.setnCount(rset.getInt("COUNT"));
+			n.setnDate(rset.getDate("NOT_DATE"));
 			
 			list.add(n);
 		}catch(SQLException e) {
@@ -67,10 +68,10 @@ public class NoticeDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, n.getNTitle());
-			pstmt.setString(2, n.getNContent());
-			pstmt.setString(3, n.getNAuthor());
-			pstmt.setDate(4, n.getNDate());
+			pstmt.setString(1, n.getnTitle());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getnAuthor());
+			pstmt.setDate(4, n.getnDate());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
