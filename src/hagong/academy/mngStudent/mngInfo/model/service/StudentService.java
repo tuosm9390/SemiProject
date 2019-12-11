@@ -11,10 +11,22 @@ public class StudentService {
 	public int insertStudent(Student s) {
 		Connection con = getConnection();
 		
-		int result = new StudentDao().insertStudent(con, s);
+		int result = new StudentDao().insertMember(con, s);
 		
 		if (result > 0) {
-			commit(con);
+			int result1 = new StudentDao().insertStudent(con, s);
+			
+			if(result1 > 0) {
+				int result2 = new StudentDao().insertStudentHope(con, s);
+				
+				if(result2 > 0) {
+					commit(con);
+				} else {
+					rollback(con);
+				}
+			} else {
+				rollback(con);
+			}
 		} else {
 			rollback(con);
 		}
