@@ -37,7 +37,6 @@ public class DetailCounsServlet extends HttpServlet {
 		//상담일지값 가져오기
 		ArrayList<MemberCouns> detailCounsList = new CounselingService().detailCouns(userNo);
 		
-		System.out.println(detailCounsList);
 		
 		String page = "";
 		if(detailCounsList != null) {
@@ -47,7 +46,7 @@ public class DetailCounsServlet extends HttpServlet {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("msg", "상담일지조회실패!");
 		}
-		//request.getRequestDispatcher(page).forward(request, response);
+		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}
