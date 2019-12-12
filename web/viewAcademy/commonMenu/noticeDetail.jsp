@@ -63,7 +63,7 @@
 			<div class="returnUpdate" align="center">
 				<button id="return" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="margin-right:5px;">목록으로 돌아가기</button>
 				<%-- <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %> --%>
-				<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeUpdate.jsp'">수정하기</button>
+				<button onclick="location.href='<%=request.getContextPath()%>/aselect.no?num=<%=n.getNno()%>'">수정하기</button>
 				<%-- <% } %> --%>
 			</div>
 		</div> <!-- tableArea end -->

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.commonMenu.notice.model.service.NoticeService;
+import hagong.academy.commonMenu.notice.model.vo.Notice;
+
 /**
  * Servlet implementation class SelectNoticeServlet
  */
@@ -26,8 +29,20 @@ public class SelectNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		
+		Notice n = new NoticeService().selectOne(num);
+		
+		String page = "";
+		
+		if(n != null) {
+			page = "viewAcademy/commonMenu/noticeUpdate.jsp";
+			request.setAttribute("n", n);
+		}else {
+			request.setAttribute("msg", "게시글 수정용 상세 보기 실패!");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
@@ -39,3 +54,22 @@ public class SelectNoticeServlet extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

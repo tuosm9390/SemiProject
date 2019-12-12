@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.commonMenu.notice.model.service.NoticeService;
+import hagong.academy.commonMenu.notice.model.vo.Notice;
+
 /**
  * Servlet implementation class UpdateNoticeServlet
  */
@@ -26,8 +29,26 @@ public class UpdateNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		
+		Notice n = new Notice();
+		n.setnTitle(title);
+		n.setnContent(content);
+		n.setNno(nno);
+		
+		int result = new NoticeService().updateNotice(n);
+		
+		String page = "";
+		if(result > 0) {
+			response.sendRedirect("selectone.no?num=" + n.getNno());
+		}else {
+			request.setAttribute("msg", "공지사항 수정 실패!");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
+		
 	}
 
 	/**
@@ -37,5 +58,26 @@ public class UpdateNoticeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
