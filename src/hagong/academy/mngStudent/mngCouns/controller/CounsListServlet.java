@@ -32,19 +32,34 @@ public class CounsListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//검색관련 값 받아오기
+		String searchCondition = request.getParameter("searchCondition");
+		String srchCnt = request.getParameter("searchCnt");
+		
+		
+		
 		//System.out.println("접속 테스트");
 		
 		//전체 학생들의 정보를 상담정보와 같이 어레이리스트에 담아 저장
-		ArrayList<MemberCouns> counsList = new CounselingService().counsList();
+		ArrayList<MemberCouns> counsList = null;
+		if(searchCondition == null || srchCnt == null) {
+			//전체 학생조회
+			counsList = new CounselingService().counsList();			
+		}else {
+			//검색할 학생 조회
+			counsList = new CounselingService().srchList(searchCondition, srchCnt);
+		}
 		
 		//System.out.println(counsList);
-		
+		//상담횟수 받아서 저장
 		ArrayList<MemberCouns> counsCountList = new CounselingService().selectCount(counsList);
 		
 		//System.out.println(counsCountList);
 		
+		//최근 상담일자 받아서 저장
 		ArrayList<MemberCouns> allCounsList = new CounselingService().selectRecentDate(counsCountList);
 		
+		//최종적으로 넘겨줄 상담학생 정보
 		allCounsList = new CounselingService().selectUserInfo(allCounsList);
 		
 		//System.out.println(allCounsList);
@@ -104,6 +119,7 @@ public class CounsListServlet extends HttpServlet {
 		System.out.println("startRow : " + startRow);
 		System.out.println("endRow : " + endRow);
 		
+		//페이징 처리를 완료한 최종적으로 전달할 학생정보
 		ArrayList<MemberCouns> pagingCounsList = new ArrayList<MemberCouns>();
 		
 		
@@ -125,6 +141,8 @@ public class CounsListServlet extends HttpServlet {
 		String page = "";
 		if(allCounsList != null) {
 			page = "viewAcademy/mngStudent/mngCouns/counsList.jsp";
+			request.setAttribute("searchCondition", searchCondition);
+			request.setAttribute("srchCnt", srchCnt);
 			request.setAttribute("pi", pi);
 			request.setAttribute("allCounsList", pagingCounsList);
 		}else {

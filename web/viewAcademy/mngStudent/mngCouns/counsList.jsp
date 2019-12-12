@@ -8,6 +8,8 @@
 	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
 	int startPage = pi.getStartPage();		//시작 페이지 번호
 	int endPage = pi.getEndPage();			//끝 페이지 번호 
+	String srchCnt = (String) request.getAttribute("srchCnt");
+	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
 <!DOCTYPE html>
 <html>
@@ -145,7 +147,7 @@ input, select, textarea {
          				<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　학생상담 리스트　</h1></legend>
      	 			</fieldset>
       			</div>
-				<form action="<%= request.getContextPath()%>/asearch.couns" method="post">
+				<form action="<%= request.getContextPath()%>/alist.couns" method="post">
 					<div class="srchArea">
 						<button type="submit" class="srchBtn">검색</button>
 						<input type="search" id="search" name="searchCnt">
@@ -187,11 +189,11 @@ input, select, textarea {
 			</div>
 		</div>
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=1'"><<</button>
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
 			<% if(currentPage <= 1) {%>
 			<button disabled><</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage - 1%>'"><</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
@@ -199,7 +201,7 @@ input, select, textarea {
 			%>
 				<button disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=p%>'"><%=p %></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
@@ -207,10 +209,10 @@ input, select, textarea {
 			<% if(currentPage >= maxPage){ %>
 			<button disabled>></button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage + 1%>'">></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
 		</div> <!-- pagingArea end  -->
 	</section>
 

@@ -70,6 +70,16 @@ public class CounselingService {
 		return allCounsList;
 	}
 
+	public ArrayList<MemberCouns> srchList(String searchCondition, String srchCnt) {
+		Connection con = getConnection();
+		
+		ArrayList<MemberCouns> counsList = new CounselingDao().srchList(con, searchCondition, srchCnt);
+		
+		close(con);
+		
+		return counsList;
+	}
+
 
 }
 
