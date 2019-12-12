@@ -34,6 +34,8 @@ public class CounsSrchServlet extends HttpServlet {
 		System.out.println("srchCnt : " + srchCnt);
 		
 		
+		
+		
 	}
 
 	/**

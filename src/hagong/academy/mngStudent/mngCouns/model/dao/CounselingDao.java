@@ -173,6 +173,44 @@ public class CounselingDao {
 		return mc;
 	}
 
+	public ArrayList<MemberCouns> srchList(Connection con, String searchCondition, String srchCnt) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<MemberCouns> counsList = null;
+		
+		String query = "";
+		if(searchCondition.equals("name")) {
+			query = prop.getProperty("srchByName");
+		}else if(searchCondition.equals("userId")) {
+			query = prop.getProperty("srchById");			
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setString(1, srchCnt);
+			
+			rset = pstmt.executeQuery();
+			
+			counsList = new ArrayList<>();
+			
+			while(rset.next()) {
+				MemberCouns mc = new MemberCouns();
+				
+				mc.setUserId(rset.getString("USER_ID"));
+				
+				counsList.add(mc);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return counsList;
+	}
+
 }
 
 
