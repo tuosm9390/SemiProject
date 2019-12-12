@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import hagong.academy.mngStudent.mngCouns.model.vo.Counseling;
 import hagong.academy.mngStudent.mngCouns.model.vo.MemberCouns;
 
 public class CounselingDao {
@@ -160,7 +161,7 @@ public class CounselingDao {
 			if(rset.next()) {
 				mc = new MemberCouns();
 				
-				mc.setName(rset.getString("NAME"));
+				mc.setUserName(rset.getString("NAME"));
 				mc.setUserNo(rset.getInt(2));
 			}
 		} catch (SQLException e) {
@@ -206,10 +207,86 @@ public class CounselingDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
 		return counsList;
+	}
+
+	public int insertCouns(Connection con, Counseling couns) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		String query = prop.getProperty("insertCouns");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setString(1, couns.getCouTitle());
+			pstmt.setDate(2, couns.getCouDate());
+			pstmt.setInt(3, couns.getCouUserNo());
+			pstmt.setInt(4, couns.getUserNo());
+			pstmt.setString(5, couns.getCouType());
+			pstmt.setString(6, couns.getCouContent());
+			pstmt.setString(7, couns.getCouAction());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<MemberCouns> detailCouns(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<MemberCouns> detailCouns = null;
+		
+		String query = prop.getProperty("selectDetailCouns");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			detailCouns = new ArrayList<MemberCouns>();
+			while(rset.next()) {
+				MemberCouns mc = new MemberCouns();
+				
+				mc.setCouNo(rset.getInt("COU_NO"));
+				mc.setCouTitle(rset.getString("COU_TITLE"));
+				mc.setCouDate(rset.getDate("COU_DATE"));
+				mc.setCouUserNo(rset.getInt("COU_USER_NO"));
+				mc.setUserNo(rset.getInt("C.USER_NO"));
+				mc.setCouType(rset.getString("COU_TYPE"));
+				mc.setCouContent(rset.getString("COU_CONTENT"));
+				mc.setCouAction(rset.getString("COU_ACTION"));
+				mc.setCouBlack(rset.getString("COU_BLACK"));
+				mc.setUserName(rset.getString("NAME_1"));
+				mc.setCouUserName(rset.getString("NAME"));
+				
+				detailCouns.add(mc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return detailCouns;
 	}
 
 }
