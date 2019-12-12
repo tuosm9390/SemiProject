@@ -27,6 +27,8 @@ public class SelectStudentServlet extends HttpServlet {
 		
 		ArrayList<HashMap<String, Object>> list = new AttendService().selectStudent(classNum);
 		
+		
+		
 		String page = "";
 		if(list != null) {
 			page = "alistAttend.attend";

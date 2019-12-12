@@ -1,19 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
 <% 
-	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
-	ArrayList<Member> m = new ArrayList<>();
-	ArrayList<Student> s = new ArrayList<>();
-	ArrayList<Attendance> a = new ArrayList<>();
+	ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");	
+
 	
-	for(int i=0; i<list.size(); i++) {
-		HashMap hmap = list.get(i);
-		m.add((Member) hmap.get("member"));
-		s.add((Student) hmap.get("student"));
-		a.add((Attendance) hmap.get("attendance"));
-	}
-	
-	
+	for(int i=0; i<attendList.size(); i++) {
+		HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
+		ArrayList<Attendance> list = null;
+		
+		Iterator<String> iter = hmap.keySet().iterator();
+		while(iter.hasNext()){
+			String keys = (String) iter.next();
+			System.out.println("keys : " + keys);
+			list = hmap.get(keys);
+			
+		}
+		
+		
+		System.out.println("list : " + list);
+		
+	} 
 %>
 <!DOCTYPE html>
 <html>
@@ -146,29 +152,76 @@
                   <th id="stuInfo" nowrap>정보</th>
                   <% Calendar cal = Calendar.getInstance();
                      int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-                        
+                     int month = cal.get(Calendar.MONTH) + 1;
+                     
+                     System.out.println("dayOfMonth : " + dayOfMonth);
+                     System.out.println("month : " + month);
+                     int[] index = new int[dayOfMonth];
                      for(int i=0; i<dayOfMonth; i++) {
+                    	 
+                    	 index[i] = i+1;
                   %>
-                  <th>12/<%=i+1%></th>
+                  <th><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
-               	<% for(int i=0; i<list.size(); i++) { %>
-               	<tr>
-                  <td><input type="checkbox" id="checkOne"></td>
-                  <td><%=m.get(i).getName()%></td>
-                  <td id="infoCol"><%=s.get(i).getSchool()%><br><%=s.get(i).getGrade()%>학년<br><%=m.get(i).getPhone()%></td>
-                 <%--  <%	DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
-                  		Date attendDate = a.get(i).getAttDate();
-                 		String date = sdFormat.format(attendDate);
-
-                  		for(int k=0; k<dayOfMonth; k++) { 
-                  		if( a.get(i).getAttDate() %><%) {%>
-					<%}else { %>                  
+               		<% 	for(int i=0; i<attendList.size(); i++) {
+               			HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
+               			ArrayList<Attendance> list = null;
+               			
+               			Iterator<String> iter = hmap.keySet().iterator();
+               			while(iter.hasNext()){
+               				String keys = (String) iter.next();
+               				System.out.println("keys : " + keys);
+               				list = hmap.get(keys);	
+                   			System.out.println("list : " + list);
+               				%>
+               			<tr>
+               				<td><input type="checkbox" id="checkOne"></td>
+               				<td><%= keys %></td>
+               				<td id="infoCol">학생정보</td>
+               				
+               				<% String[] dateArr = new String[list.size()];
+               					for(int j=0; j<list.size(); j++) {
+               					DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
+                      			Date attendDate = list.get(j).getAttDate();
+                     			String tempDate = sdFormat.format(attendDate);
+                     			String date = tempDate.substring(tempDate.length()-2, tempDate.length()); 
+               					
+                     			System.out.println("date : " + date);
+                     			
+                     			dateArr[j] = date;
+                     			
+              					}
+               				
+                     			for(int k=0; k<dateArr.length; k++) {
+                     				for(int q = 0; q < dayOfMonth; q++){
+                     					if(dateArr[k].equals(q+1+"")){
+                     					%>
+                     					
+                     					<td>출석</td>
+                     					
+                     					<%
+                     					}//else{%> 
+			                     			
+                     				<% 
+                     				
+                     				}
+                     				
+                     				}
+                     			
+               				
+               		
+               			
+               			}
+               			}
+               		%>
+                  	<!-- for(int k=0; k<dayOfMonth; k++) { -->
+					<%-- <%}else { %>                  
                   <td style="padding:20px"><a id="reasonWrite">결석</a></td>
                   <% }
-                  	} %> --%>
+                  	} %>
                </tr>
-               <% } %>
+               <% } %> --%>
              </table>
          </form>
       </div>
