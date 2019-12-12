@@ -1,4 +1,3 @@
-
 package hagong.academy.commonMenu.notice.model.vo;
 
 import java.sql.Date;

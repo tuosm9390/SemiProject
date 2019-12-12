@@ -1,4 +1,3 @@
-
 package hagong.academy.commonMenu.notice.model.dao;
 
 import static hagong.common.JDBCTemplate.close;
@@ -108,7 +107,7 @@ public class NoticeDao {
 				n.setNno(rset.getInt("NOT_NO"));
 				n.setnTitle(rset.getString("NOT_TITLE"));
 				n.setnContent(rset.getString("NOT_CONTENT"));
-				n.setnAuthor(rset.getString("AUTHOR"));
+				n.setnAuthor(rset.getString("NAME"));
 				n.setnCount(rset.getInt("COUNT"));
 				n.setnDate(rset.getDate("NOT_DATE"));
 			}
@@ -125,12 +124,22 @@ public class NoticeDao {
 
 	public int updateCount(Connection con, int nno) {
 
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("updateCount");
+		
 		
 		
 		return 0;
 	}
 
 }
+
+
+
+
 
 
 
