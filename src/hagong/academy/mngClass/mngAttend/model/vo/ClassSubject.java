@@ -14,17 +14,37 @@ public class ClassSubject {
 	private String clsTime;		//강의 시간
 	private int clrNo;			//강의실
 	private int tuition;		//수업료
-	private Date clsEnd;		//종강일
+	private Date clsEnd;		//종강일 ---> 여기까지 class 테이블
 	private String name;		//담당강사명
 	private String subName;		//과목명
 	
 	public ClassSubject() {}
 	
 	
-	
-	public ClassSubject(String clsName, String clsStudent, int clsMax, Date clsStart, Date clsEnd, String name,
+	//Class테이블의 필드만 포함한 생성자!
+	public ClassSubject(int clsNo, String subId, int userNo, String clsName, String clsStudent, int clsMax,
+			Date clsStart, String clsDay, String clsTime, int clrNo, int tuition, Date clsEnd) {
+		super();
+		this.clsNo = clsNo;
+		this.subId = subId;
+		this.userNo = userNo;
+		this.clsName = clsName;
+		this.clsStudent = clsStudent;
+		this.clsMax = clsMax;
+		this.clsStart = clsStart;
+		this.clsDay = clsDay;
+		this.clsTime = clsTime;
+		this.clrNo = clrNo;
+		this.tuition = tuition;
+		this.clsEnd = clsEnd;
+	}
+
+
+
+	public ClassSubject(int clsNo, String clsName, String clsStudent, int clsMax, Date clsStart, Date clsEnd, String name,
 			String subId) {
 		super();
+		this.clsNo = clsNo;
 		this.clsName = clsName;
 		this.clsStudent = clsStudent;
 		this.clsMax = clsMax;

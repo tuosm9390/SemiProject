@@ -31,8 +31,6 @@ public class SelectAllStaffServlet extends HttpServlet {
 		int totalStaff = new MemberService().allStaff();
 		int totalStudent = new MemberService().allStudent();
 		
-		System.out.println(totalStaff + ", " + totalStudent);
-		
 		String page = "";
 		if(totalStaff > 0) {
 			page = "viewAcademy/main.jsp";

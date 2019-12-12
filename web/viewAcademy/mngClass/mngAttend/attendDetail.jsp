@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
+<% 
+	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
+	ArrayList<Member> m = new ArrayList<>();
+	
+	for(int i=0; i<list.size(); i++) {
+		HashMap hmap = list.get(i);
+		Member mb = (Member) hmap.get("member");
+		Student s = (Student) hmap.get("student");
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,7 +151,7 @@
                	<% for(int i=0; i<10; i++) { %>
                	<tr>
                   <td><input type="checkbox" id="checkOne"></td>
-                  <td>빛상찬</td>
+                  <td><%= %></td>
                   <td id="infoCol">kh중학교<br>4학년<br>010-4444-4444</td>
                   <% for(int k=0; k<dayOfMonth; k++) { %>
                   <td style="padding:20px"><a id="reasonWrite">결석</a></td>

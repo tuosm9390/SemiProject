@@ -81,6 +81,7 @@
 				<% for (int i=0; i<list.size(); i++) { %>
 					<tr>
 						<td><%= i+1 %></td>
+						<input id="clsNo<%= i %>" type="hidden" value="<%=list.get(i).getClsNo()%>">
 						<td><%=list.get(i).getSubId()%></td>
 						<td><%=list.get(i).getClsName()%></td>
 						<td><%=list.get(i).getName()%></td>
@@ -194,10 +195,9 @@
 			$(".classList td").mouseenter(function(){
 				$(this).parent().css("cursor","pointer");
 			}).click(function(){
-				<%-- var num = $(this).parent().children().eq(0).text();
-				
-				location.href="<%=request.getContextPath()%>/selectOne.at?num=" + num; --%>
-				location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngAttend/attendDetail.jsp";
+				var index = $(this).parent().children().eq(0).text();
+				var classNum = $("#clsNo"+(index-1)).val();
+				location.href="<%=request.getContextPath()%>/selectStudent.attend?classNum="+classNum;
 			});
 			
 			$(".searchBtn").click(function(){
@@ -205,13 +205,7 @@
 				var searchWord = $("input[type=search]").val();
 				
 				location.href = "<%=request.getContextPath()%>/searchClass.attend?selectCondition=" + selectCondition + "&searchWord=" + searchWord;
-				if(selectCondition == "과목") {
-					console.log(searchWord);
-				}else if(selectCondition == "강좌명") {
-					console.log('강좌명 선택함');
-				}else if(selectCondition == "담당 강사") {
-					console.log('담당 강사 선택함');
-				}
+
 					
 			});
 		});
