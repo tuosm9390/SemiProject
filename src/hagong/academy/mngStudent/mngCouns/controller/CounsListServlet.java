@@ -116,9 +116,6 @@ public class CounsListServlet extends HttpServlet {
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit -1;
 		
-		System.out.println("startRow : " + startRow);
-		System.out.println("endRow : " + endRow);
-		
 		//페이징 처리를 완료한 최종적으로 전달할 학생정보
 		ArrayList<MemberCouns> pagingCounsList = new ArrayList<MemberCouns>();
 		
@@ -134,9 +131,7 @@ public class CounsListServlet extends HttpServlet {
 		}
 		
 		//----------------------------------------------------------------------------------------------------
-		
-		System.out.println("allCounsList : " + allCounsList);
-		
+
 		//성공 실패 실행  작성
 		String page = "";
 		if(allCounsList != null) {

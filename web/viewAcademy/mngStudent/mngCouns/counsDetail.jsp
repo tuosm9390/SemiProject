@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
+<% ArrayList<MemberCouns> detailCounsList =(ArrayList<MemberCouns>) request.getAttribute("detailCounsList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -229,8 +230,9 @@ font-size:18px;
       	</div>
       	<div class="accordionArea">
 		<ul class="accordion">
+			<% for(int i = 0; i < detailCounsList.size(); i++) {%>
 			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)">수업 성적 관련 상담(1)
+				href="javascript:void(0)"><%= detailCounsList.get(i).getCouTitle() %>
 					<div class="bmenu x7">
 						<span class="btop"></span><span class="bmid"></span><span
 							class="bbot"></span>
@@ -241,12 +243,12 @@ font-size:18px;
 						<div class="dArea dArea1">
 							<div class="dCtn consTitle">
 								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
+								<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getCouTitle() %>" readonly>
 							</div>
 							<div class="names">
 								<div class="dCtn tName">
 									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
+									<input type="text" class="inputCons" value="<%= loginUser.getName() %>" readonly>
 								</div>
 								<div class="dCtn sName">
 									<label class="dTit">상담학생명</label>
@@ -293,7 +295,8 @@ font-size:18px;
 					}
 				</script>
 			</li>
-			<li class="accordion__item"><a class="accordion__title"
+			<%} %>
+<!-- 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
 					<div class="bmenu x7">
 						<span class="btop"></span><span class="bmid"></span><span
@@ -348,7 +351,7 @@ font-size:18px;
 						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
 						<button class="updateCons">수정완료</button>
 						<button>삭제하기</button>
-					</div> <!-- btnArea -->
+					</div> btnArea
 				</form></li>
 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
@@ -405,7 +408,7 @@ font-size:18px;
 						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
 						<button class="updateCons">수정완료</button>
 						<button>삭제하기</button>
-					</div> <!-- btnArea -->
+					</div> btnArea
 				</form></li>
 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
@@ -462,7 +465,7 @@ font-size:18px;
 						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
 						<button class="updateCons">수정완료</button>
 						<button>삭제하기</button>
-					</div> <!-- btnArea -->
+					</div> btnArea
 				</form></li>
 			<li class="accordion__item"><a class="accordion__title"
 				href="javascript:void(0)">수업 성적 관련 상담(1)
@@ -519,8 +522,8 @@ font-size:18px;
 						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
 						<button class="updateCons">수정완료</button>
 						<button>삭제하기</button>
-					</div> <!-- btnArea -->
-				</form></li>
+					</div> btnArea
+				</form></li> -->
 		</ul>
 		</div>
 	</div>

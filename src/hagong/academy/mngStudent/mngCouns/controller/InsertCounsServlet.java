@@ -42,7 +42,6 @@ public class InsertCounsServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		int counsUserNo = Integer.parseInt(request.getParameter("counsUserNo"));
 
-		
 		java.sql.Date day = null;
 		
 		if(date != "") {
@@ -60,15 +59,14 @@ public class InsertCounsServlet extends HttpServlet {
 		couns.setCouContent(consreq);
 		couns.setCouAction(consres);
 		
+		
 		int result = new CounselingService().insertCouns(couns);
-		
-		
 		
 		
 		String page = "";
 		if(result > 0) {
-			page = "viewAcademy/mngStudent/mngCouns/counsList.jsp";
-			
+			page = request.getContextPath() + "/alist.couns";
+			response.sendRedirect(page);			
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("msg", "상담등록실패!");

@@ -1,7 +1,6 @@
 package hagong.academy.mngStudent.mngCouns.model.service;
 
-import static hagong.common.JDBCTemplate.close;
-import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class CounselingService {
 			
 			MemberCouns mc = new CounselingDao().selectUserInfo(con,userId);
 			
-			allCounsList.get(i).setName(mc.getName());
+			allCounsList.get(i).setUserName(mc.getUserName());
 			allCounsList.get(i).setUserNo(mc.getUserNo());
 		}
 		
@@ -83,7 +82,29 @@ public class CounselingService {
 	}
 
 	public int insertCouns(Counseling couns) {
-		return 0;
+		Connection con = getConnection();
+		
+		int result = new CounselingDao().insertCouns(con, couns);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<MemberCouns> detailCouns(int userNo) {
+		Connection con = getConnection();
+		
+		ArrayList<MemberCouns> counsDetail = new CounselingDao().detailCouns(con, userNo);
+		
+		close(con);
+		
+		return counsDetail;
 	}
 
 

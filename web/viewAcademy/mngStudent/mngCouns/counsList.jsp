@@ -172,7 +172,7 @@ input, select, textarea {
 					<tbody id="consList">
 					<% for(int i = 0; i < allCounsList.size(); i++) { %>
 						<tr id="tr<%= i %>">
-							<td class="user-name"><%= allCounsList.get(i).getName() %>
+							<td class="user-name"><%= allCounsList.get(i).getUserName() %>
 							<input id="u<%= i %>" type="hidden" value="<%=allCounsList.get(i).getUserNo() %>"></td>
 							<td><%= allCounsList.get(i).getUserId() %></td>
 							<td class="cons-count"><%= allCounsList.get(i).getCount() %>회</td>
@@ -181,7 +181,7 @@ input, select, textarea {
 						<% } else { %>
 							<td class="last-cons"> - </td>
 						<% } %>
-							<td class="cons-list"><button onclick="conslist();">상담일지</button></td>
+							<td class="cons-list"><button onclick="conslist(<%= i %>);">상담일지</button></td>
 							<td><button onclick="addCouns(<%= i %>);">상담추가</button></td>
 						</tr>
 					<% } %>					
@@ -240,10 +240,11 @@ input, select, textarea {
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
 									<select name="consCategory" class="consCate">
-										<option value="class">수업</option>
-										<option value="life">학원생활</option>
-										<option value="atit">태도</option>
-										<option value="etc">기타</option>
+										<option value="SCORE">성적</option>
+										<option value="LIFE">학원생활</option>
+										<option value="PARENT">학부모</option>
+										<option value="APPLY">진학</option>
+										<option value="ETC">기타</option>
 									</select>
 								</div>
 								<div class="dCtn tName">
@@ -286,8 +287,9 @@ input, select, textarea {
 	<footer> </footer>
 	<!-- 스크립트 -->
 			<script>
-				function conslist(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsDetail.jsp";					
+				function conslist(i){
+					var userNo = $("#u" + i).val();
+					location.href = "<%=request.getContextPath()%>/detail.couns?userNo=" + userNo;					
 				};
 				function addCouns(i) {
 					console.log(i);
