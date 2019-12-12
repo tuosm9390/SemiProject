@@ -1,6 +1,7 @@
 package hagong.academy.mngStudent.mngInfo.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,7 @@ public class UpdateStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
-		String birth = request.getParameter("birth");
+		Date birth = java.sql.Date.valueOf(request.getParameter("birth"));
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
 		String tel3 = request.getParameter("tel3");

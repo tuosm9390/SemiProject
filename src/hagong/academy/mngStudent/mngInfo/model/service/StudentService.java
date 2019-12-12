@@ -13,12 +13,15 @@ public class StudentService {
 		
 		int result = new StudentDao().insertMember(con, s);
 		
+		System.out.println("result : " + result);
 		if (result > 0) {
 			int result1 = new StudentDao().insertStudent(con, s);
 			
+			System.out.println("result1 : " + result1);
 			if(result1 > 0) {
 				int result2 = new StudentDao().insertStudentHope(con, s);
 				
+				System.out.println("result2 : " + result2);
 				if(result2 > 0) {
 					commit(con);
 				} else {
@@ -30,7 +33,7 @@ public class StudentService {
 		} else {
 			rollback(con);
 		}
-
+		
 		close(con);
 		
 		return result;
