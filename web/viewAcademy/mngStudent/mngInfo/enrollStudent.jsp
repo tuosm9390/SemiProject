@@ -132,31 +132,31 @@ section button:hover {
 								<td><input type="text" name="school" placeholder="학교 이름 입력"
 									style="width: 120px;"> &nbsp;
 								<select name="grade" style="width: 120px;">
-									<option value="중학교 1학년" selected>중학교 1학년</option>
-									<option value="중학교 2학년">중학교 2학년</option>
-									<option value="중학교 3학년">중학교 3학년</option>
-									<option value="고등학교 1학년">고등학교 1학년</option>
-									<option value="고등학교 2학년">고등학교 2학년</option>
-									<option value="고등학교 3학년">고등학교 3학년</option>
+									<option value="1" selected>중학교 1학년</option>
+									<option value="2">중학교 2학년</option>
+									<option value="3">중학교 3학년</option>
+									<option value="4">고등학교 1학년</option>
+									<option value="5">고등학교 2학년</option>
+									<option value="6">고등학교 3학년</option>
 								</select></td>
 							</tr>
 							<tr>
 								<td rowspan="2" style="text-align: center !important;"><li>유입
 										경로</li>
 								<br> <select name="inflowPath" style="width: 100px;">
-										<option value="friend" selected>친구소개</option>
-										<option value="internet">인터넷</option>
-										<option value="picket">전단지</option>
-										<option value="pcard">플래카드</option>
-										<option value="etc">기타</option>
+										<option value="FRIEND" selected>친구소개</option>
+										<option value="INTERNET">인터넷</option>
+										<option value="PICKET">전단지</option>
+										<option value="PCARD">플래카드</option>
+										<option value="ETC">기타</option>
 								</select></td>
 								<td><li>계열</li></td>
 								<td><select name="track">
-										<option value="lib" selected>인문계</option>
-										<option value="nat">자연계</option>
-										<option value="amp">예체능</option>
-										<option value="ids">실업계</option>
-										<option value="etc">기타</option>
+										<option value="LIB" selected>인문계</option>
+										<option value="NAT">자연계</option>
+										<option value="AMP">예체능</option>
+										<option value="IDS">실업계</option>
+										<option value="ETC">기타</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -182,9 +182,9 @@ section button:hover {
 							<tr>
 								<td></td>
 								<td><li>희망대학 / 학과</li></td>
-								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 100px;">
+								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 100px;" value="">
 									<label style="color: black;">대학교</label>&emsp;
-									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 100px;"></td>
+									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 100px;" value=""></td>
 							</tr>
 							<tr>
 								<td></td>

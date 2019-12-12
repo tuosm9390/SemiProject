@@ -217,7 +217,7 @@ section {
 				<!-- 학생관리 메뉴 -->
 				<div class="detailmenu" id="studentdetailmenu">
 
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp"
+					<a href="<%=request.getContextPath()%>/alist.info"
 						class="menu1">개인정보</a> <a>|</a>
 					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
 						class="menu1">수납</a> <a>|</a>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+<%
+	ArrayList<Student> list = (ArrayList<Student>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,42 +68,19 @@ tr:not(:first-child){
 				<th>학부모 전화번호</th>
 				<th>희망학과</th>
 			</tr>
+			<%
+				for (Student s : list) {
+			%>
 			<tr>
-				<td>S001</td>
-				<td>박상준</td>
-				<td>17</td>
-				<td>010-1234-1231</td>
-				<td>kh고등학교</td>
-				<td>010-3131-3131</td>
-				<td>사망</td>
+				<td><%=s.getUserId()%></td>
+				<td><%=s.getName() %></td>
+				<td><%=s.getAge() %></td>
+				<td><%=s.getPhone() %></td>
+				<td><%=s.getSchool() %></td>
+				<td><%=s.getRefPhone() %></td>
+				<td><%=s.getMajor() %></td>
 			</tr>
-			<tr>
-				<td>S001</td>
-				<td>박상준</td>
-				<td>17</td>
-				<td>010-1234-1231</td>
-				<td>kh고등학교</td>
-				<td>010-3131-3131</td>
-				<td>사망</td>
-			</tr>
-			<tr>
-				<td>S001</td>
-				<td>박상준</td>
-				<td>17</td>
-				<td>010-1234-1231</td>
-				<td>kh고등학교</td>
-				<td>010-3131-3131</td>
-				<td>사망</td>
-			</tr>
-			<tr>
-				<td>S001</td>
-				<td>박상준</td>
-				<td>17</td>
-				<td>010-1234-1231</td>
-				<td>kh고등학교</td>
-				<td>010-3131-3131</td>
-				<td>사망</td>
-			</tr>
+			<% } %>
 		</table>
 	</div>
 	</section>

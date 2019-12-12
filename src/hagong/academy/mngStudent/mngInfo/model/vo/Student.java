@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student{
+public class Student {
 	// 멤버 테이블
 	private int userNo; // 회원번호
 	private String name; // 이름
@@ -22,6 +22,7 @@ public class Student{
 	private String status; // 재원여부
 	private String inflowPath; // 유입경로
 	private String userType; // 회원구분
+	private int age; // 나이
 
 	// 학생 테이블
 	private String school; // 학교
@@ -40,9 +41,8 @@ public class Student{
 	}
 
 	public Student(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
-			String email, int refUno, String status, String inflowPath,
-			String userType, String school, int grade, String track, String college, String major, String refName,
-			String refId, String refPhone) {
+			String email, int refUno, String status, String inflowPath, String userType, String school, int grade,
+			String track, String college, String major, String refName, String refId, String refPhone, int age) {
 		super();
 		this.userNo = userNo;
 		this.name = name;
@@ -64,6 +64,7 @@ public class Student{
 		this.refName = refName;
 		this.refId = refId;
 		this.refPhone = refPhone;
+		this.age = age;
 	}
 
 	public int getUserNo() {
@@ -226,12 +227,21 @@ public class Student{
 		this.refPhone = refPhone;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [userNo=" + userNo + ", name=" + name + ", userId=" + userId + ", userPwd=" + userPwd
-				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", refUno="
-				+ refUno + ", status=" + status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", school="
+				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", status="
+				+ status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age=" + age + ", school="
 				+ school + ", grade=" + grade + ", track=" + track + ", college=" + college + ", major=" + major
-				+ ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone + "]";
+				+ ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone + "]";
 	}
+
 }
