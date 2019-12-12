@@ -89,7 +89,7 @@ section button:hover {
 					<h1 style="font-family: 'Do Hyeon'">학생 등록</h1>
 				</legend>
 				<div style="width: 100%; margin: auto auto;">
-					<form id="enrollStudentForm"
+					<form id="enrollStudentForm" encType="multipart/form-data"
 						action="<%=request.getContextPath()%>/ainsert.info" method="post">
 						<table class="table" align="center">
 							<tr align="center">
@@ -99,7 +99,7 @@ section button:hover {
 											src="<%=request.getContextPath()%>/images/user.png">
 										<button type="button" id="addimg"
 											style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-										<input type="file" id="imgfile" onchange="loadImg(this);">
+										<input type="file" id="imgfile" name="imgfile" onchange="loadImg(this);">
 									</div>
 								</td>
 							</tr>
@@ -303,8 +303,8 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
                   </pre>
 									</div>
 									<div align="left">
-										<input type="checkbox" name="accept" id="accept"><label
-											for="accept" style="color: red;">동의합니다.</label>
+										<input type="checkbox" name="accept" id="accept">
+										<label id="acceptLabel" for="accept" style="color:red;">동의합니다.</label>
 									</div>
 								</td>
 							</tr>
@@ -365,14 +365,22 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				var reader = new FileReader();
 				reader.onload = function(e) {
 					$("#profile").attr("src", e.target.result);
-					$("#profile").css({
-						"border-radius" : "50%"
-					})
+					console.log(e.target.result)
+					$("#profile").css({"border-radius" : "50%"})
 				};
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
 
+		//동의버튼 클릭시 색상 변경
+		$("#accept").click(function(){
+			if($("#accept").prop("checked")) {
+				$("#acceptLabel").css({"color":"green"});
+			} else {
+				$("#acceptLabel").css({"color":"red"});
+			}
+		});
+		
 		// 정규식 검사
 		// 학생 아이디
 		$("#userId").keyup(
