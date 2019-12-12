@@ -135,7 +135,7 @@ public class CounsListServlet extends HttpServlet {
 		
 		//----------------------------------------------------------------------------------------------------
 		
-		
+		System.out.println("allCounsList : " + allCounsList);
 		
 		//성공 실패 실행  작성
 		String page = "";

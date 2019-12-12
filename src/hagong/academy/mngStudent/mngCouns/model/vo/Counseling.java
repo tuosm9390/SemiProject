@@ -19,11 +19,12 @@ public class Counseling {
 	private String couContent;
 	private String couAction;
 	private String couBlack;
+	private int userNo;
 	
 	public Counseling() {}
 	
 	public Counseling(int couNo, String couTitle, Date couDate, int couUserNo, String couType, String couContent,
-			String couAction, String couBlack) {
+			String couAction, String couBlack, int userNo) {
 		super();
 		this.couNo = couNo;
 		this.couTitle = couTitle;
@@ -33,6 +34,7 @@ public class Counseling {
 		this.couContent = couContent;
 		this.couAction = couAction;
 		this.couBlack = couBlack;
+		this.userNo = userNo;
 	}
 
 	public int getCouNo() {
@@ -98,13 +100,25 @@ public class Counseling {
 	public void setCouBlack(String couBlack) {
 		this.couBlack = couBlack;
 	}
+	
+	
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
 
 	@Override
 	public String toString() {
 		return "Counseling [couNo=" + couNo + ", couTitle=" + couTitle + ", couDate=" + couDate + ", couUserNo="
 				+ couUserNo + ", couType=" + couType + ", couContent=" + couContent + ", couAction=" + couAction
-				+ ", couBlack=" + couBlack + "]";
+				+ ", couBlack=" + couBlack + ", userNo=" + userNo + "]";
 	}
+
+	
 	
 	
 	
