@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.ws.api.server.Module;
 
+import hagong.academy.mngAdmin.mngLevel.model.service.MngLevelService;
 import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
 
 /**
@@ -132,7 +133,7 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		m.setpReceipt(pReceipt);
 		m.setsReceipt(sReceipt);
 		
-		
+		int result = new MngLevelService().updateMngLevel(m);
 		
 		
 		

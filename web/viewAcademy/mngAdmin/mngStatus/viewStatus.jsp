@@ -72,8 +72,6 @@ int in = (int)Math.round((status.getInInternet()/(double)sum)*100);
 int pi = (int)Math.round((status.getInPicket()/(double)sum)*100);
 int pc = (int)Math.round((status.getInPcard()/(double)sum)*100);
 int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
-
-
 %>
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 <%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>/ --%>
@@ -149,8 +147,8 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {width:500, height:300},
-			'maxValue' : 10,
-			'increment' : 1
+			'maxValue' : <%=status.getAllStudent1()%>,
+			'increment' : 10
 		};
 
 		Nwagon.chart(options);
