@@ -1,3 +1,4 @@
+
 package hagong.academy.commonMenu.notice.model.service;
 
 import java.sql.Connection;
@@ -19,23 +20,71 @@ public class NoticeService {
 		return list;
 	}
 
-	public Notice insertNotice(Notice n) {
+	public Notice selectOne(int num) {
 
 		Connection con = getConnection();
 		
-		int result = new NoticeDao().insertNotice(con, n);
+		int result = 0;
 		
-		if(result > 0) {
-			commit(con);
-		}else {
-			rollback(con);
+		Notice n = new NoticeDao().selectOne(con, num);
+		
+		if(n != null) {
+			result = new NoticeDao().updateCount(con, n.getNno());
+					
+			if(result > 0) {
+				commit(con);
+			}else {
+				rollback(con);
+			}
 		}
 		
 		close(con);
 		
-		return result;
+		return n;
 	}
+
+//	public Notice insertNotice(Notice n) {
+//
+//		Connection con = getConnection();
+//		
+//		int result = new NoticeDao().insertNotice(con, n);
+//		
+//		if(result > 0) {
+//			commit(con);
+//		}else {
+//			rollback(con);
+//		}
+//		
+//		close(con);
+//		
+//		return result;
+//	}
+	
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
