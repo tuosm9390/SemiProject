@@ -15,13 +15,10 @@ public class Student{
 	private String name; // 이름
 	private String userId; // 아이디
 	private String userPwd; // 비밀번호
-	private String birth; // 생년월일
+	private Date birth; // 생년월일
 	private String phone; // 전화번호
 	private String address; // 주소
 	private String email; // 이메일
-	private int refUno; // 학부모 회원번호
-	private Date enrollDate; // 등록일자
-	private Date leaveDate; // 탈퇴일자
 	private String status; // 재원여부
 	private String inflowPath; // 유입경로
 	private String userType; // 회원구분
@@ -34,6 +31,7 @@ public class Student{
 	private String major; // 희망학과
 
 	// 학부모 테이블
+	private int refUno; // 학부모 회원번호
 	private String refName; // 학부모 이름
 	private String refId; // 학부모 아이디
 	private String refPhone; // 학부모 전화번호
@@ -41,8 +39,8 @@ public class Student{
 	public Student() {
 	}
 
-	public Student(int userNo, String name, String userId, String userPwd, String birth, String phone, String address,
-			String email, int refUno, Date enrollDate, Date leaveDate, String status, String inflowPath,
+	public Student(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
+			String email, int refUno, String status, String inflowPath,
 			String userType, String school, int grade, String track, String college, String major, String refName,
 			String refId, String refPhone) {
 		super();
@@ -55,8 +53,6 @@ public class Student{
 		this.address = address;
 		this.email = email;
 		this.refUno = refUno;
-		this.enrollDate = enrollDate;
-		this.leaveDate = leaveDate;
 		this.status = status;
 		this.inflowPath = inflowPath;
 		this.userType = userType;
@@ -102,11 +98,11 @@ public class Student{
 		this.userPwd = userPwd;
 	}
 
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
@@ -140,22 +136,6 @@ public class Student{
 
 	public void setRefUno(int refUno) {
 		this.refUno = refUno;
-	}
-
-	public Date getEnrollDate() {
-		return enrollDate;
-	}
-
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	}
-
-	public Date getLeaveDate() {
-		return leaveDate;
-	}
-
-	public void setLeaveDate(Date leaveDate) {
-		this.leaveDate = leaveDate;
 	}
 
 	public String getStatus() {
@@ -250,10 +230,8 @@ public class Student{
 	public String toString() {
 		return "Student [userNo=" + userNo + ", name=" + name + ", userId=" + userId + ", userPwd=" + userPwd
 				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", refUno="
-				+ refUno + ", enrollDate=" + enrollDate + ", leaveDate=" + leaveDate + ", status=" + status
-				+ ", inflowPath=" + inflowPath + ", userType=" + userType + ", school=" + school + ", grade=" + grade
-				+ ", track=" + track + ", college=" + college + ", major=" + major + ", refName=" + refName + ", refId="
-				+ refId + ", refPhone=" + refPhone + "]";
+				+ refUno + ", status=" + status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", school="
+				+ school + ", grade=" + grade + ", track=" + track + ", college=" + college + ", major=" + major
+				+ ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone + "]";
 	}
-
 }

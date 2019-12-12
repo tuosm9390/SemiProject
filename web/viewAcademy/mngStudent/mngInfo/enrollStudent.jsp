@@ -106,6 +106,9 @@ section button:hover {
 							<tr>
 								<td><li>ID</li></td>
 								<td><input type="text" placeholder="ID 입력" id="userId" name="userId"><br>
+								<input type="hidden" name="userPwd" value="0000">
+								<input type="hidden" name="userType" value="student">
+								<input type="hidden" name="status" value="y">
 								<span id="useridSpan" class="redText"></span></td>
 							</tr>
 							<tr>
@@ -127,21 +130,21 @@ section button:hover {
 							<tr>
 								<td><li>학교 / 학년</li></td>
 								<td><input type="text" name="school" placeholder="학교 이름 입력"
-									style="width: 120px;"> &nbsp; <select name="grade"
-									style="width: 120px;">
-										<option value="1">중학교 1학년</option>
-										<option value="2">중학교 2학년</option>
-										<option value="3">중학교 3학년</option>
-										<option value="4">고등학교 1학년</option>
-										<option value="5">고등학교 2학년</option>
-										<option value="6">고등학교 3학년</option>
+									style="width: 120px;"> &nbsp;
+								<select name="grade" style="width: 120px;">
+									<option value="중학교 1학년" selected>중학교 1학년</option>
+									<option value="중학교 2학년">중학교 2학년</option>
+									<option value="중학교 3학년">중학교 3학년</option>
+									<option value="고등학교 1학년">고등학교 1학년</option>
+									<option value="고등학교 2학년">고등학교 2학년</option>
+									<option value="고등학교 3학년">고등학교 3학년</option>
 								</select></td>
 							</tr>
 							<tr>
 								<td rowspan="2" style="text-align: center !important;"><li>유입
 										경로</li>
 								<br> <select name="inflowPath" style="width: 100px;">
-										<option value="friend">친구소개</option>
+										<option value="friend" selected>친구소개</option>
 										<option value="internet">인터넷</option>
 										<option value="picket">전단지</option>
 										<option value="pcard">플래카드</option>
@@ -149,9 +152,11 @@ section button:hover {
 								</select></td>
 								<td><li>계열</li></td>
 								<td><select name="track">
-										<option>인문</option>
-										<option>자연</option>
-										<option>예체능</option>
+										<option value="lib" selected>인문계</option>
+										<option value="nat">자연계</option>
+										<option value="amp">예체능</option>
+										<option value="ids">실업계</option>
+										<option value="etc">기타</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -304,12 +309,12 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 								</td>
 							</tr>
 						</table>
-					</form>
-					<button id="okbtn" type="submit" onclick="doEnroll();"
+					<button id="okbtn" type="button" onclick="doEnroll();"
 						style="float: right; width: 80px; height: 30px; margin-left: 10px;">등록</button>
 					<button id="cancelbtn"
 						onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp'"
 						style="float: right; width: 80px; height: 30px;">취소</button>
+					</form>
 				</div>
 			</fieldset>
 		</div>
@@ -451,19 +456,18 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						$.ajax({
 							url : "/hagong/idCheck.cm",
 							type : "post",
+							async : false,
 							data : {
 								userId : $("#refId").val()
 							},
 							success : function(data) {
 								if (data === "success") {
-									$("#refidSpan").removeClass('redText')
-											.addClass('greenText');
-									$("#refidSpan").text("사용 가능한 ID 입니다.");
+									$("#refidSpan").removeClass('greenText').addClass('redText');
+									$("#refidSpan").text("존재하지 않는 ID입니다.");
 								} else {
-									$("#refidSpan").removeClass('greenText')
-											.addClass('redText');
-									$("#refidSpan").text(
-											"이미 사용중인 ID 입니다. 다시 설정해 주세요!");
+									console.log(userId);
+									$("#refidSpan").removeClass('redText').addClass('greenText');
+									$("#refidSpan").text("존재하는 ID 입니다.");
 								}
 							},
 							error : function() {
@@ -523,8 +527,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				alert("개인정보 제공 및 활용에 동의해 주세요.");
 				return false;
 			} else {
-				alert("된다!");
-				return true;
 				$("#enrollStudentForm").submit();
 			}
 		};

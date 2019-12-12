@@ -24,22 +24,6 @@ public class StudentDao {
 		}
 	}
 
-	public int insertStudent(Connection con, Student s) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		String query = prop.getProperty("insertStudent");
-
-		try {
-			pstmt = con.prepareStatement(query);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
 	public int insertMember(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -48,9 +32,45 @@ public class StudentDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-
+			pstmt.setString(1, s.getName());
+			pstmt.setString(2, s.getUserId());
+			pstmt.setString(3, s.getUserPwd());
+			pstmt.setDate(4, s.getBirth());
+			pstmt.setString(5, s.getPhone());
+			pstmt.setString(6, s.getAddress());
+			pstmt.setString(7, s.getEmail());
+			pstmt.setString(8, s.getRefId());
+			pstmt.setString(9, s.getInflowPath());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertStudent(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertStudent");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, s.getSchool());
+			pstmt.setInt(2, s.getGrade());
+			pstmt.setString(3, s.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 
 		return result;
@@ -64,9 +84,16 @@ public class StudentDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-
+			
+			pstmt.setString(1, s.getUserId());
+			pstmt.setString(2, s.getCollege());
+			pstmt.setString(3, s.getMajor());
+			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 
 		return result;
