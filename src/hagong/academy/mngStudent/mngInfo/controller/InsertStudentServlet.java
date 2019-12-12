@@ -38,10 +38,9 @@ public class InsertStudentServlet extends HttpServlet {
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
 		String tel3 = request.getParameter("tel3");
-		String phone = tel1 + tel2 + tel3;								//전화번호
+		String phone = tel1 + "-" + tel2 + "-" + tel3;								//전화번호
 		String address = request.getParameter("address");				//주소
 		String email = request.getParameter("email");					//이메일
-		String refUno = request.getParameter("refUno");
 		String refName = request.getParameter("refName");				//학부모이름
 		String refId = request.getParameter("refId");					//학부모아이디
 		String reftel1 = request.getParameter("reftel1");
@@ -78,13 +77,22 @@ public class InsertStudentServlet extends HttpServlet {
 		s.setStatus(status);
 		s.setUserType(userType);
 		
-		System.out.println(s.toString());
-		int result = new StudentService().insertStudent(s);
+		//학부모 번호 찾기
+		int refUno = new StudentService().findRefUno(refId);
+		s.setRefUno(refUno);
 		
+		System.out.println(s.toString());
+		int result = new StudentService().insertMember(s);
+		
+		String page = "";
 		if(result > 0) {
 			System.out.println("학생 정보 등록 성공!");
+			response.sendRedirect("/hagong/alist.info");
 		} else {
 			System.out.println("학생 정보 등록 실패!");
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "InsertStudentFail");
+			request.getRequestDispatcher(page).forward(request, response);
 		}
 		
 		

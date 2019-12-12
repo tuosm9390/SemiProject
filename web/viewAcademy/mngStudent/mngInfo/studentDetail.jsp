@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+<%
+	Student s = (Student) request.getAttribute("s");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +77,7 @@ h2{
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
 					width: 16%; height: 80px; font-family:'Do Hyeon'">
-		<legend align="center"><h1>　박상준　</h1></legend>
+		<legend align="center"><h1>　<%= s.getName() %>　</h1></legend>
 	</fieldset>
 	</div>
 		<!-- 학생 정보 -->
