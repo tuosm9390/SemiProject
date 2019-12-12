@@ -1,5 +1,6 @@
 package hagong.academy.mngStaff.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -14,7 +15,9 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import hagong.academy.mngStaff.model.service.StaffService;
 import hagong.academy.mngStaff.model.vo.Staff;
+import hagong.academy.mngStaff.model.vo.StaffFile;
 import hagong.common.RenameFilePolicy;
 
 @WebServlet("/ainsert.staff")
@@ -49,23 +52,60 @@ public class InsertStaffServlet extends HttpServlet {
 				}
 				originFiles.add(multiRequest.getOriginalFileName(name));
 			}
-		
+			
 			String userId = multiRequest.getParameter("userId");
+			String name = multiRequest.getParameter("userName");
 			String userPwd = multiRequest.getParameter("userPwd");
 			java.sql.Date birth = java.sql.Date.valueOf(multiRequest.getParameter("birth"));
-			String phone = multiRequest.getParameter("tel1") + multiRequest.getParameter("tel2") + multiRequest.getParameter("tel3");
+			String phone = multiRequest.getParameter("tel1") + "-" + multiRequest.getParameter("tel2") + "-" + multiRequest.getParameter("tel3");
 			String dept = multiRequest.getParameter("subject");
 			String email = multiRequest.getParameter("email");
 			String address = multiRequest.getParameter("address");
-			//부서명 부분부터 고쳐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 			Staff staff = new Staff();
 			staff.setUserId(userId);
+			staff.setName(name);
 			staff.setUserPwd(userPwd);
 			staff.setBirth(birth);
 			staff.setPhone(phone);
 			staff.setDept(dept);
 			staff.setEmail(email);
 			staff.setAddress(address);
+			
+			ArrayList<StaffFile> fileList = new ArrayList<StaffFile>();
+			
+			for(int i = 0; i < originFiles.size(); i++) {
+				StaffFile staffFile = new StaffFile();
+				staffFile.setOriginName(originFiles.get(i));
+				staffFile.setFilePath(savePath);
+				
+				String type = saveFiles.get(i).substring(0, 3);
+				String saveName = saveFiles.get(i).substring(3);
+				staffFile.setChangeName(saveName);
+				if(type.equals("img")) {
+					staffFile.setFileType("PROFILE");
+				} else if(type.equals("doc")) {
+					staffFile.setFileType("DOC");
+				} else if(type.equals("pay")) {
+					staffFile.setFileType("ASSIGN");
+				}
+				
+				fileList.add(staffFile);
+			}
+			
+			int result = new StaffService().insertStaff(staff, fileList);
+			
+			if(result > 0) {
+				//response.sendRedirect(request.getContextPath() + "/alist.staff");
+				response.sendRedirect(request.getContextPath() + "/viewAcademy/mnfStaff/staffList.jsp");
+			} else {
+				for(int i = 0; i < saveFiles.size(); i++) {
+					File failedFile = new File(savePath + saveFiles.get(i));
+					failedFile.delete();
+				}
+				request.setAttribute("errorCode", "insertStaffFail");
+				request.getRequestDispatcher("viewAcademy/common/commonError.jsp").forward(request, response);
+			}
 		}
 	}
 

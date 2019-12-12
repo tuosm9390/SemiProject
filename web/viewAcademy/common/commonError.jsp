@@ -38,6 +38,20 @@
 			});
 		});
 	</script>
+	
+	<% }else if(errorCode == "insertStaffFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "직원정보 등록 실패",
+				text: "직원정보 등록에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/mngStaff/staffList.jsp";
+			});
+		});
+	</script>
 	<% } %>
 </body>
 </html>

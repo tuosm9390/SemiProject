@@ -146,14 +146,14 @@ fieldset {
 							<td colspan="2">
 								<select name="subject" id="subject">
 									<option value="select" hidden selected>담당업무 선택</option>
-									<option value="korea">국어</option>
-									<option value="math">수학</option>
-									<option value="english">영어</option>
-									<option value="social">사회탐구</option>
-									<option value="science">과학탐구</option>
-									<option value="foreign">제2외국어</option>
-									<option value="desk">행정</option>
-									<option value="cram">입시</option>
+									<option value="KOR">국어</option>
+									<option value="MATH">수학</option>
+									<option value="ENG">영어</option>
+									<option value="SOCIAL">사회탐구</option>
+									<option value="SCIENCE">과학탐구</option>
+									<option value="FOREIGN">제2외국어</option>
+									<option value="DESK">행정</option>
+									<option value="APPLY">입시</option>
 								</select>
 							</td>
 						</tr>

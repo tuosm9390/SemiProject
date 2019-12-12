@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor*/
 public class StaffFile {
 	
+	private int userNo;
 	private int fileNo;
 	private String fileType;
 	private Date docDate;
@@ -25,9 +26,10 @@ public class StaffFile {
 		super();
 	}
 
-	protected StaffFile(int fileNo, String fileType, Date docDate, String originName, String changeName,
+	protected StaffFile(int userNo, int fileNo, String fileType, Date docDate, String originName, String changeName,
 			String filePath, Date uploadDate, String fileStatus) {
 		super();
+		this.userNo = userNo;
 		this.fileNo = fileNo;
 		this.fileType = fileType;
 		this.docDate = docDate;
@@ -36,6 +38,14 @@ public class StaffFile {
 		this.filePath = filePath;
 		this.uploadDate = uploadDate;
 		this.fileStatus = fileStatus;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public int getFileNo() {
@@ -104,9 +114,9 @@ public class StaffFile {
 
 	@Override
 	public String toString() {
-		return "StaffFile [fileNo=" + fileNo + ", fileType=" + fileType + ", docDate=" + docDate + ", originName="
-				+ originName + ", changeName=" + changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate
-				+ ", fileStatus=" + fileStatus + "]";
+		return "StaffFile [userNo=" + userNo + ", fileNo=" + fileNo + ", fileType=" + fileType + ", docDate=" + docDate
+				+ ", originName=" + originName + ", changeName=" + changeName + ", filePath=" + filePath
+				+ ", uploadDate=" + uploadDate + ", fileStatus=" + fileStatus + "]";
 	}
-	
+
 }
