@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
+import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 
 public class StudentDao {
 	private Properties prop = new Properties();
@@ -197,6 +198,86 @@ public class StudentDao {
 		}
 				
 		return list;
+	}
+
+	public int selectUserNo(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int studentNo = 0;
+		
+		String query = prop.getProperty("selectUserNo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, s.getUserId());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				studentNo = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return studentNo;
+	}
+
+	public int insertFile(Connection con, ArrayList<StudentProfile> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertFile");
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getOriginName());
+				pstmt.setString(2, fileList.get(i).getChangeName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, fileList.get(i).getUserNo());
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Student selectStudent(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Student s = null;
+		
+		String query = prop.getProperty("selectStudent");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				s = new Student();
+				
+				s.setName(rset.getString("NAME"));
+				s.setSchool(rset.getString("SCHOOL"));
+				s.setGrade(rset.getInt("GRADE"));
+				s.setEmail(rset.getString("EMAIL"));
+				s.setPhone(rset.getString("PHONE"));
+				s.setRefPhone(rset.getString("REF_PHONE"));
+				s.setMajor(rset.getString("MAJOR"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return s;
 	}
 
 }

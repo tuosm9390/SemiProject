@@ -51,7 +51,7 @@ public class MngLevel implements java.io.Serializable{
 	private String sSatisfy ;
 	private String pReceipt ;
 	private String sReceipt ;
-	
+	 
 	public MngLevel() {}
 
 	public MngLevel(String modifyInfo1, String modifyInfo2, String modifyInfo3, String info1, String info2,

@@ -59,6 +59,20 @@ public class NoticeService {
 //		return result;
 //	}
 	
+	public int updateNotice(Notice n) {
+		Connection con = getConnection();
+		
+		int result = new NoticeDao().updateNotice(con, n);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
 	
 	
 	

@@ -5,8 +5,10 @@ import static hagong.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import hagong.academy.mngStaff.model.dao.StaffDao;
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
+import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 public class StudentService {
 
 	public int findRefUno(String refId) {
@@ -15,19 +17,27 @@ public class StudentService {
 		int refUno = new StudentDao().refUno(con, refId);
 		System.out.println("refUno : " + refUno);
 		
+		close(con);
+		
 		return refUno;
 	}
 	
-	public int insertMember(Student s) {
+	public int insertMember(Student s, ArrayList<StudentProfile> fileList) {
 		Connection con = getConnection();
 		
 		int result = new StudentDao().insertMember(con, s);
 		
 		System.out.println("result : " + result);
 		if (result > 0) {
+			int studentNo = new StudentDao().selectUserNo(con, s); 
+			s.setUserNo(studentNo);
+			System.out.println("studentNo : " + studentNo);
+			for(int i = 0; i < fileList.size(); i++) {
+				fileList.get(i).setUserNo(studentNo);
+			}
+			
 			commit(con);
 			int result1 = new StudentDao().insertStudent(con, s);
-			
 			System.out.println("result1 : " + result1);
 			if(result1 > 0) {
 				commit(con);
@@ -36,6 +46,13 @@ public class StudentService {
 				System.out.println("result2 : " + result2);
 				if(result2 > 0) {
 					commit(con);
+					int resultFile = new StudentDao().insertFile(con, fileList);
+					
+					if(resultFile > 0) {
+						commit(con);
+					} else {
+						rollback(con);
+					}
 				} else {
 					rollback(con);
 				}
@@ -106,6 +123,15 @@ public class StudentService {
 		close(con);
 		
 		return list;
+	}
+
+	public Student selectStudent(String userId) {
+		Connection con = getConnection();
+		Student s = new StudentDao().selectStudent(con, userId);
+		
+		close(con);
+		
+		return s;
 	}
 
 }

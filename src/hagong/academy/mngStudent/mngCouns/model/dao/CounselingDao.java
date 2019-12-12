@@ -268,13 +268,13 @@ public class CounselingDao {
 				mc.setCouTitle(rset.getString("COU_TITLE"));
 				mc.setCouDate(rset.getDate("COU_DATE"));
 				mc.setCouUserNo(rset.getInt("COU_USER_NO"));
-				mc.setUserNo(rset.getInt("C.USER_NO"));
+				mc.setUserNo(rset.getInt("USER_NO"));
 				mc.setCouType(rset.getString("COU_TYPE"));
 				mc.setCouContent(rset.getString("COU_CONTENT"));
 				mc.setCouAction(rset.getString("COU_ACTION"));
 				mc.setCouBlack(rset.getString("COU_BLACK"));
-				mc.setUserName(rset.getString("NAME_1"));
-				mc.setCouUserName(rset.getString("NAME"));
+				mc.setUserName(rset.getString("USER_NAME"));
+				mc.setCouUserName(rset.getString("COU_NAME"));
 				
 				detailCouns.add(mc);
 			}

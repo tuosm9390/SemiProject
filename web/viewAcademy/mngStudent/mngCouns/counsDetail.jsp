@@ -238,7 +238,7 @@ font-size:18px;
 							class="bbot"></span>
 					</div>
 			</a>
-				<form class="accordion__content" method="post">
+				<form id="detail<%= i %>" class="accordion__content" method="post">
 					<div class="detailArea">
 						<div class="dArea dArea1">
 							<div class="dCtn consTitle">
@@ -248,11 +248,11 @@ font-size:18px;
 							<div class="names">
 								<div class="dCtn tName">
 									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="<%= loginUser.getName() %>" readonly>
+									<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getCouUserName() %>" readonly>
 								</div>
 								<div class="dCtn sName">
 									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
+									<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getUserName() %>" readonly>
 								</div>
 							</div>
 
@@ -260,276 +260,68 @@ font-size:18px;
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="<%= detailCounsList.get(i).getCouDate() %>" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
 								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
+									<option value="SCORE">성적</option>
+									<option value="LIFE">학원생활</option>
+									<option value="PARENT">학부모</option>
+									<option value="APPLY">진학</option>
+									<option value="ETC">기타</option>
 								</select>
+								<script>
+									$(function(){
+										var value = '<%= detailCounsList.get(i).getCouType() %>';
+										$(".consCate option").each(function(){
+											if($(this).val() == value){
+												$(this).prop("selected", true);
+											}
+										});
+									})
+								</script>
 							</div>
 						</div>
 						<div class="dArea dArea3">
 							<div class="dCtn content">
 								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
+								<textarea class="inputCons" name="consreq" readonly><%= detailCounsList.get(i).getCouContent() %></textarea>
 							</div>
 							<div class="dCtn answer">
 								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
+								<textarea class="inputCons" name="consres" readonly><%= detailCounsList.get(i).getCouAction() %></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="btnArea">
 						<button class="bottomBtn">삭제</button>
-						<button class="bottomBtn">수정</button>
+						<button type="button" class="bottomBtn" onclick="updateCouns(<%= i %>);">수정</button>
 						<button class="updateCons">수정완료</button>
 					</div> <!-- btnArea -->
 				</form>
 				<script>
+					function updateCouns(i){
+						console.log(i);
+						console.log($("#detail" + i + " input").val());
+						$("#detail" + i + " input").eq(0).attr("readonly", false);
+						$("#detail" + i + " textarea").attr("readonly", false);
+						
+						$(".bottomBtn");
+					}
 					function updateCons(){
 						$(".updateCons").show();
 					}
 				</script>
 			</li>
 			<%} %>
-<!-- 			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)">수업 성적 관련 상담(1)
-					<div class="bmenu x7">
-						<span class="btop"></span><span class="bmid"></span><span
-							class="bbot"></span>
-					</div>
-			</a>
-				<form class="accordion__content" method="post">
-					<div class="detailArea">
-						<div class="dArea dArea1">
-							<div class="dCtn consTitle">
-								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
-							</div>
-							<div class="names">
-								<div class="dCtn tName">
-									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
-								</div>
-								<div class="dCtn sName">
-									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
-							</div>
-							<div class="dCtn category">
-								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
-								</select>
-							</div>
-						</div>
-						<div class="dArea dArea3">
-							<div class="dCtn content">
-								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
-							</div>
-							<div class="dCtn answer">
-								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
-						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
-					</div> btnArea
-				</form></li>
-			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)">수업 성적 관련 상담(1)
-					<div class="bmenu x7">
-						<span class="btop"></span><span class="bmid"></span><span
-							class="bbot"></span>
-					</div>
-			</a>
-				<form class="accordion__content" method="post">
-					<div class="detailArea">
-						<div class="dArea dArea1">
-							<div class="dCtn consTitle">
-								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
-							</div>
-							<div class="names">
-								<div class="dCtn tName">
-									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
-								</div>
-								<div class="dCtn sName">
-									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
-							</div>
-							<div class="dCtn category">
-								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
-								</select>
-							</div>
-						</div>
-						<div class="dArea dArea3">
-							<div class="dCtn content">
-								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
-							</div>
-							<div class="dCtn answer">
-								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
-						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
-					</div> btnArea
-				</form></li>
-			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)">수업 성적 관련 상담(1)
-					<div class="bmenu x7">
-						<span class="btop"></span><span class="bmid"></span><span
-							class="bbot"></span>
-					</div>
-			</a>
-				<form class="accordion__content" method="post">
-					<div class="detailArea">
-						<div class="dArea dArea1">
-							<div class="dCtn consTitle">
-								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
-							</div>
-							<div class="names">
-								<div class="dCtn tName">
-									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
-								</div>
-								<div class="dCtn sName">
-									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
-							</div>
-							<div class="dCtn category">
-								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
-								</select>
-							</div>
-						</div>
-						<div class="dArea dArea3">
-							<div class="dCtn content">
-								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
-							</div>
-							<div class="dCtn answer">
-								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
-						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
-					</div> btnArea
-				</form></li>
-			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)">수업 성적 관련 상담(1)
-					<div class="bmenu x7">
-						<span class="btop"></span><span class="bmid"></span><span
-							class="bbot"></span>
-					</div>
-			</a>
-				<form class="accordion__content" method="post">
-					<div class="detailArea">
-						<div class="dArea dArea1">
-							<div class="dCtn consTitle">
-								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
-							</div>
-							<div class="names">
-								<div class="dCtn tName">
-									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
-								</div>
-								<div class="dCtn sName">
-									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
-								</div>
-							</div>
-						</div>
-						<div class="dArea dArea2">
-							<div class="dCtn consDate"> 
-								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-12-01" readonly>
-							</div>
-							<div class="dCtn category">
-								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
-								</select>
-							</div>
-						</div>
-						<div class="dArea dArea3">
-							<div class="dCtn content">
-								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
-							</div>
-							<div class="dCtn answer">
-								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="btnArea">
-						<a href="javascript: void(0);" class="updateBtn" onclick="updateCons();">수정하기</a>
-						<button class="updateCons">수정완료</button>
-						<button>삭제하기</button>
-					</div> btnArea
-				</form></li> -->
 		</ul>
 		</div>
 	</div>
 	</section>
 
 	<script>
+		//아코디언 기능 스크립트
 		$(function() {
 			$('.accordion').find('.accordion__title').click(function() {
 				// Adds active class
