@@ -52,6 +52,20 @@
 			});
 		});
 	</script>
+	
+	<% }else if(errorCode == "staffListFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "직원정보 목록 조회 실패",
+				text: "직원목록 조회에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+			});
+		});
+	</script>
 	<% } %>
 </body>
 </html>

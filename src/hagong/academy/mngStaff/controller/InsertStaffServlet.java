@@ -15,7 +15,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import hagong.academy.mngStaff.model.service.StaffService;
+import hagong.academy.mngStaff.model.service.InsertStaffService;
 import hagong.academy.mngStaff.model.vo.Staff;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 import hagong.common.RenameFilePolicy;
@@ -30,10 +30,12 @@ public class InsertStaffServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(ServletFileUpload.isMultipartContent(request)) {
-			int maxSize = 1024 * 1024 * 10;
+			int maxSize = 1024 * 1024 * 100;
 
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String savePath = root + "uploadFiles/";
+			
+			System.out.println(savePath);
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new RenameFilePolicy());
 			ArrayList<String> saveFiles = new ArrayList<String>();
@@ -93,11 +95,10 @@ public class InsertStaffServlet extends HttpServlet {
 				fileList.add(staffFile);
 			}
 			
-			int result = new StaffService().insertStaff(staff, fileList);
+			int result = new InsertStaffService().insertStaff(staff, fileList);
 			
 			if(result > 0) {
-				//response.sendRedirect(request.getContextPath() + "/alist.staff");
-				response.sendRedirect(request.getContextPath() + "/viewAcademy/mnfStaff/staffList.jsp");
+				response.sendRedirect(request.getContextPath() + "/alist.staff");
 			} else {
 				for(int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
