@@ -147,7 +147,7 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {width:500, height:300},
-			'maxValue' : <%=status.getAllStudent1()%>,
+			'maxValue' : <%=status.getAllStudent1()*0.8%>,
 			'increment' : 10
 		};
 
