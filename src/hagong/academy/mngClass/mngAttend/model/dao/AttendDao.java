@@ -191,17 +191,14 @@ public class AttendDao {
 				HashMap<String, Object> hmap = new HashMap<String, Object>();
 				Member m = new Member();
 				Student s = new Student();
-				Attendance a = new Attendance();
 				
 				m.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
 				s.setGrade(rset.getInt("GRADE"));
-				m.setPhone(rset.getString("PHONE"));
-				a.setAttDate(rset.getDate("ATT_DATE"));
+				m.setPhone(rset.getString("PHONE"));				
 				
 				hmap.put("member", m);
 				hmap.put("student", s);
-				hmap.put("attendance", a);
 				
 				list.add(hmap);
 			}
@@ -212,6 +209,40 @@ public class AttendDao {
 			close(pstmt);
 			close(rset);
 		}
+		
+		return list;
+	}
+
+	public ArrayList<Attendance> selectAttendList(Connection con, String name) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Attendance> list = null;
+		
+		String query = prop.getProperty("selectAttendList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, name);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Attendance>();
+			while(rset.next()) {
+				Attendance a = new Attendance();
+				
+				a.setAttDate(rset.getDate("ATT_DATE"));
+				a.setAttStatus(rset.getString("ATT_STATUS"));
+				
+				list.add(a);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
 		
 		return list;
 	}

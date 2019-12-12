@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import hagong.academy.mngClass.mngAttend.model.service.AttendService;
 
 
-@WebServlet("/selectStudent.attend")
+@WebServlet("/alistStudent.attend")
 public class SelectStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,14 +25,13 @@ public class SelectStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String classNum = request.getParameter("classNum");
 		
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-		
-		list = new AttendService().selectStudent(classNum);
+		ArrayList<HashMap<String, Object>> list = new AttendService().selectStudent(classNum);
 		
 		String page = "";
 		if(list != null) {
-			page = "/viewAcademy/mngClass/mngAttend/attendDetail.jsp";
+			page = "alistAttend.attend";
 			request.setAttribute("studentList", list);
+			request.getRequestDispatcher(page).forward(request, response);
 		}else {
 			System.out.println("강좌를 듣는 학생 리스트 조회 실패!");
 		}

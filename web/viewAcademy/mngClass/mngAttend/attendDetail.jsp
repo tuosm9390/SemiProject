@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
 <% 
 	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
 	ArrayList<Member> m = new ArrayList<>();
+	ArrayList<Student> s = new ArrayList<>();
+	ArrayList<Attendance> a = new ArrayList<>();
 	
 	for(int i=0; i<list.size(); i++) {
 		HashMap hmap = list.get(i);
-		Member mb = (Member) hmap.get("member");
-		Student s = (Student) hmap.get("student");
+		m.add((Member) hmap.get("member"));
+		s.add((Student) hmap.get("student"));
+		a.add((Attendance) hmap.get("attendance"));
 	}
+	
 	
 %>
 <!DOCTYPE html>
@@ -148,14 +152,21 @@
                   <th>12/<%=i+1%></th>
                   <% } %>
                </tr>
-               	<% for(int i=0; i<10; i++) { %>
+               	<% for(int i=0; i<list.size(); i++) { %>
                	<tr>
                   <td><input type="checkbox" id="checkOne"></td>
-                  <td><%= %></td>
-                  <td id="infoCol">kh중학교<br>4학년<br>010-4444-4444</td>
-                  <% for(int k=0; k<dayOfMonth; k++) { %>
+                  <td><%=m.get(i).getName()%></td>
+                  <td id="infoCol"><%=s.get(i).getSchool()%><br><%=s.get(i).getGrade()%>학년<br><%=m.get(i).getPhone()%></td>
+                 <%--  <%	DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
+                  		Date attendDate = a.get(i).getAttDate();
+                 		String date = sdFormat.format(attendDate);
+
+                  		for(int k=0; k<dayOfMonth; k++) { 
+                  		if( a.get(i).getAttDate() %><%) {%>
+					<%}else { %>                  
                   <td style="padding:20px"><a id="reasonWrite">결석</a></td>
-                  <% } %>
+                  <% }
+                  	} %> --%>
                </tr>
                <% } %>
              </table>

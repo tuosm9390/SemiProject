@@ -197,7 +197,7 @@
 			}).click(function(){
 				var index = $(this).parent().children().eq(0).text();
 				var classNum = $("#clsNo"+(index-1)).val();
-				location.href="<%=request.getContextPath()%>/selectStudent.attend?classNum="+classNum;
+				location.href="<%=request.getContextPath()%>/alistStudent.attend?classNum="+classNum;
 			});
 			
 			$(".searchBtn").click(function(){
