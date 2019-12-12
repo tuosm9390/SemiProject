@@ -1,4 +1,3 @@
-
 package hagong.academy.commonMenu.notice.model.service;
 
 import java.sql.Connection;

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.notice.model.vo.*"%>
+<%
+	Notice n = (Notice)request.getAttribute("n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,17 +37,17 @@
 				<tr>
 					<td>제목</td>
 					<td style="padding-bottom:1%" colspan="3">
-						<input type="label" size="50" name="title" style="border-radius:5px; border:none;"<%-- value="<%= n.getnTitle() %>" --%> readonly>
+						<input type="label" size="50" name="title" style="border-radius:5px; border:none;" value="<%= n.getnTitle() %>" readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>작성자</td>
 					<td>
-						<input type="label" <%-- value="<%=n.getnWriter() %>" --%> name="writer" style="border-radius:5px; border:none;" readonly>
+						<input type="label" name="writer" style="border-radius:5px; border:none;" value="<%=n.getnAuthor() %>" readonly>
 					</td>
 					<td>작성일</td>
 					<td>
-						<input type="text" name="date" <%-- value="<%= n.getnDate() %>" --%> style="border-radius:5px; border:none;" readonly>
+						<input type="text" name="date" style="border-radius:5px; border:none;" value="<%= n.getnDate() %>" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +55,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<textarea name="content" cols="60" rows="15" style="resize:none; border-radius:5px; border:1px solid lightgray;" readonly>공지사항 내용<%-- <%= n.getnContent() %> --%></textarea>
+						<textarea name="content" cols="60" rows="15" style="resize:none; border-radius:5px; border:1px solid lightgray;" readonly>공지사항 내용 <%= n.getnContent() %></textarea>
 					</td>
 				</tr>
 			</table>

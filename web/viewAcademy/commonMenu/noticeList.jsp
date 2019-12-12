@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.notice.model.vo.*"%>
 <%
@@ -74,9 +73,11 @@
       <script>
       $(function(){
          $("#noticeList td").click(function(){
-        	 var num = $(this).parent().children().eq(0).children().val();
+        	var num = $(this).parent().children().eq(0).text();
         	 
-            location.href='<%=request.getContextPath()%>/selectone.no?num='num;
+        	 console.log(num);
+        	 
+           location.href='<%=request.getContextPath()%>/aselectone.no?num=' + num;
          });
       });
    </script>
