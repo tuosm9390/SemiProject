@@ -40,7 +40,7 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		String info2 = request.getParameter("info2");
 		String info3 = request.getParameter("info3");
 		String purchase1 = request.getParameter("purchase1");
-		String purchase2 = request.getParameter("purchase2");
+		String purchase2 = request.getParameter("purchase2"); 
 		String purchase3 = request.getParameter("purchase3");
 		String counseling1 = request.getParameter("counsel1");
 		String counseling2 = request.getParameter("counsel2");
