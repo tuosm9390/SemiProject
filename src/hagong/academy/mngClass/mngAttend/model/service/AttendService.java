@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import hagong.academy.mngClass.mngAttend.model.dao.AttendDao;
+import hagong.academy.mngClass.mngAttend.model.vo.Attendance;
 import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
 
 public class AttendService {
@@ -35,6 +36,16 @@ public class AttendService {
 		Connection con = getConnection();
 		
 		ArrayList<HashMap<String, Object>> list = new AttendDao().selectStudent(con, classNum);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public ArrayList<Attendance> selectAttendList(String name) {
+		Connection con = getConnection();
+		
+		ArrayList<Attendance> list = new AttendDao().selectAttendList(con, name);
 		
 		close(con);
 		
