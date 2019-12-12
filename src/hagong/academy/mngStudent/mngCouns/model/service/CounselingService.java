@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import hagong.academy.mngStudent.mngCouns.model.dao.CounselingDao;
+import hagong.academy.mngStudent.mngCouns.model.vo.Counseling;
 import hagong.academy.mngStudent.mngCouns.model.vo.MemberCouns;
 
 public class CounselingService {
@@ -61,6 +62,7 @@ public class CounselingService {
 			MemberCouns mc = new CounselingDao().selectUserInfo(con,userId);
 			
 			allCounsList.get(i).setName(mc.getName());
+			allCounsList.get(i).setUserNo(mc.getUserNo());
 		}
 		
 		close(con);
@@ -78,6 +80,10 @@ public class CounselingService {
 		close(con);
 		
 		return counsList;
+	}
+
+	public int insertCouns(Counseling couns) {
+		return 0;
 	}
 
 

@@ -171,8 +171,9 @@ input, select, textarea {
 					</thead>
 					<tbody id="consList">
 					<% for(int i = 0; i < allCounsList.size(); i++) { %>
-						<tr>
-							<td class="user-name"><%= allCounsList.get(i).getName() %></td>
+						<tr id="tr<%= i %>">
+							<td class="user-name"><%= allCounsList.get(i).getName() %>
+							<input id="u<%= i %>" type="hidden" value="<%=allCounsList.get(i).getUserNo() %>"></td>
 							<td><%= allCounsList.get(i).getUserId() %></td>
 							<td class="cons-count"><%= allCounsList.get(i).getCount() %>회</td>
 						<% if(allCounsList.get(i).getCouDate() != null) {%>
@@ -181,7 +182,7 @@ input, select, textarea {
 							<td class="last-cons"> - </td>
 						<% } %>
 							<td class="cons-list"><button onclick="conslist();">상담일지</button></td>
-							<td><button onclick="addCouns();">상담추가</button></td>
+							<td><button onclick="addCouns(<%= i %>);">상담추가</button></td>
 						</tr>
 					<% } %>					
 					</tbody>
@@ -224,17 +225,17 @@ input, select, textarea {
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
 				<h2 align="center" style="font-style:italic">◎ 상담내용 추가 ◎</h2>
-					<form class="accordion__content" method="post">
+					<form class="accordion__content" method="post" action="<%= request.getContextPath()%>/insert.couns">
 						<div class="detailArea" align="left">
 							<div class="dArea dArea1">
 								<div class="dCtn consTitle">
 									<label class="dTit">상담제목</label>
-									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
+									<input name="cTitle" type="text" class="inputCons" value="학원생활 관련 상담(1)">
 								</div>
 							<div class="names">
-															<div class="dCtn consDate"> 
+								<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" id="from" name="from" value="" readonly>
+									<input type="text" class="inputCons" id="from" name="from" value="">
 								</div>
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
@@ -247,11 +248,11 @@ input, select, textarea {
 								</div>
 								<div class="dCtn tName">
 									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="서범수" readonly>
+									<input name="counsName" type="text" class="inputCons" value="<%= loginUser.getName() %>" readonly>
 								</div>
 								<div class="dCtn sName">
 									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="김지원" readonly>
+									<input name="name" id="cName" type="text" class="inputCons" value="" readonly>
 								</div>
 
 							</div>
@@ -271,11 +272,13 @@ input, select, textarea {
 							</div>
 						</div>
 						<div class="btnArea">
-							<button class="cancelbtn"
+							<button class="cancelbtn" type="button" 
 								style="width: 100px; height: 30px;">취소</button>&nbsp;&nbsp;
 							<button class="okbtn"
 								style="width: 100px; height: 30px;">확인</button>
 						</div>
+						<input type="hidden" value="<%= loginUser.getUserNo() %>" name="counsUserNo">
+						<input type="hidden" value="" name="userNo" id="userNo">
 					</form>
 				</div>
 			</div>
@@ -286,7 +289,13 @@ input, select, textarea {
 				function conslist(){
 					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/counsDetail.jsp";					
 				};
-				function addCouns() {
+				function addCouns(i) {
+					console.log(i);
+					var name = $("#tr" + i).children().eq(0).text();
+					var userNo = $("#u" + i).val();
+					$("#userNo").val(userNo);
+					$("#cName").val(name);
+					console.log($("#tr" + i).children().eq(0).text());
 					$("#addlist").css("display","block");
 				};
 				

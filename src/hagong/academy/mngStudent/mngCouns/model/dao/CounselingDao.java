@@ -161,6 +161,7 @@ public class CounselingDao {
 				mc = new MemberCouns();
 				
 				mc.setName(rset.getString("NAME"));
+				mc.setUserNo(rset.getInt(2));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
