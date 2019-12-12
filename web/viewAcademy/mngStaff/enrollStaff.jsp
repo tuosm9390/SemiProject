@@ -12,7 +12,7 @@ section {
 	background-size:cover;
 }
 
-tr {
+tr, td {
 	background: none !important;
 }
 
@@ -121,6 +121,7 @@ fieldset {
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 							<td width="25%"><li>ID</li></td>
 							<td width="30%">
+								<input type="hidden" name="userPwd" value="0000">
 								<input type="text" name="userId" id="userId" placeholder="영소문자, 숫자 조합의 4~12글자">
 								<span id="idSpan" class="redText"></span></td>
 						</tr>
@@ -268,13 +269,15 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						</tr>
 						<tr>
 							<td></td>
-							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button><input type="file" id="payFile" name="payFile" onchange="loadFile(this, 1)"></td>
-							<td><input type="hidden" name="payFiles" id="payFiles" value=""></td>
+							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
+							<td><input type="hidden" id="payFiles"></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button><input type="file" id="docFile" name="docFile" onchange="loadFile(this, 2)"></td>
-							<td><input type="hidden" name="docFiles" id="docFiles" value=""></td>
+							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+								<input type="file" id="docFile1" name="docFile1" onchange="loadFile(this, 2)"></td>
+							<td><input type="hidden" id="docFiles"></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -294,6 +297,9 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		
 		
 		<script>
+			payCnt = 1;
+			docCnt = 1;
+			
 			function loadImg(value) {
 				if(value.files && value.files[0]) {
 					var reader = new FileReader();
@@ -313,11 +319,15 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 					reader.onload = function(e){
 						switch(num) {
 						case 1 :
-							$("#payFiles").attr("value", $("#payFiles").val() + fileName + " * ");
+							payCnt++;
+							$inputFile = $("<input type='file' name='payFile" + payCnt + "' id='payFile" + payCnt + "' onchange='loadFile(this, 1)'>");
+							$("#payFile" + (payCnt - 1)).after($inputFile);
 							$("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
 							break;
 						case 2 :
-							$("#docFiles").attr("value", $("#docFiles").val() + fileName + " * ");
+							docCnt++;
+							$inputFile = $("<input type='file' name='docFile" + docCnt + "' id='docFile" + docCnt + "' onchange='loadFile(this, 2)'>");
+							$("#docFile" + (docCnt - 1)).after($inputFile);
 							$("#docFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
 							break;
 						}
@@ -398,11 +408,11 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				});
 				
 				$("#payBtn").click(function(){
-					$("#payFile").click();
+					$("#payFile" + payCnt).click();
 				});
 				
 				$("#docBtn").click(function(){
-					$("#docFile").click();
+					$("#docFile" + docCnt).click();
 				});
 			});
 				
@@ -420,6 +430,11 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				} else if($("#accept").prop("checked") === false) {
 					alert("개인정보 제공 및 활용에 동의해 주세요.");
 				} else {
+					$("input[type=file]").each(function(){
+						if($(this).val() === "") {
+							$(this).remove();
+						}
+					});
 					$("#insertForm").submit();
 				}
 			}
