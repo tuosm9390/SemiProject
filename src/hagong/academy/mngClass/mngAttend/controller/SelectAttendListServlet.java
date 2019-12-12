@@ -48,10 +48,18 @@ public class SelectAttendListServlet extends HttpServlet {
 		}
 		
 		System.out.println(attendList);
+		String page = "";
+		if(attendList != null) {
+			page = "viewAcademy/mngClass/mngAttend/attendDetail.jsp";
+			request.setAttribute("attendList", attendList);
+			request.setAttribute("studentList", list);
+			request.getRequestDispatcher(page).forward(request, response);
+		}else {
+			System.out.println("출석부 불러오기 실패!");
+		}
 		
 		
-		
-		
+	
 	
 	}
 
