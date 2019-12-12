@@ -1,3 +1,4 @@
+
 package hagong.academy.commonMenu.notice.controller;
 
 import java.io.IOException;
@@ -36,12 +37,14 @@ public class SelectNoticeListServlet extends HttpServlet {
 		String page = "";
 		
 		if(list != null) {
-			page = "viewAacademy/commonMenu/noticeList.jsp";
+			page = "/viewAcademy/commonMenu/noticeList.jsp";
 			request.setAttribute("list", list);
 		}else {
 			page = "viewAcademy/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회 실패!");
 		}
+		
+		System.out.println(list);
 		
 		request.getRequestDispatcher(page).forward(request, response);
 	}

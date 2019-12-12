@@ -1,5 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.notice.model.vo.*"%>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,34 +56,16 @@
                <th width="20%">날짜</th>
                <th width="10%">조회수</th>
             </tr>
+            <% for(int i=0; i < list.size(); i++){ %>
             <tr>
-               <td>1</td>
-               <td>공지1</td>
-               <td>재영</td>
-               <td>2019-12-03</td>
-               <td>23</td>
+            	<td><%= i+1 %></td>
+            	<td><%= list.get(i).getnTitle() %></td>
+            	<td><%= list.get(i).getnAuthor() %></td>
+            	<td><%= list.get(i).getnDate() %></td>
+            	<td><%= list.get(i).getnCount() %></td>
             </tr>
-            <tr>
-               <td>1</td>
-               <td>공지1</td>
-               <td>재영</td>
-               <td>2019-12-03</td>
-               <td>23</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>공지1</td>
-               <td>재영</td>
-               <td>2019-12-03</td>
-               <td>23</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>공지1</td>
-               <td>재영</td>
-               <td>2019-12-03</td>
-               <td>23</td>
-            </tr>
+            
+            <% } %> 
          </table>
       </div>
       <div id="write">
@@ -88,7 +74,9 @@
       <script>
       $(function(){
          $("#noticeList td").click(function(){
-            location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeDetail.jsp';
+        	 var num = $(this).parent().children().eq(0).children().val();
+        	 
+            location.href='<%=request.getContextPath()%>/selectone.no?num='num;
          });
       });
    </script>

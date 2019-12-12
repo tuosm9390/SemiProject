@@ -1,3 +1,4 @@
+
 package hagong.academy.commonMenu.notice.model.dao;
 
 import static hagong.common.JDBCTemplate.close;
@@ -16,6 +17,8 @@ import hagong.academy.commonMenu.notice.model.vo.Notice;
 
 public class NoticeDao {
 
+	private Properties prop = new Properties();
+	
 	public NoticeDao() {
 		String fileName = NoticeDao.class.getResource("/sql/notice/notice-query.properties").getPath();
 		
@@ -34,6 +37,7 @@ public class NoticeDao {
 		
 		String query = prop.getProperty("selectList");
 		
+		try {
 		stmt = con.createStatement();
 		rset = stmt.executeQuery(query);
 		
@@ -44,11 +48,12 @@ public class NoticeDao {
 			n.setNno(rset.getInt("NOT_NO"));
 			n.setnTitle(rset.getString("NOT_TITLE"));
 			n.setnContent(rset.getString("NOT_CONTENT"));
-			n.setnAuthor(rset.getString("AUTHOR"));
+			n.setnAuthor(rset.getString("NAME"));
 			n.setnCount(rset.getInt("COUNT"));
 			n.setnDate(rset.getDate("NOT_DATE"));
 			
 			list.add(n);
+		}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -57,6 +62,7 @@ public class NoticeDao {
 		}
 		
 		return list;
+		
 	}
 
 	public int insertNotice(Connection con, Notice n) {
@@ -82,7 +88,57 @@ public class NoticeDao {
 		return result;
 	}
 
+	public Notice selectOne(Connection con, int num) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice n = null;
+		
+		String query = prop.getProperty("selectone");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new Notice();
+				
+				n.setNno(rset.getInt("NOT_NO"));
+				n.setnTitle(rset.getString("NOT_TITLE"));
+				n.setnContent(rset.getString("NOT_CONTENT"));
+				n.setnAuthor(rset.getString("AUTHOR"));
+				n.setnCount(rset.getInt("COUNT"));
+				n.setnDate(rset.getDate("NOT_DATE"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return n;
+	}
+
+	public int updateCount(Connection con, int nno) {
+
+		
+		
+		return 0;
+	}
+
 }
+
+
+
+
+
+
+
+
 
 
 

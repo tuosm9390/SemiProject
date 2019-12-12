@@ -1,3 +1,4 @@
+
 package hagong.academy.commonMenu.notice.model.vo;
 
 import java.sql.Date;
@@ -20,6 +21,10 @@ public class Notice {
 	private String status;		//삭제여부
 	
 	public Notice() {}
+	
+	
+
+
 
 	public Notice(int nno, String nTitle, String nAuthor, Date nDate, int nCount, String important, String nContent,
 			String status) {
