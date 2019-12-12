@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
+<% ArrayList<Staff> staffList = (ArrayList<Staff>) request.getAttribute("staffList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,14 +75,15 @@ fieldset {
 					<th>담당과목</th>
 				</tr>
 				<%
-					for (int i = 0; i < 10; i++) {
+					for (Staff staff : staffList) {
 				%>
 				<tr>
-					<td>KJH001204</td>
-					<td>김진호</td>
-					<td>20</td>
-					<td>010-0000-7771</td>
-					<td>중등 국어</td>
+					<input type="hidden" value="<%= staff.getUserNo() %>">
+					<td><%= staff.getUserId() %></td>
+					<td><%= staff.getName() %></td>
+					<td><%= staff.getAge() %></td>
+					<td><%= staff.getPhone() %></td>
+					<td><%= staff.getDept() %></td>
 				</tr>
 				<%
 					}
@@ -92,7 +94,7 @@ fieldset {
 		<script>
 		$(function(){
 			$("#enrollPage").click(function(){
-				location.href = "../mngStaff/enrollStaff.jsp";
+				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/enrollStaff.jsp";
 			});
 			
 			$("#enrollExcel").click(function(){
@@ -102,7 +104,8 @@ fieldset {
 			$(".listArea td").mouseenter(function(){
 				$(this).parent().css({"cursor":"pointer"});
 				}).click(function(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStaff/staffDetail.jsp";
+					var userNo = $(this).parent().children("input").val();
+					location.href = "<%=request.getContextPath()%>/adetail.staff?no=" + userNo;
 				});
 			});
 		</script>

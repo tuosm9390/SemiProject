@@ -28,7 +28,8 @@ public class Staff implements java.io.Serializable {
 	private String status;
 	private String userType;
 	
-	private String dept; 
+	private String dept;
+	private int age;
 	
 	
 	public Staff() {
@@ -36,7 +37,7 @@ public class Staff implements java.io.Serializable {
 	}
 
 	public Staff(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
-			String email, Date enrollDate, Date leaveDate, String status, String userType, String dept) {
+			String email, Date enrollDate, Date leaveDate, String status, String userType, String dept, int age) {
 		super();
 		this.userNo = userNo;
 		this.name = name;
@@ -51,6 +52,7 @@ public class Staff implements java.io.Serializable {
 		this.status = status;
 		this.userType = userType;
 		this.dept = dept;
+		this.age = age;
 	}
 
 	public int getUserNo() {
@@ -157,12 +159,20 @@ public class Staff implements java.io.Serializable {
 		this.dept = dept;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Staff [userNo=" + userNo + ", name=" + name + ", userId=" + userId + ", userPwd=" + userPwd + ", birth="
 				+ birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", enrollDate="
 				+ enrollDate + ", leaveDate=" + leaveDate + ", status=" + status + ", userType=" + userType + ", dept="
-				+ dept + "]";
+				+ dept + ", age=" + age + "]";
 	}
-	
+
 }

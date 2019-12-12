@@ -14,12 +14,12 @@ import java.util.Properties;
 import hagong.academy.mngStaff.model.vo.Staff;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 
-public class StaffDao {
+public class InsertStaffDao {
 	
 	private Properties prop = new Properties();
 	
-	public StaffDao() {
-		String fileName = StaffDao.class.getResource("/sql/staff/staff-query.properties").getPath();
+	public InsertStaffDao() {
+		String fileName = InsertStaffDao.class.getResource("/sql/staff/insertStaff-query.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
@@ -152,6 +152,7 @@ public class StaffDao {
 			pstmt.setInt(1, staffFile.getFileNo());
 			pstmt.setInt(2, staffFile.getUserNo());
 			pstmt.setString(3, staffFile.getFileType());
+			System.out.println(staffFile);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

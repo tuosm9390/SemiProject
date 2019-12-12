@@ -300,7 +300,7 @@ section {
 		//직원 관리 메뉴 클릭 시
 	     $("#employee").click(function() {
 	        $(".detailmenu").css("display", "none");
-	        location.href="<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+	        location.href="<%= request.getContextPath() %>/alist.staff";
 	     });
 
 		//수업 관리 메뉴 클릭 시
