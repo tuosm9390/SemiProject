@@ -248,7 +248,7 @@ public class AttendDao {
 		return list;
 	}
 
-	public String selectAttendReason(Connection con, String day, String userNo) {
+	public String selectAttendReason(Connection con, String classNum, String day, String userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String reason = "";
@@ -263,6 +263,7 @@ public class AttendDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, toDate);
 			pstmt.setString(2, userNo);
+			pstmt.setString(3, classNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -280,9 +281,8 @@ public class AttendDao {
 		return reason;
 	}
 
-	public int updateAttendReason(Connection con, String day, String userNo) {
+	public int updateAttendReason(Connection con, String classNum, String day, int userNo, String content) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		int result = 0;
 		
 		String month = day.substring(0, 2);
@@ -293,8 +293,17 @@ public class AttendDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, content);
+			pstmt.setString(2, toDate);
+			pstmt.setInt(3, userNo);
+			pstmt.setString(4, classNum);
+			
+			result = pstmt.executeUpdate();			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;

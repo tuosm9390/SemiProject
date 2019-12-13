@@ -25,6 +25,7 @@ public class SelectAttendListServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String classNum = (String) request.getAttribute("classNum");
 		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
 		
 		//멤버 타입만 빼내기
@@ -52,6 +53,7 @@ public class SelectAttendListServlet extends HttpServlet {
 			page = "viewAcademy/mngClass/mngAttend/attendDetail.jsp";
 			request.setAttribute("attendList", attendList);
 			request.setAttribute("studentList", list);
+			request.setAttribute("classNum", classNum);
 			request.getRequestDispatcher(page).forward(request, response);
 		}else {
 			System.out.println("출석부 불러오기 실패!");

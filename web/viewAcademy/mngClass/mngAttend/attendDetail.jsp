@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
 <% 
+	String classNum = (String) request.getAttribute("classNum");
 	ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");
 	
 	ArrayList<HashMap<String, Object>> studentList = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
@@ -127,6 +128,24 @@
    #reasonWrite:hover {
       cursor: pointer;
    }
+   
+   	/* 모달 닫기 버튼 */
+	#xBtn2 {
+		color: #aaa;
+		/* float: right; */
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	#xBtn2:hover, #xBtn2:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.btnArea span {
+		margin-left: 85%;
+	}
 </style>
 </head>
 <body>
@@ -153,7 +172,8 @@
          <form>
             <table class="studentListTable table">
                <tr class="fixed-header">
-                  <th><input type="checkbox" id="checkAll"></th>
+                  <th><input type="checkbox" id="checkAll">
+                  	  <input type="hidden" id="classNum" value="<%=classNum%>"></th>
                   <th id="stuName">이름</th>
                   <th id="stuInfo" nowrap>정보</th>
                   <% 
@@ -178,16 +198,17 @@
                            					<%=stu.get(i).getSchool()%><br>
                            					<%=stu.get(i).getGrade()%>학년<br>
                            					<%=mem.get(i).getPhone()%>
-                           					<input type="hidden" value="<%=mem.get(i).getUserNo()%>"> 
+                           					<input type="hidden" value="<%=mem.get(i).getUserNo()%>">
                            					<% } %></td>
                            
                            <%    
                               ArrayList<String> dateArr = new ArrayList<>();
                               for(int j=0; j<list.size(); j++) {
                                  
-                                  if(list.get(j).getAttStatus().equals("Y")){ 
+                            	  //여기부터 다시 시작해보자...
+                                  if(!(list.get(j).getAttStatus().equals("Y"))){ 
                                     DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
-                                     Date attendDate = list.get(j).getAttDate();
+                                    Date attendDate = list.get(j).getAttDate();
                                     String tempDate = sdFormat.format(attendDate);
                                     
                                     String tempDate2 = tempDate.substring(tempDate.length()-2, tempDate.length()); 
@@ -242,6 +263,7 @@
             </ul>
             
                <button id="writeBtn" style="height:30px; margin:14px">수정</button>
+               <!-- <span id="xBtn2">&times;</span> -->
  
             </div>
             <div align="center" class="reasonContent">
@@ -262,63 +284,67 @@
             }
          });
       });
-
+	
+      //출결 상세 사유 불러오기 + 수정하기 기능
       $(function() {
          $(document).on("click", ".reasonWrite", function() {
              $(".detailReasonArea").css("visibility","visible");
              var idx = $(this).parent().index()-2;
-        	 console.log("idx : " + idx);
         	 
         	 var date = $(this).parent().parent().siblings().eq(0).children("th")[idx+2].innerText;
-        	 console.log("date : " + date);
         	 
         	 var userNo = $(this).parent().siblings().eq(2).children("input")[0].value;
-        	 console.log(userNo);
+        	 
+        	 var classNum = $("#classNum").val();
+        	 
+        	 var result = "";
         	         	 
         	 $.ajax({
         		 url:"aselectAttendReasonDetail.attend",
         		 data:{
+        			 classNum:classNum,
         			 date:date,
         			 userNo:userNo
         		 },
         		 type:"get",
         		 success:function(data){
         			 var reason = decodeURIComponent(data.reason);
-        			 var result = reason.replace(/\+/gi, ' ');
+        			 result = reason.replace(/\+/gi, ' ');
         			
         			 $("#reasonArea").text(result);
-        			 //console.log(reason);
         		 },
         		 error:function(data){
         			console.log('실패'); 
         		 }
         	 });
-        	 
-        	 $("#reasonArea").onchange(function(){
-        	 $("#writeBtn").click(function(){
-        		 var content = $("#reasonArea").text();
-        		 console.log(content);
+         
         		
-        		 $.ajax({
-        			 url:"aupdateAttendReason.attend",
-        			 data:{
-        				 date:date,
-        				 userNo:userNo
-        			 },
-        			 type:"get",
-        			 success:function(data){
-        				 
-        			 },
-        			 error:function(data){
-        				 
-        			 }
-        		 });
-        		 
+        	$("#writeBtn").click(function(){       	
+        		var content = $("#reasonArea").val();
+        		
+        		if(result != content) {       			
+	        		$.ajax({
+	        			url:"aupdateAttendReason.attend",
+	        			data:{
+	        				classNum:classNum,
+	        				date:date,
+	        				userNo:userNo,
+	        				content:content
+	        			 },
+	        			 type:"get",
+	        			 success:function(data){
+	        				 console.log(data);
+	        				 alert('수정 완료!');
+	        				 
+	        			 },
+	        			 error:function(data){
+	        				console.log("에러.."); 
+	        			 }
+	        		});
+        		}
         	 });
-        	 });
-        	 
-        	 
-        	});
+         });
+      	
       });
       
    </script>

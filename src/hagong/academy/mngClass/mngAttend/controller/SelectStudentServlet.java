@@ -33,6 +33,7 @@ public class SelectStudentServlet extends HttpServlet {
 		if(list != null) {
 			page = "alistAttend.attend";
 			request.setAttribute("studentList", list);
+			request.setAttribute("classNum", classNum);
 			request.getRequestDispatcher(page).forward(request, response);
 		}else {
 			System.out.println("강좌를 듣는 학생 리스트 조회 실패!");
