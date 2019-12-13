@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.commonMenu.notice.model.service.NoticeService;
+
 /**
  * Servlet implementation class DeleteNoticeServlet
  */
@@ -26,8 +28,20 @@ public class DeleteNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String nno = request.getParameter("nno");
+		
+		int result = new NoticeService().deleteNotice(nno);
+		
+		String page = "";
+		if(result > 0) {
+			System.out.println("success");
+			response.sendRedirect("/hagong/alist.no");
+		}else {
+			//page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 삭제 실패!");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
+		
 	}
 
 	/**
@@ -39,3 +53,21 @@ public class DeleteNoticeServlet extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
