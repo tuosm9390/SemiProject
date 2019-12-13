@@ -224,7 +224,7 @@ section {
 						class="menu1">수납</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/alist.couns"
 						class="menu1">상담</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklist.jsp"
+					<a href="<%=request.getContextPath()%>/alist.black"
 
 						class="menu1">블랙리스트</a>
 				</div>
