@@ -289,6 +289,59 @@ public class CounselingDao {
 		return detailCouns;
 	}
 
+	public int updateCounsDetail(Connection con, Counseling couns) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateCouns");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, couns.getCouTitle());
+			pstmt.setDate(2, couns.getCouDate());
+			pstmt.setString(3, couns.getCouType());
+			pstmt.setString(4, couns.getCouContent());
+			pstmt.setString(5, couns.getCouAction());
+			pstmt.setInt(6, couns.getCouNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
+	public int delteCouns(Connection con, int couNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteCouns");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, couNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
 }
 
 

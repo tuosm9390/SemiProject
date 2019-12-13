@@ -175,7 +175,7 @@ font-size:18px;
 	margin:0 2px;
 	width: 70px;
 }
-.btnArea .updateCons {
+.btnArea .bottomBtn.doneBtn{
 	display:none;
 }
 
@@ -238,21 +238,23 @@ font-size:18px;
 							class="bbot"></span>
 					</div>
 			</a>
-				<form id="detail<%= i %>" class="accordion__content" method="post">
+				<form id="detailCouns<%= i %>" class="accordion__content" method="post">
 					<div class="detailArea">
 						<div class="dArea dArea1">
 							<div class="dCtn consTitle">
+								<input type="hidden" name="couNo" value="<%= detailCounsList.get(i).getCouNo() %>">
+								<input type="hidden" name="userNo" value="<%= detailCounsList.get(i).getUserNo() %>">								
 								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getCouTitle() %>" readonly>
+								<input name="title" type="text" class="inputCons updateAble" value="<%= detailCounsList.get(i).getCouTitle() %>" readonly>
 							</div>
 							<div class="names">
 								<div class="dCtn tName">
 									<label class="dTit">상담자 이름</label>
-									<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getCouUserName() %>" readonly>
+									<input name="couName" type="text" class="inputCons" value="<%= detailCounsList.get(i).getCouUserName() %>" readonly>
 								</div>
 								<div class="dCtn sName">
 									<label class="dTit">상담학생명</label>
-									<input type="text" class="inputCons" value="<%= detailCounsList.get(i).getUserName() %>" readonly>
+									<input name="userName" type="text" class="inputCons" value="<%= detailCounsList.get(i).getUserName() %>" readonly>
 								</div>
 							</div>
 
@@ -260,11 +262,11 @@ font-size:18px;
 						<div class="dArea dArea2">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<input type="text" class="inputCons" id="from" name="from" value="<%= detailCounsList.get(i).getCouDate() %>" readonly>
+								<input type="text" class="inputCons" id="from<%= i %>" name="from" value="<%= detailCounsList.get(i).getCouDate() %>" readonly>
 							</div>
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
+								<select id="category<%= i %>" name="consCategory" disabled class="consCate updateAble">
 									<option value="SCORE">성적</option>
 									<option value="LIFE">학원생활</option>
 									<option value="PARENT">학부모</option>
@@ -274,7 +276,8 @@ font-size:18px;
 								<script>
 									$(function(){
 										var value = '<%= detailCounsList.get(i).getCouType() %>';
-										$(".consCate option").each(function(){
+										var q = '<%= i %>';
+										$("#category" + q + " option").each(function(){
 											if($(this).val() == value){
 												$(this).prop("selected", true);
 											}
@@ -286,31 +289,39 @@ font-size:18px;
 						<div class="dArea dArea3">
 							<div class="dCtn content">
 								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly><%= detailCounsList.get(i).getCouContent() %></textarea>
+								<textarea class="inputCons updateAble" name="consreq" readonly><%= detailCounsList.get(i).getCouContent() %></textarea>
 							</div>
 							<div class="dCtn answer">
 								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly><%= detailCounsList.get(i).getCouAction() %></textarea>
+								<textarea class="inputCons updateAble" name="consres" readonly><%= detailCounsList.get(i).getCouAction() %></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="btnArea">
-						<button class="bottomBtn">삭제</button>
-						<button type="button" class="bottomBtn" onclick="updateCouns(<%= i %>);">수정</button>
-						<button class="updateCons">수정완료</button>
+						<button class="bottomBtn" onclick="deleteCouns(<%= i %>)">삭제</button>
+						<button id="updateBtn<%=i %>" type="button" class="bottomBtn" onclick="updateCouns(<%= i %>);">수정</button>
+						<button id="updateCons<%=i %>" class="bottomBtn doneBtn" onclick="completeCouns(<%= i %>)">완료</button>
 					</div> <!-- btnArea -->
 				</form>
 				<script>
 					function updateCouns(i){
 						console.log(i);
 						console.log($("#detail" + i + " input").val());
-						$("#detail" + i + " input").eq(0).attr("readonly", false);
-						$("#detail" + i + " textarea").attr("readonly", false);
+						$("#detailCouns" + i + " .updateAble").prop("readonly", false);
 						
-						$(".bottomBtn");
+						$("#category" + i).prop("disabled", false);
+						$("#updateCons" + i).show().css("display","inline-block");
+						$("#updateBtn" + i).hide();
+						
+						$("#from" + i).datepicker();				
+						
 					}
-					function updateCons(){
-						$(".updateCons").show();
+					function completeCouns(i){			
+						$("#detailCouns" + i).attr("action", "<%= request.getContextPath()%>/update.couns");
+					}
+					
+					function deleteCouns(i){
+						$("#detailCouns" + i).attr("action", "<%= request.getContextPath()%>/deletedetail.couns");
 					}
 				</script>
 			</li>
@@ -351,9 +362,12 @@ font-size:18px;
 			constrainInput: false,
     		yearSuffix: '년'
   		});
-		$(function() {
-			$("#from").datepicker();
-		});
+<%-- 		$(function() {
+			var size = <%= detailCounsList.size( )%>;
+			for(var i = 0; i < size; i++){
+				$("#from" + i).datepicker();				
+			}
+		}); --%>
 		
 	</script>
 </body>

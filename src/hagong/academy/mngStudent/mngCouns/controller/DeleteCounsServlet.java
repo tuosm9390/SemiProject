@@ -1,23 +1,28 @@
 package hagong.academy.mngStudent.mngCouns.controller;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.mngStudent.mngCouns.model.service.CounselingService;
+import hagong.academy.mngStudent.mngCouns.model.vo.Counseling;
+
 /**
- * Servlet implementation class CounsSrchServlet
+ * Servlet implementation class DeleteCounsServlet
  */
-@WebServlet("/asearch.couns")
-public class CounsSrchServlet extends HttpServlet {
+@WebServlet("/deletedetail.couns")
+public class DeleteCounsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CounsSrchServlet() {
+    public DeleteCounsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,14 +31,22 @@ public class CounsSrchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//검색관련 값 받아오기
-		String searchCondition = request.getParameter("searchCondition");
-		String srchCnt = request.getParameter("searchCnt");
+		int couNo = Integer.parseInt(request.getParameter("couNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+
 		
-		System.out.println("searchCondition : " + searchCondition);
-		System.out.println("srchCnt : " + srchCnt);
+		int result = new CounselingService().deleteCouns(couNo);
 		
 		
+		String page = "";
+		if(result > 0 ) {
+			page = request.getContextPath() + "/detail.couns?userNo=" + userNo;
+			response.sendRedirect(page);
+		}else {
+			page = "viewAcademy/common/commonError.jsp";
+			request.setAttribute("msg", "상담일지 삭제실패!");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
 		
 		
 	}
