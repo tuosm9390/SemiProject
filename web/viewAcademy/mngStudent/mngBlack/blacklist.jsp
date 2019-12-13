@@ -138,9 +138,6 @@ input, select, textarea {
 				    	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　블랙리스트　</h1></legend>
 				    </fieldset>
 			    </div>
-				<div class="addBtn">				
-					<button class="addBlist" onclick="addBlist();" style="font-size:18px;">추가</button>
-				</div>
 				<div class="srchArea">
 					<select>
 						<option value="" selected disabled hidden>검색 조건</option>
@@ -227,17 +224,17 @@ input, select, textarea {
 			<div class="modal-content" align="center">
 				<span class="close">&times;</span>
 				<h2 align="center" style="font-style:italic">◎ 블랙리스트 추가 ◎</h2>
-					<form class="accordion__content" method="post">
+					<form class="accordion__content" method="post" action="<%= request.getContextPath()%>/insert.black">
 						<div class="detailArea" align="left">
 							<div class="dArea dArea1">
 								<div class="dCtn consTitle">
 									<label class="dTit">상담제목</label>
-									<input type="text" class="inputCons" value="학원생활 관련 상담(1)">
+									<input type="text" class="inputCons" value="" placeholder="제목입력">
 								</div>
 								<div class="names">
-																<div class="dCtn consDate"> 
+								<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" id="from" name="from" value="" readonly>
+									<input type="text" class="inputCons" id="from" name="from" value="" readonly placeholder="날짜입력">
 								</div>
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
@@ -250,11 +247,11 @@ input, select, textarea {
 								</div>
 									<div class="dCtn tName">
 										<label class="dTit">상담자 이름</label>
-										<input type="text" class="inputCons" value="서범수" readonly>
+										<input type="text" class="inputCons" value="<%= loginUser.getName() %>" readonly >
 									</div>
 									<div class="dCtn sName">
 										<label class="dTit">상담학생명</label>
-										<input type="text" class="inputCons" value="김지원" readonly>
+										<input type="text" class="inputCons" value="" readonly placeholder="이름입력">
 									</div>
 								</div>
 							</div>
@@ -264,7 +261,7 @@ input, select, textarea {
 							<div class="dArea dArea3">
 								<div class="dCtn tPhone">
 									<label class="dTit">학생 휴대폰 번호</label>
-									<input type="text" class="inputCons" value="010-8888-7777">
+									<input type="text" class="inputCons" value="" placeholder="폰번호입력">
 								</div>
 								<div class="dCtn content">
 									<label class="dTit">내용</label>
@@ -279,7 +276,7 @@ input, select, textarea {
 						<div class="btnArea">
 							<button class="cancelbtn"
 								style="width: 100px; height: 30px;">취소</button>&nbsp;&nbsp;
-							<button class="okbtn"
+							<button class="okbtn" type="submit"
 								style="width: 100px; height: 30px;">확인</button>
 						</div>
 					</form>
