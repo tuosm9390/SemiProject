@@ -37,12 +37,25 @@ public class Student {
 	private String refId; // 학부모 아이디
 	private String refPhone; // 학부모 전화번호
 
+	// 성적 테이블
+	private String scoType; // 성적구분
+	private int year; // 년도
+	private int term; // 학기
+	private String sub1Name; // 과목명
+	private int sub1score; // 과목점수
+	private String sub2Name; // 과목명
+	private int sub2score; // 과목점수
+	private String sub3Name; // 과목명
+	private int sub3score; // 과목점수
+
 	public Student() {
 	}
 
 	public Student(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
-			String email, int refUno, String status, String inflowPath, String userType, String school, int grade,
-			String track, String college, String major, String refName, String refId, String refPhone, int age) {
+			String email, String status, String inflowPath, String userType, int age, String school, int grade,
+			String track, String college, String major, int refUno, String refName, String refId, String refPhone,
+			String scoType, int year, int term, String sub1Name, int sub1score, String sub2Name, int sub2score,
+			String sub3Name, int sub3score) {
 		super();
 		this.userNo = userNo;
 		this.name = name;
@@ -52,19 +65,28 @@ public class Student {
 		this.phone = phone;
 		this.address = address;
 		this.email = email;
-		this.refUno = refUno;
 		this.status = status;
 		this.inflowPath = inflowPath;
 		this.userType = userType;
+		this.age = age;
 		this.school = school;
 		this.grade = grade;
 		this.track = track;
 		this.college = college;
 		this.major = major;
+		this.refUno = refUno;
 		this.refName = refName;
 		this.refId = refId;
 		this.refPhone = refPhone;
-		this.age = age;
+		this.scoType = scoType;
+		this.year = year;
+		this.term = term;
+		this.sub1Name = sub1Name;
+		this.sub1score = sub1score;
+		this.sub2Name = sub2Name;
+		this.sub2score = sub2score;
+		this.sub3Name = sub3Name;
+		this.sub3score = sub3score;
 	}
 
 	public int getUserNo() {
@@ -131,14 +153,6 @@ public class Student {
 		this.email = email;
 	}
 
-	public int getRefUno() {
-		return refUno;
-	}
-
-	public void setRefUno(int refUno) {
-		this.refUno = refUno;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -161,6 +175,14 @@ public class Student {
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public String getSchool() {
@@ -203,6 +225,14 @@ public class Student {
 		this.major = major;
 	}
 
+	public int getRefUno() {
+		return refUno;
+	}
+
+	public void setRefUno(int refUno) {
+		this.refUno = refUno;
+	}
+
 	public String getRefName() {
 		return refName;
 	}
@@ -227,12 +257,76 @@ public class Student {
 		this.refPhone = refPhone;
 	}
 
-	public int getAge() {
-		return age;
+	public String getScoType() {
+		return scoType;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setScoType(String scoType) {
+		this.scoType = scoType;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getTerm() {
+		return term;
+	}
+
+	public void setTerm(int term) {
+		this.term = term;
+	}
+
+	public String getSub1Name() {
+		return sub1Name;
+	}
+
+	public void setSub1Name(String sub1Name) {
+		this.sub1Name = sub1Name;
+	}
+
+	public int getSub1score() {
+		return sub1score;
+	}
+
+	public void setSub1score(int sub1score) {
+		this.sub1score = sub1score;
+	}
+
+	public String getSub2Name() {
+		return sub2Name;
+	}
+
+	public void setSub2Name(String sub2Name) {
+		this.sub2Name = sub2Name;
+	}
+
+	public int getSub2score() {
+		return sub2score;
+	}
+
+	public void setSub2score(int sub2score) {
+		this.sub2score = sub2score;
+	}
+
+	public String getSub3Name() {
+		return sub3Name;
+	}
+
+	public void setSub3Name(String sub3Name) {
+		this.sub3Name = sub3Name;
+	}
+
+	public int getSub3score() {
+		return sub3score;
+	}
+
+	public void setSub3score(int sub3score) {
+		this.sub3score = sub3score;
 	}
 
 	@Override
@@ -241,7 +335,10 @@ public class Student {
 				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", status="
 				+ status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age=" + age + ", school="
 				+ school + ", grade=" + grade + ", track=" + track + ", college=" + college + ", major=" + major
-				+ ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone + "]";
+				+ ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone
+				+ ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", sub1Name=" + sub1Name
+				+ ", sub1score=" + sub1score + ", sub2Name=" + sub2Name + ", sub2score=" + sub2score + ", sub3Name="
+				+ sub3Name + ", sub3score=" + sub3score + "]";
 	}
 
 }

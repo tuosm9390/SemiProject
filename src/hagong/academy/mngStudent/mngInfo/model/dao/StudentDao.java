@@ -28,10 +28,10 @@ public class StudentDao {
 		}
 	}
 
-	public int refUno(Connection con, String refId) {
+	public int findUserNo(Connection con, String refId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int refUno = 0;
+		int userNo = 0;
 
 		String query = "SELECT USER_NO FROM MEMBER WHERE USER_ID = ?";
 
@@ -42,7 +42,7 @@ public class StudentDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				refUno = rset.getInt(1);
+				userNo = rset.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,9 +51,9 @@ public class StudentDao {
 			close(rset);
 		}
 
-		return refUno;
+		return userNo;
 	}
-
+	
 	public int insertMember(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -261,6 +261,7 @@ public class StudentDao {
 			while(rset.next()) {
 				s = new Student();
 				
+				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
 				s.setGrade(rset.getInt("GRADE"));
@@ -278,6 +279,15 @@ public class StudentDao {
 		}
 		
 		return s;
+	}
+
+	public int insertScore(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertScore");
+		
+		return result;
 	}
 
 }

@@ -98,7 +98,6 @@ tr:not(:first-child){
 		$(".table td").click(function() {
 			<%-- location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp"; --%>
 			var userId = $(this).parent().children().eq(0).text();
-			
 			location.href="<%=request.getContextPath()%>/adetail.info?userId=" + userId;
 		});
 		

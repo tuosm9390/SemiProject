@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
 <%
@@ -30,6 +29,8 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel='stylesheet' href='<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngStatus/Nwagon.css' type='text/css'>
+<script src='<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngStatus/Nwagon.js'></script>
 <style>
 #menuheader {
 	position: fixed;

@@ -11,10 +11,10 @@ import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 public class StudentService {
 
-	public int findRefUno(String refId) {
+	public int findUserNo(String refId) {
 		Connection con = getConnection();
 		
-		int refUno = new StudentDao().refUno(con, refId);
+		int refUno = new StudentDao().findUserNo(con, refId);
 		System.out.println("refUno : " + refUno);
 		
 		close(con);
@@ -128,10 +128,25 @@ public class StudentService {
 	public Student selectStudent(String userId) {
 		Connection con = getConnection();
 		Student s = new StudentDao().selectStudent(con, userId);
-		
+		System.out.println("s.getName() : " + s.getName());
 		close(con);
 		
 		return s;
+	}
+
+	public int insertScore(Student s) {
+		Connection con = getConnection();
+		int result = new StudentDao().insertScore(con, s);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }
