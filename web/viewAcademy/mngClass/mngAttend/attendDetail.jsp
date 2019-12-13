@@ -1,25 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
 <% 
-	ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");	
-
-	
-	for(int i=0; i<attendList.size(); i++) {
-		HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
-		ArrayList<Attendance> list = null;
-		
-		Iterator<String> iter = hmap.keySet().iterator();
-		while(iter.hasNext()){
-			String keys = (String) iter.next();
-			System.out.println("keys : " + keys);
-			list = hmap.get(keys);
-			
-		}
-		
-		
-		System.out.println("list : " + list);
-		
-	} 
+   ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");
 %>
 <!DOCTYPE html>
 <html>
@@ -97,29 +79,29 @@
    }
    
    #writeBtn { 
-   	 border:2px solid green; 
-   	 background: white; 
-   	 border-radius: 5px;
-   	 font-size: 18px
+       border:2px solid green; 
+       background: white; 
+       border-radius: 5px;
+       font-size: 18px
    }
    
    #writeBtn:hover {
-	background: green;
-	color: white;
+   background: green;
+   color: white;
    }
    
    td.fixed {
-   	position: relative;
-   	left: 0;
-   	z-index: 1;
+      position: relative;
+      left: 0;
+      z-index: 1;
    }
    
    .fixed {
-   	position: fixed;
+      position: fixed;
    }
    
    #reasonWrite:hover {
-   	cursor: pointer;
+      cursor: pointer;
    }
 </style>
 </head>
@@ -158,81 +140,87 @@
                      System.out.println("month : " + month);
                      int[] index = new int[dayOfMonth];
                      for(int i=0; i<dayOfMonth; i++) {
-                    	 
-                    	 index[i] = i+1;
+                        
+                        index[i] = i+1;
                   %>
                   <th><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
-               		<% 	for(int i=0; i<attendList.size(); i++) {
-               			HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
-               			ArrayList<Attendance> list = null;
-               			
-               			Iterator<String> iter = hmap.keySet().iterator();
-               			while(iter.hasNext()){
-               				String keys = (String) iter.next();
-               				System.out.println("keys : " + keys);
-               				list = hmap.get(keys);	
-                   			System.out.println("list : " + list);
-               				%>
-               			<tr>
-               				<td><input type="checkbox" id="checkOne"></td>
-               				<td><%= keys %></td>
-               				<td id="infoCol">학생정보</td>
-               				
-               				<% String[] dateArr = new String[list.size()];
-               					for(int j=0; j<list.size(); j++) {
-               					DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
-                      			Date attendDate = list.get(j).getAttDate();
-                     			String tempDate = sdFormat.format(attendDate);
-                     			String date = tempDate.substring(tempDate.length()-2, tempDate.length()); 
-               					
-                     			System.out.println("date : " + date);
-                     			
-                     			dateArr[j] = date;
-                     			
-              					}
-               				
-                     			for(int k=0; k<dateArr.length; k++) {
-                     				for(int q = 0; q < dayOfMonth; q++){
-                     					if(dateArr[k].equals(q+1+"")){
-                     					%>
-                     					
-                     					<td>출석</td>
-                     					
-                     					<%
-                     					}//else{%> 
-			                     			
-                     				<% 
-                     				
-                     				}
-                     				
-                     				}
-                     			
-               				
-               		
-               			
-               			}
-               			}
-               		%>
-                  	<!-- for(int k=0; k<dayOfMonth; k++) { -->
-					<%-- <%}else { %>                  
-                  <td style="padding:20px"><a id="reasonWrite">결석</a></td>
-                  <% }
-                  	} %>
-               </tr>
-               <% } %> --%>
+                     <%    for(int i=0; i<attendList.size(); i++) {
+                        HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
+                        ArrayList<Attendance> list = null;
+                        
+                        Iterator<String> iter = hmap.keySet().iterator();
+                        while(iter.hasNext()){
+                           String keys = (String) iter.next();
+                           System.out.println("keys : " + keys);
+                           list = hmap.get(keys);   
+                            System.out.println("list : " + list);
+                           %>
+                        <tr>
+                           <td><input type="checkbox" id="checkOne"></td>
+                           <td><%= keys %></td>
+                           <td id="infoCol">학생정보</td>
+                           
+                           <%    
+                              ArrayList<String> dateArr = new ArrayList<>();
+                              for(int j=0; j<list.size(); j++) {
+                                 
+                                  if(list.get(j).getAttStatus().equals("Y")){ 
+                                    DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
+                                     Date attendDate = list.get(j).getAttDate();
+                                    String tempDate = sdFormat.format(attendDate);
+                                    
+                                    String tempDate2 = tempDate.substring(tempDate.length()-2, tempDate.length()); 
+                                    
+                                    String date = "";
+                                    if(tempDate2.charAt(0)=='0'){
+                                       date = tempDate2.substring(tempDate2.length()-1, tempDate2.length());
+                                    }else {
+                                       date = tempDate2;   
+                                    }
+                                    
+                                    dateArr.add(date);
+                                    
+                                    }
+                                 
+                              }
+                                                           
+                              boolean[] attendCheck = new boolean[dayOfMonth];
+                              
+                              for(int x=0; x<attendCheck.length; x++){
+                                 attendCheck[x] = false;
+                              }
+                              
+                              for(int k=0; k<dateArr.size(); k++) {
+                                 for(int q=0; q<dayOfMonth; q++) {
+                                    if(dateArr.get(k).equals(q+1+"")){
+                                       attendCheck[q] = true;                                       
+                                    }
+                                 }
+                              }
+                                                           
+                              for(int l=0; l<attendCheck.length; l++) {
+                                 if(attendCheck[l]==true){ %>
+                                 <td>출석</td>
+                              <%    }else { %>
+                                 <td style="padding:20px"><a id="reasonWrite">결석</a></td>
+                              <%    }
+                              }                             
+                           } %>
+                        </tr>
+                    <%    }   %>
              </table>
          </form>
       </div>
    <div class="bottomArea">
          <div class="detailReasonArea">
-         	<div class="btnArea" style="display:flex;">
+            <div class="btnArea" style="display:flex;">
             <ul>
             <li style="font-size:18px;">출결 상세 사유</li>
             </ul>
             
-            	<button id="writeBtn" style="height:30px; margin:14px">수정</button>
+               <button id="writeBtn" style="height:30px; margin:14px">수정</button>
  
             </div>
             <div align="center" class="reasonContent">
@@ -256,14 +244,14 @@
 /*       
       $(function(){
          $(".studentListTable td").click(function(){
-        	 $(".detailReasonArea").css("visibility","visible");
+            $(".detailReasonArea").css("visibility","visible");
          });
       });
        */
       $(function() {
-    	  $("#reasonWrite").click(function() {
-    		  $(".detailReasonArea").css("visibility","visible");
-    	  });
+         $("#reasonWrite").click(function() {
+            $(".detailReasonArea").css("visibility","visible");
+         });
       });
       
    </script>
