@@ -1,6 +1,7 @@
 package hagong.academy.mngStudent.mngInfo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,12 +34,14 @@ public class DetailStudentServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		
 		Student s = new StudentService().selectStudent(userId);
+		ArrayList<Student> list = new StudentService().scoreList(s);
 		
 		String page = "";
 		if(s != null) {
 			System.out.println("학생 정보 조회 성공");
 			page = "/viewAcademy/mngStudent/mngInfo/studentDetail.jsp";
 			request.setAttribute("s", s);
+			request.setAttribute("list", list);
 		} else {
 			System.out.println("학생 정보 조회 실패");
 			page = "/viewAcademy/common/commonError.jsp";

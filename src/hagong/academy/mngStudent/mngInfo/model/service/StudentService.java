@@ -1,11 +1,13 @@
 package hagong.academy.mngStudent.mngInfo.model.service;
 
-import static hagong.common.JDBCTemplate.*;
+import static hagong.common.JDBCTemplate.close;
+import static hagong.common.JDBCTemplate.commit;
+import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import hagong.academy.mngStaff.model.dao.StaffDao;
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
@@ -127,8 +129,8 @@ public class StudentService {
 
 	public Student selectStudent(String userId) {
 		Connection con = getConnection();
+		System.out.println("userId : " + userId);
 		Student s = new StudentDao().selectStudent(con, userId);
-		System.out.println("s.getName() : " + s.getName());
 		close(con);
 		
 		return s;
@@ -147,6 +149,15 @@ public class StudentService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<Student> scoreList(Student s) {
+		Connection con = getConnection();
+		ArrayList<Student> list = new StudentDao().scoreList(con, s);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*"%>
 <%
 	Student s = (Student) request.getAttribute("s");
+	ArrayList<Student> list = (ArrayList<Student>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -80,9 +81,7 @@ h2{
 		<!-- 학생 정보 -->
 		<div id="studentInfo" style="width: 80%; margin: auto auto;">
 		<h2 style="width: 150px;"><li>학생 정보</li></h2>
-			<button id="updatebtn"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp?s=' + <%= s%>"
-				style="float: right;">수정</button>
+			<button id="updatebtn" type="button" onclick="update()" style="float: right;">수정</button>
 			<table class="table">
 				<tr>
 					<th>학교</th>
@@ -127,21 +126,23 @@ h2{
 					<th style='width: 194px;'>구분</th>
 					<th style='width:140px;'>학기</th>
 					<th style='width:200px;'>년도</th>
-					<th>국어</th>
-					<th>영어</th>
-					<th>수학</th>
+					<th>과목</th>
+					<th>점수</th>
 					<th style='width: 100px;'></th>
 				</tr>
+				<%
+					for(Student s1 : list) {
+				%>
 				<tr>
 					<td></td>
-					<td><%=s.getScoType() %></td>
+					<td><%=s.getScoType()%></td>
 					<td><%=s.getTerm() %></td>
 					<td><%=s.getYear() %></td>
-					<td><%=s.getSub1score() %></td>
-					<td><%=s.getSub2score() %></td>
-					<td><%=s.getSub3score() %></td>
+					<td><%=s.getSubName() %></td>
+					<td><%=s.getSubscore() %></td>
 					<td></td>
 				</tr>
+				<% } %>
 			</table>
 		</div>
 		<!-- 성적 그래프 -->
@@ -153,15 +154,18 @@ h2{
 	<footer></footer>
 
 	<script>
+		function update(){
+			location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp';
+		};
+		
 		var $select1 = "<select style='width: 85px;' class='type' name='type'>";
 		var $op1 = "<option value='NS'>내신</option><option value='MG'>모의고사</option><option value='ETC'>기타</option>	";
 		var $select2 = "<select style='width: 50px;' class='term' name='term'>";
 		var $op2 = "<option value='1'>1</option><option value='2'>2</option>";
 		var $button = "<button type='button' id='insertScore'>등록</button>";
 		var $year = "<input type='text' class='year' name='year' style='width: 60px;'>";
-		var $sub1 = "<input type='text' class='sub1' name='sub1' style='width: 60px;'>";
-		var $sub2 = "<input type='text' class='sub2' name='sub2' style='width: 60px;'>";
-		var $sub3 = "<input type='text' class='sub3' name='sub3' style='width: 60px;'>";
+		var $subName = "<select style='width: 70px;' class='subName' name='subName'><option value='국어'>국어</option><option value='수학'>수학</option><option value='영어'>영어</option>";
+		var $subScore = "<input type='text' class='subScore' name='subScore' style='width: 60px;'>";
 		<%-- $("#pointAddBtn").click(function(){
 			location.href="<%= request.getContextPath()%>/ascore.info?userId=" + <%= s.getUserId()%>;
 		}); --%>
@@ -169,7 +173,7 @@ h2{
 		$("#addRow").click(function() {
 			$("#score").append(
 				"<tr><td></td><td style=' height:43px;'>" + $select1 + $op1 + "</td><td style=' height:43px;'>"
-				+ $select2 + $op2 + "</td><td>" + $year + "</td><td>" + $sub1 + "</td><td>" + $sub2 + "</td><td>" + $sub3 + "</td><td style='width: 100px;'>"
+				+ $select2 + $op2 + "</td><td>" + $year + "</td><td>" + $subName + "</td><td>" + $subScore + "</td><td style='width: 100px;'>"
 				+ $button + "</td></tr>");
 			
 			//버튼 중복클릭 막기
@@ -182,19 +186,11 @@ h2{
 				var type=$(".type").val();
 				var year=$(".year").val();
 				var term=$(".term").val();
-				var sub1=$(".sub1").val();
-				var sub2=$(".sub2").val();
-				var sub3=$(".sub3").val();
+				var subName=$(".subName").val();
+				var subScore=$(".subScore").val();
 				
 				console.log(typeof(type));
-				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId + "&name" + name + "&type=" + type + "&year=" + year + "&term=" + term + "&sub1=" + sub1 + "&sub2=" + sub2 + "&sub3=" + sub3;
-				
-				$(".type").removeClass("type");
-				$(".year").removeClass("year");
-				$(".term").removeClass("term");
-				$(".sub1").removeClass("sub1");
-				$(".sub2").removeClass("sub2");
-				$(".sub3").removeClass("sub3");
+				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId + "&name" + name + "&type=" + type + "&year=" + year + "&term=" + term + "&subName=" + subName + "&subScore=" + subScore;
 			});
 		});
 		//차트

@@ -40,12 +40,10 @@ public class InsertScoreServlet extends HttpServlet {
 		System.out.println("year : " + year);
 		int term = Integer.parseInt(request.getParameter("term"));
 		System.out.println("term : " + term);
-		int sub1 = Integer.parseInt(request.getParameter("sub1"));
-		System.out.println("sub1 : " + sub1);
-		int sub2 = Integer.parseInt(request.getParameter("sub2"));
-		System.out.println("sub2 : " + sub2);
-		int sub3 = Integer.parseInt(request.getParameter("sub3"));
-		System.out.println("sub3 : " + sub3);
+		String subName = request.getParameter("subName");
+		System.out.println("subName : " + subName);
+		int subScore = Integer.parseInt(request.getParameter("subScore"));
+		System.out.println("subScore : " + subScore);
 		
 		Student s = new Student();
 		
@@ -54,12 +52,8 @@ public class InsertScoreServlet extends HttpServlet {
 		s.setScoType(type);
 		s.setYear(year);
 		s.setTerm(term);
-		s.setSub1Name("국어");
-		s.setSub1score(sub1);
-		s.setSub2Name("영어");
-		s.setSub2score(sub2);
-		s.setSub3Name("수학");
-		s.setSub3score(sub3);
+		s.setSubName(subName);
+		s.setSubscore(subScore);
 		
 		int userNo = new StudentService().findUserNo(userId);
 		s.setUserNo(userNo);
