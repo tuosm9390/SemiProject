@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
+<%
+	ArrayList<StaffDetail> staffDetail = (ArrayList<StaffDetail>) request.getAttribute("staffDetail");
+
+	String profile = "";
+	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
+	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();
+	for(int i = 0; i < staffDetail.size(); i++) {
+		if(staffDetail.get(i).getFileType().equals("PROFILE")) {
+			profile = staffDetail.get(i).getChangeName();
+		} else if(staffDetail.get(i).getFileType().equals("ASSIGN")) {
+			pay.add(staffDetail.get(i).getOriginName());
+			payReal.add(staffDetail.get(i).getFileNo());
+		} else {
+			doc.add(staffDetail.get(i).getOriginName());
+			docReal.add(staffDetail.get(i).getFileNo());
+		}
+	}
+	
+	if(staffDetail.get(0).getEmail() == null) {
+		staffDetail.get(0).setEmail("(입력 없음)");
+	}
+	if(staffDetail.get(0).getAddress() == null) {
+		staffDetail.get(0).setAddress("(입력 없음)");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,48 +128,49 @@ fieldset {
 						<tr>
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
 							<td width="20%"><li>직원 ID</li></td>
-							<td width="50%"><input type="text" name="userId" id="userId" value="KJH001205" readonly></td>
+							<td width="50%"><input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly></td>
 							<td width="10%"></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
-							<td colspan="2"><input type="text" name="userName" id="userName" value="김진호"></td>
+							<td colspan="2"><input type="text" name="userName" id="userName" value="<%= staffDetail.get(0).getName() %>"></td>
 						</tr>
 						<tr>
 							<td><li>생년월일</li></td>
-							<td colspan="2"><input type="text" name="birth" id="datepicker" value="2000.12.05." readonly></td>
+							<td colspan="2"><label><%= staffDetail.get(0).getBirth() %>　　　(　<%= staffDetail.get(0).getAge() %> 세　)</label></td>
 						</tr>
 						<tr>
+							<% String[] tel = staffDetail.get(0).getPhone().split("-"); %>
 							<td><li>전화번호</li></td>
-							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="010" readonly> - 
-							    			<input type="text" maxlength="4" size="4" name="tel2" value="0000" readonly> - 
-							    			<input type="text" maxlength="4" size="4" name="tel3" value="7771" readonly></td>
+							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="<%= tel[0] %>" readonly> - 
+							    			<input type="text" maxlength="4" size="4" name="tel2" value="<%= tel[1] %>" readonly> - 
+							    			<input type="text" maxlength="4" size="4" name="tel3" value="<%= tel[2] %>" readonly></td>
 						</tr>
 						<tr>
 							<td><li>담당업무</li></td>
 							<td colspan="2">
 								<select name="subject" disabled>
-									<option value="select">담당업무 선택</option>
-									<option value="korea" selected>국어</option>
-									<option value="math">수학</option>
-									<option value="english">영어</option>
-									<option value="social">사회탐구</option>
-									<option value="science">과학탐구</option>
-									<option value="foreign">제2외국어</option>
-									<option value="desk">행정</option>
-									<option value="cram">입시</option>
+									<option value="select" hidden>담당업무 선택</option>
+									<option value="KOR">국어</option>
+									<option value="MATH">수학</option>
+									<option value="ENG">영어</option>
+									<option value="SOCIAL">사회탐구</option>
+									<option value="SCIENCE">과학탐구</option>
+									<option value="FOREIGN">제2외국어</option>
+									<option value="DESK">행정</option>
+									<option value="APPLY">입시</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>이메일</li></td>
-							<td colspan="2"><input type="email" name="email" id="email" value="kjh7771@gmail.com" readonly></td>
+							<td colspan="2"><input type="email" name="email" id="email" value="<%= staffDetail.get(0).getEmail() %>" readonly></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>주소</li></td>
-							<td colspan="2"><input type="text" name="address" id="address" value="강남구 역삼동 KH정보교육원 C class" readonly></td>
+							<td colspan="2"><input type="text" name="address" id="address" value="<%= staffDetail.get(0).getAddress() %>" readonly></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -156,12 +182,22 @@ fieldset {
 						<tr>
 							<td></td>
 							<td><li>급여 계약서</li></td>
-							<td colspan="2"><label>20191205_김진호_급여_계약서.hwp</label>&nbsp;<button class="download">다운로드</button></td>
+							<td colspan="2">
+								<% for(int i = 0; i < pay.size(); i++) { %>
+									<label><%= pay.get(i) %></label>&nbsp;
+									<button class="download" onclick="location.href='<%= request.getContextPath() %>/download.staff?no=<%= payReal.get(i) %>>">다운로드</button><br>
+								<% } %>
+							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>경력 등 기타 서류</li></td>
-							<td colspan="2"><label>20191205_김진호_이력서.hwp</label>&nbsp;<button class="download">다운로드</button></td>
+							<td colspan="2">
+								<% for(int i = 0; i < doc.size(); i++) { %>
+									<label><%= doc.get(i) %></label>&nbsp;
+									<button class="download" onclick="location.href='<%= request.getContextPath() %>/download.staff?no=<%= docReal.get(i) %>>">다운로드</button><br>
+								<% } %>
+							</td>
 						</tr>
 						<tr>
 							<td></td>
@@ -187,6 +223,20 @@ fieldset {
 			function goList(){
 				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
 			}
+			
+			$(function(){
+				$("option").each(function(){
+					if($(this).val() === "<%= staffDetail.get(0).getDept() %>") {
+						$(this).attr("selected", true);
+					}
+				});
+				
+				if("<%= profile %>" === null) {
+				} else {
+					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
+				}
+			});
+			
 		</script>
 	</section>
 	<footer>

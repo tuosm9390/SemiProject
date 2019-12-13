@@ -24,7 +24,15 @@ public class StaffDetailServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("no"));
 		ArrayList<StaffDetail> staffDetail = new StaffService().staffDetail(userNo);
 		
-		
+		String page = "";
+		if(staffDetail != null) {
+			page = "viewAcademy/mngStaff/staffDetail.jsp";
+			request.setAttribute("staffDetail", staffDetail);
+		} else {
+			page = "viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "staffDetailFail");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
