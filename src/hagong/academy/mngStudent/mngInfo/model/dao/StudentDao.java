@@ -289,22 +289,8 @@ public class StudentDao {
 			pstmt.setString(2, s.getScoType());
 			pstmt.setInt(3, s.getYear());
 			pstmt.setInt(4, s.getTerm());
-			pstmt.setString(5, s.getSub1Name());
-			pstmt.setInt(6, s.getSub1score());
-			
-			pstmt.setInt(7, s.getUserNo());
-			pstmt.setString(8, s.getScoType());
-			pstmt.setInt(9, s.getYear());
-			pstmt.setInt(10, s.getTerm());
-			pstmt.setString(11, s.getSub2Name());
-			pstmt.setInt(12, s.getSub2score());
-			
-			pstmt.setInt(13, s.getUserNo());
-			pstmt.setString(14, s.getScoType());
-			pstmt.setInt(15, s.getYear());
-			pstmt.setInt(16, s.getTerm());
-			pstmt.setString(17, s.getSub3Name());
-			pstmt.setInt(18, s.getSub3score());
+			pstmt.setString(5, s.getSubName());
+			pstmt.setInt(6, s.getSubscore());
 			
 			result = pstmt.executeUpdate();
 			
@@ -315,6 +301,41 @@ public class StudentDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Student> scoreList(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		ArrayList<Student> list = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("scoreList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, s.getUserId());
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
+			
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 
 }

@@ -41,12 +41,8 @@ public class Student {
 	private String scoType; // 성적구분
 	private int year; // 년도
 	private int term; // 학기
-	private String sub1Name; // 과목명
-	private int sub1score; // 과목점수
-	private String sub2Name; // 과목명
-	private int sub2score; // 과목점수
-	private String sub3Name; // 과목명
-	private int sub3score; // 과목점수
+	private String subName; // 과목명
+	private int subscore; // 과목점수
 
 	public Student() {
 	}
@@ -54,8 +50,7 @@ public class Student {
 	public Student(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
 			String email, String status, String inflowPath, String userType, int age, String school, int grade,
 			String track, String college, String major, int refUno, String refName, String refId, String refPhone,
-			String scoType, int year, int term, String sub1Name, int sub1score, String sub2Name, int sub2score,
-			String sub3Name, int sub3score) {
+			String scoType, int year, int term, String subName, int subscore) {
 		super();
 		this.userNo = userNo;
 		this.name = name;
@@ -81,12 +76,8 @@ public class Student {
 		this.scoType = scoType;
 		this.year = year;
 		this.term = term;
-		this.sub1Name = sub1Name;
-		this.sub1score = sub1score;
-		this.sub2Name = sub2Name;
-		this.sub2score = sub2score;
-		this.sub3Name = sub3Name;
-		this.sub3score = sub3score;
+		this.subName = subName;
+		this.subscore = subscore;
 	}
 
 	public int getUserNo() {
@@ -281,52 +272,20 @@ public class Student {
 		this.term = term;
 	}
 
-	public String getSub1Name() {
-		return sub1Name;
+	public String getSubName() {
+		return subName;
 	}
 
-	public void setSub1Name(String sub1Name) {
-		this.sub1Name = sub1Name;
+	public void setSubName(String subName) {
+		this.subName = subName;
 	}
 
-	public int getSub1score() {
-		return sub1score;
+	public int getSubscore() {
+		return subscore;
 	}
 
-	public void setSub1score(int sub1score) {
-		this.sub1score = sub1score;
-	}
-
-	public String getSub2Name() {
-		return sub2Name;
-	}
-
-	public void setSub2Name(String sub2Name) {
-		this.sub2Name = sub2Name;
-	}
-
-	public int getSub2score() {
-		return sub2score;
-	}
-
-	public void setSub2score(int sub2score) {
-		this.sub2score = sub2score;
-	}
-
-	public String getSub3Name() {
-		return sub3Name;
-	}
-
-	public void setSub3Name(String sub3Name) {
-		this.sub3Name = sub3Name;
-	}
-
-	public int getSub3score() {
-		return sub3score;
-	}
-
-	public void setSub3score(int sub3score) {
-		this.sub3score = sub3score;
+	public void setSubscore(int subscore) {
+		this.subscore = subscore;
 	}
 
 	@Override
@@ -336,9 +295,8 @@ public class Student {
 				+ status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age=" + age + ", school="
 				+ school + ", grade=" + grade + ", track=" + track + ", college=" + college + ", major=" + major
 				+ ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone
-				+ ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", sub1Name=" + sub1Name
-				+ ", sub1score=" + sub1score + ", sub2Name=" + sub2Name + ", sub2score=" + sub2score + ", sub3Name="
-				+ sub3Name + ", sub3score=" + sub3score + "]";
+				+ ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", subName=" + subName
+				+ ", subscore=" + subscore + "]";
 	}
 
 }
