@@ -37,7 +37,7 @@ public class SelectNoticeServlet extends HttpServlet {
 		String page = "";
 		
 		if(n != null) {
-			page = "viewAcademy/commonMenu/noticeUpdate.jsp";
+			page = "/viewAcademy/commonMenu/updateNotice.jsp";
 			request.setAttribute("n", n);
 		}else {
 			request.setAttribute("msg", "게시글 수정용 상세 보기 실패!");
