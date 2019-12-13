@@ -233,6 +233,7 @@ public class CounselingDao {
 			pstmt.setString(5, couns.getCouType());
 			pstmt.setString(6, couns.getCouContent());
 			pstmt.setString(7, couns.getCouAction());
+			pstmt.setString(8, couns.getCouBlack());
 			
 			result = pstmt.executeUpdate();
 			

@@ -41,7 +41,11 @@ public class InsertCounsServlet extends HttpServlet {
 		String consres = request.getParameter("consres");
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		int counsUserNo = Integer.parseInt(request.getParameter("counsUserNo"));
-
+		String isblack = request.getParameter("isblack");
+		if(isblack == null) {
+			isblack = "N";
+		}
+		
 		java.sql.Date day = null;
 		
 		if(date != "") {
@@ -58,7 +62,7 @@ public class InsertCounsServlet extends HttpServlet {
 		couns.setUserNo(userNo);
 		couns.setCouContent(consreq);
 		couns.setCouAction(consres);
-		
+		couns.setCouBlack(isblack);
 		
 		int result = new CounselingService().insertCouns(couns);
 		

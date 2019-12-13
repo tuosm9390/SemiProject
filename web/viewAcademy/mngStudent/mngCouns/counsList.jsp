@@ -270,6 +270,10 @@ input, select, textarea {
 									<label class="dTit">상담자의 대응내용</label>
 									<textarea class="inputCons" name="consres">상담대응내용입니다.</textarea>
 								</div>
+								<div class="dCtn isBlack">
+									<label for="isblack">블랙리스트</label>
+									<input type="checkBox" name="isblack" value="Y">
+								</div>
 							</div>
 						</div>
 						<div class="btnArea">
