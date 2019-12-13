@@ -107,6 +107,38 @@ public class CounselingService {
 		return counsDetail;
 	}
 
+	public int updateCounsDetail(Counseling couns) {
+		Connection con = getConnection();
+		
+		int result = new CounselingDao().updateCounsDetail(con, couns);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int deleteCouns(int couNo) {
+		Connection con = getConnection();
+		
+		int result = new CounselingDao().delteCouns(con, couNo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 
 }
 
