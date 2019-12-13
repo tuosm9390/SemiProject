@@ -24,7 +24,7 @@ public class DownloadFileServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int fileNo = Integer.parseInt(request.getParameter("num"));
+		int fileNo = Integer.parseInt(request.getParameter("no"));
 		
 		StaffFile file = new DownloadFileService().downloadFile(fileNo);
 		BufferedInputStream bif = null;

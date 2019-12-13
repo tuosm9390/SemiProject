@@ -124,11 +124,10 @@ fieldset {
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　상세정보　</h1></legend>
          		<div class="outArea">
-					<form action="" method="post">
 					<table class="table">
 						<tr>
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="<%= request.getContextPath() %>/images/user.png"></div></td>
-							<td width="20%"><li>직원 ID</li></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="<%= request.getContextPath() %>/images/user.png" style="border-radius:50%;"></div></td>
+							<td width="20%"><li>ID</li></td>
 							<td width="50%"><input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly></td>
 							<td width="10%"></td>
 						</tr>
@@ -188,8 +187,8 @@ fieldset {
 									String pr = payReal.get(i) + "";
 								%>
 									<label><%= pay.get(i) %></label>&nbsp;
-									<%-- <button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?num=<%=payReal.get(i)%>'">다운로드</button><br> --%>
-									<button class="download" type="button" onclick="downloadFile(<%= pr %>)">다운로드</button><br>
+									<button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?no=<%=payReal.get(i)%>'">다운로드</button><br>
+
 								<% } %>
 							</td>
 						</tr>
@@ -199,8 +198,7 @@ fieldset {
 							<td colspan="2">
 								<% for(int i = 0; i < doc.size(); i++) { %>
 									<label><%= doc.get(i) %></label>&nbsp;
-									<%-- <button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?num=<%=docReal.get(i)%>'">다운로드</button><br> --%>
-									<button class="download" onclick="downloadFile(<%=docReal.get(i)%>)">다운로드</button><br>
+									<button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?no=<%=docReal.get(i)%>'">다운로드</button><br>
 								<% } %>
 							</td>
 						</tr>
@@ -214,7 +212,6 @@ fieldset {
 							</td>
 						</tr>
 					</table>		
-					</form>
 					<br>
 				</div> <!-- outArea end -->
       		</fieldset>
@@ -241,24 +238,6 @@ fieldset {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}
 			});
-			
-			<%-- function downloadFile(num) {
-				$.ajax({
-					url: "<%=  request.getContextPath() %>/down.staff",
-					type: "post",
-					data: {num:num},
-					success: function(data){
-						console.log("123");
-					},
-					error: function(data){
-						console.log("Failed");
-					}
-				});
-			} --%>
-			function downloadFile(num){
-				var num = num;
-				console.log(num);
-			}
 		</script>
 	</section>
 	<footer>

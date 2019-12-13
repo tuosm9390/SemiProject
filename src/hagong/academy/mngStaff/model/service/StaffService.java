@@ -26,4 +26,11 @@ public class StaffService {
 		return staffDetail;
 	}
 
+	public int deleteStaff(int staffNo) {
+		Connection con = getConnection();
+		int result = new StaffDao().deleteStaff(con, staffNo);
+		close(con);
+		return result;
+	}
+
 }

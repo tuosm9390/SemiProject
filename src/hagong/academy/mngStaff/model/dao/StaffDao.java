@@ -118,4 +118,21 @@ private Properties prop = new Properties();
 		return staffDetail;
 	}
 
+	public int deleteStaff(Connection con, int staffNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteStaff");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, staffNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

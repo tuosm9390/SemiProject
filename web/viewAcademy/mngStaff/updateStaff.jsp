@@ -17,6 +17,18 @@
 			docReal.add(staffDetail.get(i).getFileNo());
 		}
 	}
+	int paySize;
+	int docSize;
+	if(pay.size() > 0) {
+		paySize = pay.size();
+	} else {
+		paySize = 1;
+	}
+	if(doc.size() > 0) {
+		docSize = doc.size();
+	} else {
+		docSize = 1;
+	}
 	
 	if(staffDetail.get(0).getEmail() == null) {
 		staffDetail.get(0).setEmail("");
@@ -161,12 +173,12 @@ fieldset {
 					<form action="<%= request.getContextPath() %>/aupdate.staff" method="post" id="updateForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-							<td width="20%"><li>ID</li></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
+							<td width="40%"><li>ID</li></td>
 							<td width="40%">
 								<input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly>
 							</td>
-							<td width="20%"></td>
+							<td width="10%"></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
@@ -203,7 +215,7 @@ fieldset {
 							</td>
 						</tr>
 						<tr>
-							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile" name="imgFile" onchange="loadImg(this)"></td>
+							<td><div align="center"><button type="button" id="imgBtn">사진 선택</button></div><input type="file" id="imgFile" name="imgFile" onchange="loadImg(this)"></td>
 							<td><li>이메일</li></td>
 							<td colspan="2"><input type="email" name="email" id="email" value="<%= staffDetail.get(0).getEmail() %>">
 							<span id="emailSpan" class="redText"></span></td>
@@ -222,24 +234,29 @@ fieldset {
 						</tr>
 						<tr>
 							<td></td>
-							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
-								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
+							<td>⦁　급여 계약서&nbsp;<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+								<input type="file" id="payFile<%= paySize - 1 %>" name="payFile<%= paySize - 1 %>" onchange="loadFile(this, 1)"></td>
 							<td colspan="2">
 								<% for(int i = 0; i < pay.size(); i++) { %>
-									<label><%= pay.get(i) %></label>&nbsp;
-									<button class="deleteFile">-</button><br>
+								<div id="deletePay<%= i %>" display="block">
+									<label id="deletePay<%= i %>"><%= pay.get(i) %></label>&nbsp;
+									<button id="deletePayFile<%= i %>" type="button" class="deleteFile" onclick="deletePayfile(this, <%= i %>)">-</button>
+								</div>
 								<% } %>
 								<input type="hidden" id="payFiles">
 							</td>
 						</tr>
+						
 						<tr>
 							<td></td>
 							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
-								<input type="file" id="docFile1" name="docFile1" onchange="loadFile(this, 2)"></td>
+								<input type="file" id="docFile<%= docSize - 1 %>" name="docFile<%= docSize - 1 %>" onchange="loadFile(this, 2)"></td>
 							<td colspan="2">
 								<% for(int i = 0; i < doc.size(); i++) { %>
-									<label><%= doc.get(i) %></label>&nbsp;
-									<button class="deleteFile">-</button><br>
+								<div display="block">
+									<label id="deleteDoc<%= i %>"><%= doc.get(i) %></label>&nbsp;
+									<button id="deleteDocFile<%= i %>" type="button" class="deleteFile" onclick="deleteDocfile(this, <%= i %>)">-</button>
+								</div>
 								<% } %>
 								<input type="hidden" id="docFiles">
 							</td>
@@ -261,8 +278,27 @@ fieldset {
          	</fieldset>
          </div>
 		<script>
-			payCnt = 1;
-			docCnt = 1;
+			payCnt = <%= paySize %>;
+			docCnt = <%= docSize %>;
+			
+			function deletePayfile(value, num) {
+				for(var i = 0; i < (payCnt + 1); i++) {
+					if(num === i) {
+						$(value).remove();
+						$("#deletePay" + i).remove();
+						$("#payFile" + i).remove();
+					}
+				}
+			}
+			function deleteDocfile(value, num) {
+				for(var i = 0; i < (docCnt + 1); i++) {
+					if(num === i) {
+						$(value).remove();
+						$("#deleteDoc" + i).remove();
+						$("#docFile" + i).remove();
+					}
+				}
+			}
 			
 			function loadImg(value) {
 				if(value.files && value.files[0]) {
@@ -286,13 +322,13 @@ fieldset {
 							payCnt++;
 							$inputFile = $("<input type='file' name='payFile" + payCnt + "' id='payFile" + payCnt + "' onchange='loadFile(this, 1)'>");
 							$("#payFile" + (payCnt - 1)).after($inputFile);
-							$("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							$("#payFiles").before("<div id=\"deletePay" + (payCnt - 1) + "\" display=\"block\"><label>" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deletePayFile" + (payCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deletePayfile(this, " + (payCnt - 1) + ");\">-</button></div>");
 							break;
 						case 2 :
 							docCnt++;
 							$inputFile = $("<input type='file' name='docFile" + docCnt + "' id='docFile" + docCnt + "' onchange='loadFile(this, 2)'>");
 							$("#docFile" + (docCnt - 1)).after($inputFile);
-							$("#docFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							$("#docFiles").before("<div  id=\"deleteDoc" + (docCnt - 1) + "\" display=\"block\"><label>" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deleteDocFile" + (docCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deleteDocfile(this, " + (docCnt - 1) + ");\">-</button></div>");
 							break;
 						}
 					};
@@ -337,16 +373,16 @@ fieldset {
 				});
 				
 				$("#payBtn").click(function(){
-					$("#payFile").click();
+					$("#payFile" + payCnt).click();
 				});
 				
 				$("#docBtn").click(function(){
-					$("#docFile").click();
+					$("#docFile" + docCnt).click();
 				});
 				
 				$("#deleteBtn").click(function(){
 					if(window.confirm("정말로 삭제하시겠습니까?")) {
-						location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+						location.href = "<%= request.getContextPath() %>/adelete.staff?no=<%= staffDetail.get(0).getUserNo() %>" ;
 					}
 				});
 				
@@ -383,35 +419,29 @@ fieldset {
 			});
 			
 			function doModify(){
-				/* if($("#idSpan").prop("class") === "redText") {
-					alert("ID를 확인해 주세요.");
-				} else if($("#nameSpan").prop("class") === "redText") {
-					alert("이름을 확인해 주세요.");
-				} else if($("#datepicker").val() === "") {
-					alert("생년월일을 확인해 주세요.");
-				} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
-					alert("전화번호를 확인해 주세요.");
-				} else if($("#subject").val() === "select") {
-					alert("담당 업무를 선택해 주세요.");
-				} else if($("#accept").prop("checked") === false) {
-					alert("개인정보 제공 및 활용에 동의해 주세요.");
-				} else {
-					$("input[type=file]").each(function(){
-						if($(this).val() === "") {
-							$(this).remove();
-						}
-					});
-					$("#insertForm").submit();
-				} */
-				
 				if(window.confirm("정말로 수정하시겠습니까?")) {
-					location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffDetail.jsp";
+					if($("#nameSpan").prop("class") === "redText") {
+						alert("이름을 확인해 주세요.");
+					} else if($("#datepicker").val() === "") {
+						alert("생년월일을 확인해 주세요.");
+					} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
+						alert("전화번호를 확인해 주세요.");
+					} else if($("#subject").val() === "select") {
+						alert("담당 업무를 선택해 주세요.");
+					} else {
+						$("input[type=file]").each(function(){
+							if($(this).val() === "") {
+								$(this).remove();
+							}
+						});
+						$("#updateForm").submit();
+					}
 				}
 			}
 			
 			function goList(){
 				if(window.confirm("수정을 취소하시겠습니까?")) {
-					location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+					location.href = "<%= request.getContextPath() %>/adetail.staff?type=view&no=<%= staffDetail.get(0).getUserNo() %>";
 				}
 			}
 		</script>

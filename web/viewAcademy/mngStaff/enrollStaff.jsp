@@ -102,6 +102,10 @@ fieldset {
 	width: 80%;
 }
 
+.deleteFile {
+	display: inline;
+}
+
 .redText{display: block;color: red;margin-left:10px;font-family:"Nanum Gothic";}
 .greenText{display: block;color: green;margin-left:10px;font-family:"Nanum Gothic";}
 </style>
@@ -118,7 +122,7 @@ fieldset {
 					<form action="<%= request.getContextPath() %>/ainsert.staff" method="post" id="insertForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
 							<td width="25%"><li>ID</li></td>
 							<td width="30%">
 								<input type="hidden" name="userPwd" value="0000">
@@ -300,6 +304,48 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			payCnt = 1;
 			docCnt = 1;
 			
+			$(function(){
+				$("#accept").click(function(){
+					if($("#accept").prop("checked")) {
+						$("#acceptLabel").css({"color":"green"});
+					} else {
+						$("#acceptLabel").css({"color":"red"});
+					}
+				});
+				
+				$("#imgBtn").click(function(){
+					$("#imgFile").click();
+				});
+				
+				$("#payBtn").click(function(){
+					$("#payFile" + payCnt).click();
+				});
+				
+				$("#docBtn").click(function(){
+					$("#docFile" + docCnt).click();
+				});
+				
+			});
+			
+			function deletePayfile(value, num) {
+				for(var i = 1; i < (payCnt + 1); i++) {
+					if(num === i) {
+						$(value).remove();
+						$("#deletePay" + i).remove();
+						$("#payFile" + i).remove();
+					}
+				}
+			}
+			function deleteDocfile(value, num) {
+				for(var i = 1; i < (docCnt + 1); i++) {
+					if(num === i) {
+						$(value).remove();
+						$("#deleteDoc" + i).remove();
+						$("#docFile" + i).remove();
+					}
+				}
+			}
+			
 			function loadImg(value) {
 				if(value.files && value.files[0]) {
 					var reader = new FileReader();
@@ -322,13 +368,13 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 							payCnt++;
 							$inputFile = $("<input type='file' name='payFile" + payCnt + "' id='payFile" + payCnt + "' onchange='loadFile(this, 1)'>");
 							$("#payFile" + (payCnt - 1)).after($inputFile);
-							$("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							$("#payFiles").before("<div display=\"block\"><label id=\"deletePay" + (payCnt - 1) + "\">" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deletePayFile" + (payCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deletePayfile(this, " + (payCnt - 1) + ");\">-</button></div>");
 							break;
 						case 2 :
 							docCnt++;
 							$inputFile = $("<input type='file' name='docFile" + docCnt + "' id='docFile" + docCnt + "' onchange='loadFile(this, 2)'>");
 							$("#docFile" + (docCnt - 1)).after($inputFile);
-							$("#docFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							$("#docFiles").before("<div display=\"block\"><label id=\"deleteDoc" + (docCnt - 1) + "\">" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deleteDocFile" + (docCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deleteDocfile(this, " + (docCnt - 1) + ");\">-</button></div>");
 							break;
 						}
 					};
@@ -394,28 +440,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		       $(this).val(inputVal.replace(/[^0-9]/gi, ''));
 		    });
 			    
-			$(function(){
-				$("#accept").click(function(){
-					if($("#accept").prop("checked")) {
-						$("#acceptLabel").css({"color":"green"});
-					} else {
-						$("#acceptLabel").css({"color":"red"});
-					}
-				});
-				
-				$("#imgBtn").click(function(){
-					$("#imgFile").click();
-				});
-				
-				$("#payBtn").click(function(){
-					$("#payFile" + payCnt).click();
-				});
-				
-				$("#docBtn").click(function(){
-					$("#docFile" + docCnt).click();
-				});
-			});
-				
 			function doEnroll(){
 				if($("#idSpan").prop("class") === "redText") {
 					alert("ID를 확인해 주세요.");
