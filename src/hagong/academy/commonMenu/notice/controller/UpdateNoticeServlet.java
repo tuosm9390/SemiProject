@@ -32,11 +32,11 @@ public class UpdateNoticeServlet extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int nno = Integer.parseInt(request.getParameter("num"));
+		int nno = Integer.parseInt(request.getParameter("nno"));
 		
-		System.out.println(nno);
-		System.out.println(title);
-		System.out.println(content);
+		  System.out.println("nno : " + nno);
+		System.out.println("title : " + title);
+		System.out.println("content : " + content);
 		
 		Notice n = new Notice();
 		n.setnTitle(title);
@@ -44,9 +44,9 @@ public class UpdateNoticeServlet extends HttpServlet {
 		n.setNno(nno);
 		
 		int result = new NoticeService().updateNotice(n);
-		
 		String page = "";
 		if(result > 0) {
+			System.out.println("success");
 			response.sendRedirect("aselectone.no?num=" + n.getNno());
 			
 		}else {
