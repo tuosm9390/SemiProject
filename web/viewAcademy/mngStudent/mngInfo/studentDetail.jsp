@@ -8,9 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css'
-	type='text/css'>
-<script src='../../mngAdmin/mngStatus/Nwagon.js'></script>
 <style>
 table {
 	width: 100%;
@@ -96,19 +93,19 @@ h2{
 					<th>희망학과</th>
 				</tr>
 				<tr>
-					<td>kh중학교</td>
-					<td>4</td>
-					<td>helloworld@kakao.com</td>
-					<td>010-4444-4444</td>
-					<td>010-9999-9999</td>
-					<td>사망</td>
+					<td><%= s.getSchool() %></td>
+					<td><%= s.getGrade() %></td>
+					<td><%= s.getEmail() %></td>
+					<td><%= s.getPhone() %></td>
+					<td><%= s.getRefPhone() %></td>
+					<td><%= s.getMajor() %></td>
 				</tr>
 			</table>
 		</div>
 		<!-- 학생 성적 -->
 		<div id="studentPoint" style="width: 90%; margin: auto 10%;">
 			<h2 style="width: 150px;"><li>학생 성적</li></h2>
-			<button id="pointAddBtn" style="float: right; margin-right: 11.2%;">성적 추가</button>
+			<button id="addRow" style="float: right; margin-right: 11.2%;">성적 추가</button>
 			<button style="float: right;">검색</button>
 			<!-- DatePicker -->
 			<input type='text' id='datepicker' readonly>
@@ -126,48 +123,18 @@ h2{
 			<!-- 학생 성적 테이블 -->
 			<table id="score" class="table" id="point" style="width:96%;">
 				<tr>
-					<th></th>
-					<th>구분</th>
-					<th>학기</th>
-					<th>년도</th>
+					<th style='width: 116px;'>번호</th>
+					<th style='width: 194px;'>구분</th>
+					<th style='width:140px;'>학기</th>
+					<th style='width:213px;'>년도</th>
 					<th>과목 1</th>
 					<th>과목 2</th>
 					<th>과목 3</th>
-					<th></th>
+					<th style='width: 100px;'></th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>모의고사</td>
-					<td>1</td>
-					<td>2019</td>
-					<td>0</td>
-					<td>50</td>
-					<td>60</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>내신</td>
-					<td>2</td>
-					<td>2019</td>
-					<td>40</td>
-					<td>60</td>
-					<td>20</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>내신</td>
-					<td>1</td>
-					<td>2018</td>
-					<td>40</td>
-					<td>0</td>
-					<td>30</td>
-					<td></td>
-				</tr>
+				
 			</table>
 		</div>
-	
 		<!-- 성적 그래프 -->
 		<div id="chart" style="width: 90%; margin: auto 10%;">
 			<h2 align="left"><li>성적 그래프</li></h2>
@@ -177,6 +144,41 @@ h2{
 	<footer></footer>
 
 	<script>
+		var $select1 = "<select style='width: 85px;' class='type' name='type'>";
+		var $op1 = "<option value='NS'>내신</option><option value='MG'>모의고사</option><option value='ETC'>기타</option>	";
+		var $select2 = "<select style='width: 50px;' class='term' name='term'>";
+		var $op2 = "<option value='1'>1</option><option value='2'>2</option>";
+		var $button = "<button type='button' id='insertScore'>등록</button>";
+		var $year = "<input type='text' class='year' name='year' style='width: 60px;'>";
+		var $sub1 = "<input type='text' class='sub1' name='sub1' style='width: 60px;'>";
+		var $sub2 = "<input type='text' class='sub2' name='sub2' style='width: 60px;'>";
+		var $sub3 = "<input type='text' class='sub3' name='sub3' style='width: 60px;'>";
+		<%-- $("#pointAddBtn").click(function(){
+			location.href="<%= request.getContextPath()%>/ascore.info?userId=" + <%= s.getUserId()%>;
+		}); --%>
+		//학생 성적 추가 버튼
+		$("#addRow").click(function() {
+			$("#score").append(
+				"<tr><td></td><td style='width:194px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:140px; height:43px;'>"
+				+ $select2 + $op2 + "</td><td>" + $year + "</td><td>" + $sub1 + "</td><td>" + $sub2 + "</td><td>" + $sub3 + "</td><td style='width: 100px;'>"
+				+ $button + "</td></tr>");
+			
+			//버튼 중복클릭 막기
+			$(this).attr("disabled","disabled");
+			
+			//성적 등록 버튼
+			$("#insertScore").click(function(){
+				var userId=<%= s.getUserId()%>;
+				var type=$(".type").val();
+				var year=$(".year").val();
+				var term=$(".term").val();
+				var sub1=$(".sub1").val();
+				var sub2=$(".sub2").val();
+				var sub3=$(".sub3").val();
+				
+				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId;
+			});
+		});
 		//차트
 		var options = {
 			'legend' : {
@@ -202,24 +204,11 @@ h2{
 
 		Nwagon.chart(options);
 		
-		var $select1 = "<select style='width: 85px;'>";
-		var $op1 = "<option>내신</option><option>모의고사</option>";
-		var $select2 = "<select style='width: 50px;'>";
-		var $op2 = "<option>1</option><option>2</option>";
-		var $button = "<button type='button'>등록</button>";
-		//학생 성적 추가 버튼
-		$("#pointAddBtn").click(function() {
-			$("#score").append(
-				"<tr><td>3</td><td style='width:194px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:140px; height:43px;'>" + $select2 + $op2 + "</td><td>2019</td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td style='width: 100px;'>" + $button + "</td></tr>");
-		});
-
 		//검색 옵션별 함수
 		$(function() {
 			var class1 = [ '모의고사', '내신' ];
 			var class2 = [ '과목1', '과목2', '과목3' ];
-			$(".so")
-					.change(
-							function() {
+			$(".so").change(function() {
 								var sel = $(this).val();
 								//구분 미선택
 								if (sel == 0) {

@@ -12,16 +12,16 @@ import hagong.academy.mngStudent.mngInfo.model.service.StudentService;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 
 /**
- * Servlet implementation class DetailStudentServlet
+ * Servlet implementation class InsertScoreServlet
  */
-@WebServlet("/adetail.info")
-public class DetailStudentServlet extends HttpServlet {
+@WebServlet("/ascore.info")
+public class InsertScoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailStudentServlet() {
+    public InsertScoreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +31,28 @@ public class DetailStudentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
+		String type = request.getParameter("type");
+		int year = Integer.parseInt(request.getParameter("year"));
+		int term = Integer.parseInt(request.getParameter("term"));
+		int sub1 = Integer.parseInt(request.getParameter("sub1"));
+		int sub2 = Integer.parseInt(request.getParameter("sub2"));
+		int sub3 = Integer.parseInt(request.getParameter("sub3"));
 		
-		Student s = new StudentService().selectStudent(userId);
+		Student s = new Student();
 		
-		String page = "";
-		if(s != null) {
-			System.out.println("학생 정보 조회 성공");
-			page = "/viewAcademy/mngStudent/mngInfo/studentDetail.jsp";
-			request.setAttribute("s", s);
-		} else {
-			System.out.println("학생 정보 조회 실패");
-			page = "/viewAcademy/common/commonError.jsp";
-			request.setAttribute("errorCode", "selectStudentFail");
-		}
+		s.setUserId(userId);
+		s.setScoType(type);
+		s.setYear(year);
+		s.setTerm(term);
+		s.setSub1score(sub1);
+		s.setSub2score(sub2);
+		s.setSub3score(sub3);
 		
-		request.getRequestDispatcher(page).forward(request, response);
+		int userNo = new StudentService().findUserNo(userId);
+		System.out.println("userNo : " + userNo);
+		s.setUserNo(userNo);
+		int result = new StudentService().insertScore(s);
+		
 	}
 
 	/**

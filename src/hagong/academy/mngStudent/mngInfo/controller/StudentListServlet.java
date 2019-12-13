@@ -38,6 +38,8 @@ public class StudentListServlet extends HttpServlet {
 			page = "/viewAcademy/mngStudent/mngInfo/studentList.jsp";
 			request.setAttribute("list", list);
 		} else {
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "selectStudentListFail");
 			System.out.println("학생 리스트 조회 실패");
 		}
 		

@@ -124,7 +124,7 @@ public class InsertStudentServlet extends HttpServlet {
 			s.setUserType(userType);
 
 			// 학부모 번호 찾기
-			int refUno = new StudentService().findRefUno(refId);
+			int refUno = new StudentService().findUserNo(refId);
 			s.setRefUno(refUno);
 			
 			ArrayList<StudentProfile> fileList = new ArrayList<StudentProfile>();
