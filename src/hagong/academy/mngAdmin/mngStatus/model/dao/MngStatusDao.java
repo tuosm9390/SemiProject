@@ -39,17 +39,23 @@ public class MngStatusDao {
 				
 				status = new MngStatus();
 				
-				status.setAllStudent1(rset.getInt("ALL_STUDENT"));
-				status.setEnrollDate1(rset.getInt("ENROLL_COUNT"));
-				status.setLeaveDate1(rset.getInt("LEAVE_COUNT"));
+				status.setAllStudent1(rset.getInt("ALL_STUDENT1"));
+				status.setEnrollDate1(rset.getInt("ENROLL_COUNT1"));
+				status.setLeaveDate1(rset.getInt("LEAVE_COUNT1"));
+				
+				status.setAllStudent1(rset.getInt("ALL_STUDENT2"));
+				status.setEnrollDate1(rset.getInt("ENROLL_COUNT2"));
+				status.setLeaveDate1(rset.getInt("LEAVE_COUNT2"));
+				
+				status.setAllStudent1(rset.getInt("ALL_STUDENT3"));
+				status.setEnrollDate1(rset.getInt("ENROLL_COUNT3"));
+				status.setLeaveDate1(rset.getInt("LEAVE_COUNT3"));
 				
 				status.setInFriend(rset.getInt("INFRIEND"));
 				status.setInInternet(rset.getInt("ININTERNET"));
 				status.setInPicket(rset.getInt("INPICKET"));
 				status.setInPcard(rset.getInt("INPCARD"));
 				status.setInEtc(rset.getInt("INETC"));
-			
-			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,6 +64,18 @@ public class MngStatusDao {
 			close(stmt);
 			close(rset);
 		}
+		return status;
+	}
+
+	public MngStatus selectChart(Connection con, MngStatus status) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectCondition");
+		
+		stmt = con.createStatement();
+		
+		
 		return status;
 	}
 

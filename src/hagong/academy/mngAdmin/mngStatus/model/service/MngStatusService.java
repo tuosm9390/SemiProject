@@ -15,6 +15,10 @@ public class MngStatusService {
 	public MngStatus selectList(){
 		Connection con = getConnection();
 		MngStatus status = new MngStatusDao().selectList(con);
+		if(status !=null) {
+			status = new MngStatusDao().selectChart(con,status);
+		}
+			
 		
 		close(con);
 		
