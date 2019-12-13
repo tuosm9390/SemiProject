@@ -78,7 +78,7 @@ fieldset {
 					for (Staff staff : staffList) {
 				%>
 				<tr>
-					<input type="hidden" value="<%= staff.getUserNo() %>">
+					<input id="num" type="hidden" value="<%= staff.getUserNo() %>">
 					<td><%= staff.getUserId() %></td>
 					<td><%= staff.getName() %></td>
 					<td><%= staff.getAge() %></td>
@@ -105,7 +105,7 @@ fieldset {
 				$(this).parent().css({"cursor":"pointer"});
 				}).click(function(){
 					var userNo = $(this).parent().children("input").val();
-					location.href = "<%=request.getContextPath()%>/adetail.staff?no=" + userNo;
+					location.href = "<%=request.getContextPath()%>/adetail.staff?type=view&no=" + userNo;
 				});
 			});
 		</script>

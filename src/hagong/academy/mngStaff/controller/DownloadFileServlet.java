@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import hagong.academy.mngStaff.model.service.DownloadFileService;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 
-@WebServlet("/download.staff")
+@WebServlet("/down.staff")
 public class DownloadFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,7 +24,7 @@ public class DownloadFileServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int fileNo = Integer.parseInt(request.getParameter("no"));
+		int fileNo = Integer.parseInt(request.getParameter("num"));
 		
 		StaffFile file = new DownloadFileService().downloadFile(fileNo);
 		BufferedInputStream bif = null;
@@ -36,7 +36,6 @@ public class DownloadFileServlet extends HttpServlet {
 		response.setContentType("text/plain; charset=UTF-8");
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(file.getOriginName().getBytes("UTF-8"), "ISO-8859-1") + "\"");
 		response.setContentLength((int) downFile.length()); 
-		
 		FileInputStream fis = new FileInputStream(downFile);
 		bif = new BufferedInputStream(fis);
 		
