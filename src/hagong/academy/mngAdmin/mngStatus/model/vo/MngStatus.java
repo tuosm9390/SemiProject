@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*@Data
+@Data
 @AllArgsConstructor
-@NoArgsConstructor*/
+@NoArgsConstructor
 
 public class MngStatus implements java.io.Serializable{
 	
@@ -22,37 +22,33 @@ public class MngStatus implements java.io.Serializable{
 	private int enrollDate3;
 	private int leaveDate3;
 	
-	
-   
-	
 	private int inFriend;
 	private int inInternet;
 	private int inPicket;
 	private int inPcard;
 	private int inEtc;
 	
-	private int midKor;
-	private int midMath;
-	private int midEng;
-	private int midSocial;
-	private int midScience;
-	private int midForeign;
-	private int midEtc;
+	private int t1;
+	private int t2;
+	private int t3;
+	private int l1;
+	private int l2;
+	private int l3;
 	
-	private int highKor;
-	private int highMath;
-	private int highEng;
-	private int highSocial;
-	private int highScience;
-	private int highForeign;
-	private int highEtc;
+	private String tName1;
+	private String tName2;
+	private String tName3;
+	private String tName4;
+	private String tName5;
+	private String tName6;
 	
 	public MngStatus() {}
 
+	
 	public MngStatus(int allStudent1, int enrollDate1, int leaveDate1, int allStudent2, int enrollDate2, int leaveDate2,
 			int allStudent3, int enrollDate3, int leaveDate3, int inFriend, int inInternet, int inPicket, int inPcard,
-			int inEtc, int midKor, int midMath, int midEng, int midSocial, int midScience, int midForeign, int midEtc,
-			int highKor, int highMath, int highEng, int highSocial, int highScience, int highForeign, int highEtc) {
+			int inEtc, int t1, int t2, int t3, int l1, int l2, int l3, String tName1, String tName2, String tName3,
+			String tName4, String tName5, String tName6) {
 		super();
 		this.allStudent1 = allStudent1;
 		this.enrollDate1 = enrollDate1;
@@ -68,21 +64,20 @@ public class MngStatus implements java.io.Serializable{
 		this.inPicket = inPicket;
 		this.inPcard = inPcard;
 		this.inEtc = inEtc;
-		this.midKor = midKor;
-		this.midMath = midMath;
-		this.midEng = midEng;
-		this.midSocial = midSocial;
-		this.midScience = midScience;
-		this.midForeign = midForeign;
-		this.midEtc = midEtc;
-		this.highKor = highKor;
-		this.highMath = highMath;
-		this.highEng = highEng;
-		this.highSocial = highSocial;
-		this.highScience = highScience;
-		this.highForeign = highForeign;
-		this.highEtc = highEtc;
+		this.t1 = t1;
+		this.t2 = t2;
+		this.t3 = t3;
+		this.l1 = l1;
+		this.l2 = l2;
+		this.l3 = l3;
+		this.tName1 = tName1;
+		this.tName2 = tName2;
+		this.tName3 = tName3;
+		this.tName4 = tName4;
+		this.tName5 = tName5;
+		this.tName6 = tName6;
 	}
+
 
 	public int getAllStudent1() {
 		return allStudent1;
@@ -196,116 +191,100 @@ public class MngStatus implements java.io.Serializable{
 		this.inEtc = inEtc;
 	}
 
-	public int getMidKor() {
-		return midKor;
+	public int getT1() {
+		return t1;
 	}
 
-	public void setMidKor(int midKor) {
-		this.midKor = midKor;
+	public void setT1(int t1) {
+		this.t1 = t1;
 	}
 
-	public int getMidMath() {
-		return midMath;
+	public int getT2() {
+		return t2;
 	}
 
-	public void setMidMath(int midMath) {
-		this.midMath = midMath;
+	public void setT2(int t2) {
+		this.t2 = t2;
 	}
 
-	public int getMidEng() {
-		return midEng;
+	public int getT3() {
+		return t3;
 	}
 
-	public void setMidEng(int midEng) {
-		this.midEng = midEng;
+	public void setT3(int t3) {
+		this.t3 = t3;
 	}
 
-	public int getMidSocial() {
-		return midSocial;
+	public int getL1() {
+		return l1;
 	}
 
-	public void setMidSocial(int midSocial) {
-		this.midSocial = midSocial;
+	public void setL1(int l1) {
+		this.l1 = l1;
 	}
 
-	public int getMidScience() {
-		return midScience;
+	public int getL2() {
+		return l2;
 	}
 
-	public void setMidScience(int midScience) {
-		this.midScience = midScience;
+	public void setL2(int l2) {
+		this.l2 = l2;
 	}
 
-	public int getMidForeign() {
-		return midForeign;
+	public int getL3() {
+		return l3;
 	}
 
-	public void setMidForeign(int midForeign) {
-		this.midForeign = midForeign;
+	public void setL3(int l3) {
+		this.l3 = l3;
 	}
 
-	public int getMidEtc() {
-		return midEtc;
+	public String gettName1() {
+		return tName1;
 	}
 
-	public void setMidEtc(int midEtc) {
-		this.midEtc = midEtc;
+	public void settName1(String tName1) {
+		this.tName1 = tName1;
 	}
 
-	public int getHighKor() {
-		return highKor;
+	public String gettName2() {
+		return tName2;
 	}
 
-	public void setHighKor(int highKor) {
-		this.highKor = highKor;
+	public void settName2(String tName2) {
+		this.tName2 = tName2;
 	}
 
-	public int getHighMath() {
-		return highMath;
+	public String gettName3() {
+		return tName3;
 	}
 
-	public void setHighMath(int highMath) {
-		this.highMath = highMath;
+	public void settName3(String tName3) {
+		this.tName3 = tName3;
 	}
 
-	public int getHighEng() {
-		return highEng;
+	public String gettName4() {
+		return tName4;
 	}
 
-	public void setHighEng(int highEng) {
-		this.highEng = highEng;
+	public void settName4(String tName4) {
+		this.tName4 = tName4;
 	}
 
-	public int getHighSocial() {
-		return highSocial;
+	public String gettName5() {
+		return tName5;
 	}
 
-	public void setHighSocial(int highSocial) {
-		this.highSocial = highSocial;
+	public void settName5(String tName5) {
+		this.tName5 = tName5;
 	}
 
-	public int getHighScience() {
-		return highScience;
+	public String gettName6() {
+		return tName6;
 	}
 
-	public void setHighScience(int highScience) {
-		this.highScience = highScience;
-	}
-
-	public int getHighForeign() {
-		return highForeign;
-	}
-
-	public void setHighForeign(int highForeign) {
-		this.highForeign = highForeign;
-	}
-
-	public int getHighEtc() {
-		return highEtc;
-	}
-
-	public void setHighEtc(int highEtc) {
-		this.highEtc = highEtc;
+	public void settName6(String tName6) {
+		this.tName6 = tName6;
 	}
 
 	@Override
@@ -314,12 +293,11 @@ public class MngStatus implements java.io.Serializable{
 				+ ", allStudent2=" + allStudent2 + ", enrollDate2=" + enrollDate2 + ", leaveDate2=" + leaveDate2
 				+ ", allStudent3=" + allStudent3 + ", enrollDate3=" + enrollDate3 + ", leaveDate3=" + leaveDate3
 				+ ", inFriend=" + inFriend + ", inInternet=" + inInternet + ", inPicket=" + inPicket + ", inPcard="
-				+ inPcard + ", inEtc=" + inEtc + ", midKor=" + midKor + ", midMath=" + midMath + ", midEng=" + midEng
-				+ ", midSocial=" + midSocial + ", midScience=" + midScience + ", midForeign=" + midForeign + ", midEtc="
-				+ midEtc + ", highKor=" + highKor + ", highMath=" + highMath + ", highEng=" + highEng + ", highSocial="
-				+ highSocial + ", highScience=" + highScience + ", highForeign=" + highForeign + ", highEtc=" + highEtc
-				+ "]";
-	};
+				+ inPcard + ", inEtc=" + inEtc + ", t1=" + t1 + ", t2=" + t2 + ", t3=" + t3 + ", l1=" + l1 + ", l2="
+				+ l2 + ", l3=" + l3 + ", tName1=" + tName1 + ", tName2=" + tName2 + ", tName3=" + tName3 + ", tName4="
+				+ tName4 + ", tName5=" + tName5 + ", tName6=" + tName6 + "]";
+	}
+
 	
 
 }
