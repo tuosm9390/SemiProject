@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import hagong.academy.mngStaff.model.vo.Staff;
 import hagong.academy.mngStaff.model.vo.StaffDetail;
+import hagong.academy.mngStaff.model.vo.StaffFile;
 
 import static hagong.common.JDBCTemplate.*;
 
@@ -128,6 +129,135 @@ private Properties prop = new Properties();
 			pstmt.setInt(1, staffNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateStaffInfo(Connection con, Staff staff) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateStaffInfo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, staff.getName());
+			pstmt.setDate(2, staff.getBirth());
+			pstmt.setString(3, staff.getPhone());
+			pstmt.setString(4, staff.getEmail());
+			pstmt.setString(5, staff.getAddress());
+			if(staff.getDept().equals("APPLY") || staff.getDept().equals("DESK")) {
+				pstmt.setString(6, "STAFF");
+			} else {
+				pstmt.setString(6, "TEACHER");
+			}
+			pstmt.setInt(7, staff.getUserNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateStaffSubInfo(Connection con, Staff staff) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateStaffSubInfo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, staff.getDept());
+			pstmt.setInt(2, staff.getUserNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertFile(Connection con, ArrayList<StaffFile> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertFile");
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getOriginName());
+				pstmt.setString(2, fileList.get(i).getChangeName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, fileList.get(i).getUserNo());
+				pstmt.setString(5, fileList.get(i).getFileType());
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectFileNo(Connection con, StaffFile staffFile) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int fileNo = 0;
+		
+		String query = prop.getProperty("selectFileNo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, staffFile.getChangeName());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				fileNo = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return fileNo;
+	}
+
+	public int insertStaffFile(Connection con, StaffFile staffFile) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertStaffFile");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, staffFile.getFileNo());
+			pstmt.setInt(2, staffFile.getUserNo());
+			pstmt.setString(3, staffFile.getFileType());
+			System.out.println(staffFile);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteFile(Connection con, int staffNo , int deleteFile) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteFile");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, deleteFile);
+			pstmt.setInt(2, staffNo);
+			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);

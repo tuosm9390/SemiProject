@@ -94,6 +94,20 @@
 			});
 		});
 	</script>
+	
+		<% }else if(errorCode == "updateStaffFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "직원 정보 수정 실패",
+				text: "직원 정보 수정에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+			});
+		});
+	</script>
 
 	<% } else if(errorCode == "insertStudentFail") { %>
 	<script>
