@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
 <% 
-   ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");
+	ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");
+	
+	ArrayList<HashMap<String, Object>> studentList = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
+	Member m = new Member();
+	Student s = new Student();
+	HashMap<String, Object> map = new HashMap<String, Object>();
+	
+	for(int i=0; i<studentList.size(); i++){
+		m = (Member) studentList.get(i).get("member");
+		s = (Student) studentList.get(i).get("student");
+		
+		map.put("member"+i, m);
+		map.put("student"+i, s);
+	}
+	
+	ArrayList<Member> mem = new ArrayList<>();
+	ArrayList<Student> stu = new ArrayList<>();
+	for(int j=0; j<map.size(); j++) {
+		mem.add((Member) map.get("member"+j));
+		stu.add((Student) map.get("student"+j));
+	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -135,9 +156,7 @@
                   <% Calendar cal = Calendar.getInstance();
                      int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
                      int month = cal.get(Calendar.MONTH) + 1;
-                     
-                     System.out.println("dayOfMonth : " + dayOfMonth);
-                     System.out.println("month : " + month);
+
                      int[] index = new int[dayOfMonth];
                      for(int i=0; i<dayOfMonth; i++) {
                         
@@ -146,21 +165,23 @@
                   <th><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
-                     <%    for(int i=0; i<attendList.size(); i++) {
-                        HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);
+                     <% for(int i=0; i<attendList.size(); i++) {
+                        HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);                     
                         ArrayList<Attendance> list = null;
                         
                         Iterator<String> iter = hmap.keySet().iterator();
                         while(iter.hasNext()){
                            String keys = (String) iter.next();
-                           System.out.println("keys : " + keys);
-                           list = hmap.get(keys);   
-                            System.out.println("list : " + list);
-                           %>
+                           list = hmap.get(keys);   %>
                         <tr>
                            <td><input type="checkbox" id="checkOne"></td>
                            <td><%= keys %></td>
-                           <td id="infoCol">학생정보</td>
+                           <td id="infoCol"><% if(mem.get(i).getName().equals(keys)){ %>
+                           					<%=stu.get(i).getSchool()%><br>
+                           					<%=stu.get(i).getGrade()%>학년<br>
+                           					<%=mem.get(i).getPhone()%>
+                           					<input type="hidden" value="<%=mem.get(i).getUserNo()%>"> 
+                           					<% } %></td>
                            
                            <%    
                               ArrayList<String> dateArr = new ArrayList<>();
@@ -203,8 +224,10 @@
                               for(int l=0; l<attendCheck.length; l++) {
                                  if(attendCheck[l]==true){ %>
                                  <td>출석</td>
-                              <%    }else { %>
-                                 <td style="padding:20px"><a id="reasonWrite">결석</a></td>
+                              <%    }else { 
+                              	String name = "reasonWrite" + (l+1);
+                              %>
+                                 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:red">결석</a></td>
                               <%    }
                               }                             
                            } %>
@@ -241,17 +264,16 @@
             }
          });
       });
-/*       
-      $(function(){
-         $(".studentListTable td").click(function(){
-            $(".detailReasonArea").css("visibility","visible");
-         });
-      });
-       */
+
       $(function() {
-         $("#reasonWrite").click(function() {
-            $(".detailReasonArea").css("visibility","visible");
-         });
+         $(document).on("click", ".reasonWrite", function() {
+             $(".detailReasonArea").css("visibility","visible");
+        	 var idx = $(this).parent().index()-2;
+        	 console.log("idx : " + idx);
+        	 var name = $(this).parent().siblings().eq(2).children("input")[0].value;
+        	 console.log(name);
+        	 
+        	});
       });
       
    </script>
