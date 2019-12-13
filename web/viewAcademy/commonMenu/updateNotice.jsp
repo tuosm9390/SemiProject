@@ -59,22 +59,27 @@
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
-					<button  onclick="deleteNotice();" style="margin-right:5px;">삭제하기</button>
+					<button  id="delete" style="margin-right:5px;">삭제하기</button>
 					<button  id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정 완료</button>
 				</div>
 			</form>
 				<script>
-					function complete() {
-					 <%-- $("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");  --%>
-					 
-					}
+					<%-- function complete() {
+						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
+					} --%>
+					
 					$("#complete").on("click",function(){
 						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
 					});
 					
-					function deleteNotice() {
-						$("#updateForm").attr("action", "<%=request.getContextPath()%>/deleteNotice.no");
-					}
+					<%-- function deleteNotice() {
+						$("#updateForm").attr("action", "<%=request.getContextPath()%>/adelete.no");
+					} --%>
+					
+					
+					$("#delete").on("click",function(){
+						$("#updateForm").attr("action", "<%=request.getContextPath()%>/adelete.no");
+					})
 				</script>
 		</div> <!-- tableArea end -->
 		</div> <!-- outer end -->
@@ -92,7 +97,7 @@
 							title:"삭제되었습니다",
 							icon:"success"
 						}).then(function(){
-							location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp';
+							location.href='<%=request.getContextPath()%>/alist.no';
 						})
 					}
 					

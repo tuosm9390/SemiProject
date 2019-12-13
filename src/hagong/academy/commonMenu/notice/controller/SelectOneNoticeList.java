@@ -41,6 +41,7 @@ public class SelectOneNoticeList extends HttpServlet {
 			page = "/viewAcademy/commonMenu/noticeDetail.jsp";
 			request.setAttribute("n", n);
 		}else {
+			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패!");
 		}
 		request.getRequestDispatcher(page).forward(request, response);

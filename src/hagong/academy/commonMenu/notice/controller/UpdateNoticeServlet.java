@@ -34,7 +34,7 @@ public class UpdateNoticeServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
-		  System.out.println("nno : " + nno);
+		System.out.println("nno : " + nno);
 		System.out.println("title : " + title);
 		System.out.println("content : " + content);
 		
@@ -50,6 +50,7 @@ public class UpdateNoticeServlet extends HttpServlet {
 			response.sendRedirect("aselectone.no?num=" + n.getNno());
 			
 		}else {
+			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 수정 실패!");
 			request.getRequestDispatcher(page).forward(request, response);
 		}
