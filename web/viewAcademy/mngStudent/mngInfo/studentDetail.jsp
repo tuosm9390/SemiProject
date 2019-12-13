@@ -81,7 +81,7 @@ h2{
 		<div id="studentInfo" style="width: 80%; margin: auto auto;">
 		<h2 style="width: 150px;"><li>학생 정보</li></h2>
 			<button id="updatebtn"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp'"
+				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp?s=' + <%= s%>"
 				style="float: right;">수정</button>
 			<table class="table">
 				<tr>
@@ -121,18 +121,27 @@ h2{
 				<option value="3">과목</option>
 			</select>
 			<!-- 학생 성적 테이블 -->
-			<table id="score" class="table" id="point" style="width:96%;">
+			<table id="score" class="table" id="point" style="width:97%;">
 				<tr>
-					<th style='width: 116px;'>번호</th>
+					<th style='width: 119px;'></th>
 					<th style='width: 194px;'>구분</th>
 					<th style='width:140px;'>학기</th>
-					<th style='width:213px;'>년도</th>
-					<th>과목 1</th>
-					<th>과목 2</th>
-					<th>과목 3</th>
+					<th style='width:200px;'>년도</th>
+					<th>국어</th>
+					<th>영어</th>
+					<th>수학</th>
 					<th style='width: 100px;'></th>
 				</tr>
-				
+				<tr>
+					<td></td>
+					<td><%=s.getScoType() %></td>
+					<td><%=s.getTerm() %></td>
+					<td><%=s.getYear() %></td>
+					<td><%=s.getSub1score() %></td>
+					<td><%=s.getSub2score() %></td>
+					<td><%=s.getSub3score() %></td>
+					<td></td>
+				</tr>
 			</table>
 		</div>
 		<!-- 성적 그래프 -->
@@ -159,7 +168,7 @@ h2{
 		//학생 성적 추가 버튼
 		$("#addRow").click(function() {
 			$("#score").append(
-				"<tr><td></td><td style='width:194px; height:43px;'>" + $select1 + $op1 + "</td><td style='width:140px; height:43px;'>"
+				"<tr><td></td><td style=' height:43px;'>" + $select1 + $op1 + "</td><td style=' height:43px;'>"
 				+ $select2 + $op2 + "</td><td>" + $year + "</td><td>" + $sub1 + "</td><td>" + $sub2 + "</td><td>" + $sub3 + "</td><td style='width: 100px;'>"
 				+ $button + "</td></tr>");
 			
@@ -168,7 +177,8 @@ h2{
 			
 			//성적 등록 버튼
 			$("#insertScore").click(function(){
-				var userId=<%= s.getUserId()%>;
+				var userId="<%= s.getUserId()%>";
+				var name="<%= s.getName()%>";
 				var type=$(".type").val();
 				var year=$(".year").val();
 				var term=$(".term").val();
@@ -176,7 +186,15 @@ h2{
 				var sub2=$(".sub2").val();
 				var sub3=$(".sub3").val();
 				
-				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId;
+				console.log(typeof(type));
+				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId + "&name" + name + "&type=" + type + "&year=" + year + "&term=" + term + "&sub1=" + sub1 + "&sub2=" + sub2 + "&sub3=" + sub3;
+				
+				$(".type").removeClass("type");
+				$(".year").removeClass("year");
+				$(".term").removeClass("term");
+				$(".sub1").removeClass("sub1");
+				$(".sub2").removeClass("sub2");
+				$(".sub3").removeClass("sub3");
 			});
 		});
 		//차트

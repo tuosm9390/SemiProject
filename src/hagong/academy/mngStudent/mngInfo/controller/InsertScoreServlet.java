@@ -31,27 +31,50 @@ public class InsertScoreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
+		System.out.println("userId : " + userId);
+		String name = request.getParameter("name");
+		System.out.println("name : " + name);
 		String type = request.getParameter("type");
+		System.out.println("type : " + type);
 		int year = Integer.parseInt(request.getParameter("year"));
+		System.out.println("year : " + year);
 		int term = Integer.parseInt(request.getParameter("term"));
+		System.out.println("term : " + term);
 		int sub1 = Integer.parseInt(request.getParameter("sub1"));
+		System.out.println("sub1 : " + sub1);
 		int sub2 = Integer.parseInt(request.getParameter("sub2"));
+		System.out.println("sub2 : " + sub2);
 		int sub3 = Integer.parseInt(request.getParameter("sub3"));
+		System.out.println("sub3 : " + sub3);
 		
 		Student s = new Student();
 		
 		s.setUserId(userId);
+		s.setName(name);
 		s.setScoType(type);
 		s.setYear(year);
 		s.setTerm(term);
+		s.setSub1Name("국어");
 		s.setSub1score(sub1);
+		s.setSub2Name("영어");
 		s.setSub2score(sub2);
+		s.setSub3Name("수학");
 		s.setSub3score(sub3);
 		
 		int userNo = new StudentService().findUserNo(userId);
-		System.out.println("userNo : " + userNo);
 		s.setUserNo(userNo);
 		int result = new StudentService().insertScore(s);
+		
+		String page = "";
+		if(result > 0) {
+			System.out.println("점수 입력 성공");
+			response.sendRedirect("/hagong/adetail.info?userId=" + s.getUserId());
+		} else {
+			System.out.println("점수 입력 실패");
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "insertScoreFail");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
 		
 	}
 

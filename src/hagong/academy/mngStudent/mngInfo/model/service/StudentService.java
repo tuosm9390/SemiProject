@@ -11,15 +11,15 @@ import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 public class StudentService {
 
-	public int findUserNo(String refId) {
+	public int findUserNo(String userId) {
 		Connection con = getConnection();
 		
-		int refUno = new StudentDao().findUserNo(con, refId);
-		System.out.println("refUno : " + refUno);
+		int userNo = new StudentDao().findUserNo(con, userId);
+		System.out.println("userNo : " + userNo);
 		
 		close(con);
 		
-		return refUno;
+		return userNo;
 	}
 	
 	public int insertMember(Student s, ArrayList<StudentProfile> fileList) {
