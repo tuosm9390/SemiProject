@@ -17,18 +17,6 @@
 			docReal.add(staffDetail.get(i).getFileNo());
 		}
 	}
-	int paySize;
-	int docSize;
-	if(pay.size() > 0) {
-		paySize = pay.size();
-	} else {
-		paySize = 1;
-	}
-	if(doc.size() > 0) {
-		docSize = doc.size();
-	} else {
-		docSize = 1;
-	}
 	
 	if(staffDetail.get(0).getEmail() == null) {
 		staffDetail.get(0).setEmail("");
@@ -36,6 +24,7 @@
 	if(staffDetail.get(0).getAddress() == null) {
 		staffDetail.get(0).setAddress("");
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -173,6 +162,7 @@ fieldset {
 					<form action="<%= request.getContextPath() %>/aupdate.staff" method="post" id="updateForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
+							<input type="hidden" name="userNo" value="<%= staffDetail.get(0).getUserNo() %>">
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
 							<td width="40%"><li>ID</li></td>
 							<td width="40%">
@@ -235,12 +225,14 @@ fieldset {
 						<tr>
 							<td></td>
 							<td>⦁　급여 계약서&nbsp;<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
-								<input type="file" id="payFile<%= paySize - 1 %>" name="payFile<%= paySize - 1 %>" onchange="loadFile(this, 1)"></td>
+								<input type="hidden" id="delPayfile" name="delPayfile" value="">
+								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
 							<td colspan="2">
 								<% for(int i = 0; i < pay.size(); i++) { %>
-								<div id="deletePay<%= i %>" display="block">
-									<label id="deletePay<%= i %>"><%= pay.get(i) %></label>&nbsp;
-									<button id="deletePayFile<%= i %>" type="button" class="deleteFile" onclick="deletePayfile(this, <%= i %>)">-</button>
+								<div id="deletePay<%= i + 100 %>" display="block">
+									<input type="hidden" id="prePayfile<%= i %>" value="<%= payReal.get(i) %>">
+									<label id="deletePay<%= i + 100 %>"><%= pay.get(i) %></label>&nbsp;
+									<button id="deletePayFile<%= i + 100 %>" type="button" class="deleteFile" onclick="deletePayfile(this, <%= i + 100 %>)">-</button>
 								</div>
 								<% } %>
 								<input type="hidden" id="payFiles">
@@ -250,12 +242,14 @@ fieldset {
 						<tr>
 							<td></td>
 							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
-								<input type="file" id="docFile<%= docSize - 1 %>" name="docFile<%= docSize - 1 %>" onchange="loadFile(this, 2)"></td>
+								<input type="hidden" id="delDocfile" name="delDocfile" value="">
+								<input type="file" id="docFile1" name="docFile1" onchange="loadFile(this, 2)"></td>
 							<td colspan="2">
 								<% for(int i = 0; i < doc.size(); i++) { %>
-								<div display="block">
-									<label id="deleteDoc<%= i %>"><%= doc.get(i) %></label>&nbsp;
-									<button id="deleteDocFile<%= i %>" type="button" class="deleteFile" onclick="deleteDocfile(this, <%= i %>)">-</button>
+								<div id="deleteDoc<%= i + 100 %>" display="block">
+									<input type="hidden" id="preDocfile<%= i %>" value="<%= docReal.get(i) %>">
+									<label id="deleteDoc<%= i + 100 %>"><%= doc.get(i) %></label>&nbsp;
+									<button id="deleteDocFile<%= i + 100 %>" type="button" class="deleteFile" onclick="deleteDocfile(this, <%= i + 100 %>)">-</button>
 								</div>
 								<% } %>
 								<input type="hidden" id="docFiles">
@@ -278,28 +272,9 @@ fieldset {
          	</fieldset>
          </div>
 		<script>
-			payCnt = <%= paySize %>;
-			docCnt = <%= docSize %>;
-			
-			function deletePayfile(value, num) {
-				for(var i = 0; i < (payCnt + 1); i++) {
-					if(num === i) {
-						$(value).remove();
-						$("#deletePay" + i).remove();
-						$("#payFile" + i).remove();
-					}
-				}
-			}
-			function deleteDocfile(value, num) {
-				for(var i = 0; i < (docCnt + 1); i++) {
-					if(num === i) {
-						$(value).remove();
-						$("#deleteDoc" + i).remove();
-						$("#docFile" + i).remove();
-					}
-				}
-			}
-			
+			payCnt = 1;
+			docCnt = 1;
+		
 			function loadImg(value) {
 				if(value.files && value.files[0]) {
 					var reader = new FileReader();
@@ -328,12 +303,38 @@ fieldset {
 							docCnt++;
 							$inputFile = $("<input type='file' name='docFile" + docCnt + "' id='docFile" + docCnt + "' onchange='loadFile(this, 2)'>");
 							$("#docFile" + (docCnt - 1)).after($inputFile);
-							$("#docFiles").before("<div  id=\"deleteDoc" + (docCnt - 1) + "\" display=\"block\"><label>" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deleteDocFile" + (docCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deleteDocfile(this, " + (docCnt - 1) + ");\">-</button></div>");
+							$("#docFiles").before("<div id=\"deleteDoc" + (docCnt - 1) + "\" display=\"block\"><label>" + fileName.substr(last + 1, fileName.length) + "　</label><button id=\"deleteDocFile" + (docCnt - 1) + "\" type=\"button\" class=\"deleteFile\" onclick=\"deleteDocfile(this, " + (docCnt - 1) + ");\">-</button></div>");
 							break;
 						}
 					};
 				}
 				reader.readAsDataURL(value.files[0]);
+			}
+			
+			function deletePayfile(value, num) {
+				$(value).remove();
+				$("#deletePay" + num).remove();
+				$("#payFile" + num).remove();
+				if(num >= 100) {
+					if($("#delPayfile").val().equals("")) {
+						$("#delPayfile").val() += $("#prePayFile" + (num - 100)).val();
+					} else {
+						$("#delPayfile").val() += "," + $("#prePayFile" + (num - 100)).val();
+					}
+				}
+			}
+			
+			function deleteDocfile(value, num) {
+				$(value).remove();
+				$("#deleteDoc" + num).remove();
+				$("#docFile" + num).remove();
+				if(num >= 100) {
+					if($("#delDocfile").val().equals("")) {
+						$("#delDocfile").val() += $("#preDocFile" + (num - 100)).val();
+					} else {
+						$("#delDocfile").val() += "," + $("#preDocFile" + (num - 100)).val();
+					}
+				}
 			}
 			
 			$("#userName").keyup(function(event){
@@ -382,7 +383,7 @@ fieldset {
 				
 				$("#deleteBtn").click(function(){
 					if(window.confirm("정말로 삭제하시겠습니까?")) {
-						location.href = "<%= request.getContextPath() %>/adelete.staff?no=<%= staffDetail.get(0).getUserNo() %>" ;
+						location.href = "<%= request.getContextPath() %>/adelete.staff?no=<%= staffDetail.get(0).getUserNo() %>";
 					}
 				});
 				
