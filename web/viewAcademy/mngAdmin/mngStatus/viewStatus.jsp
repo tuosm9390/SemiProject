@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngStatus.model.vo.*"%>
+    pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngStatus.model.vo.*,java.util.*"%>
     
-   <% MngStatus status = (MngStatus)request.getSession().getAttribute("status"); 
-   	System.out.println(status);
+   <% ArrayList<MngStatus> list = (ArrayList<MngStatus>) request.getSession().getAttribute("list"); 
+   	System.out.println("List !!! : " + list);
    %>
    
 <!DOCTYPE html>
@@ -65,14 +65,7 @@
 </head>
 
 <body>
-<%
-int sum = status.getInFriend() + status.getInInternet() + status.getInPcard() + status.getInPicket()+status.getInEtc();
-int fr = (int)Math.round((status.getInFriend()/(double)sum)*100);
-int in = (int)Math.round((status.getInInternet()/(double)sum)*100);
-int pi = (int)Math.round((status.getInPicket()/(double)sum)*100);
-int pc = (int)Math.round((status.getInPcard()/(double)sum)*100);
-int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
-%>
+
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 <%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>/ --%>
 	<section>
@@ -99,27 +92,27 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 					<tr>	
 						<td>1</td>
 						<td>친구</td>
-						<td><%=fr%>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>	
 						<td>2</td>
 						<td>전단지</td>
-						<td><%=pi%>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>	
 						<td>3</td>
 						<td>인터넷</td>
-						<td><%=in %>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>광고판</td>
-						<td><%=pc %>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>	
 						<td>5</td>
 						<td>기타</td>
-						<td><%=etc%>　%</td>
+						<td>　%</td>
 					</tr>
 				</table>
 			</div>	
@@ -129,8 +122,8 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 		<div id="chart17"></div>
 		
 	</div>
-	
-
+	<%System.out.println(list.get(0).gettName()); %>
+  
 </div><!-- outer end -->
 	<script>
 		var options = {
@@ -140,14 +133,14 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 					},
 			'dataset':{
 				title:'학생수 변동 추이', 
-				values: [[<%=status.getAllStudent1()%>,<%=status.getEnrollDate1()%>,<%=status.getLeaveDate1()%>], [2,5,7], [7,2,3]],
+				values: [2,2,2], [2,5,7], [7,2,3]],
 				colorset: ['#DC143C','#FF8C00', '#2EB400'],
 				fields:['전체학생', '입학', '퇴원']
 				},
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {width:500, height:300},
-			'maxValue' : <%=status.getAllStudent1()*0.8%>,
+			'maxValue' : 10,
 			'increment' : 10
 		};
 
@@ -166,7 +159,7 @@ int etc =(int)Math.round((status.getInEtc()/(double)sum)*100);
 				colorset: ['#DC143C','#FF8C00', '#2EB400', '#666666'],
 				fields:['Working Time', 'Late count', 'Blah','Vacation']
 				},
-			'chartDiv' : 'chart17',
+			'chartDiv' : 'chart17', 
 			'chartType' : 'stacked_column',
 			'chartSize' : {width:500, height:480},
 			'maxValue' : 30,

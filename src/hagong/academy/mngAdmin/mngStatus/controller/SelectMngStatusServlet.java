@@ -1,11 +1,15 @@
 package hagong.academy.mngAdmin.mngStatus.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import hagong.academy.mngAdmin.mngStatus.model.service.MngStatusService;
 import hagong.academy.mngAdmin.mngStatus.model.vo.MngStatus;
@@ -31,24 +35,26 @@ public class SelectMngStatusServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		
-		MngStatus status = new MngStatusService().selectList();
+		ArrayList<MngStatus> list = new ArrayList<>();
+		
+		list = new MngStatusService().selectList();
 		
 		String page ="";
 		
-		System.out.println();
+		System.out.println(list);
 	
+		
 
-
-		if(status != null) {
+		if(list != null) {
 			page = "viewAcademy/mngAdmin/mngStatus/viewStatus.jsp";
-			request.getSession().setAttribute("status", status); 
+			request.getSession().setAttribute("list", list); 
 			response.sendRedirect(page);
 		}else {
 			page = "errorPage.jsp";
 			request.getRequestDispatcher(page).forward(request, response);
 		}
 	
-		
+		System.out.println("List : " + list);
 	}
 
 	/**
