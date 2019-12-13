@@ -28,7 +28,7 @@ public class StudentDao {
 		}
 	}
 
-	public int findUserNo(Connection con, String refId) {
+	public int findUserNo(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int userNo = 0;
@@ -37,7 +37,7 @@ public class StudentDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, refId);
+			pstmt.setString(1, userId);
 
 			rset = pstmt.executeQuery();
 
@@ -182,11 +182,7 @@ public class StudentDao {
 				s.setPhone(rset.getString("PHONE"));
 				s.setSchool(rset.getString("SCHOOL"));
 				s.setRefPhone(rset.getString("REF_PHONE"));
-				if(rset.getString("MAJOR") != "") {
-					s.setMajor(rset.getString("MAJOR"));
-				} else {
-					s.setMajor("");
-				};
+				s.setMajor(rset.getString("MAJOR"));
 				
 				list.add(s);
 			}
@@ -286,6 +282,37 @@ public class StudentDao {
 		int result = 0;
 		
 		String query = prop.getProperty("insertScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, s.getUserNo());
+			pstmt.setString(2, s.getScoType());
+			pstmt.setInt(3, s.getYear());
+			pstmt.setInt(4, s.getTerm());
+			pstmt.setString(5, s.getSub1Name());
+			pstmt.setInt(6, s.getSub1score());
+			
+			pstmt.setInt(7, s.getUserNo());
+			pstmt.setString(8, s.getScoType());
+			pstmt.setInt(9, s.getYear());
+			pstmt.setInt(10, s.getTerm());
+			pstmt.setString(11, s.getSub2Name());
+			pstmt.setInt(12, s.getSub2score());
+			
+			pstmt.setInt(13, s.getUserNo());
+			pstmt.setString(14, s.getScoType());
+			pstmt.setInt(15, s.getYear());
+			pstmt.setInt(16, s.getTerm());
+			pstmt.setString(17, s.getSub3Name());
+			pstmt.setInt(18, s.getSub3score());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}

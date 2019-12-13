@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+<%
+	Student s = (Student) session.getAttribute("s");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,82 +114,84 @@ th, td {
 				</tr>
 				<tr>
 					<td><li>ID</li></td>
-					<td><input type="text" placeholder="ID 입력" value="bbogak" id="userId" name="userId" readonly
+					<td><input type="text" placeholder="<%= s.getUserId() %>" value="<%= s.getUserId() %>" id="userId" name="userId" readonly
 						style="background: none; border: none;"><br>
 					</td>
 				</tr>
 				<tr>
 					<td><li>이름</li></td>
-					<td><input type="text" placeholder="이름 입력" value="박상준" id="userName" name="userName"><br>
+					<td><input type="text" placeholder="<%= s.getName() %>" value="<%= s.getName() %>" id="userName" name="userName"><br>
 					<span id="usernameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td><li>생년월일</li></td>
-					<td><input type="text" id="datepicker" name="birth"></td>
+					<td><input type="text" id="datepicker" name="birth" value="<%= s.getBirth()%>" readonly></td>
 				</tr>
 				<tr>
 					<td><li>전화번호</li></td>
-					<td><input type="tel" maxlength="3" name="tel1"> - 
-					<input type="tel" maxlength="4" name="tel2"> -
-					<input type="tel" maxlength="4" name="tel3"></td>
+					<td><input type="tel" maxlength="3" name="tel1" value="<%= s.getPhone().substring(0, 3)%>"> - 
+					<input type="tel" maxlength="4" name="tel2" value="<%= s.getPhone().substring(4, 7)%>"> - 
+					<input type="tel" maxlength="4" name="tel3" value="<%= s.getPhone().substring(8, 11)%>"></td>
 				</tr>
 				<tr>
 					<td><li>학교 / 학년</li></td>
-					<td><input type="text" placeholder="학교 이름 입력" style="width: 120px;" name="school"> &nbsp;
+					<td><input type="text" placeholder="<%= s.getSchool()%>" style="width: 120px;" name="school" value="<%= s.getSchool()%>"> &nbsp;
 					<select style="width: 120px;" name="grade">
-						<option value="mid1">중학교 1학년</option>
-						<option value="mid2">중학교 2학년</option>
-						<option value="mid3">중학교 3학년</option>
-						<option value="high1">고등학교 1학년</option>
-						<option value="high2">고등학교 2학년</option>
-						<option value="high3">고등학교 3학년</option>
+						<option value="1" selected>중학교 1학년</option>
+						<option value="2">중학교 2학년</option>
+						<option value="3">중학교 3학년</option>
+						<option value="4">고등학교 1학년</option>
+						<option value="5">고등학교 2학년</option>
+						<option value="6">고등학교 3학년</option>
 					</select>
 					</td>
 				</tr>
 				<tr>
 					<td><li>계열</li></td>
 					<td><select name="track">
-							<option>인문</option>
-							<option>자연</option>
-							<option>예체능</option>
+						<option value="LIB" selected>인문계</option>
+						<option value="NAT">자연계</option>
+						<option value="AMP">예체능</option>
+						<option value="IDS">실업계</option>
+						<option value="ETC">기타</option>
 					</select></td>
 				</tr>
 				<tr>
 					<td><li>학부모 아이디</li></td>
-					<td><input type="text" placeholder="학부모 아이디 입력" value="scpark9999" id="refId" name="refId" readonly
+					<td><input type="text" placeholder="<%= s.getRefId()%>" value="<%= s.getRefId()%>" id="refId" name="refId" readonly
 						style="background: none; border: none;"><br>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 이름</li></td>
-					<td><input type="text" placeholder="학부모 이름 입력" value="박상찬" id="refName" name="refName"><br>
+					<td><input type="text" placeholder="<%= s.getRefName() %>" value="<%= s.getRefName() %>" id="refName" name="refName"><br>
 					<span id="refnameSpan" class="redText"></span></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>학부모 전화번호</li></td>
-					<td><input type="tel" maxlength="3" name="reftel1"> - 
-					<input type="tel" maxlength="4" name="reftel2"> -
-					<input type="tel" maxlength="4" name="reftel3"></td>
+					<td><input type="tel" maxlength="3" name="reftel1" value="<%= s.getRefPhone().substring(0, 3) %>"> - 
+					<input type="tel" maxlength="4" name="reftel2" value="<%= s.getRefPhone().substring(4, 7) %>"> -
+					<input type="tel" maxlength="4" name="reftel3" value="<%= s.getRefPhone().substring(8, 11) %>"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>희망대학 / 학과</li></td>
-					<td><input type="text" placeholder="희망 대학 입력" value="군대" name="college" style="width: 100px;">
+					<td><input type="text" placeholder="<%= s.getCollege() %>" value="<%= s.getCollege() %>" name="college" style="width: 100px;">
 						<label style="color: black;">대학교</label>&emsp;
-						<input type="text" placeholder="희망 학과 입력" value="사망" name="major" style="width: 100px;"></td>
+						<input type="text" placeholder="<%= s.getMajor() %>" value="<%= s.getMajor() %>" name="major" style="width: 100px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>주소</li></td>
-					<td><input type="text" placeholder="학생 거주지 입력" value="학생 거주지 입력" name="address"
+					<td><input type="text" placeholder="<%= s.getAddress() %>" value="<%= s.getAddress() %>" name="address"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><li>이메일</li></td>
-					<td><input type="email" placeholder="helloworld@kakao.com" value="helloworld@kakao.com" name="email"
+					<td><input type="email" placeholder="<%= s.getEmail() %>" value="<%= s.getEmail() %>" name="email"
 						style="width: 400px;"></td>
 				</tr>
 				<tr>
