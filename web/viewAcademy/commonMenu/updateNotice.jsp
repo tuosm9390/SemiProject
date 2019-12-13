@@ -54,24 +54,28 @@
 						<td>내용</td>
 					</tr>
 					<tr>
-						<td colspan="4"><textarea name="content" cols="60" rows="15" style="resize: none; border-radius:5px; border:1px solid lightgray;">수정 내용<%=n.getnContent()%></textarea></td>
+						<td colspan="4"><textarea name="content" cols="60" rows="15" style="resize: none; border-radius:5px; border:1px solid lightgray;"><%=n.getnContent()%></textarea></td>
 					</tr>
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
 					<button  onclick="deleteNotice();" style="margin-right:5px;">삭제하기</button>
-					<button  id="complete" onclick="complete()"<%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정 완료</button>
+					<button  id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정 완료</button>
 				</div>
+			</form>
 				<script>
 					function complete() {
-						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
+					 <%-- $("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");  --%>
+					 
 					}
+					$("#complete").on("click",function(){
+						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
+					});
 					
 					function deleteNotice() {
 						$("#updateForm").attr("action", "<%=request.getContextPath()%>/deleteNotice.no");
 					}
 				</script>
-			</form>
 		</div> <!-- tableArea end -->
 		</div> <!-- outer end -->
 		<script>

@@ -55,7 +55,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<textarea name="content" cols="60" rows="15" style="resize:none; border-radius:5px; border:1px solid lightgray;" readonly>공지사항 내용 <%= n.getnContent() %></textarea>
+						<textarea name="content" cols="60" rows="15" style="resize:none; border-radius:5px; border:1px solid lightgray;" readonly><%= n.getnContent() %></textarea>
 					</td>
 				</tr>
 			</table>
