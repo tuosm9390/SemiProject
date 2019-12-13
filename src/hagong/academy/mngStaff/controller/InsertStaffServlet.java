@@ -35,8 +35,6 @@ public class InsertStaffServlet extends HttpServlet {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String savePath = root + "uploadFiles/";
 			
-			System.out.println(savePath);
-			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new RenameFilePolicy());
 			ArrayList<String> saveFiles = new ArrayList<String>();
 			ArrayList<String> originFiles = new ArrayList<String>();
