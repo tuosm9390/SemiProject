@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="hagong.academy.commonMenu.notice.model.vo.Notice"%>
+<%
+	Notice n = (Notice) request.getAttribute("n");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,36 +41,36 @@
 					<tr>
 						<td>제목</td>
 						<td colspan="3">
-						<input type="text" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;" <%-- value="<%=n.getnTitle()%>" --%>></td>
-						<input type="hidden" name="nno" <%-- value="<%=n.getNno() %>" --%>>
+						<input type="text" size="50" name="title" style="border-radius:5px; border:1px solid lightgray;" value="<%=n.getnTitle()%>" ></td>
+						<input type="hidden" name="nno" value="<%=n.getNno() %>">
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" <%-- value="<%=n.getnWriter()%>" --%> name="writer" style="border-radius:5px; border:none;" readonly></td>
+						<td><input type="text" value="<%=n.getnAuthor()%>" name="writer" style="border-radius:5px; border:none;" readonly></td>
 						<td>작성일</td>
-						<td><input type="date" name="date" <%-- value="<%=n.getnDate()%>" --%> style="border-radius:5px; border:1px solid lightgray;" readonly></td>
+						<td><input type="date" name="date" value="<%=n.getnDate()%>" style="border-radius:5px; border:1px solid lightgray;" readonly></td>
 					</tr>
 					<tr>
 						<td>내용</td>
 					</tr>
 					<tr>
-						<td colspan="4"><textarea name="content" cols="60" rows="15" style="resize: none; border-radius:5px; border:1px solid lightgray;">수정 내용<%-- <%=n.getnContent()%> --%></textarea></td>
+						<td colspan="4"><textarea name="content" cols="60" rows="15" style="resize: none; border-radius:5px; border:1px solid lightgray;">수정 내용<%=n.getnContent()%></textarea></td>
 					</tr>
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
-					<button type="button" onclick="updateNotice();" style="margin-right:5px;">삭제하기</button>
-					<button type="button" id="complete" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'">수정 완료</button>
+					<button  onclick="deleteNotice();" style="margin-right:5px;">삭제하기</button>
+					<button  id="complete" onclick="complete()"<%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정 완료</button>
 				</div>
-				<%-- <script>
+				<script>
 					function complete() {
-						$("#updateForm").attr("action", "<%=request.getContextPath()%>/update.no");
+						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
 					}
 					
 					function deleteNotice() {
 						$("#updateForm").attr("action", "<%=request.getContextPath()%>/deleteNotice.no");
 					}
-				</script> --%>
+				</script>
 			</form>
 		</div> <!-- tableArea end -->
 		</div> <!-- outer end -->
