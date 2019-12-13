@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
+<%
+	ArrayList<StaffDetail> staffDetail = (ArrayList<StaffDetail>) request.getAttribute("staffDetail");
+
+	String profile = "";
+	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
+	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();
+	for(int i = 0; i < staffDetail.size(); i++) {
+		if(staffDetail.get(i).getFileType().equals("PROFILE")) {
+			profile = staffDetail.get(i).getChangeName();
+		} else if(staffDetail.get(i).getFileType().equals("ASSIGN")) {
+			pay.add(staffDetail.get(i).getOriginName());
+			payReal.add(staffDetail.get(i).getFileNo());
+		} else {
+			doc.add(staffDetail.get(i).getOriginName());
+			docReal.add(staffDetail.get(i).getFileNo());
+		}
+	}
+	
+	if(staffDetail.get(0).getEmail() == null) {
+		staffDetail.get(0).setEmail("");
+	}
+	if(staffDetail.get(0).getAddress() == null) {
+		staffDetail.get(0).setAddress("");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,6 +140,13 @@ input[size] {
 fieldset {
 	width: 80%;
 }
+
+.deleteFile {
+	display: inline;
+}
+
+.redText{display: block;color: red;margin-left:10px;font-family:"Nanum Gothic";}
+.greenText{display: block;color: green;margin-left:10px;font-family:"Nanum Gothic";}
 </style>
 </head>
 <body>
@@ -126,53 +158,60 @@ fieldset {
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　정보 수정　</h1></legend>
          		<div class="outArea">
-					<form action="" method="post">
+					<form action="<%= request.getContextPath() %>/aupdate.staff" method="post" id="updateForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
-							<td width="20%"><li>직원 ID</li></td>
-							<td width="40%"><input type="text" name="userId" id="userId" value="KJH001205" readonly></td>
+							<td width="20%"><li>ID</li></td>
+							<td width="40%">
+								<input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly>
+							</td>
 							<td width="20%"></td>
 						</tr>
 						<tr>
 							<td><li>이름</li></td>
-							<td colspan="2"><input type="text" name="userName" id="userName" value="김진호"></td>
+							<td colspan="2">
+								<input type="text" name="userName" id="userName" value="<%= staffDetail.get(0).getName() %>">
+								<span id="nameSpan" class="redText"></span>
+							</td>
 						</tr>
 						<tr>
 							<td><li>생년월일</li></td>
-							<td colspan="2"><input type="text" name="birth" id="datepicker" value="2000.12.05." readonly></td>
+							<td colspan="2"><input type="text" name="birth" id="datepicker" value="<%= staffDetail.get(0).getBirth() %>"></td>
 						</tr>
 						<tr>
+							<% String[] tel = staffDetail.get(0).getPhone().split("-"); %>
 							<td><li>전화번호</li></td>
-							<td colspan="2"><input type="text" maxlength="3" size="4" name="tel1" value="010"> - 
-							    			<input type="text" maxlength="4" size="4" name="tel2" value="0000"> - 
-							    			<input type="text" maxlength="4" size="4" name="tel3" value="7771"></td>
+							<td colspan="2"><input type="tel" maxlength="3" size="4" name="tel1" value="<%= tel[0] %>"> - 
+							    			<input type="tel" maxlength="4" size="4" name="tel2" value="<%= tel[1] %>"> - 
+							    			<input type="tel" maxlength="4" size="4" name="tel3" value="<%= tel[2] %>"></td>
 						</tr>
 						<tr>
 							<td><li>담당업무</li></td>
 							<td colspan="2">
 								<select name="subject">
-									<option value="select">담당업무 선택</option>
-									<option value="korea" selected>국어</option>
-									<option value="math">수학</option>
-									<option value="english">영어</option>
-									<option value="social">사회탐구</option>
-									<option value="science">과학탐구</option>
-									<option value="foreign">제2외국어</option>
-									<option value="desk">행정</option>
-									<option value="cram">입시</option>
+									<option value="select" hidden>담당업무 선택</option>
+									<option value="KOR">국어</option>
+									<option value="MATH">수학</option>
+									<option value="ENG">영어</option>
+									<option value="SOCIAL">사회탐구</option>
+									<option value="SCIENCE">과학탐구</option>
+									<option value="FOREIGN">제2외국어</option>
+									<option value="DESK">행정</option>
+									<option value="APPLY">입시</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile"></td>
+							<td><div align="center"><button id="imgBtn">사진 선택</button></div><input type="file" id="imgFile" name="imgFile" onchange="loadImg(this)"></td>
 							<td><li>이메일</li></td>
-							<td colspan="2"><input type="email" name="email" id="email" value="kjh7771@gmail.com"></td>
+							<td colspan="2"><input type="email" name="email" id="email" value="<%= staffDetail.get(0).getEmail() %>">
+							<span id="emailSpan" class="redText"></span></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><li>주소</li></td>
-							<td colspan="2"><input type="text" name="address" id="address" value="강남구 역삼동 KH정보교육원 C class"></td>
+							<td colspan="2"><input type="text" name="address" id="address" value="<%= staffDetail.get(0).getAddress() %>"></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -183,15 +222,27 @@ fieldset {
 						</tr>
 						<tr>
 							<td></td>
-							<td><li>급여 계약서</li></td>
-							<td><label>20191205_김진호_급여_계약서.hwp</label>　<button class="delete">삭제</button></td>
-							<td><button id="payBtn">파일 선택</button><input type="file" id="payFile"></td>
+							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
+							<td colspan="2">
+								<% for(int i = 0; i < pay.size(); i++) { %>
+									<label><%= pay.get(i) %></label>&nbsp;
+									<button class="deleteFile">-</button><br>
+								<% } %>
+								<input type="hidden" id="payFiles">
+							</td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><li>경력 등 기타 서류</li></td>
-							<td><label>20191205_김진호_이력서.hwp</label>　<button class="delete">삭제</button></td>
-							<td><button id="docBtn">파일 선택</button><input type="file" id="docFile"></td>
+							<td>⦁　경력 등　<br>　기타 서류　<button type="button" id="docBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+								<input type="file" id="docFile1" name="docFile1" onchange="loadFile(this, 2)"></td>
+							<td colspan="2">
+								<% for(int i = 0; i < doc.size(); i++) { %>
+									<label><%= doc.get(i) %></label>&nbsp;
+									<button class="deleteFile">-</button><br>
+								<% } %>
+								<input type="hidden" id="docFiles">
+							</td>
 						</tr>
 						<tr>
 							<td></td>
@@ -210,6 +261,76 @@ fieldset {
          	</fieldset>
          </div>
 		<script>
+			payCnt = 1;
+			docCnt = 1;
+			
+			function loadImg(value) {
+				if(value.files && value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$("#profile").attr("src", e.target.result);
+						$("#profile").css({"border-radius":"50%"})
+					};
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+			function loadFile(value, num) {
+				var fileName = $(value).val();
+				var last = fileName.lastIndexOf("\\");
+				if(value.files && value.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e){
+						switch(num) {
+						case 1 :
+							payCnt++;
+							$inputFile = $("<input type='file' name='payFile" + payCnt + "' id='payFile" + payCnt + "' onchange='loadFile(this, 1)'>");
+							$("#payFile" + (payCnt - 1)).after($inputFile);
+							$("#payFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							break;
+						case 2 :
+							docCnt++;
+							$inputFile = $("<input type='file' name='docFile" + docCnt + "' id='docFile" + docCnt + "' onchange='loadFile(this, 2)'>");
+							$("#docFile" + (docCnt - 1)).after($inputFile);
+							$("#docFiles").after("<br><label>" + fileName.substr(last + 1, fileName.length) + "</label>");
+							break;
+						}
+					};
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+			
+			$("#userName").keyup(function(event){
+				var userName = $("#userName").val();
+				var check = /[\Da-zA-Z가-힣]{2,}/;
+				var check2 = /^[^0-9]+$/;
+				var check3 = /[~!@#$%^&*()-_=+|<>?:{}\[\]\\\'\"]/;
+				if(check.test(userName) && check2.test(userName) && !check3.test(userName)){
+					$("#nameSpan").removeClass('redText').addClass('greenText');
+					$("#nameSpan").text("");
+				} else {
+					$("#nameSpan").removeClass('greenText').addClass('redText');
+					$("#nameSpan").text("2글자 이상의 문자로 설정해 주세요.");
+				}
+			});
+			
+			$("#email").keyup(function(event){
+				var email = $("#email").val();
+				var check = /(\w{4,})@(\w{1,})\.(\w{1,3})/ig;
+				if(check.test(email)){
+					$("#emailSpan").removeClass('redText').addClass('greenText');
+					$("#emailSpan").text("");
+				} else {
+					$("#emailSpan").removeClass('greenText').addClass('redText');
+					$("#emailSpan").text("부적합한 Email 입니다. 다시 설정해 주세요!");
+				}
+			});
+				
+		    $("input[type='tel']").keyup(function(event) {
+		       var inputVal = $(this).val();
+		       $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		    });
+		
 			$(function(){
 				$("#imgBtn").click(function(){
 					$("#imgFile").click();
@@ -228,9 +349,61 @@ fieldset {
 						location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
 					}
 				});
+				
+				$("option").each(function(){
+					if($(this).val() === "<%= staffDetail.get(0).getDept() %>") {
+						$(this).attr("selected", true);
+					}
+				});
+				
+				if("<%= profile %>" === null) {
+				} else {
+					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
+				}
+				
+				$("#datepicker").datepicker(
+						{
+							dateFormat : 'yy-mm-dd',
+							prevText : '이전 달',
+							nextText : '다음 달',
+							monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+									'7월', '8월', '9월', '10월', '11월', '12월' ],
+							monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+									'7월', '8월', '9월', '10월', '11월', '12월' ],
+							dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+							dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+							dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+							showMonthAfterYear : true,
+							changeMonth : true,
+							changeYear : true,
+							constrainInput : false,
+							yearSuffix : '년',
+							yearRange : 'c-20:c'
+						});
 			});
 			
 			function doModify(){
+				/* if($("#idSpan").prop("class") === "redText") {
+					alert("ID를 확인해 주세요.");
+				} else if($("#nameSpan").prop("class") === "redText") {
+					alert("이름을 확인해 주세요.");
+				} else if($("#datepicker").val() === "") {
+					alert("생년월일을 확인해 주세요.");
+				} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
+					alert("전화번호를 확인해 주세요.");
+				} else if($("#subject").val() === "select") {
+					alert("담당 업무를 선택해 주세요.");
+				} else if($("#accept").prop("checked") === false) {
+					alert("개인정보 제공 및 활용에 동의해 주세요.");
+				} else {
+					$("input[type=file]").each(function(){
+						if($(this).val() === "") {
+							$(this).remove();
+						}
+					});
+					$("#insertForm").submit();
+				} */
+				
 				if(window.confirm("정말로 수정하시겠습니까?")) {
 					location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffDetail.jsp";
 				}

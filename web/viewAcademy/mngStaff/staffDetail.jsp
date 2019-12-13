@@ -126,7 +126,7 @@ fieldset {
 					<form action="" method="post">
 					<table class="table">
 						<tr>
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="<%= request.getContextPath() %>/images/user.png"></div></td>
 							<td width="20%"><li>직원 ID</li></td>
 							<td width="50%"><input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly></td>
 							<td width="10%"></td>
@@ -185,7 +185,8 @@ fieldset {
 							<td colspan="2">
 								<% for(int i = 0; i < pay.size(); i++) { %>
 									<label><%= pay.get(i) %></label>&nbsp;
-									<button class="download" onclick="location.href='<%= request.getContextPath() %>/download.staff?no=<%= payReal.get(i) %>>">다운로드</button><br>
+									<%-- <button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?num=<%=payReal.get(i)%>'">다운로드</button><br> --%>
+									<button class="download" onclick="downloadFile(<%=payReal.get(i)%>)">다운로드</button><br>
 								<% } %>
 							</td>
 						</tr>
@@ -195,7 +196,8 @@ fieldset {
 							<td colspan="2">
 								<% for(int i = 0; i < doc.size(); i++) { %>
 									<label><%= doc.get(i) %></label>&nbsp;
-									<button class="download" onclick="location.href='<%= request.getContextPath() %>/download.staff?no=<%= docReal.get(i) %>>">다운로드</button><br>
+									<%-- <button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?num=<%=docReal.get(i)%>'">다운로드</button><br> --%>
+									<button class="download" onclick="downloadFile(<%=docReal.get(i)%>)">다운로드</button><br>
 								<% } %>
 							</td>
 						</tr>
@@ -217,11 +219,11 @@ fieldset {
 		
 		<script>
 			function goModify(){
-				location.href= "<%= request.getContextPath() %>/viewAcademy/mngStaff/updateStaff.jsp";
+				location.href = "<%=request.getContextPath()%>/adetail.staff?type=modify&no=" + <%= staffDetail.get(0).getUserNo() %>;
 			}
 			
 			function goList(){
-				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+				location.href = "<%= request.getContextPath() %>/alist.staff";
 			}
 			
 			$(function(){
@@ -237,6 +239,19 @@ fieldset {
 				}
 			});
 			
+			function downloadFile(num) {
+				$.ajax({
+					url: "<%=  request.getContextPath() %>/down.staff",
+					type: "post",
+					data: {num:num},
+					success: function(data){
+						console.log("123");
+					},
+					error: function(data){
+						console.log("Failed");
+					}
+				});
+			}
 		</script>
 	</section>
 	<footer>

@@ -21,12 +21,16 @@ public class StaffDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type = request.getParameter("type");
 		int userNo = Integer.parseInt(request.getParameter("no"));
 		ArrayList<StaffDetail> staffDetail = new StaffService().staffDetail(userNo);
 		
 		String page = "";
-		if(staffDetail != null) {
+		if(staffDetail != null && type.equals("view")) {
 			page = "viewAcademy/mngStaff/staffDetail.jsp";
+			request.setAttribute("staffDetail", staffDetail);
+		} else if(staffDetail != null && type.equals("modify")) {
+			page = "viewAcademy/mngStaff/updateStaff.jsp";
 			request.setAttribute("staffDetail", staffDetail);
 		} else {
 			page = "viewAcademy/common/commonError.jsp";
