@@ -46,8 +46,7 @@ public class SelectAttendListServlet extends HttpServlet {
 			hmap.put(m.get(j).getName(), attendDetail);
 			attendList.add(hmap);
 		}
-		
-		System.out.println(attendList);
+
 		String page = "";
 		if(attendList != null) {
 			page = "viewAcademy/mngClass/mngAttend/attendDetail.jsp";

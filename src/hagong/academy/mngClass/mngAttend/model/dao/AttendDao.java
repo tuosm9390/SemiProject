@@ -192,6 +192,7 @@ public class AttendDao {
 				Member m = new Member();
 				Student s = new Student();
 				
+				m.setUserNo(rset.getInt("USER_NO"));
 				m.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
 				s.setGrade(rset.getInt("GRADE"));
