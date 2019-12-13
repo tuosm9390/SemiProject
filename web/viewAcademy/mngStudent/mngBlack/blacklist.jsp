@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngBlack.model.vo.*, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
+<%
+	ArrayList<BlacklistInfo> blacklist = (ArrayList<BlacklistInfo>) request.getAttribute("blacklist"); 
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호 
+	
+	//String srchCnt = (String) request.getAttribute("srchCnt");
+	//String searchCondition = (String) request.getAttribute("searchCondition");
+	String srchCnt = "a";
+	String searchCondition = "b";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +121,8 @@ input, select, textarea {
 .names select{margin-right:13px;}
 .dArea.dArea2{display:flex;}
 .dArea.dArea2 .dCtn.consDate{margin-right:160px;}
+.pagingArea {margin-bottom:30px;}
+.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
 </style>
 </head>
 <body>
@@ -128,10 +144,10 @@ input, select, textarea {
 				<div class="srchArea">
 					<select>
 						<option value="" selected disabled hidden>검색 조건</option>
-						<option name="searchClassCondition" value="name">학생명</option>
-						<option name="searchClassCondition" value="phone">전화번호</option>
-						<option name="searchClassCondition" value="school">학교</option>
-						<option name="searchClassCondition" value="grade">학년</option>
+						<option value="name">학생명</option>
+						<option value="phone">전화번호</option>
+						<option value="school">학교</option>
+						<option value="grade">학년</option>
 					</select>
 					<input type="search" id="searchStudent" name="searchStudent">
 					<button class="srchBtn">검색</button>
@@ -147,27 +163,62 @@ input, select, textarea {
 						</tr>
 					</thead>
 					<tbody id="consList">
-						<tr><td class="user-name">강동원</td><td>zxcv999</td><td class="last-cons">KH고등학교</td><td class="cons-list">1학년</td><td>010-7777-8888</td></tr>
-						<tr><td class="user-name">주지훈</td><td>zxcv995</td><td class="last-cons">정교중학교</td><td class="cons-list">2학년</td><td>010-7777-8887</td></tr>
-						<tr><td class="user-name">조진웅</td><td>zxcv996</td><td class="last-cons">케에고등학고</td><td class="cons-list">1학년</td><td>010-7777-8886</td></tr>
-						<tr><td class="user-name">정유미</td><td>zxcv997</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8885</td></tr>
-						<tr><td class="user-name">전지현</td><td>zxcv998</td><td class="last-cons">케에고등학고</td><td class="cons-list">3학년</td><td>010-7777-8884</td></tr>
+					<% for(int i = 0; i < blacklist.size(); i++) { %>
+						<tr>
+							<td class="user-name"><%= blacklist.get(i).getName() %></td>
+							<td><%= blacklist.get(i).getUserId() %></td>
+							<td class="last-cons"><%= blacklist.get(i).getSchool() %></td>
+							<td class="cons-list"><%= blacklist.get(i).getGradeName() %></td>
+							<td><%= blacklist.get(i).getPhone() %></td>
+							<input type="hidden" value="<%= blacklist.get(i).getUserNo()%>">
+						</tr>
+					<% } %>
 					</tbody>
 				</table>
 			</div>
 			<script>
 				$(function(){
-					$("#consList td").click(function(){
-						location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngBlack/blacklistDetail.jsp";
+					$("#consList tr").click(function(){
+						var num = $(this).children("input").val();
+						
+						location.href="<%=request.getContextPath()%>/detail.black?num=" + num;
+						
 					});
 				})
 			</script>
 		</div>
 	</section>
 
+			<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=1'"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage - 1%>'"><</button>
+			<% }%>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=p%>'"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>'">>></button>
+		</div> <!-- pagingArea end  -->
+
 		<!-- /container --><!-- 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script> -->
 		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 				<!-- 모달기능 -->
 		<section align="center">

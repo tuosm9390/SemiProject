@@ -52,4 +52,32 @@ public class AttendService {
 		return list;
 	}
 
+	public String selectAttendReason(String date, String userNo) {
+		Connection con = getConnection();
+		
+		String reason = new AttendDao().selectAttendReason(con, date, userNo);
+		
+		close(con);
+		
+		return reason;
+	}
+
+	public int updateAttendReason(String date, String userNo) {
+		Connection con = getConnection();
+		
+		int result = new AttendDao().updateAttendReason(con, date, userNo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+
+
+	
+
 }
