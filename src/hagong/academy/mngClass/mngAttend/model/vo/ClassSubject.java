@@ -22,7 +22,7 @@ public class ClassSubject {
 	
 	
 	//Class테이블의 필드만 포함한 생성자!
-	public ClassSubject(int clsNo, String subId, int userNo, String clsName, String clsStudent, int clsMax,
+	public ClassSubject(int clsNo, String subId, int userNo, String clsName, String clsStudent, int clsMax, 
 			Date clsStart, String clsDay, String clsTime, int clrNo, int tuition, Date clsEnd) {
 		super();
 		this.clsNo = clsNo;

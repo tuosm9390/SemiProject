@@ -11,7 +11,7 @@ public class Attendance {
 	
 	public Attendance() {}
 
-	public Attendance(int clsNo, Date attDate, String attStatus, String attDetail, int userNo) {
+	public Attendance(int clsNo, Date attDate, String attStatus, String attDetail, int userNo) {  
 		super();
 		this.clsNo = clsNo;
 		this.attDate = attDate;

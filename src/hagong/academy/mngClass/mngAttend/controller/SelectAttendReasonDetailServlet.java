@@ -24,10 +24,11 @@ public class SelectAttendReasonDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String classNum = request.getParameter("classNum");
 		String date = request.getParameter("date");
 		String userNo = request.getParameter("userNo");
 		
-		String reason = new AttendService().selectAttendReason(date, userNo);
+		String reason = new AttendService().selectAttendReason(classNum, date, userNo);  
 		
 		JSONObject result = new JSONObject();
 		

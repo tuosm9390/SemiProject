@@ -20,7 +20,7 @@
 		margin-bottom:20px;
 		border-radius: 5px;
 		border: 1px solid lightgray;
-	}
+	} 
 	
 	input[type="checkbox"] {
 		margin-left: 10px;

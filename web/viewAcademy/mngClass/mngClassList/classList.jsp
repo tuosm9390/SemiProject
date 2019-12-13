@@ -57,7 +57,7 @@
 	
 	#xBtn:hover, #xBtn:focus, #xBtn2:hover, #xBtn2:focus {
 		color: black;
-		text-decoration: none;
+		text-decoration: none; 
 		cursor: pointer;
 	}
 	

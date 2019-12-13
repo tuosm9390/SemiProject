@@ -18,7 +18,7 @@
 	
 	input[type=text], input[type=number], input[type=date] {
 		width: 300px;
-		height: 30px;
+		height: 30px; 
 		margin-bottom:20px;
 		border-radius: 5px;
 		border: 1px solid lightgray;

@@ -28,7 +28,7 @@ public class SelectClassListServlet extends HttpServlet {
 		
 		String page = "";
 		if(list != null) {
-			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";
+			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";   
 			request.setAttribute("list", list);
 		}else {
 			System.out.println("강좌 리스트 조회 실패");
