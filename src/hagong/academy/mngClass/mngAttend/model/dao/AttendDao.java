@@ -248,4 +248,60 @@ public class AttendDao {
 		return list;
 	}
 
+	public String selectAttendReason(Connection con, String day, String userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String reason = "";
+		
+		String month = day.substring(0, 2);
+		String date = day.substring(3);
+		String toDate = month + date;
+		
+		String query = prop.getProperty("selectAttendReason");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, toDate);
+			pstmt.setString(2, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				reason = rset.getString("ATT_DETAIL");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+	
+		return reason;
+	}
+
+	public int updateAttendReason(Connection con, String day, String userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String month = day.substring(0, 2);
+		String date = day.substring(3);
+		String toDate = month + date;
+		
+		String query = prop.getProperty("updateAttendReason");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+
+
+	
+
 }

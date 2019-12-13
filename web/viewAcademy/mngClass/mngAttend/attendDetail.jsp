@@ -23,6 +23,9 @@
 		stu.add((Student) map.get("student"+j));
 	}
 	
+	Calendar cal = Calendar.getInstance();
+    int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+    int month = cal.get(Calendar.MONTH) + 1;
 %>
 <!DOCTYPE html>
 <html>
@@ -153,16 +156,11 @@
                   <th><input type="checkbox" id="checkAll"></th>
                   <th id="stuName">이름</th>
                   <th id="stuInfo" nowrap>정보</th>
-                  <% Calendar cal = Calendar.getInstance();
-                     int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-                     int month = cal.get(Calendar.MONTH) + 1;
-
-                     int[] index = new int[dayOfMonth];
+                  <% 
                      for(int i=0; i<dayOfMonth; i++) {
-                        
-                        index[i] = i+1;
+                    	 String name = "date"+(i+1);
                   %>
-                  <th><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
+                  <th id="<%=name%>" class="date"><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
                      <% for(int i=0; i<attendList.size(); i++) {
@@ -248,7 +246,7 @@
             </div>
             <div align="center" class="reasonContent">
                <form action="" method="post">
-                  <textarea style="border-radius: 5px; margin-bottom: 1%; width: 80%; height: 50px; resize:none;"></textarea>
+                  <textarea id="reasonArea" style="border-radius: 5px; margin-bottom: 1%; width: 80%; height: 50px; resize:none;"></textarea>
 
                </form>
             </div>
@@ -268,10 +266,57 @@
       $(function() {
          $(document).on("click", ".reasonWrite", function() {
              $(".detailReasonArea").css("visibility","visible");
-        	 var idx = $(this).parent().index()-2;
+             var idx = $(this).parent().index()-2;
         	 console.log("idx : " + idx);
-        	 var name = $(this).parent().siblings().eq(2).children("input")[0].value;
-        	 console.log(name);
+        	 
+        	 var date = $(this).parent().parent().siblings().eq(0).children("th")[idx+2].innerText;
+        	 console.log("date : " + date);
+        	 
+        	 var userNo = $(this).parent().siblings().eq(2).children("input")[0].value;
+        	 console.log(userNo);
+        	         	 
+        	 $.ajax({
+        		 url:"aselectAttendReasonDetail.attend",
+        		 data:{
+        			 date:date,
+        			 userNo:userNo
+        		 },
+        		 type:"get",
+        		 success:function(data){
+        			 var reason = decodeURIComponent(data.reason);
+        			 var result = reason.replace(/\+/gi, ' ');
+        			
+        			 $("#reasonArea").text(result);
+        			 //console.log(reason);
+        		 },
+        		 error:function(data){
+        			console.log('실패'); 
+        		 }
+        	 });
+        	 
+        	 $("#reasonArea").onchange(function(){
+        	 $("#writeBtn").click(function(){
+        		 var content = $("#reasonArea").text();
+        		 console.log(content);
+        		
+        		 $.ajax({
+        			 url:"aupdateAttendReason.attend",
+        			 data:{
+        				 date:date,
+        				 userNo:userNo
+        			 },
+        			 type:"get",
+        			 success:function(data){
+        				 
+        			 },
+        			 error:function(data){
+        				 
+        			 }
+        		 });
+        		 
+        	 });
+        	 });
+        	 
         	 
         	});
       });
