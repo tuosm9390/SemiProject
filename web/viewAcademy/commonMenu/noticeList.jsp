@@ -57,6 +57,7 @@
             </tr>
             <% for(int i=0; i < list.size(); i++){ %>
             <tr>
+            	<input type="hidden" name="nno" value="<%=list.get(i).getNno() %>">
             	<td><%= i+1 %></td>
             	<td><%= list.get(i).getnTitle() %></td>
             	<td><%= list.get(i).getnAuthor() %></td>
@@ -68,12 +69,12 @@
          </table>
       </div>
       <div id="write">
-         <button type="button" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
+         <button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/insertNotice.jsp'">글쓰기</button>
       </div>
       <script>
       $(function(){
          $("#noticeList td").click(function(){
-        	var num = $(this).parent().children().eq(0).text();
+        	var num = $(this).parent().children().eq(0).val();
         	 
         	 console.log(num);
         	 

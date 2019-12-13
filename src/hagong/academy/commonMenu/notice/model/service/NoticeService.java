@@ -42,22 +42,22 @@ public class NoticeService {
 		return n;
 	}
 
-//	public Notice insertNotice(Notice n) {
-//
-//		Connection con = getConnection();
-//		
-//		int result = new NoticeDao().insertNotice(con, n);
-//		
-//		if(result > 0) {
-//			commit(con);
-//		}else {
-//			rollback(con);
-//		}
-//		
-//		close(con);
-//		
-//		return result;
-//	}
+	public int insertNotice(Notice n) {
+
+		Connection con = getConnection();
+		
+		int result = new NoticeDao().insertNotice(con, n);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
 	
 	public int updateNotice(Notice n) {
 		Connection con = getConnection();
