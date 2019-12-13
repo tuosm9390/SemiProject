@@ -28,7 +28,7 @@ public class SelectAttendReasonDetailServlet extends HttpServlet {
 		String date = request.getParameter("date");
 		String userNo = request.getParameter("userNo");
 		
-		String reason = new AttendService().selectAttendReason(classNum, date, userNo);
+		String reason = new AttendService().selectAttendReason(classNum, date, userNo);  
 		
 		JSONObject result = new JSONObject();
 		

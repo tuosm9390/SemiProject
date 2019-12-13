@@ -188,7 +188,7 @@
 					</tr>
 				</tbody>
 			</table>
-	</div> <!-- head end -->
+	</div> <!-- head end --> 
 	<% } %> --%>
 	<script>
 		$(function(){

@@ -212,7 +212,7 @@
                                     String tempDate = sdFormat.format(attendDate);
                                     
                                     String tempDate2 = tempDate.substring(tempDate.length()-2, tempDate.length()); 
-                                    
+                                     
                                     String date = "";
                                     if(tempDate2.charAt(0)=='0'){
                                        date = tempDate2.substring(tempDate2.length()-1, tempDate2.length());

@@ -8,7 +8,7 @@ public class Student {
 	
 	public Student() {}
 
-	public Student(String school, int grade, String track, int userNo) {
+	public Student(String school, int grade, String track, int userNo) { 
 		super();
 		this.school = school;
 		this.grade = grade;

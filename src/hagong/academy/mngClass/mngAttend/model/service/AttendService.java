@@ -42,7 +42,7 @@ public class AttendService {
 		return list;
 	}
 
-	public ArrayList<Attendance> selectAttendList(String name) {
+	public ArrayList<Attendance> selectAttendList(String name) {  
 		Connection con = getConnection();
 		
 		ArrayList<Attendance> list = new AttendDao().selectAttendList(con, name);

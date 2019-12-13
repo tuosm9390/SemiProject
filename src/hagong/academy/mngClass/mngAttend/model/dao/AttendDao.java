@@ -232,7 +232,7 @@ public class AttendDao {
 				Attendance a = new Attendance();
 				
 				a.setAttDate(rset.getDate("ATT_DATE"));
-				a.setAttStatus(rset.getString("ATT_STATUS"));
+				a.setAttStatus(rset.getString("ATT_STATUS"));  
 				
 				list.add(a);
 			}

@@ -27,7 +27,7 @@ public class UpdateAttendReasonServlet extends HttpServlet {
 		
 		System.out.println("content : " + content);
 
-		int result = new AttendService().updateAttendReason(classNum, date, userNo, content);
+		int result = new AttendService().updateAttendReason(classNum, date, userNo, content);   
 		
 		String page = "";
 		if(result > 0) {

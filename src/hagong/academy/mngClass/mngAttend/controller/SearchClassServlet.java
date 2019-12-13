@@ -27,7 +27,7 @@ public class SearchClassServlet extends HttpServlet {
 		System.out.println(selectCondition + ", " + searchWord);
 		
 		ArrayList<ClassSubject> list = new AttendService().searchClass(selectCondition, searchWord);
-		
+		 
 		String page = "";
 		if(list != null) {
 			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";

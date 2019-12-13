@@ -25,7 +25,7 @@ public class SelectStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String classNum = request.getParameter("classNum");
 		
-		ArrayList<HashMap<String, Object>> list = new AttendService().selectStudent(classNum);
+		ArrayList<HashMap<String, Object>> list = new AttendService().selectStudent(classNum);   
 		
 		
 		

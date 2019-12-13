@@ -37,8 +37,8 @@ public class SelectAttendListServlet extends HttpServlet {
 		
 		//출석부를 저장할 ArrayList 먼저 생성
 		//ArrayList<ArrayList<Attendance>> attendList = new ArrayList<>();
-		ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = new ArrayList<>();
-		
+		ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = new ArrayList<>();  
+		    
 		//멤버의 이름만 전송하여 출석부 불러오기
 		for(int j=0; j<m.size(); j++) {
 			HashMap<String, ArrayList<Attendance>> hmap = new HashMap<>();
