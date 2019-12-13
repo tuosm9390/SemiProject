@@ -36,11 +36,22 @@ public class InsertNoticeServlet extends HttpServlet {
 		String date = request.getParameter("date");
 		String content = request.getParameter("content");
 		
+		System.out.println(title);
+
+		System.out.println(writer);
+
+		System.out.println(date);
+
+		System.out.println(content);
+
+		
 		Date day = null;
 		
 		day = java.sql.Date.valueOf(date);
 		
-		Notice n = new NoticeService().insertNotice(n);
+		System.out.println(day);
+		
+		Notice n = new Notice();
 		n.setnTitle(title);
 		n.setnAuthor(writer);
 		n.setnDate(day);
@@ -50,7 +61,7 @@ public class InsertNoticeServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0) {
-			response.sendRedirect("/jsp/selectList.no");
+			response.sendRedirect("/hagong/alist.no");
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 등록 실패");

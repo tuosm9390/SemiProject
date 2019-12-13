@@ -53,7 +53,7 @@
     </div>
 	<div style="width:90%; margin:auto auto;" class="outer">
 		<div class="tableArea" align="center">
-			<form>
+			<form action="<%=request.getContextPath()%>/ainsert.no" id="insertForm" method="post">
 				<table>
 					<tr>
 						<td>제목</td>
@@ -108,7 +108,7 @@
 							title:"등록되었습니다",
 							icon:"success"
 						}).then(function(){
-							location.href='<%= request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp';
+							$("#insertForm").submit();
 						});
 					}
 					

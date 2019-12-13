@@ -30,7 +30,12 @@ public class DeleteNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nno = request.getParameter("nno");
 		
+		
+		System.out.println("nno" + nno);
+		
 		int result = new NoticeService().deleteNotice(nno);
+		
+		
 		
 		String page = "";
 		if(result > 0) {

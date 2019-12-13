@@ -66,6 +66,7 @@ public class NoticeDao {
 
 	public int insertNotice(Connection con, Notice n) {
 
+		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -77,6 +78,9 @@ public class NoticeDao {
 			pstmt.setString(2, n.getnContent());
 			pstmt.setString(3, n.getnAuthor());
 			pstmt.setDate(4, n.getnDate());
+			
+			
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

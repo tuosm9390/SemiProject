@@ -39,7 +39,7 @@ public class SelectNoticeListServlet extends HttpServlet {
 			page = "/viewAcademy/commonMenu/noticeList.jsp";
 			request.setAttribute("list", list);
 		}else {
-			page = "viewAcademy/common/errorPage.jsp";
+			//page = "viewAcademy/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회 실패!");
 		}
 		
