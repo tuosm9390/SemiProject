@@ -66,12 +66,7 @@
 
 <body>
 	<%
-	int sum = list.get(6).getInEtc() + list.get(6).getInPcard() +list.get(6).getInPicket() + list.get(6).getInFriend() +list.get(6).getInInternet();
-	int etc =  (int)(list.get(6).getInEtc()/(double)sum)*100;
-	int pcard = (int)(list.get(6).getInPcard()/(double)sum)*100;
-	int picket = (int)(list.get(6).getInPicket()/(double)sum)*100;
-	int friend = (int)(list.get(6).getInFriend()/(double)sum)*100;
-	int internet = (int)(list.get(6).getInInternet()/(double)sum)*100;
+	
 	%>
 
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
@@ -100,27 +95,27 @@
 					<tr>	
 						<td>1</td>
 						<td>친구</td>
-						<td><%=friend %>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>	
 						<td>2</td>
 						<td>전단지</td>
-						<td><%=pcard %>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>	
 						<td>3</td>
 						<td>인터넷</td>
-						<td><%=internet %>　%</td>
+						<td>　%</td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>광고판</td>
-						<td><%=picket%>%</td>
+						<td>%</td>
 					</tr>
 					<tr>	
 						<td>5</td>
 						<td>기타</td>
-						<td><%=etc %>　%</td>
+						<td>　%</td>
 					</tr>
 				</table>
 			</div>	

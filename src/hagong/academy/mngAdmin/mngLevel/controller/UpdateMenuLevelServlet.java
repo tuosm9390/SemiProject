@@ -33,53 +33,113 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String modifyInfo1 = request.getParameter("modifyInfo1");
-		String modifyInfo2 = request.getParameter("modifyInfo2");
-		String modifyInfo3 = request.getParameter("modifyInfo3");
-		String info1 = request.getParameter("info1");
-		String info2 = request.getParameter("info2");
-		String info3 = request.getParameter("info3");
-		String purchase1 = request.getParameter("purchase1");
-		String purchase2 = request.getParameter("purchase2"); 
-		String purchase3 = request.getParameter("purchase3");
-		String counseling1 = request.getParameter("counsel1");
-		String counseling2 = request.getParameter("counsel2");
-		String counseling3 = request.getParameter("counsel3");
-		String black1 = request.getParameter("black1");
-		String black2= request.getParameter("black2");
-		String black3 = request.getParameter("black3");
-		String staff1 = request.getParameter("staff1");
-		String staff2 = request.getParameter("staff2");
-		String staff3 = request.getParameter("staff3");
-		String enroll1 = request.getParameter("enroll1");
-		String enroll2 = request.getParameter("enroll2");
-		String enroll3 = request.getParameter("enroll3");
-		String attend1 = request.getParameter("attend1");
-		String attend2 = request.getParameter("attend2");
-		String attend3 = request.getParameter("attend3");
-		String class1 = request.getParameter("class1");
-		String class2 = request.getParameter("class2");
-		String class3 = request.getParameter("class3");
-		String satisfy1 = request.getParameter("satisfy1");
-		String satisfy2 = request.getParameter("satisfy2");
-		String satisfy3 = request.getParameter("satisfy3");
-		String condition1 = request.getParameter("condition1");
-		String condition2 = request.getParameter("condition2");
-		String condition3 = request.getParameter("condition3");
-		String menu1 = request.getParameter("menu1");
-		String menu2 = request.getParameter("menu2");
-		String menu3 = request.getParameter("menu3");
-		String plan1 = request.getParameter("plan1");
-		String plan2 = request.getParameter("plan2");
-		String plan3 = request.getParameter("plan3");
-		String pAtt = request.getParameter("pAtt");
-		String sAtt = request.getParameter("sAtt");
-		String pScore = request.getParameter("pScore");
-		String sScore = request.getParameter("sScore");
-		String pSatisfy = request.getParameter("pSatisfy");
-		String sSatisfy = request.getParameter("sSatisfy");
-		String pReceipt = request.getParameter("pReceipt");
-		String sReceipt = request.getParameter("sReceipt");
+		int modifyInfo1 = Integer.parseInt(request.getParameter("modifyInfo1"));
+		int modifyInfo2 = Integer.parseInt(request.getParameter("modifyInfo2"));
+		int modifyInfo3 = Integer.parseInt(request.getParameter("modifyInfo3"));
+		int info1 = Integer.parseInt(request.getParameter("info1"));
+		int info2 = Integer.parseInt(request.getParameter("info2"));
+		int info3 = Integer.parseInt(request.getParameter("info3"));
+		int purchase1 = Integer.parseInt(request.getParameter("purchase1"));
+		int purchase2 = Integer.parseInt(request.getParameter("purchase2")); 
+		int purchase3 = Integer.parseInt(request.getParameter("purchase3"));
+		int counseling1 = Integer.parseInt(request.getParameter("counsel1"));
+		int counseling2 = Integer.parseInt(request.getParameter("counsel2"));
+		int counseling3 = Integer.parseInt(request.getParameter("counsel3"));
+		int black1 = Integer.parseInt(request.getParameter("black1"));
+		int black2=Integer.parseInt( request.getParameter("black2"));
+		int black3 = Integer.parseInt(request.getParameter("black3"));
+		int staff1 = Integer.parseInt(request.getParameter("staff1"));
+		int staff2 = Integer.parseInt(request.getParameter("staff2"));
+		int staff3 = Integer.parseInt(request.getParameter("staff3"));
+		int enroll1 = Integer.parseInt(request.getParameter("enroll1"));
+		int enroll2 = Integer.parseInt(request.getParameter("enroll2"));
+		int enroll3 = Integer.parseInt(request.getParameter("enroll3"));
+		int attend1 = Integer.parseInt(request.getParameter("attend1"));
+		int attend2 = Integer.parseInt(request.getParameter("attend2"));
+		int attend3 = Integer.parseInt(request.getParameter("attend3"));
+		int class1 = Integer.parseInt(request.getParameter("class1"));
+		int class2 = Integer.parseInt(request.getParameter("class2"));
+		int class3 = Integer.parseInt(request.getParameter("class3"));
+		int satisfy1 = Integer.parseInt(request.getParameter("satisfy1"));
+		int satisfy2 = Integer.parseInt(request.getParameter("satisfy2"));
+		int satisfy3 = Integer.parseInt(request.getParameter("satisfy3"));
+		int condition1 = Integer.parseInt(request.getParameter("condition1"));
+		int condition2 = Integer.parseInt(request.getParameter("condition2"));
+		int condition3 = Integer.parseInt(request.getParameter("condition3"));
+		int menu1 =Integer.parseInt( request.getParameter("menu1"));
+		int menu2 = Integer.parseInt(request.getParameter("menu2"));
+		int menu3 = Integer.parseInt(request.getParameter("menu3"));
+		int plan1 =Integer.parseInt( request.getParameter("plan1"));
+		int plan2 = Integer.parseInt(request.getParameter("plan2"));
+		int plan3 = Integer.parseInt(request.getParameter("plan3"));
+		String ppAtt = request.getParameter("pAtt");
+		String ssAtt = request.getParameter("sAtt");
+		String ppScore = request.getParameter("pScore");
+		String ssScore = request.getParameter("sScore");
+		String ppSatisfy =request.getParameter("pSatisfy");
+		String ssSatisfy = request.getParameter("sSatisfy");
+		String ppReceipt = request.getParameter("pReceipt");
+		String ssReceipt = request.getParameter("sReceipt");
+		int pAtt;
+		int sAtt;
+		int pScore;
+		int sScore;
+		int pSatisfy;
+		int sSatisfy;
+		int pReceipt;
+		int sReceipt;
+		System.out.println("@!@#!!@#!@#!");
+		System.out.println(ppAtt);
+		System.out.println(ssAtt);
+		System.out.println(ppScore);
+		System.out.println(ssScore);
+		
+		
+		if(ppAtt != null) {
+			pAtt = 4;
+		}else {
+			pAtt = 6;
+		}
+		if(ssAtt!= null){
+			sAtt = 5;
+		}else {
+			sAtt = 6;
+		}
+		//
+		if(ppScore!= null) {
+			pScore = 4;
+		}else {
+			pScore = 6;
+		}
+		if(ssScore!= null){
+			sScore = 5;
+		}else {
+			sScore = 6;
+		}
+		//
+		if(ppSatisfy!= null) {
+			pSatisfy = 4;
+		}else {
+			pSatisfy = 6;
+		}
+		if(ssSatisfy!= null){
+			sSatisfy = 5;
+		}else {
+			sSatisfy = 6;
+		}
+		
+		//
+		if(ppReceipt!= null) {
+			pReceipt = 4;
+		}else {
+			pReceipt = 6;
+		}
+		if(ssReceipt!= null){
+			sReceipt = 5;
+		}else {
+			sReceipt = 6;
+		}
+		
 		
 		MngLevel m = new MngLevel();
 		m.setAttend1(attend1);
@@ -133,18 +193,22 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		m.setpReceipt(pReceipt);
 		m.setsReceipt(sReceipt);
 		
-		int result = new MngLevelService().updateMngLevel(m);
-		
-		
-		
-		
-		
-		
-		
 		System.out.println("-------------");
 		System.out.println(modifyInfo1);
 		System.out.println(modifyInfo2);
 		System.out.println(modifyInfo3);
+		System.out.println(pScore);
+		System.out.println(sScore);
+		
+		int result = new MngLevelService().updateMngLevel(m);
+		String page = "";
+		
+		if(result > 0 ) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		
 	
 		
 	}

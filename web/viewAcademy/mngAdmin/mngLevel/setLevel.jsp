@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngLevel.model.vo.*, java.util.*"%>
+   
+   <% ArrayList<MngLevel> list = (ArrayList<MngLevel>) request.getAttribute("list"); %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,23 +89,24 @@ border-right: none;
                      <td class="border">공통</td>
                      <td>개인정보수정</td>
                      <td><select class="modifyInfo"  name="modifyInfo1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
-                      	   <option value="parent">학부모</option>
-                           <option value="student">학생</option>
+                     		<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
+                      	   <option value="4">학부모</option>
+                           <option value="5">학생</option>
                      </select></td>
-                     <td><select class="modifyInfo" name="modifyInfo2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
-                        
-                     </select></td>
+                     <td></td>
                      <td><select class="modifyInfo" name="modifyInfo3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     
+                     			<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
+                           <option value="4">학부모</option>
+                           <option value="5">학생</option>
                           
                      </select></td>
                   </tr>
-                  <!-- 관리자 -->
+                  <!-- 원장 -->
                   <tr class="trname">
                
                      <td class="tdclass" colspan="5">　　관계자</td>
@@ -114,18 +118,21 @@ border-right: none;
                      
                      <td>개인정보</td>
                      <td><select class="info" name="info1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     		<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      
                      </select></td>
                      <td><select class="info" name="info2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                        
                      </select></td>
                      <td><select class="info" name="info3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      
                      </select></td>
                   </tr>
@@ -134,17 +141,20 @@ border-right: none;
                     
                      <td>수납</td>
                      <td><select class="purchase" name="purchase1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                           
                      </select></td>
                      <td><select class="purchase" name="purchase2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="purchase" name="purchase3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -152,16 +162,19 @@ border-right: none;
                    
                      <td>상담</td>
                      <td><select class="counseling" name="counsel1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="counseling" name="counsel2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="counseling" name="counsel3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -169,16 +182,19 @@ border-right: none;
                      
                      <td>블랙리스트</td>
                      <td><select class="black" name="black1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="black" name="black2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="black" name="black3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -187,16 +203,19 @@ border-right: none;
                      <td class="border odd">직원관리</td>
                      <td>직원관리</td>
                      <td><select class="staff" name="staff1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="staff" name="staff2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="staff" name="staff3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -206,16 +225,19 @@ border-right: none;
                      <td rowspan="4" class="border even" style="background:rgba(245,244,242)">수업관리</td>
                      <td>수강생관리</td>
                      <td><select class="enroll" name="enroll1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="enroll" name="enroll2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="enroll" name="enroll3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -223,16 +245,19 @@ border-right: none;
                      
                      <td>출결관리</td>
                      <td><select class="attend" name="attend1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="attend" name="attend2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="attend" name="attend3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -240,16 +265,19 @@ border-right: none;
                    
                      <td>강좌목록관리</td>
                      <td><select class="class" name="class1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="class" name="class2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="class" name="class3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <!--  -->
@@ -257,68 +285,69 @@ border-right: none;
                     
                      <td>만족도</td>
                      <td><select class="satisfy" name="satisfy1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="satisfy" name="satisfy2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="satisfy" name="satisfy3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
 
                   <tr>
-                     <td rowspan="3" class="border odd" style="background:white">관리자</td>
+                     <td rowspan="3" class="border odd" style="background:white">원장</td>
                      <td>학원현황</td>
                      <td><select class="condition" name="condition1" name="condition1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
-                     <td><select class="condition" name="condition2" name="condition2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
-                     </select></td>
+                     <td></td>
                      <td><select class="condition" name="condition3"name="condition3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <tr>
                   
                      <td>메뉴권한관리</td>
                      <td><select class="menu" name="menu1">
-                           <option value="master">관리자</option>
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                           <option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
-                     <td><select class="menu" name="menu2">
-                    		<option value="master">관리자</option>
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
-                     </select></td>
+                     <td></td>
                      <td><select class="menu" name="menu3">
-                     		<option value="master">관리자</option>
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     		<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   <tr>
                     
                      <td>연간계획</td>
                      <td><select class="plan" name="plan1">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="plan" name="plan2">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                      <td><select class="plan" name="plan3">
-                           <option value="admin">행정</option>
-                           <option value="manager">강사</option>
+                     	<option value="1">원장</option>
+                           <option value="2">행정</option>
+                           <option value="3">강사</option>
                      </select></td>
                   </tr>
                   
