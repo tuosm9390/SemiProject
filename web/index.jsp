@@ -48,6 +48,7 @@ body {
 
 .goAcademy:hover, .goClient:hover {
 	color: orangered;
+	cursor: pointer;
 }
 </style>
 </head>
