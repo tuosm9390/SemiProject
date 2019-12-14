@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngCouns.model.dao.CounselingDao;
+import hagong.academy.mngStudent.mngCouns.model.vo.MemberCouns;
 
 public class BlacklistDao {
 	Properties prop = new Properties();
@@ -104,6 +105,94 @@ public class BlacklistDao {
 		}
 		
 		return blacklist;
+	}
+
+
+	public ArrayList<MemberCouns> detailBlacklist(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		 ArrayList<MemberCouns> detailBlacklist = null;
+		 
+		 String query = prop.getProperty("detailBlacklist");
+		 
+		 try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			detailBlacklist = new ArrayList<MemberCouns>();
+			
+			while(rset.next()) {
+				MemberCouns mc = new MemberCouns();
+				
+				mc.setCouNo(rset.getInt("COU_NO"));
+				mc.setCouTitle(rset.getString("COU_TITLE"));
+				mc.setCouDate(rset.getDate("COU_DATE"));
+				mc.setCouUserNo(rset.getInt("COU_USER_NO"));
+				mc.setCouType(rset.getString("COU_TYPE"));
+				mc.setCouContent(rset.getString("COU_CONTENT"));
+				mc.setCouAction(rset.getString("COU_ACTION"));
+				mc.setCouBlack(rset.getString("COU_BLACK"));
+				mc.setUserNo(rset.getInt("USER_NO"));
+				mc.setUserName(rset.getString("USER_NAME"));
+				mc.setCouUserName(rset.getString("COU_NAME"));
+				
+				detailBlacklist.add(mc);
+			}
+			
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		 
+		return detailBlacklist;
+	}
+
+
+	public BlacklistInfo blacklistInfo(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		BlacklistInfo userInfo = new BlacklistInfo();
+		 
+		 String query = prop.getProperty("blacklistInfo");
+		 
+		 try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userInfo.setName(rset.getString("NAME"));
+				userInfo.setUserId(rset.getString("USER_ID"));
+				userInfo.setSchool(rset.getString("SCHOOL"));
+				userInfo.setGrade(rset.getInt("GRADE"));
+				userInfo.setPhone(rset.getString("PHONE"));
+				userInfo.setUserNo(rset.getInt("BLACK_USER"));
+				userInfo.setParentPhone(rset.getString("PE_PHONE"));
+				switch(userInfo.getGrade()) {
+				case 1: userInfo.setGradeName("중등 1학년");break;
+				case 2: userInfo.setGradeName("중등 2학년");break;
+				case 3: userInfo.setGradeName("중등 3학년");break;
+				case 4: userInfo.setGradeName("고등 1학년");break;
+				case 5: userInfo.setGradeName("고등 2학년");break;
+				case 6: userInfo.setGradeName("고등 3학년");break;
+				}
+			}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return userInfo;
 	}
 
 }

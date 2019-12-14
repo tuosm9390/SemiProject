@@ -1,11 +1,18 @@
 package hagong.academy.mngStudent.mngBlack.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import hagong.academy.mngStudent.mngBlack.model.service.BlacklistService;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
+import hagong.academy.mngStudent.mngCouns.model.vo.MemberCouns;
 
 /**
  * Servlet implementation class BlacklistDetailServlet
@@ -26,7 +33,27 @@ public class BlacklistDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num = Integer.parseInt(request.getParameter("num"));
+		int userNo = Integer.parseInt(request.getParameter("num"));
+		
+		HashMap<String, Object> hmap = new BlacklistService().detailBlacklist(userNo);
+
+		
+		ArrayList<MemberCouns> detailBlacklist = (ArrayList<MemberCouns>) hmap.get("detailBlacklist");
+		BlacklistInfo userInfo = (BlacklistInfo) hmap.get("userInfo");
+		
+		String page = "";
+
+		if(hmap != null) {
+
+			page = "viewAcademy/mngStudent/mngBlack/blacklistDetail.jsp";
+			request.setAttribute("detailBlacklist", detailBlacklist);
+			request.setAttribute("userInfo", userInfo);
+		}else {
+			page = "viewAcademy/common/commonError.jsp";
+			request.setAttribute("msg", "블랙리스트 상세보기 실패");
+		}
+
+		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}

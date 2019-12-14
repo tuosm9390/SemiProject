@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngCouns.model.vo.*, hagong.academy.mngStudent.mngBlack.model.vo.*"%>
+<% 
+	ArrayList<MemberCouns> detailBlacklist = (ArrayList<MemberCouns>) request.getAttribute("detailBlacklist"); 
+	BlacklistInfo userInfo = (BlacklistInfo) request.getAttribute("userInfo");
+
+	System.out.println("detailBlacklist : " + detailBlacklist);
+	System.out.println("userInfo : " + userInfo);
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,22 +63,26 @@ input, select, textarea {
 	    	</div>
 		<div class="bTable">
 			<table class="table" style="margin-bottom:5px;">
-				<tr>
-					<th>학생ID</th>
-					<th>학생명</th>
-					<th>학교</th>
-					<th>학년</th>
-					<th>학생 연락처</th>
-					<th>학부모 연락처</th>					
-				</tr>
-				<tr>
-					<td>STU12345</td>
-					<td>김지원</td>
-					<td>KH중학교</td>
-					<td>2학년</td>
-					<td>010-5555-5555</td>
-					<td>010-7777-7777</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>학생명</th>
+						<th>학생ID</th>
+						<th>학교</th>
+						<th>학년</th>
+						<th>학생 연락처</th>
+						<th>학부모 연락처</th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= userInfo.getName() %></td>
+						<td><%= userInfo.getUserId() %></td>
+						<td><%= userInfo.getSchool() %></td>
+						<td><%= userInfo.getGradeName() %></td>
+						<td><%= userInfo.getPhone() %></td>
+						<td><%= userInfo.getParentPhone() %></td>					
+					</tr>
+				</tbody>
 			</table>
 		</div> <!-- 블랙리스트 정보 end -->
 		<div class="bDetail">
@@ -80,22 +92,21 @@ input, select, textarea {
 						<div class="dArea dArea1">
 							<div class="dCtn consDate"> 
 								<label class="dTit">상담일자</label>
-								<select class="dCtn inputCons">
-									<option value="">2019-11-11</option>
-									<option value="">2019-11-11</option>
-									<option value="">2019-11-11</option>
-									<option value="">2019-11-11</option>
+								<select class="dCtn inputCons" id="detailDate">
+								<% for(int i = 0; i < detailBlacklist.size(); i++) {%> <!-- 블랙리스트 상담날짜-->
+									<option value="<%= i %>"><%= detailBlacklist.get(i).getCouDate() %></option>
+								<%} %>
 								</select>
-								<input type="text" class="inputCons" id="from" name="from" value="2019-11-11" style="display:none;" readonly>
+								<input type="text" class="inputCons" id="from" name="from" value="<%= detailBlacklist.get(0).getCouDate() %>" style="display:none;" readonly>
 							</div>
 							<div class="dCtn consTitle">
 								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="학원생활 관련 상담(1)" readonly>
+								<input type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouTitle() %>" readonly>
 							</div>
 					<div class="names">
 							<div class="dCtn tName">
 								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="서범수" readonly>
+								<input type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouUserNo() %>" readonly>
 							</div>
 
 							<div class="dCtn category">
@@ -116,11 +127,11 @@ input, select, textarea {
 						<div class="dArea dArea3">
 							<div class="dCtn content">
 								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly>상담내용입니다.</textarea>
+								<textarea class="inputCons" name="consreq" readonly><%= detailBlacklist.get(0).getCouContent() %></textarea>
 							</div>
 							<div class="dCtn answer">
 								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly>상담대응내용입니다.</textarea>
+								<textarea class="inputCons" name="consres" readonly><%= detailBlacklist.get(0).getCouAction() %></textarea>
 							</div>
 						</div>
 					</div>
@@ -132,6 +143,7 @@ input, select, textarea {
 				</form>
 			</div> <!-- 블랙리스트 상담내용 end -->
 		</div>
+
 		
 	</div> <!-- 블랙리스트 전체정보  end-->
 	</section>
@@ -156,6 +168,37 @@ input, select, textarea {
 	$(function() {
 		$("#from").datepicker();
 	});
+	$(function() {
+		$("#detailDate").change(function(){
+			var status = $("#detailDate option:selected").val();
+			
+			$.ajax({
+				url:"test9.do",
+				type:"get",
+				success:function(data){
+					$tableBody = $("#userInfoTable tbody");
+					
+					$tableBody.html('');
+					
+					$.each(data, function(index, value){
+						var $tr = $("<tr>");
+						var $noTd = $("<td>").text(value.userNo);
+						var $nameTd = $("<td>").text(decodeURIComponent(value.userName));
+						var $nationTd = $("<td>").text(decodeURIComponent(value.userNation));
+						
+						$tr.append($noTd);
+						$tr.append($nameTd);
+						$tr.append($nationTd);
+						
+						$tableBody.append($tr);
+					});
+				},
+				error:function(data){
+					console.log("에러!");
+				}
+			});	
+		})
+	})
 	</script>
 	
 </body>
