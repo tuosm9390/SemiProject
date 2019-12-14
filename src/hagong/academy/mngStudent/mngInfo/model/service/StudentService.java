@@ -73,10 +73,31 @@ public class StudentService {
 	public int updateStudent(Student s) {
 		Connection con = getConnection();
 		
-		int result = new StudentDao().updateStudent(con, s);
-		
+		//학생 정보수정
+		int result = new StudentDao().updateMember(con, s);
 		if (result > 0) {
 			commit(con);
+			//학부모 정보수정
+			int result1 = new StudentDao().updateParent(con, s);
+			if(result1 > 0) {
+				commit(con);
+				//학교 정보수정
+				int result2 = new StudentDao().updateStudent(con, s);
+				if(result2 > 0) {
+					commit(con);
+					//희망학교학과 정보수정
+					int result3 = new StudentDao().updateStudentHope(con,s);
+					if(result3 > 0) {
+						commit(con);
+					} else {
+						rollback(con);
+					}
+				} else {
+					rollback(con);
+				}
+			} else {
+				rollback(con);
+			}
 		} else {
 			rollback(con);
 		}
@@ -102,9 +123,9 @@ public class StudentService {
 		return result;
 	}
 
-	public int insertStudent() {
+	public int insertStudent(Student s) {
 		Connection con = getConnection();
-		int result = new StudentDao().insertStudent(con);
+		int result = new StudentDao().insertStudent(con, s);
 		
 		if (result > 0) {
 			commit(con);
@@ -129,7 +150,6 @@ public class StudentService {
 
 	public ArrayList<Student> selectStudent(String userId) {
 		Connection con = getConnection();
-		System.out.println("userId : " + userId);
 		ArrayList<Student> sList = new StudentDao().selectStudent(con, userId);
 		
 		close(con);
@@ -152,13 +172,13 @@ public class StudentService {
 		return result;
 	}
 
-//	public ArrayList<Student> scoreList(String userId) {
-//		Connection con = getConnection();
-//		ArrayList<Student> list = new StudentDao().scoreList(con, userId);
-//		
-//		close(con);
-//		
-//		return list;
-//	}
+	public Student selectStudentInfo(String userId) {
+		Connection con = getConnection();
+		Student s = new StudentDao().selectStudentInfo(con, userId);
+		
+		close(con);
+		
+		return s;
+	}
 
 }

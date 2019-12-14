@@ -53,7 +53,7 @@ public class StudentDao {
 
 		return userNo;
 	}
-	
+
 	public int insertMember(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -129,28 +129,22 @@ public class StudentDao {
 		return result;
 	}
 
-	public int updateStudent(Connection con, Student s) {
+	public int updateMember(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		return result;
-	}
-
-	public int deleteStudent(Connection con, Student s) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		return result;
-	}
-
-	public int insertStudent(Connection con) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		String query = prop.getProperty("select");
+		String query = prop.getProperty("updateMember");
 
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, s.getName());
+			pstmt.setDate(2, s.getBirth());
+			pstmt.setString(3, s.getPhone());
+			pstmt.setString(4, s.getAddress());
+			pstmt.setString(5, s.getEmail());
+			pstmt.setString(6, s.getStatus());
+			pstmt.setString(7, s.getUserId());
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -161,20 +155,96 @@ public class StudentDao {
 		return result;
 	}
 
+	public int updateParent(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateParent");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, s.getRefName());
+			pstmt.setString(2, s.getRefPhone());
+			pstmt.setString(3, s.getRefId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateStudent(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateStudent");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, s.getSchool());
+			pstmt.setInt(2, s.getGrade());
+			pstmt.setString(3, s.getTrack());
+			pstmt.setString(4, s.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateStudentHope(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateStudentHope");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, s.getCollege());
+			pstmt.setString(2, s.getMajor());
+			pstmt.setString(3, s.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteStudent(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		return result;
+	}
+
 	public ArrayList<Student> selectList(Connection con) {
 		ArrayList<Student> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		
+
 		String query = prop.getProperty("selectList");
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			
+
 			list = new ArrayList<Student>();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				Student s = new Student();
 				s.setUserId(rset.getString("ID"));
 				s.setName(rset.getString("NAME"));
@@ -183,7 +253,7 @@ public class StudentDao {
 				s.setSchool(rset.getString("SCHOOL"));
 				s.setRefPhone(rset.getString("REF_PHONE"));
 				s.setMajor(rset.getString("MAJOR"));
-				
+
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -192,7 +262,7 @@ public class StudentDao {
 			close(rset);
 			close(stmt);
 		}
-				
+
 		return list;
 	}
 
@@ -200,14 +270,14 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int studentNo = 0;
-		
+
 		String query = prop.getProperty("selectUserNo");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, s.getUserId());
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				studentNo = rset.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -225,7 +295,7 @@ public class StudentDao {
 
 		String query = prop.getProperty("insertFile");
 		try {
-			for(int i = 0; i < fileList.size(); i++) {
+			for (int i = 0; i < fileList.size(); i++) {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, fileList.get(i).getOriginName());
 				pstmt.setString(2, fileList.get(i).getChangeName());
@@ -245,20 +315,21 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Student> sList = null;
-		
+
 		String query = prop.getProperty("selectStudent");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, userId);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			sList = new ArrayList<Student>();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				Student s = new Student();
 				
+				s.setScoreNo(rset.getInt("ROWNUM"));
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
@@ -272,7 +343,7 @@ public class StudentDao {
 				s.setTerm(rset.getInt("TERM"));
 				s.setSubName(rset.getString("SUB_ID"));
 				s.setSubscore(rset.getInt("SCORE"));
-				
+
 				sList.add(s);
 			}
 		} catch (SQLException e) {
@@ -281,16 +352,16 @@ public class StudentDao {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return sList;
 	}
 
 	public int insertScore(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertScore");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, s.getUserNo());
@@ -299,52 +370,62 @@ public class StudentDao {
 			pstmt.setInt(4, s.getTerm());
 			pstmt.setString(5, s.getSubName());
 			pstmt.setInt(6, s.getSubscore());
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
-//	public ArrayList<Student> scoreList(Connection con, String userId) {
-//		PreparedStatement pstmt = null;
-//		ArrayList<Student> list = null;
-//		Student s = null;
-//		ResultSet rset = null;
-//		
-//		String query = prop.getProperty("scoreList");
-//		
-//		try {
-//			pstmt = con.prepareStatement(query);
-//			pstmt.setString(1, userId);
-//			
-//			rset = pstmt.executeQuery();
-//			
-//			list = new ArrayList<>();
-//			
-//			while(rset.next()) {
-//				s = new Student();
-//				s.setScoType(rset.getString("SCO_TYPE"));
-//				s.setYear(rset.getInt("YEAR"));
-//				s.setTerm(rset.getInt("TERM"));
-//				s.setSubName(rset.getString("SUB_ID"));
-//				s.setSubscore(rset.getInt("SCORE"));
-//			
-//				list.add(s);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//			close(rset);
-//		}
-//		
-//		return list;
-//	}
+	public Student selectStudentInfo(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		Student s = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectStudentInfo");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				s = new Student();
+
+				s.setUserId(rset.getString("USER_ID"));
+				s.setName(rset.getString("NAME"));
+				s.setBirth(rset.getDate("BIRTH"));
+				s.setPhone(rset.getString("PHONE"));
+				s.setAddress(rset.getString("ADDRESS"));
+				s.setEmail(rset.getString("EMAIL"));
+				s.setRefUno(rset.getInt("REF_UNO"));
+				s.setStatus(rset.getString("STATUS"));
+				s.setInflowPath(rset.getString("INFLOW_PATH"));
+				s.setUserType(rset.getString("USER_TYPE"));
+				s.setSchool(rset.getString("SCHOOL"));
+				s.setGrade(rset.getInt("GRADE"));
+				s.setTrack(rset.getString("TRACK"));
+				s.setCollege(rset.getString("COLLEGE"));
+				s.setMajor(rset.getString("MAJOR"));
+				s.setRefName(rset.getString("REF_NAME"));
+				s.setRefId(rset.getString("REF_USER_ID"));
+				s.setRefPhone(rset.getString("REF_PHONE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return s;
+	}
 
 }
