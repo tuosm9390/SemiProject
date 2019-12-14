@@ -9,11 +9,12 @@ public class BlacklistInfo {
 	private String gradeName;
 	private String phone;
 	private int userNo;
+	private String parentPhone;
 	
 	public BlacklistInfo() {}
 
 	public BlacklistInfo(int rnum, String name, String userId, String school, int grade, String gradeName, String phone,
-			int userNo) {
+			int userNo, String parentPhone) {
 		super();
 		this.rnum = rnum;
 		this.name = name;
@@ -23,6 +24,7 @@ public class BlacklistInfo {
 		this.gradeName = gradeName;
 		this.phone = phone;
 		this.userNo = userNo;
+		this.parentPhone = parentPhone;
 	}
 
 	public int getRnum() {
@@ -88,12 +90,25 @@ public class BlacklistInfo {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	
+	
+
+	public String getParentPhone() {
+		return parentPhone;
+	}
+
+	public void setParentPhone(String parentPhone) {
+		this.parentPhone = parentPhone;
+	}
 
 	@Override
 	public String toString() {
 		return "BlacklistInfo [rnum=" + rnum + ", name=" + name + ", userId=" + userId + ", school=" + school
-				+ ", grade=" + grade + ", gradeName=" + gradeName + ", phone=" + phone + ", userNo=" + userNo + "]";
+				+ ", grade=" + grade + ", gradeName=" + gradeName + ", phone=" + phone + ", userNo=" + userNo
+				+ ", parentPhone=" + parentPhone + "]";
 	}
+
+	
 	
 	
 }

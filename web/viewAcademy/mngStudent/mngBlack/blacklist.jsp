@@ -113,9 +113,9 @@ input, select, textarea {
 .dArea textarea.inputCons{width: 100%;min-height: 100px;}
 .btnArea{padding: 10px 40px 40px 40px;}
 .srchArea{margin-bottom:10px;}
-.srchArea input{float:left;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
-.srchArea select{float:left;border-radius:5px;border:1px solid gray;}
-.srchArea button{float:left;width:60px; height:25px;margin-right:10px;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
+.srchArea select{float:right;border-radius:5px;border:1px solid gray;}
+.srchArea button{float:right;width:60px; height:25px;}
 .names{display:flex;}
 .names input{margin-right:13px;}
 .names select{margin-right:13px;}
@@ -139,6 +139,8 @@ input, select, textarea {
 				    </fieldset>
 			    </div>
 				<div class="srchArea">
+					<button class="srchBtn">검색</button>
+					<input type="search" id="searchStudent" name="searchStudent">
 					<select>
 						<option value="" selected disabled hidden>검색 조건</option>
 						<option value="name">학생명</option>
@@ -146,8 +148,6 @@ input, select, textarea {
 						<option value="school">학교</option>
 						<option value="grade">학년</option>
 					</select>
-					<input type="search" id="searchStudent" name="searchStudent">
-					<button class="srchBtn">검색</button>
 				</div>
 				<table id="classlist" class="table">
 					<thead>
@@ -213,121 +213,5 @@ input, select, textarea {
 			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>'">>></button>
 		</div> <!-- pagingArea end  -->
 
-		<!-- /container --><!-- 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
-		<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script> -->
-		<!-- <script src="js/jquery.stickyheader.js"></script> -->
-				<!-- 모달기능 -->
-		<section align="center">
-		<!-- 항목 추가 -->
-		<div id="addlist" class="modal">
-			<div class="modal-content" align="center">
-				<span class="close">&times;</span>
-				<h2 align="center" style="font-style:italic">◎ 블랙리스트 추가 ◎</h2>
-					<form class="accordion__content" method="post" action="<%= request.getContextPath()%>/insert.black">
-						<div class="detailArea" align="left">
-							<div class="dArea dArea1">
-								<div class="dCtn consTitle">
-									<label class="dTit">상담제목</label>
-									<input type="text" class="inputCons" value="" placeholder="제목입력">
-								</div>
-								<div class="names">
-								<div class="dCtn consDate"> 
-									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" id="from" name="from" value="" readonly placeholder="날짜입력">
-								</div>
-								<div class="dCtn category">
-									<label class="dTit">상담종류</label>
-									<select name="consCategory" class="consCate">
-										<option value="class">수업</option>
-										<option value="life">학원생활</option>
-										<option value="atit">태도</option>
-										<option value="etc">기타</option>
-									</select>
-								</div>
-									<div class="dCtn tName">
-										<label class="dTit">상담자 이름</label>
-										<input type="text" class="inputCons" value="<%= loginUser.getName() %>" readonly >
-									</div>
-									<div class="dCtn sName">
-										<label class="dTit">상담학생명</label>
-										<input type="text" class="inputCons" value="" readonly placeholder="이름입력">
-									</div>
-								</div>
-							</div>
-							<div class="dArea dArea2">
-
-							</div>
-							<div class="dArea dArea3">
-								<div class="dCtn tPhone">
-									<label class="dTit">학생 휴대폰 번호</label>
-									<input type="text" class="inputCons" value="" placeholder="폰번호입력">
-								</div>
-								<div class="dCtn content">
-									<label class="dTit">내용</label>
-									<textarea class="inputCons" name="consreq">상담내용입니다.</textarea>
-								</div>
-								<div class="dCtn answer">
-									<label class="dTit">상담자의 대응내용</label>
-									<textarea class="inputCons" name="consres">상담대응내용입니다.</textarea>
-								</div>
-							</div>
-						</div>
-						<div class="btnArea">
-							<button class="cancelbtn"
-								style="width: 100px; height: 30px;">취소</button>&nbsp;&nbsp;
-							<button class="okbtn" type="submit"
-								style="width: 100px; height: 30px;">확인</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</section>
-			<!-- 스크립트 -->
-			<script>
-				function conslist(){
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngCouns/studentConsDetail.jsp";					
-				};
-				function addBlist() {
-					$("#addlist").css("display","block");
-				};
-				
-				// 대상 추가 모달
-				var addlist = document.getElementById('addlist');
-
-				// 모달 실행 버튼
-				var addlistbtn = document.getElementById("addlistbtn");
-
-				// 모달 닫기 버튼
-				var closelist = document.getElementsByClassName("close")[0];
-				var cancellist = document.getElementsByClassName("cancelbtn")[0];
-
-				// x버튼 클릭 시 종료
-				closelist.onclick = function() {
-					addlist.style.display = "none";
-				}
-				cancellist.onclick = function() {
-					addlist.style.display = "none";
-				}
-				//DatePicker
-				$.datepicker.setDefaults({
-		    		dateFormat: 'yy-mm-dd',
-		    		prevText: '이전 달',
-		    		nextText: '다음 달',
-		    		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		    		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		    		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-		    		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-		    		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-		    		showMonthAfterYear: true,
-		    		changeMonth : true,
-					changeYear : true,
-					constrainInput: false,
-		    		yearSuffix: '년'
-		  		});
-				$(function() {
-					$("#from").datepicker();
-				});
-		</script>
 </body>
 </html>
