@@ -25,6 +25,8 @@
 		staffDetail.get(0).setAddress("(입력 없음)");
 	}
 	
+	System.out.println(staffDetail.get(0));
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -184,7 +186,6 @@ fieldset {
 							<td><li>급여 계약서</li></td>
 							<td colspan="2">
 								<% for(int i = 0; i < pay.size(); i++) { 
-									String pr = payReal.get(i) + "";
 								%>
 									<label><%= pay.get(i) %></label>&nbsp;
 									<button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?no=<%=payReal.get(i)%>'">다운로드</button><br>

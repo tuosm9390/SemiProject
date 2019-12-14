@@ -119,34 +119,35 @@ fieldset {
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　직원 등록　</h1></legend>
          		<div class="outArea">
+         			<h5 align="center">(*) 표시는 필수 입력 항목입니다.</h5>
 					<form action="<%= request.getContextPath() %>/ainsert.staff" method="post" id="insertForm" encType="multipart/form-data">
 					<table class="table">
 						<tr>
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
-							<td width="25%"><li>ID</li></td>
+							<td width="25%"><li>ID (*)</li></td>
 							<td width="30%">
 								<input type="hidden" name="userPwd" value="0000">
 								<input type="text" name="userId" id="userId" placeholder="영소문자, 숫자 조합의 4~12글자">
 								<span id="idSpan" class="redText"></span></td>
 						</tr>
 						<tr>
-							<td><li>이름</li></td>
+							<td><li>이름 (*)</li></td>
 							<td colspan="2"><input type="text" name="userName" id="userName" placeholder="직원 이름 입력">
 							<span id="nameSpan" class="redText"></span>
 							</td>
 						</tr>
 						<tr>
-							<td><li>생년월일</li></td>
+							<td><li>생년월일 (*)</li></td>
 							<td colspan="2"><input type="text" name="birth" id="datepicker" placeholder="생년월일 입력"></td>
 						</tr>
 						<tr>
-							<td><li>전화번호</li></td>
+							<td><li>전화번호 (*)</li></td>
 							<td colspan="2"><input type="tel" maxlength="3" size="4" name="tel1" id="tel1" placeholder="010"> - 
 							    			<input type="tel" maxlength="4" size="4" name="tel2" id="tel2"> - 
 							    			<input type="tel" maxlength="4" size="4" name="tel3" id="tel3">
 						</tr>
 						<tr>
-							<td><li>담당업무</li></td>
+							<td><li>담당업무 (*)</li></td>
 							<td colspan="2">
 								<select name="subject" id="subject">
 									<option value="select" hidden selected>담당업무 선택</option>
@@ -174,7 +175,7 @@ fieldset {
 						</tr>
 						<tr>
 							<td></td>
-							<td><li>개인정보 제공<br>　　및 활용 동의</li></td>
+							<td><li>개인정보 제공<br>　　및 활용 동의 (*)</li></td>
 							<td>
 								<div class="acceptText" style="background:white;">
 									<pre align="left">【 개인정보처리방침 】
@@ -273,7 +274,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						</tr>
 						<tr>
 							<td></td>
-							<td>⦁　급여 계약서　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
+							<td>⦁　급여 계약서 (*)　<button type="button" id="payBtn" style="display:inline-block; font-size:15px;">파일 추가</button>
 								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
 							<td><input type="hidden" id="payFiles"></td>
 						</tr>
@@ -324,7 +325,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				$("#docBtn").click(function(){
 					$("#docFile" + docCnt).click();
 				});
-				
 			});
 			
 			function deletePayfile(value, num) {
