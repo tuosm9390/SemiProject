@@ -3,7 +3,7 @@
 <%
 	ArrayList<StaffDetail> staffDetail = (ArrayList<StaffDetail>) request.getAttribute("staffDetail");
 
-	String profile = "";
+	String profile = " ";
 	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
 	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();
 	for(int i = 0; i < staffDetail.size(); i++) {
@@ -163,7 +163,7 @@ fieldset {
 					<table class="table">
 						<tr>
 							<input type="hidden" name="userNo" value="<%= staffDetail.get(0).getUserNo() %>">
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="<%= request.getContextPath() %>/images/user.png" style="border-radius:50%;"></div></td>
 							<td width="40%"><li>ID</li></td>
 							<td width="40%">
 								<input type="text" name="userId" id="userId" value="<%= staffDetail.get(0).getUserId() %>" readonly>
@@ -174,7 +174,7 @@ fieldset {
 							<td><li>이름</li></td>
 							<td colspan="2">
 								<input type="text" name="userName" id="userName" value="<%= staffDetail.get(0).getName() %>">
-								<span id="nameSpan" class="redText"></span>
+								<span id="nameSpan" class="greenText"></span>
 							</td>
 						</tr>
 						<tr>
@@ -229,7 +229,7 @@ fieldset {
 								<input type="file" id="payFile1" name="payFile1" onchange="loadFile(this, 1)"></td>
 							<td colspan="2">
 								<% for(int i = 0; i < pay.size(); i++) { %>
-								<div id="deletePay<%= i + 100 %>" display="block">
+								<div class="deletePay" id="deletePay<%= i + 100 %>" display="block">
 									<input type="hidden" id="prePayfile<%= i %>" value="<%= payReal.get(i) %>">
 									<label id="deletePay<%= i + 100 %>"><%= pay.get(i) %></label>&nbsp;
 									<button id="deletePayFile<%= i + 100 %>" type="button" class="deleteFile" onclick="deletePayfile(this, <%= i + 100 %>)">-</button>
@@ -312,29 +312,29 @@ fieldset {
 			}
 			
 			function deletePayfile(value, num) {
+				if(num >= 100) {
+					if($("#delPayfile").val() === "") {
+						$("#delPayfile").val($("#delPayfile").val().concat($("#prePayfile" + (num - 100)).val()));
+					} else {
+						$("#delPayfile").val($("#delPayfile").val().concat("," + $("#prePayfile" + (num - 100)).val()));
+					}
+				}
 				$(value).remove();
 				$("#deletePay" + num).remove();
 				$("#payFile" + num).remove();
-				if(num >= 100) {
-					if($("#delPayfile").val().equals("")) {
-						$("#delPayfile").val() += $("#prePayFile" + (num - 100)).val();
-					} else {
-						$("#delPayfile").val() += "," + $("#prePayFile" + (num - 100)).val();
-					}
-				}
 			}
 			
 			function deleteDocfile(value, num) {
+				if(num >= 100) {
+					if($("#delDocfile").val() === "") {
+						$("#delDocfile").val($("#delDocfile").val().concat($("#preDocfile" + (num - 100)).val()));
+					} else {
+						$("#delDocfile").val($("#delDocfile").val().concat("," + $("#preDocfile" + (num - 100)).val()));
+					}
+				}
 				$(value).remove();
 				$("#deleteDoc" + num).remove();
 				$("#docFile" + num).remove();
-				if(num >= 100) {
-					if($("#delDocfile").val().equals("")) {
-						$("#delDocfile").val() += $("#preDocFile" + (num - 100)).val();
-					} else {
-						$("#delDocfile").val() += "," + $("#preDocFile" + (num - 100)).val();
-					}
-				}
 			}
 			
 			$("#userName").keyup(function(event){
@@ -393,7 +393,7 @@ fieldset {
 					}
 				});
 				
-				if("<%= profile %>" === null) {
+				if("<%= profile %>" === " ") {
 				} else {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}
@@ -421,6 +421,8 @@ fieldset {
 			
 			function doModify(){
 				if(window.confirm("정말로 수정하시겠습니까?")) {
+					var fileCk = $("#payFile" + (payCnt - 1)).val();
+					var fileCk2 = $("div").hasClass("deletePay");
 					if($("#nameSpan").prop("class") === "redText") {
 						alert("이름을 확인해 주세요.");
 					} else if($("#datepicker").val() === "") {
@@ -429,12 +431,9 @@ fieldset {
 						alert("전화번호를 확인해 주세요.");
 					} else if($("#subject").val() === "select") {
 						alert("담당 업무를 선택해 주세요.");
+					} else if(!fileCk2 && !fileCk) {
+						alert("급여 계약서는 반드시 업로드 되어야 합니다!");
 					} else {
-						$("input[type=file]").each(function(){
-							if($(this).val() === "") {
-								$(this).remove();
-							}
-						});
 						$("#updateForm").submit();
 					}
 				}

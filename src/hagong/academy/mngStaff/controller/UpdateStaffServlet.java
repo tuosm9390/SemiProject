@@ -90,25 +90,35 @@ public class UpdateStaffServlet extends HttpServlet {
 					staffFile.setFileType("ASSIGN");
 				}
 				
-				fileList.add(staffFile);
+				if(staffFile.getOriginName() != null) {
+					fileList.add(staffFile);
+				}
 			}
 			
-			String delPayfile = request.getParameter("delPayfile");
-			String delDocfile = request.getParameter("delDocfile");
+			String delPayfile = multiRequest.getParameter("delPayfile");
+			String delDocfile = multiRequest.getParameter("delDocfile");
+			
 			ArrayList<Integer> deleteFile = new ArrayList<Integer>();
-			if(!delPayfile.equals("")) {
+			if(delPayfile != null && !delPayfile.equals("")) {
 				String[] deletePfile = delPayfile.split(",");
 				for(int i = 0; i < deletePfile.length; i++) {
 					deleteFile.add(Integer.parseInt(deletePfile[i]));
 				} 
 			}
-			if(!delDocfile.equals("")) {
+			if(delDocfile != null && !delDocfile.equals("")) {
 				String[] deleteDfile = delDocfile.split(",");
 				for(int i = 0; i < deleteDfile.length; i++) {
 					deleteFile.add(Integer.parseInt(deleteDfile[i]));
 				}
 			}
 			
+			if(fileList.size() == 0) {
+				fileList = null;
+			}
+			if(deleteFile.size() == 0) {
+				deleteFile = null;
+			}
+					
 			int result = new StaffService().updateStaff(staff, fileList, deleteFile);
 			
 			if(result > 0) {

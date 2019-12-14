@@ -1,0 +1,42 @@
+0. index.jsp 생성
+
+1. web에 폴더 만들기
+   css
+   images
+   js
+   views > board, common, main, member
+   
+2. src에 패키지 만들고 폴더 만들기
+   패키지 : com > kh > w6 > board, common, member
+              board > controller, model
+                                       model > dao, exception, service, vo
+              member > controller, model
+                                       model > dao, exception, service, vo
+   폴더 : sql > board, member
+
+3. driver.properties와 member-query.properties 만들기
+   sql 폴더 아래 driver.properties 생성
+   sql > member 폴더 아래 member-query.properties 생성
+
+4. driver.properties 작성 (DB driver, url, user, pw 설정)
+
+5. member > vo 아래 Member 클래스 생성
+
+6. index.jsp에 인덱스 하나 추가 (로그인용 페이지로 이동)
+
+7. loginForm.jsp 생성 (로그인 뷰페이지)
+
+8. src > member > controller에 LoginServlet (/login) 추가
+
+9. member > service 아래 MemberService 클래스 생성
+
+10. common 아래 JDBCTemplate 클래스 생성
+
+11. JDBCTemplate 작성 (getConnection, close, commit, rollback)
+
+12. member > dao 아래 MemberDao 클래스 생성
+
+13. member-query.properties 에 쿼리문 작성
+
+14. LoginServlet에서 성과에 따른 페이지 설정
+
