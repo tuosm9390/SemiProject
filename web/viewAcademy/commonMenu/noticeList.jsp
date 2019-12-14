@@ -2,6 +2,12 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.notice.model.vo.*"%>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +28,9 @@
    }
    fieldset {
       width:25%
+   }
+   .pagingArea{
+   		display:inline-flex;
    }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -67,6 +76,33 @@
             
             <% } %> 
          </table>
+      <div class="pagingArea" align="center">
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=1'"><<</button>
+      	
+      	<% if(currentPage <= 1) { %>
+      	<button disabled><</button>
+      	<% } else { %>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage - 1 %>'"><</button>
+      	<% } %>
+      	
+      	<% for(int p = startPage; p <= endPage; p++){
+      		if(p == currentPage){
+      	%>
+      		<button disabled><%= p %></button>
+      	<% }else{ %>
+      		<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=p %>'"><%= p %></button>
+      	<% }
+      	} %>
+      	
+      	<% if(currentPage >= maxPage){ %>
+      	<button disabled><</button>
+      	<% } else { %>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage + 1 %>'">></button>
+      	<% } %>
+      	
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=maxPage %>'">>></button>
+      	
+      </div>
       </div>
       <div id="write">
          <button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/insertNotice.jsp'">글쓰기</button>
@@ -88,3 +124,24 @@
    
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
