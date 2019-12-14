@@ -65,6 +65,14 @@
 </head>
 
 <body>
+	<%
+	int sum = list.get(6).getInEtc() + list.get(6).getInPcard() +list.get(6).getInPicket() + list.get(6).getInFriend() +list.get(6).getInInternet();
+	int etc =  (int)(list.get(6).getInEtc()/(double)sum)*100;
+	int pcard = (int)(list.get(6).getInPcard()/(double)sum)*100;
+	int picket = (int)(list.get(6).getInPicket()/(double)sum)*100;
+	int friend = (int)(list.get(6).getInFriend()/(double)sum)*100;
+	int internet = (int)(list.get(6).getInInternet()/(double)sum)*100;
+	%>
 
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
 <%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>/ --%>
@@ -92,27 +100,27 @@
 					<tr>	
 						<td>1</td>
 						<td>친구</td>
-						<td>　%</td>
+						<td><%=friend %>　%</td>
 					</tr>
 					<tr>	
 						<td>2</td>
 						<td>전단지</td>
-						<td>　%</td>
+						<td><%=pcard %>　%</td>
 					</tr>
 					<tr>	
 						<td>3</td>
 						<td>인터넷</td>
-						<td>　%</td>
+						<td><%=internet %>　%</td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td>광고판</td>
-						<td>　%</td>
+						<td><%=picket%>%</td>
 					</tr>
 					<tr>	
 						<td>5</td>
 						<td>기타</td>
-						<td>　%</td>
+						<td><%=etc %>　%</td>
 					</tr>
 				</table>
 			</div>	
@@ -122,25 +130,27 @@
 		<div id="chart17"></div>
 		
 	</div>
-	<%System.out.println(list.get(0).gettName()); %>
+
   
 </div><!-- outer end -->
 	<script>
 		var options = {
 			'legend':{
-				names: ['날짜1', '날짜2', '날짜3'],
+				names: ['2달전', '1달전', '현재'],
 				hrefs: []
 					},
 			'dataset':{
 				title:'학생수 변동 추이', 
-				values: [2,2,2], [2,5,7], [7,2,3]],
+				values: [[<%=list.get(6).getAllStudent3()%>,<%=list.get(6).getEnrollDate3()%>,<%=list.get(6).getLeaveDate3()%>],
+					[<%=list.get(6).getAllStudent2()%>,<%=list.get(6).getEnrollDate2()%>,<%=list.get(6).getLeaveDate2()%>],
+					[<%=list.get(6).getAllStudent1()%>,<%=list.get(6).getEnrollDate1()%>,<%=list.get(6).getLeaveDate1()%>] ],
 				colorset: ['#DC143C','#FF8C00', '#2EB400'],
 				fields:['전체학생', '입학', '퇴원']
 				},
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {width:500, height:300},
-			'maxValue' : 10,
+			'maxValue' : <%=list.get(6).getAllStudent1()%>,
 			'increment' : 10
 		};
 
