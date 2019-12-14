@@ -441,6 +441,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		    });
 			    
 			function doEnroll(){
+				var fileCk = $("#payFile" + (payCnt - 1)).val();
 				if($("#idSpan").prop("class") === "redText") {
 					alert("ID를 확인해 주세요.");
 				} else if($("#nameSpan").prop("class") === "redText") {
@@ -453,6 +454,8 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 					alert("담당 업무를 선택해 주세요.");
 				} else if($("#accept").prop("checked") === false) {
 					alert("개인정보 제공 및 활용에 동의해 주세요.");
+				} else if(!fileCk) {
+					alert("급여 계약서는 반드시 업로드 되어야 합니다!");
 				} else {
 					$("input[type=file]").each(function(){
 						if($(this).val() === "") {
@@ -463,11 +466,11 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				}
 			}
 			
-			function goList(){
+			$("#goList").click(function(){
 				if(window.confirm("직원 등록을 정말 취소하시겠습니까?")) {
-					location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/staffList.jsp";
+					location.href = "<%= request.getContextPath() %>/alist.staff";
 				}
-			}
+			});
 			
 			//DatePicker
 			$(function() {

@@ -3,7 +3,7 @@
 <%
 	ArrayList<StaffDetail> staffDetail = (ArrayList<StaffDetail>) request.getAttribute("staffDetail");
 
-	String profile = "";
+	String profile = " ";
 	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
 	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();
 	for(int i = 0; i < staffDetail.size(); i++) {
@@ -24,8 +24,6 @@
 	if(staffDetail.get(0).getAddress() == null) {
 		staffDetail.get(0).setAddress("(입력 없음)");
 	}
-	
-	System.out.println(staffDetail.get(0));
 	
 %>
 <!DOCTYPE html>
@@ -185,6 +183,7 @@ fieldset {
 							<td></td>
 							<td><li>급여 계약서</li></td>
 							<td colspan="2">
+								<% if(staffDetail.get(0).getOriginName() != null) { %>
 								<% for(int i = 0; i < pay.size(); i++) { 
 								%>
 									<label><%= pay.get(i) %></label>&nbsp;
@@ -200,6 +199,7 @@ fieldset {
 								<% for(int i = 0; i < doc.size(); i++) { %>
 									<label><%= doc.get(i) %></label>&nbsp;
 									<button class="download" onclick="location.href='<%=request.getContextPath()%>/down.staff?no=<%=docReal.get(i)%>'">다운로드</button><br>
+								<% } %>
 								<% } %>
 							</td>
 						</tr>
@@ -234,7 +234,7 @@ fieldset {
 					}
 				});
 				
-				if("<%= profile %>" === null) {
+				if("<%= profile %>" === " ") {
 				} else {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}

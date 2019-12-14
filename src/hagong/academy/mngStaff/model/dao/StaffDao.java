@@ -85,6 +85,7 @@ private Properties prop = new Properties();
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, userNo);
 			rset = pstmt.executeQuery();
 			staffDetail = new ArrayList<>();
 			
@@ -237,7 +238,6 @@ private Properties prop = new Properties();
 			pstmt.setInt(1, staffFile.getFileNo());
 			pstmt.setInt(2, staffFile.getUserNo());
 			pstmt.setString(3, staffFile.getFileType());
-			System.out.println(staffFile);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
