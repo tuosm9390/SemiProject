@@ -47,7 +47,7 @@ public class NoticeDao {
 			n.setNno(rset.getInt("NOT_NO"));
 			n.setnTitle(rset.getString("NOT_TITLE"));
 			n.setnContent(rset.getString("NOT_CONTENT"));
-			n.setnAuthor(rset.getString("NAME"));
+			n.setName(rset.getString("NAME"));
 			n.setnCount(rset.getInt("COUNT"));
 			n.setnDate(rset.getDate("NOT_DATE"));
 			
@@ -75,11 +75,11 @@ public class NoticeDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, n.getnTitle());
-			pstmt.setString(2, n.getnContent());
-			pstmt.setString(3, n.getnAuthor());
-			pstmt.setDate(4, n.getnDate());
+			pstmt.setString(4, n.getnContent());
+			pstmt.setInt(2, n.getnAuthor());
+			pstmt.setDate(3, n.getnDate());
 			
-			
+			result = pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class NoticeDao {
 				n.setNno(rset.getInt("NOT_NO"));
 				n.setnTitle(rset.getString("NOT_TITLE"));
 				n.setnContent(rset.getString("NOT_CONTENT"));
-				n.setnAuthor(rset.getString("NAME"));
+				n.setName(rset.getString("NAME"));
 				n.setnCount(rset.getInt("COUNT"));
 				n.setnDate(rset.getDate("NOT_DATE"));
 			}

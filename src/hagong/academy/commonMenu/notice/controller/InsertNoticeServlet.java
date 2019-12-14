@@ -32,7 +32,7 @@ public class InsertNoticeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
+		int writer = Integer.parseInt(request.getParameter("writer"));
 		String date = request.getParameter("date");
 		String content = request.getParameter("content");
 		
@@ -61,7 +61,8 @@ public class InsertNoticeServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0) {
-			response.sendRedirect("/hagong/alist.no");
+			page = "alist.no";
+			response.sendRedirect(page);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 등록 실패");
