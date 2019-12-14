@@ -12,12 +12,13 @@ import java.sql.Date;
 public class Notice {
 	private int nno;			//공지사항 번호
 	private String nTitle;		//제목
-	private String nAuthor;		//작성자
+	private int nAuthor;		//작성자
 	private Date nDate;			//작성일
 	private int nCount;			//조회수
 	private String important;	//중요공지 여부
 	private String nContent;	//내용
 	private String status;		//삭제여부
+	private String name;		//작성자 이름
 	
 	public Notice() {}
 	
@@ -25,8 +26,23 @@ public class Notice {
 
 
 
-	public Notice(int nno, String nTitle, String nAuthor, Date nDate, int nCount, String important, String nContent,
-			String status) {
+	public Notice(int nno, String nTitle, int nAuthor, Date nDate, int nCount, String nContent, String name) {
+		super();
+		this.nno = nno;
+		this.nTitle = nTitle;
+		this.nAuthor = nAuthor;
+		this.nDate = nDate;
+		this.nCount = nCount;
+		this.nContent = nContent;
+		this.name = name;
+	}
+
+
+
+
+
+	public Notice(int nno, String nTitle, int nAuthor, Date nDate, int nCount, String important, String nContent,
+			String status, String name) {
 		super();
 		this.nno = nno;
 		this.nTitle = nTitle;
@@ -36,7 +52,26 @@ public class Notice {
 		this.important = important;
 		this.nContent = nContent;
 		this.status = status;
+		this.name = name;
 	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
 
 	public int getNno() {
 		return nno;
@@ -54,11 +89,11 @@ public class Notice {
 		this.nTitle = nTitle;
 	}
 
-	public String getnAuthor() {
+	public int getnAuthor() {
 		return nAuthor;
 	}
 
-	public void setnAuthor(String nAuthor) {
+	public void setnAuthor(int nAuthor) {
 		this.nAuthor = nAuthor;
 	}
 
