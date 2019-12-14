@@ -1,30 +1,29 @@
-package hagong.academy.mngAdmin.mngStatus.controller;
+package hagong.academy.mngAdmin.mngLevel.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
-import hagong.academy.mngAdmin.mngStatus.model.service.MngStatusService;
-import hagong.academy.mngAdmin.mngStatus.model.vo.MngStatus;
+import hagong.academy.mngAdmin.mngLevel.model.service.MngLevelService;
+import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
 
 /**
- * Servlet implementation class SelectMngStatusServlet
+ * Servlet implementation class SelectMenuLevelServlet
  */
-@WebServlet("/adetail.status")
-public class SelectMngStatusServlet extends HttpServlet {
+@WebServlet("/aselect.level")
+public class SelectMenuLevelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectMngStatusServlet() {
+    public SelectMenuLevelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,28 +32,20 @@ public class SelectMngStatusServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
 		
-		ArrayList<MngStatus> list = new ArrayList<>();
+		ArrayList<MngLevel> list = new ArrayList<MngLevel>();
 		
-		list = new MngStatusService().selectList();
+		list =	new MngLevelService().selectMngLevel();
 		
-		String page ="";
+		String page = "";
 		
-	
-	
-		
-
 		if(list != null) {
-			page = "viewAcademy/mngAdmin/mngStatus/viewStatus.jsp";
-			request.getSession().setAttribute("list", list); 
-			response.sendRedirect(page);
+			page = "viewAcademy/mngAdmin/setLevel.jsp";
+			request.setAttribute("list", list);
 		}else {
 			page = "errorPage.jsp";
-			request.getRequestDispatcher(page).forward(request, response);
 		}
-	
-		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
