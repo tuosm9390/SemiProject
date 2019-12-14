@@ -159,11 +159,11 @@
             </fieldset>
     </div> <!-- center end -->
    <div class="selectArea">
-      <select style="margin-bottom:1%;">
-         <option>출석</option>
-         <option>결석</option>
-         <option>지각</option>
-         <option>조퇴</option>
+      <select id="selectAttend" style="margin-bottom:1%;">
+         <option value="0">출석</option>
+         <option value="1">결석</option>
+         <option value="2">지각</option>
+         <option value="3">조퇴</option>
       </select>
       <button class="attendBtn">적용</button>
    </div>
@@ -176,14 +176,13 @@
                   	  <input type="hidden" id="classNum" value="<%=classNum%>"></th>
                   <th id="stuName">이름</th>
                   <th id="stuInfo" nowrap>정보</th>
-                  <% 
-                     for(int i=0; i<dayOfMonth; i++) {
-                    	 String name = "date"+(i+1);
-                  %>
+                  <% for(int i=0; i<dayOfMonth; i++) {
+                    	 String name = "date"+(i+1);  %>
                   <th id="<%=name%>" class="date"><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
                      <% for(int i=0; i<attendList.size(); i++) {
+                    	String checkboxName = "checkboxName" + i;
                         HashMap<String, ArrayList<Attendance>> hmap = attendList.get(i);                     
                         ArrayList<Attendance> list = null;
                         
@@ -192,20 +191,19 @@
                            String keys = (String) iter.next();
                            list = hmap.get(keys);   %>
                         <tr>
-                           <td><input type="checkbox" id="checkOne"></td>
+                           <td><input type="checkbox" id="checkOne" name="checkboxName"></td>
                            <td><%= keys %></td>
-                           <td id="infoCol"><% if(mem.get(i).getName().equals(keys)){ %>
+                           <td id="Infocol<%=i%>"><% if(mem.get(i).getName().equals(keys)){ %>
                            					<%=stu.get(i).getSchool()%><br>
                            					<%=stu.get(i).getGrade()%>학년<br>
                            					<%=mem.get(i).getPhone()%>
-                           					<input type="hidden" value="<%=mem.get(i).getUserNo()%>">
+                           					<input type="hidden" class="hidden" value="<%=mem.get(i).getUserNo()%>">
                            					<% } %></td>
                            
                            <%    
                               ArrayList<String> dateArr = new ArrayList<>();
                               for(int j=0; j<list.size(); j++) {
                                  
-                            	  //여기부터 다시 시작해보자...
                                   if(!(list.get(j).getAttStatus().equals("Y"))){ 
                                     DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
                                     Date attendDate = list.get(j).getAttDate();
@@ -215,43 +213,73 @@
                                      
                                     String date = "";
                                     if(tempDate2.charAt(0)=='0'){
-                                       date = tempDate2.substring(tempDate2.length()-1, tempDate2.length());
+                                       date = tempDate2.substring(tempDate2.length()-1, tempDate2.length()) + list.get(j).getAttStatus();
                                     }else {
-                                       date = tempDate2;   
+                                       date = tempDate2 + list.get(j).getAttStatus();   
                                     }
                                     
                                     dateArr.add(date);
                                     
                                     }
                                  
+                              }                                                          
+                              
+                              for(int b=0; b<dateArr.size(); b++){                          	  
+                            	  String subString = dateArr.get(b).substring(0, 2);                           	  
                               }
-                                                           
-                              boolean[] attendCheck = new boolean[dayOfMonth];
+                              
+                              	
+                              
+                              //0: 출석(Y), 1: 결석(N), 2:지각(L), 3:조퇴(E)
+                              String[] attendCheck = new String[dayOfMonth];
                               
                               for(int x=0; x<attendCheck.length; x++){
-                                 attendCheck[x] = false;
+                                 attendCheck[x] = "0";	//기본값은 출석(Y)
                               }
                               
                               for(int k=0; k<dateArr.size(); k++) {
                                  for(int q=0; q<dayOfMonth; q++) {
-                                    if(dateArr.get(k).equals(q+1+"")){
-                                       attendCheck[q] = true;                                       
-                                    }
+                                	if(dateArr.get(k).length()==2) {	//날짜가 한자리 일때
+                                    	if(dateArr.get(k).substring(0, 1).equals(q+1+"")){
+                                    		if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("L")){
+                                    			attendCheck[q] = "2"; 
+                                    		}else if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("E")){
+                                    			attendCheck[q] = "3";
+                                    		}else if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("N")){
+                                    			attendCheck[q] = "1";
+                                    		}
+                                    	}
+                                	}else {	//날짜가 두자리 일때 
+                                		if(dateArr.get(k).substring(0, 2).equals(q+1+"")){
+                                			if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("L")){
+                                    			attendCheck[q] = "2"; 
+                                    		}else if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("E")){
+                                    			attendCheck[q] = "3";
+                                    		}else if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("N")){
+                                    			attendCheck[q] = "1";
+                                    		}                                                                              
+                                    	}
+                                	}	
                                  }
                               }
+                              
                                                            
                               for(int l=0; l<attendCheck.length; l++) {
-                                 if(attendCheck[l]==true){ %>
-                                 <td>출석</td>
-                              <%    }else { 
-                              	String name = "reasonWrite" + (l+1);
-                              %>
+                            	  String name = "reasonWrite" + (l+1);
+                                 if(attendCheck[l].equals("1")) { %>
                                  <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:red">결석</a></td>
-                              <%    }
-                              }                             
-                           } %>
-                        </tr>
-                    <%    }   %>
+                              <% }else if(attendCheck[l].equals("2")) {  %>
+                                 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">지각</a></td>
+                              <% }else if(attendCheck[l].equals("3")) {	%>
+                              	 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">조퇴</a></td>
+                   			  <% }else { %>          	
+                              	 <td>출석</td>
+                              <% }
+                               } %>
+                         </tr>                          
+                      <%  }
+                        } %>
+                   
              </table>
          </form>
       </div>
@@ -345,6 +373,51 @@
         	 });
          });
       	
+      });
+      
+      $(function() {
+    	 var checkedPerson = [];
+ 		 var selectAttend = "";
+    	  $(document).on("click", "input[name='checkboxName']", function(){
+    		  if($("input[name='checkboxName']").prop("checked")) {
+    		  		checkedPerson.push($(this).parent().siblings().eq(1).children("input[type=hidden]").val());
+    		  		console.log($(this).parent().siblings().eq(1).children("input[type=hidden]").val());
+    		  }else {
+    			  console.log("여기로 넘어왔으면 좋겠다..안되네 ㅅㅂ");
+    			  /* for(var i=0; i<checkedPerson.length; i++){
+    				  if(checkedPerson[i]==$(this))
+    			  } */
+    		  }
+    		
+    	  });
+    	  
+    	  $(".attendBtn").click(function(){           	
+	    		var selectAttend = $("#selectAttend option:selected").val();
+	    		var checkedPersonString = "'"+ checkedPerson + "'";
+	    		console.log("selectAttend : " + selectAttend);
+		    	console.log("checkedPersonString : " + checkedPersonString);
+		    	console.log(typeof(checkedPersonString));
+		    	
+		    	jQuery.ajaxSettings.traditional = true;
+		    	
+		    	$.ajax({
+		    		url:"aupdateAttend.attend",
+        			data:{
+        				selectAttend:selectAttend,
+        				checkedPersonString:checkedPersonString
+        			 },
+        			 type:"post",
+        			 traditional: true,
+        			 success:function(data){
+        				 console.log(data);
+        				 alert('출결 수정 완료!');
+        				 
+        			 },
+        			 error:function(data){
+        				console.log("에러.."); 
+        			 }
+		    	});
+	      });
       });
       
    </script>

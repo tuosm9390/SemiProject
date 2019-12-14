@@ -309,6 +309,24 @@ public class AttendDao {
 		return result;
 	}
 
+	public int updateAttend(Connection con, String attStatus, String[] students) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateAttend");
+
+		try {
+			pstmt = con.prepareStatement(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 
 
 	
