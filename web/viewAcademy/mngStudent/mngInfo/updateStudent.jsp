@@ -94,21 +94,21 @@ th, td {
 					<h1 style="font-family:'Do Hyeon'">　학생 정보 수정　</h1>
 				</legend>
 				<div style="width: 80%; margin: auto auto;">
-					<form id="UpdateStudentForm" encType="multipart/form-data" 
+					<form id="UpdateStudentForm" encType="multipart/form-data"
 						action="<%= request.getContextPath() %>/aupdate.info" method="post">
 						<table class="table" align="center">
 							<tr align="center">
 								<td rowspan="8">
 									<div align="center">
 										<img id="profile"
-											src="<%=request.getContextPath()%>/images/user.png">
+											src="<%=%>">
 										<button type="button" id="addimg"
 											style="height: 1.5em; margin-top: 3%;">사진 선택</button>
-										<input type="file" id="imgfile"> <select
-											id="studentStatus" style="height: 25px; margin-top: 5%;">
+										<input type="file" id="imgfile" name="imgfile" onchange="loadImg(this);">
+										<select id="studentStatus" class="status" name="status" style="height: 25px; margin-top: 5%;">
 											<option value='Y' selected>재원</option>
-											<option value='X'>퇴원</option>
-											<option value='R'>휴원</option>
+											<option value='N'>퇴원</option>
+											<option value='X'>휴원</option>
 										</select>
 									</div>
 								</td>
@@ -130,9 +130,9 @@ th, td {
 							</tr>
 							<tr>
 								<td><li>전화번호</li></td>
-								<td><input type="tel" maxlength="3" name="tel1" value="<%= s.getPhone().substring(0, 2)%>"> - 
-								<input type="tel" maxlength="4" name="tel2" value="<%= s.getPhone().substring(4, 7)%>"> - 
-								<input type="tel" maxlength="4" name="tel3" value="<%= s.getPhone().substring(9, 12)%>"></td>
+								<td><input type="tel" maxlength="3" name="tel1" value="<%= s.getPhone().substring(0, 3)%>"> - 
+								<input type="tel" maxlength="4" name="tel2" value="<%= s.getPhone().substring(4, 8)%>"> - 
+								<input type="tel" maxlength="4" name="tel3" value="<%= s.getPhone().substring(9)%>"></td>
 							</tr>
 							<tr>
 								<td><li>학교 / 학년</li></td>
@@ -173,8 +173,8 @@ th, td {
 								<td></td>
 								<td><li>학부모 전화번호</li></td>
 								<td><input type="tel" maxlength="3" name="reftel1" value="<%= s.getRefPhone().substring(0, 3) %>"> - 
-								<input type="tel" maxlength="4" name="reftel2" value="<%= s.getRefPhone().substring(4, 7) %>"> -
-								<input type="tel" maxlength="4" name="reftel3" value="<%= s.getRefPhone().substring(8, 11) %>"></td>
+								<input type="tel" maxlength="4" name="reftel2" value="<%= s.getRefPhone().substring(4, 8) %>"> -
+								<input type="tel" maxlength="4" name="reftel3" value="<%= s.getRefPhone().substring(9) %>"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -345,8 +345,7 @@ th, td {
 				alert("개인정보 제공 및 활용에 동의해 주세요.");
 				return false;
 			} else {
-				alert("된다!");
-				return true;
+				$("#UpdateStudentForm").submit();
 			}
 		};
 	</script>

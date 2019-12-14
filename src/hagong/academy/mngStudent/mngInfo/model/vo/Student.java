@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
+	private int scoreNo;
 	// 멤버 테이블
 	private int userNo; // 회원번호
 	private String name; // 이름
@@ -47,11 +48,12 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
-			String email, String status, String inflowPath, String userType, int age, String school, int grade,
-			String track, String college, String major, int refUno, String refName, String refId, String refPhone,
-			String scoType, int year, int term, String subName, int subscore) {
+	public Student(int scoreNo, int userNo, String name, String userId, String userPwd, Date birth, String phone,
+			String address, String email, String status, String inflowPath, String userType, int age, String school,
+			int grade, String track, String college, String major, int refUno, String refName, String refId,
+			String refPhone, String scoType, int year, int term, String subName, int subscore) {
 		super();
+		this.scoreNo = scoreNo;
 		this.userNo = userNo;
 		this.name = name;
 		this.userId = userId;
@@ -78,6 +80,14 @@ public class Student {
 		this.term = term;
 		this.subName = subName;
 		this.subscore = subscore;
+	}
+
+	public int getScoreNo() {
+		return scoreNo;
+	}
+
+	public void setScoreNo(int scoreNo) {
+		this.scoreNo = scoreNo;
 	}
 
 	public int getUserNo() {
@@ -290,13 +300,13 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [userNo=" + userNo + ", name=" + name + ", userId=" + userId + ", userPwd=" + userPwd
-				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", status="
-				+ status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age=" + age + ", school="
-				+ school + ", grade=" + grade + ", track=" + track + ", college=" + college + ", major=" + major
-				+ ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId + ", refPhone=" + refPhone
-				+ ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", subName=" + subName
-				+ ", subscore=" + subscore + "]";
+		return "Student [scoreNo=" + scoreNo + ", userNo=" + userNo + ", name=" + name + ", userId=" + userId
+				+ ", userPwd=" + userPwd + ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email="
+				+ email + ", status=" + status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age="
+				+ age + ", school=" + school + ", grade=" + grade + ", track=" + track + ", college=" + college
+				+ ", major=" + major + ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId
+				+ ", refPhone=" + refPhone + ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", subName="
+				+ subName + ", subscore=" + subscore + "]";
 	}
 
 }

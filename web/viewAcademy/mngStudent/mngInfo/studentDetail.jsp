@@ -104,7 +104,7 @@ h2{
 		<div id="studentPoint" style="width: 90%; margin: auto 10%;">
 			<h2 style="width: 150px;"><li>학생 성적</li></h2>
 			<button id="addRow" style="float: right; margin-right: 11.2%;">성적 추가</button>
-			<button style="float: right;">검색</button>
+			<button id="searchCondition" style="float: right;">검색</button>
 			<!-- DatePicker -->
 			<input type='text' id='datepicker' readonly>
 			<!-- 조건 선택시 옵션 -->
@@ -134,7 +134,7 @@ h2{
 						for(Student s : sList) {
 				%>
 				<tr>
-					<td></td>
+					<td><%=s.getScoreNo() %></td>
 					<td><%=s.getScoType()%></td>
 					<td><%=s.getTerm() %></td>
 					<td><%=s.getYear() %></td>
@@ -142,10 +142,7 @@ h2{
 					<td><%=s.getSubscore() %></td>
 					<td></td>
 				</tr>
-					
-				<% } } else {%>
-					
-				<% } %>
+				<% } } else { }%>
 			</table>
 		</div>
 		<!-- 성적 그래프 -->
@@ -158,7 +155,7 @@ h2{
 
 	<script>
 		function update(){
-			location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/updateStudent.jsp';
+			location.href='<%=request.getContextPath()%>/aupdatedetail.info?userId=' + "<%= sList.get(0).getUserId()%>";
 		};
 		
 		var $select1 = "<select style='width: 85px;' class='type' name='type'>";
@@ -223,8 +220,8 @@ h2{
 		
 		//검색 옵션별 함수
 		$(function() {
-			var class1 = [ '모의고사', '내신' ];
-			var class2 = [ '과목1', '과목2', '과목3' ];
+			var class1 = [ 'MG', 'NS', 'ETC' ];
+			var class2 = [ '국어', '수학', '영어' ];
 			$(".so").change(function() {
 								var sel = $(this).val();
 								//구분 미선택
@@ -239,7 +236,7 @@ h2{
 									$("#datepicker").hide();
 									$.each(class1, function(i, item) {
 										$(".classify").append(
-												"<option class='op'>" + item
+												"<option class='op' name='op' value='" + item + "'>" + item
 														+ "</option>");
 									});
 									//년도 선택
@@ -254,11 +251,18 @@ h2{
 									$("#datepicker").hide();
 									$.each(class2, function(i, item) {
 										$(".classify").append(
-												"<option class='op'>" + item
+												"<option class='op' name='op' value='" + item + "'>" + item
 														+ "</option>");
 									});
 								}
 							});
+		});
+		
+		//검색 버튼
+		$("#searchCondition").click(function(){
+			var condition = $(".so").val();
+			var op = $(".classify").val();
+			location.href="<%=request.getContextPath()%>/searchscore.info?condition=" + condition + "&op=" + op;
 		});
 		
 		//DatePicker
