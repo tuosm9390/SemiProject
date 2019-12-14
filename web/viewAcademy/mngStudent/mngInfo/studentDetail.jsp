@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*"%>
 <%
-	Student s = (Student) request.getAttribute("s");
-	ArrayList<Student> list = (ArrayList<Student>) request.getAttribute("list");
+	ArrayList<Student> sList = (ArrayList<Student>) request.getAttribute("sList");
 %>
 <!DOCTYPE html>
 <html>
@@ -75,7 +74,7 @@ h2{
 	<div align="center">
 	<fieldset style="border-bottom: none; border-left: none; border-right: none; border-top-color: black;
 					width: 16%; height: 80px; font-family:'Do Hyeon'">
-		<legend align="center"><h1>　<%= s.getName() %>　</h1></legend>
+		<legend align="center"><h1>　<%= sList.get(0).getName() %>　</h1></legend>
 	</fieldset>
 	</div>
 		<!-- 학생 정보 -->
@@ -92,12 +91,12 @@ h2{
 					<th>희망학과</th>
 				</tr>
 				<tr>
-					<td><%= s.getSchool() %></td>
-					<td><%= s.getGrade() %></td>
-					<td><%= s.getEmail() %></td>
-					<td><%= s.getPhone() %></td>
-					<td><%= s.getRefPhone() %></td>
-					<td><%= s.getMajor() %></td>
+					<td><%= sList.get(0).getSchool() %></td>
+					<td><%= sList.get(0).getGrade() %></td>
+					<td><%= sList.get(0).getEmail() %></td>
+					<td><%= sList.get(0).getPhone() %></td>
+					<td><%= sList.get(0).getRefPhone() %></td>
+					<td><%= sList.get(0).getMajor() %></td>
 				</tr>
 			</table>
 		</div>
@@ -131,7 +130,8 @@ h2{
 					<th style='width: 100px;'></th>
 				</tr>
 				<%
-					for(Student s1 : list) {
+					if(sList.get(0).getScoType() != null){
+						for(Student s : sList) {
 				%>
 				<tr>
 					<td></td>
@@ -142,6 +142,9 @@ h2{
 					<td><%=s.getSubscore() %></td>
 					<td></td>
 				</tr>
+					
+				<% } } else {%>
+					
 				<% } %>
 			</table>
 		</div>
@@ -181,8 +184,8 @@ h2{
 			
 			//성적 등록 버튼
 			$("#insertScore").click(function(){
-				var userId="<%= s.getUserId()%>";
-				var name="<%= s.getName()%>";
+				var userId="<%= sList.get(0).getUserId()%>";
+				var name="<%= sList.get(0).getName()%>";
 				var type=$(".type").val();
 				var year=$(".year").val();
 				var term=$(".term").val();
