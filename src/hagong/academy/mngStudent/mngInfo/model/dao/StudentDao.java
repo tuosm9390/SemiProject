@@ -241,10 +241,10 @@ public class StudentDao {
 		return result;
 	}
 
-	public Student selectStudent(Connection con, String userId) {
+	public ArrayList<Student> selectStudent(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Student s = null;
+		ArrayList<Student> sList = null;
 		
 		String query = prop.getProperty("selectStudent");
 		
@@ -254,8 +254,10 @@ public class StudentDao {
 			
 			rset = pstmt.executeQuery();
 			
+			sList = new ArrayList<Student>();
+			
 			while(rset.next()) {
-				s = new Student();
+				Student s = new Student();
 				
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
@@ -265,7 +267,13 @@ public class StudentDao {
 				s.setPhone(rset.getString("PHONE"));
 				s.setRefPhone(rset.getString("REF_PHONE"));
 				s.setMajor(rset.getString("MAJOR"));
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
 				
+				sList.add(s);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -274,7 +282,7 @@ public class StudentDao {
 			close(rset);
 		}
 		
-		return s;
+		return sList;
 	}
 
 	public int insertScore(Connection con, Student s) {
@@ -303,39 +311,40 @@ public class StudentDao {
 		return result;
 	}
 
-	public ArrayList<Student> scoreList(Connection con, Student s) {
-		PreparedStatement pstmt = null;
-		ArrayList<Student> list = null;
-		ResultSet rset = null;
-		
-		String query = prop.getProperty("scoreList");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, s.getUserId());
-			
-			rset = pstmt.executeQuery();
-			
-			list = new ArrayList<>();
-			
-			while(rset.next()) {
-				
-				s.setScoType(rset.getString("SCO_TYPE"));
-				s.setYear(rset.getInt("YEAR"));
-				s.setTerm(rset.getInt("TERM"));
-				s.setSubName(rset.getString("SUB_ID"));
-				s.setSubscore(rset.getInt("SCORE"));
-			
-				list.add(s);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rset);
-		}
-		
-		return list;
-	}
+//	public ArrayList<Student> scoreList(Connection con, String userId) {
+//		PreparedStatement pstmt = null;
+//		ArrayList<Student> list = null;
+//		Student s = null;
+//		ResultSet rset = null;
+//		
+//		String query = prop.getProperty("scoreList");
+//		
+//		try {
+//			pstmt = con.prepareStatement(query);
+//			pstmt.setString(1, userId);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			list = new ArrayList<>();
+//			
+//			while(rset.next()) {
+//				s = new Student();
+//				s.setScoType(rset.getString("SCO_TYPE"));
+//				s.setYear(rset.getInt("YEAR"));
+//				s.setTerm(rset.getInt("TERM"));
+//				s.setSubName(rset.getString("SUB_ID"));
+//				s.setSubscore(rset.getInt("SCORE"));
+//			
+//				list.add(s);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//			close(rset);
+//		}
+//		
+//		return list;
+//	}
 
 }

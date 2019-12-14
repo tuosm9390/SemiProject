@@ -127,13 +127,14 @@ public class StudentService {
 		return list;
 	}
 
-	public Student selectStudent(String userId) {
+	public ArrayList<Student> selectStudent(String userId) {
 		Connection con = getConnection();
 		System.out.println("userId : " + userId);
-		Student s = new StudentDao().selectStudent(con, userId);
+		ArrayList<Student> sList = new StudentDao().selectStudent(con, userId);
+		
 		close(con);
 		
-		return s;
+		return sList;
 	}
 
 	public int insertScore(Student s) {
@@ -151,13 +152,13 @@ public class StudentService {
 		return result;
 	}
 
-	public ArrayList<Student> scoreList(Student s) {
-		Connection con = getConnection();
-		ArrayList<Student> list = new StudentDao().scoreList(con, s);
-		
-		close(con);
-		
-		return list;
-	}
+//	public ArrayList<Student> scoreList(String userId) {
+//		Connection con = getConnection();
+//		ArrayList<Student> list = new StudentDao().scoreList(con, userId);
+//		
+//		close(con);
+//		
+//		return list;
+//	}
 
 }

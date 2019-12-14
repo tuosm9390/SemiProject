@@ -33,15 +33,14 @@ public class DetailStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		
-		Student s = new StudentService().selectStudent(userId);
-		ArrayList<Student> list = new StudentService().scoreList(s);
+		ArrayList<Student> sList = new StudentService().selectStudent(userId);
+		//ArrayList<Student> list = new StudentService().scoreList(userId);
 		
 		String page = "";
-		if(s != null) {
+		if(sList != null) {
 			System.out.println("학생 정보 조회 성공");
 			page = "/viewAcademy/mngStudent/mngInfo/studentDetail.jsp";
-			request.setAttribute("s", s);
-			request.setAttribute("list", list);
+			request.setAttribute("sList", sList);
 		} else {
 			System.out.println("학생 정보 조회 실패");
 			page = "/viewAcademy/common/commonError.jsp";
