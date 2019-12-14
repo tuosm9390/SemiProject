@@ -73,6 +73,25 @@ public class AttendService {
 			rollback(con);
 		}
 		
+		close(con);
+		
+		return result;
+	}
+
+	public int updateAttend(String attStatus, String[] students) {
+		Connection con = getConnection();
+		
+		int result = new AttendDao().updateAttend(con, attStatus, students);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		
 		return result;
 	}
 
