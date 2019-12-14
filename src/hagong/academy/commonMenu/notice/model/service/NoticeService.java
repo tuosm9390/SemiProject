@@ -90,6 +90,28 @@ public class NoticeService {
 		
 		return result;
 	}
+
+	public int getListCount() {
+
+		Connection con = getConnection();
+		
+		int listCount = new NoticeDao().getListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Notice> selectListWithPaging(int currentPage, int limit) {
+
+		Connection con = getConnection();
+		
+		ArrayList<Notice> list = new NoticeDao().selectListWithPaging(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
 	
 	
 	

@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import hagong.academy.commonMenu.notice.model.service.NoticeService;
 import hagong.academy.commonMenu.notice.model.vo.Notice;
 
 public class NoticeDao {
@@ -198,6 +199,78 @@ public class NoticeDao {
 		}
 		
 		return result;
+	}
+
+	public int getListCount(Connection con) {
+
+		Statement stmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String query = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+
+	public ArrayList<Notice> selectListWithPaging(Connection con, int currentPage, int limit) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Notice> list = null;
+		
+		String query = prop.getProperty("selectListWithPaging");
+		
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Notice>();
+			
+			while(rset.next()) {
+				Notice n = new Notice();
+				
+				n.setNno(rset.getInt("NOT_NO"));
+				n.setnTitle(rset.getString("NOT_TITLE"));
+				n.setName(rset.getString("NAME"));
+				n.setnDate(rset.getDate("NOT_DATE"));
+				n.setnCount(rset.getInt("COUNT"));
+				n.setImportant(rset.getString("IMPORTANT"));
+				n.setnContent(rset.getString("NOT_CONTENT"));
+				n.setStatus(rset.getString("NOT_STATUS"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

@@ -64,7 +64,7 @@ public class InsertNoticeServlet extends HttpServlet {
 			page = "alist.no";
 			response.sendRedirect(page);
 		}else {
-			page = "views/common/errorPage.jsp";
+			//page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 등록 실패");
 			request.getRequestDispatcher(page).forward(request, response);
 		}
