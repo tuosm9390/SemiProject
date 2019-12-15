@@ -394,17 +394,19 @@
     	  $(".attendBtn").click(function(){           	
 	    		var selectAttend = $("#selectAttend option:selected").val();
 	    		var checkedPersonString = "'"+ checkedPerson + "'";
+	    		 var classNum = $("#classNum").val();
 	    		console.log("selectAttend : " + selectAttend);
 		    	console.log("checkedPersonString : " + checkedPersonString);
-		    	console.log(typeof(checkedPersonString));
+		    	console.log("classNum : " + classNum);
 		    	
-		    	jQuery.ajaxSettings.traditional = true;
+		    	/* jQuery.ajaxSettings.traditional = true;
 		    	
 		    	$.ajax({
 		    		url:"aupdateAttend.attend",
         			data:{
         				selectAttend:selectAttend,
-        				checkedPersonString:checkedPersonString
+        				checkedPersonString:checkedPersonString,
+        				classNum:classNum
         			 },
         			 type:"post",
         			 traditional: true,
@@ -416,7 +418,9 @@
         			 error:function(data){
         				console.log("에러.."); 
         			 }
-		    	});
+		    	}); */
+		    	
+		    	location.href="<%=request.getContextPath()%>/aupdateAttend.attend?selectAttend="+selectAttend+"&checkedPersonString="+checkedPersonString+"&classNum="+classNum;
 	      });
       });
       

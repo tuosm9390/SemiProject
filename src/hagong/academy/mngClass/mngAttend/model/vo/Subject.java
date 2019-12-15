@@ -1,6 +1,6 @@
 package hagong.academy.mngClass.mngAttend.model.vo;
 
-public class Subject {
+public class Subject implements java.io.Serializable{
 	private String subId;
 	private String subName;
 	
