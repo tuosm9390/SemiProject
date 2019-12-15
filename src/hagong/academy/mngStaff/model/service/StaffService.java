@@ -39,7 +39,7 @@ public class StaffService {
 
 	public int updateStaff(Staff staff, ArrayList<StaffFile> fileList, ArrayList<Integer> deleteFile) {
 		Connection con = getConnection();
-		int result = 0;
+		int result = 1;
 		
 		int result1 = new StaffDao().updateStaffInfo(con, staff);
 		if(result1 > 0) {
@@ -53,7 +53,6 @@ public class StaffService {
 			int result2 =  new StaffDao().updateStaffSubInfo(con, staff);
 			if(result2 > 0) {
 				commit(con);
-				result = 1;
 				
 				if(fileList != null) {
 					int result3 = new StaffDao().insertFile(con, fileList);
@@ -67,22 +66,36 @@ public class StaffService {
 								int result4 = new StaffDao().insertStaffFile(con, fileList.get(i));
 								if(result4 > 0) {
 									commit(con);
-									result = 1;
 								} else {
 									rollback(con);
 									result = 0;
+								}
+							} else {
+								int profileCnt = new StaffDao().selectProfileCnt(con, staff.getUserNo());
+								if(profileCnt > 1) {
+									int fileNo = new StaffDao().selectFileNo(con, fileList.get(i));
+									int result5 = new StaffDao().updateOldProfile(con, fileNo, staff.getUserNo());
+									if(result5 > 0) {
+										commit(con);
+									} else {
+										rollback(con);
+										result = 0;
+									}
 								}
 							}
 						}
 					} else {
 						rollback(con);
+						result = 0;
 					}
 				}
 			} else {
 				rollback(con);
+				result = 0;
 			}
 		} else {
 			rollback(con);
+			result = 0;
 		}
 		
 		int delResult = 1;
@@ -94,6 +107,7 @@ public class StaffService {
 				commit(con);
 			} else {
 				rollback(con);
+				delResult = 0;
 			}
 		}
 		
