@@ -22,7 +22,9 @@ input, select, textarea {
 .inputCons {resize:none;}
 .btnArea {text-align:center;}
 .btnArea button{background:white;display:inline-block;margin:0 2px;width: 80px;font-size:18px;}
-.btnArea .updateCons {display:none;}
+.btnArea .bottomBtn.doneBtn{
+	display:none;
+}
 .updateBtn:focus {outline: none;}
 .updateBtn:hover {cursor: pointer;background: green;border: 1px solid green;color: white;}
 .detailArea{display: block;width: 100%;}
@@ -101,23 +103,32 @@ input, select, textarea {
 							</div>
 							<div class="dCtn consTitle">
 								<label class="dTit">상담제목</label>
-								<input type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouTitle() %>" readonly>
+								<input id="title" type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouTitle() %>" readonly>
 							</div>
 					<div class="names">
 							<div class="dCtn tName">
 								<label class="dTit">상담자 이름</label>
-								<input type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouUserNo() %>" readonly>
+								<input id="couName" type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouUserName() %>" readonly>
 							</div>
 
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
-								<select name="consCategory" disabled class="consCate">
+								<select id="category" name="consCategory" disabled class="consCate">
 									<option value="class">수업</option>
 									<option value="life">학원생활</option>
 									<option value="atit">태도</option>
 									<option value="etc">기타</option>
 								</select>
 							</div>
+							<script>
+								var value = '<%= detailBlacklist.get(0).getCouType() %>';
+								
+								$("#category option").each(function(){
+									if($(this).val() == value){
+										$(this).prop("selected", true);
+									}
+								});
+							</script>
 					</div>
 
 						</div>
@@ -127,19 +138,20 @@ input, select, textarea {
 						<div class="dArea dArea3">
 							<div class="dCtn content">
 								<label class="dTit">내용</label>
-								<textarea class="inputCons" name="consreq" readonly><%= detailBlacklist.get(0).getCouContent() %></textarea>
+								<textarea id="content" class="inputCons" name="consreq" readonly><%= detailBlacklist.get(0).getCouContent() %></textarea>
 							</div>
 							<div class="dCtn answer">
 								<label class="dTit">상담자의 대응내용</label>
-								<textarea class="inputCons" name="consres" readonly><%= detailBlacklist.get(0).getCouAction() %></textarea>
+								<textarea id="action" class="inputCons" name="consres" readonly><%= detailBlacklist.get(0).getCouAction() %></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="btnArea">
-						<button class="updateBtn" onclick="updateCons();">수정</button>
-						<button class="updateCons">수정완료</button>
-						<button>삭제</button>
+						<button class="bottomBtn" onclick="deleteCouns()">삭제</button>
+						<button id="updateBtn" type="button" class="bottomBtn" onclick="updateCouns();">수정</button>
+						<button id="updateCons" class="bottomBtn doneBtn" onclick="completeCouns()">완료</button>
 					</div> <!-- btnArea -->
+					
 				</form>
 			</div> <!-- 블랙리스트 상담내용 end -->
 		</div>
@@ -149,6 +161,25 @@ input, select, textarea {
 	</section>
 	
 	<script>
+		function updateCouns(){
+			
+			console.log($("#detail input").val());
+			$("#detailCouns .updateAble").prop("readonly", false);
+			
+			$("#category").prop("disabled", false);
+			$("#updateCons").show().css("display","inline-block");
+			$("#updateBtn").hide();
+			
+			$("#from").datepicker();				
+			
+		}
+		function completeCouns(){			
+			$("#detailCouns").attr("action", "<%= request.getContextPath()%>/update.black");
+		}
+		
+		function deleteCouns(){
+			$("#detailCouns").attr("action", "<%= request.getContextPath()%>/deletedetail.black");
+		}
 	//DatePicker
 	$.datepicker.setDefaults({
 		dateFormat: 'yy-mm-dd',
@@ -171,32 +202,31 @@ input, select, textarea {
 	$(function() {
 		$("#detailDate").change(function(){
 			var status = $("#detailDate option:selected").val();
-			
+			var userNo = "<%= userInfo.getUserNo() %>";
+			console.log("status : " + status);
 			$.ajax({
-				url:"test9.do",
+				url:"selectOne.black",
 				type:"get",
+				data:{status:status, userNo:userNo},
 				success:function(data){
-					$tableBody = $("#userInfoTable tbody");
-					
-					$tableBody.html('');
-					
-					$.each(data, function(index, value){
-						var $tr = $("<tr>");
-						var $noTd = $("<td>").text(value.userNo);
-						var $nameTd = $("<td>").text(decodeURIComponent(value.userName));
-						var $nationTd = $("<td>").text(decodeURIComponent(value.userNation));
-						
-						$tr.append($noTd);
-						$tr.append($nameTd);
-						$tr.append($nationTd);
-						
-						$tableBody.append($tr);
+					console.log(data);
+					$select = $("#category");
+					var type = data.couType;
+					var title = data.couTitle;
+					var content = data.couContent;
+					var action = data.couAction;
+					var couName = data.couUserName;
+					$("#category option").each(function(){
+						if($(this).val() == type){
+							$(this).prop("selected", true);
+						}
 					});
-				},
-				error:function(data){
-					console.log("에러!");
+					$("#title").val(title);
+					$("#content").val(content);
+					$("#action").val(action);
+					$("#couName").val(couName);
 				}
-			});	
+			});
 		})
 	})
 	</script>
