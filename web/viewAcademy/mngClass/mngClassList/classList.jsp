@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngClassList.model.vo.Class"%>
+<%
+	ArrayList<Class> list = (ArrayList<Class>) request.getAttribute("list");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,15 +144,24 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for(int i=0; i<10; i++) { %>
+					<% for(int i=0; i<list.size(); i++) { %>
 					<tr>
-						<td><%= i+1 %></td>
-						<td>수학</td>
-						<td>수학 기초반1</td>
-						<td>김상찬</td>
-						<td>중1</td>
-						<td>30명</td>
-						<td>2019.12.06~2020.02.28</td>
+						<td><%= i+1 %><input type="hidden" value="<%=list.get(i).getClsNo()%>"></td>
+						<td><%=list.get(i).getSubName()%></td>
+						<td><%=list.get(i).getClsName()%></td>
+						<td><%=list.get(i).getName()%></td>
+						<td><%	String grade = "";
+								switch(list.get(i).getClsStudent()) { 
+								case "MID1" : grade = "중1"; break;
+								case "MID2" : grade = "중2"; break;
+								case "MID3" : grade = "중3"; break;
+								case "HIGH1" : grade = "고1"; break;
+								case "HIGH2" : grade = "고2"; break;
+								case "HIGH3" : grade = "고3"; break;
+								case "ETC" : grade = "기타"; break;
+								} %><%=grade%></td>
+						<td><%=list.get(i).getClsMax()%>명</td>
+						<td><%=list.get(i).getClsStart()%>~<%=list.get(i).getClsEnd()%></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -174,35 +187,55 @@
 			<table id="modalTable">
 				<tr>
 					<td width="100px">과목</td>
-					<td width="250px">국어</td>
+					<td width="250px"></td>
 				</tr>
 				<tr>
 					<td>강좌명</td>
-					<td>국어의 숲</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>담당 강사</td>
-					<td>김상찬</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>대상 학생</td>
-					<td>고등국어 / 3학년</td>
+					<td><%-- <%	String school = "";
+								switch(classDetail.getClsStudent()) { 
+								case "MID1" : school = "중등"; break;
+								case "MID2" : school = "중등"; break;
+								case "MID3" : school = "중등"; break;
+								case "HIGH1" : school = "고등"; break;
+								case "HIGH2" : school = "고등"; break;
+								case "HIGH3" : school = "고등"; break;
+								case "ETC" : school = "기타"; break;
+							} %><%=school%><%=classDetail.getSubName()%> / 
+					<%	String grade = "";
+							switch(classDetail.getClsStudent()) { 
+							case "MID1" : grade = "1"; break;
+							case "MID2" : grade = "2"; break;
+							case "MID3" : grade = "3"; break;
+							case "HIGH1" : grade = "1"; break;
+							case "HIGH2" : grade = "2"; break;
+							case "HIGH3" : grade = "3"; break;
+							case "ETC" : grade = "기타"; break;
+						} %><%=grade%>학년	 --%>				
+					</td>
 				</tr>
 				<tr>
 					<td>정원</td>
-					<td>30명</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>기간</td>
-					<td>2019.12.01 ~ 2020.02.28</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>강의 시간</td>
-					<td>15:00 ~ 17:00</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>수업료</td>
-					<td>300,000원</td>
+					<td></td>
 				</tr>
 			</table>
 			<table id="modalBtnTable">
@@ -259,9 +292,19 @@
 			$(".classInfoTable td").mouseenter(function(){
 				$(this).parent().css("cursor","pointer");
 			}).click(function(){
-				<%-- var num = $(this).parent().children().eq(0).text();
+				var num = $(this).parent().children().eq(0).children().val();
 				
-				location.href="<%=request.getContextPath()%>/selectOne.at?num=" + num; --%>
+				$.ajax({
+					url:"adetail.class",
+					data:{num:num},
+					type:"get",
+					success:function(request, data){
+						
+					},
+					error:function(request, data){
+						alert("code:"+request.status+"\n"+"message:"+request.responseText);
+					}
+				});
 				
 				var modal = document.getElementById("detailClassInfo");
 				modal.style.display = "block";

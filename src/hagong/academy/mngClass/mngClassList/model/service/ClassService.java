@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import hagong.academy.mngClass.mngClassList.model.dao.ClassDao;
+import hagong.academy.mngClass.mngClassList.model.vo.Class;
 
 public class ClassService {
 
@@ -17,6 +18,16 @@ public class ClassService {
 		close(con);		
 		
 		return list;
+	}
+
+	public Class selectOneClass(String clsNo) {
+		Connection con = getConnection();
+		
+		Class classDetail = new ClassDao().selectOneClass(con, clsNo);
+		
+		close(con);
+		
+		return classDetail;
 	}
 
 }
