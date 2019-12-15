@@ -34,8 +34,10 @@ public class CounsListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//검색관련 값 받아오기
 		String searchCondition = request.getParameter("searchCondition");
-		String srchCnt = request.getParameter("searchCnt");
+		String srchCnt = request.getParameter("srchCnt");
 		
+		System.out.println("searchCondition : " + searchCondition);
+		System.out.println("srchCnt : " + srchCnt);
 		
 		
 		//System.out.println("접속 테스트");

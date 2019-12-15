@@ -150,7 +150,7 @@ input, select, textarea {
 				<form action="<%= request.getContextPath()%>/alist.couns" method="post">
 					<div class="srchArea">
 						<button type="submit" class="srchBtn">검색</button>
-						<input type="search" id="search" name="searchCnt">
+						<input type="search" id="search" name="srchCnt">
 						<select style="float:right" id="searchCondition" name="searchCondition">
 							<option selected disabled hidden>검색 조건</option>
 							<option value="name">학생명</option>
