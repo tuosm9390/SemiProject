@@ -50,4 +50,15 @@ public class BlacklistService {
 		return hmap;
 	}
 
+	public ArrayList<MemberCouns> selectOneBlacklist(int userNo) {
+		Connection con = getConnection();
+		
+		
+		ArrayList<MemberCouns> detailBlacklist = new BlacklistDao().detailBlacklist(con, userNo);
+		
+		close(con);
+		
+		return detailBlacklist;
+	}
+
 }
