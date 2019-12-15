@@ -61,4 +61,15 @@ public class BlacklistService {
 		return detailBlacklist;
 	}
 
+	public ArrayList<BlacklistInfo> searchBlacklistWithPaging(int currentPage, int limit, String searchCondition,
+			String srchCnt) {
+		Connection con = getConnection();
+		ArrayList<BlacklistInfo> blacklist = new BlacklistDao().searchBlacklistWithPaging(con, currentPage, limit, searchCondition, srchCnt);
+		
+		close(con);
+		
+		
+		return blacklist;
+	}
+
 }

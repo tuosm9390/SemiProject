@@ -33,6 +33,8 @@ public class BlacklistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		//페이징 처리 후
 		int currentPage;	//현재 페이지를 표시할 변수
 		int limit;			//한 페이지에 게시글이 몇 개 보여질 것인지
@@ -83,11 +85,28 @@ public class BlacklistServlet extends HttpServlet {
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit -1;
 		
-		ArrayList<BlacklistInfo> blacklist = new BlacklistService().selectBlacklistWithPaging(currentPage, limit);
+		//검색 결과값 받아오기
+		//검색관련 값 받아오기
+		String searchCondition = request.getParameter("searchCondition");
+		String srchCnt = request.getParameter("searchStudent");
+		
+		System.out.println("searchCondition : " + searchCondition);
+		System.out.println("srchCnt : " + srchCnt);
+		
+		//검색기능인지 아닌지 판별하여 값가져오기
+		ArrayList<BlacklistInfo> blacklist = null;
+		if(searchCondition == null || srchCnt == null) {
+			blacklist = new BlacklistService().selectBlacklistWithPaging(currentPage, limit);			
+		}else {
+			blacklist = new BlacklistService().searchBlacklistWithPaging(currentPage, limit, searchCondition, srchCnt);			
+		}
+		
 		
 		String page = "";
 		if(blacklist != null) {
 			page = "viewAcademy/mngStudent/mngBlack/blacklist.jsp";
+			request.setAttribute("searchCondition", searchCondition);
+			request.setAttribute("srchCnt", srchCnt);
 			request.setAttribute("blacklist", blacklist);
 			request.setAttribute("pi", pi);
 		}else {

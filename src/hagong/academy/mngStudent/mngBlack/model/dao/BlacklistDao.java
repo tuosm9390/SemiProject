@@ -195,6 +195,70 @@ public class BlacklistDao {
 		return userInfo;
 	}
 
+
+	public ArrayList<BlacklistInfo> searchBlacklistWithPaging(Connection con, int currentPage, int limit,
+			String searchCondition, String srchCnt) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BlacklistInfo> blacklist = null;
+		
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit -1;
+		
+		String query = "";
+		
+		if(searchCondition.equals("name")) {
+			 query = prop.getProperty("selectBlacklistByName");			
+		}else if(searchCondition.equals("userId")) {			
+			 query = prop.getProperty("selectBlacklistById");			
+		}else if(searchCondition.equals("school")) {
+			 query = prop.getProperty("selectBlacklistBySchool");			
+		}else if(searchCondition.equals("phone")) {
+			 query = prop.getProperty("selectBlacklistByPhone");			
+		}else if(searchCondition.equals("grade")){
+			 query = prop.getProperty("selectBlacklistByGrade");			
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			
+			pstmt.setString(1, srchCnt);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			blacklist = new ArrayList<>();
+			while(rset.next()) {
+				BlacklistInfo bi = new BlacklistInfo();
+				
+				bi.setRnum(rset.getInt("RNUM"));
+				bi.setName(rset.getString("NAME"));
+				bi.setUserId(rset.getString("USER_ID"));
+				bi.setSchool(rset.getString("SCHOOL"));
+				bi.setGrade(rset.getInt("GRADE"));
+				bi.setPhone(rset.getString("PHONE"));
+				bi.setUserNo(rset.getInt("BLACK_USER"));
+				switch(bi.getGrade()) {
+				case 1: bi.setGradeName("중등 1학년");break;
+				case 2: bi.setGradeName("중등 2학년");break;
+				case 3: bi.setGradeName("중등 3학년");break;
+				case 4: bi.setGradeName("고등 1학년");break;
+				case 5: bi.setGradeName("고등 2학년");break;
+				case 6: bi.setGradeName("고등 3학년");break;
+				}
+				blacklist.add(bi);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return blacklist;
+	}
+
 }
 
 
