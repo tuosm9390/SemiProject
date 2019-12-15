@@ -34,7 +34,7 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int modifyInfo1 = Integer.parseInt(request.getParameter("modifyInfo1"));
-		int modifyInfo2 = Integer.parseInt(request.getParameter("modifyInfo2"));
+	
 		int modifyInfo3 = Integer.parseInt(request.getParameter("modifyInfo3"));
 		int info1 = Integer.parseInt(request.getParameter("info1"));
 		int info2 = Integer.parseInt(request.getParameter("info2"));
@@ -64,10 +64,10 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		int satisfy2 = Integer.parseInt(request.getParameter("satisfy2"));
 		int satisfy3 = Integer.parseInt(request.getParameter("satisfy3"));
 		int condition1 = Integer.parseInt(request.getParameter("condition1"));
-		int condition2 = Integer.parseInt(request.getParameter("condition2"));
+
 		int condition3 = Integer.parseInt(request.getParameter("condition3"));
 		int menu1 =Integer.parseInt( request.getParameter("menu1"));
-		int menu2 = Integer.parseInt(request.getParameter("menu2"));
+
 		int menu3 = Integer.parseInt(request.getParameter("menu3"));
 		int plan1 =Integer.parseInt( request.getParameter("plan1"));
 		int plan2 = Integer.parseInt(request.getParameter("plan2"));
@@ -88,11 +88,7 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		int sSatisfy;
 		int pReceipt;
 		int sReceipt;
-		System.out.println("@!@#!!@#!@#!");
-		System.out.println(ppAtt);
-		System.out.println(ssAtt);
-		System.out.println(ppScore);
-		System.out.println(ssScore);
+	
 		
 		
 		if(ppAtt != null) {
@@ -152,13 +148,11 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		m.setClass2(class2);
 		m.setClass3(class3);
 		m.setCondition1(condition1);
-		m.setCondition2(condition2);
 		m.setCondition3(condition3);
 		m.setInfo1(info1);
 		m.setInfo2(info2);
 		m.setInfo3(info3);
 		m.setModifyInfo1(modifyInfo1);
-		m.setModifyInfo2(modifyInfo2);
 		m.setModifyInfo3(modifyInfo3);
 		m.setPurchase1(purchase1);
 		m.setPurchase2(purchase2);
@@ -179,7 +173,7 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		m.setSatisfy2(satisfy2);
 		m.setSatisfy3(satisfy3);
 		m.setMenu1(menu1);
-		m.setMenu2(menu2);
+		
 		m.setMenu3(menu3);
 		m.setPlan1(plan1);
 		m.setPlan2(plan2);
@@ -193,20 +187,16 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		m.setpReceipt(pReceipt);
 		m.setsReceipt(sReceipt);
 		
-		System.out.println("-------------");
-		System.out.println(modifyInfo1);
-		System.out.println(modifyInfo2);
-		System.out.println(modifyInfo3);
-		System.out.println(pScore);
-		System.out.println(sScore);
-		
 		int result = new MngLevelService().updateMngLevel(m);
 		String page = "";
 		
 		if(result > 0 ) {
-			System.out.println("성공");
+			page = "aselect.level";
+			response.sendRedirect(page);
+			
 		}else {
-			System.out.println("실패");
+			page = "errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
 		
 	

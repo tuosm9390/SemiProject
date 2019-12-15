@@ -33,6 +33,15 @@ public class MngLevelService {
 		
 		return list;
 	}
+	// 기본 메뉴 권한
+	public int updateDefaultMngLevel() {
+		
+		Connection con = getConnection();
+		
+		int result = new MngLevelDao().updateDefaultMngLevel(con);
+		
+		return result;
+	}
 	
 
 }
