@@ -7,6 +7,9 @@ import static hagong.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.simple.JSONArray;
 
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
@@ -179,6 +182,32 @@ public class StudentService {
 		close(con);
 		
 		return s;
+	}
+
+	public ArrayList<Student> searchScore(String condition, String op, String userId) {
+		System.out.println("condition : " + condition);
+		Connection con = getConnection();
+		ArrayList<Student> list = null;
+		if(condition.equals("YEAR")) {
+			list = new StudentDao().searchYearScore(con, op, userId);
+		} else if(condition.equals("SUB_ID")) {
+			list = new StudentDao().searchSubidScore(con, op, userId);
+		} else {
+			list = new StudentDao().searchTypeScore(con, op, userId);
+		}
+		
+		close(con);
+		
+		return list;
+	}
+
+	public ArrayList<Student> searchAllScore(String userId) {
+		Connection con = getConnection();
+		ArrayList<Student> list = new StudentDao().searchAllScore(con, userId);
+		
+		close(con);
+		
+		return list;
 	}
 
 }
