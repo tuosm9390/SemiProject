@@ -751,11 +751,12 @@ var Nwagon = {
                     }
                 }
             }
+            
             //우리가 쓸 차트
             else if(chartType == 'multi_column')
             {
                 var colors = dataset['colorset'];
-                cw = (3/5*colWidth)/colors.length;
+                cw = (3/8*colWidth)/colors.length;
                 var chart_data = {};
                 for ( var k = 0; k<fields.length; k++){
                     chart_data[fields[k]] = [];
@@ -772,7 +773,7 @@ var Nwagon = {
                         chart_data[fields[index]].push('Label ' + names[i] + ', Value  '+ one_data[index]);
                     }
 
-                    var text = Nwagon.column.drawLabels(px + cw/2, 15, names[i]);
+                    var text = Nwagon.column.drawLabels(px + cw/1, 15, names[i]);
                     labels.appendChild(text);
                 }
                 create_data_list(chart_data);
