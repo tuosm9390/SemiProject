@@ -2,7 +2,7 @@ package hagong.academy.mngClass.mngAttend.model.vo;
 
 import java.sql.Date;
 
-public class ClassSubject {
+public class ClassSubject implements java.io.Serializable{
 	private int clsNo;			//강좌번호
 	private String subId;		//과목ID
 	private int userNo;			//담당 강사

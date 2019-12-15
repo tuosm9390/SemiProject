@@ -23,7 +23,7 @@ public class AttendDao {
 	private Properties prop = new Properties();
 	
 	public AttendDao() {
-		String fileName = MemberDao.class.getResource("/sql/class/attend-query.properties").getPath();
+		String fileName = AttendDao.class.getResource("/sql/class/attend-query.properties").getPath();
 	
 		try {
 			prop.load(new FileReader(fileName));
@@ -309,7 +309,11 @@ public class AttendDao {
 		return result;
 	}
 
-	public int updateAttend(Connection con, String attStatus, String[] students) {
+	public int updateAttend(Connection con, String classNum, String attStatus, String student) {
+		System.out.println("dao로 넘어옴");
+		System.out.println("classNum : " + classNum);
+		System.out.println("attStatus : " + attStatus);
+		System.out.println("student : " + student);
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -317,6 +321,22 @@ public class AttendDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
+			
+			String status = "";
+			switch(attStatus) {
+			case "0" : status = "Y"; break;
+			case "1" : status = "N"; break;
+			case "2" : status = "L"; break;
+			case "3" : status = "E"; break;
+			}
+			System.out.println("status : " + status);
+			
+			pstmt.setInt(1, Integer.parseInt(classNum));
+			pstmt.setString(2, status);
+			pstmt.setInt(3, Integer.parseInt(student));
+			
+			result = pstmt.executeUpdate();
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

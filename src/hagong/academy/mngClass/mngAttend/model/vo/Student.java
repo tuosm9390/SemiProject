@@ -1,6 +1,6 @@
 package hagong.academy.mngClass.mngAttend.model.vo;
 
-public class Student {
+public class Student implements java.io.Serializable{
 	private String school;
 	private int grade;
 	private String track;

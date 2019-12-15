@@ -2,7 +2,7 @@ package hagong.academy.mngClass.mngAttend.model.vo;
 
 import java.sql.Date;
 
-public class Attendance {
+public class Attendance implements java.io.Serializable{
 	private int clsNo;
 	private Date attDate;
 	private String attStatus;

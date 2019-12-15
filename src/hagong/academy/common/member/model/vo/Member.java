@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor*/
-public class Member {
+public class Member implements java.io.Serializable{
 	private int userNo;				//회원번호
 	private String name;			//이름
 	private String userId;			//아이디
