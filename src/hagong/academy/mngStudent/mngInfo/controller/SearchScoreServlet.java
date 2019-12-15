@@ -19,11 +19,14 @@ public class SearchScoreServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String condition = request.getParameter("condition");
+		int condition = Integer.parseInt(request.getParameter("condition"));
 		String op = request.getParameter("op");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.getWriter().append(", condition : " + condition);
-		response.getWriter().append(", op : " + op);
+		
+		if(condition == 0) {
+			
+		} else {
+			
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -112,8 +112,8 @@ h2{
 				style="float: right; width: 100px; margin-left: 1%; display: none;">
 
 			</select>
-			<select class="so" style="float: right; width: 60px;">
-				<option value="0" selected>-선택-</option>
+			<select class="so" style="float: right; width: 85px;">
+				<option value="0" selected>전체보기</option>
 				<option value="1">구분</option>
 				<option value="2">년도</option>
 				<option value="3">과목</option>
@@ -197,19 +197,19 @@ h2{
 		var options = {
 			'legend' : {
 				//x축 항목이름
-				names : [ '과목1', '과목2', '과목3']
+				names : [ '국어', '수학', '영어']
 			},
 			'dataset' : {
 				title : '학생 성적 그래프',
-				values : [ [ 50, 70 ], [ 20, 50 ] , [30, 60] ],
+				values : [ [ 50, 70 , 60], [ 20, 50 , 70] , [30, 60, 50] ],
 				colorset : [ '#749ee3', '#70db8e' ],
 				//y축 항목 이름
-				fields : [ '모의고사', '내신' ]
+				fields : [ '모의고사', '내신', '기타' ]
 			},
 			'chartDiv' : 'chart19',
 			'chartType' : 'multi_column',
 			'chartSize' : {
-				width : 800,
+				width : 900,
 				height : 500
 			},
 			'maxValue' : 100,
@@ -261,14 +261,34 @@ h2{
 		//검색 버튼
 		$("#searchCondition").click(function(){
 			var condition = $(".so").val();
-			var op = $(".classify").val();
+			if(condition == 2){
+				var op = $("#datepicker").val();
+			} else {
+				var op = $(".classify").val();
+			};
+			
+			/* $.ajax({
+				url : "searchscore.info",
+				type : "get",
+				data : {
+					condition:condition,
+					op:op
+				},
+				success:function(data){
+					console.log(data);
+				},
+				error:function(data){
+					console.log("실패");
+				}
+			}); */
+			
 			location.href="<%=request.getContextPath()%>/searchscore.info?condition=" + condition + "&op=" + op;
 		});
 		
 		//DatePicker
 		$(function() {
 			$("#datepicker").datepicker({
-			    dateFormat: "yy년",
+			    dateFormat: "yy",
 			    startView: "years",
 			    minViewMode: "years",
 			    showOtherMonths: true,
