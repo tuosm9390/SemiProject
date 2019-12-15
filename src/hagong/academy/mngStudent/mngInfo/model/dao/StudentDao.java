@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.json.simple.JSONArray;
+
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 
@@ -329,7 +331,7 @@ public class StudentDao {
 			while (rset.next()) {
 				Student s = new Student();
 				
-				s.setScoreNo(rset.getInt("ROWNUM"));
+				s.setScoreNo(rset.getInt("ROW_NUM"));
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
@@ -426,6 +428,161 @@ public class StudentDao {
 		}
 
 		return s;
+	}
+
+	public ArrayList<Student> searchYearScore(Connection con, String op, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Student> list = null;
+		
+		String query = prop.getProperty("searchYearScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, op);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Student s = new Student();
+				
+				s.setScoreNo(rset.getInt("ROW_NUM"));
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
+				
+				list.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<Student> searchSubidScore(Connection con, String op, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Student> list = null;
+		
+		String query = prop.getProperty("searchSubidScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, op);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Student s = new Student();
+				
+				s.setScoreNo(rset.getInt("ROW_NUM"));
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
+				
+				list.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Student> searchTypeScore(Connection con, String op, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Student> list = null;
+		
+		String query = prop.getProperty("searchTypeScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, op);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Student s = new Student();
+				
+				s.setScoreNo(rset.getInt("ROW_NUM"));
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
+				
+				list.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Student> searchAllScore(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Student> list = null;
+		
+		String query = prop.getProperty("searchAllScore");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Student s = new Student();
+				
+				s.setScoreNo(rset.getInt("ROW_NUM"));
+				s.setScoType(rset.getString("SCO_TYPE"));
+				s.setYear(rset.getInt("YEAR"));
+				s.setTerm(rset.getInt("TERM"));
+				s.setSubName(rset.getString("SUB_ID"));
+				s.setSubscore(rset.getInt("SCORE"));
+				
+				list.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 
 }

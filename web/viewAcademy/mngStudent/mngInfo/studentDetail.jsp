@@ -114,12 +114,13 @@ h2{
 			</select>
 			<select class="so" style="float: right; width: 85px;">
 				<option value="0" selected>전체보기</option>
-				<option value="1">구분</option>
-				<option value="2">년도</option>
-				<option value="3">과목</option>
+				<option value="SCO_TYPE">구분</option>
+				<option value="YEAR">년도</option>
+				<option value="SUB_ID">과목</option>
 			</select>
 			<!-- 학생 성적 테이블 -->
 			<table id="score" class="table" id="point" style="width:97%;">
+			<thead>
 				<tr>
 					<th style='width: 119px;'></th>
 					<th style='width: 194px;'>구분</th>
@@ -129,6 +130,8 @@ h2{
 					<th>점수</th>
 					<th style='width: 100px;'></th>
 				</tr>
+			</thead>
+			<tbody>
 				<%
 					if(sList.get(0).getScoType() != null){
 						for(Student s : sList) {
@@ -143,6 +146,7 @@ h2{
 					<td></td>
 				</tr>
 				<% } } else { }%>
+			</tbody>
 			</table>
 		</div>
 		<!-- 성적 그래프 -->
@@ -201,7 +205,9 @@ h2{
 			},
 			'dataset' : {
 				title : '학생 성적 그래프',
-				values : [ [ 50, 70 , 60], [ 20, 50 , 70] , [30, 60, 50] ],
+				values : [ [ <%=sList.get(0).getSubscore()%>, <%=sList.get(3).getSubscore()%>], 
+					[ <%=sList.get(1).getSubscore()%>, <%=sList.get(4).getSubscore()%> ] , 
+					[ <%=sList.get(2).getSubscore()%>, <%=sList.get(5).getSubscore()%>] ],
 				colorset : [ '#749ee3', '#70db8e' ],
 				//y축 항목 이름
 				fields : [ '모의고사', '내신', '기타' ]
@@ -230,7 +236,7 @@ h2{
 									$(".op").remove();
 									$("#datepicker").hide();
 								//구분 선택
-								} else if (sel == 1) {
+								} else if (sel == "SCO_TYPE") {
 									$(".classify").show();
 									$(".op").remove();
 									$("#datepicker").hide();
@@ -240,12 +246,12 @@ h2{
 														+ "</option>");
 									});
 									//년도 선택
-								} else if (sel == 2) {
+								} else if (sel == "YEAR") {
 									$(".classify").hide();
 									$(".op").remove();
 									$("#datepicker").show();
 									//과목 선택
-								} else if (sel == 3) {
+								} else if (sel == "SUB_ID") {
 									$(".classify").show();
 									$(".op").remove();
 									$("#datepicker").hide();
@@ -258,31 +264,76 @@ h2{
 							});
 		});
 		
+		
 		//검색 버튼
 		$("#searchCondition").click(function(){
 			var condition = $(".so").val();
-			if(condition == 2){
+			var userId = "<%=sList.get(0).getUserId()%>";
+			if(condition == "YEAR"){
 				var op = $("#datepicker").val();
+			} else if(condition == "0") {
+				var op = "1";
 			} else {
 				var op = $(".classify").val();
 			};
-			
-			/* $.ajax({
+			console.log(condition);
+			console.log(op);
+			$.ajax({
 				url : "searchscore.info",
 				type : "get",
 				data : {
-					condition:condition,
-					op:op
+					condition : condition,
+					op : op,
+					userId : userId
 				},
 				success:function(data){
 					console.log(data);
+					$tbody = $("#score>tbody");
+					$tbody.find("tr").remove();
+					for(var i = 0; i < data.length; i++){
+						var row = decodeURIComponent(data[i].ROW_NUM);
+						var type = decodeURIComponent(data[i].SCO_TYPE);
+						var term = decodeURIComponent(data[i].TERM);
+						var year = decodeURIComponent(data[i].YEAR);
+						var subId = decodeURIComponent(data[i].SUB_ID);
+						var score = decodeURIComponent(data[i].SCORE);
+						
+						$tbody.append("<tr><td>" + row + "</td><td>" + type + "</td><td>" + term + "</td><td>" + year + "</td><td>" + subId + "</td><td>" + score + "</td><td></td></tr>");
+						
+						//차트
+						var options = {
+							'legend' : {
+								//x축 항목이름
+								names : [ '국어', '수학', '영어']
+							},
+							'dataset' : {
+								title : '학생 성적 그래프',
+								values : [ [ <%=sList.get(0).getSubscore()%>, <%=sList.get(3).getSubscore()%>], 
+									[ <%=sList.get(1).getSubscore()%>, <%=sList.get(4).getSubscore()%> ] , 
+									[ <%=sList.get(2).getSubscore()%>, <%=sList.get(5).getSubscore()%>] ],
+								colorset : [ '#749ee3', '#70db8e' ],
+								//y축 항목 이름
+								fields : [ '모의고사', '내신', '기타' ]
+							},
+							'chartDiv' : 'chart19',
+							'chartType' : 'multi_column',
+							'chartSize' : {
+								width : 900,
+								height : 500
+							},
+							'maxValue' : 100,
+							'increment' : 10
+						};
+
+						Nwagon.chart(options);
+					}
 				},
 				error:function(data){
 					console.log("실패");
 				}
-			}); */
+			});
 			
-			location.href="<%=request.getContextPath()%>/searchscore.info?condition=" + condition + "&op=" + op;
+			<%-- location.href="<%=request.getContextPath()%>/searchscore.info?condition=" + condition + "&op=" + op + "&userId=" + userId; --%>
 		});
 		
 		//DatePicker
