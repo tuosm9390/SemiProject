@@ -235,7 +235,7 @@ section {
 						class="menu3">수강생 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/classlist.attend"
 						class="menu3">출결 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp"
+						href="<%=request.getContextPath()%>/alistClassList.class"
 						class="menu3">강좌목록 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
 						class="menu3">만족도</a>
@@ -258,8 +258,8 @@ section {
 						<%= loginUser.getName() %>님
 					</button>
 					<button
-						style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
-						onclick="myInfo();">개인정보 관리</button>
+                  style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
+                  onclick="location.href='<%= request.getContextPath() %>/adetail.ps?type=view&no=<%= loginUser.getUserNo()%>'">개인정보 관리</button>
 				</div>
 				<% }%>
 			</div>

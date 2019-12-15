@@ -5,7 +5,9 @@ import java.sql.Date;
 public class Class implements java.io.Serializable{
 	private int clsNo;				//강좌번호
 	private String subId;			//과목ID
+	private String subName;			//과목명 (subject클래스와 조인)
 	private int userNo;				//담당 강사
+	private String name;			//강사명 (member클래스와 조인)
 	private String clsName;			//강좌명
 	private String clsStudent;		//대상학생
 	private int clsMax;				//수강 정원
@@ -18,12 +20,14 @@ public class Class implements java.io.Serializable{
 	
 	public Class() {}
 
-	public Class(int clsNo, String subId, int userNo, String clsName, String clsStudent, int clsMax, Date clsStart,
+	public Class(int clsNo, String subId, String subName, int userNo, String name, String clsName, String clsStudent, int clsMax, Date clsStart,
 			String clsDay, String clsTime, int clrNo, int tuition, Date clsEnd) {
 		super();
 		this.clsNo = clsNo;
 		this.subId = subId;
+		this.subName = subName;
 		this.userNo = userNo;
+		this.name = name;
 		this.clsName = clsName;
 		this.clsStudent = clsStudent;
 		this.clsMax = clsMax;
@@ -33,6 +37,23 @@ public class Class implements java.io.Serializable{
 		this.clrNo = clrNo;
 		this.tuition = tuition;
 		this.clsEnd = clsEnd;
+	}
+	
+
+	public String getSubName() {
+		return subName;
+	}
+
+	public void setSubName(String subName) {
+		this.subName = subName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getClsNo() {
