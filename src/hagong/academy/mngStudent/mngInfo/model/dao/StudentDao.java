@@ -332,6 +332,7 @@ public class StudentDao {
 				Student s = new Student();
 				
 				s.setScoreNo(rset.getInt("ROW_NUM"));
+				s.setUserNo(rset.getInt("USER_NO"));
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setSchool(rset.getString("SCHOOL"));
@@ -384,7 +385,7 @@ public class StudentDao {
 		return result;
 	}
 
-	public Student selectStudentInfo(Connection con, String userId) {
+	public Student selectStudentInfo(Connection con, String userNo) {
 		PreparedStatement pstmt = null;
 		Student s = null;
 		ResultSet rset = null;
@@ -394,13 +395,14 @@ public class StudentDao {
 		try {
 			pstmt = con.prepareStatement(query);
 
-			pstmt.setString(1, userId);
+			pstmt.setString(1, userNo);
 
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
 				s = new Student();
 
+				s.setUserNo(rset.getInt("USER_NO"));
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setBirth(rset.getDate("BIRTH"));
@@ -575,6 +577,108 @@ public class StudentDao {
 				list.add(s);
 			}
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+
+	public int selectProfileCnt(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("countProfile");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectFileNo(Connection con, StudentProfile studentProfile) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int fileNo = 0;
+		
+		String query = prop.getProperty("selectFileNo");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, studentProfile.getChangeName());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				fileNo = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return fileNo;
+	}
+
+	public int updateOldProfile(Connection con, int fileNo, int userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteProfile");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, fileNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<StudentProfile> selectProfile(Connection con, String userNo) {
+		PreparedStatement pstmt = null;
+		ArrayList<StudentProfile> list = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectProfile");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userNo);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				StudentProfile sp = new StudentProfile();
+				
+				sp.setUserNo(rset.getInt("USER_NO"));
+				sp.setFileNo(rset.getInt("FILE_NO"));
+				sp.setFileType(rset.getString("FILE_TYPE"));
+				sp.setOriginName(rset.getString("ORIGIN_NAME"));
+				sp.setChangeName(rset.getString("CHANGE_NAME"));
+				sp.setFilePath(rset.getString("FILE_PATH"));
+				sp.setFileStatus(rset.getString("FILE_STATUS"));
+				
+				list.add(sp);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

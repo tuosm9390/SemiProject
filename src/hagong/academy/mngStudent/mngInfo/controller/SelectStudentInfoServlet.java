@@ -1,6 +1,7 @@
 package hagong.academy.mngStudent.mngInfo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hagong.academy.mngStudent.mngInfo.model.service.StudentService;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
+import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 
 /**
  * Servlet implementation class SelectStudentInfoServlet
@@ -30,14 +32,17 @@ public class SelectStudentInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
+		String userNo = request.getParameter("userNo");
 		
-		Student s = new StudentService().selectStudentInfo(userId);
+		Student s = new StudentService().selectStudentInfo(userNo);
+		ArrayList<StudentProfile> spList = new StudentService().selectProfile(userNo);
 		
 		String page = "";
 		if(s != null) {
 			page = "/viewAcademy/mngStudent/mngInfo/updateStudent.jsp";
 			request.setAttribute("s", s);
+			request.setAttribute("spList", spList);
+			
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectStudentInfoFail");
