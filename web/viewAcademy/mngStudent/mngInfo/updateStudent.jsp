@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*"%>
 <%
 	Student s = (Student) request.getAttribute("s");
+	ArrayList<StudentProfile> spList = (ArrayList<StudentProfile>) request.getAttribute("spList");
+	
+	String profile = " ";
+	for(int i = 0; i < spList.size(); i++){
+		profile = spList.get(i).getChangeName();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -100,8 +106,7 @@ th, td {
 							<tr align="center">
 								<td rowspan="8">
 									<div align="center">
-										<img id="profile"
-											src="<%=%>">
+										<img id="profile" src="<%= request.getContextPath()%>/images/user.png" style="border-radius:50%;">
 										<button type="button" id="addimg"
 											style="height: 1.5em; margin-top: 3%;">사진 선택</button>
 										<input type="file" id="imgfile" name="imgfile" onchange="loadImg(this);">
@@ -114,6 +119,7 @@ th, td {
 								</td>
 							</tr>
 							<tr>
+								<input type="hidden" id="userId" name="userNo" value="<%= s.getUserNo()%>">
 								<td><li>ID</li></td>
 								<td><input type="text" placeholder="<%= s.getUserId() %>" value="<%= s.getUserId() %>" id="userId" name="userId" readonly
 									style="background: none; border: none;"><br>
@@ -129,10 +135,11 @@ th, td {
 								<td><input type="text" id="datepicker" name="birth" value="<%= s.getBirth()%>" readonly></td>
 							</tr>
 							<tr>
+								<% String[] tel = s.getPhone().split("-"); %>
 								<td><li>전화번호</li></td>
-								<td><input type="tel" maxlength="3" name="tel1" value="<%= s.getPhone().substring(0, 3)%>"> - 
-								<input type="tel" maxlength="4" name="tel2" value="<%= s.getPhone().substring(4, 8)%>"> - 
-								<input type="tel" maxlength="4" name="tel3" value="<%= s.getPhone().substring(9)%>"></td>
+								<td><input type="tel" maxlength="3" name="tel1" value="<%= tel[0]%>"> - 
+								<input type="tel" maxlength="4" name="tel2" value="<%= tel[1]%>"> - 
+								<input type="tel" maxlength="4" name="tel3" value="<%= tel[2]%>"></td>
 							</tr>
 							<tr>
 								<td><li>학교 / 학년</li></td>
@@ -170,11 +177,12 @@ th, td {
 								<span id="refnameSpan" class="redText"></span></td>
 							</tr>
 							<tr>
+								<% String[] reftel = s.getRefPhone().split("-"); %>
 								<td></td>
 								<td><li>학부모 전화번호</li></td>
-								<td><input type="tel" maxlength="3" name="reftel1" value="<%= s.getRefPhone().substring(0, 3) %>"> - 
-								<input type="tel" maxlength="4" name="reftel2" value="<%= s.getRefPhone().substring(4, 8) %>"> -
-								<input type="tel" maxlength="4" name="reftel3" value="<%= s.getRefPhone().substring(9) %>"></td>
+								<td><input type="tel" maxlength="3" name="reftel1" value="<%= reftel[0] %>"> - 
+								<input type="tel" maxlength="4" name="reftel2" value="<%= reftel[1] %>"> -
+								<input type="tel" maxlength="4" name="reftel3" value="<%= reftel[2] %>"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -264,6 +272,10 @@ th, td {
 			}
 		}
 
+		if("<%= profile %>" === " ") {
+		} else {
+			$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
+		}
 		// 유효성검사
 		// 정규식 검사
 		// 학생 이름

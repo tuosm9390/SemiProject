@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hagong.academy.mngStudent.mngInfo.model.service.StudentService;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
+import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
 
 /**
  * Servlet implementation class DetailStudentServlet
