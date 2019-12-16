@@ -1,6 +1,6 @@
 package hagong.academy.mngStudent.mngInfo.model.dao;
 
-import static hagong.common.JDBCTemplate.close;
+import static hagong.common.JDBCTemplate.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import org.json.simple.JSONArray;
 
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
