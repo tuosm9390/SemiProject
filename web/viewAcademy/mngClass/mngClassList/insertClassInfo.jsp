@@ -74,18 +74,20 @@
     </div>
 	<div class="body" align="center">
 		<div class="tableArea">
-		<form id="classInfo" action="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classInfo.jsp" method="get">
+		<form id="classInfo" action="<%=request.getContextPath()%>/ainsert.class" method="post">
 			<table class="insertTable">
 				<tr>
 					<td>과목 : </td>
 					<td>
-					<select style="margin-bottom:20px">
-						<option>국어</option>
-						<option>수학</option>
-						<option>영어</option>
-						<option>사회</option>
-						<option>과학</option>
-						<option>기타</option>
+					<select id="selectSubject" style="margin-bottom:20px">
+						<option value="" selected disabled hidden>과목 선택</option>
+						<option value="KOR">국어</option>
+						<option value="MATH">수학</option>
+						<option value="ENG">영어</option>
+						<option value="SOCIAL">사회</option>
+						<option value="SCIENCE">과학</option>
+						<option value="FOREIGN">제2외국어</option>
+						<option value="ETC">기타</option>
 					</select>
 					</td>
 				</tr>
@@ -172,14 +174,31 @@
 					</td>
 				</tr>	
 			</table>
+		</form>
 		</div>
 		<div class="bottomArea" style="margin-bottom:20px">
 			<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/classList.jsp'">취소</button>
 			<button id="insertClassInfoBtn">등록</button>
-		</div>
-		</form>
+		</div>		
 	</div> <!-- body end -->
 	</section>
 	<footer></footer>
+	<script>
+		$(function(){
+			var subject = $("#selectSubject option:selected").val();
+			
+			$.ajax({
+				url: "alistTeacher.class",
+				data: {subject:subject},
+				type: "get",
+				success: function(data){
+					
+				},
+				error: function(data){
+					
+				}
+			});
+		});
+	</script>
 </body>
 </html>

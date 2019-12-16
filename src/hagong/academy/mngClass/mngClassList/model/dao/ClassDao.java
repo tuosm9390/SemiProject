@@ -100,5 +100,24 @@ public class ClassDao {
 		
 		return classDetail;
 	}
+	
+	public int deleteClass(Connection con, String clsNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteClass");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(clsNo));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}	
+		
+		return result;
+	}
 
 }

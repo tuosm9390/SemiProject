@@ -129,7 +129,7 @@
       		</fieldset>
       	</div>
 		<input type="date" style="float:left; width:150px; border-radius:5px; border:1px solid lightgray">
-		<button id="writeBtn" onclick="location.href='insertClassInfo.jsp'">강좌 등록</button>
+		<button id="writeBtn" onclick="location.href='viewAcademy/mngClass/mngClassList/insertClassInfo.jsp'">강좌 등록</button>
 		<button id="classroomBtn">강의실 관리</button>
 			<table class="classInfoTable table">
 				<thead>
@@ -187,19 +187,19 @@
 			<table id="modalTable">
 				<tr>
 					<td width="100px">과목</td>
-					<td width="250px"></td>
+					<td id="subjectField" width="250px"></td>
 				</tr>
 				<tr>
 					<td>강좌명</td>
-					<td></td>
+					<td id="classNameField"></td>
 				</tr>
 				<tr>
 					<td>담당 강사</td>
-					<td></td>
+					<td id="teacherField"></td>
 				</tr>
 				<tr>
 					<td>대상 학생</td>
-					<td><%-- <%	String school = "";
+					<td id="studentField"><%-- <%	String school = "";
 								switch(classDetail.getClsStudent()) { 
 								case "MID1" : school = "중등"; break;
 								case "MID2" : school = "중등"; break;
@@ -223,19 +223,19 @@
 				</tr>
 				<tr>
 					<td>정원</td>
-					<td></td>
+					<td id="clsMaxField"></td>
 				</tr>
 				<tr>
 					<td>기간</td>
-					<td></td>
+					<td id="clsDayField"></td>
 				</tr>
 				<tr>
 					<td>강의 시간</td>
-					<td></td>
+					<td id="clsTimeField"></td>
 				</tr>
 				<tr>
 					<td>수업료</td>
-					<td></td>
+					<td id="tuitionField"></td>
 				</tr>
 			</table>
 			<table id="modalBtnTable">
@@ -295,13 +295,50 @@
 				var num = $(this).parent().children().eq(0).children().val();
 				
 				$.ajax({
-					url:"adetail.class",
-					data:{num:num},
-					type:"get",
-					success:function(request, data){
+					url: "adetail.class",
+					data: {num:num},
+					type: "get",
+					success: function(data){
+						console.log(data);
+						$subjectField = $("#subjectField");
+						$classNameField = $("#classNameField");
+						$teacherField = $("#teacherField");
+						$studentField = $("#studentField");
+						$clsMaxField = $("#clsMaxField");
+						$clsDayField = $("#clsDayField");
+						$clsTimeField = $("#clsTimeField");
+						$tuitionField = $("#tuitionField");
+						
+						switch(data.subName) {
+						case "KOR" : $subjectField.text("국어"); break;
+						case "MATH" : $subjectField.text("수학"); break;
+						case "ENG" : $subjectField.text("영어"); break;
+						case "SOCIAL" : $subjectField.text("사회"); break;
+						case "SCIENCE" : $subjectField.text("과학"); break;
+						case "FOREIGN" : $subjectField.text("제2외국어"); break;
+						case "ETC" : $subjectField.text("기타"); break;
+						}
+						
+						$classNameField.text(data.clsName);
+						$teacherField.text(data.name);
+						
+						switch(data.clsStudent) {
+						case "MID1" : $studentField.text("중학교 1학년"); break;
+						case "MID2" : $studentField.text("중학교 2학년"); break;
+						case "MID3" : $studentField.text("중학교 3학년"); break;
+						case "HIGH1" : $studentField.text("고등학교 1학년"); break;
+						case "HIGH2" : $studentField.text("고등학교 2학년"); break;
+						case "HIGH3" : $studentField.text("고등학교 3학년"); break;
+						case "ETC" : $studentField.text("기타"); break;
+						}
+						
+						$clsMaxField.text(data.clsMax+"명");
+						$clsDayField.text(data.clsStart + "~" + data.clsEnd);
+						$clsTimeField.text(data.clsTime);
+						$tuitionField.text(data.tuition + "만원");
 						
 					},
-					error:function(request, data){
+					error: function(request, data){
 						alert("code:"+request.status+"\n"+"message:"+request.responseText);
 					}
 				});
@@ -326,12 +363,21 @@
 			    		dangerMode: true,
 			    	}).then(function(isConfirm) {
 			    		if(isConfirm) {
-			    			console.log("삭제가 먼저 되고 swal 떠야돼");
-			    			//딜리트 서블릿으로 이동 후 결과에 따라 페이지 요청
-			    			swal ({
-			    				title: "삭제되었습니다.",
-			    				icon: "success"
-			    			})
+			    			$.ajax({
+			    				url: "adelete.class",
+			    				data: {num:num},
+			    				type: "get",
+			    				success: function(data){			    					
+			    					swal ({
+					    				title: "삭제되었습니다.",
+					    				icon: "success"
+					    			})
+					    			location.href="<%=request.getContextPath()%>/alistClassList.class";
+			    				},
+			    				error: function(data){
+			    					console.log("실패");	
+			    				}
+			    			});
 			    		}else {
 			    			swal ("강좌 삭제가 취소되었습니다.");
 			    		}
