@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*, java.text.SimpleDateFormat"%>
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
+
+	SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM");
+	String today = dayFormat.format(System.currentTimeMillis());
+	String[] todayArr = today.split("-");
+	int year = Integer.parseInt(todayArr[0]);
+	int month = Integer.parseInt(todayArr[1]);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -220,7 +227,7 @@ section {
 
 					<a href="<%=request.getContextPath()%>/alist.info"
 						class="menu1">개인정보</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/viewAcademy/mngStudent/mngPurchase/purchaseList.jsp"
+					<a href="<%=request.getContextPath() %>/alist.pur?year=<%= year %>&month=<%= month %>"
 						class="menu1">수납</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/alist.couns"
 						class="menu1">상담</a> <a>|</a>
@@ -231,14 +238,14 @@ section {
 				<!-- 수업관리 메뉴 -->
 				<div class="detailmenu" id="classdetailmenu">
 					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
+						href="<%=request.getContextPath()%>/alist.cs"
 						class="menu3">수강생 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/classlist.attend"
 						class="menu3">출결 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/alistClassList.class"
 						class="menu3">강좌목록 관리</a> <a>|</a> <a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp"
-						class="menu3">만족도</a>
+                  		href="<%=request.getContextPath()%>/alist.satis"
+                 		class="menu3">만족도</a>
 				</div>
 				<!-- 관리자 메뉴 -->
 				<div class="detailmenu" id="admindetailmenu">
