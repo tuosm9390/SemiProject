@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngCS.model.vo.*"%>
+<%
+	ArrayList<CSStudent> csslist = (ArrayList<CSStudent>) request.getAttribute("csslist");
+	ArrayList<CSStudent> allStudent = (ArrayList<CSStudent>) request.getAttribute("allStudent");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +63,7 @@
 	<form id="classForm" action="" method="post">
 		<div class="classInfo">
 			<div align="center">
-		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　수학기초반　></h1>
+		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　<%= csslist.get(0).getClsName() %>　></h1>
 	    	</div>
    			<div class="bTable">
 				<table class="table">
@@ -71,11 +75,11 @@
 						<th>제한인원</th>					
 					</tr>
 					<tr>
-						<td>김진호</td>
-						<td>중학교 1학년</td>
-						<td>2019.03.02 ~ 2019.06.17</td>
-						<td>2층 D강의실</td>
-						<td>30명</td>
+						<td><%= csslist.get(0).getTchName() %></td>
+						<td><%= csslist.get(0).getClsStudentName() %></td>
+						<td><%= csslist.get(0).getClsStart() %> ~ <%= csslist.get(0).getClsEnd()%></td>
+						<td><%= csslist.get(0).getClassName()%></td>
+						<td><%= csslist.get(0).getClsMax() %>명</td>
 					</tr>
 				</table>
 			</div> <!-- 블랙리스트 정보 end -->	
@@ -85,137 +89,17 @@
 				<h3>전체 학생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-					<!-- <ul style="list-style-type: none;padding-inline-start: 0px;">
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-						<li>강동원(010-1111-2222)</li>
-					</ul> -->
 				<div class="tableArea">
 					<table class="table">
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
-						<tr>
-							<td>강동원</td>
-							<td>kdw123</td>
-							<td>KH중학교</td>
-							<td>1학년</td>
-						</tr>
+						
+						<%for(int i = 0; i < allStudent.size(); i++) {%>
+							<tr>
+								<td><%= allStudent.get(i).getStuName() %></td>
+								<td><%= allStudent.get(i).getUserId() %></td>
+								<td><%= allStudent.get(i).getSchool() %></td>
+								<td><%= allStudent.get(i).getGradeName() %></td>
+							</tr>
+						<% } %>
 					</table>
 				</div>
 					
@@ -229,69 +113,18 @@
 				<h3>해당 강좌 수강생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-					<!-- <ul style="list-style-type: none;padding-inline-start: 0px;">
-						<li>아이린(010-1234-4567)</li>
-						<li>아이린(010-1234-4567)</li>
-						<li>아이린(010-1234-4567)</li>
-						<li>아이린(010-1234-4567)</li>
-						<li>아이린(010-1234-4567)</li>
-					</ul> -->
 					<div class="tableArea">
 					<table class="table">
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
-						<tr>
-							<td>아이린</td>
-							<td>ier456</td>
-							<td>KH고등학교</td>
-							<td>3학년</td>
-						</tr>
+						<%for(int i = 0; i < csslist.size(); i++) {%>
+							<%if(csslist.get(i).getStuName() != null) {%>
+							<tr>
+								<td><%= csslist.get(i).getStuName() %></td>
+								<td><%= csslist.get(i).getUserId() %></td>
+								<td><%= csslist.get(i).getSchool() %></td>
+								<td><%= csslist.get(i).getGradeName() %></td>
+							</tr>
+						<%}
+						} %>
 					</table>
 					</div>
 				</div>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import hagong.academy.mngClass.mngCS.model.dao.CSDao;
 import hagong.academy.mngClass.mngCS.model.vo.CS;
 import hagong.academy.mngClass.mngCS.model.vo.CSStudent;
+import hagong.academy.mngStudent.mngBlack.model.dao.BlacklistDao;
 
 import static hagong.common.JDBCTemplate.*;
 
@@ -29,6 +30,26 @@ public class CSService {
 		close(con);
 		
 		return csslist;
+	}
+
+	public int listCount() {
+		Connection con = getConnection();
+		
+		int listCount = new CSDao().listCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<CSStudent> allStudent(int clsNo) {
+		Connection con = getConnection();
+		
+		ArrayList<CSStudent> allStudent = new CSDao().selectAllCS(con, clsNo);
+		
+		close(con);
+		
+		return allStudent;
 	}
 
 }

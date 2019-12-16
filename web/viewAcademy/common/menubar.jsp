@@ -231,7 +231,7 @@ section {
 				<!-- 수업관리 메뉴 -->
 				<div class="detailmenu" id="classdetailmenu">
 					<a
-						href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/CSlist.jsp"
+						href="<%=request.getContextPath()%>/alist.cs"
 						class="menu3">수강생 관리</a> <a>|</a> <a
 						href="<%=request.getContextPath()%>/classlist.attend"
 						class="menu3">출결 관리</a> <a>|</a> <a
