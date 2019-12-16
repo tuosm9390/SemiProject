@@ -34,9 +34,21 @@ public class DetailCSStudentServlet extends HttpServlet {
 		int clsNo = Integer.parseInt(request.getParameter("clsNo"));
 		
 		ArrayList<CSStudent> csslist = new CSService().detailCSStudent(clsNo);
+		ArrayList<CSStudent> allStudent = new CSService().allStudent(clsNo);
 		
+		System.out.println("csslist : " + csslist);
+		System.out.println("allStudent : " + allStudent);
 		
-		
+		String page = "";
+		if(csslist != null) {
+			page = "viewAcademy/mngClass/mngCS/enrollCS.jsp";
+			request.setAttribute("allStudent", allStudent);
+			request.setAttribute("csslist", csslist);
+		}else {
+			page = "viewAcademy.common/commonError.jsp";
+			request.setAttribute("msg", "수강생등록 상세페이지 조회 실패!");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

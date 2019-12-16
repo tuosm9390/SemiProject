@@ -57,7 +57,7 @@ public class ClasslistStudentServlet extends HttpServlet {
 
 		
 		//전체 목록 갯수 조회
-		int listCount = new BlacklistService().listCount();
+		int listCount = new CSService().listCount();
 		
 		//System.out.println("listCount : " + listCount);
 				
