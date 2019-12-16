@@ -1,9 +1,0 @@
-  <servlet>
-  	<servlet-name>cycle</servlet-name> //서블릿 별칭설정
-  	<servlet-class>controller.LifeCycleServlet</servlet-class> //서블릿 풀클래스명 작성
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>cycle</servlet-name> //매핑할 서블릿 이름 입력
-  	<url-pattern>/cycle</url-pattern> //url에 /cycle 요청을 보내면 cycle 서블릿을 동작 시켜라
-					이때 작동하는 cycle이라는 서블릿은 controller.LifeCycleServlet 이다.
-  </servlet-mapping>
