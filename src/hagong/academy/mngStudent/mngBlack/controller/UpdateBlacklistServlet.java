@@ -1,4 +1,4 @@
-package hagong.academy.mngStudent.mngCouns.controller;
+package hagong.academy.mngStudent.mngBlack.controller;
 
 import java.io.IOException;
 import java.util.GregorianCalendar;
@@ -13,16 +13,16 @@ import hagong.academy.mngStudent.mngCouns.model.service.CounselingService;
 import hagong.academy.mngStudent.mngCouns.model.vo.Counseling;
 
 /**
- * Servlet implementation class UpdateCounsServlet
+ * Servlet implementation class UpdateBlacklistServlet
  */
-@WebServlet("/update.couns")
-public class UpdateCounsServlet extends HttpServlet {
+@WebServlet("/update.black")
+public class UpdateBlacklistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCounsServlet() {
+    public UpdateBlacklistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -68,11 +68,11 @@ public class UpdateCounsServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0 ) {
-			page = request.getContextPath() + "/detail.couns?userNo=" + userNo;
+			page = request.getContextPath() + "/detail.black?num=" + userNo;
 			response.sendRedirect(page);
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
-			request.setAttribute("msg", "상담일지 수정실패!");
+			request.setAttribute("msg", "블랙리스트 수정실패!");
 			request.getRequestDispatcher(page).forward(request, response);
 		}
 	}

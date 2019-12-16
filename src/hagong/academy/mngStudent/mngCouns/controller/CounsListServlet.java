@@ -35,16 +35,14 @@ public class CounsListServlet extends HttpServlet {
 		//검색관련 값 받아오기
 		String searchCondition = request.getParameter("searchCondition");
 		String srchCnt = request.getParameter("srchCnt");
-		
-		System.out.println("searchCondition : " + searchCondition);
-		System.out.println("srchCnt : " + srchCnt);
+
 		
 		
 		//System.out.println("접속 테스트");
 		
 		//전체 학생들의 정보를 상담정보와 같이 어레이리스트에 담아 저장
 		ArrayList<MemberCouns> counsList = null;
-		if(searchCondition == null || srchCnt == null) {
+		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
 			//전체 학생조회
 			counsList = new CounselingService().counsList();			
 		}else {

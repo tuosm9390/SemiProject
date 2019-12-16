@@ -276,6 +276,7 @@ public class CounselingDao {
 				mc.setCouBlack(rset.getString("COU_BLACK"));
 				mc.setUserName(rset.getString("USER_NAME"));
 				mc.setCouUserName(rset.getString("COU_NAME"));
+				mc.setCouBlack(rset.getString("COU_BLACK"));
 				
 				detailCouns.add(mc);
 			}
@@ -304,7 +305,8 @@ public class CounselingDao {
 			pstmt.setString(3, couns.getCouType());
 			pstmt.setString(4, couns.getCouContent());
 			pstmt.setString(5, couns.getCouAction());
-			pstmt.setInt(6, couns.getCouNo());
+			pstmt.setString(6, couns.getCouBlack());
+			pstmt.setInt(7, couns.getCouNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
