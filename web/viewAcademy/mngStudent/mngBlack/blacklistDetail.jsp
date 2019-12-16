@@ -89,7 +89,7 @@ input, select, textarea {
 		</div> <!-- 블랙리스트 정보 end -->
 		<div class="bDetail">
 			<div class="bContent">
-				<form class="blacklist_content" method="post">
+				<form id="detailCouns" class="blacklist_content" method="post">
 					<div class="detailArea">
 						<div class="dArea dArea1">
 							<div class="dCtn consDate"> 
@@ -103,21 +103,24 @@ input, select, textarea {
 							</div>
 							<div class="dCtn consTitle">
 								<label class="dTit">상담제목</label>
-								<input id="title" type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouTitle() %>" readonly>
+								<input id="title" name="title" type="text" class="inputCons updateAble" value="<%= detailBlacklist.get(0).getCouTitle() %>" readonly>
+								<input type="hidden" name="userNo" value="<%= detailBlacklist.get(0).getUserNo() %>">
+								<input id="couNo" type="hidden" name="couNo" value="<%= detailBlacklist.get(0).getCouNo() %>">								
 							</div>
 					<div class="names">
 							<div class="dCtn tName">
 								<label class="dTit">상담자 이름</label>
-								<input id="couName" type="text" class="inputCons" value="<%= detailBlacklist.get(0).getCouUserName() %>" readonly>
+								<input id="couName" type="text" class="inputCons updateAble" value="<%= detailBlacklist.get(0).getCouUserName() %>" readonly>
 							</div>
 
 							<div class="dCtn category">
 								<label class="dTit">상담종류</label>
 								<select id="category" name="consCategory" disabled class="consCate">
-									<option value="class">수업</option>
-									<option value="life">학원생활</option>
-									<option value="atit">태도</option>
-									<option value="etc">기타</option>
+									<option value="SCORE">성적</option>
+									<option value="LIFE">학원생활</option>
+									<option value="PARENT">학부모</option>
+									<option value="APPLY">진학</option>
+									<option value="ETC">기타</option>
 								</select>
 							</div>
 							<script>
@@ -138,12 +141,23 @@ input, select, textarea {
 						<div class="dArea dArea3">
 							<div class="dCtn content">
 								<label class="dTit">내용</label>
-								<textarea id="content" class="inputCons" name="consreq" readonly><%= detailBlacklist.get(0).getCouContent() %></textarea>
+								<textarea id="content" class="inputCons updateAble" name="consreq" readonly><%= detailBlacklist.get(0).getCouContent() %></textarea>
 							</div>
 							<div class="dCtn answer">
 								<label class="dTit">상담자의 대응내용</label>
-								<textarea id="action" class="inputCons" name="consres" readonly><%= detailBlacklist.get(0).getCouAction() %></textarea>
+								<textarea id="action" class="inputCons updateAble" name="consres" readonly><%= detailBlacklist.get(0).getCouAction() %></textarea>
 							</div>
+						</div>
+						<div class="dCtn isBlack">
+							<label for="isblack">블랙리스트</label>
+							<input id="isblack" type="checkBox" name="isblack" value="Y">
+							<% if(detailBlacklist.get(0).getCouBlack().equals("Y")) {%>
+							<script>
+								$(function(){
+									$("#isblack").prop("checked",true);
+								});
+							</script>
+							<%} %>
 						</div>
 					</div>
 					<div class="btnArea">
@@ -169,7 +183,8 @@ input, select, textarea {
 			$("#category").prop("disabled", false);
 			$("#updateCons").show().css("display","inline-block");
 			$("#updateBtn").hide();
-			
+			$("#detailDate").hide();
+			$("#from").show();
 			$("#from").datepicker();				
 			
 		}
@@ -216,6 +231,7 @@ input, select, textarea {
 					var content = data.couContent;
 					var action = data.couAction;
 					var couName = data.couUserName;
+					var couNo = data.couNo;
 					$("#category option").each(function(){
 						if($(this).val() == type){
 							$(this).prop("selected", true);
@@ -225,6 +241,7 @@ input, select, textarea {
 					$("#content").val(content);
 					$("#action").val(action);
 					$("#couName").val(couName);
+					$("#couNo").val(couNo);
 				}
 			});
 		})

@@ -1,4 +1,4 @@
-package hagong.academy.mngStudent.mngBlack.controller;
+package hagong.academy.mngClass.mngCS.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.mngClass.mngCS.model.service.CSService;
+import hagong.academy.mngClass.mngCS.model.vo.CS;
 import hagong.academy.mngStudent.mngBlack.model.service.BlacklistService;
 import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngCouns.model.vo.PageInfo;
 
 /**
- * Servlet implementation class BlacklistServlet
+ * Servlet implementation class ClasslistStudentServlet
  */
-@WebServlet("/alist.black")
-public class BlacklistServlet extends HttpServlet {
+@WebServlet("/alist.cs")
+public class ClasslistStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BlacklistServlet() {
+    public ClasslistStudentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -94,27 +96,29 @@ public class BlacklistServlet extends HttpServlet {
 		System.out.println("srchCnt : " + srchCnt);
 		
 		//검색기능인지 아닌지 판별하여 값가져오기
-		ArrayList<BlacklistInfo> blacklist = null;
+		ArrayList<CS> cslist = null;
 		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
-			blacklist = new BlacklistService().selectBlacklistWithPaging(currentPage, limit);			
+			 cslist = new CSService().selectCSlistWithPaging(currentPage, limit);			
 		}else {
-			blacklist = new BlacklistService().searchBlacklistWithPaging(currentPage, limit, searchCondition, srchCnt);			
+			//cslist = new BlacklistService().searchBlacklistWithPaging(currentPage, limit, searchCondition, srchCnt);			
 		}
 		
 		
 		String page = "";
-		if(blacklist != null) {
-			page = "viewAcademy/mngStudent/mngBlack/blacklist.jsp";
+		if(cslist != null) {
+			page = "viewAcademy/mngClass/mngCS/CSlist.jsp";
 			request.setAttribute("searchCondition", searchCondition);
 			request.setAttribute("srchCnt", srchCnt);
-			request.setAttribute("blacklist", blacklist);
+			request.setAttribute("cslist", cslist);
 			request.setAttribute("pi", pi);
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
-			request.setAttribute("msg", "블랙리스트조회실패");
+			request.setAttribute("msg", "수강생등록 강좌정보 조회 실패");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
+		
+		
 		
 	}
 

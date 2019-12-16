@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngCS.model.vo.*,hagong.academy.mngStudent.mngCouns.model.vo.*"%>
+<% 
+	ArrayList<CS> cslist = (ArrayList<CS>) request.getAttribute("cslist"); 
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호 
+	
+	String srchCnt = (String) request.getAttribute("srchCnt");
+	String searchCondition = (String) request.getAttribute("searchCondition");
+%>
 <!DOCTYPE html>
 <html class="no-js">
 	<head>
@@ -21,7 +32,8 @@
 	.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
 	.srchArea select{border-radius:5px;border:1px solid gray;}
 	.srchArea button{float:right;width:60px; height:25px;}
-	
+	.pagingArea {margin-bottom:30px;}
+	.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
 </style>
 	</head>
 	<body>
@@ -58,18 +70,47 @@
 						</tr>
 					</thead>
 					<tbody>
-					
-						<tr><td class="user-name">1</td><td class="user-email">수학 기초반1</td><td>빛상찬</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
-						<tr><td class="user-name">2</td><td class="user-email">수학 기초반2</td><td>빛상준</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
-						<tr><td class="user-name">3</td><td class="user-email">영어 ABC 클래스-오전</td><td>킹진호</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
-						<tr><td class="user-name">4</td><td class="user-email">영어 ABC 클래스-오후</td><td>킹진호</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
-						<tr><td class="user-name">5</td><td class="user-email">여름방학 고2 선행 특강</td><td>킹진호</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
-						<tr><td class="user-name">6</td><td class="user-email">고3 수능 직전 벼락치기반</td><td>킹진호</td><td class="user-phone">2019.03.02. ~ 2019.06.17</td><td class="user-mobile">1층A강의실</td></tr>
+					<% for(int i = 0; i < cslist.size(); i++) { %>
+						<tr>
+							<td class=""><%= cslist.get(i).getRnum() %><input type="hidden" value="<%= cslist.get(i).getClsNo()%>"></td>
+							<td class=""><%= cslist.get(i).getClsName() %></td>
+							<td><%= cslist.get(i).getName() %></td>
+							<td class=""><%= cslist.get(i).getClsStart() %> ~ <%= cslist.get(i).getClsEnd() %></td>
+							<td class=""><%= cslist.get(i).getClassName() %></td>
+						</tr>
+					<%} %>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		</section>			
+		</section>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<% }%>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
+		</div> <!-- pagingArea end  -->
+					
 	
 		<!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -77,8 +118,10 @@
 		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 		<script>
 			$(function(){
-				$("#classlist td").click(function(){
-					location.href = "<%= request.getContextPath()%>/viewAcademy/mngClass/mngCS/enrollCS.jsp";
+				$("#classlist tr").click(function(){
+					var clsNo = $(this).children().eq(0).children().eq(0).val();
+					console.log(clsNo);
+					location.href = "<%= request.getContextPath()%>/adetail.cs?clsNo=" + clsNo;
 				});
 			})
 		</script>
