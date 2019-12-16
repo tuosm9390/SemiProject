@@ -1,4 +1,4 @@
-package hagong.academy.mngStaff.controller;
+package hagong.academy.commonMenu.info.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,18 +15,18 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import hagong.academy.mngStaff.model.service.InsertStaffService;
-import hagong.academy.mngStaff.model.vo.Staff;
+import hagong.academy.commonMenu.info.model.service.UserService;
+import hagong.academy.commonMenu.info.model.vo.UserDetail;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 import hagong.common.RenameFilePolicy;
 
-@WebServlet("/ainsert.staff")
-public class InsertStaffServlet extends HttpServlet {
+@WebServlet("/aupdate.ps")
+public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public InsertStaffServlet() {
-		super();
-	}
+       
+    public UpdateUserServlet() {
+        super();
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(ServletFileUpload.isMultipartContent(request)) {
@@ -53,29 +53,24 @@ public class InsertStaffServlet extends HttpServlet {
 				originFiles.add(multiRequest.getOriginalFileName(name));
 			}
 			
-			String userId = multiRequest.getParameter("userId");
-			String name = multiRequest.getParameter("userName");
+			int userNo = Integer.parseInt(multiRequest.getParameter("userNo"));
 			String userPwd = multiRequest.getParameter("userPwd");
-			java.sql.Date birth = java.sql.Date.valueOf(multiRequest.getParameter("birth"));
 			String phone = multiRequest.getParameter("tel1") + "-" + multiRequest.getParameter("tel2") + "-" + multiRequest.getParameter("tel3");
-			String dept = multiRequest.getParameter("subject");
 			String email = multiRequest.getParameter("email");
 			String address = multiRequest.getParameter("address");
 
-			Staff staff = new Staff();
-			staff.setUserId(userId);
-			staff.setName(name);
-			staff.setUserPwd(userPwd);
-			staff.setBirth(birth);
-			staff.setPhone(phone);
-			staff.setDept(dept);
-			staff.setEmail(email);
-			staff.setAddress(address);
+			UserDetail user = new UserDetail();
+			user.setUserNo(userNo);
+			user.setUserPwd(userPwd);
+			user.setPhone(phone);
+			user.setEmail(email);
+			user.setAddress(address);
 			
 			ArrayList<StaffFile> fileList = new ArrayList<StaffFile>();
 			
 			for(int i = 0; i < originFiles.size(); i++) {
 				StaffFile staffFile = new StaffFile();
+				
 				staffFile.setOriginName(originFiles.get(i));
 				staffFile.setFilePath(savePath);
 				
@@ -90,19 +85,25 @@ public class InsertStaffServlet extends HttpServlet {
 					staffFile.setFileType("ASSIGN");
 				}
 				
-				fileList.add(staffFile);
+				if(staffFile.getOriginName() != null) {
+					fileList.add(staffFile);
+				}
 			}
 			
-			int result = new InsertStaffService().insertStaff(staff, fileList);
+			if(fileList.size() == 0) {
+				fileList = null;
+			}
+					
+			int result = new UserService().updateUser(user, fileList);
 			
 			if(result > 0) {
-				response.sendRedirect(request.getContextPath() + "/alist.staff");
+				response.sendRedirect(request.getContextPath() + "/adetail.ps?type=view&no=" + user.getUserNo());
 			} else {
 				for(int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
 					failedFile.delete();
 				}
-				request.setAttribute("errorCode", "insertStaffFail");
+				request.setAttribute("errorCode", "updateUserFail");
 				request.getRequestDispatcher("viewAcademy/common/commonError.jsp").forward(request, response);
 			}
 		}

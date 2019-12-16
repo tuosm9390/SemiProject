@@ -17,7 +17,7 @@ import hagong.academy.mngStaff.model.vo.StaffFile;
 
 import static hagong.common.JDBCTemplate.*;
 
-public class StaffDao {
+public class StaffDao { 
 	
 private Properties prop = new Properties();
 	

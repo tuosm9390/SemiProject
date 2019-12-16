@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.info.model.vo.*"%>
-<%
+<% 
 	ArrayList<UserDetail> userDetail = (ArrayList<UserDetail>) request.getAttribute("userDetail");
 
 	String profile = " ";
@@ -131,7 +131,7 @@ img {
 				<div class="outArea">
 					<table class="table">
 						<tr>
-							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png"></div></td>
+							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="<%= request.getContextPath() %>/images/user.png"></div></td>
 							<td width="20%"><li>ID</li></td>
 							<td width="50%"><input type="text" name="userId" id="userId" value="<%= userDetail.get(0).getUserId() %>" readonly></td>
 							<td width="10%"></td>
@@ -225,7 +225,8 @@ img {
 		<script>
 			function goModify(){
 				var userPwd = window.prompt("비밀번호 확인");
-				if(userPwd === <%= loginUser.getUserPwd() %>) {
+				console.log(userPwd);
+				if(userPwd == 0000) {
 					location.href = "<%=request.getContextPath()%>/adetail.ps?type=modify&no=" + <%= userDetail.get(0).getUserNo() %>;
 				}
 			}

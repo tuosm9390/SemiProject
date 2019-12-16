@@ -28,7 +28,7 @@ public class InsertStaffDao {
 	}
 
 	public int insertStaffInfo(Connection con, Staff staff) {
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null; 
 		int result = 0;
 		
 		String query = prop.getProperty("insertStaffInfo");

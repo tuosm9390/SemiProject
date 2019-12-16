@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
 <%
 	ArrayList<StaffDetail> staffDetail = (ArrayList<StaffDetail>) request.getAttribute("staffDetail");
-
+ 
 	String profile = " ";
 	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
 	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();

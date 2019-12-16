@@ -18,7 +18,7 @@ import hagong.academy.mngStaff.model.vo.StaffFile;
 @WebServlet("/down.staff")
 public class DownloadFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     public DownloadFileServlet() {
         super();
     }

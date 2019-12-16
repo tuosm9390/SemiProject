@@ -15,6 +15,7 @@ public class UserDetail {
 	private String userType;
 	
 	private String userId;
+	private String userPwd;
 	private String name;
 	private Date birth;
 	private String phone;
@@ -34,13 +35,14 @@ public class UserDetail {
 		super();
 	}
 	
-	public UserDetail(int userNo, String userType, String userId, String name, Date birth, String phone, String dept,
-			String email, String address, String status, int fileNo, String fileType, String originName,
+	public UserDetail(int userNo, String userType, String userId, String userPwd, String name, Date birth, String phone,
+			String dept, String email, String address, String status, int fileNo, String fileType, String originName,
 			String changeName, String filePath, String fileStatus) {
 		super();
 		this.userNo = userNo;
 		this.userType = userType;
 		this.userId = userId;
+		this.userPwd = userPwd;
 		this.name = name;
 		this.birth = birth;
 		this.phone = phone;
@@ -54,6 +56,14 @@ public class UserDetail {
 		this.changeName = changeName;
 		this.filePath = filePath;
 		this.fileStatus = fileStatus;
+	}
+
+	public final String getUserPwd() {
+		return userPwd;
+	}
+
+	public final void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
 
 	public final int getUserNo() {
@@ -186,11 +196,19 @@ public class UserDetail {
 
 	@Override
 	public String toString() {
-		return "UserDetail [userNo=" + userNo + ", userType=" + userType + ", userId=" + userId + ", name=" + name
-				+ ", birth=" + birth + ", phone=" + phone + ", dept=" + dept + ", email=" + email + ", address="
-				+ address + ", status=" + status + ", fileNo=" + fileNo + ", fileType=" + fileType + ", originName="
-				+ originName + ", changeName=" + changeName + ", filePath=" + filePath + ", fileStatus=" + fileStatus
-				+ "]";
+		return "UserDetail [userNo=" + userNo + ", userType=" + userType + ", userId=" + userId + ", userPwd=" + userPwd
+				+ ", name=" + name + ", birth=" + birth + ", phone=" + phone + ", dept=" + dept + ", email=" + email
+				+ ", address=" + address + ", status=" + status + ", fileNo=" + fileNo + ", fileType=" + fileType
+				+ ", originName=" + originName + ", changeName=" + changeName + ", filePath=" + filePath
+				+ ", fileStatus=" + fileStatus + ", getUserPwd()=" + getUserPwd() + ", getUserNo()=" + getUserNo()
+				+ ", getUserType()=" + getUserType() + ", getUserId()=" + getUserId() + ", getName()=" + getName()
+				+ ", getBirth()=" + getBirth() + ", getPhone()=" + getPhone() + ", getDept()=" + getDept()
+				+ ", getEmail()=" + getEmail() + ", getAddress()=" + getAddress() + ", getStatus()=" + getStatus()
+				+ ", getFileNo()=" + getFileNo() + ", getFileType()=" + getFileType() + ", getOriginName()="
+				+ getOriginName() + ", getChangeName()=" + getChangeName() + ", getFilePath()=" + getFilePath()
+				+ ", getFileStatus()=" + getFileStatus() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
+
 	
 }

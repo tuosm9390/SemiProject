@@ -23,7 +23,7 @@
 				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
 			});
 		});
-	</script>
+	</script> 
 	
 	<% }else if(errorCode == "pwdUpdateFail") { %>
 	<script>
@@ -115,6 +115,20 @@
 			swal ({
 				title: "개인정보 조회 실패",
 				text: "개인정보 조회에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+			});
+		});
+	</script>
+	
+	<% }else if(errorCode == "updateUserFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "개인정보 수정 실패",
+				text: "개인정보 수정에 실패하셨습니다.",
 				icon: "warning",
 				button: "확인"
 			}).then(function(){

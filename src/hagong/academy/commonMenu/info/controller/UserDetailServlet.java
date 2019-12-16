@@ -25,8 +25,6 @@ public class UserDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
 		
-		
-		
 		int userNo = Integer.parseInt(request.getParameter("no"));
 		ArrayList<UserDetail> userDetail = new UserService().userDetail(userNo);
 		System.out.println(userDetail);

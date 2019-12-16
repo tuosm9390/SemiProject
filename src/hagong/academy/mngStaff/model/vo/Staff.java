@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor*/
-public class Staff implements java.io.Serializable {
+public class Staff implements java.io.Serializable { 
 	
 	private int userNo;
 	private String name;

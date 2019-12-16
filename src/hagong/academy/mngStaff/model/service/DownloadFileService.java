@@ -6,7 +6,7 @@ import hagong.academy.mngStaff.model.dao.DownloadFileDao;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 import static hagong.common.JDBCTemplate.*;
 
-public class DownloadFileService {
+public class DownloadFileService { 
 
 	public StaffFile downloadFile(int fileNo) {
 		Connection con = getConnection();
