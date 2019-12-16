@@ -26,16 +26,24 @@ public class ClassDao {
 		}
 	}
 
-	public ArrayList<Class> selectClassList(Connection con) {
-		Statement stmt = null;
+	public ArrayList<Class> selectClassList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Class> list = null;
+		
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit -1;
 		
 		String query = prop.getProperty("selectClassList");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<>();
 			while(rset.next()) {
@@ -55,7 +63,7 @@ public class ClassDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 		
@@ -118,6 +126,97 @@ public class ClassDao {
 		}	
 		
 		return result;
+	}
+
+	public ArrayList<Class> selectTeacher(Connection con, String subject) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Class> list = null;
+		
+		String query = prop.getProperty("selectTeacher"); 
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, subject);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Class c = new Class();
+				
+				c.setName(rset.getString("NAME"));
+				c.setUserNo(rset.getInt("USER_NO"));
+				
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+
+	public int insertClass(Connection con, Class c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertClass");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, c.getSubId());
+			pstmt.setInt(2, c.getUserNo());
+			pstmt.setString(3, c.getClsName());
+			pstmt.setString(4, c.getClsStudent());
+			pstmt.setInt(5, c.getClsMax());
+			pstmt.setDate(6, c.getClsStart());
+			pstmt.setString(7, c.getClsDay());
+			pstmt.setString(8, c.getClsTime());
+			pstmt.setInt(9, c.getClrNo());
+			pstmt.setInt(10, c.getTuition());
+			pstmt.setDate(11, c.getClsEnd());
+			
+			result = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int listCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String query = prop.getProperty("selectListCount");
+		
+		try {
+			stmt = con.createStatement();
+		
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		
+		return listCount;
 	}
 
 }

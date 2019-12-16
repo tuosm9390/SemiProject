@@ -13,6 +13,7 @@ public class Class implements java.io.Serializable{
 	private int clsMax;				//수강 정원
 	private Date clsStart;			//개강일
 	private String clsDay;			//강의 요일
+	private String[] clsDays;		//강의 요일(배열)
 	private String clsTime;			//강의 시간
 	private int clrNo;				//강의실
 	private int tuition;			//수업료
@@ -21,7 +22,7 @@ public class Class implements java.io.Serializable{
 	public Class() {}
 
 	public Class(int clsNo, String subId, String subName, int userNo, String name, String clsName, String clsStudent, int clsMax, Date clsStart,
-			String clsDay, String clsTime, int clrNo, int tuition, Date clsEnd) {
+			String clsDay, String[] clsDays, String clsTime, int clrNo, int tuition, Date clsEnd) {
 		super();
 		this.clsNo = clsNo;
 		this.subId = subId;
@@ -33,12 +34,20 @@ public class Class implements java.io.Serializable{
 		this.clsMax = clsMax;
 		this.clsStart = clsStart;
 		this.clsDay = clsDay;
+		this.clsDays = clsDays;
 		this.clsTime = clsTime;
 		this.clrNo = clrNo;
 		this.tuition = tuition;
 		this.clsEnd = clsEnd;
 	}
-	
+
+	public String[] getClsDays() {
+		return clsDays;
+	}
+
+	public void setClsDays(String[] clsDays) {
+		this.clsDays = clsDays;
+	}
 
 	public String getSubName() {
 		return subName;
