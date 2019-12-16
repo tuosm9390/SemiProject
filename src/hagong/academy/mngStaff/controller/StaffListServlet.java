@@ -15,7 +15,7 @@ import hagong.academy.mngStaff.model.vo.Staff;
 @WebServlet("/alist.staff")
 public class StaffListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     public StaffListServlet() {
         super();
     }

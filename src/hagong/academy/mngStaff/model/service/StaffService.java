@@ -14,7 +14,7 @@ import hagong.academy.mngStaff.model.vo.Staff;
 import hagong.academy.mngStaff.model.vo.StaffDetail;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 
-public class StaffService {
+public class StaffService { 
 
 	public ArrayList<Staff> staffList() {
 		Connection con = getConnection();

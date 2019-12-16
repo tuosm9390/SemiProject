@@ -29,6 +29,7 @@ public class UserService {
 		int result1 = new UserDao().updateUserInfo(con, user);
 		if(result1 > 0) {
 			commit(con);
+			
 			if(fileList != null) {
 				for(int i = 0; i < fileList.size(); i++) {
 					fileList.get(i).setUserNo(user.getUserNo());

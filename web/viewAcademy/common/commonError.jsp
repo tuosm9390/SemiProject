@@ -23,7 +23,7 @@
 				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
 			});
 		});
-	</script>
+	</script> 
 	
 	<% }else if(errorCode == "pwdUpdateFail") { %>
 	<script>

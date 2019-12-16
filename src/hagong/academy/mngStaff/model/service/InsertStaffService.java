@@ -12,7 +12,7 @@ import hagong.academy.mngStaff.model.dao.InsertStaffDao;
 import hagong.academy.mngStaff.model.vo.Staff;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 
-public class InsertStaffService {
+public class InsertStaffService { 
 
 	public int insertStaff(Staff staff, ArrayList<StaffFile> fileList) {
 		Connection con = getConnection();

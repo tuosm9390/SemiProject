@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /*@Data
 @NoArgsConstructor
 @AllArgsConstructor*/
-public class StaffFile {
+public class StaffFile { 
 	
 	private int userNo;
 	private int fileNo;

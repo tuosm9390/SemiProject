@@ -40,7 +40,7 @@ public class UserDao {
 			pstmt.setInt(2, userNo);
 			rset = pstmt.executeQuery();
 			userDetail = new ArrayList<>();
-			
+
 			while(rset.next()) {
 				UserDetail ud = new UserDetail();
 				ud.setUserNo(rset.getInt("USER_NO"));

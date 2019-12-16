@@ -70,6 +70,7 @@ public class UpdateUserServlet extends HttpServlet {
 			
 			for(int i = 0; i < originFiles.size(); i++) {
 				StaffFile staffFile = new StaffFile();
+				
 				staffFile.setOriginName(originFiles.get(i));
 				staffFile.setFilePath(savePath);
 				

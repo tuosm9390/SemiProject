@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
 <% ArrayList<Staff> staffList = (ArrayList<Staff>) request.getAttribute("staffList"); %>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>HAGONG</title>

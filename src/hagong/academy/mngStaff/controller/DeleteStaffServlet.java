@@ -13,7 +13,7 @@ import hagong.academy.mngStaff.model.service.StaffService;
 @WebServlet("/adelete.staff")
 public class DeleteStaffServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     public DeleteStaffServlet() {
         super();
     }

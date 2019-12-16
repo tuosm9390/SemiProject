@@ -23,7 +23,7 @@ import hagong.common.RenameFilePolicy;
 @WebServlet("/ainsert.staff")
 public class InsertStaffServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	public InsertStaffServlet() {
 		super();
 	}
