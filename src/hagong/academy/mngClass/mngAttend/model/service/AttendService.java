@@ -79,16 +79,11 @@ public class AttendService {
 	}
 
 	public int updateAttend(String classNum, String attStatus, String[] students) {
-		System.out.println("Service로 넘어옴");
 		Connection con = getConnection();
-		int result = 0;
-		
+		int result = 0;		
 		
 		for(int i=0; i<students.length; i++) {
-			System.out.println("for문으로 들어옴");
-			result = new AttendDao().updateAttend(con, classNum, attStatus, students[i]);
-			System.out.println("dao로부터 결과값을 받아옴 : " + result + "개");
-			
+			result = new AttendDao().updateAttend(con, classNum, attStatus, students[i]);			
 			if(result > 0) {
 				commit(con);
 				
@@ -103,8 +98,5 @@ public class AttendService {
 		return result;
 	}
 
-
-
-	
 
 }

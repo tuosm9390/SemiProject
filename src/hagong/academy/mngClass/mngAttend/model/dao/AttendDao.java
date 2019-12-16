@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
-import hagong.academy.common.member.model.dao.MemberDao;
 import hagong.academy.common.member.model.vo.Member;
 import hagong.academy.mngClass.mngAttend.model.vo.Attendance;
 import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
@@ -310,10 +309,6 @@ public class AttendDao {
 	}
 
 	public int updateAttend(Connection con, String classNum, String attStatus, String student) {
-		System.out.println("dao로 넘어옴");
-		System.out.println("classNum : " + classNum);
-		System.out.println("attStatus : " + attStatus);
-		System.out.println("student : " + student);
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -345,10 +340,6 @@ public class AttendDao {
 		
 		
 		return result;
-	}
-
-
-
-	
+	}	
 
 }
