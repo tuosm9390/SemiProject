@@ -71,7 +71,7 @@ border-right: none;
          <!--  -->
          <div align="center">
             <fieldset
-               style="margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; wnameth: 20%">
+               style="margin-bottom: -15px; border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 20%;">
                <legend align="center">
                   <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여 관리　</h1>
                </legend>
@@ -452,8 +452,7 @@ border-right: none;
    	    // 학생 체크
    		if(<%=list.get(37).getAttend1()<=5%>){
    		 $("input:checkbox[id='sAtt']").prop("checked", true);
-   		 <%System.out.println(list.get(37).getAttend1());%>
-   		}
+   			}
    		if(<%=list.get(40).getAttend1()<=5%>){
       		 $("input:checkbox[id='sScore']").prop("checked", true);
       		}
@@ -463,18 +462,19 @@ border-right: none;
    		if(<%=list.get(38).getAttend1()<=5%>){
       		 $("input:checkbox[id='sReceipt']").prop("checked", true);
       		}
+   		
    		// 학부모 체크
-   		if(<%=list.get(24).getAttend1()<=4%>){
+   		if(<%=list.get(24).getAttend1()<=5%>){
       		 $("input:checkbox[id='pAtt']").prop("checked", true);
-      		 <%System.out.println("gg :  " +list.get(24).getAttend1());%>
+      		 <%System.out.println(list.get(29).getAttend1());%>
       		}
-   		if(<%=list.get(30).getAttend1()<=4%>){
+   		if(<%=list.get(30).getAttend1()<=5%>){
      		 $("input:checkbox[id='pScore']").prop("checked", true);
      		}
-   		if(<%=list.get(29).getAttend1()<=4%>){
+   		if(<%=list.get(29).getAttend1()<=5%>){
      		 $("input:checkbox[id='pSatisfy']").prop("checked", true);
      		}
-   		if(<%=list.get(28).getAttend1()<=4%>){
+   		if(<%=list.get(28).getAttend1()<=5%>){
      		 $("input:checkbox[id='pReceipt']").prop("checked", true);
      		}
    		

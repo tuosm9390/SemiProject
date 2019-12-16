@@ -48,19 +48,21 @@ public class MngStatusDao {
 				status.setEnrollDate1(rset.getInt("ENROLL_COUNT1"));
 				status.setLeaveDate1(rset.getInt("LEAVE_COUNT1"));
 
-				status.setAllStudent1(rset.getInt("ALL_STUDENT2"));
-				status.setEnrollDate1(rset.getInt("ENROLL_COUNT2"));
-				status.setLeaveDate1(rset.getInt("LEAVE_COUNT2"));
+				status.setAllStudent2(rset.getInt("ALL_STUDENT2"));
+				status.setEnrollDate2(rset.getInt("ENROLL_COUNT2"));
+				status.setLeaveDate2(rset.getInt("LEAVE_COUNT2"));
 
-				status.setAllStudent1(rset.getInt("ALL_STUDENT3"));
-				status.setEnrollDate1(rset.getInt("ENROLL_COUNT3"));
-				status.setLeaveDate1(rset.getInt("LEAVE_COUNT3"));
+				status.setAllStudent3(rset.getInt("ALL_STUDENT3"));
+				status.setEnrollDate3(rset.getInt("ENROLL_COUNT3"));
+				status.setLeaveDate3(rset.getInt("LEAVE_COUNT3"));
 
 				status.setInFriend(rset.getInt("INFRIEND"));
 				status.setInInternet(rset.getInt("ININTERNET"));
 				status.setInPicket(rset.getInt("INPICKET"));
 				status.setInPcard(rset.getInt("INPCARD"));
 				status.setInEtc(rset.getInt("INETC"));
+				
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
