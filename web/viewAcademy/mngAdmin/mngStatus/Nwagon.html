@@ -70,6 +70,31 @@
 		Nwagon.chart(options);
 
 	</script>
+	
+		<h2>Column Chart</h2>
+	<div id="chart8"></div>
+	<script>
+		var options = {
+			'legend': {
+	            names: ['A','B','C','D','E','F','G','H','I'],
+	            hrefs: []
+	        },
+	        'dataset': {
+	            title: 'Playing time per day',
+	            values: [5,7,1,4,6,3,5,2,10],
+	            colorset: ['#56b4e9'],
+	            fields:['Error']
+	        },
+	        'chartDiv': 'chart8',
+	        'chartType': 'column',
+	        'chartSize': { width: 700, height: 300 },
+	        'maxValue': 10,
+	        'increment': 1
+		};
+
+		Nwagon.chart(options);
+
+	</script>
 
 
 </body>
