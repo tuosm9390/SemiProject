@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
+<%
+	ArrayList<SatisfyInfo> list = (ArrayList<SatisfyInfo>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,7 +108,7 @@ select:focus {
 			<fieldset
 				style="border-left: none; border-right: none; border-bottom: none; border-top-color: black; width: 25%;">
 				<legend align="center">
-					<h1 style="font-family: 'Do Hyeon'">만족도 조사 목록</h1>
+					<h1 style="font-family: 'Do Hyeon'">　만족도 조사 목록　</h1>
 				</legend>
 			</fieldset>
 		</div>
@@ -123,39 +126,18 @@ select:focus {
 			<table class="table" align="center" style="width: 90%;">
 				<tr>
 					<th>No.</th>
-					<th>만족도 조사 내용</th>
+					<th>만족도 조사 제목</th>
 					<th>만족도 조사 날짜</th>
 				</tr>
+				<% if(list.size() != 0){
+					for(SatisfyInfo si : list) {%>
 				<tr>
-					<td>6</td>
-					<td>2019 하반기 학원 운영 관련 만족도 평가</td>
-					<td>2019.11.30 ~ 2020.01.02</td>
+					<input type="hidden" id="satNo" name="satNo" value="<%= si.getSatNo() %>">
+					<td><%=si.getRowNum() %></td>
+					<td><%=si.getSatTitle() %></td>
+					<td><%=si.getStart() + " ~ " + si.getEnd()%></td>
 				</tr>
-				<tr>
-					<td>5</td>
-					<td>2019-2학기 중간 만족도 평가</td>
-					<td>2019.11.10 ~ 2020.01.20</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>2019-9월 모의고사 대비 특강 만족도 조사</td>
-					<td>2019.11.10 ~ 2020.01.20</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>2019 여름방학 특강 만족도 조사</td>
-					<td>2019.07.30 ~ 2019.08.06</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>2019-1학기 중간 만족도 평가</td>
-					<td>2019.06.10 ~ 2019.07.20</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>2019 겨울방학 특강 만족도 조사</td>
-					<td>2019.01.10 ~ 2019.02.20</td>
-				</tr>
+				<% } }else { }%>
 			</table>
 		</form>
 
@@ -180,8 +162,18 @@ select:focus {
 						</select></td>
 					</tr>
 					<tr>
+						<td>적용 시점</td>
+						<td>
+						<select id="applyPoint" class='sort' space="&nbsp;" align="center"
+						style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
+							<option value="진행중인 강의">진행중인 강의</option>
+							<option value="다음 강의">다음 강의</option>
+						</select>
+						</td>
+					</tr>
+					<tr>
 						<td>할인률</td>
-						<td><input type="number" id="benefitRate" min="1"></td>
+						<td><input type="number" id="benefitRate" min="1" style="width: 50px;"></td>
 					</tr>
 				</table>
 				<table id="modalBtnTable">
@@ -203,12 +195,9 @@ select:focus {
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 		});
 		
-		$(".table tr:not(:first-child)").click(function() {
-			location.href = "<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";
-		});
-		
-		$(".table tr:last-child").click(function(){
-			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionResult.jsp";
+		$(".table td").click(function() {
+			var satNo = $("#satNo").val();
+			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo;
 		});
 
 		var benefit = document.getElementById("benefit");
@@ -226,11 +215,16 @@ select:focus {
 		};
 
 		updateBtn2.onclick = function(i) {
+			
+			
 			var benefitType = $("#benefitType").val();
 			var benefitRate = $("#benefitRate").val();
+			var applyPoint = $("#applyPoint").val();
 
 			$("#benefitSelect").append(
-					"<option value=" + benefitType + benefitRate + ">" + benefitType + " / " + benefitRate + "%</option>");
+					"<option value=" + benefitType + benefitRate + ">" + benefitType + " / " + benefitRate + "% / " + applyPoint + "</option>");
+			
+			
 		};
 
 		deleteBtn2.onclick = function() {

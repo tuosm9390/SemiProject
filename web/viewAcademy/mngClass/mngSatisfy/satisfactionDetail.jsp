@@ -1,5 +1,9 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
+<%
+	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,25 +85,24 @@ tr, td {
 			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목</td>
-					<td colspan="3"><input type="text" value="2019 하반기 학원 운영 관련 만족도 평가" size="50"></td>
+					<td colspan="3"><input type="text" value="<%=list.get(0).get("satTitle")%>" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td colspan="3"><input type="text" value="전체 원생 및 학부모 대상" size="50">&emsp;</td>
+					<td colspan="3"><input type="text" value="<%=list.get(0).get("target") %>" size="50">&emsp;</td>
 				</tr>
 				<tr>
-					<td><li>만족도 조사 날짜</td>
-					<td>
-					<input type="text" id="from" name="from" readonly>&emsp;~
-					&emsp;<input type="text" id="to" name="to" readonly></td>
-					<td style="text-align: center !important;"><label><li>쿠폰 선택</li></label></td>
-					<td>
+					<td style="width: 239px;"><li>만족도 조사 날짜</td>
+					<td style="width: 384px;">
+					<input align="center" type="text" style="width: 100px;" id="start" name="start" value="<%=list.get(0).get("start") %>" readonly>
+					&nbsp; ~ &emsp;<input align="center" type="text" style="width: 100px;" id="end" name="end" value="<%=list.get(0).get("end") %>" readonly>
+					</td>
+					<td style="text-align: center !important; width: 177px;"><label><li>혜택</li></label></td>
+					<td colspan="3">
 					<select disabled>
-						<option>학원비 5%</option>
-						<option>학원비 10%</option>
+						<option><%=list.get(0).get("benCondition") + "" + list.get(0).get("benType") + " " + list.get(0).get("benRate")%></option>
 					</select>
 					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td colspan="4"><li>문항 및 결과</td>
@@ -107,22 +110,25 @@ tr, td {
 				<tr>
 					<td colspan="4" class="question">
 						<ol class="qo">
+						<% for(int i = 0; i < list.size(); i++) {
+							//첫번째 문항
+							if(i == 0) { %>
 							<li>&emsp;
-							<input type="text" value="수업 커리큘럼에 대한 만족도" size="100">
-							<br>
-							<br> &emsp;
-							<input type="text" value="진도와 내용이 적당했다" size="50">
-							<br> &emsp;
-							<input type="text" value="비교적 내용이 부족하다고 느껴졌다." size="50">
-							<br> &emsp;
-							<input type="text" value="진도 진행이 적절하지 않았다고 생각한다." size="50">
-							</li>
-							<li>&emsp;
-								<input type="text" value="수업 및 강사에 대한 개선 의견" size="100"><br><br>
-								&emsp;
-								<textarea placeholder="내용을 입력해주세요" cols="80" rows="6" 
-								style="resize: none;" readonly></textarea>
-							</li>
+							<%= list.get(i).get("queContent") %><br><br>&emsp;
+							<%= list.get(i).get("ansContent") %><br><br>&emsp;
+						<%	} else {
+								//두번째 이후 문항 중 두개가 서로 같은 문항일 때
+								if(list.get(i).get("queNo") == list.get(i - 1).get("queNo")) { %>
+								<%= list.get(i).get("ansContent") %><br><br>&emsp;
+								<!-- 서로 다른 문항일 때 -->
+							<%	} else { %>
+								</li>
+								<li>&emsp;
+								<%= list.get(i).get("queContent") %>
+								<br><br>&emsp;
+								<%= list.get(i).get("ansContent") %>
+								<br><br>&emsp;
+							<% } } }%>
 						</ol>
 					</td>
 				</tr>
