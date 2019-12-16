@@ -64,7 +64,7 @@ public class SelectNoticeListServlet extends HttpServlet {
 		startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * 5 + 1;
 		
 		//마지막 페이지 수
-		endPage = startPage + 5 - 1;
+		endPage = startPage + 10 - 1;
 		
 		if(maxPage < endPage) {
 			endPage = maxPage;
