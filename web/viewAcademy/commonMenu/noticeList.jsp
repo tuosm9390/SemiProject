@@ -76,6 +76,7 @@
             
             <% } %> 
          </table>
+      </div>
       <div class="pagingArea" align="center">
       	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=1'"><<</button>
       	
@@ -103,7 +104,7 @@
       	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=maxPage %>'">>></button>
       	
       </div>
-      </div>
+      
       <div id="write">
          <button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/insertNotice.jsp'">글쓰기</button>
       </div>
