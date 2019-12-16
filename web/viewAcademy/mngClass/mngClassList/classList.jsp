@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngClassList.model.vo.Class"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngClassList.model.vo.Class, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
 <%
 	ArrayList<Class> list = (ArrayList<Class>) request.getAttribute("list");
-	
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호
 %>
 <!DOCTYPE html>
 <html>
@@ -115,6 +120,9 @@
 		border-radius: 5px;
 		border: 1px solid lightgray;
 	}
+	
+	.pagingArea {margin-bottom:30px;}
+	.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
 </style>
 </head>
 <body>
@@ -167,6 +175,34 @@
 				</tbody>
 			</table>
 		</form>
+		
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=1'"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage - 1%>'"><</button>
+			<% }%>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=p%>'"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage + 1%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=<%=maxPage%>'">>></button>
+		</div> <!-- pagingArea end  -->
+	
 		<div align="center">
 			<select style="border-radius:5px;">
 				<option value="" selected disabled hidden>검색 조건</option>
@@ -286,6 +322,7 @@
          <br>
       </div>
    </div> <!-- mngClass end -->
+
 
 		<script>
 		$(function(){
