@@ -26,11 +26,8 @@
 	margin-left: 25%;
 	
 	}
-	#chart17{
-	margin-left: 10%;
-	margin-top: 20px;
-	
-	
+	#chart8{
+		margin-top: -40px;
 	}
 	.avgtable{
 		width:60% !important;
@@ -47,8 +44,8 @@
 	
 	}
 	.text3{
-		
-		width:30%;
+		margin-top:70px;
+		width:50%;
 		
 	}
 	section{
@@ -128,8 +125,8 @@ int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 			</div>	
 	</div>
 	<div class="chart">
-	<h3 class="text3"><li>인기 과목 추세</li></h3>
-		<div id="chart17"></div>
+	<h3 class="text3"><li>인기 & 비인기 과목 추세</li></h3>
+		<div id="chart8"></div>
 	</div>
 </div><!-- outer end -->
 	<script>
@@ -156,28 +153,31 @@ int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 		Nwagon.chart(options);
 
 	</script>
+
+	
 	<script>
 		var options = {
-			'legend':{
-				names: ['<%=list.get(0).gettName()%>', '<%=list.get(1).gettName()%>', '<%=list.get(2).gettName()%>','<%=list.get(3).gettName()%>', '<%=list.get(4).gettName()%>', '<%=list.get(5).gettName()%>'],
-				hrefs: []
-					},
-			'dataset':{
-				title:'Playing time per day', 
-				values: [[5,7,2,6], [2,5,7,4], [7,2,3,6],[5,7,2,6], [2,5,7,4], [7,2,3,6]],
-				colorset: ['#DC143C','#FF8C00', '#2EB400', '#666666'],
-				fields:['Working Time', 'Late count', 'Blah','Vacation']
-				},
-			'chartDiv' : 'chart17', 
-			'chartType' : 'stacked_column',
-			'chartSize' : {width:500, height:480},
-			'maxValue' : 30,
-			'increment' : 3
+			'legend': {
+	            names: ['<%=list.get(0).gettName()%>','<%=list.get(1).gettName()%>','<%=list.get(2).gettName()%>','<%=list.get(5).gettName()%>','<%=list.get(4).gettName()%>','<%=list.get(3).gettName()%>'],
+	            hrefs: []
+	        },
+	        'dataset': {
+	            title: 'Playing time per day',
+	            values: [<%=list.get(0).getCnt()%>,<%=list.get(1).getCnt()%>,<%=list.get(2).getCnt()%>,<%=list.get(5).getCnt()%>,<%=list.get(4).getCnt()%>,<%=list.get(3).getCnt()%>],
+	            colorset: ['#FF8C00',"#56b4e9"],
+	            fields:['TOP3','LOW3']
+	        },
+	        'chartDiv': 'chart8',
+	        'chartType': 'column',
+	        'chartSize': { width: 600, height: 500 },
+	        'maxValue': <%=list.get(2).getCnt()%>*2,
+	        'increment': 5
 		};
 
 		Nwagon.chart(options);
 
 	</script>
+	
 <%-- 	<% } else{ 
 		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
 		request.getRequestDispatcher("../common/errorPage.jsp").forward(request,response);
