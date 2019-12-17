@@ -271,7 +271,7 @@
 				</tr>
 				<tr>
 					<td>수업료</td>
-					<td id="tuitionField"></td>
+					<td id="tuitionField"><input type="hidden" id="clsNoField"></td>
 				</tr>
 			</table>
 			<table id="modalBtnTable">
@@ -330,13 +330,15 @@
 				$(this).parent().css("cursor","pointer");
 			}).click(function(){
 				var num = $(this).parent().children().eq(0).children().val();
+				var clsNum = "";
 				
 				$.ajax({
 					url: "adetail.class",
 					data: {num:num},
 					type: "get",
 					success: function(data){
-						console.log(data);
+						clsNo = data.clsNo;
+						
 						$subjectField = $("#subjectField");
 						$classNameField = $("#classNameField");
 						$teacherField = $("#teacherField");
@@ -373,6 +375,11 @@
 						$clsDayField.text(data.clsStart + "~" + data.clsEnd);
 						$clsTimeField.text(data.clsTime);
 						$tuitionField.text(data.tuition + "만원");
+						
+						updateBtn.onclick = function() {
+							//수업정보 등록일 때: checkStatus=0, 수업정보 수정일 때: checkStatus=1
+							location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/updateClassInfo.jsp?clsNo="+clsNo+"&checkStatus="+1;
+						}
 						
 					},
 					error: function(request, data){
@@ -423,13 +430,13 @@
 					modal.style.display = "none";
 					
 				}
-				updateBtn.onclick = function() {
+				<%-- updateBtn.onclick = function() {
 					//업데이트 서블릿으로 이등 후 결과에 따라 페이지 요청
 					/* modal.style.display = "none"; */
-					console.log('이동이 안돼요');
-					location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/updateClassInfo.jsp";
+					console.log(clsNo);
+					location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngClassList/updateClassInfo.jsp?clsNum=";
 				}
-
+ --%>
 			});
 			
 			$("#classroomBtn").click(function(){

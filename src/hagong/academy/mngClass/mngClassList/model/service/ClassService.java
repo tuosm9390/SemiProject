@@ -75,6 +75,7 @@ public class ClassService {
 			c.setClrNo(c1.getClrNo());
 			c.setClsTime(c1.getClsTime());
 			c.setTuition(c1.getTuition());
+			c.setCntOfClass(c1.getCntOfClass());
 			
 			result = new ClassDao().insertClass(con, c);
 			

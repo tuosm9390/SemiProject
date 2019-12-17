@@ -18,11 +18,12 @@ public class Class implements java.io.Serializable{
 	private int clrNo;				//강의실
 	private int tuition;			//수업료
 	private Date clsEnd;			//종강일
+	private int cntOfClass;			//수업회차
 	
 	public Class() {}
 
 	public Class(int clsNo, String subId, String subName, int userNo, String name, String clsName, String clsStudent, int clsMax, Date clsStart,
-			String clsDay, String[] clsDays, String clsTime, int clrNo, int tuition, Date clsEnd) {
+			String clsDay, String[] clsDays, String clsTime, int clrNo, int tuition, Date clsEnd, int cntOfClass) {
 		super();
 		this.clsNo = clsNo;
 		this.subId = subId;
@@ -39,6 +40,16 @@ public class Class implements java.io.Serializable{
 		this.clrNo = clrNo;
 		this.tuition = tuition;
 		this.clsEnd = clsEnd;
+		this.cntOfClass = cntOfClass;
+	}
+	
+
+	public int getCntOfClass() {
+		return cntOfClass;
+	}
+
+	public void setCntOfClass(int cntOfClass) {
+		this.cntOfClass = cntOfClass;
 	}
 
 	public String[] getClsDays() {
