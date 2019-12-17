@@ -24,7 +24,9 @@ public class Purchase {
 	private int realPrice;		//청구금액 (강좌비용 - 특이사항 적용 금액)
 	private boolean payStatus;	//납부여부 (미납/완납)
 	
+	private int purchaseNo;		//수납번호
 	private Date notifyDate;	//납부고지일
+	private Date reciptDate;	//영수증발부일
 	private String detailStatus;//상세 납부여부 (미납/완남/완납 후 환불)
 	private String payMemo; 	//특이사항 (NONE/REFUND/BENEFIT)
 	private int payPrice;		//수납금액
@@ -49,10 +51,10 @@ public class Purchase {
 	}
 
 	public Purchase(int classNo, String className, int classPrice, Date classStart, Date classEnd, int classDays,
-			int stuNo, String stuId, String stuName, int realPrice, boolean payStatus, Date notifyDate,
-			String detailStatus, String payMemo, int payPrice, String refundPoint, double refundRate, int refundPrice,
-			Date refundDay, String beneName, double beneRate, int benePrice, int faultDays, int onedayFee,
-			int faultPrice, int profit) {
+			int stuNo, String stuId, String stuName, int realPrice, boolean payStatus, int purchaseNo, Date notifyDate,
+			Date reciptDate, String detailStatus, String payMemo, int payPrice, String refundPoint, double refundRate,
+			int refundPrice, Date refundDay, String beneName, double beneRate, int benePrice, int faultDays,
+			int onedayFee, int faultPrice, int profit) {
 		super();
 		this.classNo = classNo;
 		this.className = className;
@@ -65,7 +67,9 @@ public class Purchase {
 		this.stuName = stuName;
 		this.realPrice = realPrice;
 		this.payStatus = payStatus;
+		this.purchaseNo = purchaseNo;
 		this.notifyDate = notifyDate;
+		this.reciptDate = reciptDate;
 		this.detailStatus = detailStatus;
 		this.payMemo = payMemo;
 		this.payPrice = payPrice;
@@ -80,6 +84,22 @@ public class Purchase {
 		this.onedayFee = onedayFee;
 		this.faultPrice = faultPrice;
 		this.profit = profit;
+	}
+
+	public final Date getReciptDate() {
+		return reciptDate;
+	}
+
+	public final void setReciptDate(Date reciptDate) {
+		this.reciptDate = reciptDate;
+	}
+
+	public final int getPurchaseNo() {
+		return purchaseNo;
+	}
+
+	public final void setPurchaseNo(int purchaseNo) {
+		this.purchaseNo = purchaseNo;
 	}
 
 	public final int getClassNo() {
@@ -295,11 +315,12 @@ public class Purchase {
 		return "Purchase [classNo=" + classNo + ", className=" + className + ", classPrice=" + classPrice
 				+ ", classStart=" + classStart + ", classEnd=" + classEnd + ", classDays=" + classDays + ", stuNo="
 				+ stuNo + ", stuId=" + stuId + ", stuName=" + stuName + ", realPrice=" + realPrice + ", payStatus="
-				+ payStatus + ", notifyDate=" + notifyDate + ", detailStatus=" + detailStatus + ", payMemo=" + payMemo
-				+ ", payPrice=" + payPrice + ", refundPoint=" + refundPoint + ", refundRate=" + refundRate
-				+ ", refundPrice=" + refundPrice + ", refundDay=" + refundDay + ", beneName=" + beneName + ", beneRate="
-				+ beneRate + ", benePrice=" + benePrice + ", faultDays=" + faultDays + ", onedayFee=" + onedayFee
-				+ ", faultPrice=" + faultPrice + ", profit=" + profit + "]";
+				+ payStatus + ", purchaseNo=" + purchaseNo + ", notifyDate=" + notifyDate + ", reciptDate=" + reciptDate
+				+ ", detailStatus=" + detailStatus + ", payMemo=" + payMemo + ", payPrice=" + payPrice
+				+ ", refundPoint=" + refundPoint + ", refundRate=" + refundRate + ", refundPrice=" + refundPrice
+				+ ", refundDay=" + refundDay + ", beneName=" + beneName + ", beneRate=" + beneRate + ", benePrice="
+				+ benePrice + ", faultDays=" + faultDays + ", onedayFee=" + onedayFee + ", faultPrice=" + faultPrice
+				+ ", profit=" + profit + "]";
 	}
 
 }
