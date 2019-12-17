@@ -66,32 +66,32 @@ public class NoticeDao {
 		
 	}
 
-	public int insertNotice(Connection con, ArrayList<NoticeFile> fileList) {
-
-		
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("insertNotice");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, fileList.getnTitle());
-			pstmt.setString(4, fileList.getnContent());
-			pstmt.setInt(2, fileList.getnAuthor());
-			pstmt.setDate(3, fileList.getnDate());
-			
-			result = pstmt.executeUpdate();
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		
-		return result;
-	}
+//	public int insertNotice(Connection con, ArrayList<NoticeFile> fileList) {
+//
+//		
+//		PreparedStatement pstmt = null;
+//		int result = 0;
+//		
+//		String query = prop.getProperty("insertNotice");
+//		
+//		try {
+//			pstmt = con.prepareStatement(query);
+//			pstmt.setString(1, fileList.getnTitle());
+//			pstmt.setString(4, fileList.getnContent());
+//			pstmt.setInt(2, fileList.getnAuthor());
+//			pstmt.setDate(3, fileList.getnDate());
+//			
+//			result = pstmt.executeUpdate();
+//			
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}
+//		
+//		
+//		return result;
+//	}
 
 	public Notice selectOne(Connection con, int num) {
 
@@ -276,14 +276,108 @@ public class NoticeDao {
 
 	public int selectCurrval(Connection con) {
 
+		Statement stmt = null;
+		ResultSet rset = null;
+		int userNo = 0;
 		
+		String query = prop.getProperty("selectCurrval");
 		
-		return 0;
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				userNo = rset.getInt("CURRVAL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return userNo;
+	}
+
+	public int insertNotice(Connection con, Notice n) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertNotice");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, n.getnTitle());
+			pstmt.setString(2, n.getnContent());
+			
+			
+			pstmt.setInt(3, n.getnAuthor());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertFile(Connection con, ArrayList<NoticeFile> fileList) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertFile");
+		
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, fileList.get(i).getUserNo());
+				pstmt.setString(2, fileList.get(i).getOriginName());
+				pstmt.setString(3, fileList.get(i).getChangeName());
+				pstmt.setString(4, fileList.get(i).getFilePath());
+				
+				int level = 0;
+				if(i == 0) {
+					level = 0;
+				}else {
+					level = 1;
+				}
+				
+				pstmt.setInt(5, level);
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

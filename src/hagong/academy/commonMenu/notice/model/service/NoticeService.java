@@ -58,7 +58,7 @@ public class NoticeService {
 			}
 		}
 		
-		int result2 = new NoticeDao().insertNotice(con, fileList);
+		int result2 = new NoticeDao().insertFile(con, fileList);
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(con);
