@@ -1,4 +1,4 @@
-package hagong.academy.mngClass.mngClassList.controller;
+package hagong.academy.mngAdmin.mngPlan.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,25 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import hagong.academy.mngAdmin.mngPlan.model.service.PlanService;
+import hagong.academy.mngAdmin.mngPlan.model.vo.Plan;
 
-import hagong.academy.mngClass.mngClassList.model.service.ClassService;
-import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
-
-@WebServlet("/alistClr.class")
-public class SelectClassroomServlet extends HttpServlet {
+@WebServlet("/alist.plan")
+public class SelectPlanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectClassroomServlet() {
+    public SelectPlanServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Classroom> list = new ClassService().selectClassroom();
+		ArrayList<Plan> list = new PlanService().selectPlan();
 		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		String page = "";
+		if(list != null) {
+			page = "/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp";
+			request.setAttribute("list", list);
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

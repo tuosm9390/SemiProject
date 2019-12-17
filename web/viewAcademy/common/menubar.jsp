@@ -208,10 +208,10 @@ section {
 					style="height: 30px;">
 			</h3>
 			<h3 id="calendar"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar.jsp'">
-				<img src="<%=request.getContextPath()%>/images/calendar.png"
-					style="height: 30px;">
-			</h3>
+            onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar/calendar.jsp'">
+            <img src="<%=request.getContextPath()%>/images/calendar.png"
+               style="height: 30px;">
+         	</h3>
 
 			<!-- 로그인 버튼 -->
 			<% if(loginUser != null) { %>
@@ -254,7 +254,7 @@ section {
 						class="menu4">학원 현황</a> <a>|</a>
 					<a href="<%=request.getContextPath() %>/aselect.level"
 						class="menu4">메뉴 권한 관리</a> <a>|</a>
-					<a href="<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp"
+					<a href="<%=request.getContextPath()%>/alist.plan"
 						class="menu4">연간계획</a>
 				</div>
 

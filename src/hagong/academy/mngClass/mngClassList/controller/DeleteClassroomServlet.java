@@ -1,7 +1,6 @@
 package hagong.academy.mngClass.mngClassList.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import hagong.academy.mngClass.mngClassList.model.service.ClassService;
-import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
 
-@WebServlet("/alistClr.class")
-public class SelectClassroomServlet extends HttpServlet {
+@WebServlet("/adeleteClassroom.class")
+public class DeleteClassroomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public SelectClassroomServlet() {
+       
+    public DeleteClassroomServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Classroom> list = new ClassService().selectClassroom();
+		String deleteClr = request.getParameter("deleteClr");
 		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		int result = new ClassService().deleteClassroom(deleteClr);
+		
+		response.getWriter().print(result);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

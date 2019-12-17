@@ -143,4 +143,30 @@ public class ClassService {
 		return result;
 	}
 
+	public ArrayList<Classroom> selectClassroom() {
+		Connection con = getConnection();
+		
+		ArrayList<Classroom> list = new ClassDao().selectClassroom(con);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int deleteClassroom(String clrNo) {
+		Connection con = getConnection();
+		
+		int result = new ClassDao().deleteClassroom(con, clrNo);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 }

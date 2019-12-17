@@ -446,9 +446,18 @@
 					type: "get",
 					success: function(data){
 						
+						$select = $("#classroomSelect");
+						$select.find("option").remove();
+						for(var key in data){
+							console.log(data[key].clrName);
+							var $option = $("<option>");
+							$option.val(data[key].clrNo);
+							$option.text(data[key].clrName + "반 / " + data[key].capacity + "명");
+							$select.append($option);
+						}						
 					},
 					error: function(data){
-						
+						console.log('error');
 					}
 				});
 				
@@ -487,9 +496,9 @@
 	                		},
 	                	type: "get",
 	                	success: function(data){
-	                		console.log(data);
+	                		alert('강의실 추가 완료');
 	                		
-	                		$("#classroomSelect").append("<option value=" + classroomName + ">" + classroomName + " CLASS / " + classroomPeople + "명</option>");
+	                		$("#classroomSelect").append("<option value=" + classroomName + ">" + classroomName + "반 / " + classroomPeople + "명</option>");
 	                		
 	                	},
 	                	error: function(data){
@@ -499,9 +508,22 @@
 	             }
 	             
 	             deleteBtn2.onclick = function() {
-	                var deleteCls = window.prompt('삭제할 강의실명 입력');
+	                var deleteClr = $("#classroomSelect option:selected").val();
+
+					$.ajax({
+						url: "adeleteClassroom.class",
+						data: { deleteClr:deleteClr },
+						type: "get",
+						success: function(data){
+							console.log(data);
+							$("select[id='classroomSelect'] option[value='" + deleteClr + "']").remove();
+							alert('강의실 삭제 완료');
+						},
+						error: function(data){
+							console.log(data);
+						}
+					});
 	                
-	                $("select[id='classroomSelect'] option[value='" + deleteCls + "']").remove();
 	             }
 	             
 	             
