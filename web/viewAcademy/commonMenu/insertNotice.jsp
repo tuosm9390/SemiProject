@@ -53,7 +53,7 @@
     </div>
 	<div style="width:90%; margin:auto auto;" class="outer">
 		<div class="tableArea" align="center">
-			<form action="<%=request.getContextPath()%>/ainsert.no" id="insertForm" method="post">
+			<form action="<%=request.getContextPath()%>/ainsert.no" id="insertForm" method="post" encType="multipart/form-data">
 				<table>
 					<tr>
 						<td>제목</td>
@@ -80,7 +80,7 @@
 					</tr>
 					<tr>
 						<td style="padding-top:10px" colspan="4">
-							<input type="file" style="border-radius:5px; border:1px solid lightgray;">
+							<input type="file" style="border-radius:5px; border:1px solid lightgray; id="file" name="file" onchange="loadFile(this, 1)">
 						</td>
 					</tr>
 					

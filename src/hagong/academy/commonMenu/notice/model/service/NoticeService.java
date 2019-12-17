@@ -6,6 +6,7 @@ import static hagong.common.JDBCTemplate.*;
 
 import hagong.academy.commonMenu.notice.model.dao.NoticeDao;
 import hagong.academy.commonMenu.notice.model.vo.Notice;
+import hagong.academy.commonMenu.notice.model.vo.NoticeFile;
 
 public class NoticeService {
 
@@ -42,14 +43,26 @@ public class NoticeService {
 		return n;
 	}
 
-	public int insertNotice(Notice n) {
+	public int insertNotice(Notice n, ArrayList<NoticeFile> fileList) {
 
 		Connection con = getConnection();
+		int result = 0;
 		
-		int result = new NoticeDao().insertNotice(con, n);
+		int result1 = new NoticeDao().insertNotice(con, n);
 		
-		if(result > 0) {
+		if(result1 > 0) {
+			int fileNo = new NoticeDao().selectCurrval(con);
+			
+			for(int i = 0; i < fileList.size(); i++) {
+				fileList.get(i).setFileNo(fileNo);
+			}
+		}
+		
+		int result2 = new NoticeDao().insertNotice(con, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
 			commit(con);
+			result = 1;
 		}else {
 			rollback(con);
 		}
