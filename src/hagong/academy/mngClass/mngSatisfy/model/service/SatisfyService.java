@@ -65,5 +65,46 @@ public class SatisfyService {
 		return result;
 	}
 
+	public int insertSatis(SatisfyInfo si, String[] qrr, String[] arr) {
+		Connection con = getConnection();
+		int result = new SatisfyDao().insertSatis(con, si);
+		
+		if(result > 0) {
+			commit(con);
+			//입력한 설문 번호 뽑아오기
+			int selectSatNo = new SatisfyDao().selectSatNo(con, si);
+			//설문문항 입력
+			int qresult = 0;
+			for(int i = 0; i < qrr.length; i++) {
+				qresult = new SatisfyDao().insertQue(con, qrr[i], selectSatNo);
+				
+				if(qresult > 0) {
+					commit(con);
+					int selectQueNo = new SatisfyDao().selectQueNo(con, qrr[i], selectSatNo);
+					//답변목록 입력
+					int aresult = 0;
+					for(int j = 0; j < arr.length; j++) {
+						aresult = new SatisfyDao().insertAns(con, arr[j], selectQueNo, selectSatNo);
+						if(aresult > 0) {
+							commit(con);
+						} else {
+							rollback(con);
+							break;
+						}
+					}
+				} else {
+					rollback(con);
+					break;
+				}
+			}
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 
 }

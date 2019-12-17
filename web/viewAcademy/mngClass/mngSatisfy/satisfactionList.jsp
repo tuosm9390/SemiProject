@@ -197,7 +197,7 @@ select:focus {
 	<script>
 		//만족도 등록
 		$("#addSatisfaction").click(function(){
-			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
+			location.href="<%=request.getContextPath()%>/ainsert.satis?type=insertForm";
 		});
 		
 		//만족도 상세보기
@@ -244,17 +244,16 @@ select:focus {
 					},
 					success:function(data){
 						console.log(data);
-						var type = "";
-						var condition = "";
-						if(benefitType == "TUITION"){
-							type = "수강비";
+						
+						$("#benefitSelect").find("option").remove();
+						$("#benefitSelect").append("<option>선택</option>");
+						for(var key in data){
+							var $select = $("#benefitSelect");
+							var $option = $("<option>");
+							$option.attr("value", data[key].benNo);
+							$option.text(data[key].benCondition + "" + data[key].benType + " " + (Math.floor(data[key].benRate * 100)) + "%");
+							$select.append($option);
 						}
-						if(applyPoint == "SAMESUB"){
-							condition = "현재";
-						} else {
-							condition = "다음";
-						}
-						$("#benefitSelect").append("<option>" + condition + "" + type + " " + benefitRate + "%</option>");
 					},
 					error:function(data){
 						console.log("실패");

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
+<%
+	ArrayList<SatisfyInfo> blist = (ArrayList<SatisfyInfo>) request.getAttribute("blist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,30 +69,34 @@ tr, td {
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
 						width: 80%; background: none;">
 		<legend align="center"><h1 style="font-family:'Do Hyeon'">　만족도 조사 등록　</h1></legend>
-		<form>
+		<form id="insertSatisfactionForm"
+			action="<%=request.getContextPath()%>/ainsert.satis?type=insert" method="post">
 			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목</td>
-					<td colspan="3"><input type="text" placeholder="만족도 조사 제목 입력" size="50"></td>
+					<td colspan="3"><input type="text" id="title" name="title" placeholder="만족도 조사 제목 입력" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td colspan="3"><input type="text" placeholder="만족도 조사 대상 입력" size="80">&emsp;
+					<td colspan="3"><input type="text" id="target" name="target" placeholder="만족도 조사 대상 입력" size="80">&emsp;
 					</td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 날짜</td>
 					<td>
-					<input type="text" id="from" name="from" readonly>&emsp;~
-					&emsp;<input type="text" id="to" name="to" readonly>
+					<input type="text" id="start" name="start" readonly>&emsp;~
+					&emsp;<input type="text" id="end" name="end" readonly>
 					</td>
 					<td style="text-align: center !important;"><label>쿠폰 선택</label></td>
 					<td>
-					<select>
-						<option>학원비 5%</option>
-						<option>학원비 10%</option>
-					</select>
-					</td>
+					<select class='sort' id="benefitSelect" name="benefit" align="center" space="&nbsp;&nbsp;"
+							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
+						<option selected>선택</option>
+								<% for(int i = 0; i < blist.size(); i++) { %>
+								<option value="<%=blist.get(i).getBenNo()%>"><%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
+											+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
+								<% } %>
+						</select></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -100,11 +107,11 @@ tr, td {
 						<ol class="qo">
 							<li class="ql">
 								<div class="que" style="display: contents;">
-									<input type="text" placeholder="질문 문항 입력" size="100">
+									<input type="text" id="question" name="question" placeholder="질문 문항 입력" size="100">
 									<input type="button" class="qdelete" value="-">
 									<input type="button" class="qadd" value="+"><br>
-									<span class="answer" style="display: contents;">
-										<input type="text" placeholder="선택항목 입력">
+									<span class="ans" style="display: contents;">
+										<input type="text" id="answer" name="answer" placeholder="선택항목 입력">
 										<input type="button" class="adelete" value="-">
 										<input type="button" class="aadd" value="+"><br>
 									</span>
@@ -115,14 +122,17 @@ tr, td {
 				</tr>
 			</table>
 		</form>
-		<button style="margin-right: 5%; margin-bottom: 50px;">추가 완료</button>
-		<button onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
+		<button style="margin-right: 5%; margin-bottom: 50px;" id="insert">등록하기</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>
 	</div>
 	</section>
 	<footer> </footer>
 	
 	<script>
+		$("#insert").click(function(){
+			$("#insertSatisfactionForm").submit();
+		});
 		//DatePicker
 		$.datepicker.setDefaults({
 			dateFormat:'yy-mm-dd',
@@ -138,7 +148,7 @@ tr, td {
   		});
 		$( function() {
 		    var dateFormat = "yy-mm-dd",
-		      from = $( "#from" )
+		      from = $( "#start" )
 		        .datepicker({
 		          defaultDate: "+1w",
 		          changeMonth: true,
@@ -147,7 +157,7 @@ tr, td {
 		        .on( "change", function() {
 		          to.datepicker( "option", "minDate", getDate( this ) );
 		        }),
-		      to = $( "#to" ).datepicker({
+		      to = $( "#end" ).datepicker({
 		        defaultDate: "+1w",
 		        changeMonth: true,
 		        numberOfMonths: 2
@@ -170,7 +180,7 @@ tr, td {
 		
 		//설문 문항 추가
 		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li class='ql'><div class='que' style='display: contents'><input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br><span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
+			$(".qo").append("<li class='ql'><div class='que' style='display: contents'><input type='text' id='question' name='question' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br><span class='ans' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
 		});
 		//설문 문항 제거
 		$(".question").on("click", ".qdelete", function(){
@@ -181,7 +191,7 @@ tr, td {
 		
 		//문항 선택항목 추가
 		$(".question").on("click", ".aadd", function(){
-			$(this).closest(".que").append("<span class='answer' style='display: contents;'><input type='text' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
+			$(this).closest(".que").append("<span class='ans' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
 		});
 		//문항 선택항목 삭제
 		$(".question").on("click", ".adelete", function(){
