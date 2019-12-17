@@ -265,6 +265,54 @@ public class CSDao {
 		
 		return csInfo;
 	}
+
+	public int insertCS(Connection con, int clsNo, int stuNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertCS");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, clsNo);
+			pstmt.setInt(2, stuNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertPurchase(Connection con, int clsNo, int stuNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertPurchase");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, stuNo);
+			pstmt.setInt(2, clsNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
 	
 	
 	

@@ -47,11 +47,13 @@
 	.cArea{margin:0 auto;}
 	.cArea.addDel{margin:auto 0;}
 	.classListArea li {padding:2px;}
-	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0;width:450px; height:350px;border-radius: 10px;overflow:hidden;}
+	.detailClass .classListArea .studentList{border:1px solid #333; padding:10px 0 0 0;width:450px; height:360px;border-radius: 10px;overflow:hidden;}
 	.detailClass .classListArea .inputSrch{height:30px;border-radius: 20px;text-align:center;border:1px solid #333;margin-bottom: 10px;}
 	.cArea h3 {margin:10px auto;}
-	.studentList .tableArea {height:350px;overflow:auto;}
+	.studentList .tableArea {height:306px;overflow:auto;}
 	.table {margin-bottom:2px !important;}
+	#allTable td{padding:0.75em 5px}
+	#thisTable td{padding:0.75em 5px}
 </style>
 </head>
 <!-- <body> -->
@@ -61,7 +63,7 @@
 	</header>
 	<section>
 		<div class="detailClass">
-	<form id="classForm" action="" method="post">
+	<form id="classForm" method="post">
 		<div class="classInfo">
 			<div align="center">
 		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　<%= csInfo.getClsName() %>　></h1>
@@ -76,7 +78,7 @@
 						<th>제한인원</th>					
 					</tr>
 					<tr>
-						<td><%= csInfo.getTchName() %></td>
+						<td><input type="hidden" value="<%= csInfo.getClsNo() %>" name="clsNo"><%= csInfo.getTchName() %></td>
 						<td><%= csInfo.getClsStudentName() %></td>
 						<td><%= csInfo.getClsStart() %> ~ <%= csInfo.getClsEnd()%></td>
 						<td><%= csInfo.getClassName()%></td>
@@ -94,8 +96,8 @@
 					<table class="table" id="allTable">				
 						<%for(int i = 0; i < allStudent.size(); i++) {%>
 							<tr>
-								<td><input type="checkbox" style="display:none" name="chAllst"><%= allStudent.get(i).getStuName() %></td>
-								<td><input type="hidden" name="userId" value="<%= allStudent.get(i).getUserNo() %>"><%= allStudent.get(i).getUserId() %></td>
+								<td><input type="checkbox" style="display:none" name="chAllst" value="<%= allStudent.get(i).getUserNo() %>"><%= allStudent.get(i).getStuName() %></td>
+								<td><%= allStudent.get(i).getUserId() %></td>
 								<td><%= allStudent.get(i).getSchool() %></td>
 								<td><%= allStudent.get(i).getGradeName() %></td>
 							</tr>
@@ -118,8 +120,8 @@
 						<% if(!csslist.isEmpty()) {%>
 						<%for(int i = 0; i < csslist.size(); i++) {%>
 							<tr>
-								<td><input type="checkbox" style="display:none" name="chst"><%= csslist.get(i).getStuName() %></td>
-								<td><input type="hidden" name="userId" value="<%= allStudent.get(i).getUserNo() %>"><%= csslist.get(i).getUserId() %></td>
+								<td><input type="checkbox" style="display:none" name="chst" value="<%= allStudent.get(i).getUserNo() %>"><%= csslist.get(i).getStuName() %></td>
+								<td><%= csslist.get(i).getUserId() %></td>
 								<td><%= csslist.get(i).getSchool() %></td>
 								<td><%= csslist.get(i).getGradeName() %></td>
 							</tr>
@@ -136,8 +138,8 @@
 			</div>
 		</div> <!-- classListArea end -->
 		<div class="classbtn">
-			<button class="bottomBtn" type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngCS/classStudent.jsp'">취소</button>
-			<button class="bottomBtn" type="submit">저장</button>
+			<button class="bottomBtn" type="button" onclick="location.href='<%=request.getContextPath()%>/alist.cs'">취소</button>
+			<button class="bottomBtn" id="addStudent">저장</button>
 			<br><br>
 		</div>
 	</form>
@@ -171,15 +173,31 @@
 			
 			
 			$("#allStu").click(function(){
-					var stu = $(".on");
-					$("#thisTable").append($(".on"));
+				$(".on").addClass("addStu");
+				$("#thisTable").append($(".on"));
 			});
 			$("#remStu").click(function(){
-					var all = $(".on");
-					$("#allTable").append($(".on"));
+				$(".on").removeClass("addStu");
+				$("#allTable").append($(".on"));
+			});
+			
+			$("#addStudent").click(function(){
+				var stuArr = "first";
+				$("[name='chAllst']").filter(function(value){
+					if(this.checked){
+						console.log(this.value + "번");
+						if(stuArr == "first"){
+							stuArr = this.value;
+						}else{
+							stuArr += "," + this.value;
+						}
+					}
+				});
+				
+				$("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr);
+				
 			});
 		});
-
 	</script>
 </body>
 </html>

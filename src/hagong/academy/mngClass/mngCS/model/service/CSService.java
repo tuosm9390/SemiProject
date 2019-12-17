@@ -59,4 +59,30 @@ public class CSService {
 		return allStudent;
 	}
 
+	public int insertCS(int clsNo, int[] stuNo) {
+		Connection con = getConnection();
+		int result = 0;
+		int resultCS = 0;
+		int resultPU = 0;
+		for(int i = 0; i < stuNo.length; i++) {
+			resultCS += new CSDao().insertCS(con, clsNo, stuNo[i]);
+			System.out.println("resultCS : " + resultCS);
+			resultPU += new CSDao().insertPurchase(con, clsNo, stuNo[i]);
+			System.out.println("resultPU : " + resultPU);
+		}
+		
+		
+		if(resultCS > 0 && resultPU > 0) {
+			result = 1;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+	
+
 }
