@@ -84,7 +84,12 @@ public class InsertNoticeServlet extends HttpServlet {
 			System.out.println("saveFiles : " + saveFiles);
 			System.out.println("originFiles : " + originFiles);
 			
+			
+
+			
 			String multiTitle = multiRequest.getParameter("title");
+			java.sql.Date multiDate = java.sql.Date.valueOf(multiRequest.getParameter("date"));
+			String multiName = multiRequest.getParameter("writer");
 			String multiContent = multiRequest.getParameter("content");
 			
 			System.out.println("multiTitle : " + multiTitle);
@@ -92,8 +97,14 @@ public class InsertNoticeServlet extends HttpServlet {
 			
 			Notice n = new Notice();
 			n.setnTitle(multiTitle);
+			n.setName(multiName);
+			n.setnDate(multiDate);
 			n.setnContent(multiContent);
-			n.setName(String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNo()));
+			
+			
+			
+			
+			//n.setName(String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNo()));
 			
 			ArrayList<NoticeFile> fileList = new ArrayList<NoticeFile>();
 			
@@ -122,6 +133,7 @@ public class InsertNoticeServlet extends HttpServlet {
 			}
 		}
 
+		
 		
 //		Date day = null;
 //		
