@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngAdmin.mngPlan.model.vo.*"%>
+<%
+	ArrayList<Plan> list = (ArrayList<Plan>) request.getAttribute("list");
+	System.out.println(list);
+%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -102,7 +106,7 @@
 			<option>2018</option>
 			<option>2017</option>
 		</select>
-		<button>삭제</button>
+		<button id="deleteByMonth">삭제</button>
 		<button id="writeBtn" style="float:right">입력 및 수정</button>
 	</div> <!-- btnArea end -->
 	<div class="listArea">
@@ -126,46 +130,31 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
+				<% for(int i=0; i<list.size(); i++) { %>
 				<tr>
-					<td>주요 이슈</td>
-					<% for(int i=0; i<12; i++) { %>
-					<td></td>
-					<% } %>
+					<td><%= list.get(i).getCalTitle() %></td>
+					<%  switch(((list.get(i).getCalStart()).getMonth())+1) {
+						case 1 : %><td><%= list.get(i).getCalMemo() %></td> <% break; 
+						case 2 : %><td></td><td><%= list.get(i).getCalMemo() %></td> <% break;
+						case 3 : %><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 4 : %><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 5 : %><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 6 : %><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 7 : %><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 8 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 9 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 10 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 11 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+						case 12 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
+					} %>
+						
+					
 				</tr>
-				<tr>
-					<td>입시</td>
-					<% for(int i=0; i<12; i++) { %>
-					<td></td>
-					<% } %>
-				</tr>
-				<tr>
-					<td>중등</td>
-					<% for(int i=0; i<12; i++) { %>
-					<td></td>
-					<% } %>
-				</tr>
-						<tr>
-							<td>고등</td>
-							<% for(int i=0; i<12; i++) { %>
-							<td></td>
-							<% } %>
-						</tr>
-						<tr>
-							<td>중.고 경시</td>
-							<% for(int i=0; i<12; i++) { %>
-							<td></td>
-							<% } %>
-						</tr>
-						<tr>
-							<td>행사</td>
-							<% for(int i=0; i<12; i++) { %>
-							<td></td>
-							<% } %>
-						</tr>
-					</tbody>
-				</table>
-			</div> <!-- body end -->
-		</div>
+				<% } %>
+			</tbody>
+			</table>
+		</div> <!-- body end -->
+	</div>
 
 		<!-- 연간계획 삭제 -->
 		<div id="deleteArea" class="modal">
@@ -209,27 +198,17 @@
 		<script>	
 			$(function(){
 				var writeBtn = document.getElementById('writeBtn');
-				var addRowBtn = document.getElementById('addRow');
-				var deleteBtn = document.getElementById('deleteBtn');
+				var deleteByMonth = document.getElementById('deleteByMonth');
 				var deleteArea = document.getElementById('deleteArea');
 				var deleteOk = document.getElementById('okbtn');
 				var cancleDelete = document.getElementById('cancelbtn');
 				var closeBtn = document.getElementById('xBtn');
 				
 				writeBtn.onclick = function() {
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp";
+					<%-- location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp"; --%>
 				}
 				
-				addRowBtn.onclick = function() {
-					var addRowName = window.prompt('행 이름 입력');
-					
-					$("#tbody").append("<tr><td>"+ addRowName + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-						
-				}
 				
-				deleteBtn.onclick = function() {
-					deleteArea.style.display = "block";
-				}
 				
 				closeBtn.onclick = function() {
 					deleteArea.style.display = "none";
@@ -239,12 +218,12 @@
 					deleteArea.style.display = "none";
 				}
 				
-				deleteOk.onclick = function() {
+				deleteByMonth.onclick = function() {
 					//체크된 월 삭제 기능 실행됨
 					
 					
 					//기능이 다 실행된 후 결과값에 따라 성공 시, 삭제 결과가 반영된 연간계획 페이지 / 실패 시 에러페이지로 이동
-					deleteArea.style.display = "none";
+					deleteArea.style.display = "block";
 				}
 			});
 		</script>

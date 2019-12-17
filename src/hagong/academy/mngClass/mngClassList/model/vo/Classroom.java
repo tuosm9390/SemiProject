@@ -1,6 +1,6 @@
 package hagong.academy.mngClass.mngClassList.model.vo;
 
-public class Classroom {
+public class Classroom implements java.io.Serializable{
 	private int clrNo;
 	private String clrName;
 	private int capacity;

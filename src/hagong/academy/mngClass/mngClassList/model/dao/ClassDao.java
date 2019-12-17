@@ -268,4 +268,55 @@ public class ClassDao {
 		return result;
 	}
 
+	public ArrayList<Classroom> selectClassroom(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Classroom> list = null;
+		
+		String query = prop.getProperty("selectClassroom");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Classroom cr = new Classroom();
+				
+				cr.setClrNo(rset.getInt("CLR_NO"));
+				cr.setClrName(rset.getString("CLR_NAME"));
+				cr.setCapacity(rset.getInt("CAPACITY"));
+				
+				list.add(cr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}		
+		
+		return list;
+	}
+
+	public int deleteClassroom(Connection con, String clrNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteClassroom");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(clrNo));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

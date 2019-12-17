@@ -109,7 +109,8 @@
 	</div> <!-- btnArea end -->
 	<div class="listArea">
 	<div class="body">
-		<table id="planTableArea" class="table">
+		<form id="planForm">
+			<table id="planTableArea" class="table">
 			<thead>
 				<tr>
 					<th id="mainTh"></th>
@@ -128,16 +129,17 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				<tr>
+				<%-- <tr>
 					<td>주요 이슈</td>
 					<% for(int i=0; i<12; i++) { %>
 					<td contenteditable="true"></td>
 					<% } %>
-				</tr>
-					</tbody>
-				</table>
-			</div> <!-- body end -->
-		</div>
+				</tr> --%>
+			</tbody>
+			</table>
+		</form>
+	</div> <!-- body end -->
+	</div>
 
 		<!-- 연간계획 삭제 -->
 		<div id="deleteArea" class="modal">
@@ -183,20 +185,26 @@
 			$(function(){
 				var writeBtn = document.getElementById('writeBtn');
 				var addRowBtn = document.getElementById('addRow');
-				var deleteRowBtn = document.getElementById('deleteRow');
-				var deleteBtn = document.getElementById('deleteBtn');
+				var deleteRowBtn = document.getElementById('deleteRow');				
 				var deleteArea = document.getElementById('deleteArea');
 				var deleteOk = document.getElementById('okbtn');
 				var cancleDelete = document.getElementById('cancelbtn');
 				var closeBtn = document.getElementById('xBtn');
+				var addRowName = "";
 				
 				writeBtn.onclick = function() {
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp";
+					var form = $("#planForm");
+					console.log(form);
+					
+					
 				}
 				
 				addRowBtn.onclick = function() {
-					var addRowName = window.prompt('행 이름 입력');
+					addRowName = window.prompt('행 이름 입력');
 					
+					$.ajax({
+						
+					});
 					$("#tbody").append("<tr value='" + addRowName + "'><td>"+ addRowName + "</td>"
 										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
 										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
@@ -211,9 +219,7 @@
 					
 				}
 				
-				deleteBtn.onclick = function() {
-					deleteArea.style.display = "block";
-				}
+				
 				
 				closeBtn.onclick = function() {
 					deleteArea.style.display = "none";
