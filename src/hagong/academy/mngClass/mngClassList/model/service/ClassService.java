@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import hagong.academy.mngClass.mngAttend.model.dao.AttendDao;
 import hagong.academy.mngClass.mngClassList.model.dao.ClassDao;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
+import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
 import hagong.academy.mngStudent.mngBlack.model.dao.BlacklistDao;
 
 public class ClassService {
@@ -83,7 +84,9 @@ public class ClassService {
 				commit(con);
 			}else {
 				rollback(con);
-			}		
+			}
+			
+		close(con);
 
 		return result;
 	}
@@ -96,6 +99,48 @@ public class ClassService {
 		close(con);
 		
 		return listCount;
+	}
+
+	public int updateClass(Class c1) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		Class c = new Class();
+		
+		c.setClsNo(c1.getClsNo());
+		c.setClsName(c1.getClsName());
+		c.setClsMax(c1.getClsMax());			
+		c.setClrNo(c1.getClrNo());
+		c.setTuition(c1.getTuition());
+		c.setCntOfClass(c1.getCntOfClass());
+			
+		result = new ClassDao().updateClass(con, c);
+			
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+
+		return result;
+	}
+
+	public int insertClassroom(Classroom cr) {
+		Connection con = getConnection();
+		
+		int result = new ClassDao().insertClassroom(con, cr);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }

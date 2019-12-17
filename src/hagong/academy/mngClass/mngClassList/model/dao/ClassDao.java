@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
+import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
+
 import static hagong.common.JDBCTemplate.*;
 
 public class ClassDao {
@@ -217,6 +219,53 @@ public class ClassDao {
 		
 		
 		return listCount;
+	}
+
+	public int updateClass(Connection con, Class c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateClass");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, c.getClsName());
+			pstmt.setInt(2, c.getClsMax());
+			pstmt.setInt(3, c.getClrNo());
+			pstmt.setInt(4, c.getTuition());
+			pstmt.setInt(5, c.getCntOfClass());
+			pstmt.setInt(6, c.getClsNo());
+			
+			result = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertClassroom(Connection con, Classroom cr) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertClassroom");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, cr.getClrName());
+			pstmt.setInt(2, cr.getCapacity());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}		
+		
+		return result;
 	}
 
 }
