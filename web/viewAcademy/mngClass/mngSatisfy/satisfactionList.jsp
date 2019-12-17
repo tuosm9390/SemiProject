@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
 <%
 	ArrayList<SatisfyInfo> list = (ArrayList<SatisfyInfo>) request.getAttribute("list");
+	ArrayList<SatisfyInfo> blist = (ArrayList<SatisfyInfo>) request.getAttribute("blist");
 %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +49,6 @@ select:focus {
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
-	height: 100%; /* Full height */
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -149,16 +149,20 @@ select:focus {
 				<table id="modalTable">
 					<tr>
 						<td align="center" colspan="2">
-						<select class='sort' id="benefitSelect" align="center" space="&nbsp;"
+						<select class='sort' id="benefitSelect" align="center" space="&nbsp;&nbsp;"
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
 								<option selected>선택</option>
+								<% for(int i = 0; i < blist.size(); i++) { %>
+								<option value="<%=blist.get(i).getBenNo()%>"><%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
+											+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
+								<% } %>
 						</select></td>
 					</tr>
 					<tr>
 						<td width="100px">혜택구분</td>
 						<td width="250px">
 						<select id="benefitType">
-							<option value="수강비" selected>수강비</option>
+							<option value="TUITION" selected>수강비</option>
 						</select></td>
 					</tr>
 					<tr>
@@ -166,22 +170,22 @@ select:focus {
 						<td>
 						<select id="applyPoint" class='sort' space="&nbsp;" align="center"
 						style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
-							<option value="진행중인 강의">진행중인 강의</option>
-							<option value="다음 강의">다음 강의</option>
+							<option value="SAMESUB">진행중인 강의</option>
+							<option value="NEXTCLS">다음 강의</option>
 						</select>
 						</td>
 					</tr>
 					<tr>
-						<td>할인률</td>
-						<td><input type="number" id="benefitRate" min="1" style="width: 50px;"></td>
+						<td>할인율</td>
+						<td><input type="number" id="benefitRate" min="1" max="100" style="width: 50px;"></td>
 					</tr>
 				</table>
 				<table id="modalBtnTable">
 					<tr>
 						<td colspan="2">
-							<button id="deleteBtn2"
+							<button id="deleteBtn"
 								style="margin-left: 20px; width: 100px; height: 30px;">삭제</button>
-							<button type="button" id="updateBtn2"
+							<button type="button" id="updateBtn"
 								style="width: 100px; height: 30px;">추가</button>
 						</td>
 					</tr>
@@ -191,10 +195,12 @@ select:focus {
 	</section>
 	<footer> </footer>
 	<script>
+		//만족도 등록
 		$("#addSatisfaction").click(function(){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 		});
 		
+		//만족도 상세보기
 		$(".table td").click(function() {
 			var satNo = $("#satNo").val();
 			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo;
@@ -214,24 +220,74 @@ select:focus {
 			benefit.style.display = "none";
 		};
 
-		updateBtn2.onclick = function(i) {
-			
-			
+		//혜택 추가
+		updateBtn.onclick = function(i) {
 			var benefitType = $("#benefitType").val();
 			var benefitRate = $("#benefitRate").val();
 			var applyPoint = $("#applyPoint").val();
-
-			$("#benefitSelect").append(
-					"<option value=" + benefitType + benefitRate + ">" + benefitType + " / " + benefitRate + "% / " + applyPoint + "</option>");
 			
-			
+			if(benefitRate > 100) {
+				alert("할인율은 1 ~ 100사이로 입력해주세요");
+				return false;
+			} else {
+				console.log(benefitType);
+				console.log(benefitRate);
+				console.log(applyPoint);
+				
+				$.ajax({
+					url : "ainsert.ben",
+					type : "post",
+					data : {
+						benefitType : benefitType,
+						benefitRate : benefitRate,
+						applyPoint : applyPoint
+					},
+					success:function(data){
+						console.log(data);
+						var type = "";
+						var condition = "";
+						if(benefitType == "TUITION"){
+							type = "수강비";
+						}
+						if(applyPoint == "SAMESUB"){
+							condition = "현재";
+						} else {
+							condition = "다음";
+						}
+						$("#benefitSelect").append("<option>" + condition + "" + type + " " + benefitRate + "%</option>");
+					},
+					error:function(data){
+						console.log("실패");
+					}
+				});
+			}
 		};
 
-		deleteBtn2.onclick = function() {
-			var benefitType = $("#benefitType").val();
+		//혜택 삭제
+		deleteBtn.onclick = function() {
+			var benNo = $("#benefitSelect").val();
 			
-			var deleteBen = window.prompt('삭제할 할인율 입력');
-			$("select[id='benefitSelect'] option[value=" + benefitType + deleteBen + "]").remove();
+			$.ajax({
+				url : "adelete.ben",
+				type : "post",
+				data : {benNo : benNo},
+				success:function(data){
+					console.log(data);
+
+					$("#benefitSelect").find("option").remove();
+					$("#benefitSelect").append("<option>선택</option>");
+					for(var key in data){
+						var $select = $("#benefitSelect");
+						var $option = $("<option>");
+						$option.attr("value", data[key].benNo);
+						$option.text(data[key].benCondition + "" + data[key].benType + " " + (Math.floor(data[key].benRate * 100)) + "%");
+						$select.append($option);
+					}
+				},
+				error:function(data){
+					console.log("실패");
+				}
+			});
 		};
 
 		//select option 가운데정렬

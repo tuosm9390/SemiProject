@@ -1,4 +1,3 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
 <%
@@ -109,26 +108,31 @@ tr, td {
 				</tr>
 				<tr>
 					<td colspan="4" class="question">
-						<ol class="qo">
+						<ol class="qo" style="color:black;">
 						<% for(int i = 0; i < list.size(); i++) {
 							//첫번째 문항
 							if(i == 0) { %>
 							<li>&emsp;
-							<%= list.get(i).get("queContent") %><br><br>&emsp;
-							<%= list.get(i).get("ansContent") %><br><br>&emsp;
+							<%= list.get(i).get("queContent") %>
+							<br><br>
+							<ol>
+							<li><%= list.get(i).get("ansContent") %>
 						<%	} else {
 								//두번째 이후 문항 중 두개가 서로 같은 문항일 때
 								if(list.get(i).get("queNo") == list.get(i - 1).get("queNo")) { %>
-								<%= list.get(i).get("ansContent") %><br><br>&emsp;
+								<li><%= list.get(i).get("ansContent") %>
 								<!-- 서로 다른 문항일 때 -->
 							<%	} else { %>
 								</li>
+							</ol>
+								<br>
 								<li>&emsp;
 								<%= list.get(i).get("queContent") %>
-								<br><br>&emsp;
-								<%= list.get(i).get("ansContent") %>
-								<br><br>&emsp;
+								<br><br>
+							<ol>
+								<li><%= list.get(i).get("ansContent") %>
 							<% } } }%>
+							</ol>
 						</ol>
 					</td>
 				</tr>
@@ -136,26 +140,11 @@ tr, td {
 		</form>
 		<button class="bottomBtn" style="margin-right: 5%;"
 			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정</button>
-		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">취소</button>
+		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>
 	</div>
 	</section>
-	<script>		
-		//설문 문항 추가
-		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li>&emsp;&nbsp;<input type='text' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><br> &emsp;&nbsp;<input type='text' placeholder='선택항목 입력'>&emsp;&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></li>");
-		});
-		//설문 문항 제거
-		$(".question").on("click", ".qdelete", function(){
-			if($(".qo li").size() != 1){
-				$(this).closest(".qo li").remove();
-			};
-		});
-		
-		//문항 선택항목 추가
-		
-		//문항 선택항목 삭제
-		
+	<script>n
 		$("input").attr("readonly", true);
 	</script>
 </body>

@@ -25,11 +25,13 @@ public class SatisfyListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<SatisfyInfo> list = new SatisfyService().selectList();
+		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
 		
 		String page = "";
 		if(list != null) {
 			page = "/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp";
 			request.setAttribute("list", list);
+			request.setAttribute("blist", blist);
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectSatisfyListFail");
