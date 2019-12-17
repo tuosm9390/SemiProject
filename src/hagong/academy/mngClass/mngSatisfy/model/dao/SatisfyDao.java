@@ -67,41 +67,41 @@ public class SatisfyDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<SatisfyInfo> blist = null;
-		
+
 		String query = prop.getProperty("selectBenList");
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			
+
 			blist = new ArrayList<>();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				SatisfyInfo si = new SatisfyInfo();
-				
+
 				si.setBenNo(rset.getInt("BEN_NO"));
-				if(rset.getString("CONDITION").equals("SAMESUB")) {
+				if (rset.getString("CONDITION").equals("SAMESUB")) {
 					si.setBenCondition("현재");
 				} else {
 					si.setBenCondition("다음");
 				}
-				if(rset.getString("BEN_TYPE").equals("TUITION")) {
+				if (rset.getString("BEN_TYPE").equals("TUITION")) {
 					si.setBenType("수강비");
 				} else {
 					si.setBenType("기타");
 				}
 				si.setBenRate(rset.getDouble("BEN_RATE"));
-				
+
 				blist.add(si);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(stmt);
 			close(rset);
 		}
-		
+
 		return blist;
 	}
 
@@ -173,15 +173,116 @@ public class SatisfyDao {
 	public int insertBen(Connection con, SatisfyInfo si) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertBen");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, si.getBenCondition());
+			pstmt.setString(2, si.getBenType());
+			pstmt.setDouble(3, si.getBenRate());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int deleteBen(Connection con, int benNo) {
+		System.out.println("삭제Dao");
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("deleteBen");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, benNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertSatis(Connection con, SatisfyInfo si) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertSatis");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, si.getSatTitle());
+			pstmt.setDate(2, si.getStart());
+			pstmt.setDate(3, si.getEnd());
+			pstmt.setString(4, si.getTarget());
+			pstmt.setInt(5, si.getBenNo());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	//받아올 설문번호 뽑기
+	public int selectSatNo(Connection con, SatisfyInfo si) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int satNo = 0;
+		
+		String query = prop.getProperty("selectSatNo");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, si.getSatTitle());
+			pstmt.setDate(2, si.getStart());
+			pstmt.setDate(3, si.getEnd());
+			pstmt.setString(4, si.getTarget());
+			pstmt.setInt(5, si.getBenNo());
+			
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				satNo = rset.getInt("SAT_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return satNo;
+	}
+
+	public int insertQue(Connection con, String que, int selectSatNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertQue");
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, si.getBenCondition());
-			pstmt.setString(2, si.getBenType());
-			pstmt.setDouble(3, si.getBenRate());
+			pstmt.setString(1, que);
+			pstmt.setInt(2, selectSatNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -193,16 +294,47 @@ public class SatisfyDao {
 		return result;
 	}
 
-	public int deleteBen(Connection con, int benNo) {
-		System.out.println("삭제Dao");
+	public int selectQueNo(Connection con, String qrr, int selectSatNo) {
 		PreparedStatement pstmt = null;
-		int result = 0;
+		ResultSet rset = null;
+		int queNo = 0;
 		
-		String query = prop.getProperty("deleteBen");
+		String query = prop.getProperty("selectQueNo");
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, benNo);
+			
+			pstmt.setString(1, qrr);
+			pstmt.setInt(2, selectSatNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				queNo = rset.getInt("QUE_NO");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return queNo;
+	}
+
+	public int insertAns(Connection con, String arr, int selectQueNo, int selectSatNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("inserAns");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, selectQueNo);
+			pstmt.setInt(2, selectSatNo);
+			pstmt.setString(3, arr);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
