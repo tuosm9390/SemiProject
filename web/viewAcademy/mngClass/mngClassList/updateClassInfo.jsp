@@ -84,6 +84,7 @@
       width: 550px;
        border-radius: 5px;
          margin-bottom: 10px;
+         padding-bottom: 25px;
    }
    
    td {
@@ -104,20 +105,20 @@
     </div>
    <div class="body" align="center">
       <div class="tableArea">
-      <form id="classInfo" action="<%=request.getContextPath()%>/ainsert.class" method="post">
+      <form id="classInfo" action="<%=request.getContextPath()%>/aupdate.class" method="post">
          <table class="insertTable">
             <tr>
                <td>과목 : </td>
                <td>
                <select id="selectSubject" name="selectSubject" style="margin-bottom:20px">
-                  <option value="" selected disabled hidden>과목 선택</option>
+                  <!-- <option value="" selected disabled hidden>과목 선택</option>
                   <option value="국어">국어</option>
                   <option value="수학">수학</option>
                   <option value="영어">영어</option>
                   <option value="사회">사회</option>
                   <option value="과학">과학</option>
                   <option value="제2외국어">제2외국어</option>
-                  <option value="기타">기타</option>
+                  <option value="기타">기타</option> -->
                </select>
                </td>
                <td>
@@ -134,14 +135,14 @@
                </td>
                <td>
                <select id="selectStudent" name="selectStudent" style="margin-bottom:20px">
-                  <option value="" selected disabled hidden>학년 선택</option>
+                  <!-- <option value="" selected disabled hidden>학년 선택</option>
                   <option value="MID1">중1</option>
                   <option value="MID2">중2</option>
                   <option value="MID3">중3</option>
                   <option value="HIGH1">고1</option>
                   <option value="HIGH2">고2</option>
                   <option value="HIGH3">고3</option>
-                  <option value="ETC">기타</option>
+                  <option value="ETC">기타</option> -->
                </select>
                </td>
                <td>
@@ -149,6 +150,7 @@
                </td>
                <td>
                <input type="number" id="numOfClass" name="numOfClass">
+               <input type="hidden" id="hidden" name="hidden" value="<%=clsNo%>">
                </td>
             </tr>
             <tr>
@@ -182,10 +184,15 @@
                <label>기간 : </label>
                </td>
                <td colspan="3">
+               <% if(checkStatus == "0") { %>
                <input type="date" id="startDate" name="startDate"> ~ <input type="date" id="endDate" name="endDate">
+               <% }else { %>
+               <input type="text" id="startDate" readonly>
+               <% } %>
                </td>
             </tr>
             <tr>
+            	<% if(checkStatus.equals("0")) { %>
                <td>
                <label>요일 : </label>
                </td>
@@ -198,6 +205,7 @@
                <input type="checkbox" id="sat" name="day" value="SAT"><label for="sat">토</label>
                <input type="checkbox" id="sun" name="day" value="SUN"><label for="sun">일</label>
                </td>
+               <% } %>
             </tr>
             <tr>
                <td>
@@ -205,7 +213,7 @@
                </td>
                <td colspan="3">
                   <select id="startTime" name="startTime" style="width:150px;">
-                     <option>09:00</option>
+                     <!-- <option>09:00</option>
                      <option>10:00</option>
                      <option>11:00</option>
                      <option>12:00</option>
@@ -217,10 +225,10 @@
                      <option>18:00</option>
                      <option>19:00</option>
                      <option>20:00</option>
-                     <option>21:00</option>
+                     <option>21:00</option> -->
                   </select> ~
                   <select id="endTime" name="endTime" style="width:150px;">
-                     <option>10:00</option>
+                    <!--  <option>10:00</option>
                      <option>11:00</option>
                      <option>12:00</option>
                      <option>13:00</option>
@@ -232,7 +240,7 @@
                      <option>19:00</option>
                      <option>20:00</option>
                      <option>21:00</option>
-                     <option>22:00</option>
+                     <option>22:00</option> -->
                   </select>
                </td>
             </tr>    
@@ -260,20 +268,22 @@
 	
     	  $("#test").on("click", function(){
     		  var cs = '<%=checkStatus%>';
+    		  var clsNum = '<%=clsNo%>';
+    		  
     		  if(cs=='1'){
 
     	            $.ajax({
-    	               url: "<%=request.getContextPath()%>/adetail.class",
-    	               data: {num:cs},
+    	               url: '<%=request.getContextPath()%>/adetail.class',
+    	               data: {num:clsNum},
     	               type: "get",
     	               success: function(data){
 						console.log(data);
-						
 						$selectSubject = $("#selectSubject");
 						$selectTeacher = $("#selectTeacher");
 						$selectStudent = $("#selectStudent");
 						$numOfClass = $("#numOfClass");
 						$classTitle = $("#classTitle");
+						$classroom = $("#classroom");
 						$cntOfClass = $("#cntOfClass");
 						$startDate = $("#startDate");
 						$endDate = $("#endDate");
@@ -281,37 +291,71 @@
 						$startTime = $("#startTime");
 						$endTime = $("#endTime");
 						$money = $("#money");
-						
-						for(var key in data) {
-							switch(data.subName) {
-							case "KOR" : $subjectField.text("국어"); break;
-							case "MATH" : $subjectField.text("수학"); break;
-							case "ENG" : $subjectField.text("영어"); break;
-							case "SOCIAL" : $subjectField.text("사회"); break;
-							case "SCIENCE" : $subjectField.text("과학"); break;
-							case "FOREIGN" : $subjectField.text("제2외국어"); break;
-							case "ETC" : $subjectField.text("기타"); break;
-							}
+
+		                var $option1 = $("<option>");
+		                $option1.val(data.subName);
+		                switch(data.subName) {
+						case 'KOR' : $option1.text("국어"); break;
+						case "MATH" : $option1.text("수학"); break;
+						case "ENG" : $option1.text("영어"); break;
+						case "SOCIAL" : $option1.text("사회"); break;
+						case "SCIENCE" : $option1.text("과학"); break;
+						case "FOREIGN" : $option1.text("제2외국어"); break;
+						case "ETC" : $option1.text("기타"); break;
 						}
-						
-						$classNameField.text(data.clsName);
-						$teacherField.text(data.name);
-						
-						switch(data.clsStudent) {
-						case "MID1" : $studentField.text("중학교 1학년"); break;
-						case "MID2" : $studentField.text("중학교 2학년"); break;
-						case "MID3" : $studentField.text("중학교 3학년"); break;
-						case "HIGH1" : $studentField.text("고등학교 1학년"); break;
-						case "HIGH2" : $studentField.text("고등학교 2학년"); break;
-						case "HIGH3" : $studentField.text("고등학교 3학년"); break;
-						case "ETC" : $studentField.text("기타"); break;
+		                $selectSubject.append($option1);
+		                $selectSubject.attr('disabled', 'true');
+		                
+		                var $option2 = $("<option>");
+		                $option2.val(data.name);
+		                $option2.text(data.name);
+		                $selectTeacher.append($option2);
+		                $selectTeacher.attr('disabled', 'true');
+		                
+		                var $option3 = $("<option>");
+		                $option3.val(data.clsStudent);
+		                switch(data.clsStudent) {
+						case "MID1" : $option3.text("중학교 1학년"); break;
+						case "MID2" : $option3.text("중학교 2학년"); break;
+						case "MID3" : $option3.text("중학교 3학년"); break;
+						case "HIGH1" : $option3.text("고등학교 1학년"); break;
+						case "HIGH2" : $option3.text("고등학교 2학년"); break;
+						case "HIGH3" : $option3.text("고등학교 3학년"); break;
+						case "ETC" : $option3.text("기타"); break;
 						}
+		                $selectStudent.append($option3);
+		                $selectStudent.attr('disabled', 'true');
 						
-						$clsMaxField.text(data.clsMax+"명");
-						$clsDayField.text(data.clsStart + "~" + data.clsEnd);
-						$clsTimeField.text(data.clsTime);
-						$tuitionField.text(data.tuition + "만원");
-    	                  
+		                $numOfClass.val(data.clsMax);
+						$classTitle.val(data.clsName);
+						$cntOfClass.val(data.cntOfClass);						
+						
+						var y = (data.clsStart).substr(6, 10);
+						var m = (data.clsStart).substr(0, 1);
+						var d = (data.clsStart).substr(2, 2);
+						var y1 = (data.clsEnd).substr(6, 10);
+						var m1 = (data.clsEnd).substr(0, 1);
+						var d1 = (data.clsEnd).substr(2, 2);
+						
+						$startDate.val(y+"년 "+m+"월 "+d+"일" + " ~ " + y1+"년 "+m1+"월 "+d1+"일");
+						
+						var startTime = (data.clsTime).substr(0, 5);
+						var endTime = (data.clsTime).substr(6);
+						
+						var $option4 = $("<option>");
+			            $option4.val(startTime);
+			            $option4.text(startTime);
+			            $startTime.append($option4);
+						$startTime.attr('disabled', 'true');
+						
+						var $option5 = $("<option>");
+			            $option5.val(endTime);
+			            $option5.text(endTime);
+			            $endTime.append($option5);
+						$endTime.attr('disabled', 'true');
+						
+						$money.val(data.tuition);
+										
     	               },
     	               error: function(data){
     	                  alert("수업 세부정보 불러오기 실패");
@@ -350,12 +394,7 @@
          $("#updateClass").click(function(){
             $("#classInfo").submit();
             
-            <%-- location.href="<%=request.getContextPath()%>/ainsert.class" --%>
-            /* console.log($("#classInfo")); */
          });
-         
-         
-         
          
       });
    </script>

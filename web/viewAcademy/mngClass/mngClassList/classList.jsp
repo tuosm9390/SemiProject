@@ -136,7 +136,7 @@
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　강좌 관리　</h1></legend>
       		</fieldset>
       	</div>
-		<input type="date" style="float:left; width:150px; border-radius:5px; border:1px solid lightgray">
+		<!-- <input type="date" style="float:left; width:150px; border-radius:5px; border:1px solid lightgray"> -->
 		<button id="writeBtn" onclick="location.href='viewAcademy/mngClass/mngClassList/insertClassInfo.jsp'">강좌 등록</button>
 		<button id="classroomBtn">강의실 관리</button>
 			<table class="classInfoTable table">
@@ -297,6 +297,7 @@
             <tr>
                <td colspan="2">
                   <select id="classroomSelect" style="border:1px solid lightgray; border-radius:5px; height: 30px">
+                  	<option value="" selected disabled hidden>강의실 보기</option>
                   </select>
                </td>
             </tr>
@@ -440,6 +441,17 @@
 			});
 			
 			$("#classroomBtn").click(function(){
+				$.ajax({
+					url: "alistClr.class",
+					type: "get",
+					success: function(data){
+						
+					},
+					error: function(data){
+						
+					}
+				});
+				
 				var classroomModal = document.getElementById("mngClass");
 				classroomModal.style.display = "block";
 				
@@ -466,7 +478,24 @@
 	                var classroomName = $("#classroomName").val();
 	                var classroomPeople = $("#classroomPeople").val();
 	                
-	                $("#classroomSelect").append("<option value=" + classroomName + ">" + classroomName + " CLASS / " + classroomPeople + "명</option>");
+	                //$("#classroomSelect").append("<option value=" + classroomName + ">" + classroomName + " CLASS / " + classroomPeople + "명</option>");
+	                $.ajax({
+	                	url: "ainsertClr.class",
+	                	data: {
+	                		clrName:classroomName,
+	                		capacity:classroomPeople
+	                		},
+	                	type: "get",
+	                	success: function(data){
+	                		console.log(data);
+	                		
+	                		$("#classroomSelect").append("<option value=" + classroomName + ">" + classroomName + " CLASS / " + classroomPeople + "명</option>");
+	                		
+	                	},
+	                	error: function(data){
+	                		console.log('error');
+	                	}
+	                });
 	             }
 	             
 	             deleteBtn2.onclick = function() {
