@@ -22,7 +22,7 @@ public class Purchase {
 	private String stuId;		//학생ID
 	private String stuName;		//학생이름
 	private int realPrice;		//청구금액 (강좌비용 - 특이사항 적용 금액)
-	private boolean payStatus;	//납부여부 (미납/완납)
+	private String payStatus;	//납부여부 (미납/완납)
 	
 	private int purchaseNo;		//수납번호
 	private Date notifyDate;	//납부고지일
@@ -51,7 +51,7 @@ public class Purchase {
 	}
 
 	public Purchase(int classNo, String className, int classPrice, Date classStart, Date classEnd, int classDays,
-			int stuNo, String stuId, String stuName, int realPrice, boolean payStatus, int purchaseNo, Date notifyDate,
+			int stuNo, String stuId, String stuName, int realPrice, String payStatus, int purchaseNo, Date notifyDate,
 			Date reciptDate, String detailStatus, String payMemo, int payPrice, String refundPoint, double refundRate,
 			int refundPrice, Date refundDay, String beneName, double beneRate, int benePrice, int faultDays,
 			int onedayFee, int faultPrice, int profit) {
@@ -84,22 +84,6 @@ public class Purchase {
 		this.onedayFee = onedayFee;
 		this.faultPrice = faultPrice;
 		this.profit = profit;
-	}
-
-	public final Date getReciptDate() {
-		return reciptDate;
-	}
-
-	public final void setReciptDate(Date reciptDate) {
-		this.reciptDate = reciptDate;
-	}
-
-	public final int getPurchaseNo() {
-		return purchaseNo;
-	}
-
-	public final void setPurchaseNo(int purchaseNo) {
-		this.purchaseNo = purchaseNo;
 	}
 
 	public final int getClassNo() {
@@ -182,12 +166,20 @@ public class Purchase {
 		this.realPrice = realPrice;
 	}
 
-	public final boolean isPayStatus() {
+	public final String getPayStatus() {
 		return payStatus;
 	}
 
-	public final void setPayStatus(boolean payStatus) {
+	public final void setPayStatus(String payStatus) {
 		this.payStatus = payStatus;
+	}
+
+	public final int getPurchaseNo() {
+		return purchaseNo;
+	}
+
+	public final void setPurchaseNo(int purchaseNo) {
+		this.purchaseNo = purchaseNo;
 	}
 
 	public final Date getNotifyDate() {
@@ -196,6 +188,14 @@ public class Purchase {
 
 	public final void setNotifyDate(Date notifyDate) {
 		this.notifyDate = notifyDate;
+	}
+
+	public final Date getReciptDate() {
+		return reciptDate;
+	}
+
+	public final void setReciptDate(Date reciptDate) {
+		this.reciptDate = reciptDate;
 	}
 
 	public final String getDetailStatus() {
@@ -322,5 +322,5 @@ public class Purchase {
 				+ benePrice + ", faultDays=" + faultDays + ", onedayFee=" + onedayFee + ", faultPrice=" + faultPrice
 				+ ", profit=" + profit + "]";
 	}
-
+	
 }

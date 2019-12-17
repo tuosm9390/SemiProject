@@ -428,13 +428,13 @@ fieldset {
 							<td>
 								<select id="note">
 									<option>특이사항 선택</option>
-									<option value="student">학생 퇴원</option>
+									<option value="student">고객 환불</option>
 									<option value="coupon">쿠폰 사용</option>
 									<option value="academy">학원 귀책</option>
 								</select>
 								
 								<div id="studentArea">
-									<br><label>퇴원일 선택</label><input type="date">
+									<br><label>환불일 선택</label><input type="date">
 								</div>
 								
 								<div id="couponArea">

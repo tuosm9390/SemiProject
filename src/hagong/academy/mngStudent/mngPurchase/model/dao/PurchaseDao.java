@@ -54,7 +54,37 @@ public class PurchaseDao {
 		ResultSet rset = null;
 		ArrayList<Purchase> purList = null;
 		
+		String selectedDate = selectDate.getSelectYear() + "-" + selectDate.getSelectMonth();
+		
 		String query = prop.getProperty("selectPurchaseList");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, selectedDate);
+			pstmt.setString(2, selectedDate);
+			rset = pstmt.executeQuery();
+			purList = new ArrayList<Purchase>();
+			
+			while(rset.next()) {
+				Purchase purchase = new Purchase();
+				purchase.setPurchaseNo(rset.getInt("PAY_NO"));
+				purchase.setStuNo(rset.getInt("USER_NO"));
+				purchase.setClassNo(rset.getInt("CLS_NO"));
+				purchase.setNotifyDate(rset.getDate("NOTIFY_DATE"));
+				purchase.setReciptDate(rset.getDate("RECIPT_DATE"));
+				purchase.setRefundDay(rset.getDate("REFUND_DAY"));
+				purchase.setPayPrice(rset.getInt("PAY_MONEY"));
+				purchase.setClassName(rset.getString("CLS_NAME"));
+				purchase.setClassStart(rset.getDate("CLS_START"));
+				purchase.setClassEnd(rset.getDate("CLS_END"));
+				purchase.setStuId(rset.getString("USER_ID"));
+				purchase.setBeneName(rset.getString("NAME"));
+				purchase.setRefundPoint(rset.getString("RFD_DATE"));
+				purchase.setBeneName(rset.getString("BEN_CONTENT"));
+				 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return purList;
 	}
 
