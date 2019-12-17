@@ -76,17 +76,20 @@ var newEvent = function (start, end, eventType) {
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
-        
-        //
-        var title = "hello";
+        //내 일정 받아옥;
+        var title = 
+
+
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "ainsert.cal",
+            url: "cinsert.cal",
             data: {
-                title:editTitle
+                //.....
             },
             success: function (response) {
+                console.log("조회완료");
+            
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
