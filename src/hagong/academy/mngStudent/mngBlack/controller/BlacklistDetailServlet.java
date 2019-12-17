@@ -38,12 +38,12 @@ public class BlacklistDetailServlet extends HttpServlet {
 		HashMap<String, Object> hmap = new BlacklistService().detailBlacklist(userNo);
 
 		
-		ArrayList<MemberCouns> detailBlacklist = (ArrayList<MemberCouns>) hmap.get("detailBlacklist");
-		BlacklistInfo userInfo = (BlacklistInfo) hmap.get("userInfo");
 		
 		String page = "";
 
 		if(hmap != null) {
+			ArrayList<MemberCouns> detailBlacklist = (ArrayList<MemberCouns>) hmap.get("detailBlacklist");
+			BlacklistInfo userInfo = (BlacklistInfo) hmap.get("userInfo");
 
 			page = "viewAcademy/mngStudent/mngBlack/blacklistDetail.jsp";
 			request.setAttribute("detailBlacklist", detailBlacklist);

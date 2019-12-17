@@ -92,9 +92,6 @@ public class ClasslistStudentServlet extends HttpServlet {
 		String searchCondition = request.getParameter("searchCondition");
 		String srchCnt = request.getParameter("searchStudent");
 		
-		System.out.println("searchCondition : " + searchCondition);
-		System.out.println("srchCnt : " + srchCnt);
-		
 		//검색기능인지 아닌지 판별하여 값가져오기
 		ArrayList<CS> cslist = null;
 		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
