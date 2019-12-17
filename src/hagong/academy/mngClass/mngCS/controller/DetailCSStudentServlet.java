@@ -36,8 +36,7 @@ public class DetailCSStudentServlet extends HttpServlet {
 		ArrayList<CSStudent> csslist = new CSService().detailCSStudent(clsNo);
 		ArrayList<CSStudent> allStudent = new CSService().allStudent(clsNo);
 		
-		System.out.println("csslist : " + csslist);
-		System.out.println("allStudent : " + allStudent);
+
 		
 		String page = "";
 		if(csslist != null) {
