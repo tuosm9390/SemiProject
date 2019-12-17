@@ -127,7 +127,6 @@ public class CSDao {
 				case "ETC": css.setClsStudentName("기타");break;
 				}
 				
-				System.out.println("DB에서 받아온 리스트 : " + css);
 				
 				csslist.add(css);
 			}
@@ -135,7 +134,6 @@ public class CSDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		
 		return csslist;
@@ -214,6 +212,58 @@ public class CSDao {
 		
 		
 		return allStudent;
+	}
+
+	public CSStudent detailCSInfo(Connection con, int clsNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		CSStudent csInfo = null;
+		
+		String query = prop.getProperty("selectCsInfo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, clsNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				csInfo = new CSStudent();
+				
+				csInfo.setClassName(rset.getString("CLR_NAME"));
+				csInfo.setClrNo(rset.getInt("CLR_NO"));
+				csInfo.setClsDay(rset.getString("CLS_DAY"));
+				csInfo.setClsEnd(rset.getDate("CLS_END"));
+				csInfo.setClsMax(rset.getInt("CLS_MAX"));
+				csInfo.setClsName(rset.getString("CLS_NAME"));
+				csInfo.setClsNo(rset.getInt("CLS_NO"));
+				csInfo.setClsStart(rset.getDate("CLS_START"));
+				csInfo.setClsStudent(rset.getString("CLS_STUDENT"));
+				csInfo.setClsTime(rset.getString("CLS_TIME"));
+				csInfo.setTchName(rset.getString("NAME"));
+				csInfo.setTuition(rset.getInt("TUITION"));
+				
+				
+				switch(csInfo.getClsStudent()) {
+				case "MID1": csInfo.setClsStudentName("중등 1학년");break;
+				case "MID2": csInfo.setClsStudentName("중등 2학년");break;
+				case "MID3": csInfo.setClsStudentName("중등 3학년");break;
+				case "HIGH1": csInfo.setClsStudentName("고등 1학년");break;
+				case "HIGH2": csInfo.setClsStudentName("고등 2학년");break;
+				case "HIGH3": csInfo.setClsStudentName("고등 3학년");break;
+				case "ETC": csInfo.setClsStudentName("기타");break;
+				}
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return csInfo;
 	}
 	
 	

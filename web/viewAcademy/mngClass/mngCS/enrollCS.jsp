@@ -3,6 +3,7 @@
 <%
 	ArrayList<CSStudent> csslist = (ArrayList<CSStudent>) request.getAttribute("csslist");
 	ArrayList<CSStudent> allStudent = (ArrayList<CSStudent>) request.getAttribute("allStudent");
+	CSStudent csInfo = (CSStudent) request.getAttribute("csInfo");
 %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,7 @@
 	<form id="classForm" action="" method="post">
 		<div class="classInfo">
 			<div align="center">
-		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　<%= csslist.get(0).getClsName() %>　></h1>
+		      <h1 align="center" style="font-family:'Do Hyeon'; padding-top:20px;"><　<%= csInfo.getClsName() %>　></h1>
 	    	</div>
    			<div class="bTable">
 				<table class="table">
@@ -75,11 +76,11 @@
 						<th>제한인원</th>					
 					</tr>
 					<tr>
-						<td><%= csslist.get(0).getTchName() %></td>
-						<td><%= csslist.get(0).getClsStudentName() %></td>
-						<td><%= csslist.get(0).getClsStart() %> ~ <%= csslist.get(0).getClsEnd()%></td>
-						<td><%= csslist.get(0).getClassName()%></td>
-						<td><%= csslist.get(0).getClsMax() %>명</td>
+						<td><%= csInfo.getTchName() %></td>
+						<td><%= csInfo.getClsStudentName() %></td>
+						<td><%= csInfo.getClsStart() %> ~ <%= csInfo.getClsEnd()%></td>
+						<td><%= csInfo.getClassName()%></td>
+						<td><%= csInfo.getClsMax() %>명</td>
 					</tr>
 				</table>
 			</div> <!-- 블랙리스트 정보 end -->	
@@ -90,12 +91,11 @@
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
 				<div id="allSt" class="tableArea">
-					<table class="table" id="allTable">
-						
+					<table class="table" id="allTable">				
 						<%for(int i = 0; i < allStudent.size(); i++) {%>
 							<tr>
 								<td><input type="checkbox" style="display:none" name="chAllst"><%= allStudent.get(i).getStuName() %></td>
-								<td><%= allStudent.get(i).getUserId() %></td>
+								<td><input type="hidden" name="userId" value="<%= allStudent.get(i).getUserNo() %>"><%= allStudent.get(i).getUserId() %></td>
 								<td><%= allStudent.get(i).getSchool() %></td>
 								<td><%= allStudent.get(i).getGradeName() %></td>
 							</tr>
@@ -115,20 +115,24 @@
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
 					<div id="thisSt" class="tableArea">
 					<table class="table" id="thisTable">
+						<% if(!csslist.isEmpty()) {%>
 						<%for(int i = 0; i < csslist.size(); i++) {%>
-							<%if(csslist.get(i).getStuName() != null) {%>
 							<tr>
 								<td><input type="checkbox" style="display:none" name="chst"><%= csslist.get(i).getStuName() %></td>
-								<td><%= csslist.get(i).getUserId() %></td>
+								<td><input type="hidden" name="userId" value="<%= allStudent.get(i).getUserNo() %>"><%= csslist.get(i).getUserId() %></td>
 								<td><%= csslist.get(i).getSchool() %></td>
 								<td><%= csslist.get(i).getGradeName() %></td>
 							</tr>
 						<%}
-						} %>
+						}%>
 					</table>
 					</div>
 				</div>
-				<input type="text" name="count" value="(29/30)" style="border:none;float:right;width:57px;" readonly>
+				<% if(!csslist.isEmpty()) {%>
+					<div style="float:right;">(<%= csslist.size()-1 %> / <%= csInfo.getClsMax() %>)</div>
+				<%} else{ %>
+					<div style="float:right;">(0 / <%= csInfo.getClsMax() %>)</div>					
+				<%} %>
 			</div>
 		</div> <!-- classListArea end -->
 		<div class="classbtn">
@@ -142,6 +146,19 @@
 	<script>
 		$(function(){
 			$("#allSt tr").click(function(){
+				console.log($(this).children().eq(0).children("input").prop("checked"));
+				if($(this).children().eq(0).children("input").prop("checked") == false){
+					$(this).addClass("on");
+					$(this).children().eq(0).children("input").prop("checked", true);
+					console.log("all " + $(this).children().eq(0).children("input").prop("checked"));
+				}else{
+					$(this).removeClass("on");
+					$(this).children().eq(0).children("input").prop("checked", false);
+					console.log("remAll " + $(this).children().eq(0).children("input").prop("checked"));
+				}
+			});
+			
+			$("#thisTable tr").click(function(){
 				console.log($(this).children().eq(0).children("input").prop("checked"));
 				if($(this).children().eq(0).children("input").prop("checked") == false){
 					$(this).addClass("on");

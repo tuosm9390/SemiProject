@@ -2,6 +2,7 @@ package hagong.academy.mngClass.mngCS.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import hagong.academy.mngClass.mngCS.model.dao.CSDao;
 import hagong.academy.mngClass.mngCS.model.vo.CS;
@@ -22,14 +23,20 @@ public class CSService {
 		return cslist;
 	}
 
-	public ArrayList<CSStudent> detailCSStudent(int clsNo) {
+	public HashMap<String, Object> detailCSStudent(int clsNo) {
 		Connection con = getConnection();
-		
+		HashMap<String, Object> hmap = new HashMap<>();
 		ArrayList<CSStudent> csslist = new CSDao().detailCSStudent(con, clsNo);
+		CSStudent csInfo = new CSDao().detailCSInfo(con, clsNo);
+		
+		
+		hmap.put("csslist", csslist);
+		hmap.put("csInfo", csInfo);
+
 		
 		close(con);
 		
-		return csslist;
+		return hmap;
 	}
 
 	public int listCount() {
