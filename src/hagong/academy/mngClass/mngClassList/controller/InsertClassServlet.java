@@ -44,6 +44,7 @@ public class InsertClassServlet extends HttpServlet {
 		String startTime = request.getParameter("startTime"); System.out.println("startTime : " + startTime);
 		String endTime = request.getParameter("endTime"); System.out.println("endTime : " + endTime);
 		String tuition = request.getParameter("money"); System.out.println("tuition : " + tuition);
+		String cntOfClass = request.getParameter("cntOfClass");
 		
 		java.sql.Date startDate=java.sql.Date.valueOf(s);
 		java.sql.Date endDate=java.sql.Date.valueOf(e);
@@ -61,6 +62,7 @@ public class InsertClassServlet extends HttpServlet {
 		c.setClrNo(Integer.parseInt(classroom));
 		c.setClsTime(classTime);
 		c.setTuition(Integer.parseInt(tuition));
+		c.setCntOfClass(Integer.parseInt(cntOfClass));
 		
 		int result = new ClassService().insertClass(c);
 		
