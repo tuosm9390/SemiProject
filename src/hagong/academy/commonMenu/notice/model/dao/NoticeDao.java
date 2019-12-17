@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import hagong.academy.commonMenu.notice.model.service.NoticeService;
 import hagong.academy.commonMenu.notice.model.vo.Notice;
+import hagong.academy.commonMenu.notice.model.vo.NoticeFile;
 
 public class NoticeDao {
 
@@ -65,7 +66,7 @@ public class NoticeDao {
 		
 	}
 
-	public int insertNotice(Connection con, Notice n) {
+	public int insertNotice(Connection con, ArrayList<NoticeFile> fileList) {
 
 		
 		PreparedStatement pstmt = null;
@@ -75,10 +76,10 @@ public class NoticeDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, n.getnTitle());
-			pstmt.setString(4, n.getnContent());
-			pstmt.setInt(2, n.getnAuthor());
-			pstmt.setDate(3, n.getnDate());
+			pstmt.setString(1, fileList.getnTitle());
+			pstmt.setString(4, fileList.getnContent());
+			pstmt.setInt(2, fileList.getnAuthor());
+			pstmt.setDate(3, fileList.getnDate());
 			
 			result = pstmt.executeUpdate();
 			
@@ -272,6 +273,15 @@ public class NoticeDao {
 		
 		return list;
 	}
+
+	public int selectCurrval(Connection con) {
+
+		
+		
+		return 0;
+	}
+
+	
 
 }
 
