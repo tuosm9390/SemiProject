@@ -2,6 +2,7 @@ package hagong.academy.mngClass.mngCS.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,16 +34,20 @@ public class DetailCSStudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int clsNo = Integer.parseInt(request.getParameter("clsNo"));
 		
-		ArrayList<CSStudent> csslist = new CSService().detailCSStudent(clsNo);
+		HashMap<String, Object> hmap = new CSService().detailCSStudent(clsNo);
 		ArrayList<CSStudent> allStudent = new CSService().allStudent(clsNo);
 		
 
 		
 		String page = "";
-		if(csslist != null) {
+		if(hmap != null) {
+			ArrayList<CSStudent> csslist = (ArrayList<CSStudent>) hmap.get("csslist");
+			CSStudent csInfo = (CSStudent) hmap.get("csInfo");
+			
 			page = "viewAcademy/mngClass/mngCS/enrollCS.jsp";
 			request.setAttribute("allStudent", allStudent);
 			request.setAttribute("csslist", csslist);
+			request.setAttribute("csInfo", csInfo);
 		}else {
 			page = "viewAcademy.common/commonError.jsp";
 			request.setAttribute("msg", "수강생등록 상세페이지 조회 실패!");
