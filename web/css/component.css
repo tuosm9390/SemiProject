@@ -59,7 +59,6 @@ td.err {
 .table tbody tr:hover {
     background-color: rgba(129,208,177,.3);
 }
-
 /* For appearance */
 .sticky-wrap {
 	overflow-x: auto;
@@ -107,3 +106,5 @@ td.err {
 	max-height: 50vh;
 }
 
+
+.table tbody tr.on{background : rgba(129,208,177,.5);}

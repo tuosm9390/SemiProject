@@ -89,12 +89,12 @@
 				<h3>전체 학생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-				<div class="tableArea">
-					<table class="table">
+				<div id="allSt" class="tableArea">
+					<table class="table" id="allTable">
 						
 						<%for(int i = 0; i < allStudent.size(); i++) {%>
 							<tr>
-								<td><%= allStudent.get(i).getStuName() %></td>
+								<td><input type="checkbox" style="display:none" name="chAllst"><%= allStudent.get(i).getStuName() %></td>
 								<td><%= allStudent.get(i).getUserId() %></td>
 								<td><%= allStudent.get(i).getSchool() %></td>
 								<td><%= allStudent.get(i).getGradeName() %></td>
@@ -106,19 +106,19 @@
 				</div>
 			</div>
 			<div class="cArea addDel">
-				<button class="addStudent">추가 ▶</button>
-				<button class="delStudent">◀ 삭제</button>
+				<button type="button" class="addStudent" id="allStu">추가 ▶</button>
+				<button type="button" class="delStudent" id="remStu">◀ 삭제</button>
 			</div>
 			<div class="cArea inClassStudentLsit" align="center">
 				<h3>해당 강좌 수강생 목록</h3>
 				<div class="studentList">
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
-					<div class="tableArea">
-					<table class="table">
+					<div id="thisSt" class="tableArea">
+					<table class="table" id="thisTable">
 						<%for(int i = 0; i < csslist.size(); i++) {%>
 							<%if(csslist.get(i).getStuName() != null) {%>
 							<tr>
-								<td><%= csslist.get(i).getStuName() %></td>
+								<td><input type="checkbox" style="display:none" name="chst"><%= csslist.get(i).getStuName() %></td>
 								<td><%= csslist.get(i).getUserId() %></td>
 								<td><%= csslist.get(i).getSchool() %></td>
 								<td><%= csslist.get(i).getGradeName() %></td>
@@ -138,8 +138,31 @@
 		</div>
 	</form>
 	</div>
-	
 	</section>
+	<script>
+		$(function(){
+			$("#allSt tr").click(function(){
+				console.log($(this).children().eq(0).children("input").prop("checked"));
+				if($(this).children().eq(0).children("input").prop("checked") == false){
+					$(this).addClass("on");
+					$(this).children().eq(0).children("input").prop("checked", true);
+				}else{
+					$(this).removeClass("on");
+					$(this).children().eq(0).children("input").prop("checked", false);
+				}
+			});
+			
+			
+			$("#allStu").click(function(){
+					var stu = $(".on");
+					$("#thisTable").append($(".on"));
+			});
+			$("#remStu").click(function(){
+					var all = $(".on");
+					$("#allTable").append($(".on"));
+			});
+		});
 
+	</script>
 </body>
 </html>
