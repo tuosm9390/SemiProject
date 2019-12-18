@@ -235,9 +235,9 @@ select, option{
             </table>
             <br>
             <button class="cancelbtn"
-               style="margin-left: 150px; width: 100px; height: 30px; float: left;">취소</button>
+               style="margin-left: 100px; width: 100px; height: 30px; float: left;">취소</button>
             <button class="okbtn"
-               style="margin-right: 150px; float: right; width: 100px; height: 30px;">확인</button>
+               style="margin-right: 100px; float: right; width: 100px; height: 30px;">확인</button>
             <br>
          </div>
       </div>

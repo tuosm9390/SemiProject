@@ -65,7 +65,7 @@ public class SatisfyService {
 		return result;
 	}
 
-	public int insertSatis(SatisfyInfo si, String[] qrr, String[] arr) {
+	public int insertSatis(SatisfyInfo si, String[] qrr, String[] arr, String[] questionNum, String[] answerNum) {
 		Connection con = getConnection();
 		int result = new SatisfyDao().insertSatis(con, si);
 
@@ -85,12 +85,14 @@ public class SatisfyService {
 					// 답변목록 입력
 					int aresult = 0;
 					for (int j = 0; j < arr.length; j++) {
-						aresult = new SatisfyDao().insertAns(con, arr[j], selectQueNo, selectSatNo);
-						if (aresult > 0) {
-							commit(con);
-						} else {
-							rollback(con);
-							break;
+						if (questionNum[i].equals(answerNum[j])) {
+							aresult = new SatisfyDao().insertAns(con, arr[j], selectQueNo, selectSatNo);
+							if (aresult > 0) {
+								commit(con);
+							} else {
+								rollback(con);
+								break;
+							}
 						}
 					}
 				} else {
@@ -106,5 +108,19 @@ public class SatisfyService {
 
 		return result;
 	}
+
+//	public int updateSatis(SatisfyInfo si, String[] qrr, String[] arr, String[] questionNum, String[] answerNum) {
+//		Connection con = getConnection();
+//		int result = new SatisfyDao().updateSatis(con, si);
+//
+//		if (result > 0) {
+//			commit(con);
+//		} else {
+//			rollback(con);
+//		}
+//		close(con);
+//
+//		return result;
+//	}
 
 }

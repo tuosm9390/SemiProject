@@ -153,7 +153,7 @@ select:focus {
 								<option selected>선택</option>
 								<% for(int i = 0; i < blist.size(); i++) { %>
 								<option value="<%=blist.get(i).getBenNo()%>"><%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
-											+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
+												+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
 								<% } %>
 						</select></td>
 					</tr>
@@ -202,7 +202,7 @@ select:focus {
 		//만족도 상세보기
 		$(".table td").click(function() {
 			var satNo = $(this).parent().children().find("#satNo").val();
-			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo;
+			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo + "&type=detail";
 		});
 
 		var benefit = document.getElementById("benefit");

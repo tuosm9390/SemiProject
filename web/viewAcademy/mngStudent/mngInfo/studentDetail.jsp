@@ -77,9 +77,7 @@ h2 {
 			<fieldset
 				style="border-bottom: none; border-left: none; border-right: none; border-top-color: black; width: 16%; height: 80px; font-family: 'Do Hyeon'">
 				<legend align="center">
-					<h1>
-						<%=sList.get(0).getName()%>
-					</h1>
+					<h1>　<%=sList.get(0).getName()%>　</h1>
 				</legend>
 			</fieldset>
 		</div>
@@ -171,13 +169,6 @@ h2 {
 					%>
 				</tbody>
 			</table>
-		</div>
-		<!-- 성적 그래프 -->
-		<div id="chart" style="width: 90%; margin: auto 10%;">
-			<h2 align="left">
-				<li>성적 그래프</li>
-			</h2>
-			<div id="chart19" align="center"></div>
 		</div>
 	</section>
 	<footer></footer>
@@ -323,30 +314,6 @@ h2 {
 									});
 						});
 
-		//차트
-		var options = {
-			'legend' : {
-				//x축 항목이름
-				names : [ '국어', '수학', '영어' ]
-			},
-			'dataset' : {
-				title : '학생 성적 그래프',
-				values : [],
-				colorset : [ '#749ee3', '#70db8e' ],
-				//y축 항목 이름
-				fields : [ '모의고사', '내신', '기타' ]
-			},
-			'chartDiv' : 'chart19',
-			'chartType' : 'multi_column',
-			'chartSize' : {
-				width : 900,
-				height : 500
-			},
-			'maxValue' : 100,
-			'increment' : 10
-		};
-
-		Nwagon.chart(options);
 		//DatePicker
 		$(function() {
 			$("#datepicker").datepicker(

@@ -100,17 +100,19 @@ tr, td {
 					<td></td>
 				</tr>
 				<tr>
-					<td colspan="4"><li>문항 및 결과</td>
+					<td colspan="4"><li>문항 및 답변</td>
 				</tr>
 				<tr>
 					<td colspan="4" class="question">
 						<ol class="qo">
 							<li class="ql">
 								<div class="que" style="display: contents;">
+									<input type="hidden" class="questionNum" name="questionNum" value="0">
 									<input type="text" id="question" name="question" placeholder="질문 문항 입력" size="100">
 									<input type="button" class="qdelete" value="-">
 									<input type="button" class="qadd" value="+"><br>
 									<span class="ans" style="display: contents;">
+										<input type="hidden" class="answerNum" name="answerNum" value="0">
 										<input type="text" id="answer" name="answer" placeholder="선택항목 입력">
 										<input type="button" class="adelete" value="-">
 										<input type="button" class="aadd" value="+"><br>
@@ -179,34 +181,30 @@ tr, td {
 		  } );
 		
 		
-		//문항 선택항목 추가
-		var anscnt = 0;
-		
+		var quecnt = 0;	//문항번호
+		//문항 답변항목 추가
 		$(".qo").on("click", ".aadd", function(){
-			anscnt++;
-			$(this).closest("span").after("<span class='ans" + anscnt + "' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
+			var anscnt = $(this).closest("div span").children(".answerNum").val();
+			$(this).closest("span").after("<span class='ans' style='display: contents;'><input type='hidden' class='answerNum' name='answerNum' value='" + anscnt + "'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
 		});
-		//문항 선택항목 삭제
+		//문항 답변항목 삭제
 		$(".qo").on("click", ".adelete", function(){
-			console.log($(this).closest("div span").siblings().size());
-			if($(this).closest("div span").siblings().size() != 4){
+			console.log($(this).closest("span").siblings().size());
+			if($(this).closest("span").siblings().size() > 5){
 				$(this).closest("span").remove();
 			}
 		});
 		
 		//설문 문항 추가
-		var quecnt = 0;
-		
 		$(".question").on("click", ".qadd", function(){
 			quecnt++;
-			anscnt++;
-			$(this).closest(".ql").after("<li class='ql'><div class='que" + quecnt + "' style='display: contents'><input type='text' id='question' name='question' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><span class='ans" + anscnt + "' style='display: contents;'><input type='text' id='answer' name='answer" + anscnt + "' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
+			$(this).closest(".ql").after("<li class='ql'><div class='que' style='display: contents'><input type='hidden' class='questionNum' name='questionNum' value='" + quecnt + "'><input type='text' id='question' name='question' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><span class='ans' style='display: contents;'><input type='hidden' class='answerNum' name='answerNum' value='" + quecnt + "'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
 		});
 		//설문 문항 제거
 		$(".question").on("click", ".qdelete", function(){
 			console.log($(this).parents(".ql").siblings().size());
-			if($(this).parents(".ql").siblings().size() != 0){
-				$(this).closest("li").remove();
+			if($(this).parents(".ql").siblings().size() > 0){
+				$(this).closest(".ql").remove();
 			};
 		});
 	</script>

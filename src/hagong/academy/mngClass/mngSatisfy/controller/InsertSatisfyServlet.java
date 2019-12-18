@@ -65,19 +65,58 @@ public class InsertSatisfyServlet extends HttpServlet {
 			int benNo = Integer.parseInt(request.getParameter("benefit"));
 			System.out.println("benNo : " + benNo);
 			
-			String[] qrr = request.getParameterValues("question");
-			if (qrr != null) {
-				for (int i = 0; i < qrr.length; i++) {
-					System.out.println("qrr" + i + " : " + qrr[i]);
+			String[] questionNum = request.getParameterValues("questionNum");
+			String question = "";
+			if(questionNum != null) {
+				for(int i = 0; i < questionNum.length; i++) {
+					if (i == 0) {
+						question += questionNum[i];
+					} else {
+						question += ", " + questionNum[i];
+					}
 				}
 			}
+			System.out.println("question : " + question);
+			
+			String[] answerNum = request.getParameterValues("answerNum");
+			String answer = "";
+			if(answerNum != null) {
+				for(int i = 0; i < answerNum.length; i++) {
+					if (i == 0) {
+						answer += answerNum[i];
+					} else {
+						answer += ", " + answerNum[i];
+					}
+				}
+			}
+			System.out.println("answer : " + answer);
+			
+			String[] qrr = request.getParameterValues("question");
+			String q = "";
+			if (qrr != null) {
+				for(int i = 0; i < qrr.length; i++) {
+					if (i == 0) {
+						q += qrr[i];
+					} else {
+						q += ", " + qrr[i];
+					}
+				}
+			}
+			System.out.println("q : " + q);
 			
 			String[] arr = request.getParameterValues("answer");
+			String a = "";
 			if (arr != null) {
-				for (int i = 0; i < arr.length; i++) {
-					System.out.println("arr" + i + " : " + arr[i]);
+				for(int i = 0; i < arr.length; i++) {
+					if (i == 0) {
+						a += arr[i];
+					} else {
+						a += ", " + arr[i];
+					}
 				}
 			}
+			System.out.println("a : " + a);
+			
 			
 			SatisfyInfo si = new SatisfyInfo();
 			si.setSatTitle(title);
@@ -86,13 +125,13 @@ public class InsertSatisfyServlet extends HttpServlet {
 			si.setEnd(end);
 			si.setBenNo(benNo);
 			
-//			int result = new SatisfyService().insertSatis(si, qrr, arr);
-//			
-//			if(result > 0) {
-//				System.out.println("등록 성공");
-//			} else {
-//				System.out.println("등록 실패");
-//			}
+			int result = new SatisfyService().insertSatis(si, qrr, arr, questionNum, answerNum);
+			
+			if(result > 0) {
+				System.out.println("등록 성공");
+			} else {
+				System.out.println("등록 실패");
+			}
 		}
 
 	}
