@@ -131,7 +131,7 @@
 					</div>
 				</div>
 				<% if(!csslist.isEmpty()) {%>
-					<div style="float:right;">(<%= csslist.size()-1 %> / <%= csInfo.getClsMax() %>)</div>
+					<div style="float:right;">(<%= csslist.size() %> / <%= csInfo.getClsMax() %>)</div>
 				<%} else{ %>
 					<div style="float:right;">(0 / <%= csInfo.getClsMax() %>)</div>					
 				<%} %>
