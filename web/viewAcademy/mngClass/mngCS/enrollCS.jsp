@@ -205,9 +205,7 @@
 					console.log("stuAll : " + stuAll);
 				});
 				
-				alert("stuAll : " + stuAll + "\nstuArr : " + stuArr);
-				
-				<%-- $("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr); --%>
+				$("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr + "&stuAll=" + stuAll);
 				
 			});
 		});

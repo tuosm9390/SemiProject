@@ -30,14 +30,31 @@ public class InsertClassStudentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String stuArr = request.getParameter("stuArr");
+		String stuAll = request.getParameter("stuAll");
+		
+		String[] stuAll2 = stuAll.split(",");
 		String[] stuArr2 = stuArr.split(",");
 		int[] stuNo = new int[stuArr2.length];
+		int[] stuAllNo = new int[stuAll2.length];
+		
 		for(int i = 0; i < stuArr2.length; i++) {
 			stuNo[i] = Integer.parseInt(stuArr2[i]);
 		}
+		for(int i = 0; i < stuAll2.length; i++) {
+			stuAllNo[i] = Integer.parseInt(stuAll2[i]);
+		}
 		int clsNo = Integer.parseInt(request.getParameter("clsNo"));
 		
-		int result = new CSService().insertCS(clsNo, stuNo);
+		
+		
+		int resultInsert = new CSService().insertCS(clsNo, stuNo);
+		int resultDelete = new CSService().deleteCS(clsNo, stuAllNo);
+		
+		int result = 0;
+		
+		if(resultInsert > 0 && resultDelete > 0) {
+			result = 1;
+		}
 		
 		String page = "";
 		if(result > 0) {
