@@ -1,7 +1,9 @@
 package hagong.academy.mngAdmin.mngPlan.model.service;
 
 import static hagong.common.JDBCTemplate.close;
+import static hagong.common.JDBCTemplate.commit;
 import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.HashMap;
 
 import hagong.academy.mngAdmin.mngPlan.model.dao.PlanDao;
 import hagong.academy.mngAdmin.mngPlan.model.vo.Plan;
+import hagong.academy.mngClass.mngClassList.model.dao.ClassDao;
 
 public class PlanService {
 
@@ -26,6 +29,22 @@ public class PlanService {
 		close(con);
 		
 		return hmap;
+	}
+	
+	public int insertPlan(String title, ArrayList<String> content) {
+		Connection con = getConnection();
+		
+		int result = new PlanDao().insertPlan(con, title, content);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }

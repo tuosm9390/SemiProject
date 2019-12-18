@@ -133,8 +133,14 @@
 			<tbody id="tbody">
 				<% for(int i=0; i<title.size(); i++) { %>
 				<tr>
-					<td><%= title.get(i) %></td>
-					
+					<td style="height:100px; font-weight:bold; color:black"><%= title.get(i) %></td>
+							<% for(int k=0; k<content.get(i).size(); k++){  
+								if((content.get(i).get(k)) != null) { %>
+								<td><%= content.get(i).get(k).getCalMemo() %></td>
+								<% }else { %>
+								<td></td>
+								<% } %>
+							<% } %>
 				</tr>
 				<% } %>
 			</tbody>
@@ -154,22 +160,22 @@
 						<li><input type="checkbox" name="0" id="alls"><label for="1">전체선택</label>
 						</li>
 							<li>
-								<input type="checkbox" name="1" id="jan" class="monthBtn"><label for="1">1월</label>
-								<input type="checkbox" name="2" id="feb" class="monthBtn"><label for="2">2월</label>
-								<input type="checkbox" name="3" id="mar" class="monthBtn"><label for="3">3월</label>
-								<input type="checkbox" name="4" id="apr" class="monthBtn"><label for="4">4월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="1"><label for="1">1월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="2"><label for="2">2월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="3"><label for="3">3월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="4"><label for="4">4월</label>
 							</li>
 							<li>
-								<input type="checkbox" name="5" id="may" class="monthBtn"><label for="5">5월</label>
-								<input type="checkbox" name="6" id="jun" class="monthBtn"><label for="6">6월</label>
-								<input type="checkbox" name="7" id="jul" class="monthBtn"><label for="7">7월</label>
-								<input type="checkbox" name="8" id="aug" class="monthBtn"><label for="8">8월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="5"><label for="5">5월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="6"><label for="6">6월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="7"><label for="7">7월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="8"><label for="8">8월</label>
 							</li>
 							<li>
-								<input type="checkbox" name="9" id="sep" class="monthBtn"><label for="9">9월</label>
-								<input type="checkbox" name="10" id="oct" class="monthBtn"><label for="10">10월</label>
-								<input type="checkbox" name="11" id="dec" class="monthBtn"><label for="11">11월</label>
-								<input type="checkbox" name="12" id="nov" class="monthBtn"><label for="12">12월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="9"><label for="9">9월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="10"><label for="10">10월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="11"><label for="11">11월</label>
+								<input type="checkbox" name="monthBtn" class="monthBtn" value="12"><label for="12">12월</label>
 							</li>
 						</ul>
 					</form>
@@ -191,13 +197,14 @@
 				var closeBtn = document.getElementById('xBtn');
 				
 				writeBtn.onclick = function() {
-					<%-- location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp"; --%>
+					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp";
 				}
 				
 				
 				
 				closeBtn.onclick = function() {
 					deleteArea.style.display = "none";
+					$("input[name=monthBtn]").attr("checked", false);
 				}
 				
 				cancleDelete.onclick = function() {
@@ -205,12 +212,41 @@
 				}
 				
 				deleteByMonth.onclick = function() {
-					//체크된 월 삭제 기능 실행됨
+					deleteArea.style.display = "block";				
 					
+					
+						
+					//체크된 월 삭제 기능 실행됨
+				
 					
 					//기능이 다 실행된 후 결과값에 따라 성공 시, 삭제 결과가 반영된 연간계획 페이지 / 실패 시 에러페이지로 이동
-					deleteArea.style.display = "block";
 				}
+				
+				/* $("input[name=monthBtn]").click(function(){
+					var checked = [];
+					$("input[name=monthBtn]:checked").each(function(i){
+						checked.push($(this).val());
+						
+					});
+					console.log(checked);
+					
+					$("#okbtn").click(function(){
+						console.log(checked);
+					//삭제 서블릿 실행
+						$.ajax({
+							url: "adelete.plan",
+							data: { checkedMonth:checked },
+							type: "get",
+							success: function(data){
+								
+							},
+							error: function(data){
+								
+							}
+						});
+					});
+				}); */
+				
 			});
 		</script>
 </section>
