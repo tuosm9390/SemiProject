@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngPurchase.model.vo.*"%>
+<%
+	SelectDate selectDate = (SelectDate) request.getAttribute("selectDate");
+	ArrayList<SelectClass> clsList = (ArrayList<SelectClass>) request.getAttribute("selectClass");
+	ArrayList<Purchase> purList = (ArrayList<Purchase>) request.getAttribute("purList");
+	
+	for(int i = 0; i < purList.size(); i++) {
+		if(purList.get(i).getPayStatus().equals("N")) {
+			purList.get(i).setPayStatus("미납");
+		} else {
+			purList.get(i).setPayStatus("완납");
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,15 +236,30 @@ fieldset {
 			<!-- 년/월 선택 부분 -->
 			<div align="center" class="monthArea">
 				<button class="month nextBtn">◀</button>&nbsp;
-				<select class="month selectMonth">
-					<option>2019</option>
+				<select id="selectYear" class="month selectMonth" onchange="changeDate();">
+					<% for(int i = selectDate.getStartYear(); i <= selectDate.getEndYear(); i++) { %>
+					<% if(i == selectDate.getSelectYear()) { %>
+					<option selected><%= i %></option>
+					<% } else { %>
+					<option><%= i %></option>
+					<% } } %>
 				</select> <label style="font-size:20px">년</label>
-				<select class="month selectMonth">
-					<% for(int i = 1; i < 13; i++) { %>
-						<% if(i < 10) { %>
-						<option>0<%= i %></option>
-						<% } else { %>
-						<option><%= i %></option>
+				<select id="selectMonth" class="month selectMonth" onchange="changeDate();">
+					<% if(selectDate.getStartYear() == selectDate.getEndYear()) { %>
+						<% for(int i = selectDate.getStartMonth(); i <= selectDate.getEndMonth(); i++) { %>
+							<% if(i == selectDate.getSelectMonth()) { %>
+							<option selected><%= i %></option>
+							<% } else { %>
+							<option><%= i %></option>
+							<% } %>
+						<% } %>
+					<% } else { %>
+						<% for(int i = 1; i < 13; i++) { %>
+							<% if(i == selectDate.getSelectMonth()) { %>
+							<option selected><%= i %></option>
+							<% } else { %>
+							<option><%= i %></option>
+							<% } %>
 						<% } %>
 					<% } %>
 				</select> <label style="font-size:20px">월</label>&nbsp;
@@ -306,10 +334,10 @@ fieldset {
 			<!-- 과목별 수납내역 아코디언 영역 (내용 영역) -->
 			<div class="wrap">
 				<ul class="accordion">
-					<% for(int j = 0; j < 10; j++) { %>
+					<% for(int j = 0; j < clsList.size(); j++) { %>
 					<li class="accordion__item">
 						<div class="accordion__title" href="javascript:void(0)">
-							<label style="margin-left:10px">김진호의 국어 교실</label>
+							<label style="margin-left:10px"><%= clsList.get(j).getClassName() %></label>
 							<div class="bmenu">▼</div>
 						</div>
 						<div class="accordion__content">
@@ -322,22 +350,23 @@ fieldset {
 								<table class="table" style="width:100%; float:left;">
 									<tr>
 										<th width="8%"><input type="checkbox" class="selectAll"><label for="selectAll">전체선택</label></th>
-										<th>학생 ID</th>
-										<th>학생 이름</th>
-										<th>청구 금액</th>
-										<th>납부 여부</th>
-										<th>상세</th>
+										<th width="24%">학생 ID</th>
+										<th width="20%">학생 이름</th>
+										<th width="20%">청구 금액</th>
+										<th wdith="8%">납부 여부</th>
+										<th width="20%">상세</th>
 									</tr>
-									<% for(int k = 0; k < 10; k++) { %>
-									<tr>
-										<td><input type="checkbox" class="selectOne"></td>
-										<td>NYJ970708</td>
-										<td>남윤진</td>
-										<td>300,000원</td>
-										<td>미납</td>
-										<td><label style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
-									</tr>
-									<% } %>
+									<% for(int k = 0; k < purList.size(); k++) { %>
+										<% if(purList.get(k).getClassNo() == clsList.get(j).getClassNo()) { %>
+										<tr>
+											<td><input type="checkbox" class="selectOne"></td>
+											<td><%= purList.get(k).getStuId() %></td>
+											<td><%= purList.get(k).getStuName() %></td>
+											<td><%= purList.get(k).getRealPrice() %></td>
+											<td><%= purList.get(k).getPayStatus() %></td>
+											<td><label style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
+										</tr>
+									<% } } %>
 								</table>
 							</div> <!-- tableArea -->
 						</div>
@@ -540,6 +569,12 @@ fieldset {
 				});
 				
 			});
+			
+			function changeDate(){
+				var year = $("#selectYear").val();
+				var month = $("#selectMonth").val();
+				location.href = "<%=request.getContextPath() %>/alist.pur?year=" + year + "&month=" + month;
+			}
 			
 		</script>
 		</div> <!-- outArea end -->

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hagong.academy.mngStudent.mngPurchase.model.service.PurchaseService;
 import hagong.academy.mngStudent.mngPurchase.model.vo.Purchase;
+import hagong.academy.mngStudent.mngPurchase.model.vo.SelectClass;
 import hagong.academy.mngStudent.mngPurchase.model.vo.SelectDate;
 
 @WebServlet("/alist.pur")
@@ -41,9 +42,21 @@ public class PurchaseListServlet extends HttpServlet {
 		selectDate.setStartYear(startYear); selectDate.setStartMonth(startMonth);
 		selectDate.setSelectYear(curYear); selectDate.setSelectMonth(curMonth);
 		
+		ArrayList<SelectClass> selectClass = new PurchaseService().selectClass(selectDate);
 		ArrayList<Purchase> purList = new PurchaseService().selectPurchaseList(selectDate);
 		
+		String page = "";
+		if(purList != null) {
+			request.setAttribute("selectDate", selectDate);
+			request.setAttribute("selectClass", selectClass);
+			request.setAttribute("purList", purList);
+			page = "viewAcademy/mngStudent/mngPurchase/purchaseList.jsp";
+		} else {
+			request.setAttribute("errorCode", "purchaseListViewFail");
+			page = "viewAcademy/common/commonError.jsp";
+		}
 		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

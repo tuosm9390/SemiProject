@@ -136,6 +136,20 @@
 			});
 		});
 	</script>
+	
+	<% }else if(errorCode == "purchaseListViewFail") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "수납내역 조회 실패",
+				text: "수납내역 조회에 실패하셨습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+			});
+		});
+	</script>
 
 	<% } else if(errorCode == "insertStudentFail") { %>
 	<script>
