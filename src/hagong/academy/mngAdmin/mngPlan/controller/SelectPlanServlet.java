@@ -2,6 +2,7 @@ package hagong.academy.mngAdmin.mngPlan.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +22,17 @@ public class SelectPlanServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Plan> list = new PlanService().selectPlan();
+		
+		HashMap<String, Object> hmap = new PlanService().selectPlan();
+		
+		ArrayList<String> title = (ArrayList<String>) hmap.get("title");
+		ArrayList<ArrayList<Plan>> content = (ArrayList<ArrayList<Plan>>) hmap.get("content");
 		
 		String page = "";
-		if(list != null) {
+		if(hmap != null) {
 			page = "/viewAcademy/mngAdmin/mngPlan/viewPlan.jsp";
-			request.setAttribute("list", list);
+			request.setAttribute("title", title);
+			request.setAttribute("content", content);
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

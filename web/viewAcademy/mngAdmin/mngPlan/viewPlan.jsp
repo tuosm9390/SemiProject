@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngAdmin.mngPlan.model.vo.*"%>
 <%
 	ArrayList<Plan> list = (ArrayList<Plan>) request.getAttribute("list");
-	System.out.println(list);
+	ArrayList<String> title = (ArrayList<String>) request.getAttribute("title");
+	ArrayList<ArrayList<Plan>> content = (ArrayList<ArrayList<Plan>>) request.getAttribute("content");
 %>
 <!DOCTYPE html>
 <html class="no-js">
@@ -130,24 +131,9 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				<% for(int i=0; i<list.size(); i++) { %>
+				<% for(int i=0; i<title.size(); i++) { %>
 				<tr>
-					<td><%= list.get(i).getCalTitle() %></td>
-					<%  switch(((list.get(i).getCalStart()).getMonth())+1) {
-						case 1 : %><td><%= list.get(i).getCalMemo() %></td> <% break; 
-						case 2 : %><td></td><td><%= list.get(i).getCalMemo() %></td> <% break;
-						case 3 : %><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 4 : %><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 5 : %><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 6 : %><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 7 : %><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 8 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 9 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 10 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 11 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-						case 12 : %><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><%= list.get(i).getCalMemo() %></td><% break;
-					} %>
-						
+					<td><%= title.get(i) %></td>
 					
 				</tr>
 				<% } %>
