@@ -37,8 +37,8 @@ public class InsertCalendarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("11111111111111111111111");
-	    Date start = Date.valueOf(request.getParameter("start"));
-	    Date end = Date.valueOf(request.getParameter("end"));
+		String exstart = request.getParameter("start");
+		String exend = request.getParameter("end");
 	    String title = request.getParameter("title");
 	    String allDay = request.getParameter("allDay");
 	    String bgColor = request.getParameter("bgColor");
@@ -48,14 +48,15 @@ public class InsertCalendarServlet extends HttpServlet {
 	   System.out.println(title);
 		
 		Calendar cal = new Calendar();
-		cal.setStart(start);
-		cal.setEnd(end);
+		
 		cal.setTitle(title);
 		cal.setAllDay(allDay);
 		cal.setBgColor(bgColor);
 		cal.setType(type);
 		cal.setContent(content);
 		cal.setUno(uno);
+		
+		
 	
 		
 		int result = new CalendarService().insertCal(cal);
