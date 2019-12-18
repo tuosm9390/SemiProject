@@ -42,37 +42,44 @@ public class InsertCalendarServlet extends HttpServlet {
 		String exend = request.getParameter("end");
 		int uno = Integer.parseInt(request.getParameter("uno"));
 	    String title = request.getParameter("title");
-	    String allDay = request.getParameter("allDay");
 	    String type = request.getParameter("type");
 	    String content = request.getParameter("content");
 	    String backgroundColor = request.getParameter("backgroundColor");
-	   
-	    java.sql.Date start = null;
-	    java.sql.Date end = null;
-	    
-	    start = java.sql.Date.valueOf(exstart);
-	    end = java.sql.Date.valueOf(exend);
-	    
+	 
+		java.sql.Date start = null;
+		java.sql.Date end = null;
 	  
-
+		start = java.sql.Date.valueOf(exstart);
+		end = java.sql.Date.valueOf(exend);
+		
+	    if(type.equals("상담")) {
+	    	type = "COUNS";
+	    }else if(type.equals("학원일정")) {
+	    	type = "EVENT";
+	    }else if(type.equals("개인일정")) {
+	    	type = "PER";
+	    }else {
+	    	type = "ETC";
+	    }
+	    
 	    System.out.println("start : " + exstart );
 	    System.out.println("end : " + exend);
 	    System.out.println("title : " + title);
-	    System.out.println("allDay : " + allDay);
+	 
 	    System.out.println("type : " + type);
-	    System.out.println("content L:L " + content);
+	    System.out.println("content : " + content);
 	    System.out.println("uno : " + uno);
 	    System.out.println("backgroundColor : " + backgroundColor);
 	  
 	    Calendar cal = new Calendar();
 	    
 	    cal.setTitle(title);
-	    cal.setAllDay(allDay);
 	    cal.setType(type);
 	    cal.setContent(content);
 	    cal.setUno(uno);
 	    cal.setStart(start);
 	    cal.setEnd(end);
+	
 	    
 		int result = new CalendarService().insertCal(cal);
 		

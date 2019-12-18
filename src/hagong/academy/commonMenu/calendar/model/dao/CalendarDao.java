@@ -4,7 +4,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import hagong.academy.commonMenu.calendar.model.vo.Calendar;
@@ -53,6 +57,44 @@ public class CalendarDao {
 		}
 		return result;
 		
+	}
+
+
+	public ArrayList<Calendar> selectCal(Connection con, int uno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Calendar> list = null;
+		
+		String query = prop.getProperty("selectCal");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, uno);
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Calendar>();
+			
+			while(rset.next()) {
+			  Calendar c = new Calendar();
+			  c.setCno(rset.getInt("CAL_NO"));
+			  c.setUno(rset.getInt("USER_NO"));
+			  c.setTitle(rset.getString("CAL_TITLE"));
+			  c.setStart(rset.getDate("CAL_START"));
+			  c.setEnd(rset.getDate("CAL_END"));
+			  c.setType(rset.getString("CAL_TYPE"));
+			  c.setContent(rset.getString("CAL_MEMO"));
+			  c.setMdtype(rset.getString("DATE_TYPE"));
+			  
+			  list.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
 	}
 
 }
