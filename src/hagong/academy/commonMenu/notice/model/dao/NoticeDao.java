@@ -274,20 +274,20 @@ public class NoticeDao {
 		return list;
 	}
 
-	public int selectCurrval(Connection con) {
+	public int selectNotice(Connection con) {
 
 		Statement stmt = null;
 		ResultSet rset = null;
 		int userNo = 0;
 		
-		String query = prop.getProperty("selectCurrval");
+		String query = prop.getProperty("selectNotice");
 		
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			if(rset.next()) {
-				userNo = rset.getInt("CURRVAL");
+				userNo = rset.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -314,7 +314,7 @@ public class NoticeDao {
 			
 			pstmt.setInt(3, n.getnAuthor());
 			
-			result = pstmt.executeUpdate();
+			result += pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -339,6 +339,7 @@ public class NoticeDao {
 				pstmt.setString(2, fileList.get(i).getOriginName());
 				pstmt.setString(3, fileList.get(i).getChangeName());
 				pstmt.setString(4, fileList.get(i).getFilePath());
+				//pstmt.setInt(5, fileNo.get);
 				
 				int level = 0;
 				if(i == 0) {
