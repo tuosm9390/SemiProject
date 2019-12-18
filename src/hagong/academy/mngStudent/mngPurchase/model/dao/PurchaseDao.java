@@ -165,6 +165,7 @@ public class PurchaseDao {
 				} else {
 					detailStatus = "미납";
 				}
+				purchase.setDetailStatus(detailStatus);
 				
 				purList.add(purchase);
 			}
@@ -175,6 +176,63 @@ public class PurchaseDao {
 			close(pstmt);
 		}
 		return purList;
+	}
+
+	public int updateStatus(Connection con, int[] requestNos) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateStatus");
+		try {
+			pstmt = con.prepareStatement(query);
+			for(int i = 0; i < requestNos.length; i++) {
+				pstmt.setInt(1, requestNos[i]);
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateBill(Connection con, int[] requestNos) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBill");
+		try {
+			pstmt = con.prepareStatement(query);
+			for(int i = 0; i < requestNos.length; i++) {
+				pstmt.setInt(1, requestNos[i]);
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateRecipt(Connection con, int[] requestNos) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateRecipt");
+		try {
+			pstmt = con.prepareStatement(query);
+			for(int i = 0; i < requestNos.length; i++) {
+				pstmt.setInt(1, requestNos[i]);
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }
