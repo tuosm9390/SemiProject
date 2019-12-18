@@ -38,13 +38,12 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: eventId,
+           
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -76,23 +75,26 @@ var newEvent = function (start, end, eventType) {
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
-        //내 일정 받아옥;
-        var title = 
+       
+      
 
-
+        var title = "tetstst";
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "cinsert.cal",
-            data: {
-                //.....
-            },
-            success: function (response) {
+            url: "/hagong/ainsert.cal",
+            data: 
+             eventData
+            ,
+            success: function (data) {
                 console.log("조회완료");
             
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
+            },
+            error:function(data){
+            	console.log("시발");
             }
         });
     });
