@@ -41,8 +41,8 @@ public class SatisfyService {
 	public int insertBen(SatisfyInfo si) {
 		Connection con = getConnection();
 		int result = new SatisfyDao().insertBen(con, si);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			commit(con);
 		} else {
 			rollback(con);
@@ -55,7 +55,7 @@ public class SatisfyService {
 		System.out.println("삭제서비스");
 		Connection con = getConnection();
 		int result = new SatisfyDao().deleteBen(con, benNo);
-		if(result > 0) {
+		if (result > 0) {
 			System.out.println("삭제성공");
 			commit(con);
 		} else {
@@ -68,24 +68,25 @@ public class SatisfyService {
 	public int insertSatis(SatisfyInfo si, String[] qrr, String[] arr) {
 		Connection con = getConnection();
 		int result = new SatisfyDao().insertSatis(con, si);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			commit(con);
-			//입력한 설문 번호 뽑아오기
+			// 입력한 설문 번호 뽑아오기
 			int selectSatNo = new SatisfyDao().selectSatNo(con, si);
-			//설문문항 입력
+			// 설문문항 입력
 			int qresult = 0;
-			for(int i = 0; i < qrr.length; i++) {
+			for (int i = 0; i < qrr.length; i++) {
 				qresult = new SatisfyDao().insertQue(con, qrr[i], selectSatNo);
-				
-				if(qresult > 0) {
+
+				if (qresult > 0) {
 					commit(con);
+					// 문항의 번호 뽑아옴
 					int selectQueNo = new SatisfyDao().selectQueNo(con, qrr[i], selectSatNo);
-					//답변목록 입력
+					// 답변목록 입력
 					int aresult = 0;
-					for(int j = 0; j < arr.length; j++) {
+					for (int j = 0; j < arr.length; j++) {
 						aresult = new SatisfyDao().insertAns(con, arr[j], selectQueNo, selectSatNo);
-						if(aresult > 0) {
+						if (aresult > 0) {
 							commit(con);
 						} else {
 							rollback(con);
@@ -100,11 +101,10 @@ public class SatisfyService {
 		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
-		
+
 		return result;
 	}
-
 
 }

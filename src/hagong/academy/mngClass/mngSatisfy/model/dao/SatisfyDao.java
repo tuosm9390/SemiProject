@@ -240,25 +240,23 @@ public class SatisfyDao {
 		return result;
 	}
 
-	//받아올 설문번호 뽑기
+	// 받아올 설문번호 뽑기
 	public int selectSatNo(Connection con, SatisfyInfo si) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int satNo = 0;
-		
+
 		String query = prop.getProperty("selectSatNo");
 
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, si.getSatTitle());
-			pstmt.setDate(2, si.getStart());
-			pstmt.setDate(3, si.getEnd());
-			pstmt.setString(4, si.getTarget());
-			pstmt.setInt(5, si.getBenNo());
-			
+			pstmt.setString(2, si.getTarget());
+			pstmt.setInt(3, si.getBenNo());
+
 			rset = pstmt.executeQuery();
-			
+
 			while (rset.next()) {
 				satNo = rset.getInt("SAT_NO");
 			}
@@ -268,29 +266,29 @@ public class SatisfyDao {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return satNo;
 	}
 
 	public int insertQue(Connection con, String que, int selectSatNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertQue");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, que);
 			pstmt.setInt(2, selectSatNo);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
@@ -298,51 +296,51 @@ public class SatisfyDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int queNo = 0;
-		
+
 		String query = prop.getProperty("selectQueNo");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, qrr);
 			pstmt.setInt(2, selectSatNo);
-			
+
 			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				queNo = rset.getInt("QUE_NO");
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return queNo;
 	}
 
 	public int insertAns(Connection con, String arr, int selectQueNo, int selectSatNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("inserAns");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setInt(1, selectQueNo);
 			pstmt.setInt(2, selectSatNo);
 			pstmt.setString(3, arr);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
