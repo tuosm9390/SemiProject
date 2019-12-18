@@ -142,14 +142,17 @@ var calendar = $('#calendar').fullCalendar({
   /* ****************
    *  일정 받아옴 
    * ************** */
+ 
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "/hagong/aselect.cal",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	  
       },
       success: function (response) {
+    	  console.log("성공이");
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력

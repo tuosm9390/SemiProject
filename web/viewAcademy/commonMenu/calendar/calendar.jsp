@@ -14,9 +14,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <style>
+	
+	button, button:focus {
+z-index:0 !important;
+}
 
      html, body {
     margin: 0;
@@ -59,18 +64,17 @@
 
  
 <body>
- <%@ include file="/viewAcademy/common/menubar.jsp"%>
     <div class="container">
+
 
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a href="#">학생 상담</a></li>
-                <li><a href="#">학부모 상담</a></li>
-                <li><a href="#">직원 면담</a></li>
-                <li><a href="#">회의</a></li>
+                <li><a href="#">상담</a></li>
+                <li><a href="#">학원일정</a></li>
                 <li><a href="#">개인일정</a></li>
+                <li><a href="#">기타</a></li>
                 <li class="divider"></li>
                 <li><a  href="#" data-role="close">Close</a></li>
             </ul>
@@ -81,7 +85,7 @@
             <div id="calendar"></div>
         </div>
 
-
+	 <%@ include file="/viewAcademy/common/menubar.jsp"%>
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
             <div class="modal-dialog" role="document">
@@ -123,11 +127,11 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="학생 상담">학생 상담</option>
-                                    <option value="학부모 상담">학부모 상담</option>
-                                    <option value="직원 면담">직원 면담</option>
-                                    <option value="회의">회의</option>
+                                    <option value="상담">상담</option>
+                                    <option value="학원일정">학원일정</option>
                                     <option value="개인일정">개인일정</option>
+                                    <option value="기타">기타</option>
+                               
                                 </select>
                             </div>
                         </div>
@@ -175,13 +179,12 @@
     <script src="vendor/js/fullcalendar.min.js"></script>
     <script src="vendor/js/ko.js"></script>
     <script src="vendor/js/select2.min.js"></script>
-    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/main.js"></script>
-  
+    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script> 
     <script src="js/editEvent.js"></script>
     <script src="js/etcSetting.js"></script>
      
 </body>
+
  <script>
  var eventModal = $('#eventModal');
 
@@ -214,9 +217,7 @@
      modifyBtnContainer.hide();
      eventModal.modal('show');
 
-     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-     var eventId = 1 + Math.floor(Math.random() * 1000);
-     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+
 
      //새로운 일정 저장버튼 클릭
      $('#save-event').unbind();
@@ -275,14 +276,362 @@
                  console.log("조회완료");
              
                  //DB연동시 중복이벤트 방지를 위한
-                 //$('#calendar').fullCalendar('removeEvents');
-                 //$('#calendar').fullCalendar('refetchEvents');
+                 $('#calendar').fullCalendar('removeEvents');
+                 $('#calendar').fullCalendar('refetchEvents');
              },
              error:function(data){
-             	console.log("시발");
+             	console.log("조회실패");
              }
          });
      });
  };
+ 
+ ////////////////////////////////////////메인///////////////////////////////////////////////////
+ var draggedEventIsAllDay;
+var activeInactiveWeekends = true;
+
+function getDisplayEventDate(event) {
+
+  var displayEventDate;
+
+  if (event.allDay == false) {
+    var startTimeEventInfo = moment(event.start).format('HH:mm');
+    var endTimeEventInfo = moment(event.end).format('HH:mm');
+    displayEventDate = startTimeEventInfo + " - " + endTimeEventInfo;
+  } else {
+    displayEventDate = "하루종일";
+  }
+
+  return displayEventDate;
+}
+
+function filtering(event) {
+  var show_username = true;
+  var show_type = true;
+
+  return show_username && show_type;
+}
+
+function calDateWhenResize(event) {
+
+  var newDates = {
+    startDate: '',
+    endDate: ''
+  };
+
+  if (event.allDay) {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
+  } else {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+  }
+
+  return newDates;
+}
+
+function calDateWhenDragnDrop(event) {
+  // 드랍시 수정된 날짜반영
+  var newDates = {
+    startDate: '',
+    endDate: ''
+  }
+
+  //하루짜리 all day
+  if (event.allDay && event.end === null) {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = newDates.startDate;
+  }
+
+  //2일이상 all day
+  else if (event.allDay && event.end !== null) {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
+  }
+
+  //all day가 아님
+  else if (!event.allDay) {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+  }
+
+  return newDates;
+}
+
+
+var calendar = $('#calendar').fullCalendar({
+
+  eventRender: function (event, element, view) {
+
+    //일정에 hover시 요약
+    element.popover({
+      title: $('<div />', {
+        class: 'popoverTitleCalendar',
+        text: event.title
+      }).css({
+        'background': event.backgroundColor,
+        'color': event.textColor
+      }),
+      content: $('<div />', {
+          class: 'popoverInfoCalendar'
+        })
+        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
+        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
+        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
+      delay: {
+        show: "800",
+        hide: "50"
+      },
+      trigger: 'hover',
+      placement: 'top',
+      html: true,
+      container: 'body'
+    });
+
+    return filtering(event);
+
+  },
+
+  //주말 숨기기 & 보이기 버튼
+  customButtons: {
+    viewWeekends: {
+      text: '주말',
+      click: function () {
+        activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
+        $('#calendar').fullCalendar('option', {
+          weekends: activeInactiveWeekends
+        });
+      }
+    }
+  },
+
+  header: {
+    left: 'today, prevYear, nextYear, viewWeekends',
+    center: 'prev, title, next',
+    right: 'month,agendaWeek,agendaDay,listWeek'
+  },
+  views: {
+    month: {
+      columnFormat: 'dddd'
+    },
+    agendaWeek: {
+      columnFormat: 'M/D ddd',
+      titleFormat: 'YYYY년 M월 D일',
+      eventLimit: false
+    },
+    agendaDay: {
+      columnFormat: 'dddd',
+      eventLimit: false
+    },
+    listWeek: {
+      columnFormat: ''
+    }
+  },
+
+  /* ****************
+   *  일정 받아옴 
+   * ************** */
+ 
+  events: function (start, end, timezone, callback) {
+	  var uno = <%=loginUser.getUserNo()%>
+	  
+    $.ajax({
+      type: "get",
+      url: "/hagong/aselect.cal",
+      data: {
+        // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	  uno:uno
+      },
+      success: function (response) {
+    	  
+    	  console.log("성공이");
+    	  console.log(response);
+    	  
+    	  //테스트
+    	  var events=[];
+    	  
+    	  for(var key in response){
+			
+				console.log(response[key].start);
+				console.log(response[key].title);
+				var evt={
+						_id:response[key].cno,
+						title:response[key].title,
+						description:response[key].content,
+						start:response[key].start,
+						end:response[key].end,
+						type:response[key].type,
+						backgroundColor:"black",
+						textColor:"cyan",
+						allDay:true
+				};
+				events.push(evt);
+			}
+        callback(events);
+      }
+    });
+  },
+
+  eventAfterAllRender: function (view) {
+    if (view.name == "month") {
+      $(".fc-content").css('height', 'auto');
+    }
+  },
+
+  //일정 리사이즈
+  eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
+    $('.popover.fade.top').remove();
+
+    /** 리사이즈시 수정된 날짜반영
+     * 하루를 빼야 정상적으로 반영됨. */
+    var newDates = calDateWhenResize(event);
+
+    //리사이즈한 일정 업데이트
+    $.ajax({
+      type: "get",
+      url: "",
+      data: {
+        //id: event._id,
+        //....
+      },
+      success: function (response) {
+        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+      }
+    });
+
+  },
+
+  eventDragStart: function (event, jsEvent, ui, view) {
+    draggedEventIsAllDay = event.allDay;
+  },
+
+  //일정 드래그앤드롭
+  eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+    $('.popover.fade.top').remove();
+
+    //주,일 view일때 종일 <-> 시간 변경불가
+    if (view.type === 'agendaWeek' || view.type === 'agendaDay') {
+      if (draggedEventIsAllDay !== event.allDay) {
+        alert('드래그앤드롭으로 종일<->시간 변경은 불가합니다.');
+        location.reload();
+        return false;
+      }
+    }
+
+    // 드랍시 수정된 날짜반영
+    var newDates = calDateWhenDragnDrop(event);
+
+    //드롭한 일정 업데이트
+    $.ajax({
+      type: "get",
+      url: "",
+      data: {
+        //...
+      },
+      success: function (response) {
+        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+      }
+    });
+
+  },
+
+  select: function (startDate, endDate, jsEvent, view) {
+
+    $(".fc-body").unbind('click');
+    $(".fc-body").on('click', 'td', function (e) {
+
+      $("#contextMenu")
+        .addClass("contextOpened")
+        .css({
+          display: "block",
+          left: e.pageX,
+          top: e.pageY
+        });
+      return false;
+    });
+
+    var today = moment();
+
+    if (view.name == "month") {
+      startDate.set({
+        hours: today.hours(),
+        minute: today.minutes()
+      });
+
+      startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
+      endDate = moment(endDate).subtract(1, 'days');
+
+      endDate.set({
+        hours: today.hours() + 1,
+        minute: today.minutes()
+      });
+      endDate = moment(endDate).format('YYYY-MM-DD HH:mm');
+    } else {
+      startDate = moment(startDate).format('YYYY-MM-DD HH:mm');
+      endDate = moment(endDate).format('YYYY-MM-DD HH:mm');
+    }
+
+    //날짜 클릭시 카테고리 선택메뉴
+    var $contextMenu = $("#contextMenu");
+      $contextMenu.on("click", "a", function (e) {
+      e.preventDefault();
+
+      //닫기 버튼이 아닐때
+      if ($(this).data().role !== 'close') {
+        newEvent(startDate, endDate, $(this).html());
+      }
+
+      $contextMenu.removeClass("contextOpened");
+      $contextMenu.hide();
+    });
+
+    $('body').on('click', function () {
+      $contextMenu.removeClass("contextOpened");
+      $contextMenu.hide();
+    });
+
+  },
+
+  //이벤트 클릭시 수정이벤트
+  eventClick: function (event, jsEvent, view) {
+    editEvent(event);
+  },
+
+  locale: 'ko',
+  timezone: "local",
+  nextDayThreshold: "09:00:00",
+  allDaySlot: true,
+  displayEventTime: true,
+  displayEventEnd: true,
+  firstDay: 0, //월요일이 먼저 오게 하려면 1
+  weekNumbers: false,
+  selectable: true,
+  weekNumberCalculation: "ISO",
+  eventLimit: true,
+  views: {
+    month: {
+      eventLimit: 12
+    }
+  },
+  eventLimitClick: 'week', //popover
+  navLinks: true,
+
+  timeFormat: 'HH:mm',
+  defaultTimedEventDuration: '01:00:00',
+  editable: true,
+  minTime: '00:00:00',
+  maxTime: '24:00:00',
+  slotLabelFormat: 'HH:mm',
+  weekends: true,
+  nowIndicator: true,
+  dayPopoverFormat: 'MM/DD dddd',
+  longPressDelay: 0,
+  eventLongPressDelay: 0,
+  selectLongPressDelay: 0
+});
  </script>
+ <script>
+ 
+ </script>
+ 
 </html>
