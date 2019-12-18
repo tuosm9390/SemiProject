@@ -109,7 +109,7 @@
 	</div> <!-- btnArea end -->
 	<div class="listArea">
 	<div class="body">
-		<form id="planForm">
+		<form id="planForm" action="<%=request.getContextPath()%>/ainsert.plan" method="post">
 			<table id="planTableArea" class="table">
 			<thead>
 				<tr>
@@ -191,24 +191,101 @@
 				var cancleDelete = document.getElementById('cancelbtn');
 				var closeBtn = document.getElementById('xBtn');
 				var addRowName = "";
+
 				
+				//저장 버튼 클릭 시
 				writeBtn.onclick = function() {
-					var form = $("#planForm");
-					console.log(form);
+					var arr = [];
+					var one = $("#one").val();
+					var two = $("#two").val();
+					var three = $("#three").val();
+					var four = $("#four").val();
+					var five = $("#five").val();
+					var six = $("#six").val();
+					var seven = $("#seven").val();
+					var eight = $("#eight").val();
+					var nine = $("#nine").val();
+					var ten = $("#ten").val();
+					var eleven = $("#eleven").val();
+					var twelve = $("#twelve").val();
+					
+					arr.push(one);
+					arr.push(two);
+					arr.push(three);
+					arr.push(four);
+					arr.push(five);
+					arr.push(six);
+					arr.push(seven);
+					arr.push(eight);
+					arr.push(nine);
+					arr.push(ten);
+					arr.push(eleven);
+					arr.push(twelve);
 					
 					
+					$.ajax({
+						url: "<%=request.getContextPath()%>/ainsert.plan",
+						data: {
+							title:addRowName,
+							one:$("#one").val(),
+							two:$("#two").val(),
+							three:$("#three").val(),
+							four:$("#four").val(),
+							five:$("#five").val(),
+							six:$("#six").val(),
+							seven:$("#seven").val(),
+							eight:$("#eight").val(),
+							nine:$("#nine").val(),
+							ten:$("#ten").val(),
+							eleven:$("#eleven").val(),
+							twelve:$("#twelve").val()
+						},
+						type: "get",
+						success: function(data){
+							
+						},
+						error: function(data){
+							
+						}
+					});
+				
+
 				}
 				
+				
+				
+				
+				
+				//행 추가 버튼 클릭 시
 				addRowBtn.onclick = function() {
 					addRowName = window.prompt('행 이름 입력');
 					
+					<%-- if(addRowName != null) {
 					$.ajax({
-						
+						url: "<%=request.getContextPath()%>/ainsert.plan",
+						data: {addRowName:addRowName},
+						type: "get",
+						success: function(data){
+							console.log(data);
+						},
+						error: function(data){
+							
+						}
 					});
-					$("#tbody").append("<tr value='" + addRowName + "'><td>"+ addRowName + "</td>"
-										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
-										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td>"
-										+ "<td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td></tr>");
+					} --%>
+					$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
+										+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='three' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='four' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='five' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='six' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='seven' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='eight' style='background:none; border:none; resize:none;'></textarea></td>"										
+										+ "<td><textarea id='nine' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
+										+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
 				}
 				
 				deleteRowBtn.onclick = function() {

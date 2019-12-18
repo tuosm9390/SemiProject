@@ -24,9 +24,10 @@ public class SelectPlanServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HashMap<String, Object> hmap = new PlanService().selectPlan();
+		System.out.println("hmap : " + hmap);
 		
-		ArrayList<String> title = (ArrayList<String>) hmap.get("title");
-		ArrayList<ArrayList<Plan>> content = (ArrayList<ArrayList<Plan>>) hmap.get("content");
+		ArrayList<String> title = (ArrayList<String>) hmap.get("title"); System.out.println("title : " + title);
+		ArrayList<ArrayList<Plan>> content = (ArrayList<ArrayList<Plan>>) hmap.get("content"); System.out.println("content : " + content);
 		
 		String page = "";
 		if(hmap != null) {

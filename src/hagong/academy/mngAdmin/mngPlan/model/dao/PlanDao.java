@@ -101,4 +101,58 @@ public class PlanDao {
 		return list;
 	}
 
+	public int insertPlan(Connection con, String title, ArrayList<String> content) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertPlan");
+			
+			for(int i=0; i<content.size(); i++) {
+				
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, title);
+					
+					switch(i+1) {
+					case 1 : pstmt.setString(2, "190101");
+							 pstmt.setString(3, "190131"); break;
+					case 2 : pstmt.setString(2, "190201"); 
+							 pstmt.setString(3, "190228"); break;
+					case 3 : pstmt.setString(2, "190301");
+							 pstmt.setString(3, "190330"); break;
+					case 4 : pstmt.setString(2, "190401");
+							 pstmt.setString(3, "190430"); break;
+					case 5 : pstmt.setString(2, "190501");
+							 pstmt.setString(3, "190530"); break;
+					case 6 : pstmt.setString(2, "190601");
+							 pstmt.setString(3, "190630"); break;
+					case 7 : pstmt.setString(2, "190701");
+							 pstmt.setString(3, "190730"); break;
+					case 8 : pstmt.setString(2, "190801");
+							 pstmt.setString(3, "190830"); break;
+					case 9 : pstmt.setString(2, "190901");
+							 pstmt.setString(3, "190930"); break;
+					case 10 : pstmt.setString(2, "191001");
+							  pstmt.setString(3, "191030"); break;
+					case 11 : pstmt.setString(2, "191101");
+							  pstmt.setString(3, "191130"); break;
+					case 12 : pstmt.setString(2, "191201");
+							  pstmt.setString(3, "191230"); break;
+					}
+				
+					pstmt.setString(4, content.get(i));
+				
+					result = pstmt.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
+				
+			}
+		
+		
+		return result;
+	}
+
 }
