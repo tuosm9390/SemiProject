@@ -1,7 +1,6 @@
 package hagong.academy.mngStudent.mngPurchase.model.service;
 
-import static hagong.common.JDBCTemplate.close;
-import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -32,6 +31,42 @@ public class PurchaseService {
 		ArrayList<Purchase> purList = new PurchaseDao().selectPurchaseList(con, selectDate);
 		close(con);
 		return purList;
+	}
+
+	public int updateStatus(int[] requestNos) {
+		Connection con = getConnection();
+		int result = new PurchaseDao().updateStatus(con, requestNos);
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int updateBill(int[] requestNos) {
+		Connection con = getConnection();
+		int result = new PurchaseDao().updateBill(con, requestNos);
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int updateRecipt(int[] requestNos) {
+		Connection con = getConnection();
+		int result = new PurchaseDao().updateRecipt(con, requestNos);
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return result;
 	}
 
 

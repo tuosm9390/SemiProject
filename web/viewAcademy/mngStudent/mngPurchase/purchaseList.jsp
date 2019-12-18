@@ -269,7 +269,7 @@ fieldset {
 			<!-- 환불규정 확인 버튼 / 미납자 모아보기 버튼 -->
 			<div class="btnArea">
 				<div style="float:left;"><button id="refundRuleBtn">환불규정 확인</button></div>
-				<div style="float:right;"><button>미납자 모아보기</button></div>
+				<div style="float:right;"><button id="nonePayPeople">미납자 필터링</button><button id="allPeople">전체 내역</button></div>
 			</div> <!-- btnArea end -->
 			<br><br><hr width="90%" style="margin-right:40px;">
 			
@@ -343,8 +343,8 @@ fieldset {
 						<div class="accordion__content">
 							<div class="btnmenu">
 								<button class="actionBtn" id="doComplete" onclick="donePay(<%= j %>);">수납 처리</button>
-								<button class="actionBtn" id="giveBill">고지서 발급</button>
-								<button class="actionBtn" id="giveRecipt">영수증 발급</button>
+								<button class="actionBtn" id="giveBill" onclick="sendBill(<%= j %>);">고지서 발급</button>
+								<button class="actionBtn" id="giveRecipt" onclick="sendRecipt(<%= j %>);">영수증 발급</button>
 							</div>
 							<div class="tableArea">
 								<table class="table" style="width:100%; float:left;">
@@ -354,17 +354,17 @@ fieldset {
 										<th width="20%">학생 이름</th>
 										<th width="20%">청구 금액</th>
 										<th wdith="8%">납부 여부</th>
-										<th width="20%">상세</th>
+										<th width="20%"">상세</th>
 									</tr>
 									<% for(int k = 0; k < purList.size(); k++) { %>
 										<% if(purList.get(k).getClassNo() == clsList.get(j).getClassNo()) { %>
 										<tr>
-											<td><input type="checkbox" class="selectOne selectOne<%= j %>" value="<%= purList.get(k).getPurchaseNo() %>"></td>
+											<td><input type="checkbox" class="selectOne selectOne<%= j %>" onchange="selectOneCk(this, <%= j %>);" value="<%= purList.get(k).getPurchaseNo() %>"></td>
 											<td><%= purList.get(k).getStuId() %></td>
 											<td><%= purList.get(k).getStuName() %></td>
 											<td><%= purList.get(k).getRealPrice() %></td>
 											<td><%= purList.get(k).getPayStatus() %></td>
-											<td><label style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
+											<td><label onclick="showDetail(<%= purList.get(k).getPurchaseNo() %>);" style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
 										</tr>
 									<% } } %>
 								</table>
@@ -382,49 +382,50 @@ fieldset {
 				<!-- 상세보기 조회  -->
 				<div id="detailView" class="modal-content detailModal" align="center">
 					<span class="close">&times;</span>
-					<h2 style="margin-left:35px; font-style:italic">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<h2 style="margin-left:35px; font-style:italic" id="detailTitle1"></h2>
+					<h2 style="margin-left:35px; font-style:italic" id="detailTitle2"></h2>
 					<table style="width:90%">
 						<tr>
 							<td width="40%" style="font-weight:bold;">수강 강좌</td>
-							<td>고3 수학 단과</td>
+							<td id="clsName"></td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">강좌 비용</td>
-							<td>300,000 원</td>
+							<td id="tuition"></td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">납부 고지일</td>
-							<td>2019.10.01.</td>
+							<td id="notifyDay"></td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">상태</td>
-							<td>완납 후 환불</td>
+							<td id="detailStatus"></td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">특이사항</td>
-							<td>2019.10.15. 퇴원으로 인한 환불</td>
+							<td id="payMemo"></td>
 						</tr>
 					</table> <br>
 					<table style="width:90%">
 						<tr>
 							<td width="40%" style="font-weight:bold;">청구 금액</td>
-							<td>300,000 원</td>
+							<td id="realPrice">300,000 원</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">수납 금액</td>
-							<td>300,000 원</td>
+							<td id="payPrice">300,000 원</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">환불 시점</td>
-							<td>수업 시작 1/2 경과 전</td>
+							<td id="refundPoint">수업 시작 1/2 경과 전</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">환불 금액</td>
-							<td>150,000 원</td>
+							<td id="refundPrice">150,000 원</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">차액 (수납 금액 - 환불 금액)</td>
-							<td>150,000 원</td>
+							<td id="profit">150,000 원</td>
 						</tr>
 					</table>
 					<br>
@@ -434,54 +435,56 @@ fieldset {
 				<!-- 상세보기 수정 -->
 				<div id="detailModify" class="modal-content detailModal" align="center">
 					<span class="close">&times;</span>
-					<h2 style="margin-left:35px; font-style:italic">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
-					<table style="width:90%">
-						<tr>
-							<td width="40%" style="font-weight:bold;">수강 강좌</td>
-							<td>고3 수학 단과</td>
-						</tr>
-						<tr>
-							<td style="font-weight:bold;">강좌 비용</td>
-							<td>300,000 원</td>
-						</tr>
-						<tr>
-							<td style="font-weight:bold;">납부 고지일</td>
-							<td>2019.10.01.</td>
-						</tr>
-						<tr>
-							<td style="font-weight:bold;">상태</td>
-							<td>완납 후 환불</td>
-						</tr>
-						<tr>
-							<td style="font-weight:bold;">특이사항</td>
-							<td>
-								<select id="note">
-									<option>특이사항 선택</option>
-									<option value="student">고객 환불</option>
-									<option value="coupon">쿠폰 사용</option>
-									<option value="academy">학원 귀책</option>
-								</select>
-								
-								<div id="studentArea">
-									<br><label>환불일 선택</label><input type="date">
-								</div>
-								
-								<div id="couponArea">
-									<br><label>사용한 쿠폰</label>
-									<input type="text" value="수학 강의 만족도 조사 참여 [10% 할인]" readonly>
-								</div>
-								
-								<div id="academyArea" style="display:inline;">
-									&nbsp; &nbsp; <label>환불 일수</label>
-									<input type="number" max="31" min="1" value="환불일수">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td style="font-weight:bold;">수납 금액</td>
-							<td><input type="number" placeholder="300000" style="width:100px;">원</td>
-						</tr>
-					</table>
+					<h2 style="margin-left:35px; font-style:italic" id="detailTitle">[ 남윤진 ] 학생<br>2019.10. 납부 상세 </h2>
+					<form action="" method="post">
+						<table style="width:90%">
+							<tr>
+								<td width="40%" style="font-weight:bold;">수강 강좌</td>
+								<td id="clsName">고3 수학 단과</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">강좌 비용</td>
+								<td id="tuition">300,000 원</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">납부 고지일</td>
+								<td id="notifyDay">2019.10.01.</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">상태</td>
+								<td id="detailStatus">완납 후 환불</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">특이사항</td>
+								<td>
+									<select id="note" name="payMemo">
+										<option hidden>특이사항 선택</option>
+										<option value="student">고객 환불</option>
+										<option value="coupon">쿠폰 사용</option>
+										<option value="academy">학원 귀책</option>
+									</select>
+									
+									<div id="studentArea">
+										<br><label>환불일 선택</label><input id="rfdDay" name="rfdDay" type="date">
+									</div>
+									
+									<div id="couponArea">
+										<br><label>사용한 쿠폰</label>
+										<input id="beneName" type="text" value="수학 강의 만족도 조사 참여 [10% 할인]" readonly style="width:70%">
+									</div>
+									
+									<div id="academyArea" style="display:inline;">
+										<br><br> <label>환불 일수</label>
+										<input id="faultDays" name="faultDays" type="number" min="1" style="width:50px;"><label>일</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">수납 금액</td>
+								<td><input id="payPrice" name="payPrice" type="number" min="0" placeholder="300000" style="width:100px;">원</td>
+							</tr>
+						</table>
+					</form>
 					<br>
 					<button id="modifyDoneBtn" style="font-size:18px; width:100px;">완료</button>
 					<br>
@@ -525,14 +528,6 @@ fieldset {
 					});
 				});
 				
-				$("#giveBill").click(function(){
-					window.confirm("선택한 학생들에게 고지서를 발송하시겠습니까?");
-				});
-				
-				$("#giveRecipt").click(function(){
-					window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
-				});
-				
 				$("#detailModify").hide();
 				$("#modifyDetailBtn").click(function(){
 					$("#detailView").hide();
@@ -554,6 +549,25 @@ fieldset {
 					}
 				});
 				
+				//전체 내역보기 버튼 숨기기
+				$("#allPeople").css("display", "none");
+				
+				//미납자 모아보기 스크립트
+				$("#nonePayPeople").click(function(){
+					$(this).css("display", "none"); $("#allPeople").css("display", "block");
+					$("td").each(function(){
+						if($(this).text() == "완납") {
+							$(this).parent().hide();
+						}
+					});
+				});
+				
+				//전체 내역보기 스크립트
+				$("#allPeople").click(function(){
+					$(this).css("display", "none"); $("#nonePayPeople").css("display", "block");
+					$("td").parent().show();
+				});
+				
 			});
 			
 			function changeDate(){
@@ -569,6 +583,14 @@ fieldset {
 					$(".selectOne"+ num).prop("checked", true);
 				} else {
 					$(".selectOne"+ num).prop("checked", false);
+				}
+			}
+			
+			//전체선택 해제 버튼 스트립트
+			function selectOneCk(value, num) {
+				var check = $(value).prop("checked");
+				if(!check) {
+					$("#selectAll" + num).prop("checked", false);
 				}
 			}
 			
@@ -589,21 +611,123 @@ fieldset {
 					});
 					
 					$.ajax({
-						url:"test1.do",
-						data:{name:name},
-						type:"get",
+						url:"aupdateAll.pur",
+						data:{type:"donePay", selectNos:payNos},
+						type:"post",
 						success:function(data){
-							console.log("Server Sending SUCCESS");
+							if(data == "success") {
+								alert("일괄 수납처리 되었습니다.");
+								var payNosArr = payNos.split(",");
+								for(var i = 0; i < payNosArr.length; i++) {
+									$("input[value=" + payNosArr[i] + "]").prop("checked", false);
+									$("input[value=" + payNosArr[i] + "]").parent().parent().children().eq(4).text("완납");
+								}
+							} else {
+								alert("일괄 수납처리에 실패하였습니다.");
+							}
 						},
 						error:function(error, status){
-							console.log("FAILED");
+							alert("SYSTEM ERROR!")
 						}
 					});
-				}
+				}				
+			}
+			
+			//일괄 고지서 발급처리
+			function sendBill(num) {
+				var payNos = "";
+				var check = window.confirm("선택한 학생들에게 고지서를 발송하시겠습니까?");
 				
+				if(check) {
+					$(".selectOne" + num).each(function(){
+						if($(this).prop("checked")) {
+							if(payNos == "") {
+								payNos = $(this).val();
+							} else {
+								payNos += "," + $(this).val();
+							}
+						}
+					});
+					
+					$.ajax({
+						url:"aupdateAll.pur",
+						data:{type:"sendBill", selectNos:payNos},
+						type:"post",
+						success:function(data){
+							if(data == "success") {
+								alert("고지서가 발송되었습니다.");
+								var payNosArr = payNos.split(",");
+								for(var i = 0; i < payNosArr.length; i++) {
+									$("input[value=" + payNosArr[i] + "]").prop("checked", false);
+								}
+							} else {
+								alert("고지서 발송이 실패하였습니다.");
+							}
+						},
+						error:function(error, status){
+							alert("SYSTEM ERROR!")
+						}
+					});
+				}				
+			}
+			
+			//일괄 영수증 발급처리
+			function sendRecipt(num) {
+				var payNos = "";
+				var check = window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
 				
-				window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
-				
+				if(check) {
+					$(".selectOne" + num).each(function(){
+						if($(this).prop("checked")) {
+							if(payNos == "") {
+								payNos = $(this).val();
+							} else {
+								payNos += "," + $(this).val();
+							}
+						}
+					});
+					
+					$.ajax({
+						url:"aupdateAll.pur",
+						data:{type:"sendRecipt", selectNos:payNos},
+						type:"post",
+						success:function(data){
+							if(data == "success") {
+								alert("영수증이 발송되었습니다.");
+								var payNosArr = payNos.split(",");
+								for(var i = 0; i < payNosArr.length; i++) {
+									$("input[value=" + payNosArr[i] + "]").prop("checked", false);
+								}
+							} else {
+								alert("영수증 발송이 실패하였습니다.");
+							}
+						},
+						error:function(error, status){
+							alert("SYSTEM ERROR!")
+						}
+					});
+				}				
+			}
+			
+			//상세보기
+			function showDetail(num) {
+				var purchaseList = '<%= purList %>';
+				$.ajax({
+					url:"adetail.pur",
+					data:{purchaseNo:num, purchaseList:purchaseList},
+					type:"post",
+					success:function(data){
+						if(data == "success") {
+							
+						} else {
+							alert("수납 상세조회에 실패하였습니다.");
+							document.getElementById("viewDetail").style.display = "none";
+						}
+					},
+					error:function(error, status){
+						alert("SYSTEM ERROR!")
+					}
+				});
 			}
 			
 		</script>
