@@ -139,7 +139,7 @@ tr, td {
 			</table>
 		</form>
 		<button class="bottomBtn" style="margin-right: 5%;"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp'">수정</button>
+			onclick="location.href='<%=request.getContextPath()%>/adetail.satis?satNo=' + '<%=list.get(0).get("satNo") %>' + '&type=update'">수정</button>
 		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>
 	</div>

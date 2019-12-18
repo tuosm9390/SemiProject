@@ -128,7 +128,7 @@ th, td {
 							<tr>
 								<td><li>이름</li></td>
 								<td><input type="text" placeholder="<%= s.getName() %>" value="<%= s.getName() %>" id="userName" name="userName"><br>
-								<span id="usernameSpan" class="redText"></span></td>
+								<span id="usernameSpan" class="greenText"></span></td>
 							</tr>
 							<tr>
 								<td><li>생년월일</li></td>
@@ -174,7 +174,7 @@ th, td {
 								<td></td>
 								<td><li>학부모 이름</li></td>
 								<td><input type="text" placeholder="<%= s.getRefName() %>" value="<%= s.getRefName() %>" id="refName" name="refName"><br>
-								<span id="refnameSpan" class="redText"></span></td>
+								<span id="refnameSpan" class="greenText"></span></td>
 							</tr>
 							<tr>
 								<% String[] reftel = s.getRefPhone().split("-"); %>
