@@ -44,7 +44,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            backgroundColor: editColor.val(),
+            bgColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
         };
