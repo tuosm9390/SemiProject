@@ -51,7 +51,7 @@ public class NoticeService {
 		int result1 = new NoticeDao().insertNotice(con, n);
 		
 		if(result1 > 0) {
-			int fileNo = new NoticeDao().selectCurrval(con);
+			int fileNo = new NoticeDao().selectNotice(con);
 			
 			for(int i = 0; i < fileList.size(); i++) {
 				fileList.get(i).setFileNo(fileNo);
