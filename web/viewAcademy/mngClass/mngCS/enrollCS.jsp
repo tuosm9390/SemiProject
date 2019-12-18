@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngCS.model.vo.*"%>
 <%
 	ArrayList<CSStudent> csslist = (ArrayList<CSStudent>) request.getAttribute("csslist");
-	ArrayList<CSStudent> allStudent = (ArrayList<CSStudent>) request.getAttribute("allStudent");
+	ArrayList<CSStudent> allStudentList = (ArrayList<CSStudent>) request.getAttribute("allStudentList");
 	CSStudent csInfo = (CSStudent) request.getAttribute("csInfo");
 %>
 <!DOCTYPE html>
@@ -94,12 +94,12 @@
 					<input type="search" class="inputSrch" placeholder="학생이름검색">
 				<div id="allSt" class="tableArea">
 					<table class="table" id="allTable">				
-						<%for(int i = 0; i < allStudent.size(); i++) {%>
+						<%for(int i = 0; i < allStudentList.size(); i++) {%>
 							<tr>
-								<td><input type="checkbox" style="display:none" name="chAllst" value="<%= allStudent.get(i).getUserNo() %>"><%= allStudent.get(i).getStuName() %></td>
-								<td><%= allStudent.get(i).getUserId() %></td>
-								<td><%= allStudent.get(i).getSchool() %></td>
-								<td><%= allStudent.get(i).getGradeName() %></td>
+								<td><input type="checkbox" style="display:none" name="chAllst" value="<%= allStudentList.get(i).getUserNo() %>"><%= allStudentList.get(i).getStuName() %></td>
+								<td><%= allStudentList.get(i).getUserId() %></td>
+								<td><%= allStudentList.get(i).getSchool() %></td>
+								<td><%= allStudentList.get(i).getGradeName() %></td>
 							</tr>
 						<% } %>
 					</table>
@@ -120,7 +120,7 @@
 						<% if(!csslist.isEmpty()) {%>
 						<%for(int i = 0; i < csslist.size(); i++) {%>
 							<tr>
-								<td><input type="checkbox" style="display:none" name="chst" value="<%= allStudent.get(i).getUserNo() %>"><%= csslist.get(i).getStuName() %></td>
+								<td><input type="checkbox" style="display:none" name="chst" value="<%= csslist.get(i).getUserNo() %>"><%= csslist.get(i).getStuName() %></td>
 								<td><%= csslist.get(i).getUserId() %></td>
 								<td><%= csslist.get(i).getSchool() %></td>
 								<td><%= csslist.get(i).getGradeName() %></td>
@@ -183,18 +183,31 @@
 			
 			$("#addStudent").click(function(){
 				var stuArr = "first";
-				$("[name='chAllst']").filter(function(value){
-					if(this.checked){
+				var stuAll = "second";
+				$("#thisTable input[name='chAllst']").filter(function(value){
 						console.log(this.value + "번");
 						if(stuArr == "first"){
 							stuArr = this.value;
 						}else{
 							stuArr += "," + this.value;
 						}
-					}
+					
+					
+					console.log("stuArr : " + stuArr);
+				});
+				$("#allTable input[name='chst']").filter(function(value){
+						console.log(this.value + "번");
+						if(stuAll == "second"){
+							stuAll = this.value;
+						}else{
+							stuAll += "," + this.value;
+						}
+					console.log("stuAll : " + stuAll);
 				});
 				
-				$("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr);
+				alert("stuAll : " + stuAll + "\nstuArr : " + stuArr);
+				
+				<%-- $("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr); --%>
 				
 			});
 		});

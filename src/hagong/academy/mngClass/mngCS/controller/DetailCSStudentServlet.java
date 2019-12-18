@@ -35,23 +35,25 @@ public class DetailCSStudentServlet extends HttpServlet {
 		int clsNo = Integer.parseInt(request.getParameter("clsNo"));
 		
 		HashMap<String, Object> hmap = new CSService().detailCSStudent(clsNo);
-		ArrayList<CSStudent> allStudent = new CSService().allStudent(clsNo);
-		
-
+		ArrayList<CSStudent> allStudentList = new CSService().allStudent(clsNo);
+		ArrayList<CSStudent> csslist = null;
+		CSStudent csInfo = null;
 		
 		String page = "";
 		if(hmap != null) {
-			ArrayList<CSStudent> csslist = (ArrayList<CSStudent>) hmap.get("csslist");
-			CSStudent csInfo = (CSStudent) hmap.get("csInfo");
+			csslist = (ArrayList<CSStudent>) hmap.get("csslist");
+			csInfo = (CSStudent) hmap.get("csInfo");
 			
 			page = "viewAcademy/mngClass/mngCS/enrollCS.jsp";
-			request.setAttribute("allStudent", allStudent);
+			request.setAttribute("allStudentList", allStudentList);
 			request.setAttribute("csslist", csslist);
 			request.setAttribute("csInfo", csInfo);
 		}else {
 			page = "viewAcademy.common/commonError.jsp";
 			request.setAttribute("msg", "수강생등록 상세페이지 조회 실패!");
 		}
+
+		
 		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
