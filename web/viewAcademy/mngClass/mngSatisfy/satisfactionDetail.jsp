@@ -144,7 +144,7 @@ tr, td {
 		</fieldset>
 	</div>
 	</section>
-	<script>n
+	<script>
 		$("input").attr("readonly", true);
 	</script>
 </body>

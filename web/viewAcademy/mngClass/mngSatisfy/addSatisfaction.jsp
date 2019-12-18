@@ -178,26 +178,36 @@ tr, td {
 		    }
 		  } );
 		
-		//설문 문항 추가
-		$(".question").on("click", ".qadd", function(){
-			$(".qo").append("<li class='ql'><div class='que' style='display: contents'><input type='text' id='question' name='question' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'><input type='button' class='qadd' value='+'><br><span class='ans' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
-		});
-		//설문 문항 제거
-		$(".question").on("click", ".qdelete", function(){
-			if($(".que").size() != 1){
-				$(this).closest(".qo .ql").remove();
-			};
-		});
 		
 		//문항 선택항목 추가
-		$(".question").on("click", ".aadd", function(){
-			$(this).closest(".que").append("<span class='ans' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
+		var anscnt = 0;
+		
+		$(".qo").on("click", ".aadd", function(){
+			anscnt++;
+			$(this).closest("span").after("<span class='ans" + anscnt + "' style='display: contents;'><input type='text' id='answer' name='answer' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span>");
 		});
 		//문항 선택항목 삭제
-		$(".question").on("click", ".adelete", function(){
+		$(".qo").on("click", ".adelete", function(){
+			console.log($(this).closest("div span").siblings().size());
 			if($(this).closest("div span").siblings().size() != 4){
 				$(this).closest("span").remove();
 			}
+		});
+		
+		//설문 문항 추가
+		var quecnt = 0;
+		
+		$(".question").on("click", ".qadd", function(){
+			quecnt++;
+			anscnt++;
+			$(this).closest(".ql").after("<li class='ql'><div class='que" + quecnt + "' style='display: contents'><input type='text' id='question' name='question' placeholder='질문 문항 입력' size='100'> <input type='button' class='qdelete' value='-'>&nbsp;<input type='button' class='qadd' value='+'><br><span class='ans" + anscnt + "' style='display: contents;'><input type='text' id='answer' name='answer" + anscnt + "' placeholder='선택항목 입력'>&nbsp;<input type='button' class='adelete' value='-'>&nbsp;<input type='button' class='aadd' value='+'><br></span></div></li>");
+		});
+		//설문 문항 제거
+		$(".question").on("click", ".qdelete", function(){
+			console.log($(this).parents(".ql").siblings().size());
+			if($(this).parents(".ql").siblings().size() != 0){
+				$(this).closest("li").remove();
+			};
 		});
 	</script>
 </body>

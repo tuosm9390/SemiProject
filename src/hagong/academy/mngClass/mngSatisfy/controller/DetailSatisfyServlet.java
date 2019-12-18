@@ -25,7 +25,8 @@ public class DetailSatisfyServlet extends HttpServlet {
 		int satNo = Integer.parseInt(request.getParameter("satNo"));
 
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
-
+		System.out.println("list : " + list);
+		
 		String page = "";
 		if (list != null) {
 			page = "/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";

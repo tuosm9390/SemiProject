@@ -132,8 +132,7 @@ select:focus {
 				<% if(list.size() != 0){
 					for(SatisfyInfo si : list) {%>
 				<tr>
-					<input type="hidden" id="satNo" name="satNo" value="<%= si.getSatNo() %>">
-					<td><%=si.getRowNum() %></td>
+					<td><input type="hidden" id="satNo" name="satNo" value="<%= si.getSatNo() %>"><%=si.getRowNum() %></td>
 					<td><%=si.getSatTitle() %></td>
 					<td><%=si.getStart() + " ~ " + si.getEnd()%></td>
 				</tr>
@@ -202,7 +201,7 @@ select:focus {
 		
 		//만족도 상세보기
 		$(".table td").click(function() {
-			var satNo = $("#satNo").val();
+			var satNo = $(this).parent().children().find("#satNo").val();
 			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo;
 		});
 

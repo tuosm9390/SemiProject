@@ -2,6 +2,7 @@ package hagong.academy.mngClass.mngSatisfy.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,8 +62,8 @@ public class InsertSatisfyServlet extends HttpServlet {
 			java.sql.Date end = java.sql.Date.valueOf(request.getParameter("end"));
 			System.out.println("end : " + end);
 			
-			int benefit = Integer.parseInt(request.getParameter("benefit"));
-			System.out.println("benefit : " + benefit);
+			int benNo = Integer.parseInt(request.getParameter("benefit"));
+			System.out.println("benNo : " + benNo);
 			
 			String[] qrr = request.getParameterValues("question");
 			if (qrr != null) {
@@ -83,15 +84,15 @@ public class InsertSatisfyServlet extends HttpServlet {
 			si.setTarget(target);
 			si.setStart(start);
 			si.setEnd(end);
-			si.setBenNo(benefit);
+			si.setBenNo(benNo);
 			
-			int result = new SatisfyService().insertSatis(si, qrr, arr);
-			
-			if(result > 0) {
-				System.out.println("등록 성공");
-			} else {
-				System.out.println("등록 실패");
-			}
+//			int result = new SatisfyService().insertSatis(si, qrr, arr);
+//			
+//			if(result > 0) {
+//				System.out.println("등록 성공");
+//			} else {
+//				System.out.println("등록 실패");
+//			}
 		}
 
 	}
