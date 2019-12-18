@@ -342,14 +342,14 @@ fieldset {
 						</div>
 						<div class="accordion__content">
 							<div class="btnmenu">
-								<button class="actionBtn" id="doComplete">수납 처리</button>
+								<button class="actionBtn" id="doComplete" onclick="donePay(<%= j %>);">수납 처리</button>
 								<button class="actionBtn" id="giveBill">고지서 발급</button>
 								<button class="actionBtn" id="giveRecipt">영수증 발급</button>
 							</div>
 							<div class="tableArea">
 								<table class="table" style="width:100%; float:left;">
 									<tr>
-										<th width="8%"><input type="checkbox" class="selectAll"><label for="selectAll">전체선택</label></th>
+										<th width="8%"><input type="checkbox" class="selectAll" id="selectAll<%= j %>" onchange="selectAllCk(<%= j %>);"><label for="selectAll<%= j %>">전체선택</label></th>
 										<th width="24%">학생 ID</th>
 										<th width="20%">학생 이름</th>
 										<th width="20%">청구 금액</th>
@@ -359,7 +359,7 @@ fieldset {
 									<% for(int k = 0; k < purList.size(); k++) { %>
 										<% if(purList.get(k).getClassNo() == clsList.get(j).getClassNo()) { %>
 										<tr>
-											<td><input type="checkbox" class="selectOne"></td>
+											<td><input type="checkbox" class="selectOne selectOne<%= j %>" value="<%= purList.get(k).getPurchaseNo() %>"></td>
 											<td><%= purList.get(k).getStuId() %></td>
 											<td><%= purList.get(k).getStuName() %></td>
 											<td><%= purList.get(k).getRealPrice() %></td>
@@ -499,15 +499,6 @@ fieldset {
 					$('.accordion__title').not($(this)).removeClass('active');
 				});
 				
-				//전체선택 버튼 스크립트
-				$(".selectAll").change(function(){
-					if($(this).prop("checked")) {
-						$(".selectOne").prop("checked", true);
-					} else {
-						$(".selectOne").prop("checked", false);
-					}
-				});
-				
 				// 모달페이지
 				var refundRule = document.getElementById("refundRule");
 				var viewDetail = document.getElementById("viewDetail");
@@ -532,11 +523,6 @@ fieldset {
 						$("#detailView").show();
 						$("#detailModify").hide();
 					});
-				});
-				
-				$("#doComplete").click(function(){
-					window.confirm("선택한 학생들의 수납을 완납 처리하시겠습니까?");
-					window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
 				});
 				
 				$("#giveBill").click(function(){
@@ -574,6 +560,50 @@ fieldset {
 				var year = $("#selectYear").val();
 				var month = $("#selectMonth").val();
 				location.href = "<%=request.getContextPath() %>/alist.pur?year=" + year + "&month=" + month;
+			}
+			
+			//전체선택 버튼 스크립트
+			function selectAllCk(num) {
+				var check = $("#selectAll" + num).prop("checked");
+				if(check) {
+					$(".selectOne"+ num).prop("checked", true);
+				} else {
+					$(".selectOne"+ num).prop("checked", false);
+				}
+			}
+			
+			//일괄 수납처리
+			function donePay(num) {
+				var payNos = "";
+				var checkPay = window.confirm("선택한 학생들의 수납을 완납 처리하시겠습니까?");
+				
+				if(checkPay) {
+					$(".selectOne" + num).each(function(){
+						if($(this).prop("checked")) {
+							if(payNos == "") {
+								payNos = $(this).val();
+							} else {
+								payNos += "," + $(this).val();
+							}
+						}
+					});
+					
+					$.ajax({
+						url:"test1.do",
+						data:{name:name},
+						type:"get",
+						success:function(data){
+							console.log("Server Sending SUCCESS");
+						},
+						error:function(error, status){
+							console.log("FAILED");
+						}
+					});
+				}
+				
+				
+				window.confirm("선택한 학생들에게 영수증을 발송하시겠습니까?");
+				
 			}
 			
 		</script>
