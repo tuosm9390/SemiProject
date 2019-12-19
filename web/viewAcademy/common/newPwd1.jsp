@@ -91,7 +91,7 @@
    		$("#okBtn").click(function(){
    			console.log($("#smsck").val());
    			if($("#smsck").val() == "true"){
-   				$("#middle").attr("action","<%=request.getContextPath()%>/firstUpdate.cm");   				
+   				location.href="<%= request.getContextPath() %>/viewAcademy/common/newPwd2.jsp";  				
    			}else{
    				alert("입력하신 정보가 일치하지 않습니다!");
    			}
