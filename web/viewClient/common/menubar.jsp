@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%-- <%
-   Member loginMember = (Member) request.getSession().getAttribute("loginMember");
-%> --%>
+   pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
+<%
+   Member loginUser = (Member) request.getSession().getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,20 +186,24 @@ section {
          <h2 class="topmenu" id="satisfy" onclick="goSaisfy();">만족도조사</h2>
          <h2 class="topmenu" id="receipt" onclick="goReceipt();">고지서/영수증</h2>
          &nbsp;
-         <%-- <% if(loginMember != null) { %> --%>
-         <!-- <button id="logout" style="margin-left: 5px;">로그아웃</button> -->
-         <%-- <% }else { %> --%>
+         <% if(loginUser != null) { %>
+        	<button id="logout" style="margin-left: 5px;">로그아웃</button>
+         <% }else { %>
          <button id="login" style="margin-left: 5px;">로그인</button>
-         <%-- <% } --%>
-         <div id="mid">
-            <div id="member">
-               <button type="button" id="name"
-                  style="margin-right: 4%; background: none; border: none; font-size: x-large;">학생</button>
-               <button
+         <% } %>
+         
+         <% if(loginUser != null) {  %>
+				<div id="member">
+					<button type="button" id="name"
+						style="margin-right: 4%; background: none; border: none; font-size: large;">
+						<%= loginUser.getName() %>님
+					</button>
+					<button
                   style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
-                  onclick="myInfo();">개인정보 관리</button>
-            </div>
-         </div>
+                  onclick="location.href='<%= request.getContextPath() %>/adetail.ps?type=view&no=<%= loginUser.getUserNo()%>'">개인정보 관리</button>
+				</div>
+				<% }%>
+        
       </div>
    </header>
    <section></section>
@@ -212,7 +216,7 @@ section {
    <!-- 스크립트 -->
    <script>
       $("#login").click(function() {
-             location.href="<%=request.getContextPath()%>/viewAcademy/common/login.jsp";
+             location.href="<%=request.getContextPath()%>/viewClient/common/login.jsp";
         });
 
       $("#logout").click(function() {

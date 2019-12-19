@@ -102,13 +102,13 @@
    	    </fieldset>
     </div>
     <div class="btnArea">
-    	<select id="selectYear" style="border:1px solid lightgray; border-radius:5px; float:left">
+    	<!-- <select id="selectYear" style="border:1px solid lightgray; border-radius:5px; float:left">
 			<option value="19">2019</option>
 			<option value="18">2018</option>
 			<option value="17">2017</option>
 			<option value="16">2016</option>
 		</select>
-		<button id="deleteByMonth">삭제</button>
+		<button id="deleteByMonth">삭제</button> -->
 		<button id="writeBtn" style="float:right">입력 및 수정</button>
 	</div> <!-- btnArea end -->
 	<div class="listArea">
