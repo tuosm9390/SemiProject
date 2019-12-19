@@ -91,7 +91,7 @@ public class SatisfyDao {
 					si.setBenType("기타");
 				}
 				si.setBenRate(rset.getDouble("BEN_RATE"));
-
+				si.setToday(rset.getDate("SYSDATE"));
 				blist.add(si);
 			}
 
@@ -341,6 +341,74 @@ public class SatisfyDao {
 			close(pstmt);
 		}
 
+		return result;
+	}
+
+	public int updateSatis(Connection con, SatisfyInfo si) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateSatis");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, si.getSatTitle());
+			pstmt.setDate(2, si.getStart());
+			pstmt.setDate(3, si.getEnd());
+			pstmt.setString(4, si.getTarget());
+			pstmt.setInt(5, si.getBenNo());
+			pstmt.setInt(6, si.getSatNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteque(Connection con, SatisfyInfo si) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteque");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, si.getSatNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteans(Connection con, SatisfyInfo si) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteans");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, si.getSatNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
 		return result;
 	}
 

@@ -1,6 +1,7 @@
 package hagong.academy.mngClass.mngSatisfy.controller;
 
 import java.io.FileInputStream;
+import java.util.Date;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -10,7 +11,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class test {
 	
 	public static void main(String[] args) {
+		Date date = new Date();
 		 
+		System.out.println(date);
+
+
         try {
             FileInputStream file = new FileInputStream("C:/Users/Sj/Desktop/test.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook(file);

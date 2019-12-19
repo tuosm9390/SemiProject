@@ -14,6 +14,7 @@ public class SatisfyInfo {
 	private String benCondition;
 	private String benType;
 	private double benRate;
+	private Date today;
 
 	// 질문
 	private int queNo;
@@ -28,7 +29,7 @@ public class SatisfyInfo {
 	}
 
 	public SatisfyInfo(int rowNum, int satNo, String satTitle, Date start, Date end, String target, int benNo,
-			String benCondition, String benType, double benRate, int queNo, String queContent, int ansNo,
+			String benCondition, String benType, double benRate, Date today, int queNo, String queContent, int ansNo,
 			String ansContent, int userNo) {
 		super();
 		this.rowNum = rowNum;
@@ -41,6 +42,7 @@ public class SatisfyInfo {
 		this.benCondition = benCondition;
 		this.benType = benType;
 		this.benRate = benRate;
+		this.today = today;
 		this.queNo = queNo;
 		this.queContent = queContent;
 		this.ansNo = ansNo;
@@ -128,6 +130,14 @@ public class SatisfyInfo {
 		this.benRate = benRate;
 	}
 
+	public Date getToday() {
+		return today;
+	}
+
+	public void setToday(Date today) {
+		this.today = today;
+	}
+
 	public int getQueNo() {
 		return queNo;
 	}
@@ -172,8 +182,8 @@ public class SatisfyInfo {
 	public String toString() {
 		return "SatisfyInfo [rowNum=" + rowNum + ", satNo=" + satNo + ", satTitle=" + satTitle + ", start=" + start
 				+ ", end=" + end + ", target=" + target + ", benNo=" + benNo + ", benCondition=" + benCondition
-				+ ", benType=" + benType + ", benRate=" + benRate + ", queNo=" + queNo + ", queContent=" + queContent
-				+ ", ansNo=" + ansNo + ", ansContent=" + ansContent + ", userNo=" + userNo + "]";
+				+ ", benType=" + benType + ", benRate=" + benRate + ", today=" + today + ", queNo=" + queNo
+				+ ", queContent=" + queContent + ", ansNo=" + ansNo + ", ansContent=" + ansContent + ", userNo="
+				+ userNo + "]";
 	}
-
 }

@@ -2,6 +2,7 @@ package hagong.academy.mngClass.mngSatisfy.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -25,21 +26,25 @@ public class DetailSatisfyServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int satNo = Integer.parseInt(request.getParameter("satNo"));
 		String type = request.getParameter("type");
-
+		
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
 		System.out.println("list : " + list);
 		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
 
 		String page = "";
 		if (list != null) {
-			if (type.equals("detail")) {
+			if (type.equals("detail") || type.equals("select")) {
 				page = "/viewAcademy/mngClass/mngSatisfy/satisfactionDetail.jsp";
 				request.setAttribute("list", list);
-			} else {
+				request.setAttribute("type", type);
+			} else if(type.equals("update")){
 				page = "/viewAcademy/mngClass/mngSatisfy/updateSatisfaction.jsp";
 				request.setAttribute("list", list);
 				request.setAttribute("blist", blist);
+			} else {
+				page = "/aresult.satis?satNo=" + list.get(0).get("satNo");
 			}
+			
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectSatisfyFail");

@@ -128,13 +128,16 @@ select:focus {
 					<th>No.</th>
 					<th>만족도 조사 제목</th>
 					<th>만족도 조사 날짜</th>
+					<input type="hidden" id="today" name="today" value="<%=blist.get(0).getToday()%>">
 				</tr>
 				<% if(list.size() != 0){
 					for(SatisfyInfo si : list) {%>
 				<tr>
 					<td><input type="hidden" id="satNo" name="satNo" value="<%= si.getSatNo() %>"><%=si.getRowNum() %></td>
 					<td><%=si.getSatTitle() %></td>
-					<td><%=si.getStart() + " ~ " + si.getEnd()%></td>
+					<td><input type="hidden" id="start" name="start" value="<%=si.getStart()%>">
+					<%=si.getStart() + " ~ " + si.getEnd()%><input type="hidden" id="end" name="end" value="<%=si.getEnd()%>">
+					</td>
 				</tr>
 				<% } }else { }%>
 			</table>
@@ -148,7 +151,7 @@ select:focus {
 				<table id="modalTable">
 					<tr>
 						<td align="center" colspan="2">
-						<select class='sort' id="benefitSelect" align="center" space="&nbsp;&nbsp;"
+						<select id="benefitSelect" align="center"
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
 								<option selected>선택</option>
 								<% for(int i = 0; i < blist.size(); i++) { %>
@@ -176,7 +179,7 @@ select:focus {
 					</tr>
 					<tr>
 						<td>할인율</td>
-						<td><input type="number" id="benefitRate" min="1" max="100" style="width: 50px;"></td>
+						<td><input type="number" id="benefitRate" min="1" max="100" style="width: 50px;" required></td>
 					</tr>
 				</table>
 				<table id="modalBtnTable">
@@ -202,7 +205,23 @@ select:focus {
 		//만족도 상세보기
 		$(".table td").click(function() {
 			var satNo = $(this).parent().children().find("#satNo").val();
-			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo + "&type=detail";
+			var start = $(this).parent().children().find("#start").val();
+			var end = $(this).parent().children().find("#end").val();
+			var today = $("#today").val();
+			var type;
+			if(today < start) {
+				type = "detail";
+			} else if(today < end) {
+				type = "select";
+			}
+			if(today > end) {
+				type = "result";
+			}
+			console.log(start);
+			console.log(end);
+			console.log(today);
+			console.log(type);
+			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo + "&type=" + type;
 		});
 
 		var benefit = document.getElementById("benefit");
@@ -243,7 +262,7 @@ select:focus {
 					},
 					success:function(data){
 						console.log(data);
-						
+						$("#benefitRate").val('');
 						$("#benefitSelect").find("option").remove();
 						$("#benefitSelect").append("<option>선택</option>");
 						for(var key in data){
@@ -287,46 +306,6 @@ select:focus {
 				}
 			});
 		};
-
-		//select option 가운데정렬
-		(function() {
-			if (!/interative|complete/.test(document.readyState))
-				return setTimeout(arguments.callee, 300);
-			var all = document.getElementsByTagName('select');
-			for (var i = 0, c = all.length; i < c; i++) {
-				all[i].className.indexOf('sort') != -1 &&
-				sort(all[i]);
-			}
-			function sort(select) {
-				var p = 'innerText'
-				, m = 'getAttribute'
-				, options = select.options
-				, space = select[m]('space') || '-'
-				, max = 0
-				, lens = []
-				;
-				for (var i = 0, c = options.length; i < c; i++) {
-					lens[i] = options[i][p].length;
-					if (lens[i] > max)
-						max = lens[i];
-				}
-				if (select[m]('align') == 'center') {
-					for (i = 0; i < c; i++)
-						options[i][p] = tap(space, (max - lens[i]) / 2)
-								+ options[i][p];
-				} else {
-					for (i = 0; i < c; i++)
-						options[i][p] = tap(space, max - lens[i])
-								+ options[i][p];
-				}
-			}
-			function tap(space, len) {
-				var str = '';
-				while (len-->0)
-					str += space;
-				return str;
-			}
-		})();
 	</script>
 </body>
 </html>
