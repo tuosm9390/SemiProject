@@ -78,11 +78,11 @@ tr, td {
 			<table class="table" align="center">
 				<tr>
 					<td><li>만족도 조사 제목<input type="hidden" name="satNo" value="<%=list.get(0).get("satNo")%>"></td>
-					<td colspan="3"><input type="text" value="<%=list.get(0).get("satTitle") %>" size="50"></td>
+					<td colspan="3"><input type="text" name="title" value="<%=list.get(0).get("satTitle") %>" size="50"></td>
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td colspan="3"><input type="text" value="<%=list.get(0).get("target") %>" size="50"></td>
+					<td colspan="3"><input type="text" name="target" value="<%=list.get(0).get("target") %>" size="50"></td>
 				</tr>
 				<tr>
 					<td style="width: 239px;"><li>만족도 조사 날짜</td>

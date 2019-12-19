@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hagong.academy.mngClass.mngClassList.model.service.ClassService;
+import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngClass.mngSatisfy.model.service.SatisfyService;
 import hagong.academy.mngClass.mngSatisfy.model.vo.SatisfyInfo;
 
@@ -37,18 +39,21 @@ public class InsertSatisfyServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		System.out.println("type : " + type);
 
+		int limit = 10;
+		int currentPage = 1;
 		String page = "";
 		if (type.equals("insertForm")) {
 			//만족도 등록 버튼 클릭 시 처리할 로직
 			ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
+			ArrayList<Class> clist = new ClassService().selectClassList(currentPage, limit);
 			if (blist != null) {
 				page = "viewAcademy/mngClass/mngSatisfy/addSatisfaction.jsp";
 				request.setAttribute("blist", blist);
+				request.setAttribute("clist", clist);
 			} else {
 				page = "/viewAcademy/common/commonError.jsp";
 				request.setAttribute("errorCode", "loadSatisfyInsertFormFail");
 			}
-			request.getRequestDispatcher(page).forward(request, response);
 
 		} else {
 			//등록하기 버튼 클릭 시 처리할 로직
@@ -128,12 +133,15 @@ public class InsertSatisfyServlet extends HttpServlet {
 			int result = new SatisfyService().insertSatis(si, qrr, arr, questionNum, answerNum);
 			
 			if(result > 0) {
-				System.out.println("등록 성공");
+				page = "/hagong/alist.satis";
 			} else {
 				System.out.println("등록 실패");
+				page = "/viewAcademy/common/commonError.jsp";
+				request.setAttribute("errorCode", "insertSatisFail");
 			}
 		}
-
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
 <%
 	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("list");
+	String type = (String) request.getAttribute("type");
 %>
 <!DOCTYPE html>
 <html>
@@ -138,8 +139,10 @@ tr, td {
 				</tr>
 			</table>
 		</form>
+		<% if(type.equals("detail")) { %>
 		<button class="bottomBtn" style="margin-right: 5%;"
 			onclick="location.href='<%=request.getContextPath()%>/adetail.satis?satNo=' + '<%=list.get(0).get("satNo") %>' + '&type=update'">수정</button>
+		<% } %>
 		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>
 	</div>

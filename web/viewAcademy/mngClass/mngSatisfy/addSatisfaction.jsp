@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*, hagong.academy.mngClass.mngClassList.model.vo.Class"%>
 <%
 	ArrayList<SatisfyInfo> blist = (ArrayList<SatisfyInfo>) request.getAttribute("blist");
+	ArrayList<Class> clist = (ArrayList<Class>) request.getAttribute("clist");
 %>
 <!DOCTYPE html>
 <html>
@@ -78,7 +79,15 @@ tr, td {
 				</tr>
 				<tr>
 					<td><li>만족도 조사 대상</td>
-					<td colspan="3"><input type="text" id="target" name="target" placeholder="만족도 조사 대상 입력" size="80">&emsp;
+					<td colspan="3">
+					<select id="target" name="target" align="center"
+							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
+						<option selected>선택</option>
+						<% for(int i = 0; i < clist.size(); i++) { %>
+						<option value="<%=clist.get(i).getClsNo() %>">
+						<%=clist.get(i).getClsName() %></option>
+						<% } %>
+					</select>
 					</td>
 				</tr>
 				<tr>
@@ -93,8 +102,9 @@ tr, td {
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
 						<option selected>선택</option>
 								<% for(int i = 0; i < blist.size(); i++) { %>
-								<option value="<%=blist.get(i).getBenNo()%>"><%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
-											+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
+								<option value="<%=blist.get(i).getBenNo()%>">
+								<%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
+									+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
 								<% } %>
 						</select></td>
 					<td></td>

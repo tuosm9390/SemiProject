@@ -98,8 +98,16 @@ public class UpdateSatisfyServlet extends HttpServlet {
 		si.setEnd(end);
 		si.setBenNo(benNo);
 		
-		//int result = new SatisfyService().updateSatis(si, qrr, arr, questionNum, answerNum);
+		int result = new SatisfyService().updateSatis(si, qrr, arr, questionNum, answerNum);
 		
+		String page = "";
+		if(result > 0) {
+			page = "/adetail.satis?satNo=" + si.getSatNo() + "&type=detail";
+		} else {
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "updateSatisFail");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

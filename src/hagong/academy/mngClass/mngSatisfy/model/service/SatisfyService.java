@@ -23,7 +23,7 @@ public class SatisfyService {
 	public ArrayList<SatisfyInfo> selectBenList() {
 		Connection con = getConnection();
 		ArrayList<SatisfyInfo> blist = new SatisfyDao().selectBenList(con);
-
+		
 		close(con);
 
 		return blist;
@@ -109,18 +109,57 @@ public class SatisfyService {
 		return result;
 	}
 
-//	public int updateSatis(SatisfyInfo si, String[] qrr, String[] arr, String[] questionNum, String[] answerNum) {
-//		Connection con = getConnection();
-//		int result = new SatisfyDao().updateSatis(con, si);
-//
-//		if (result > 0) {
-//			commit(con);
-//		} else {
-//			rollback(con);
-//		}
-//		close(con);
-//
-//		return result;
-//	}
+	public int updateSatis(SatisfyInfo si, String[] qrr, String[] arr, String[] questionNum, String[] answerNum) {
+		Connection con = getConnection();
+		int result = new SatisfyDao().updateSatis(con, si);
+
+		if (result > 0) {
+			commit(con);
+			int ansdel = new SatisfyDao().deleteans(con, si);
+			if (ansdel > 0) {
+				commit(con);
+				int quedel = new SatisfyDao().deleteque(con, si);
+				if (quedel > 0) {
+					commit(con);
+					int qresult = 0;
+					for (int i = 0; i < qrr.length; i++) {
+						qresult = new SatisfyDao().insertQue(con, qrr[i], si.getSatNo());
+
+						if (qresult > 0) {
+							commit(con);
+							// 문항의 번호 뽑아옴
+							int selectQueNo = new SatisfyDao().selectQueNo(con, qrr[i], si.getSatNo());
+							// 답변목록 입력
+							int aresult = 0;
+							for (int j = 0; j < arr.length; j++) {
+								if (questionNum[i].equals(answerNum[j])) {
+									aresult = new SatisfyDao().insertAns(con, arr[j], selectQueNo, si.getSatNo());
+									if (aresult > 0) {
+										commit(con);
+									} else {
+										rollback(con);
+										break;
+									}
+								}
+							}
+						} else {
+							rollback(con);
+							break;
+						}
+					}
+				} else {
+					rollback(con);
+				}
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return result;
+	}
 
 }
