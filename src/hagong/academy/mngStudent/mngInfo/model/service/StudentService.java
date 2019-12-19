@@ -28,6 +28,22 @@ public class StudentService {
 		return userNo;
 	}
 
+	public int insertParent(Student s) {
+		Connection con = getConnection();
+		System.out.println("부모생성서비스");
+		int refresult = new StudentDao().insertParent(con, s);
+		
+		if(refresult > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return refresult;
+	}
+	
 	public int insertMember(Student s, ArrayList<StudentProfile> fileList) {
 		Connection con = getConnection();
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
 <%
-	ArrayList<SatisfyInfo> list = (ArrayList<SatisfyInfo>) request.getAttribute("list");
+	ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,15 +40,11 @@ section button:hover {
 	border-radius: 20px;
 }
 
-.resultTable tr{
-	height: 280px;
-}
-
 .resultTable tr>td:first-child {
 	vertical-align: top;
 	text-align: left;
 	font-size: large;
-	padding-top: 7%;
+	padding-top: 3%;
 	padding-left: 2%;
 	width: 400px;
 }
@@ -59,6 +55,7 @@ section button:hover {
 
 ul.accessibility{
 	height: 0px;
+	display: none;
 }
 </style>
 </head>
@@ -70,77 +67,81 @@ ul.accessibility{
 	<div align="center">
 	<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;
 					width: 38%;">
-		<legend align="center"><h1 style="font-family:'Do Hyeon'">　2019 겨울방학 특강 만족도 조사　</h1></legend>
+		<legend align="center"><h1 style="font-family:'Do Hyeon'">　<%=list.get(0).get("satTitle") %>　</h1></legend>
 			<div align="left">
-				<li>대상 : 강남고등학교 2학년<고3 대비 선행 특강반></li>
-				<li>실시 기간 : 2019.01.10 ~ 2019.02.20</li>
+				<li>대상 : <%=list.get(0).get("target") %></li>
+				<li>실시 기간 : <%=list.get(0).get("start")%> ~ <%=list.get(0).get("end") %></li>
 			</div>
 		</fieldset>
 	</div>
 		<button style="margin-right: 20%;"
-			onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp'">닫기</button>
+			onclick="location.href='<%=request.getContextPath()%>/alist.satis'">닫기</button>
 		<button>삭제</button>
 
 		<!-- 문항 목록 작성 -->
 		<div align="center" class="resultArea">
 			<table align="center" class="resultTable">
+			<% int n = 0; for(int i = 0; i < list.size(); i++) {
+					//첫번째 문항
+					if(i == 0) { %>
 				<tr>
 					<td>
-						<li><label style="font-weight: bold;">수업 커리큘럼에 대한 만족도</label></li>
+						<li>&emsp;
+							<%= list.get(i).get("queContent") %>
+							<br><br>
+							<ol>
+							<li><%= list.get(i).get("ansContent") %>
+						<%	} else {
+							//두번째 이후 문항 중 두개가 서로 같은 문항일 때
+							if(list.get(i).get("queNo") == list.get(i - 1).get("queNo")) { %>
+							<li><%= list.get(i).get("ansContent") %>
+							<!-- 서로 다른 문항일 때 -->
+						<%	} else { 
+							n++; %>
+							</li>
+							</ol>
+						</li>
 					</td>
 					<td>
-						<div id="cursatis1"></div>
+						<div id="cursatis<%= n%>"></div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<li>수업 진도에 대한 만족도</li>
-					</td>
-					<td>
-						<div id="cursatis2"></div>
+						<li>&emsp;
+							<%= list.get(i).get("queContent") %>
+							<br><br>
+						<ol>
+							<li><%= list.get(i).get("ansContent") %>
+						<% } } }%>
+						</ol>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</section>
 	<footer></footer>
-
 	<script>
+	for(var i = 0; i < <%= n%>; i++){
+		
 		var options = {
 			'dataset' : {
-				title : '수업 커리큘럼에 대한 만족도',
+				title : "asd",
 				values : [ 25, 3, 10, 7 ],
 				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
 				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
 			},
 			'donut_width' : 35,
 			'core_circle_radius' : 50,
-			'chartDiv' : 'cursatis1',
+			'chartDiv' : "cursatis" + i,
 			'chartType' : 'donut',
 			'chartSize' : {
 				width : 400,
 				height : 200
 			}
 		};
-		Nwagon.chart(options);
-
-		var options = {
-			'dataset' : {
-				title : '수업 진도에 대한 만족도',
-				values : [ 22, 1, 1, 1 ],
-				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
-				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
-			},
-			'donut_width' : 35,
-			'core_circle_radius' : 50,
-			'chartDiv' : 'cursatis2',
-			'chartType' : 'donut',
-			'chartSize' : {
-				width : 400,
-				height : 200
-			}
-		};
-		Nwagon.chart(options);
+	}
+	Nwagon.chart(options);
 	</script>
 </body>
 </html>

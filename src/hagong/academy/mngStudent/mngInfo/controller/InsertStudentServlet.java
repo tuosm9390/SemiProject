@@ -2,7 +2,6 @@ package hagong.academy.mngStudent.mngInfo.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -86,6 +85,8 @@ public class InsertStudentServlet extends HttpServlet {
 			String phone = tel1 + "-" + tel2 + "-" + tel3; // 전화번호
 			String address = multiRequest.getParameter("address"); // 주소
 			String email = multiRequest.getParameter("email"); // 이메일
+			int refNo = Integer.parseInt(multiRequest.getParameter("refNo")); // 학부모유저번호
+			System.out.println("refNo : " + refNo);
 			String refName = multiRequest.getParameter("refName"); // 학부모이름
 			String refId = multiRequest.getParameter("refId"); // 학부모아이디
 			String reftel1 = multiRequest.getParameter("reftel1");
@@ -122,9 +123,18 @@ public class InsertStudentServlet extends HttpServlet {
 			s.setStatus(status);
 			s.setUserType(userType);
 
-			// 학부모 번호 찾기
-			int refUno = new StudentService().findUserNo(refId);
-			s.setRefUno(refUno);
+			if(refNo == 0) {
+				int refresult = new StudentService().insertParent(s);
+				
+				if(refresult > 0) {
+					// 학부모 번호 찾기
+					int	refUno = new StudentService().findUserNo(refId);
+					s.setRefUno(refUno);
+				}
+			} else {
+				s.setRefUno(refNo);
+			}
+			System.out.println("s.getRefUno : " + s.getRefUno());
 			
 			ArrayList<StudentProfile> fileList = new ArrayList<StudentProfile>();
 			
