@@ -45,6 +45,10 @@ public class Purchase {
 	private int faultPrice;		//학원귀책 환불금액
 
 	private int profit;			//차액 (수납금액 - 환불금액/쿠폰혜택금액)
+	
+	private String strNotifyDate;
+	private String strReciptDate;
+	private String strRefundDay;
 
 	public Purchase() {
 		super();
@@ -54,7 +58,8 @@ public class Purchase {
 			int stuNo, String stuId, String stuName, int realPrice, String payStatus, int purchaseNo, Date notifyDate,
 			Date reciptDate, String detailStatus, String payMemo, int payPrice, String refundPoint, double refundRate,
 			int refundPrice, Date refundDay, String beneName, double beneRate, int benePrice, int faultDays,
-			int onedayFee, int faultPrice, int profit) {
+			int onedayFee, int faultPrice, int profit, String strNotifyDate, String strReciptDate,
+			String strRefundDay) {
 		super();
 		this.classNo = classNo;
 		this.className = className;
@@ -84,6 +89,9 @@ public class Purchase {
 		this.onedayFee = onedayFee;
 		this.faultPrice = faultPrice;
 		this.profit = profit;
+		this.strNotifyDate = strNotifyDate;
+		this.strReciptDate = strReciptDate;
+		this.strRefundDay = strRefundDay;
 	}
 
 	public final int getClassNo() {
@@ -310,6 +318,30 @@ public class Purchase {
 		this.profit = profit;
 	}
 
+	public final String getStrNotifyDate() {
+		return strNotifyDate;
+	}
+
+	public final void setStrNotifyDate(String strNotifyDate) {
+		this.strNotifyDate = strNotifyDate;
+	}
+
+	public final String getStrReciptDate() {
+		return strReciptDate;
+	}
+
+	public final void setStrReciptDate(String strReciptDate) {
+		this.strReciptDate = strReciptDate;
+	}
+
+	public final String getStrRefundDay() {
+		return strRefundDay;
+	}
+
+	public final void setStrRefundDay(String strRefundDay) {
+		this.strRefundDay = strRefundDay;
+	}
+
 	@Override
 	public String toString() {
 		return "Purchase [classNo=" + classNo + ", className=" + className + ", classPrice=" + classPrice
@@ -320,7 +352,8 @@ public class Purchase {
 				+ ", refundPoint=" + refundPoint + ", refundRate=" + refundRate + ", refundPrice=" + refundPrice
 				+ ", refundDay=" + refundDay + ", beneName=" + beneName + ", beneRate=" + beneRate + ", benePrice="
 				+ benePrice + ", faultDays=" + faultDays + ", onedayFee=" + onedayFee + ", faultPrice=" + faultPrice
-				+ ", profit=" + profit + "]";
+				+ ", profit=" + profit + ", strNotifyDate=" + strNotifyDate + ", strReciptDate=" + strReciptDate
+				+ ", strRefundDay=" + strRefundDay + "]";
 	}
-	
+
 }
