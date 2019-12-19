@@ -47,4 +47,36 @@ public class PlanService {
 		return result;
 	}
 
+	public int deletePlan(String deleteTitle) {
+		Connection con = getConnection();
+		
+		int result = new PlanDao().deletePlan(con, deleteTitle);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public HashMap<String, Object> selectByYear(String year) {
+		Connection con = getConnection();
+		
+		ArrayList<String> title = new PlanDao().selectTitleByYear(con, year);
+		ArrayList<ArrayList<Plan>> content = new PlanDao().selectContentByYear(con, year, title);
+		
+		HashMap<String, Object> hmap = new HashMap<>();
+		
+		hmap.put("title", title);
+		hmap.put("content", content);		
+		
+		close(con);
+		
+		return hmap;
+	}
+
 }

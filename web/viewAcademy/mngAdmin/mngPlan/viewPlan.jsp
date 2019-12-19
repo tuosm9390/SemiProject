@@ -102,10 +102,11 @@
    	    </fieldset>
     </div>
     <div class="btnArea">
-    	<select style="border:1px solid lightgray; border-radius:5px; float:left">
-			<option>2019</option>
-			<option>2018</option>
-			<option>2017</option>
+    	<select id="selectYear" style="border:1px solid lightgray; border-radius:5px; float:left">
+			<option value="19">2019</option>
+			<option value="18">2018</option>
+			<option value="17">2017</option>
+			<option value="16">2016</option>
 		</select>
 		<button id="deleteByMonth">삭제</button>
 		<button id="writeBtn" style="float:right">입력 및 수정</button>
@@ -197,10 +198,8 @@
 				var closeBtn = document.getElementById('xBtn');
 				
 				writeBtn.onclick = function() {
-					location.href = "<%=request.getContextPath()%>/viewAcademy/mngAdmin/mngPlan/updatePlan.jsp";
-				}
-				
-				
+					location.href = "<%=request.getContextPath()%>/alistForUpdate.plan";
+				}				
 				
 				closeBtn.onclick = function() {
 					deleteArea.style.display = "none";
@@ -247,7 +246,36 @@
 					});
 				}); */
 				
+				$("#selectYear").change(function(){
+					var select = $("#selectYear option:selected").val();
+					
+					$.ajax({
+						url: "alistByYear.plan",
+						data: { year:select },
+						type: "get",
+						success: function(data){
+							console.log(data);
+							$tbody = $("#tbody");
+							$tbody.find("tr").remove();
+							
+							for(var key in data){
+								var $tr = $("<tr>");
+								var $td = $("<td>");
+								$td.val(data[key].calTitle);
+								$td.text(data[key].calTitle);
+								$tr.append($td);
+								$tbody.append($tr);
+							}
+						},
+						error: function(data){
+							
+						}
+					});
+				});
+				
 			});
+			
+			
 		</script>
 </section>
 <footer></footer>	
