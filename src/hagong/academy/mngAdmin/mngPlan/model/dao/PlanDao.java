@@ -155,4 +155,139 @@ public class PlanDao {
 		return result;
 	}
 
+	public int deletePlan(Connection con, String deleteTitle) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deletePlan");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, deleteTitle);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<Plan> selectByYear(Connection con, String year) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Plan> list = null;
+		
+		String query = prop.getProperty("selectByYear");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(year));
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Plan p = new Plan();
+				
+				p.setCalNo(rset.getInt("CAL_NO"));
+				p.setUserNo(rset.getInt("USER_NO"));
+				p.setCalTitle(rset.getString("CAL_TITLE"));
+				p.setCalStart(rset.getDate("CAL_START"));
+				p.setCalEnd(rset.getDate("CAL_END"));
+				p.setCalType(rset.getString("CAL_TYPE"));
+				p.setCalMemo(rset.getString("CAL_MEMO"));
+				p.setDateType(rset.getString("DATE_TYPE"));
+				
+				list.add(p);				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return list;
+	}
+
+	public ArrayList<String> selectTitleByYear(Connection con, String year) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<String> list = null;
+		
+		String query = prop.getProperty("selectTitleByYear");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(year));
+			
+			rset = pstmt.executeQuery(query);
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		 
+		
+		return list;
+	}
+
+	public ArrayList<ArrayList<Plan>> selectContentByYear(Connection con, String year, ArrayList<String> title) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ArrayList<Plan>> list = null;
+		
+		String query = prop.getProperty("selectPlanByYear");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			list = new ArrayList<ArrayList<Plan>>();
+			for(int i=0; i<title.size(); i++) {
+				pstmt.setString(1, title.get(i));
+				pstmt.setInt(2, Integer.parseInt(year));
+				rset = pstmt.executeQuery();				
+				
+				ArrayList<Plan> pl = new ArrayList<Plan>();
+				
+				while(rset.next()) {
+					Plan p = new Plan();
+
+					p.setCalNo(rset.getInt("CAL_NO"));
+					p.setUserNo(rset.getInt("USER_NO"));
+					p.setCalTitle(rset.getString("CAL_TITLE"));
+					p.setCalStart(rset.getDate("CAL_START"));
+					p.setCalEnd(rset.getDate("CAL_END"));
+					p.setCalType(rset.getString("CAL_TYPE"));
+					p.setCalMemo(rset.getString("CAL_MEMO"));
+					p.setDateType(rset.getString("DATE_TYPE"));
+					
+					pl.add(p);
+				}
+				
+				list.add(pl);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println(list);
+		return list;
+	}
+
 }

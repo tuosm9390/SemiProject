@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngAdmin.mngPlan.model.vo.*"%>
+<% 	ArrayList<String> title = (ArrayList<String>) request.getAttribute("title");
+	ArrayList<ArrayList<Plan>> content = (ArrayList<ArrayList<Plan>>) request.getAttribute("content"); 
+%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -129,12 +132,19 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				<%-- <tr>
-					<td>주요 이슈</td>
-					<% for(int i=0; i<12; i++) { %>
-					<td contenteditable="true"></td>
-					<% } %>
-				</tr> --%>
+				<% for(int i=0; i<title.size(); i++) { %>
+				<tr>
+					<td id="title" style="height:100px; font-weight:bold; color:black"><%= title.get(i) %></td>
+							<% for(int k=0; k<content.get(i).size(); k++){ 
+								String id = i + "row" + k + "index";
+								if((content.get(i).get(k)) != null) { %>
+								<td><textarea id='<%=id%>' name='td' style='background:none; border:none; resize:none;'><%= content.get(i).get(k).getCalMemo() %></textarea></td>
+								<% }else { %>
+								<td><textarea id='<%=id%>' name='td' style='background:none; border:none; resize:none;'></textarea></td>
+								<% } %>
+							<% } %>
+				</tr>
+				<% } %>
 			</tbody>
 			</table>
 		</form>
@@ -191,10 +201,17 @@
 				var cancleDelete = document.getElementById('cancelbtn');
 				var closeBtn = document.getElementById('xBtn');
 				var addRowName = "";
+				
+				
 
+				var tbody = document.getElementById('tbody');
+				tbody.addEventListener('change', function(event){
+					console.log(tbody);
+				});
 				
 				//저장 버튼 클릭 시
-				writeBtn.onclick = function() {
+				writeBtn.onclick = function() {				
+					
 					var arr = [];
 					var one = $("#one").val();
 					var two = $("#two").val();
@@ -242,7 +259,13 @@
 						},
 						type: "get",
 						success: function(data){
-							
+							swal ({
+								title: "수정 완료",
+								text: "연간계획 수정이 완료되었습니다.",
+								icon: "success",
+								button: "확인"
+							});
+							location.href="<%=request.getContextPath()%>/alist.plan";
 						},
 						error: function(data){
 							
@@ -290,9 +313,45 @@
 				
 				deleteRowBtn.onclick = function() {
 					var deleteRowName = window.prompt('삭제할 행 이름 입력');
+<%-- 					var title1 = '<%=title%>';
+					var title = title1.split(", ");
+					console.log(title);
+					
+					title.splice(title.indexOf(deleteRowName),1);
+					console.log(title);
+					
+					
+					var String = "";
+					for(var i=0; i<title.length; i++) {
+						if(i==(title.length-1)){
+							String += title[i];
+						}else {
+							String += title[i]+", ";
+						}
+					}
+					console.log(String); --%>
+					
+					$.ajax({
+						url: "alistForDelete.plan",
+						data: { title:deleteRowName },
+						type: "get",
+						success: function(data){
+							swal ({
+								title: "행 삭제 완료",
+								text: "행 삭제가 완료되었습니다.",
+								icon: "success",
+								button: "확인"
+							});
+							location.href="<%=request.getContextPath()%>/alistForUpdate.plan";
+						},
+						error: function(data){
+							console.log('실패');
+						}
+					});
 					
 					//시험용 삭제
-					$("tbody tr[value='"+ deleteRowName + "']").remove();
+					//$("tbody tr[value='"+ deleteRowName + "']").remove();
+					
 					
 				}
 				
