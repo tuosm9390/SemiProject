@@ -43,6 +43,8 @@
    }
    #okBtn { width:250px; height:40px; background:white; border:1px solid green; border-radius:5px/5px;}
    #okBtn:hover { background:green; color:white; }
+   .sendMsg {font-size:14px;color:green;display:block;}
+   .msgArea{float: left;margin-left: 105px;margin-top: 2px;}
 </style>
 <style type="text/css">
    body {
@@ -55,35 +57,109 @@
    <div class="background">
    <div align="center" id="container">
       <h1 style="color:green; font-family: 'Do Hyeon';">비밀번호 설정</h1>
-      <form id="middle" action="<%=request.getContextPath()%>/firstUpdate.cm" method="post">
+      <form id="middle" method="post">
          <table>
             <tr>
                <td width="20%">아이디</td>
                <td colspan="2" width="80%"><input type="text" name="userId" placeholder=" 아이디 입력"></td>
             </tr>
             <tr>
-                  <td>이메일</td>
+                  <td>전화번호</td>
                   <td style="width:180px; text-align: center;">
-                  <input type="email" name="email" placeholder="example@naver.com"></td>
-                  <td style="align-items: center;"><div align="right">
-                  <button style="height: 30px;">인증하기</button></div></td>
+	                  <input type="tel" maxlength="3" name="tel"> - 
+			          <input type="tel" maxlength="4" name="tel"> -
+			          <input type="tel" maxlength="4" name="tel">
+          		  </td>
+                  <td style="align-items: center;"><div align="right"><button type="button" style="height: 30px;" id="sendMsg">인증하기</button></div></td>
             </tr>
             <tr>
                <td>인증번호</td>
-               <td colspan="2"><input type="text" name="certification" placeholder=" 인증번호 입력"></td>
-            </tr> 
+               <td colspan="2"><input type="text" id="number" name="number" placeholder=" 인증번호 입력" disabled></td>
+            </tr>
          </table>
       </form>
+      <div class="msgArea">
+               	
+      </div>
       <div id="container-footer">
-         <input type="button" id="okBtn" value="확인" style="margin-top: 30px;"
-         onclick="goToNewPwd2();">
+      	 <input id="smsck" type="hidden" value="false">
+         <button type="button" id="okBtn"style="margin-top: 30px;">확인</button>
       </div>
    </div>
    </div>
    <script>
-   		function goToNewPwd2() {  			
-   			location.href='<%=request.getContextPath()%>/viewAcademy/common/newPwd2.jsp';
-   		}
+   		$("#okBtn").click(function(){
+   			console.log($("#smsck").val());
+   			if($("#smsck").val() == "true"){
+   				$("#middle").attr("action","<%=request.getContextPath()%>/firstUpdate.cm");   				
+   			}else{
+   				alert("입력하신 정보가 일치하지 않습니다!");
+   			}
+   		});
+
+   		$("#sendMsg").click(function(){
+   			var phone = "";
+   			$("input[name = tel]").filter(function(value){
+   				phone += this.value;
+   			});
+   			console.log("phone : " + phone);
+   			var userId = $("input[name = userId]").val();
+   			
+			$.ajax({
+				url:"<%= request.getContextPath()%>/sendMsg.cm",
+				type:"get",
+				data:{
+					userId:userId,
+					phone:phone
+				},
+				success:function(data){
+					console.log(data);
+					$(".msgArea").append('<span class="sendMsg">인증번호를 발송했습니다.</span>');
+					$("#number").prop("disabled", false);
+				},
+				error:function(data){
+					console.log("실패!");
+				}
+			});
+   		});
+   		
+   		$("#number").change(function(){
+   			var phoneCk = "";
+   			$("input[name = tel]").filter(function(value){
+   				phoneCk += this.value;
+   			});
+   			console.log("phone : " + phoneCk);
+   			var userIdCk = $("input[name = userId]").val();
+   			
+   			$.ajax({
+   				url:"<%= request.getContextPath() %>/checkMsg.cm",
+   				type:"get",
+   				data:{
+   					userId:userIdCk,
+   					phone:phoneCk
+   				},
+   				success:function(data){
+   		   			if($("#number").val() == data){
+   		   				$(".msgArea").text('');
+   		   				$(".msgArea").append('<span class="sendMsg">인증번호가 일치합니다</span>');
+   		   				$("#number").css("border","1px solid green")
+   		   				$("#smsck").val("true");
+   		   			}else{
+   		   				$(".msgArea").text('');
+   		   				$(".msgArea").append('<span class="sendMsg">인증번호가 일치하지 않습니다.</span>');
+   		   				$(".sendMsg").css("color","red");
+   		   				$("#number").css("border","1px solid red");
+   		   				$("#smsck").val("false");
+   		   			}
+   				},
+   				error:function(data){
+   					console.log("실패!");
+   				}
+   			}); 
+
+   		});
+   		
+   		
    </script>
 </body>
 </html>
