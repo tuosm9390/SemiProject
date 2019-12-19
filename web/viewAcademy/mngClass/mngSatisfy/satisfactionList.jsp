@@ -155,8 +155,9 @@ select:focus {
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
 								<option selected>선택</option>
 								<% for(int i = 0; i < blist.size(); i++) { %>
-								<option value="<%=blist.get(i).getBenNo()%>"><%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " "
-												+ (int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
+								<option value="<%=blist.get(i).getBenNo()%>">
+								<%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " " +
+									(int) (Math.floor(blist.get(i).getBenRate() * 100)) + "%"%></option>
 								<% } %>
 						</select></td>
 					</tr>
@@ -208,7 +209,7 @@ select:focus {
 			var start = $(this).parent().children().find("#start").val();
 			var end = $(this).parent().children().find("#end").val();
 			var today = $("#today").val();
-			var type;
+			var type = "";
 			if(today < start) {
 				type = "detail";
 			} else if(today < end) {
@@ -221,6 +222,7 @@ select:focus {
 			console.log(end);
 			console.log(today);
 			console.log(type);
+			
 			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo + "&type=" + type;
 		});
 

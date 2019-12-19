@@ -54,6 +54,33 @@ public class StudentDao {
 		return userNo;
 	}
 
+	public int insertParent(Connection con, Student s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertParent");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, s.getRefName());
+			pstmt.setString(2, s.getRefId());
+			pstmt.setString(3, s.getUserPwd());
+			pstmt.setDate(4, s.getBirth());
+			pstmt.setString(5, s.getPhone());
+			pstmt.setString(6, s.getAddress());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	public int insertMember(Connection con, Student s) {
 		PreparedStatement pstmt = null;
 		int result = 0;

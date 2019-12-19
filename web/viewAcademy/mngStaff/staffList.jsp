@@ -15,7 +15,7 @@
 	margin-right: auto;
 }
 .btnArea {
-	margin-left: 77%;
+	margin-left: 88.4%;
 	margin-bottom: 5px;
 }
 
@@ -61,8 +61,6 @@ fieldset {
       	</div>
 		<div class="btnArea">
 			<button class="enrollStaff" id="enrollPage">직원 등록</button>
-			<button class="enrollStaff" id="enrollExcel">엑셀로 직원 등록</button>
-			<input type="file" id="btnExcel">
 		</div>
 		<!-- btnArea end -->
 		<div class="listArea">

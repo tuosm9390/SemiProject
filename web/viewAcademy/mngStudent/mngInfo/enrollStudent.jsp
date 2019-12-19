@@ -75,6 +75,11 @@ section button:hover {
 	display: block;
 	color: green;
 }
+
+.blueText {
+	display: block;
+	color: blue;
+}
 </style>
 </head>
 <body>
@@ -161,9 +166,9 @@ section button:hover {
 							</tr>
 							<tr>
 								<td><li>학부모 아이디</li></td>
-								<td><input type="text" placeholder="학부모 아이디 입력" id="refId"
-									name="refId"><br>
-									<span id="refidSpan" class="redText"></span></td>
+								<td><input type="hidden" id="refNo" name="refNo" value="">
+								<input type="text" placeholder="학부모 아이디 입력" id="refId"name="refId"><br>
+								<span id="refidSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -386,7 +391,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		$("#userId").keyup(
 				function(event) {
 					var userId = $("#userId").val();
-					var check = /^[a-z][a-zA-Z0-9]{3,11}$/;
+					var check = /^[a-z][a-zA-Z0-9]{4,11}$/;
 					if (check.test(userId)) {
 						$.ajax({
 							url : "/hagong/idCheck.cm",
@@ -458,27 +463,36 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		// 학부모 아이디
 		$("#refId").keyup(
 				function(event) {
-					var userId = $("#refId").val();
-					var check = /^[a-z][a-zA-Z0-9]{3,11}$/i;
-					if (check.test(userId)) {
+					var refId = $("#refId").val();
+					var check = /^[a-z][a-zA-Z0-9]{4,11}$/i;
+					if (check.test(refId)) {
 						$.ajax({
-							url : "/hagong/idCheck.cm",
+							url : "/hagong/refIdCheck.cm",
 							type : "post",
 							async : false,
 							data : {
-								userId : $("#refId").val()
+								refId : refId
 							},
 							success : function(data) {
-								if (data === "success") {
-									$("#refidSpan").removeClass('greenText').addClass('redText');
-									$("#refidSpan").text("존재하지 않는 ID입니다.");
-								} else {
-									console.log(userId);
+								if (data === 0) {
+								//result가 0이면 아이디 없음
 									$("#refidSpan").removeClass('redText').addClass('greenText');
-									$("#refidSpan").text("존재하는 ID 입니다.");
+									$("#refidSpan").text("새로 생성되는 ID입니다.");
+									$("#refNo").val(data);
+								//refNo가 -1이면 부모타입이 아닌 아이디가 있음
+								} else if(data === -1) {
+									$("#refidSpan").removeClass('greenText').addClass('redText');
+									$("#refidSpan").text("중복되는 ID입니다.");
+									$("#refNo").val(data);
+								} else {
+								//0이상이면 아이디 있음(학부모의 유저넘버 반환)
+									$("#refidSpan").removeClass('redText').addClass('greenText');
+									$("#refidSpan").text("존재하는 학부모 ID 입니다.");
+									$("#refNo").val(data);
 								}
+								//location.href="";
 							},
-							error : function() {
+							error : function(data) {
 								console.log("Failed");
 							}
 						});

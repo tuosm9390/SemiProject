@@ -31,6 +31,7 @@ public class SatisfyResult extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("결과서블릿");
 		int satNo = Integer.parseInt(request.getParameter("satNo"));
 		System.out.println(satNo);
 		

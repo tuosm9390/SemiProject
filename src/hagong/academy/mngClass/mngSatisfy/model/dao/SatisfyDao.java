@@ -92,6 +92,7 @@ public class SatisfyDao {
 				}
 				si.setBenRate(rset.getDouble("BEN_RATE"));
 				si.setToday(rset.getDate("SYSDATE"));
+				
 				blist.add(si);
 			}
 

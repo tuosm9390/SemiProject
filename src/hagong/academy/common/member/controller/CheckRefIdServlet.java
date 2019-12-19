@@ -9,29 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import hagong.academy.common.member.model.service.IdService;
 
-@WebServlet("/idCheck.cm")
-public class CheckIdServlet extends HttpServlet {
+@WebServlet("/refIdCheck.cm")
+public class CheckRefIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CheckIdServlet() {
+    public CheckRefIdServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
+		String refId = request.getParameter("refId");
 		
-		int result = new IdService().idCheck(userId);
-		PrintWriter out = response.getWriter();
+		int result = new IdService().refIdCheck(refId);
 		
-		if(result > 0) {
-			out.append("fail");
-		} else {
-			out.append("success");
-		}
-		out.flush();
-		out.close();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(result, response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
