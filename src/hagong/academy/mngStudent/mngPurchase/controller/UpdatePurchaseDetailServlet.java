@@ -1,7 +1,7 @@
 package hagong.academy.mngStudent.mngPurchase.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,41 +14,28 @@ import com.google.gson.Gson;
 import hagong.academy.mngStudent.mngPurchase.model.service.PurchaseService;
 import hagong.academy.mngStudent.mngPurchase.model.vo.Purchase;
 
-@WebServlet("/adetail.pur")
-public class PurchaseDetailServlet extends HttpServlet {
+@WebServlet("/aupdate.pur")
+public class UpdatePurchaseDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PurchaseDetailServlet() {
+    public UpdatePurchaseDetailServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int purchaseNo = Integer.parseInt(request.getParameter("purchaseNo"));
-		Purchase purchase = new PurchaseService().selectPurchaseDetail(purchaseNo);
+		int purchaseNo = Integer.parseInt(request.getParameter("selectNos"));
+		String payMemo = request.getParameter("payMemo");
+		String payDetail = request.getParameter("payDetail");
+		String payPrice = request.getParameter("payPrice");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-		String strNotifyDate = "-";
-		String strReciptDate = "-";
-		String strRefundDay = "-";
+		/*여기부터 해! 수정중! 수정중! 여기부터!*/
 		
-		if(purchase.getNotifyDate() != null) {
-			strNotifyDate = sdf.format(purchase.getNotifyDate());
-		}
-		if(purchase.getReciptDate() != null) {
-			strReciptDate = sdf.format(purchase.getReciptDate());
-		}
-		if(purchase.getRefundDay() != null) {
-			strRefundDay = sdf.format(purchase.getRefundDay());
-		}
-		
-		purchase.setStrNotifyDate(strNotifyDate);
-		purchase.setStrReciptDate(strReciptDate);
-		purchase.setStrRefundDay(strRefundDay);
+		int result = 0;
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		if(purchase != null) {
-			new Gson().toJson(purchase, response.getWriter());
+		if(result > 0) {
+			new Gson().toJson("success", response.getWriter());
 		} else {
 			new Gson().toJson("fail", response.getWriter());
 		}

@@ -33,9 +33,9 @@ public class PurchaseService {
 		return purList;
 	}
 
-	public int updateStatus(int[] requestNos) {
+	public int updateStatus(int[] requestNos, ArrayList<Integer> realPriceList) {
 		Connection con = getConnection();
-		int result = new PurchaseDao().updateStatus(con, requestNos);
+		int result = new PurchaseDao().updateStatus(con, requestNos, realPriceList);
 		if(result > 0) {
 			commit(con);
 		} else {
@@ -67,6 +67,13 @@ public class PurchaseService {
 		}
 		close(con);
 		return result;
+	}
+
+	public Purchase selectPurchaseDetail(int purchaseNo) {
+		Connection con = getConnection();
+		Purchase purchase = new PurchaseDao().selectPurchaseDetail(con, purchaseNo);
+		close(con);
+		return purchase;
 	}
 
 

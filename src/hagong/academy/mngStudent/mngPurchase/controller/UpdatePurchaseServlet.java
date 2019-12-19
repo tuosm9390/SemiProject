@@ -1,6 +1,7 @@
 package hagong.academy.mngStudent.mngPurchase.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import hagong.academy.mngStudent.mngPurchase.model.service.PurchaseService;
+import hagong.academy.mngStudent.mngPurchase.model.vo.Purchase;
 
 @WebServlet("/aupdateAll.pur")
 public class UpdatePurchaseServlet extends HttpServlet {
@@ -30,7 +32,12 @@ public class UpdatePurchaseServlet extends HttpServlet {
 		
 		int result = 0;
 		if(type.equals("donePay")) {
-			result = new PurchaseService().updateStatus(requestNos);
+			ArrayList<Integer> realPriceList = new ArrayList<>();
+			for(int i = 0; i < requestNos.length; i++) {
+				Purchase purchase = new PurchaseService().selectPurchaseDetail(requestNos[i]);
+				realPriceList.add(purchase.getRealPrice());
+			}
+			result = new PurchaseService().updateStatus(requestNos, realPriceList);
 		} else if(type.equals("sendBill")) {
 			result = new PurchaseService().updateBill(requestNos);
 		} else if(type.equals("sendRecipt")) {
