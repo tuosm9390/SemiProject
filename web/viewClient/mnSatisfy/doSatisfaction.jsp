@@ -121,7 +121,6 @@ border-radius: 25px;
 	
 	function submit(){
 		swal({
-			
 			  text: "제출 하시겠습니까?",
 			  buttons: true,
 			})
@@ -130,13 +129,11 @@ border-radius: 25px;
 			    swal("제출되었습니다!", {});
 			    //ok 눌렀을떄 폼 전송
 			    $("#sendForm").attr("action", "<%=request.getContextPath()%>/insertSatisfy.sf");
-			   
 			  } 
 			});
 	}
 	function goList(){
 		swal({
-			
 			  text: "작업을 중단하시겠습니까?",
 			  buttons: true,
 			})

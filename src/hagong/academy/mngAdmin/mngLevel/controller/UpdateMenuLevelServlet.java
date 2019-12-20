@@ -33,8 +33,8 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("hhh");
 		int modifyInfo1 = Integer.parseInt(request.getParameter("modifyInfo1"));
-	
 		int modifyInfo3 = Integer.parseInt(request.getParameter("modifyInfo3"));
 		int info1 = Integer.parseInt(request.getParameter("info1"));
 		int info2 = Integer.parseInt(request.getParameter("info2"));

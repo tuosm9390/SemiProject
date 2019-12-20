@@ -458,11 +458,11 @@ var calendar = $('#calendar').fullCalendar({
 						title:response[key].title,
 						description:response[key].content,
 						start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
-						end:moment(response[key].end).format('YYYY-MM-DD hh:mm'),
+						end:moment(response[key].end).add(1,"days").format('YYYY-MM-DD hh:mm'),
 						type:response[key].type,
 						backgroundColor:"skyblue",
 						textColor:"white",
-						allDay:true
+						allDay:false
 				};
 				events.push(evt);
 			}

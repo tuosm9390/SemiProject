@@ -2,15 +2,14 @@
    pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngLevel.model.vo.*, java.util.*"%>
    
    <% ArrayList<MngLevel> list = (ArrayList<MngLevel>) request.getSession().getAttribute("list"); %>
-   <% System.out.println(list);
-   	System.out.println(list.size());
-   %>
+ 
   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HAGONG</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 
 select {
@@ -479,6 +478,7 @@ border-right: none;
      		}
    		
    	});
+ 	
    </script>
 </body>
 </html>
