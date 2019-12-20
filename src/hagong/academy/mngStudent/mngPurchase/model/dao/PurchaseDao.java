@@ -91,6 +91,8 @@ public class PurchaseDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, selectedDate);
 			pstmt.setString(2, selectedDate);
+			pstmt.setString(3, selectedDate);
+			pstmt.setString(4, selectedDate);
 			rset = pstmt.executeQuery();
 			purList = new ArrayList<Purchase>();
 			
