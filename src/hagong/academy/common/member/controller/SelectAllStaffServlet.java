@@ -32,7 +32,7 @@ public class SelectAllStaffServlet extends HttpServlet {
 		int totalStudent = new MemberService().allStudent();
 		
 		String page = "";
-		if(totalStaff > 0) {
+		if(totalStaff >= 0) {
 			page = "viewAcademy/main.jsp";
 			request.getSession().setAttribute("totalStaff", new Integer(totalStaff));
 			request.getSession().setAttribute("totalStudent", new Integer(totalStudent));

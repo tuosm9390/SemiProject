@@ -212,6 +212,9 @@
 				//저장 버튼 클릭 시
 				writeBtn.onclick = function() {				
 					
+					for(var i=0; i<title.size; i++) {
+						
+					if(addRowName != title.get(i)) {
 					var arr = [];
 					var one = $("#one").val();
 					var two = $("#two").val();
@@ -271,9 +274,10 @@
 							
 						}
 					});
-				
-
+					}
 				}
+
+			}
 				
 				
 				
@@ -283,32 +287,24 @@
 				addRowBtn.onclick = function() {
 					addRowName = window.prompt('행 이름 입력');
 					
-					<%-- if(addRowName != null) {
-					$.ajax({
-						url: "<%=request.getContextPath()%>/ainsert.plan",
-						data: {addRowName:addRowName},
-						type: "get",
-						success: function(data){
-							console.log(data);
-						},
-						error: function(data){
-							
+					for(var i=0; i<title.size; i++)  {
+						
+						if(addRowName != title.get(i)) {
+							$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
+												+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='three' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='four' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='five' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='six' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='seven' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='eight' style='background:none; border:none; resize:none;'></textarea></td>"										
+												+ "<td><textarea id='nine' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
+												+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
 						}
-					});
-					} --%>
-					$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
-										+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='three' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='four' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='five' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='six' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='seven' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='eight' style='background:none; border:none; resize:none;'></textarea></td>"										
-										+ "<td><textarea id='nine' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
-										+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
+					}
 				}
 				
 				deleteRowBtn.onclick = function() {
