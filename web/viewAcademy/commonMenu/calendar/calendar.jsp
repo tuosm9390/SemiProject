@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,11 @@
 </head>
 
 <style>
-	
+	.alldayday{
+		display: none;
+	}
+	#edit-allDay{
+	display:none;}
 	button, button:focus {
 z-index:0 !important;
 }
@@ -99,7 +103,7 @@ z-index:0 !important;
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+                                <label class="col-xs-4" for="edit-allDay" id="alldayday">하루종일</label>
                                 <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
                             </div>
                         </div>
@@ -185,6 +189,7 @@ z-index:0 !important;
      
 </body>
 
+
  <script>
  var eventModal = $('#eventModal');
 
@@ -234,7 +239,7 @@ z-index:0 !important;
              uno:<%=loginUser.getUserNo()%>,
              allDay: false
          };
-
+	
          if (eventData.start > eventData.end) {
              alert('끝나는 날짜가 앞설 수 없습니다.');
              return false;
@@ -259,7 +264,7 @@ z-index:0 !important;
 
          $("#calendar").fullCalendar('renderEvent', eventData, true);
          eventModal.find('input, textarea').val('');
-         editAllDay.prop('checked', false);
+         editAllDay.prop('checked', true);
          eventModal.modal('hide');
         
        
@@ -392,7 +397,7 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
-  //주말 숨기기 & 보이기 버튼
+  /* //주말 숨기기 & 보이기 버튼
   customButtons: {
     viewWeekends: {
       text: '주말',
@@ -403,7 +408,7 @@ var calendar = $('#calendar').fullCalendar({
         });
       }
     }
-  },
+  }, */
 
   header: {
     left: 'today, prevYear, nextYear, viewWeekends',
@@ -443,26 +448,20 @@ var calendar = $('#calendar').fullCalendar({
     	  uno:uno
       },
       success: function (response) {
-    	  
-    	  console.log("성공이");
-    	  console.log(response);
-    	  
     	  //테스트
     	  var events=[];
     	  
     	  for(var key in response){
-			
-				console.log(response[key].start);
-				console.log(response[key].title);
+    		  
 				var evt={
 						_id:response[key].cno,
 						title:response[key].title,
 						description:response[key].content,
-						start:response[key].start,
-						end:response[key].end,
+						start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
+						end:moment(response[key].end).format('YYYY-MM-DD hh:mm'),
 						type:response[key].type,
-						backgroundColor:"black",
-						textColor:"cyan",
+						backgroundColor:"skyblue",
+						textColor:"white",
 						allDay:true
 				};
 				events.push(evt);

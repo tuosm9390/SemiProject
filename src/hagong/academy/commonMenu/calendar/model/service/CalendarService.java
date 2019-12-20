@@ -37,4 +37,36 @@ public class CalendarService {
 		return list;
 	}
 
+	public int deleteCal(int cno) {
+		Connection con = getConnection();
+		
+		int result = new CalendarDao().deleteCal(con,cno);
+		
+		if (result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		
+		return result;
+	}
+
+	public int updateCal(Calendar c) {
+		Connection con = getConnection();
+		
+		int result = new CalendarDao().updateCal(con,c);
+		
+		if (result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		
+		return result;
+	}
+
 }

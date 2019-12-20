@@ -49,6 +49,7 @@ public class SelectCalendarServlet extends HttpServlet {
 		if (list != null) {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
+		
 			new com.google.gson.Gson().toJson(list,response.getWriter());
 			
 		} else {
