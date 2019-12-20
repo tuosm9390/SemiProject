@@ -55,9 +55,7 @@ tr:not(:first-child){
 	</fieldset>
 	</div>
 	<div style="width: 90%; margin: auto auto;">
-		<button id="addexcel">엑셀로 성적 일괄 등록</button>
 		<button id="addstudent">학생 등록</button>
-		<input type="file" id="exelfile">
 		<table class="table">
 			<tr>
 				<th>ID</th>

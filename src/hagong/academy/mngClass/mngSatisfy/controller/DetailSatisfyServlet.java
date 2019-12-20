@@ -30,7 +30,8 @@ public class DetailSatisfyServlet extends HttpServlet {
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
 		System.out.println("list : " + list);
 		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
-
+		System.out.println("blist : " + blist);
+		
 		String page = "";
 		if (list != null) {
 			if (type.equals("detail") || type.equals("select")) {

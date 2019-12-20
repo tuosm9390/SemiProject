@@ -384,7 +384,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		
 			$("#userId").keyup(function(event) {
 				var userId = $("#userId").val();
-				var check = /^[a-z][a-z0-9A-Z]{3,11}$/;
+				var check = /^[a-z][a-z0-9]{4,11}$/;
 				if(check.test(userId)){
 					$.ajax({
 						url:"/hagong/idCheck.cm",
