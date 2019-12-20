@@ -112,6 +112,9 @@ h2 {
 			<h2 style="width: 150px;">
 				<li>학생 성적</li>
 			</h2>
+			<button id="addexcel">엑셀로 성적 일괄 등록</button>
+			<input type="file" id="excelfile" onchange="loadExcel(this);">
+			<input type="hidden" id="selectExcel">
 			<button id="addRow" style="float: right; margin-right: 11.2%;">성적
 				추가</button>
 			<button id="searchCondition" style="float: right;">검색</button>
@@ -334,6 +337,22 @@ h2 {
 						yearRange : "c-20:c"
 					});
 		});
+		
+		$("#addexcel").click(function() {
+			$("#excelfile").click();
+		});
+		
+		//프로필이미지
+		function loadExcel(value) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#selectExcel").attr("src", e.target.result);
+					console.log(e.target.result)
+				};
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
 	</script>
 </body>
 </html>

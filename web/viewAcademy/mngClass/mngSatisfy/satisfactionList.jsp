@@ -128,18 +128,21 @@ select:focus {
 					<th>No.</th>
 					<th>만족도 조사 제목</th>
 					<th>만족도 조사 날짜</th>
+					<th>진행상황</th>
+					<% if(list.size() != 0){ %>
 					<input type="hidden" id="today" name="today" value="<%=blist.get(0).getToday()%>">
+					<% } %>
 				</tr>
-				<% if(list.size() != 0){
-					for(SatisfyInfo si : list) {%>
+				<% for(SatisfyInfo si : list) {%>
 				<tr>
 					<td><input type="hidden" id="satNo" name="satNo" value="<%= si.getSatNo() %>"><%=si.getRowNum() %></td>
 					<td><%=si.getSatTitle() %></td>
 					<td><input type="hidden" id="start" name="start" value="<%=si.getStart()%>">
 					<%=si.getStart() + " ~ " + si.getEnd()%><input type="hidden" id="end" name="end" value="<%=si.getEnd()%>">
 					</td>
+					<td></td>
 				</tr>
-				<% } }else { }%>
+				<% } %>
 			</table>
 		</form>
 
@@ -203,21 +206,25 @@ select:focus {
 			location.href="<%=request.getContextPath()%>/ainsert.satis?type=insertForm";
 		});
 		
+		var satNo = $(this).parent().children().find("#satNo").val();
+		var start = $(this).parent().children().find("#start").val();
+		var end = $(this).parent().children().find("#end").val();
+		var today = $("#today").val();
+		var type = "";
+		
+		if(today < start) {
+			type = "detail";
+		} else if(today < end) {
+			type = "select";
+		}
+		if(today > end) {
+			type = "result";
+		}
+		
+		$(".table tr td:last-child").text(type);
+		
 		//만족도 상세보기
 		$(".table td").click(function() {
-			var satNo = $(this).parent().children().find("#satNo").val();
-			var start = $(this).parent().children().find("#start").val();
-			var end = $(this).parent().children().find("#end").val();
-			var today = $("#today").val();
-			var type = "";
-			if(today < start) {
-				type = "detail";
-			} else if(today < end) {
-				type = "select";
-			}
-			if(today > end) {
-				type = "result";
-			}
 			console.log(start);
 			console.log(end);
 			console.log(today);

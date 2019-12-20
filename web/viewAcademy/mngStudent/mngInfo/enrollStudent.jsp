@@ -91,7 +91,7 @@ section button:hover {
 			<fieldset
 				style="border-bottom: none; border-left: none; border-right: none; border-top: 1px solid black; width: 90%;">
 				<legend align="center">
-					<h1 style="font-family: 'Do Hyeon'">학생 등록</h1>
+					<h1 style="font-family: 'Do Hyeon'">　학생 등록　</h1>
 				</legend>
 				<div style="width: 100%; margin: auto auto;">
 					<form id="enrollStudentForm" encType="multipart/form-data"
@@ -391,7 +391,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		$("#userId").keyup(
 				function(event) {
 					var userId = $("#userId").val();
-					var check = /^[a-z][a-zA-Z0-9]{4,11}$/;
+					var check = /^[a-z][a-z0-9]{4,11}$/;
 					if (check.test(userId)) {
 						$.ajax({
 							url : "/hagong/idCheck.cm",
@@ -426,7 +426,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		$("#userName").keyup(
 				function(event) {
 					var userName = $("#userName").val();
-					var check = /[a-zA-Z가-힣]{2,}/;
+					var check = /[\Da-zA-Z가-힣]{2,}/;
 					var check2 = /^[^0-9]+$/;
 					var check3 = /[`~!@#$%^&*()_+{}\[\]\\';:",./<>?|]/;
 					if (check.test(userName) && check2.test(userName)
@@ -464,7 +464,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		$("#refId").keyup(
 				function(event) {
 					var refId = $("#refId").val();
-					var check = /^[a-z][a-zA-Z0-9]{4,11}$/i;
+					var check = /^[a-z][a-z0-9]{4,11}$/;
 					if (check.test(refId)) {
 						$.ajax({
 							url : "/hagong/refIdCheck.cm",
@@ -507,7 +507,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 		$("#refName").keyup(
 				function(event) {
 					var refName = $("#refName").val();
-					var check = /[a-zA-Z가-힣]{2,}/;
+					var check = /[\Da-zA-Z가-힣]{2,}/;
 					var check2 = /^[^0-9]+$/;
 					var check3 = /[`~!@#$%^&*()_+{}\[\]\\';:",./<>?|]/;
 					if (check.test(refName) && check2.test(refName)
