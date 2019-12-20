@@ -1,10 +1,13 @@
 package hagong.academy.commonMenu.calendar.controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -46,11 +49,12 @@ public class InsertCalendarServlet extends HttpServlet {
 	    String content = request.getParameter("content");
 	    String backgroundColor = request.getParameter("backgroundColor");
 	 
-		java.sql.Date start = null;
-		java.sql.Date end = null;
-	  
-		start = java.sql.Date.valueOf(exstart);
-		end = java.sql.Date.valueOf(exend);
+	    Calendar cal = new Calendar();
+	    System.out.println("exstart !!@: " + exstart);
+	    String startDate = exstart.substring(0, 4)+"-"+exstart.substring(5,7)+"-"+exstart.substring(8,10)+" "+exstart.substring(11,13)+":"+exstart.substring(14,16);
+	    String endDate = exend.substring(0, 4)+"-"+exend.substring(5,7)+"-"+exend.substring(8,10)+" "+exend.substring(11,13)+":"+exend.substring(14,16);
+	    System.out.println(startDate);
+	    System.out.println("제발 !!!"+endDate);
 		
 	    if(type.equals("상담")) {
 	    	type = "COUNS";
@@ -62,23 +66,20 @@ public class InsertCalendarServlet extends HttpServlet {
 	    	type = "ETC";
 	    }
 	    
-	    System.out.println("start : " + exstart );
-	    System.out.println("end : " + exend);
 	    System.out.println("title : " + title);
-	 
 	    System.out.println("type : " + type);
 	    System.out.println("content : " + content);
 	    System.out.println("uno : " + uno);
 	    System.out.println("backgroundColor : " + backgroundColor);
 	  
-	    Calendar cal = new Calendar();
 	    
 	    cal.setTitle(title);
 	    cal.setType(type);
 	    cal.setContent(content);
 	    cal.setUno(uno);
-	    cal.setStart(start);
-	    cal.setEnd(end);
+	    cal.setStart(startDate);;
+	    cal.setEnd(endDate);
+	
 	
 	    
 		int result = new CalendarService().insertCal(cal);

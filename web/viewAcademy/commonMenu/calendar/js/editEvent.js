@@ -79,9 +79,15 @@ var editEvent = function (event, element, view) {
         //일정 업데이트
         $.ajax({
             type: "get",
-            url: "",
+            url: "/hagong/aupdate.cal",
             data: {
-                //...
+              title:event.title,
+              start:event.start,
+              end:event.end,
+              type:event.type,
+              description:event.description,
+              cno:event._id,
+              backgroundColor:event.backgroundColor
             },
             success: function (response) {
                 alert('수정되었습니다.')
@@ -99,9 +105,9 @@ var editEvent = function (event, element, view) {
         //삭제시
         $.ajax({
             type: "get",
-            url: "",
+            url: "/hagong/adelete.cal",
             data: {
-                //...
+                cno:event._id
             },
             success: function (response) {
                 alert('삭제되었습니다.');

@@ -40,12 +40,10 @@ public class CalendarDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, cal.getUno());
 			pstmt.setString(2,cal.getTitle());
-			pstmt.setDate(3, cal.getStart());
-			pstmt.setDate(4, cal.getEnd());
-			pstmt.setString(5,cal.getType());
-			pstmt.setString(6,cal.getContent());
-			
-			
+			pstmt.setString(3,cal.getType());
+			pstmt.setString(4,cal.getContent());
+			pstmt.setString(5, cal.getStart());
+			pstmt.setString(6, cal.getEnd());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -79,8 +77,8 @@ public class CalendarDao {
 			  c.setCno(rset.getInt("CAL_NO"));
 			  c.setUno(rset.getInt("USER_NO"));
 			  c.setTitle(rset.getString("CAL_TITLE"));
-			  c.setStart(rset.getDate("CAL_START"));
-			  c.setEnd(rset.getDate("CAL_END"));
+			  c.setStart(rset.getString("START_DATE"));
+			  c.setEnd(rset.getString("END_DATE"));
 			  c.setType(rset.getString("CAL_TYPE"));
 			  c.setContent(rset.getString("CAL_MEMO"));
 			  c.setMdtype(rset.getString("DATE_TYPE"));
@@ -95,6 +93,55 @@ public class CalendarDao {
 			close(rset);
 		}
 		return list;
+	}
+
+
+	public int deleteCal(Connection con, int cno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteCal");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cno);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int updateCal(Connection con, Calendar c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("updateCal");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,c.getTitle());
+			pstmt.setString(2, c.getType());
+			pstmt.setString(3, c.getContent());
+			pstmt.setString(4, c.getStart());
+			pstmt.setString(5,c.getEnd());
+			pstmt.setInt(6, c.getCno());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 }
