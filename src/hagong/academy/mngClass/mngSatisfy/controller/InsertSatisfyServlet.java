@@ -133,7 +133,7 @@ public class InsertSatisfyServlet extends HttpServlet {
 			int result = new SatisfyService().insertSatis(si, qrr, arr, questionNum, answerNum);
 			
 			if(result > 0) {
-				page = "/hagong/alist.satis";
+				page = "alist.satis";
 			} else {
 				System.out.println("등록 실패");
 				page = "/viewAcademy/common/commonError.jsp";

@@ -55,8 +55,8 @@ public class LoginServlet extends HttpServlet {
 			String page = "";
 			
 			if(loginUser != null) {
-				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath()+"/viewAcademy/common/newPwd1.jsp");
+				//request.setAttribute("userId", userId);
+				response.sendRedirect(request.getContextPath()+"/viewAcademy/common/newPwd1.jsp?userId="+userId);
 			}else {
 				//로그인 실패 시 팝업창..
 				page = "viewAcademy/common/commonError.jsp";

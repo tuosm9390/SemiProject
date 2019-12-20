@@ -1,23 +1,49 @@
-package hagong.academy.mngClass.mngSatisfy.controller;
+package hagong.academy.mngStudent.mngInfo.controller;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class test {
+/**
+ * Servlet implementation class test
+ */
+@WebServlet("/test")
+public class test extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public test() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String root = request.getSession().getServletContext().getRealPath("/");
 
 		ArrayList<HashMap<String, String>> list = new ArrayList<>();
-		
+
 		try {
-			
-			FileInputStream file = new FileInputStream("C:/Users/Sj/Desktop/test.xlsx");
+
+			FileInputStream file = new FileInputStream(root);
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 
 			int rowindex = 0;
@@ -82,6 +108,16 @@ public class test {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
 }

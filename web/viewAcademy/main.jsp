@@ -3,6 +3,7 @@
 <% 
 	int totalStaff = ((Integer)(session.getAttribute("totalStaff"))).intValue();
 	int totalStudent = ((Integer)(session.getAttribute("totalStudent"))).intValue();
+	
 %>
 <!DOCTYPE html>
 <html>
