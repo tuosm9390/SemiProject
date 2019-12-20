@@ -158,6 +158,42 @@
             <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 상세　</h1></legend>
             </fieldset>
     </div> <!-- center end -->
+    
+    
+<%--     			<!-- 년/월 선택 부분 -->
+			<div align="center" class="monthArea">
+				<button class="month nextBtn">◀</button>&nbsp;
+				<select id="selectYear" class="month selectMonth" onchange="changeDate();">
+					<% for(int i = selectDate.getStartYear(); i <= selectDate.getEndYear(); i++) { %>
+					<% if(i == selectDate.getSelectYear()) { %>
+					<option selected><%= i %></option>
+					<% } else { %>
+					<option><%= i %></option>
+					<% } } %>
+				</select> <label style="font-size:20px">년</label>
+				<select id="selectMonth" class="month selectMonth" onchange="changeDate();">
+					<% if(selectDate.getStartYear() == selectDate.getEndYear()) { %>
+						<% for(int i = selectDate.getStartMonth(); i <= selectDate.getEndMonth(); i++) { %>
+							<% if(i == selectDate.getSelectMonth()) { %>
+							<option selected><%= i %></option>
+							<% } else { %>
+							<option><%= i %></option>
+							<% } %>
+						<% } %>
+					<% } else { %>
+						<% for(int i = 1; i < 13; i++) { %>
+							<% if(i == selectDate.getSelectMonth()) { %>
+							<option selected><%= i %></option>
+							<% } else { %>
+							<option><%= i %></option>
+							<% } %>
+						<% } %>
+					<% } %>
+				</select> <label style="font-size:20px">월</label>&nbsp;
+				<button class="month nextBtn">▶</button>
+			</div> <!-- monthArea end --> --%>
+			
+			
    <div class="selectArea">
       <select id="selectAttend" style="margin-bottom:1%;">
          <option value="0">출석</option>

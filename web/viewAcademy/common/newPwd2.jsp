@@ -98,6 +98,7 @@
        				
                });
             }else {
+            	if(pwd2 != "0000") {
             	console.log("같음");
                $("#checkPwd").hide();
                
@@ -120,17 +121,19 @@
            				});
        				},
        				error: function(data) {
-       					swal ({
+       					
+       					/* swal ({
     	       				text: "비밀번호 설정에 실패하셨습니다.",
     	       				icon: "warning",
     	       				button: "확인"
-           				});
+           				}); */
        				}
        			});
        		});
                
                
             }
+         }
          }
       });
       

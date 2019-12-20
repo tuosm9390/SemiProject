@@ -204,7 +204,7 @@
 		</div> <!-- pagingArea end  -->
 	
 		<div align="center">
-			<select style="border-radius:5px;">
+			<select id="searchCondition" style="border-radius:5px;">
 				<option value="" selected disabled hidden>검색 조건</option>
 				<option name="searchClassCondition">과목</option>
 				<option name="searchClassCondition">강좌명</option>
@@ -528,6 +528,11 @@
 	             
 	             
 	          });
+	         
+	         
+	         $("#searchCondition").change(function(){
+	        	 
+	         });
 	
 		});
 		

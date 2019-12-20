@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String userId = (String) request.getParameter("userId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +64,7 @@
          <table>
             <tr>
                <td width="20%">아이디</td>
-               <td colspan="2" width="80%"><input type="text" name="userId" placeholder=" 아이디 입력"></td>
+               <td colspan="2" width="80%"><input type="text" name="userId" value="<%= userId %>" readonly></td>
             </tr>
             <tr>
                   <td>전화번호</td>
