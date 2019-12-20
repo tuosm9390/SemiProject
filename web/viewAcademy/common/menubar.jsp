@@ -208,7 +208,7 @@ section {
 				<img src="<%=request.getContextPath()%>/images/sms.png"
 					style="height: 30px;">
 			</h3>
-			<h3 id="calendar"
+			<h3 id="calendarr"
             onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/calendar/calendar.jsp'">
             <img src="<%=request.getContextPath()%>/images/calendar.png"
                style="height: 30px;">
