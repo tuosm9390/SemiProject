@@ -10,19 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import hagong.academy.mngClass.mngSatisfy.model.service.SatisfyService;
 
 /**
- * Servlet implementation class SatisfyResult
+ * Servlet implementation class selectResult
  */
-@WebServlet("/aresult.satis")
-public class SatisfyResult extends HttpServlet {
+//그래프로 정보보내기용 서블릿
+@WebServlet("/sresult.satis")
+public class selectResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SatisfyResult() {
+    public selectResult() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +35,13 @@ public class SatisfyResult extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int satNo = Integer.parseInt(request.getParameter("satNo"));
-		System.out.println(satNo);
 		
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
-		System.out.println("list : " + list);
 		
-		String page = "";
-		if(list != null) {
-			page = "viewAcademy/mngClass/mngSatisfy/satisfactionResult.jsp";
-			request.setAttribute("list", list);
-		} else {
-			page = "/viewAcademy/common/commonError.jsp";
-			request.setAttribute("errorCode", "selectSatisfyResultFail");
-		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(list, response.getWriter());
 		
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
