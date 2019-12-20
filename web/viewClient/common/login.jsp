@@ -49,7 +49,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	<%-- <%@ include file="../common/menubar.jsp" %> --%>
 	<div class="background">	
 	<div align="center" id="container">
 		<form id="loginArea" action="<%=request.getContextPath()%>/clogin.cm" method="post">

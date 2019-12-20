@@ -6,8 +6,9 @@
 	SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM");
 	String today = dayFormat.format(System.currentTimeMillis());
 	String[] todayArr = today.split("-");
-	int year = Integer.parseInt(todayArr[0]);
-	int month = Integer.parseInt(todayArr[1]);
+	int purYear = Integer.parseInt(todayArr[0]);
+	int purMonth = Integer.parseInt(todayArr[1]);
+
 	
 %>
 <!DOCTYPE html>
@@ -227,7 +228,7 @@ section {
 
 					<a href="<%=request.getContextPath()%>/alist.info"
 						class="menu1">개인정보</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/alist.pur?year=<%= year %>&month=<%= month %>"
+					<a href="<%=request.getContextPath() %>/alist.pur?year=<%= purYear %>&month=<%= purMonth %>"
 						class="menu1">수납</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/alist.couns"
 						class="menu1">상담</a> <a>|</a>
@@ -287,9 +288,13 @@ section {
      	});
 
 		$("#logout").click(function() {
-	    	location.href="<%=request.getContextPath()%>/logout.cm";
+	    	
 	    	swal("로그아웃 하시겠습니까?", {
 	    		buttons : [ "취소", "확인" ],
+	    	}).then(function(isConfirm){
+	    		if(isConfirm) {
+	    			location.href="<%=request.getContextPath()%>/logout.cm";
+	    		}
 	    	});
 	    });
 

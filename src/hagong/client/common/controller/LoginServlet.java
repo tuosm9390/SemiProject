@@ -31,12 +31,13 @@ public class LoginServlet extends HttpServlet {
 			requestMember.setUserPwd(password);
 			
 			Member loginUser = new CommonService().loginCheck(requestMember);
+			System.out.println(loginUser);
 			
 			String page = "";
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath()+"/viewClient/main.jsp");
+				response.sendRedirect(request.getContextPath()+"/clistClass.cm");
 			}else {
 				//로그인 실패 시 팝업창..
 				page = "viewClient/common/commonError.jsp";
@@ -57,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath()+"/viewAcademy/common/newPwd1.jsp");
+				response.sendRedirect(request.getContextPath()+"/viewClient/common/newPwd1.jsp");
 			}else {
 				//로그인 실패 시 팝업창..
 				page = "viewAcademy/common/commonError.jsp";
