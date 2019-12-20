@@ -1,7 +1,6 @@
 package hagong.academy.mngStudent.mngPurchase.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +27,22 @@ public class UpdatePurchaseDetailServlet extends HttpServlet {
 		String payDetail = request.getParameter("payDetail");
 		String payPrice = request.getParameter("payPrice");
 		
-		/*여기부터 해! 수정중! 수정중! 여기부터!*/
+		Purchase purchase = new Purchase();
+		purchase.setPurchaseNo(purchaseNo);
 		
-		int result = 0;
+		if(payMemo.equals("student")) {
+			purchase.setPayMemo("student");
+			java.sql.Date rfdDay = java.sql.Date.valueOf(payDetail);
+			purchase.setRefundDay(rfdDay);
+			
+		} else if(payMemo.equals("academy")) {
+			purchase.setPayMemo("academy");
+			purchase.setFaultDays(Integer.parseInt(payDetail));
+		} else {
+		}
+		purchase.setPayPrice(Integer.parseInt(payPrice));
+		
+		int result = new PurchaseService().updatePurDetail(purchase);
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

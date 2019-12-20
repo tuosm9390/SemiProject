@@ -1,6 +1,9 @@
 package hagong.academy.mngStudent.mngPurchase.model.service;
 
-import static hagong.common.JDBCTemplate.*;
+import static hagong.common.JDBCTemplate.close;
+import static hagong.common.JDBCTemplate.commit;
+import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -74,6 +77,25 @@ public class PurchaseService {
 		Purchase purchase = new PurchaseDao().selectPurchaseDetail(con, purchaseNo);
 		close(con);
 		return purchase;
+	}
+
+	public int updatePurDetail(Purchase purchase) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		if(purchase.getPayMemo().equals("student")) {
+			Purchase newPurchase = new PurchaseDao().selectPurchaseDetail(con, purchase.getPurchaseNo());
+			System.out.println(newPurchase);
+			
+			purchase.setPayMemo("REFUND");
+			
+		} else if(purchase.getPayMemo().equals("academy")) {
+			
+		} else {
+			
+		}
+		close(con);
+		return result;
 	}
 
 

@@ -559,7 +559,7 @@ fieldset {
 				});
 				
 				//상세보기 수정완료 스크립트
-				$("#modifyDoneBtn").click(function(){
+				/* $("#modifyDoneBtn").click(function(){
 					var num = $("#purNoForModify").val();
 					var paymemo = $("#note").val();
 					var payDetail;
@@ -603,7 +603,7 @@ fieldset {
 							});
 						}
 					}
-				});
+				}); */
 				
 			});
 			
