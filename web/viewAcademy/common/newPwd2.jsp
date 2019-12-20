@@ -121,7 +121,6 @@
            				});
        				},
        				error: function(data) {
-       					
        					/* swal ({
     	       				text: "비밀번호 설정에 실패하셨습니다.",
     	       				icon: "warning",
