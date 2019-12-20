@@ -1,7 +1,7 @@
 package hagong.academy.mngClass.mngSatisfy.controller;
 
 import java.io.FileInputStream;
-import java.util.Date;
+import java.util.ArrayList;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -11,11 +11,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class test {
 	
 	public static void main(String[] args) {
-		Date date = new Date();
-		 
-		System.out.println(date);
-
-
+		ArrayList<String[]> list = new ArrayList<>();
+		String[] arr = null;
         try {
             FileInputStream file = new FileInputStream("C:/Users/Sj/Desktop/test.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -27,6 +24,7 @@ public class test {
             XSSFSheet sheet=workbook.getSheetAt(0);
             //행의 수
             int rows=sheet.getPhysicalNumberOfRows();
+            arr = new String[rows - 1];
             for(rowindex=1;rowindex<rows;rowindex++){
                 //행을읽는다
                 XSSFRow row=sheet.getRow(rowindex);
@@ -61,14 +59,19 @@ public class test {
                             }
                         }
                         System.out.println(rowindex+"번 행 : "+columnindex+"번 열 값은: "+value);
+                        if(columnindex == 0) {
+                        	arr[rowindex] = value;
+                        } else {
+                        	arr[rowindex] += " " + value;
+                        }
                     }
- 
                 }
+                System.out.println("arr" + rowindex + " : " + arr[rowindex]);
+                list.add(arr);
             }
- 
         }catch(Exception e) {
             e.printStackTrace();
         }
- 
+        System.out.println("list : " + list);
     }
 }

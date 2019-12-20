@@ -11,6 +11,7 @@
 <link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css'
 	type='text/css'>
 <script src='../../mngAdmin/mngStatus/Nwagon.js'></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
 section button {
 	float: right;
@@ -57,6 +58,10 @@ ul.accessibility{
 	height: 0px;
 	display: none;
 }
+
+rect{
+	fill: none !important;
+}
 </style>
 </head>
 <body>
@@ -81,13 +86,13 @@ ul.accessibility{
 		<!-- 문항 목록 작성 -->
 		<div align="center" class="resultArea">
 			<table align="center" class="resultTable">
-			<% int n = 0; for(int i = 0; i < list.size(); i++) {
+			<% int n = 1; for(int i = 0; i < list.size(); i++) {
 					//첫번째 문항
 					if(i == 0) { %>
 				<tr>
 					<td>
 						<li>&emsp;
-							<%= list.get(i).get("queContent") %>
+							<input type="hidden" id="queNo<%=n%>" value="<%=n%>"><%= list.get(i).get("queContent") %>
 							<br><br>
 							<ol>
 							<li><%= list.get(i).get("ansContent") %>
@@ -103,13 +108,13 @@ ul.accessibility{
 						</li>
 					</td>
 					<td>
-						<div id="cursatis<%= n%>"></div>
+						<!-- <div id="donutchart" style="width: 500px;"></div> -->
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<li>&emsp;
-							<%= list.get(i).get("queContent") %>
+							<input type="hidden" id="queNo<%=n%>" value="<%=n%>"><%= list.get(i).get("queContent") %>
 							<br><br>
 						<ol>
 							<li><%= list.get(i).get("ansContent") %>
@@ -121,27 +126,37 @@ ul.accessibility{
 		</div>
 	</section>
 	<footer></footer>
-	<script>
-	for(var i = 0; i < <%= n%>; i++){
-		
-		var options = {
-			'dataset' : {
-				title : "asd",
-				values : [ 25, 3, 10, 7 ],
-				colorset : [ '#2EB400', '#2BC8C9', "#666666", '#f09a93' ],
-				fields : [ '매우 만족', '만족', '불만족', '매우 불만족' ],
-			},
-			'donut_width' : 35,
-			'core_circle_radius' : 50,
-			'chartDiv' : "cursatis" + i,
-			'chartType' : 'donut',
-			'chartSize' : {
-				width : 400,
-				height : 200
-			}
-		};
-	}
-	Nwagon.chart(options);
+	<script type="text/javascript">
+    <%-- google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+	   $.ajax({
+	      url: "sresult.satis",
+	      type:"get",
+	      data:{
+	    	  satNo:<%=list.get(0).get("satNo")%>
+	      },
+	      success:function(data){
+	    	  console.log(data);
+				var ans = google.visualization.arrayToDataTable([
+					['ans', 'ans per que'],
+					for(var key in data){
+					[data[key].ansContent,	11],
+					}
+				]);
+				
+				var options = {
+					pieHole: 0.4,
+				};
+			
+				var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+				chart.draw(ans, options);
+	      },
+	      error:function(data){
+	    	  console.log("실패");
+	      }
+	    });
+	} --%>
 	</script>
 </body>
 </html>
