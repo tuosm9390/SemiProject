@@ -1,18 +1,20 @@
 package hagong.client.common.model.dao;
 
+import static hagong.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import hagong.academy.common.member.model.vo.Member;
 import hagong.academy.mngClass.mngAttend.model.dao.AttendDao;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
-import static hagong.common.JDBCTemplate.*;
 
 public class CommonDao {
 	private Properties prop = new Properties();
@@ -27,18 +29,17 @@ public class CommonDao {
 		}
 	}
 
-	public ArrayList<Class> selectClass(Connection con, String userNo) {
-		PreparedStatement pstmt = null;
+	public ArrayList<Class> selectClass(Connection con) {
+		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<Class> list = null;
 		
 		String query = prop.getProperty("selectClass");
 		
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, Integer.parseInt(userNo));
+			stmt = con.prepareStatement(query);
 			
-			rset = pstmt.executeQuery();
+			rset = stmt.executeQuery(query);
 			
 			list = new ArrayList<>();
 			while(rset.next()) {
@@ -63,7 +64,7 @@ public class CommonDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
+			close(stmt);
 			close(rset);
 		}
 		

@@ -13,10 +13,10 @@ import hagong.client.common.model.dao.CommonDao;
 
 public class CommonService {
 
-	public ArrayList<Class> selectClass(String userNo) {
+	public ArrayList<Class> selectClass() {
 		Connection con = getConnection();
 		
-		ArrayList<Class> list = new CommonDao().selectClass(con, userNo);
+		ArrayList<Class> list = new CommonDao().selectClass(con);
 		
 		close(con);
 		

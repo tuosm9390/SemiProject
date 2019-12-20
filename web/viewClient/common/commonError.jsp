@@ -20,7 +20,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewClient/main.jsp";
+				location.href="<%=request.getContextPath()%>/viewClient/common/login.jsp";
 			});
 		});
 	</script> 

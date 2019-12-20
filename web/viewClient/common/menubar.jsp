@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*"%>
 <%
-   Member loginUser = (Member) request.getSession().getAttribute("loginMember");
+   Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -133,9 +133,10 @@ button:hover {
 #member {
    position: fixed;
    display: inline-flex;
-   right: 7%;
+   right: 9%;
    height: 30px;
    width: 13%;
+   top: 10%;
 }
 
 a {
@@ -223,7 +224,12 @@ section {
           <%-- location.href="<%=request.getContextPath()%>/logout.me"; --%>
           swal("로그아웃 하시겠습니까?", {
              buttons : [ "취소", "확인" ],
+          }).then(function(isConfirm){
+        	  if(isConfirm) {
+        		  location.href="<%=request.getContextPath()%>/logout.cm";
+        	  }
           });
+          
        });
 
       //내 정보 수정

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngClassList.model.vo.Class"%>
+<%
+	ArrayList<Class> list = (ArrayList<Class>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +18,14 @@ body {
 .classArea {
    text-align: center;
    margin-bottom: 30px;
+}
+
+#container {
+	border: double gray;
+	border-radius: 5px;
+	width: 40%;
+	margin-right: auto;
+	margin-left: auto;
 }
 </style>
 </head>
@@ -47,13 +58,16 @@ body {
    </div> -->
    <!-- upperArea end -->
    <div class="classArea">
-      <h2>개설 예정 강좌</h2>
-      <div align="center">
-         <ul align="left" style="width: 25%;">
-            <li>2020년 수능 대비 영어 집중반</li>
-            <li>중3 수학 정복</li>
+      <h2><개설 예정 강좌></h2>
+      <div id="container" align="center">
+         <ul align="left" style="width: 80%;">
+         	<% for(int i=0; i<list.size(); i++) { %>
+            <li style="margin:10px"><%=list.get(i).getSubId()%> | <span style="font-weight:bold; font-size:18px;"><%= list.get(i).getClsName() %></span> | <%=list.get(i).getName() %> 강사<br>
+            ( <%=list.get(i).getClsStart() %> 개설 예정 )</li>
+            <%-- <li><%= list.get(i).getCls %></li>
             <li>고1 영어 문법반</li>
-            <li>중3 과학 기말고사 대비반</li>
+            <li>중3 과학 기말고사 대비반</li> --%>
+            <% } %>
          </ul>
       </div>
    </div>

@@ -83,7 +83,7 @@ body {
 			}
 			
 			function goClient(){
-				location.href="viewClient/main.jsp";
+				location.href="viewClient/common/login.jsp";
 			}
 			
 		</script>
