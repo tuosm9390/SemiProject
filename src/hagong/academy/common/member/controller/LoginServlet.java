@@ -34,21 +34,20 @@ public class LoginServlet extends HttpServlet {
 			
 			Member loginUser = new MemberService().loginCheck(requestMember);
 			
+			System.out.println(loginUser);
+			
 			String page = "";
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
 				response.sendRedirect(request.getContextPath()+"/viewAcademy/main.jsp");
 			}else {
-				//로그인 실패 시 팝업창..
 				page = "viewAcademy/common/commonError.jsp";
 				request.setAttribute("errorCode", "loginFail");
 				request.getRequestDispatcher(page).forward(request, response);
 			}
 			
-		}else {
-			System.out.println("최초 로그인!!");
-			//최초 로그인일 때
+		}else {		
 			Member requestMember = new Member();
 			requestMember.setUserId(userId);
 			requestMember.setUserPwd(password);

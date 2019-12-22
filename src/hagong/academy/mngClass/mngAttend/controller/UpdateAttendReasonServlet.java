@@ -24,8 +24,6 @@ public class UpdateAttendReasonServlet extends HttpServlet {
 		String date = request.getParameter("date");
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		String content = request.getParameter("content");
-		
-		System.out.println("content : " + content);
 
 		int result = new AttendService().updateAttendReason(classNum, date, userNo, content);   
 		

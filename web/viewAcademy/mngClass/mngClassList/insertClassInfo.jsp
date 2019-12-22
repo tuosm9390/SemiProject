@@ -266,7 +266,6 @@
                data: {subject:subject},
                type: "get",
                success: function(data){
-                  console.log(data);
                   $select = $("#selectTeacher");
                   $select.find("option").remove();
                   
@@ -285,8 +284,7 @@
          
          $("#insertClassInfoBtn").click(function(){
             $("#classInfo").submit();
-            
-            <%-- location.href="<%=request.getContextPath()%>/ainsert.class" --%>
+
             console.log($("#classInfo"));
          });
          

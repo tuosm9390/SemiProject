@@ -2,13 +2,7 @@ package hagong.academy.common.member.model.vo;
 
 import java.sql.Date;
 
-/*import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor*/
 public class Member implements java.io.Serializable{
 	private int userNo;				//회원번호
 	private String name;			//이름
@@ -24,10 +18,36 @@ public class Member implements java.io.Serializable{
 	private String status;			//재원여부
 	private String inflowPath;		//유입경로
 	private String userType;		//회원구분
+	private int level; 			//레벨
 	
 	
 	public Member() {}
 	
+	 
+	
+	public Member(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
+			String email, int refUno, Date enrollDate, Date leaveDate, String status, String inflowPath,
+			String userType, int level) {
+		super();
+		this.userNo = userNo;
+		this.name = name;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.birth = birth;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+		this.refUno = refUno;
+		this.enrollDate = enrollDate;
+		this.leaveDate = leaveDate;
+		this.status = status;
+		this.inflowPath = inflowPath;
+		this.userType = userType;
+		this.level = level;
+	}
+
+
+
 	public Member(int userNo, String name, String userId, String userPwd, Date birth, String phone, String address,
 			String email, int refUno, Date enrollDate, Date leaveDate, String status, String inflowPath,
 			String userType) {
@@ -48,6 +68,20 @@ public class Member implements java.io.Serializable{
 		this.userType = userType;
 	}
 	
+	
+	
+	public int getLevel() {
+		return level;
+	}
+
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
+
 	public int getUserNo() {
 		return userNo;
 	}

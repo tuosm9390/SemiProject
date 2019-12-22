@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String userId = request.getParameter("userId");
+ 	System.out.println("newPwd2의 userId : " + userId); %>
+ 	
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,45 +94,49 @@
             	console.log("같음");
                $("#checkPwd").hide();
               	
-               $("#okBtn").click(function() {
-            	console.log("온클릭됐음");
-   				var userPwd = pwd2;
-
-				var pw = userPwd;
-				var num = pw.search(/[0-9]/g);
-				var eng = pw.search(/[a-z]/ig);
-				var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-				if(pw.length < 8 || pw.length > 20){
-					alert('비밀번호는 8~20자 사이로 설정해 주세요.');
-				} else if(pw.search(/₩s/) != -1){
-					alert('비밀번호는 공백 없이 설정해 주세요.');
-				} else if(num < 0 || eng < 0 || spe < 0 ){
-					alert('비밀번호는 영문자,숫자,특수문자를 혼합해 설정해 주세요.');
-				} else {
-					$.ajax({
-	       				url: "<%=request.getContextPath()%>/firstUpdate2.cm",
-	       				data: {
-	       					pwd2:userPwd
-	       				},
-	       				type: "post",
-	       				success: function(data) {
-	       					swal ({
-	    	       				text: "비밀번호 설정이 완료되었습니다.",
-	    	       				icon: "success",
-	    	       				button: "확인"
-	           				}).then(function(){
-	           					location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
-	           				});
-	       				},
-	       				error: function(data) {	       					
-	       				}
-	       			});
-				} //if문 끝
-				
-               }); //ok버튼 온클릭 끝
             } //else문 끝
          } 
-});
+	});
+      
+      $("#okBtn").click(function() {
+      	console.log("온클릭됐음");
+			var userId = '<%=userId%>';
+			console.log("userId2 : "+userId);
+      		var userPwd = $("#newPwd2").val();
+	
+			var pw = userPwd;
+			var num = pw.search(/[0-9]/g);
+			var eng = pw.search(/[a-z]/ig);
+			var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+			if(pw.length < 8 || pw.length > 20){
+				alert('비밀번호는 8~20자 사이로 설정해 주세요.');
+			} else if(pw.search(/₩s/) != -1){
+				alert('비밀번호는 공백 없이 설정해 주세요.');
+			} else if(num < 0 || eng < 0 || spe < 0 ){
+				alert('비밀번호는 영문자,숫자,특수문자를 혼합해 설정해 주세요.');
+			} else {
+				$.ajax({
+     				url: "<%=request.getContextPath()%>/firstUpdate2.cm",
+     				data: {
+     					userId:userId,
+     					userPwd:userPwd
+     				},
+     				type: "post",
+     				success: function(data) {
+     					swal ({
+  	       				text: "비밀번호 설정이 완료되었습니다.",
+  	       				icon: "success",
+  	       				button: "확인"
+         				}).then(function(){
+         					location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+         				});
+     				},
+     				error: function(data) {	       					
+     				}
+     			});
+			} //if문 끝
+			
+         }); //ok버튼 온클릭 끝
     
    </script>
 </body>

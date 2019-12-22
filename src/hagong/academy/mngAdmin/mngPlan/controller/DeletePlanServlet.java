@@ -19,10 +19,6 @@ public class DeletePlanServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String checkedMonth = (String) request.getParameter("checkedMonth");
 		String[] arr = checkedMonth.split(", ");
-		
-		for(int i=0; i<arr.length; i++) {
-			System.out.println(arr[i]);
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -92,21 +92,25 @@
    </div>
    <script>
    		$("#okBtn").click(function(){
+   			var userId = '<%=User.getUserId()%>';
+   			console.log("userId1 : " + userId);
    			console.log($("#smsck").val());
    			if($("#smsck").val() == "true"){
-   				location.href="<%= request.getContextPath() %>/viewAcademy/common/newPwd2.jsp";  				
+   				location.href="<%= request.getContextPath() %>/viewAcademy/common/newPwd2.jsp?userId="+userId;  				
    			}else{
    				alert("입력하신 정보가 일치하지 않습니다!");
    			}
    		});
 
    		$("#sendMsg").click(function(){
-   			var userPhone = '<%=User.getPhone()%>';
+   			var userPhone1 = '<%=User.getPhone()%>';
+   			var userPhone = userPhone1.replace(/-/gi,"");
+   			console.log(userPhone);
    			var phone = "";
    			$("input[name = tel]").filter(function(value){
    				phone += this.value;
    			});
-   			
+   			console.log(phone);
    			if(phone == userPhone) {
    				console.log("phone : " + phone);  			
    				var userId = $("input[name = userId]").val();

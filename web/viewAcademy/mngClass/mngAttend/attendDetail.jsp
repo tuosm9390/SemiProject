@@ -323,7 +323,7 @@
                    			  <% }else if(attendCheck[l].equals("0")) { %>          	
                               	 <td style="padding:15px" id="<%=name%>" class="reasonWrite" value="<%=l+1%>">출석</td>
                               <% }else { %>
-                              	<td>X</td>
+                              	<td> </td>
                               <% } %>
                                                       
                       <%  }
@@ -408,7 +408,6 @@
 	        			 },
 	        			 type:"get",
 	        			 success:function(data){
-	        				 console.log(data);
 	        				 alert('수정 완료!');
 	        				 
 	        			 },
@@ -427,8 +426,7 @@
  		 var selectAttend = "";
     	  $(document).on("change", "input[name='checkboxName']", function(){
     		  if($("input[name='checkboxName']").prop("checked")) {
-    		  		checkedPerson.push($(this).parent().siblings().eq(1).children("input[type=hidden]").val());
-    		  		console.log(checkedPerson);
+    		  		checkedPerson.push($(this).parent().siblings().eq(1).children("input[type=hidden]").val());    		  		
     		  }
     		
     	  });
@@ -437,10 +435,6 @@
 	    		var selectAttend = $("#selectAttend option:selected").val();
 	    		var checkedPersonString = "'"+ checkedPerson + "'";
 	    		 var classNum = $("#classNum").val();
-	    		console.log("selectAttend : " + selectAttend);
-		    	console.log("checkedPersonString : " + checkedPersonString);
-		    	console.log("classNum : " + classNum);
-
 		    	
 		    	location.href="<%=request.getContextPath()%>/aupdateAttend.attend?selectAttend="+selectAttend+"&checkedPersonString="+checkedPersonString+"&classNum="+classNum;
 	      });
