@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 import hagong.academy.mngClass.mngSatisfy.model.dao.SatisfyDao;
 import hagong.academy.mngClass.mngSatisfy.model.vo.SatisfyInfo;
+import hagong.academy.mngStudent.mngBlack.model.dao.BlacklistDao;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 
 public class SatisfyService {
@@ -172,6 +174,15 @@ public class SatisfyService {
 		close(con);
 		
 		return listCount;
+	}
+
+	public ArrayList<SatisfyInfo> selectList(int currentPage, int limit, String searchCondition, String srchCnt) {
+		Connection con = getConnection();
+		ArrayList<SatisfyInfo> list = new SatisfyDao().selectList(con, currentPage, limit, searchCondition, srchCnt);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

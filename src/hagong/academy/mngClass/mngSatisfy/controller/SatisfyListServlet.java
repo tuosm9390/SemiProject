@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import hagong.academy.mngClass.mngSatisfy.model.service.SatisfyService;
 import hagong.academy.mngClass.mngSatisfy.model.vo.SatisfyInfo;
+import hagong.academy.mngStudent.mngBlack.model.service.BlacklistService;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngCouns.model.vo.PageInfo;
 import hagong.academy.mngStudent.mngInfo.model.service.StudentService;
 
@@ -56,10 +58,10 @@ public class SatisfyListServlet extends HttpServlet {
 		// 현재 페이지에 보여 줄 시작 페이지 수 (10개씩 보여지게 할 경우)
 		// 아래 쪽 페이지 수가 10개씩 보여지게 한다면
 		// 1, 11, 21, 31...
-		startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * 10 + 1;
+		startPage = (((int) ((double) currentPage / 5 + 0.8)) - 1) * 5 + 1;
 
 		// 목록 아래 쪽에 보여질 마지막 페이지 수
-		endPage = startPage + 10 - 1;
+		endPage = startPage + 5 - 1;
 
 		if (maxPage < endPage) {
 			endPage = maxPage;
@@ -71,13 +73,32 @@ public class SatisfyListServlet extends HttpServlet {
 		// 조회를 시작할 행 번호와 마지막 행 번호 계산
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		
-		ArrayList<SatisfyInfo> list = new SatisfyService().selectList(currentPage, limit);
-		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
 
+		// 검색 결과값 받아오기
+		String searchCondition = request.getParameter("searchCondition");
+		// 검색관련 값 받아오기
+		String srchCnt = request.getParameter("searchSatis");
+
+		System.out.println("condition : " + searchCondition);
+		System.out.println("srchCnt : " + srchCnt);
+		
+		ArrayList<SatisfyInfo> list = null;
+		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
+			list = new SatisfyService().selectList(currentPage, limit);
+		}else {
+			if(searchCondition.equals("className")) {
+				srchCnt = request.getParameter("searchSatis");
+			} else if(searchCondition.equals("status")){
+				srchCnt = request.getParameter("searchOption");
+			}
+			list = new SatisfyService().selectList(currentPage, limit, searchCondition, srchCnt);			
+		}
+		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
 		String page = "";
 		if (list != null) {
 			page = "/viewAcademy/mngClass/mngSatisfy/satisfactionList.jsp";
+			request.setAttribute("searchCondition", searchCondition);
+			request.setAttribute("srchCnt", srchCnt);
 			request.setAttribute("list", list);
 			request.setAttribute("blist", blist);
 			request.setAttribute("pi", pi);

@@ -24,6 +24,7 @@ public class Student {
 	private String inflowPath; // 유입경로
 	private String userType; // 회원구분
 	private int age; // 나이
+	private int rnum;
 
 	// 학생 테이블
 	private String school; // 학교
@@ -50,9 +51,10 @@ public class Student {
 	}
 
 	public Student(int scoreNo, int userNo, String name, String userId, String userPwd, Date birth, String phone,
-			String address, String email, String status, String inflowPath, String userType, int age, String school,
-			int grade, String track, String college, String major, int refUno, String refName, String refId,
-			String refPhone, int check, String scoType, int year, int term, String subName, int subscore) {
+			String address, String email, String status, String inflowPath, String userType, int age, int rnum,
+			String school, int grade, String track, String college, String major, int refUno, String refName,
+			String refId, String refPhone, int check, String scoType, int year, int term, String subName,
+			int subscore) {
 		super();
 		this.scoreNo = scoreNo;
 		this.userNo = userNo;
@@ -67,6 +69,7 @@ public class Student {
 		this.inflowPath = inflowPath;
 		this.userType = userType;
 		this.age = age;
+		this.rnum = rnum;
 		this.school = school;
 		this.grade = grade;
 		this.track = track;
@@ -186,6 +189,14 @@ public class Student {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public String getSchool() {
@@ -313,8 +324,8 @@ public class Student {
 		return "Student [scoreNo=" + scoreNo + ", userNo=" + userNo + ", name=" + name + ", userId=" + userId
 				+ ", userPwd=" + userPwd + ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email="
 				+ email + ", status=" + status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age="
-				+ age + ", school=" + school + ", grade=" + grade + ", track=" + track + ", college=" + college
-				+ ", major=" + major + ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId
+				+ age + ", rnum=" + rnum + ", school=" + school + ", grade=" + grade + ", track=" + track + ", college="
+				+ college + ", major=" + major + ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId
 				+ ", refPhone=" + refPhone + ", check=" + check + ", scoType=" + scoType + ", year=" + year + ", term="
 				+ term + ", subName=" + subName + ", subscore=" + subscore + "]";
 	}

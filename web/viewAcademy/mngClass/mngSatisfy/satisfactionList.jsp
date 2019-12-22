@@ -10,6 +10,9 @@
 	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
 	int startPage = pi.getStartPage();		//시작 페이지 번호
 	int endPage = pi.getEndPage();			//끝 페이지 번호 
+	
+	String srchCnt = (String) request.getAttribute("srchCnt");
+	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
 <!DOCTYPE html>
 <html>
@@ -106,9 +109,15 @@ select:focus {
 .srchArea{margin-bottom:10px; margin-right: 5%;}
 .srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
 .srchArea select{float:right;border-radius:5px;border:1px solid gray;}
-.srchArea button{float:right; height:25px;}
+.srchArea button{float:right;height:25px;}
 .pagingArea {margin-bottom:30px;}
-.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
+.pagingArea button{display:inline-block;}
+.pagingBtn{border:none;}
+.pagingBtn.pBtn{border:none;border-bottom: 1px solid;border-radius: 0px;}
+.pagingBtn:hover{color:#333; background:white;border:none;}
+#searchOption, #searchSatis{
+	display: none;
+}
 <%int test = 1;%>
 </style>
 </head>
@@ -126,25 +135,30 @@ select:focus {
 			</fieldset>
 		</div>
 		<!-- 권한별 버튼 -->
-		<form action="<%= request.getContextPath()%>/alist.info" method="post">
-			<div class="srchArea">
-				<%
-					if (test == 1) {
-				%>
-				<button id="addSatisfaction">만족도 조사 등록</button>
-				<button id="benefitBtn">혜택 관리</button>
-				<%
-					}
-				%>
+		<div class="srchArea">
+			<%
+				if (test == 1) {
+			%>
+			<button id="addSatisfaction">만족도 조사 등록</button>
+			<button id="benefitBtn">혜택 관리</button>
+			<%
+				}
+			%>
+			<form action="<%= request.getContextPath()%>/alist.satis" method="post">
 				<button class="srchBtn">검색</button>
 				<input type="search" id="searchSatis" name="searchSatis">
+				<select id="searchOption" name="searchOption" style="height: 23px; margin-left: 10px;">
+					<option value="detail">진행 예정</option>
+					<option value="select">진행중</option>
+					<option value="result">종료</option>
+				</select>
 				<select id="searchCondition" name="searchCondition" style="height: 23px;">
 					<option value="" selected disabled hidden>검색 조건</option>
 					<option value="className">수강명</option>
 					<option value="status">진행상황</option>
 				</select>
-			</div>
-		</form>
+			</form>
+		</div>
 		<form>
 			<table class="table" align="center" style="width: 90%;">
 				<tr>
@@ -163,15 +177,16 @@ select:focus {
 					<td><input type="hidden" id="start" name="start" value="<%=si.getStart()%>">
 					<%=si.getStart() + " ~ " + si.getEnd()%><input type="hidden" id="end" name="end" value="<%=si.getEnd()%>">
 					</td>
-					<td>
 					<% if(si.getStatus().equals("detail")) { %>
-					진행 예정
+					<td style="color:green; font-size: 20px; font-weight: bold;">진행 예정
+					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } else if(si.getStatus().equals("select")) {%>
-					진행중
+					<td style="color:blue; font-size: 20px; font-weight: bold;">진행중
+					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } else { %>
-					종료
+					<td style="color:red; font-size: 20px; font-weight: bold;">종료
+					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } %>
-					</td>
 				</tr>
 				<% } %>
 			</table>
@@ -230,33 +245,42 @@ select:focus {
 		</div>
 	</section>
 	<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=1<%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><<</button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button class="pagingBtn" disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage - 1%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><</button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-				<button disabled><%= p %></button>			
+				<button class="pagingBtn pBtn" disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=p%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><%=p %></button>
+				<button class="pagingBtn pBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button class="pagingBtn" disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage + 1%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>">></button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=<%=maxPage%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>">>></button>
-	</div> <!-- pagingArea end  -->
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
+		</div> <!-- pagingArea end  -->
 	<footer> </footer>
 	<script>
+		$("#searchCondition").change(function(){
+			if($(this).val() == "className"){
+				$("#searchSatis").css("display", "block");
+				$("#searchOption").css("display","none");
+			} else {
+				$("#searchSatis").css("display", "none");
+				$("#searchOption").css("display","block");
+			}
+		});
 		//만족도 등록
 		$("#addSatisfaction").click(function(){
 			location.href="<%=request.getContextPath()%>/ainsert.satis?type=insertForm";
@@ -265,24 +289,7 @@ select:focus {
 		//만족도 상세보기
 		$(".table td").click(function() {
 			var satNo = $(this).parent().children().find("#satNo").val();
-			var start = $(this).parent().children().find("#start").val();
-			var end = $(this).parent().children().find("#end").val();
-			var today = $("#today").val();
-			var type = "";
-			
-			if(today < start) {
-				type = "detail";
-			} else if(today < end) {
-				type = "select";
-			}
-			if(today > end) {
-				type = "result";
-			}
-			
-			console.log(start);
-			console.log(end);
-			console.log(today);
-			console.log(type);
+			var type = $(this).parent().children().find("#status").val();
 			
 			location.href = '<%=request.getContextPath()%>/adetail.satis?satNo=' + satNo + '&type=' + type;
 		});
@@ -328,12 +335,17 @@ select:focus {
 						$("#benefitRate").val('');
 						$("#benefitSelect").find("option").remove();
 						$("#benefitSelect").append("<option>선택</option>");
-						for(var key in data){
-							var $select = $("#benefitSelect");
-							var $option = $("<option>");
-							$option.attr("value", data[key].benNo);
-							$option.text(data[key].benCondition + "" + data[key].benType + " " + (Math.floor(data[key].benRate * 100)) + "%");
-							$select.append($option);
+						if(data != null){
+							for(var key in data){
+								var $select = $("#benefitSelect");
+								var $option = $("<option>");
+								$option.attr("value", data[key].benNo);
+								$option.text(data[key].benCondition + "" + data[key].benType + " " + (Math.floor(data[key].benRate * 100)) + "%");
+								$select.append($option);
+							}
+						} else {
+							alert("중복된 혜택은 등록할 수 없습니다.");
+							benefit.style.display = "none";
 						}
 					},
 					error:function(data){
