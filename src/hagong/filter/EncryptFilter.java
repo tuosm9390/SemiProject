@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import hagong.wrapper.LoginWrapper;
 
-@WebFilter("*")
+@WebFilter("/*")
 public class EncryptFilter implements Filter {
 
     public EncryptFilter() {

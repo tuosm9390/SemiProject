@@ -87,7 +87,7 @@ public class SelectClassListServlet extends HttpServlet {
 				if(list != null) {
 					page = "viewAcademy/mngClass/mngClassList/classList.jsp";
 					request.setAttribute("searchCondition", selectCondition);
-					request.setAttribute("srchCnt", searchWord);
+					request.setAttribute("searchWord", searchWord);
 					request.setAttribute("list", list);
 					request.setAttribute("pi", pi);
 				}else {

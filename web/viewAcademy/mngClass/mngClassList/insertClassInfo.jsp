@@ -161,9 +161,15 @@
                </td>
                <td>
                <select id="classroom" name="classroom" style="margin-bottom:20px">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                  <option value="11">1-A</option>
+                  <option value="12">1-B</option>
+                  <option value="13">1-C</option>
+                  <option value="14">2-A</option>
+                  <option value="15">2-B</option>
+                  <option value="16">2-C</option>
+                  <option value="17">3-A</option>
+                  <option value="18">3-B</option>
+                  <option value="19">3-C</option>
                </select>
                </td>
                <td>

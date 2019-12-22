@@ -13,10 +13,11 @@
 	java.util.Date now = new java.util.Date();
 	System.out.println("Value of java.util.Date : " + now);
 	
+	System.out.println("수업시작일 : " + list.get(0).getClsStart());
 	java.sql.Date sqlDate = new java.sql.Date(now.getTime());
 	System.out.println("Converted value of java.sql.Date : " + sqlDate);
 	
-	String srchCnt = (String) request.getAttribute("srchCnt");
+	String srchCnt = (String) request.getAttribute("searchWord");
 	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
 <!DOCTYPE html>
@@ -181,15 +182,10 @@
 								} %><%=grade%></td>
 						<td><%=list.get(i).getClsMax()%>명</td>
 						<td><%=list.get(i).getClsStart()%>~<%=list.get(i).getClsEnd()%></td>
-						<% java.util.Date clsEnd = new java.util.Date(list.get(i).getClsEnd().getTime());
-							System.out.println("clsEnd : " + clsEnd);
-							
-							int compare = clsEnd.compareTo(now);
-							
-							if(compare>0) { %>
+						<%	if((list.get(i).getClsStart()).compareTo(sqlDate)==1) { %>
+							<td style="color:green;">진행 예정</td>
+						<%	}else if((list.get(i).getClsEnd()).compareTo(sqlDate)==1) { %>
 							<td style="color:blue;">진행중</td>
-						<%	}else if(compare<0) { %>
-							<td style="color:red;">종료</td>
 						<%	}else { %>
 							<td style="color:red;">종료</td>
 						<%	} %>
@@ -338,6 +334,7 @@
 				$(this).parent().css("cursor","pointer");
 			}).click(function(){
 				var num = $(this).parent().children().eq(0).children().val();
+				console.log(num);
 				var clsNum = "";
 				
 				$.ajax({
@@ -541,7 +538,7 @@
 					var selectCondition = $("#searchCondition option:selected").val();
 					var searchWord = $("input[type=search]").val();
 					
-					location.href = "<%=request.getContextPath()%>/searchClass.class?selectCondition=" + selectCondition + "&searchWord=" + searchWord;
+					location.href = "<%=request.getContextPath()%>/alistClassList.class?selectCondition=" + selectCondition + "&searchWord=" + searchWord;
 
 						
 			});

@@ -66,6 +66,8 @@ public class MemberDao {
 			close(pstmt);
 			close(rset);
 		}
+		
+		System.out.println(loginUser.getPhone());
 		return loginUser;
 	}
 
