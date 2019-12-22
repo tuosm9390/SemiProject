@@ -18,12 +18,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 section button {
 	float: right;
 	margin-bottom: 5px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-size: 18px;
 	font-family: "Nanum Gothic";
 	font-weight: bold;
@@ -318,10 +320,6 @@ select:focus {
 				alert("할인율은 1 ~ 100사이로 입력해주세요");
 				return false;
 			} else {
-				console.log(benefitType);
-				console.log(benefitRate);
-				console.log(applyPoint);
-				
 				$.ajax({
 					url : "ainsert.ben",
 					type : "post",
@@ -331,7 +329,6 @@ select:focus {
 						applyPoint : applyPoint
 					},
 					success:function(data){
-						console.log(data);
 						$("#benefitRate").val('');
 						$("#benefitSelect").find("option").remove();
 						$("#benefitSelect").append("<option>선택</option>");
@@ -349,7 +346,6 @@ select:focus {
 						}
 					},
 					error:function(data){
-						console.log("실패");
 					}
 				});
 			}
@@ -364,8 +360,6 @@ select:focus {
 				type : "post",
 				data : {benNo : benNo},
 				success:function(data){
-					console.log(data);
-
 					$("#benefitSelect").find("option").remove();
 					$("#benefitSelect").append("<option>선택</option>");
 					for(var key in data){
@@ -377,7 +371,6 @@ select:focus {
 					}
 				},
 				error:function(data){
-					console.log("실패");
 				}
 			});
 		};

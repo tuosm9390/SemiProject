@@ -31,19 +31,12 @@ public class InsertScoreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
-		System.out.println("userId : " + userId);
 		String name = request.getParameter("name");
-		System.out.println("name : " + name);
 		String type = request.getParameter("type");
-		System.out.println("type : " + type);
 		int year = Integer.parseInt(request.getParameter("year"));
-		System.out.println("year : " + year);
 		int term = Integer.parseInt(request.getParameter("term"));
-		System.out.println("term : " + term);
 		String subName = request.getParameter("subName");
-		System.out.println("subName : " + subName);
 		int subScore = Integer.parseInt(request.getParameter("subScore"));
-		System.out.println("subScore : " + subScore);
 		
 		Student s = new Student();
 		
@@ -61,10 +54,8 @@ public class InsertScoreServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0) {
-			System.out.println("점수 입력 성공");
 			response.sendRedirect("/hagong/adetail.info?userId=" + s.getUserId());
 		} else {
-			System.out.println("점수 입력 실패");
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "insertScoreFail");
 			request.getRequestDispatcher(page).forward(request, response);

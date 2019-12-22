@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 .bottomBtn {
 	width: 100px;
@@ -26,6 +26,8 @@ section button {
 	float: right;
 	margin-bottom: 5px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-size: 18px;
 	font-family: "Nanum Gothic";
 	font-weight: bold;
@@ -142,7 +144,7 @@ tr, td {
 		<% if(type.equals("detail")) { %>
 		<button class="bottomBtn" style="margin-right: 5%;"
 			onclick="location.href='<%=request.getContextPath()%>/adetail.satis?satNo=' + '<%=list.get(0).get("satNo") %>' + '&type=update'">수정</button>
-		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/adelete.satis?satNo=' + <%=list.get(0).get("satNo")%>">삭제</button>
+		<button id="deleteBtn" class="bottomBtn">삭제</button>
 		<% } %>
 		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>
@@ -150,6 +152,18 @@ tr, td {
 	</section>
 	<script>
 		$("input").attr("readonly", true);
+		
+		$("#deleteBtn").click(function(){
+			swal({
+				  text: "삭제하시겠습니까?\n(되돌릴 수 없습니다.)",
+				  buttons: ["취소", "삭제"],
+				})
+				.then((value) =>{
+				  if (value) {
+					location.href="<%=request.getContextPath()%>/adelete.satis?satNo=" + <%=list.get(0).get("satNo")%>;
+				  } 
+				});
+		});
 	</script>
 </body>
 </html>

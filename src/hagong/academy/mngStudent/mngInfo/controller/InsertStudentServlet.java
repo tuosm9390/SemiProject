@@ -45,7 +45,6 @@ public class InsertStudentServlet extends HttpServlet {
 			int maxSize = 1024 * 1024 * 10;
 
 			String root = request.getSession().getServletContext().getRealPath("/");
-			System.out.println("root : " + root);
 			String savePath = root + "uploadFiles/";
 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
@@ -58,22 +57,12 @@ public class InsertStudentServlet extends HttpServlet {
 			while (files.hasMoreElements()) {
 				String name = files.nextElement();
 
-				System.out.println("name : " + name);
-
 				saveFiles.add(multiRequest.getFilesystemName(name));
 				originFiles.add(multiRequest.getOriginalFileName(name));
 			}
 
-			System.out.println("saveFiles : " + saveFiles);
-			System.out.println("originFiles : " + originFiles);
-
 			String multiTitle = multiRequest.getParameter("title");
 			String multiContent = multiRequest.getParameter("content");
-
-			System.out.println("multiTitle : " + multiTitle);
-			System.out.println("multiContent : " + multiContent);
-			
-			
 
 			String userName = multiRequest.getParameter("userName"); // 학생이름
 			String userId = multiRequest.getParameter("userId"); // 학생아이디
@@ -134,7 +123,6 @@ public class InsertStudentServlet extends HttpServlet {
 			} else {
 				s.setRefUno(refNo);
 			}
-			System.out.println("s.getRefUno : " + s.getRefUno());
 			
 			ArrayList<StudentProfile> fileList = new ArrayList<StudentProfile>();
 			
@@ -147,15 +135,12 @@ public class InsertStudentServlet extends HttpServlet {
 				fileList.add(profile);
 			}
 
-			System.out.println(s.toString());
 			int result = new StudentService().insertMember(s, fileList);
 
 			String page = "";
 			if (result > 0) {
-				System.out.println("학생 정보 등록 성공!");
 				response.sendRedirect(request.getContextPath() + "/alist.info");
 			} else {
-				System.out.println("학생 정보 등록 실패!");
 				for (int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
 

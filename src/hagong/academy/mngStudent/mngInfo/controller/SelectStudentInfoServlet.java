@@ -39,12 +39,10 @@ public class SelectStudentInfoServlet extends HttpServlet {
 		
 		String page = "";
 		if(s != null) {
-			System.out.println("업데이트폼전송성공");
 			page = "/viewAcademy/mngStudent/mngInfo/updateStudent.jsp";
 			request.setAttribute("s", s);
 			request.setAttribute("spList", spList);
 		} else {
-			System.out.println("업데이트폼전송실패");
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectStudentInfoFail");
 		}

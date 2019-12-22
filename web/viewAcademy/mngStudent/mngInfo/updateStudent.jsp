@@ -60,6 +60,8 @@ input[type='file'] {
 section button {
 	font-size: 18px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-family: "Nanum Gothic";
 	font-weight: bold;
 	border: 2px solid green;
@@ -213,6 +215,8 @@ th, td {
 				</div>
 				<button id="okbtn" type="button" onclick="doUpdate();"
 					style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">수정</button>
+				<button id="deleteBtn" type="button" onclick="doDelete();"
+					style="float: right; width: 80px; height: 30px; margin-left: 10px; margin-bottom: 50px;">삭제</button>
 				<button id="cancelbtn"
 					onclick="location.href='<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp'"
 					style="float: right; width: 80px; height: 30px;">취소</button>
@@ -221,6 +225,10 @@ th, td {
 	</section>
 	<footer> </footer>
 	<script>
+		function doDelete(){
+			location.href="<%=request.getContextPath()%>/adelete.info?userId=" + "<%= s.getUserId() %>";
+		};
+		
 		$("#addimg").click(function() {
 			$("#imgfile").click();
 		});

@@ -37,11 +37,9 @@ public class DetailStudentServlet extends HttpServlet {
 		
 		String page = "";
 		if(sList != null) {
-			System.out.println("학생 정보 조회 성공");
 			page = "/viewAcademy/mngStudent/mngInfo/studentDetail.jsp";
 			request.setAttribute("sList", sList);
 		} else {
-			System.out.println("학생 정보 조회 실패");
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectStudentFail");
 		}

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 table {
 	width: 100%;
@@ -31,6 +31,8 @@ section button {
 	font-size: 18px;
 	margin-bottom: 5px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-family: "Nanum Gothic";
 	font-weight: bold;
 	border: 2px solid green;
@@ -221,7 +223,6 @@ input[type=file]{
 				var subName=$(".subName").val();
 				var subScore=$(".subScore").val();
 				
-				console.log(typeof(type));
 				location.href="<%=request.getContextPath()%>/ascore.info?userId=" + userId + "&name" + name + "&type=" + type + "&year=" + year + "&term=" + term + "&subName=" + subName + "&subScore=" + subScore;
 			});
 		});
@@ -273,10 +274,7 @@ input[type=file]{
 								var op = "1";
 							} else {
 								var op = $(".classify").val();
-							}
-							;
-							console.log(condition);
-							console.log(op);
+							};
 							$
 									.ajax({
 										url : "searchscore.info",
@@ -287,7 +285,6 @@ input[type=file]{
 											userId : userId
 										},
 										success : function(data) {
-											console.log(data);
 											$tbody = $("#score>tbody");
 											$tbody.find("tr").remove();
 											for (var i = 0; i < data.length; i++) {
@@ -323,7 +320,6 @@ input[type=file]{
 											}
 										},
 										error : function(data) {
-											console.log("실패");
 										}
 									});
 						});

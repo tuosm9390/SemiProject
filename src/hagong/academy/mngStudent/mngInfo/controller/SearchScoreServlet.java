@@ -30,9 +30,7 @@ public class SearchScoreServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블릿진입");
 		String condition = request.getParameter("condition");
-		System.out.println("condition : " + condition);
 		String op = request.getParameter("op");
 		String userId = request.getParameter("userId");
 		

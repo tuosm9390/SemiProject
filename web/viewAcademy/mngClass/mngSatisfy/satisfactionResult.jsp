@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <link rel='stylesheet' href='../../mngAdmin/mngStatus/Nwagon.css'
 	type='text/css'>
 <script src='../../mngAdmin/mngStatus/Nwagon.js'></script>
@@ -17,6 +17,8 @@ section button {
 	float: right;
 	margin-bottom: 5px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-size: 18px;
 	font-family: "Nanum Gothic";
 	font-weight: bold;
@@ -108,7 +110,6 @@ rect{
 						</li>
 					</td>
 					<td>
-						<!-- <div id="donutchart" style="width: 500px;"></div> -->
 					</td>
 				</tr>
 				<tr>
@@ -126,37 +127,5 @@ rect{
 		</div>
 	</section>
 	<footer></footer>
-	<script type="text/javascript">
-    <%-- google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-	   $.ajax({
-	      url: "sresult.satis",
-	      type:"get",
-	      data:{
-	    	  satNo:<%=list.get(0).get("satNo")%>
-	      },
-	      success:function(data){
-	    	  console.log(data);
-				var ans = google.visualization.arrayToDataTable([
-					['ans', 'ans per que'],
-					for(var key in data){
-					[data[key].ansContent,	11],
-					}
-				]);
-				
-				var options = {
-					pieHole: 0.4,
-				};
-			
-				var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-				chart.draw(ans, options);
-	      },
-	      error:function(data){
-	    	  console.log("실패");
-	      }
-	    });
-	} --%>
-	</script>
 </body>
 </html>

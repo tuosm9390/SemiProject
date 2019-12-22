@@ -28,9 +28,7 @@ public class DetailSatisfyServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
-		System.out.println("list : " + list);
 		ArrayList<SatisfyInfo> blist = new SatisfyService().selectBenList();
-		System.out.println("blist : " + blist);
 		
 		String page = "";
 		if (list != null) {

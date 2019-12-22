@@ -47,7 +47,6 @@ public class UpdateStudentServlet extends HttpServlet {
 			int maxSize = 1024 * 1024 * 10;
 
 			String root = request.getSession().getServletContext().getRealPath("/");
-			System.out.println("root : " + root);
 			String savePath = root + "uploadFiles/";
 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
@@ -60,14 +59,9 @@ public class UpdateStudentServlet extends HttpServlet {
 			while (files.hasMoreElements()) {
 				String name = files.nextElement();
 
-				System.out.println("name : " + name);
-
 				saveFiles.add(multiRequest.getFilesystemName(name));
 				originFiles.add(multiRequest.getOriginalFileName(name));
 			}
-
-			System.out.println("saveFiles : " + saveFiles);
-			System.out.println("originFiles : " + originFiles);
 
 			int userNo = Integer.parseInt(multiRequest.getParameter("userNo")); // 학생번호
 			String userName = multiRequest.getParameter("userName"); // 학생이름
@@ -135,16 +129,12 @@ public class UpdateStudentServlet extends HttpServlet {
 			}
 
 			int result = new StudentService().updateStudent(s, fileList);
-			System.out.println(fileList.get(0).getOriginName());
-			System.out.println(fileList.get(0).getChangeName());
 
 			String page = "";
 			if (result > 0) {
-				System.out.println("학생 정보 수정 성공!");
 				request.setAttribute("fileList", fileList);
 				response.sendRedirect(request.getContextPath() + "/adetail.info?userId=" + userId);
 			} else {
-				System.out.println("학생 정보 수정 실패!");
 				for (int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
 					failedFile.delete();

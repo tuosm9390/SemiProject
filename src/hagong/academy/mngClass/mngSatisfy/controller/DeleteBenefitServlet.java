@@ -34,13 +34,10 @@ public class DeleteBenefitServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int benNo = Integer.parseInt(request.getParameter("benNo"));
-		System.out.println("benNo : " + benNo);
 		int result = new SatisfyService().deleteBen(benNo);
-		System.out.println("삭제 후 서블릿");
 		
 		if(result > 0) {
 			ArrayList<SatisfyInfo> list = new SatisfyService().selectBenList();
-			System.out.println("list : " + list);
 			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

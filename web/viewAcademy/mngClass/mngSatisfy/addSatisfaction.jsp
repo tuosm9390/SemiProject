@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HAGONG</title>
 <style>
 section{
 	background: url("/hagong/images/satisfy.png") no-repeat center;
@@ -19,6 +19,8 @@ section button {
 	float: right;
 	margin-bottom: 5px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-size: 18px;
 	font-family: "Nanum Gothic";
 	font-weight: bold;

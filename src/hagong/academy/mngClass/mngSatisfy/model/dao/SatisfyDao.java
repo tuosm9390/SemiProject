@@ -499,4 +499,67 @@ public class SatisfyDao {
 		return list;
 	}
 
+	public int deleteSatis(Connection con, int satNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteSatis");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, satNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteans(Connection con, int satNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("deleteans");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, satNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int deleteque(Connection con, int satNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("deleteque");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setInt(1, satNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }
