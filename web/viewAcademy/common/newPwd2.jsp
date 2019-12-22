@@ -56,11 +56,11 @@
       <table>
          <tr>
             <td width="35%">비밀번호 입력　</td>
-            <td width="65%"><input type="password" id="newPwd" name="newPwd" placeholder=" 변경할 비밀번호 입력"></td>   
+            <td width="65%"><input type="password" id="newPwd" name="userPwd" placeholder=" 변경할 비밀번호 입력"></td>   
          </tr>
          <tr>
             <td>비밀번호 확인　</td>
-            <td><input type="password" id="newPwd2" name="newPwd2" placeholder=" 비밀번호 확인" ></td>
+            <td><input type="password" id="newPwd2" name="userPwd" placeholder=" 비밀번호 확인" ></td>
          
          </tr>
          <tr>

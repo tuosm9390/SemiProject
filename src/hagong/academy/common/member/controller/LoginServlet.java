@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+		String password = request.getParameter("userPwd");
 		
 		if(!password.equals("0000")) {
 			//최초 로그인이 아닐 때

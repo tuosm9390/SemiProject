@@ -13,6 +13,7 @@ import java.util.Properties;
 import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 
 import static hagong.common.JDBCTemplate.*;
 
@@ -320,10 +321,15 @@ public class ClassDao {
 		return result;
 	}
 
-	public ArrayList<Class> searchClass(Connection con, String selectCondition, String searchWord) {
+	public ArrayList<Class> selectClassList(Connection con, int currentPage, int limit, String selectCondition,
+			String searchWord) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Class> list = null;
+		
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit -1;
 		
 		if(selectCondition.equals("과목")) {
 			String query = prop.getProperty("searchClassBySubId");
@@ -331,6 +337,8 @@ public class ClassDao {
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, searchWord);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 				
 				rset = pstmt.executeQuery();
 				
@@ -362,7 +370,9 @@ public class ClassDao {
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, searchWord);
-
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				
 				rset = pstmt.executeQuery();
 				
 				list = new ArrayList<>();
@@ -393,6 +403,8 @@ public class ClassDao {
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, searchWord);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 				
 				rset = pstmt.executeQuery();
 				
