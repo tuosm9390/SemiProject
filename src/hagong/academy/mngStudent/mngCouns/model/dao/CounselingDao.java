@@ -19,7 +19,7 @@ public class CounselingDao {
 	Properties prop = new Properties();
 	
 	public CounselingDao() {
-		String fileName = CounselingDao.class.getResource("/sql/couns.properties").getPath();
+		String fileName = CounselingDao.class.getResource("/sql/student/couns-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));

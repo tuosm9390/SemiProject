@@ -5,11 +5,13 @@ import static hagong.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import hagong.academy.mngClass.mngCS.model.vo.CS;
@@ -65,6 +67,9 @@ public class CSDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
@@ -133,6 +138,9 @@ public class CSDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
@@ -191,7 +199,7 @@ public class CSDao {
 				css.setSchool(rset.getString("SCHOOL"));
 				css.setStuName(rset.getString("NAME"));
 				css.setUserId(rset.getString("USER_ID"));
-				css.setUserNo(rset.getInt("UNO"));
+				css.setUserNo(rset.getInt("USER_NO"));
 				
 				switch(css.getGrade()) {
 				case 1: css.setGradeName("중등 1학년");break;
@@ -207,6 +215,9 @@ public class CSDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
@@ -260,6 +271,9 @@ public class CSDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
@@ -289,7 +303,7 @@ public class CSDao {
 		return result;
 	}
 
-	public int insertPurchase(Connection con, int clsNo, int stuNo) {
+	public int insertPurchase(Connection con, int clsNo, int stuNo, Date date, int j) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -300,6 +314,8 @@ public class CSDao {
 		
 			pstmt.setInt(1, stuNo);
 			pstmt.setInt(2, clsNo);
+			pstmt.setDate(3, date);
+			pstmt.setInt(4, j);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -404,10 +420,99 @@ public class CSDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		
 		return cslist;
+	}
+
+	public HashMap<String, Object> getMonths(Connection con, int clsNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> MonthsInfo = null;
+		
+		String query = prop.getProperty("getMonths");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, clsNo);
+			
+			rset = pstmt.executeQuery();
+			
+			MonthsInfo = new HashMap<>();
+			if(rset.next()) {
+				CS cs = new CS();
+				cs.setClsStart(rset.getDate("CLS_START"));
+				int months = rset.getInt("MONTH");
+				Integer month = months;
+				
+				MonthsInfo.put("CS", cs);
+				MonthsInfo.put("month", month);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return MonthsInfo;
+	}
+
+	public ArrayList<CSStudent> srchByName(Connection con, String name, int clsNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CSStudent> srchStu = null;
+		
+		String query = prop.getProperty("srchStudentByName");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, clsNo);
+			pstmt.setString(2, name);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			srchStu = new ArrayList<>();
+			while(rset.next()) {
+				CSStudent css = new CSStudent();
+				
+			
+				css.setGrade(rset.getInt("GRADE"));
+				css.setSchool(rset.getString("SCHOOL"));
+				css.setStuName(rset.getString("NAME"));
+				css.setUserId(rset.getString("USER_ID"));
+				css.setUserNo(rset.getInt("USER_NO"));
+				
+				switch(css.getGrade()) {
+				case 1: css.setGradeName("중등 1학년");break;
+				case 2: css.setGradeName("중등 2학년");break;
+				case 3: css.setGradeName("중등 3학년");break;
+				case 4: css.setGradeName("고등 1학년");break;
+				case 5: css.setGradeName("고등 2학년");break;
+				case 6: css.setGradeName("고등 3학년");break;
+				}
+				
+				srchStu.add(css);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return srchStu;
 	}
 	
 	

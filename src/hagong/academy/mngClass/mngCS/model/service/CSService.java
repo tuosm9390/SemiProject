@@ -67,8 +67,17 @@ public class CSService {
 		for(int i = 0; i < stuNo.length; i++) {
 			resultCS += new CSDao().insertCS(con, clsNo, stuNo[i]);
 			System.out.println("resultCS : " + resultCS);
-			resultPU += new CSDao().insertPurchase(con, clsNo, stuNo[i]);
+			
+			HashMap<String, Object> monthsInfo = new CSDao().getMonths(con,clsNo);
+			CS cs = (CS)monthsInfo.get("CS");
+			int months = (int) monthsInfo.get("month");
+			
+			for(int j = 0; j < months; j++) {
+				
+				resultPU += new CSDao().insertPurchase(con, clsNo, stuNo[i],cs.getClsStart(),j);
+			}
 			System.out.println("resultPU : " + resultPU);
+			
 		}
 		
 		
@@ -117,6 +126,16 @@ public class CSService {
 		close(con);
 		
 		return cslist;
+	}
+
+	public ArrayList<CSStudent> srchByName(String name, int clsNo) {
+		Connection con = getConnection();
+		
+		ArrayList<CSStudent> srchStu = new CSDao().srchByName(con, name, clsNo);
+		
+		close(con);
+		
+		return srchStu;
 	}
 	
 

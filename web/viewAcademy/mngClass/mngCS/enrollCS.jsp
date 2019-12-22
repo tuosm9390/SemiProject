@@ -78,7 +78,7 @@
 						<th>제한인원</th>					
 					</tr>
 					<tr>
-						<td><input type="hidden" value="<%= csInfo.getClsNo() %>" name="clsNo"><%= csInfo.getTchName() %></td>
+						<td><input id="clsNo" type="hidden" value="<%= csInfo.getClsNo() %>" name="clsNo"><%= csInfo.getTchName() %></td>
 						<td><%= csInfo.getClsStudentName() %></td>
 						<td><%= csInfo.getClsStart() %> ~ <%= csInfo.getClsEnd()%></td>
 						<td><%= csInfo.getClassName()%></td>
@@ -91,7 +91,7 @@
 			<div class="cArea allStudentList" align="center">
 				<h3>전체 학생 목록</h3>
 				<div class="studentList">
-					<input type="search" class="inputSrch" placeholder="학생이름검색">
+					<input id="srchStu" type="search" class="inputSrch" placeholder="학생이름검색">
 				<div id="allSt" class="tableArea">
 					<table class="table" id="allTable">				
 						<%for(int i = 0; i < allStudentList.size(); i++) {%>
@@ -207,6 +207,23 @@
 				
 				$("#classForm").attr("action","<%= request.getContextPath() %>/insert.cs?stuArr=" + stuArr + "&stuAll=" + stuAll);
 				
+			});
+			
+			$("#srchStu").change(function(){
+				var name = $("#srchStu").val();
+				var clsNo = $("#clsNo").val();
+				console.log("name : " + name);
+				$.ajax({
+					url:"srchStu.cs",
+					type:"get",
+					data:{name:name, clsNo:clsNo},
+					success:function(data){
+						
+					},
+					error:function(data){
+						console.log("에러!");
+					}
+				});
 			});
 		});
 	</script>
