@@ -15,7 +15,7 @@ public class NoticeFile {
 	private Date uploadDate;
 	private String fileStatus;
 	
-	public NoticeFile() {}
+	public NoticeFile() {} 
 
 	public NoticeFile(int userNo, int fileNo, String fileType, Date docDate, String originName, String changeName,
 			String filePath, Date uploadDate, String fileStatus) {
