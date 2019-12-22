@@ -86,16 +86,13 @@ public class PurchaseService {
 		
 		if(purchase.getPayMemo().equals("student")) {
 			purchase.setPayMemo("REFUND");
-			/*purchase
-			-> pay_status : N --- 수납 처리X 상태
-			-> pay_money
-			-> rfd_id --- rfd_date(1N3) : C2
-			                rfd_date(1N2) : C3
-			-> refund_day*/
+			System.out.println(purchase.getRefundDay());
+			System.out.println(newPurchase.getClassStart());
+			System.out.println(newPurchase.getClassDays());
 		} else if(purchase.getPayMemo().equals("academy")) {
-			
+			purchase.setPayMemo("REFUND");
 		} else {
-			
+			result = new PurchaseDao().updatePayPrice(con, purchase);
 		}
 		close(con);
 		return result;

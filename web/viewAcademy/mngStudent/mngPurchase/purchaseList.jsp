@@ -860,19 +860,23 @@ fieldset {
 							$("#notifyday").text(data.strNotifyDate);
 							$("#detailstatus").text(data.detailStatus);
 							
-							if(data.payMemo == "NONE") {
-								
-							} else if(data.payMemo == "REFUND") {
-								if(data.faultDays == 0) {
-									$("#note").val("student").prop("selected", true);
-									$("#rfdDay").val(data.refundDay);
-								} else {
-									$("#note").val("academy").prop("selected", true);
-									$("#faultDays").val(data.faultDays);
+							if(data.payStatus == 'N') {
+								$("#note").prop("disabled", true);
+							} else {
+								if(data.payMemo == "NONE") {
+									
+								} else if(data.payMemo == "REFUND") {
+									if(data.faultDays == 0) {
+										$("#note").val("student").prop("selected", true);
+										$("#rfdDay").val(data.refundDay);
+									} else {
+										$("#note").val("academy").prop("selected", true);
+										$("#faultDays").val(data.faultDays);
+									}
+								} else if(data.payMemo == "BENEFIT") {
+									$("#note").val("coupon").prop("selected", true);
+									$("#beneName").val(data.beneName);
 								}
-							} else if(data.payMemo == "BENEFIT") {
-								$("#note").val("coupon").prop("selected", true);
-								$("#beneName").val(data.beneName);
 							}
 							
 							$("#payprice").attr("placeholder", data.payPrice);
