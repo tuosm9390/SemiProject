@@ -28,35 +28,43 @@ public class SatisfyDao {
 		}
 	}
 
-	public ArrayList<SatisfyInfo> selectList(Connection con) {
-		Statement stmt = null;
+	public ArrayList<SatisfyInfo> selectList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<SatisfyInfo> list = null;
 
 		String query = prop.getProperty("selectList");
 
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 
 			list = new ArrayList<>();
 
 			while (rset.next()) {
 				SatisfyInfo si = new SatisfyInfo();
 
-				si.setRowNum(rset.getInt("ROW_NUM"));
+				si.setRowNum(rset.getInt("RNUM"));
 				si.setSatNo(rset.getInt("SAT_NO"));
 				si.setSatTitle(rset.getString("SAT_TITLE"));
 				si.setStart(rset.getDate("SAT_START"));
 				si.setEnd(rset.getDate("SAT_END"));
 				si.setTarget(rset.getString("TARGET"));
-
+				si.setStatus(rset.getString("STATUS"));
+				
 				list.add(si);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
 		}
 
@@ -86,7 +94,7 @@ public class SatisfyDao {
 					si.setBenCondition("다음");
 				}
 				if (rset.getString("BEN_TYPE").equals("TUITION")) {
-					si.setBenType("수강비");
+					si.setBenType("수강료");
 				} else {
 					si.setBenType("기타");
 				}
@@ -411,6 +419,31 @@ public class SatisfyDao {
 		}
 		
 		return result;
+	}
+
+	public int listCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+
+		String query = prop.getProperty("listCount");
+
+		try {
+			stmt = con.createStatement();
+
+			rset = stmt.executeQuery(query);
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+
+		return listCount;
 	}
 
 }

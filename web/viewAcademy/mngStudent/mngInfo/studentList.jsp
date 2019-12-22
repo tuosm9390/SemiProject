@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStudent.mngInfo.model.vo.*, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
 <%
 	ArrayList<Student> list = (ArrayList<Student>) request.getAttribute("list");
+
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호 
+	
+	String srchCnt = (String) request.getAttribute("srchCnt");
+	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +51,12 @@ tr, th {
 tr:not(:first-child){
 	cursor: pointer;
 }
+.srchArea{margin-bottom:10px; margin-right: 5%;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
+.srchArea select{float:right;border-radius:5px;border:1px solid gray;}
+.srchArea button{float:right; height:25px;}
+.pagingArea {margin-bottom:30px;}
+.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
 </style>
 </head>
 <body>
@@ -49,13 +65,27 @@ tr:not(:first-child){
 	</header>
 	<section>
 	<div align="center">
-	<fieldset style="margin-bottom: -25px; border-bottom: none; border-left: none; border-right: none; border-top-color: black;
-					width: 18%; font-family:'Do Hyeon'">
-		<legend align="center"><h1>　전체 학생　</h1></legend>
-	</fieldset>
+		<fieldset style="margin-bottom: -25px; border-bottom: none; border-left: none; border-right: none; border-top-color: black;
+						width: 18%; font-family:'Do Hyeon'">
+			<legend align="center"><h1>　전체 학생　</h1></legend>
+		</fieldset>
+		<form action="<%= request.getContextPath()%>/alist.info" method="post">
+			<div class="srchArea">
+				<button id="addstudent">학생 등록</button>
+				<button class="srchBtn">검색</button>
+				<input type="search" id="searchStudent" name="searchStudent">
+				<select id="searchCondition" name="searchCondition">
+					<option value="" selected disabled hidden>검색 조건</option>
+					<option value="name">학생명</option>
+					<option value="phone">전화번호</option>
+					<option value="school">학교</option>
+					<option value="grade">학년</option>
+					<option value="userId">ID</option>
+				</select>
+			</div>
+		</form>
 	</div>
 	<div style="width: 90%; margin: auto auto;">
-		<button id="addstudent">학생 등록</button>
 		<table class="table">
 			<tr>
 				<th>ID</th>
@@ -82,8 +112,32 @@ tr:not(:first-child){
 		</table>
 	</div>
 	</section>
-	<footer>
-	</footer>
+	<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<% }%>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
+	</div> <!-- pagingArea end  -->
 	<script>
 		$("#addstudent").click(function(){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/enrollStudent.jsp";
@@ -94,12 +148,9 @@ tr:not(:first-child){
 		});
 
 		$(".table td").click(function() {
-			<%-- location.href = "<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentDetail.jsp"; --%>
 			var userId = $(this).parent().children().eq(0).text();
 			location.href="<%=request.getContextPath()%>/adetail.info?userId=" + userId;
 		});
-		
-		
 	</script>
 </body>
 </html>

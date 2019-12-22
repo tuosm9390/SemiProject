@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngSatisfy.model.vo.*, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
 <%
 	ArrayList<SatisfyInfo> list = (ArrayList<SatisfyInfo>) request.getAttribute("list");
 	ArrayList<SatisfyInfo> blist = (ArrayList<SatisfyInfo>) request.getAttribute("blist");
+	
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();		//총 게시글 갯수
+	int currentPage = pi.getCurrentPage();	//현재 페이지
+	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
+	int startPage = pi.getStartPage();		//시작 페이지 번호
+	int endPage = pi.getEndPage();			//끝 페이지 번호 
 %>
 <!DOCTYPE html>
 <html>
@@ -96,6 +103,12 @@ select:focus {
 #modalBtnTable td{
 	display: inline-flex;
 }
+.srchArea{margin-bottom:10px; margin-right: 5%;}
+.srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
+.srchArea select{float:right;border-radius:5px;border:1px solid gray;}
+.srchArea button{float:right; height:25px;}
+.pagingArea {margin-bottom:30px;}
+.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
 <%int test = 1;%>
 </style>
 </head>
@@ -113,15 +126,25 @@ select:focus {
 			</fieldset>
 		</div>
 		<!-- 권한별 버튼 -->
-		<%
-			if (test == 1) {
-		%>
-		<button id="addSatisfaction" style="margin-right: 5%;">만족도 조사
-			등록</button>
-		<button id="benefitBtn">혜택 관리</button>
-		<%
-			}
-		%>
+		<form action="<%= request.getContextPath()%>/alist.info" method="post">
+			<div class="srchArea">
+				<%
+					if (test == 1) {
+				%>
+				<button id="addSatisfaction">만족도 조사 등록</button>
+				<button id="benefitBtn">혜택 관리</button>
+				<%
+					}
+				%>
+				<button class="srchBtn">검색</button>
+				<input type="search" id="searchSatis" name="searchSatis">
+				<select id="searchCondition" name="searchCondition" style="height: 23px;">
+					<option value="" selected disabled hidden>검색 조건</option>
+					<option value="className">수강명</option>
+					<option value="status">진행상황</option>
+				</select>
+			</div>
+		</form>
 		<form>
 			<table class="table" align="center" style="width: 90%;">
 				<tr>
@@ -140,7 +163,15 @@ select:focus {
 					<td><input type="hidden" id="start" name="start" value="<%=si.getStart()%>">
 					<%=si.getStart() + " ~ " + si.getEnd()%><input type="hidden" id="end" name="end" value="<%=si.getEnd()%>">
 					</td>
-					<td></td>
+					<td>
+					<% if(si.getStatus().equals("detail")) { %>
+					진행 예정
+					<% } else if(si.getStatus().equals("select")) {%>
+					진행중
+					<% } else { %>
+					종료
+					<% } %>
+					</td>
 				</tr>
 				<% } %>
 			</table>
@@ -156,7 +187,7 @@ select:focus {
 						<td align="center" colspan="2">
 						<select id="benefitSelect" align="center"
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
-								<option selected>선택</option>
+								<option selected disabled hidden>선택</option>
 								<% for(int i = 0; i < blist.size(); i++) { %>
 								<option value="<%=blist.get(i).getBenNo()%>">
 								<%=blist.get(i).getBenCondition() + "" + blist.get(i).getBenType() + " " +
@@ -176,8 +207,7 @@ select:focus {
 						<td>
 						<select id="applyPoint" class='sort' space="&nbsp;" align="center"
 						style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
-							<option value="SAMESUB">진행중인 강의</option>
-							<option value="NEXTCLS">다음 강의</option>
+							<option value="NEXTCLS" selected>다음 강의</option>
 						</select>
 						</td>
 					</tr>
@@ -199,6 +229,32 @@ select:focus {
 			</div>
 		</div>
 	</section>
+	<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=1<%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><<</button>
+			<% if(currentPage <= 1) {%>
+			<button disabled><</button>
+			<%}else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage - 1%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><</button>
+			<% }%>
+			
+			<% for(int p = startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>			
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=p%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>"><%=p %></button>
+			<% } 
+			}
+			%>
+			
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<%} else{ %>
+			<button onclick="location.href='<%=request.getContextPath()%>/alist.satis?currentPage=<%=currentPage + 1%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>">></button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=<%=maxPage%><%-- &srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>' --%>">>></button>
+	</div> <!-- pagingArea end  -->
 	<footer> </footer>
 	<script>
 		//만족도 등록
@@ -206,31 +262,29 @@ select:focus {
 			location.href="<%=request.getContextPath()%>/ainsert.satis?type=insertForm";
 		});
 		
-		var satNo = $(this).parent().children().find("#satNo").val();
-		var start = $(this).parent().children().find("#start").val();
-		var end = $(this).parent().children().find("#end").val();
-		var today = $("#today").val();
-		var type = "";
-		
-		if(today < start) {
-			type = "detail";
-		} else if(today < end) {
-			type = "select";
-		}
-		if(today > end) {
-			type = "result";
-		}
-		
-		$(".table tr td:last-child").text(type);
-		
 		//만족도 상세보기
 		$(".table td").click(function() {
+			var satNo = $(this).parent().children().find("#satNo").val();
+			var start = $(this).parent().children().find("#start").val();
+			var end = $(this).parent().children().find("#end").val();
+			var today = $("#today").val();
+			var type = "";
+			
+			if(today < start) {
+				type = "detail";
+			} else if(today < end) {
+				type = "select";
+			}
+			if(today > end) {
+				type = "result";
+			}
+			
 			console.log(start);
 			console.log(end);
 			console.log(today);
 			console.log(type);
 			
-			location.href = "<%=request.getContextPath()%>/adetail.satis?satNo=" + satNo + "&type=" + type;
+			location.href = '<%=request.getContextPath()%>/adetail.satis?satNo=' + satNo + '&type=' + type;
 		});
 
 		var benefit = document.getElementById("benefit");

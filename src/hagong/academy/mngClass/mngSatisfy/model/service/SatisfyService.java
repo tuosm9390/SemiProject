@@ -8,12 +8,13 @@ import java.util.HashMap;
 
 import hagong.academy.mngClass.mngSatisfy.model.dao.SatisfyDao;
 import hagong.academy.mngClass.mngSatisfy.model.vo.SatisfyInfo;
+import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 
 public class SatisfyService {
 
-	public ArrayList<SatisfyInfo> selectList() {
+	public ArrayList<SatisfyInfo> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<SatisfyInfo> list = new SatisfyDao().selectList(con);
+		ArrayList<SatisfyInfo> list = new SatisfyDao().selectList(con, currentPage, limit);
 
 		close(con);
 
@@ -82,6 +83,7 @@ public class SatisfyService {
 					commit(con);
 					// 문항의 번호 뽑아옴
 					int selectQueNo = new SatisfyDao().selectQueNo(con, qrr[i], selectSatNo);
+					System.out.println("selectQueNo : " + selectQueNo);
 					// 답변목록 입력
 					int aresult = 0;
 					for (int j = 0; j < arr.length; j++) {
@@ -160,6 +162,16 @@ public class SatisfyService {
 		close(con);
 
 		return result;
+	}
+
+	public int listCount() {
+		Connection con = getConnection();
+		
+		int listCount = new SatisfyDao().listCount(con);
+		
+		close(con);
+		
+		return listCount;
 	}
 
 }
