@@ -69,9 +69,9 @@ tr:not(:first-child){
 						width: 18%; font-family:'Do Hyeon'">
 			<legend align="center"><h1>　전체 학생　</h1></legend>
 		</fieldset>
-		<form action="<%= request.getContextPath()%>/alist.info" method="post">
-			<div class="srchArea">
-				<button id="addstudent">학생 등록</button>
+		<div class="srchArea">
+		<button id="addstudent">학생 등록</button>
+			<form action="<%= request.getContextPath()%>/alist.info" method="post">
 				<button class="srchBtn">검색</button>
 				<input type="search" id="searchStudent" name="searchStudent">
 				<select id="searchCondition" name="searchCondition">
@@ -82,8 +82,8 @@ tr:not(:first-child){
 					<option value="grade">학년</option>
 					<option value="userId">ID</option>
 				</select>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 	<div style="width: 90%; margin: auto auto;">
 		<table class="table">

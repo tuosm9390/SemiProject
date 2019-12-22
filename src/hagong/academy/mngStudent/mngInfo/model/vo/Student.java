@@ -37,6 +37,7 @@ public class Student {
 	private String refName; // 학부모 이름
 	private String refId; // 학부모 아이디
 	private String refPhone; // 학부모 전화번호
+	private int check; // 학부모 아이디 존재유무 체크
 
 	// 성적 테이블
 	private String scoType; // 성적구분
@@ -51,7 +52,7 @@ public class Student {
 	public Student(int scoreNo, int userNo, String name, String userId, String userPwd, Date birth, String phone,
 			String address, String email, String status, String inflowPath, String userType, int age, String school,
 			int grade, String track, String college, String major, int refUno, String refName, String refId,
-			String refPhone, String scoType, int year, int term, String subName, int subscore) {
+			String refPhone, int check, String scoType, int year, int term, String subName, int subscore) {
 		super();
 		this.scoreNo = scoreNo;
 		this.userNo = userNo;
@@ -75,6 +76,7 @@ public class Student {
 		this.refName = refName;
 		this.refId = refId;
 		this.refPhone = refPhone;
+		this.check = check;
 		this.scoType = scoType;
 		this.year = year;
 		this.term = term;
@@ -258,6 +260,14 @@ public class Student {
 		this.refPhone = refPhone;
 	}
 
+	public int getCheck() {
+		return check;
+	}
+
+	public void setCheck(int check) {
+		this.check = check;
+	}
+
 	public String getScoType() {
 		return scoType;
 	}
@@ -305,8 +315,8 @@ public class Student {
 				+ email + ", status=" + status + ", inflowPath=" + inflowPath + ", userType=" + userType + ", age="
 				+ age + ", school=" + school + ", grade=" + grade + ", track=" + track + ", college=" + college
 				+ ", major=" + major + ", refUno=" + refUno + ", refName=" + refName + ", refId=" + refId
-				+ ", refPhone=" + refPhone + ", scoType=" + scoType + ", year=" + year + ", term=" + term + ", subName="
-				+ subName + ", subscore=" + subscore + "]";
+				+ ", refPhone=" + refPhone + ", check=" + check + ", scoType=" + scoType + ", year=" + year + ", term="
+				+ term + ", subName=" + subName + ", subscore=" + subscore + "]";
 	}
 
 }

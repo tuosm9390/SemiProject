@@ -94,6 +94,7 @@ section button:hover {
 					<h1 style="font-family: 'Do Hyeon'">　학생 등록　</h1>
 				</legend>
 				<div style="width: 100%; margin: auto auto;">
+					<h5 align="center">(*) 표시는 필수 입력 항목입니다.</h5>
 					<form id="enrollStudentForm" encType="multipart/form-data"
 						action="<%=request.getContextPath()%>/ainsert.info" method="post">
 						<table class="table" align="center">
@@ -109,7 +110,7 @@ section button:hover {
 								</td>
 							</tr>
 							<tr>
-								<td><li>ID</li></td>
+								<td><li>ID (*)</li></td>
 								<td><input type="text" placeholder="ID 입력" id="userId" name="userId"><br>
 								<input type="hidden" name="userPwd" value="0000">
 								<input type="hidden" name="userType" value="student">
@@ -117,23 +118,23 @@ section button:hover {
 								<span id="useridSpan" class="redText"></span></td>
 							</tr>
 							<tr>
-								<td><li>이름</li></td>
+								<td><li>이름 (*)</li></td>
 								<td><input type="text" placeholder="이름 입력" id="userName" name="userName"><br>
 								<span id="usernameSpan" class="redText"></span></td>
 							</tr>
 							<tr>
-								<td><li>생년월일</li></td>
+								<td><li>생년월일 (*)</li></td>
 								<td><input type="text" id="datepicker" name="birth"
 									readonly></td>
 							</tr>
 							<tr>
-								<td><li>전화번호</li></td>
+								<td><li>전화번호 (*)</li></td>
 								<td><input type="tel" maxlength="3" name="tel1"> -
 									<input type="tel" maxlength="4" name="tel2"> - <input
 									type="tel" maxlength="4" name="tel3"></td>
 							</tr>
 							<tr>
-								<td><li>학교 / 학년</li></td>
+								<td><li>학교 / 학년 (*)</li></td>
 								<td><input type="text" name="school" placeholder="학교 이름 입력"
 									style="width: 120px;"> &nbsp;
 								<select name="grade" style="width: 120px;">
@@ -146,16 +147,17 @@ section button:hover {
 								</select></td>
 							</tr>
 							<tr>
-								<td rowspan="2" style="text-align: center !important;"><li>유입
-										경로</li>
-								<br> <select name="inflowPath" style="width: 100px;">
-										<option value="FRIEND" selected>친구소개</option>
-										<option value="INTERNET">인터넷</option>
-										<option value="PICKET">전단지</option>
-										<option value="PCARD">플래카드</option>
-										<option value="ETC">기타</option>
+								<td rowspan="2" style="text-align: center !important;">
+								<li>유입경로</li>
+								<br>
+								<select name="inflowPath" style="width: 100px;">
+									<option value="FRIEND" selected>친구소개</option>
+									<option value="INTERNET">인터넷</option>
+									<option value="PICKET">전단지</option>
+									<option value="PCARD">플래카드</option>
+									<option value="ETC">기타</option>
 								</select></td>
-								<td><li>계열</li></td>
+								<td><li>계열 (*)</li></td>
 								<td><select name="track">
 										<option value="LIB" selected>인문계</option>
 										<option value="NAT">자연계</option>
@@ -165,31 +167,31 @@ section button:hover {
 								</select></td>
 							</tr>
 							<tr>
-								<td><li>학부모 아이디</li></td>
+								<td><li>학부모 아이디 (*)</li></td>
 								<td><input type="hidden" id="refNo" name="refNo" value="">
 								<input type="text" placeholder="학부모 아이디 입력" id="refId"name="refId"><br>
 								<span id="refidSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><li>학부모 이름</li></td>
+								<td><li>학부모 이름 (*)</li></td>
 								<td><input type="text" placeholder="학부모 이름 입력" id="refName"
 									name="refName"><br>
 									<span id="refnameSpan" class="redText"></span></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><li>학부모 전화번호</li></td>
-								<td><input type="tel" maxlength="3" name="reftel1">
-									- <input type="tel" maxlength="4" name="reftel2"> - <input
-									type="tel" maxlength="4" name="reftel3"></td>
+								<td><li>학부모 전화번호 (*)</li></td>
+								<td><input type="tel" maxlength="3" id="reftel1" name="reftel1">
+									- <input type="tel" maxlength="4" id="reftel2" name="reftel2"> - <input
+									type="tel" maxlength="4" id="reftel3" name="reftel3"></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><li>희망대학 / 학과</li></td>
-								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 100px;" value="">
+								<td><li>희망대학 / 학과 (*)</li></td>
+								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 110px;" value="">
 									<label style="color: black;">대학교</label>&emsp;
-									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 100px;" value=""></td>
+									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 110px;" value=""></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -488,9 +490,15 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 								//0이상이면 아이디 있음(학부모의 유저넘버 반환)
 									$("#refidSpan").removeClass('redText').addClass('greenText');
 									$("#refidSpan").text("존재하는 학부모 ID 입니다.");
-									$("#refNo").val(data);
+									for(var key in data){
+										$("#refNo").val(data[key].userNo);
+										$("#refName").val(data[key].name);
+										var tel = data[key].phone.split('-');
+										$("#reftel1").val(tel[0]);
+										$("#reftel2").val(tel[1]);
+										$("#reftel3").val(tel[2]);
+									}
 								}
-								//location.href="";
 							},
 							error : function(data) {
 								console.log("Failed");

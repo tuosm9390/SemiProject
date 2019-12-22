@@ -67,7 +67,7 @@ public class StudentDao {
 			pstmt.setString(2, s.getRefId());
 			pstmt.setString(3, s.getUserPwd());
 			pstmt.setDate(4, s.getBirth());
-			pstmt.setString(5, s.getPhone());
+			pstmt.setString(5, s.getRefPhone());
 			pstmt.setString(6, s.getAddress());
 
 			result = pstmt.executeUpdate();
@@ -768,7 +768,7 @@ public class StudentDao {
 		} else if (searchCondition.equals("grade")) {
 			query = prop.getProperty("selectListByGrade");
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -798,6 +798,42 @@ public class StudentDao {
 			close(rset);
 			close(pstmt);
 		}
+		return list;
+	}
+
+	public ArrayList<Student> refIdCheck(Connection con, String refId, int check) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Student> list = null;
+
+		String query = prop.getProperty("selectParent");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, refId);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Student s = new Student();
+				s.setUserNo(rset.getInt("USER_NO"));
+				s.setUserId(rset.getString("USER_ID"));
+				s.setName(rset.getString("NAME"));
+				s.setPhone(rset.getString("PHONE"));
+				s.setCheck(check);
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
 		return list;
 	}
 }
