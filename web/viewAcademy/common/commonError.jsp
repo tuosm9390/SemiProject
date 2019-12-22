@@ -20,7 +20,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script> 
@@ -34,7 +34,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -48,7 +48,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/mngStaff/staffList.jsp";
+				location.href="<%=request.getContextPath()%>/alist.staff";
 			});
 		});
 	</script>
@@ -62,7 +62,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -76,7 +76,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -90,7 +90,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -104,7 +104,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -118,7 +118,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -132,7 +132,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -146,7 +146,7 @@
 				icon: "warning",
 				button: "확인"
 			}).then(function(){
-				location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 			});
 		});
 	</script>
@@ -161,6 +161,20 @@
 				button: "확인"
 			}).then(function(){
 				location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/studentList.jsp";
+
+			});
+		});
+	</script>
+	<% } else if(errorCode == "NotFoundError") { %>
+	<script>
+		$(function(){
+			swal ({
+				title: "접근 권한 제한",
+				text: "해당 메뉴에 접근 권한이 없습니다.",
+				icon: "warning",
+				button: "확인"
+			}).then(function(){
+				location.href="<%=request.getContextPath()%>/allStaff.cm";
 
 			});
 		});

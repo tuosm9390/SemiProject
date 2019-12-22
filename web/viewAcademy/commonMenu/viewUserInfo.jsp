@@ -228,7 +228,7 @@ img {
 			}
 			
 			function goHome(){
-				location.href = "<%= request.getContextPath() %>/viewAcademy/main.jsp";
+				location.href = "<%=request.getContextPath()%>/allStaff.cm";
 			}
 			
 			$(function(){

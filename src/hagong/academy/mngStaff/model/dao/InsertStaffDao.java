@@ -152,7 +152,6 @@ public class InsertStaffDao {
 			pstmt.setInt(1, staffFile.getFileNo());
 			pstmt.setInt(2, staffFile.getUserNo());
 			pstmt.setString(3, staffFile.getFileType());
-			System.out.println(staffFile);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -27,7 +27,6 @@ public class UserDetailServlet extends HttpServlet {
 		
 		int userNo = Integer.parseInt(request.getParameter("no"));
 		ArrayList<UserDetail> userDetail = new UserService().userDetail(userNo);
-		System.out.println(userDetail);
 		String page = "";
 		if(userDetail != null && type.equals("view") && userDetail.get(0).getUserNo() == userNo) {
 			page = "viewAcademy/commonMenu/viewUserInfo.jsp";
