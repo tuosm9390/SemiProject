@@ -126,7 +126,7 @@ fieldset {
 							<td rowspan="5" width="10%"><div align="center"><img id="profile" src="../../images/user.png" style="border-radius:50%;"></div></td>
 							<td width="25%"><li>ID (*)</li></td>
 							<td width="30%">
-								<input type="hidden" name="userPwd" value="0000">
+								<input type="hidden" name="userPwd" value="xgAdWyrD3zFCBKj516AOFQPJq6D9RThkXeS/TMfiVVz+n/nQI2vzJ+0+kHhJqY300zDEvqVRAX1GW0wdm4C8sA==">
 								<input type="text" name="userId" id="userId" placeholder="영소문자, 숫자 조합의 4~12글자">
 								<span id="idSpan" class="redText"></span></td>
 						</tr>

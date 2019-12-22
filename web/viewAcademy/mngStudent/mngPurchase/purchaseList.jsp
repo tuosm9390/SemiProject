@@ -468,7 +468,7 @@ fieldset {
 								<select id="note" name="payMemo">
 									<option value="none" hidden>특이사항 선택</option>
 									<option value="student">고객 환불</option>
-									<option value="coupon">쿠폰 사용</option>
+									<option value="coupon" disabled>쿠폰 사용</option>
 									<option value="academy">학원 귀책</option>
 								</select>
 								
@@ -595,7 +595,7 @@ fieldset {
 				});
 				
 				//상세보기 수정완료 스크립트
-				/* $("#modifyDoneBtn").click(function(){
+				$("#modifyDoneBtn").click(function(){
 					var num = $("#purNoForModify").val();
 					var paymemo = $("#note").val();
 					var payDetail;
@@ -639,7 +639,7 @@ fieldset {
 							});
 						}
 					}
-				}); */
+				});
 				
 			});
 			
@@ -880,6 +880,7 @@ fieldset {
 							}
 							
 							$("#payprice").attr("placeholder", data.payPrice);
+							$("#payprice").val(data.payPrice);
 						}
 					},
 					error:function(error, status){

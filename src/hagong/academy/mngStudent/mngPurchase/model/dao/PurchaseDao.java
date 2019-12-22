@@ -3,6 +3,7 @@ package hagong.academy.mngStudent.mngPurchase.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -340,10 +341,102 @@ public class PurchaseDao {
 		String query = prop.getProperty("updatePayPrice");
 		try {
 			pstmt = con.prepareStatement(query);
-			
+			pstmt.setInt(1, purchase.getPayPrice());
+			pstmt.setInt(2, purchase.getPurchaseNo());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertRefund(Connection con, Purchase purchase) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertRefund");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setDouble(1, purchase.getRefundRate());
+			pstmt.setInt(2, purchase.getFaultDays());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectRefundId(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int refundId = 0;
+		
+		String query = prop.getProperty("selectRefundId");
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				refundId = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return refundId;
+	}
+
+	public int updateRefundAca(Connection con, Purchase purchase, int refundId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateRefundAca");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, purchase.getPayPrice());
+			pstmt.setInt(2, refundId);
+			pstmt.setInt(3, purchase.getPurchaseNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public String calRefundRate(Connection con, Date refundDay, Date classStart, Date classEnd) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		
+		String query = prop.getProperty("calRefundRate");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setDate(1, refundDay);
+			pstmt.setDate(2, classStart);
+			pstmt.setDate(3, classEnd);
+			pstmt.setDate(4, classStart);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				double days = rset.getDouble(1);
+				int classdays = rset.getInt(2);
+				
+				double refundRate = days / classdays;
+				
+				//if(refundRate )
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
 			close(pstmt);
 		}
 		return result;
