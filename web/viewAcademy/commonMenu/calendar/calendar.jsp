@@ -18,6 +18,14 @@
 </head>
 
 <style>
+
+	#edit-color{
+		display: none;
+	}
+	#edit-color2{
+		display: none;
+	}
+
 	.alldayday{
 		display: none;
 	}
@@ -141,7 +149,7 @@ z-index:0 !important;
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-color">색상</label>
+                                <label class="col-xs-4" for="edit-color" id="edit-color2">색상</label>
                                 <select class="inputModal" name="color" id="edit-color">
                                     <option value="#D25565" style="color:#D25565;">빨간색</option>
                                     <option value="#9775fa" style="color:#9775fa;">보라색</option>
@@ -327,9 +335,11 @@ function calDateWhenResize(event) {
   if (event.allDay) {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
     newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
+    console.log("올데이")
   } else {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
     newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+    console.log("올데이아님")
   }
 
   return newDates;
@@ -357,7 +367,7 @@ function calDateWhenDragnDrop(event) {
   //all day가 아님
   else if (!event.allDay) {
     newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;
@@ -397,18 +407,6 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
-  /* //주말 숨기기 & 보이기 버튼
-  customButtons: {
-    viewWeekends: {
-      text: '주말',
-      click: function () {
-        activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
-        $('#calendar').fullCalendar('option', {
-          weekends: activeInactiveWeekends
-        });
-      }
-    }
-  }, */
 
   header: {
     left: 'today, prevYear, nextYear, viewWeekends',
@@ -452,6 +450,14 @@ var calendar = $('#calendar').fullCalendar({
     	  var events=[];
     	  
     	  for(var key in response){
+    		 
+    		  switch(response[key].type){
+    		  case "ETC": response[key].backgroundColor="skyblue"; break;
+    		  case "PER": response[key].backgroundColor="#a2b2de"; break;
+    		  case "EVENT": response[key].backgroundColor="#f56e94"; break;
+    		  case "COUNS": response[key].backgroundColor="#b8dea2"; break;
+    		  }
+    		  
     		  
 				var evt={
 						_id:response[key].cno,
@@ -460,8 +466,8 @@ var calendar = $('#calendar').fullCalendar({
 						start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
 						end:moment(response[key].end).add(1,"days").format('YYYY-MM-DD hh:mm'),
 						type:response[key].type,
-						backgroundColor:"skyblue",
 						textColor:"white",
+						backgroundColor:response[key].backgroundColor,
 						allDay:false
 				};
 				events.push(evt);
@@ -523,13 +529,17 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "/hagong/adrop.cal",
       data: {
         //...
+        cno:event._id,
+        start:newDates.startDate,
+        end:newDates.endDate
       },
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
-      }
+        console.log("성공~~!~");
+      },error:console.log("실팸ㄴㅇㅁㄴㅇ")
     });
 
   },

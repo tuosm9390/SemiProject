@@ -144,4 +144,30 @@ public class CalendarDao {
 		return result;
 	}
 
+
+	public int dropCal(Connection con, Calendar c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("dropCal");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,c.getStart());
+			pstmt.setString(2, c.getEnd());
+			pstmt.setInt(3, c.getCno());
+		
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 }
