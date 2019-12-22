@@ -147,11 +147,12 @@
 .nextBtn {
 	border:none;
 	color:green;
+	background: none;
 }
 
 .nextBtn:focus, .nextBtn:hover {
 	border:none;
-	background: white;
+	background: none;
 	color:red;
 }
 
@@ -235,7 +236,10 @@ fieldset {
 		
 			<!-- 년/월 선택 부분 -->
 			<div align="center" class="monthArea">
-				<button class="month nextBtn">◀</button>&nbsp;
+				<% if(selectDate.getSelectYear() == selectDate.getStartYear() && selectDate.getSelectMonth() == selectDate.getStartMonth()) {
+				   } else { %>
+					<button id="viewPreBtn" class="month nextBtn">◀</button>&nbsp;
+				<% } %>
 				<select id="selectYear" class="month selectMonth" onchange="changeDate();">
 					<% for(int i = selectDate.getStartYear(); i <= selectDate.getEndYear(); i++) { %>
 					<% if(i == selectDate.getSelectYear()) { %>
@@ -263,7 +267,10 @@ fieldset {
 						<% } %>
 					<% } %>
 				</select> <label style="font-size:20px">월</label>&nbsp;
-				<button class="month nextBtn">▶</button>
+				<% if(selectDate.getSelectYear() == selectDate.getEndYear() && selectDate.getSelectMonth() == selectDate.getEndMonth()) {
+				   } else { %>
+					<button id="viewAftBtn" class="month nextBtn">▶</button>
+				<% } %>
 			</div> <!-- monthArea end -->
 			
 			<!-- 환불규정 확인 버튼 / 미납자 모아보기 버튼 -->
@@ -494,6 +501,35 @@ fieldset {
 			
 		<script>
 			$(function() {
+				//개월 이동 버튼
+				$("#viewPreBtn").click(function(){
+					var year = $("#selectYear").val();
+					var month = $("#selectMonth").val();
+					if(month == '01') {
+						year = Number(year);
+						month = Number(month);
+						location.href = "<%=request.getContextPath() %>/alist.pur?year=" + (year - 1) + "&month=" + 12;
+					} else {
+						year = Number(year);
+						month = Number(month);
+						location.href = "<%=request.getContextPath() %>/alist.pur?year=" + year + "&month=" + (month - 1);
+					}
+				});
+				
+				$("#viewAftBtn").click(function(){
+					var year = $("#selectYear").val();
+					var month = $("#selectMonth").val();
+					if(month == '12') {
+						year = Number(year);
+						month = Number(month);
+						location.href = "<%=request.getContextPath() %>/alist.pur?year=" + (year + 1) + "&month=" + 01;
+					} else {
+						year = Number(year);
+						month = Number(month);
+						location.href = "<%=request.getContextPath() %>/alist.pur?year=" + year + "&month=" + (month + 1);
+					}
+				});
+				
 				//아코디언 스크립트
 				$('.accordion').find('.accordion__title').click(function() {
 					// Expand or collapse this panel

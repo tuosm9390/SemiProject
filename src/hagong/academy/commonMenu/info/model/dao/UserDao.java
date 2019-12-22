@@ -197,4 +197,27 @@ public class UserDao {
 		return result;
 	}
 
+	public String checkPwd(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String userPwd = "";
+		
+		String query = prop.getProperty("checkPwd");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userPwd = rset.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return userPwd;
+	}
+
 }

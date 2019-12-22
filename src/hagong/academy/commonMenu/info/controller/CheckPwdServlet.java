@@ -1,4 +1,4 @@
-package hagong.academy.mngStaff.controller;
+package hagong.academy.commonMenu.info.controller;
 
 import java.io.IOException;
 
@@ -8,25 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hagong.academy.mngStaff.model.service.StaffService;
+import com.google.gson.Gson;
 
-@WebServlet("/adelete.staff")
-public class DeleteStaffServlet extends HttpServlet {
+import hagong.academy.commonMenu.info.model.service.UserService;
+
+@WebServlet("/acheck.ps")
+public class CheckPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    public DeleteStaffServlet() {
+       
+    public CheckPwdServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int staffNo = Integer.parseInt(request.getParameter("no"));
-		int result = new StaffService().deleteStaff(staffNo);
+		String requestPwd = request.getParameter("userPwd");
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		String userPwd = new UserService().checkPwd(userNo);
 		
-		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/alist.staff?how=uName&page=1");
+		if(requestPwd.equals(userPwd)) {
+			response.getWriter().print("success");
 		} else {
-			request.setAttribute("errorCode", "staffDeleteError");
-			request.getRequestDispatcher("viewAcademy/common/commonError.jsp").forward(request, response);
+			response.getWriter().print("fail");
 		}
 	}
 

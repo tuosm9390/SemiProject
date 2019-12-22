@@ -30,7 +30,6 @@ public class UserDetailServlet extends HttpServlet {
 		System.out.println(userDetail);
 		String page = "";
 		if(userDetail != null && type.equals("view") && userDetail.get(0).getUserNo() == userNo) {
-			System.out.println("보내자 : " + userDetail);
 			page = "viewAcademy/commonMenu/viewUserInfo.jsp";
 			request.setAttribute("userDetail", userDetail);
 		} else if(userDetail != null && type.equals("modify") && userDetail.get(0).getUserNo() == userNo) {

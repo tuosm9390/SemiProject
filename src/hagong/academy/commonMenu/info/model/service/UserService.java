@@ -80,4 +80,11 @@ public class UserService {
 		return result;
 	}
 
+	public String checkPwd(int userNo) {
+		Connection con = getConnection();
+		String userPwd = new UserDao().checkPwd(con, userNo);
+		close(con);
+		return userPwd;
+	}
+
 }

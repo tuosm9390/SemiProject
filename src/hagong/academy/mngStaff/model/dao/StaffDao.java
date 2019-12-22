@@ -30,15 +30,19 @@ private Properties prop = new Properties();
 		}
 	}
 
-	public ArrayList<Staff> staffList(Connection con) {
-		Statement stmt = null;
+	public ArrayList<Staff> staffList(Connection con, int curPage, int limit) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Staff> staffList = null;
 		
 		String query = prop.getProperty("staffList");
+		int startRow = (curPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
 			staffList = new ArrayList<>();
 			
 			while(rset.next()) {
@@ -71,7 +75,7 @@ private Properties prop = new Properties();
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return staffList;
 	}
@@ -303,6 +307,178 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<Staff> staffListById(Connection con, int curPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Staff> staffList = null;
+		
+		String query = prop.getProperty("staffListById");
+		int startRow = (curPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			staffList = new ArrayList<>();
+			
+			while(rset.next()) {
+				Staff staff = new Staff();
+				staff.setUserNo(rset.getInt("USER_NO"));
+				staff.setName(rset.getString("NAME"));
+				staff.setUserId(rset.getString("USER_ID"));
+				staff.setBirth(rset.getDate("BIRTH"));
+				staff.setPhone(rset.getString("PHONE"));
+				staff.setAddress(rset.getString("ADDRESS"));
+				staff.setEmail(rset.getString("EMAIL"));
+				staff.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				staff.setStatus(rset.getString("STATUS"));
+				staff.setUserType(rset.getString("USER_TYPE"));
+					String dept = rset.getString("DEPT");
+					if(dept.equals("KOR")) { dept = "국어"; }
+					else if(dept.equals("ENG")) { dept = "영어"; }
+					else if(dept.equals("MATH")) { dept = "수학"; }
+					else if(dept.equals("SOCIAL")) { dept = "사회탐구"; }
+					else if(dept.equals("SCIENCE")) { dept = "과학탐구"; }
+					else if(dept.equals("FOREIGN")) { dept = "제2외국어"; }
+					else if(dept.equals("APPLY")) { dept = "입시"; }
+					else { dept = "행정"; }	
+				staff.setDept(dept);
+				staff.setAge(rset.getInt("AGE"));
+				
+				staffList.add(staff);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return staffList;
+	}
+
+	public ArrayList<Staff> staffListBySub(Connection con, int curPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Staff> staffList = null;
+		
+		String query = prop.getProperty("staffListBySub");
+		int startRow = (curPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			staffList = new ArrayList<>();
+			
+			while(rset.next()) {
+				Staff staff = new Staff();
+				staff.setUserNo(rset.getInt("USER_NO"));
+				staff.setName(rset.getString("NAME"));
+				staff.setUserId(rset.getString("USER_ID"));
+				staff.setBirth(rset.getDate("BIRTH"));
+				staff.setPhone(rset.getString("PHONE"));
+				staff.setAddress(rset.getString("ADDRESS"));
+				staff.setEmail(rset.getString("EMAIL"));
+				staff.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				staff.setStatus(rset.getString("STATUS"));
+				staff.setUserType(rset.getString("USER_TYPE"));
+					String dept = rset.getString("DEPT");
+					if(dept.equals("KOR")) { dept = "국어"; }
+					else if(dept.equals("ENG")) { dept = "영어"; }
+					else if(dept.equals("MATH")) { dept = "수학"; }
+					else if(dept.equals("SOCIAL")) { dept = "사회탐구"; }
+					else if(dept.equals("SCIENCE")) { dept = "과학탐구"; }
+					else if(dept.equals("FOREIGN")) { dept = "제2외국어"; }
+					else if(dept.equals("APPLY")) { dept = "입시"; }
+					else { dept = "행정"; }	
+				staff.setDept(dept);
+				staff.setAge(rset.getInt("AGE"));
+				
+				staffList.add(staff);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return staffList;
+	}
+
+	public ArrayList<Staff> staffListByDay(Connection con, int curPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Staff> staffList = null;
+		
+		String query = prop.getProperty("staffListByDay");
+		int startRow = (curPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			staffList = new ArrayList<>();
+			
+			while(rset.next()) {
+				Staff staff = new Staff();
+				staff.setUserNo(rset.getInt("USER_NO"));
+				staff.setName(rset.getString("NAME"));
+				staff.setUserId(rset.getString("USER_ID"));
+				staff.setBirth(rset.getDate("BIRTH"));
+				staff.setPhone(rset.getString("PHONE"));
+				staff.setAddress(rset.getString("ADDRESS"));
+				staff.setEmail(rset.getString("EMAIL"));
+				staff.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				staff.setStatus(rset.getString("STATUS"));
+				staff.setUserType(rset.getString("USER_TYPE"));
+					String dept = rset.getString("DEPT");
+					if(dept.equals("KOR")) { dept = "국어"; }
+					else if(dept.equals("ENG")) { dept = "영어"; }
+					else if(dept.equals("MATH")) { dept = "수학"; }
+					else if(dept.equals("SOCIAL")) { dept = "사회탐구"; }
+					else if(dept.equals("SCIENCE")) { dept = "과학탐구"; }
+					else if(dept.equals("FOREIGN")) { dept = "제2외국어"; }
+					else if(dept.equals("APPLY")) { dept = "입시"; }
+					else { dept = "행정"; }	
+				staff.setDept(dept);
+				staff.setAge(rset.getInt("AGE"));
+				
+				staffList.add(staff);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return staffList;
+	}
+
+	public int countStaff(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int listCnt = 0;
+		
+		String query = prop.getProperty("countStaff");
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCnt = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return listCnt;
 	}
 
 }

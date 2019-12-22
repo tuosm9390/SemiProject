@@ -168,6 +168,7 @@ select {
 						<tr>
 							<td><li>비밀번호</li></td>
 							<td colspan="2"><input type="password" name="userPwd" id="userPwd">
+							<input type="hidden" id="copyPwd" value=" ">
 							<span id="pwdSpan" class="redText"></span></td>
 						</tr>
 						<tr>
@@ -365,6 +366,7 @@ select {
 				});
 				
 				if("<%= profile %>" === " ") {
+					$("#profile").attr("src", "<%= request.getContextPath() %>/images/user.png");
 				} else {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}
@@ -391,14 +393,22 @@ select {
 			});
 			
 			function doModify(){
+
+				if($("#userPwd").val() != '') {
+					$("#copyPwd").val($("#userPwd").val());
+				}
+				
 				if(window.confirm("정말로 수정하시겠습니까?")) {
-					if($("#pwdSpan").prop("class") === "redText") {
+					if($("#pwdSpan").prop("class") === "redText" && $("#copyPwd").val() != ' ') {
 						alert("부적합한 비밀번호 입니다.");
-					} else if($("#pwdCkSpan").prop("class") === "redText") {
+					} else if($("#pwdCkSpan").prop("class") === "redText" && $("#copyPwd").val() != ' ') {
 						alert("비밀번호 확인이 틀렸습니다.");
 					} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
 						alert("전화번호를 확인해 주세요.");
 					} else {
+						if($("#copyPwd").val() == ' ') {
+							$("#userPwd").val(<%= loginUser.getUserPwd() %>);							
+						}
 						$("#updateForm").submit();
 					}
 				}

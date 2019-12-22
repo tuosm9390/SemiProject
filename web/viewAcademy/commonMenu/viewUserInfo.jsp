@@ -224,11 +224,7 @@ img {
 		</div>
 		<script>
 			function goModify(){
-				var userPwd = window.prompt("비밀번호 확인");
-				console.log(userPwd);
-				if(userPwd == 0000) {
-					location.href = "<%=request.getContextPath()%>/adetail.ps?type=modify&no=" + <%= userDetail.get(0).getUserNo() %>;
-				}
+				location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/checkUserPwd.jsp";
 			}
 			
 			function goHome(){
@@ -243,6 +239,7 @@ img {
 				});
 				
 				if("<%= profile %>" === " ") {
+					$("#profile").attr("src", "<%= request.getContextPath() %>/images/user.png");
 				} else {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}

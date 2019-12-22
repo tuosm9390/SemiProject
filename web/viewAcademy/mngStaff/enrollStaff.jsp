@@ -468,7 +468,7 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 			
 			$("#goList").click(function(){
 				if(window.confirm("직원 등록을 정말 취소하시겠습니까?")) {
-					location.href = "<%= request.getContextPath() %>/alist.staff";
+					location.href = "<%= request.getContextPath() %>/alist.staff?how=uName&page=1";
 				}
 			});
 			

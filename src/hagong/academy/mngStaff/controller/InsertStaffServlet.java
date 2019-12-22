@@ -96,7 +96,7 @@ public class InsertStaffServlet extends HttpServlet {
 			int result = new InsertStaffService().insertStaff(staff, fileList);
 			
 			if(result > 0) {
-				response.sendRedirect(request.getContextPath() + "/alist.staff");
+				response.sendRedirect(request.getContextPath() + "/alist.staff?how=uName&page=1");
 			} else {
 				for(int i = 0; i < saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
