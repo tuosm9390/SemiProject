@@ -35,10 +35,10 @@ public class UpdateDefaultMenuLevelServlet extends HttpServlet {
 		
 		if(result > 0 ) {
 			page = "aselect.level";
-		
+		 
 			
 		}else {
-			page = "errorPage.jsp";
+			page = "/hagong/viewAcademy/common/commonError.jsp";
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

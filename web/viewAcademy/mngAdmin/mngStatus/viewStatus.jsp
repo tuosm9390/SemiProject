@@ -11,7 +11,7 @@
 <meta  charset="UTF-8">
 <title>HAGONG</title>
 	<style>
-
+ 
 	.outer{
 		width:100%;
 		margin-left: 5%;
@@ -28,6 +28,7 @@
 	}
 	#chart8{
 		margin-top: -40px;
+	
 	}
 	.avgtable{
 		width:60% !important;
@@ -108,8 +109,8 @@ int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 					</tr>
 					<tr>	
 						<td>3</td>
-						<td>인터넷</td>
-						<td><%=internet %>　%</td>
+						<td>기타</td>
+						<td><%=etc %>　%</td>
 					</tr>
 					<tr>
 						<td>4</td>
@@ -118,8 +119,8 @@ int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 					</tr>
 					<tr>	
 						<td>5</td>
-						<td>기타</td>
-						<td><%=etc %>　%</td>
+						<td>인터넷</td>
+						<td><%=internet %>　%</td>
 					</tr>
 				</table>
 			</div>	

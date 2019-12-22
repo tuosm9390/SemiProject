@@ -35,7 +35,7 @@ public class InsertCalendarServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+ 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -51,12 +51,7 @@ public class InsertCalendarServlet extends HttpServlet {
 	 
 	    Calendar cal = new Calendar();
 	
-	    System.out.println("테스트시작");
-	    System.out.println( exstart.substring(0, 4));
-	    System.out.println(exstart.substring(5,7));
-	    System.out.println(exstart.substring(8,10));
-	    System.out.println(exstart.substring(11,13));
-	    System.out.println(exstart.substring(14,16));
+	 
 	    String startDate = exstart.substring(0, 4)+"-"+exstart.substring(5,7)+"-"+exstart.substring(8,10)+" "+exstart.substring(11,13)+":"+exstart.substring(14,16);
 	    String endDate = exend.substring(0, 4)+"-"+exend.substring(5,7)+"-"+exend.substring(8,10)+" "+exend.substring(11,13)+":"+exend.substring(14,16);
 	    System.out.println(startDate);

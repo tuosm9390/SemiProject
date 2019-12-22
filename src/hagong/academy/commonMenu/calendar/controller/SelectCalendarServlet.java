@@ -24,7 +24,7 @@ import hagong.academy.commonMenu.calendar.model.vo.Calendar;
 @WebServlet("/aselect.cal")
 public class SelectCalendarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+ 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,7 +41,7 @@ public class SelectCalendarServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int uno = Integer.parseInt(request.getParameter("uno"));
-		System.out.println("asdddddddddddddddddddddddddd");
+		
 		ArrayList<Calendar> list = new ArrayList<>();
 		
 		list = new CalendarService().selectCal(uno);

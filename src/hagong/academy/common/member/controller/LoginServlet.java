@@ -40,12 +40,12 @@ public class LoginServlet extends HttpServlet {
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath()+"/viewAcademy/main.jsp");
+				page = "aselect.level";
 			}else {
 				page = "viewAcademy/common/commonError.jsp";
 				request.setAttribute("errorCode", "loginFail");
-				request.getRequestDispatcher(page).forward(request, response);
 			}
+			request.getRequestDispatcher(page).forward(request, response);
 			
 		}else {		
 			Member requestMember = new Member();
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 			Member loginUser = new MemberService().loginCheck(requestMember);
 			System.out.println(loginUser.getPhone());
 			String page = "";
-			
+			 
 			if(loginUser != null) {
 				request.setAttribute("loginUser", loginUser);
 				page = "viewAcademy/common/newPwd1.jsp";

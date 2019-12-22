@@ -253,7 +253,7 @@ section {
 
 					<a href="<%=request.getContextPath() %>/adetail.status" 
 						class="menu4">학원 현황</a> <a>|</a>
-					<a href="<%=request.getContextPath() %>/aselect.level"
+					<a href="<%=request.getContextPath() %>/viewAcademy/mngAdmin/mngLevel/setLevel.jsp"
 						class="menu4">메뉴 권한 관리</a> <a>|</a>
 					<a href="<%=request.getContextPath()%>/alist.plan"
 						class="menu4">연간계획</a>

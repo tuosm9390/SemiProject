@@ -104,7 +104,7 @@ public class MngLevelDao {
 				MngLevel m = new MngLevel();
 				m.setAttend1(rset.getInt(3));
 				list.add(m);
-				System.out.println("m입  : " + m);
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -124,7 +124,7 @@ public class MngLevelDao {
 		
 		int result = 0;
 		String query = prop.getProperty("updateDefaultMngLevel");
-		
+		 
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);

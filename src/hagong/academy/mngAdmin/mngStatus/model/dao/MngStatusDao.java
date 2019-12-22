@@ -28,7 +28,7 @@ public class MngStatusDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public MngStatus selectList(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
