@@ -98,42 +98,48 @@
        				
                });
             }else {
-            	if(pwd2 != "0000") {
             	console.log("같음");
                $("#checkPwd").hide();
-               
+              	
                $("#okBtn").click(function() {
             	   console.log("온클릭됐음");
+            	   //영문,숫자,특수문자 혼합하여 8자리~20자리 이내.(비밀번호 표준)
+            	  /* 	var num = pwd1.search(/[0-9]/g);
+            	    var eng = pwd1.search(/[a-z]/ig);
+            	    var spe = pwd1.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); */
+            	   if((pwd1!='0000' && pwd2!='0000') && (pwd1.length > 8 || pwd1.length < 20)) {
            	 	
-       			$.ajax({
-       				url: "<%=request.getContextPath()%>/firstUpdate2.cm",
-       				data: {
-       					pwd2:pwd2
-       				},
-       				type: "post",
-       				success: function(data) {
-       					swal ({
-    	       				text: "비밀번호 설정이 완료되었습니다.",
-    	       				icon: "success",
-    	       				button: "확인"
-           				}).then(function(){
-           					location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
-           				});
-       				},
-       				error: function(data) {
-       					/* swal ({
-    	       				text: "비밀번호 설정에 실패하셨습니다.",
-    	       				icon: "warning",
-    	       				button: "확인"
-           				}); */
-       				}
+	       			$.ajax({
+	       				url: "<%=request.getContextPath()%>/firstUpdate2.cm",
+	       				data: {
+	       					pwd2:pwd2
+	       				},
+	       				type: "post",
+	       				success: function(data) {
+	       					swal ({
+	    	       				text: "비밀번호 설정이 완료되었습니다.",
+	    	       				icon: "success",
+	    	       				button: "확인"
+	           				}).then(function(){
+	           					location.href="<%=request.getContextPath()%>/viewAcademy/main.jsp";
+	           				});
+	       				},
+	       				error: function(data) {	       					
+	       				}
+	       			});
+            	   }else {
+            		   swal ({
+   	       				text: "변경하실 비밀번호는 영문, 숫자, 특수문자를 혼합하여 8자리 ~ 20자리 이내로 입력해주세요.",
+   	       				icon: "warning",
+   	       				button: "확인"
+          				});
+            	   }
        			});
-       		});
                
                
-            }
-         }
-         }
+            
+         		}
+         	}
       });
       
       

@@ -74,13 +74,13 @@ public class SelectClassListServlet extends HttpServlet {
 				int endRow = startRow + limit -1;
 				
 				ArrayList<Class> list = new ClassService().selectClassList(currentPage, limit);
-				//blacklist = new BlacklistService().selectBlacklistWithPaging(currentPage, limit);
 		
 		String page = "";
 		if(list != null) {
 			page = "viewAcademy/mngClass/mngClassList/classList.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
+			request.setAttribute("check", "paging");
 		}else {
 			page = "viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectClassListFailed");

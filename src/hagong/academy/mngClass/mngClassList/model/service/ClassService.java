@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import hagong.academy.mngClass.mngAttend.model.dao.AttendDao;
+import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
 import hagong.academy.mngClass.mngClassList.model.dao.ClassDao;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
@@ -167,6 +168,16 @@ public class ClassService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<Class> searchClass(String selectCondition, String searchWord) {
+		Connection con = getConnection();
+		
+		ArrayList<Class> list = new ClassDao().searchClass(con, selectCondition, searchWord);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

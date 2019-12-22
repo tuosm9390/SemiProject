@@ -1,6 +1,7 @@
 package hagong.academy.mngClass.mngAttend.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import hagong.academy.common.member.model.vo.Member;
 import hagong.academy.mngClass.mngAttend.model.service.AttendService;
 import hagong.academy.mngClass.mngAttend.model.vo.Attendance;
+import hagong.academy.mngStudent.mngPurchase.model.service.PurchaseService;
+import hagong.academy.mngStudent.mngPurchase.model.vo.SelectDate;
 
 @WebServlet("/alistAttend.attend")
 public class SelectAttendListServlet extends HttpServlet {
@@ -25,6 +28,7 @@ public class SelectAttendListServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String classNum = (String) request.getAttribute("classNum");
 		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) request.getAttribute("studentList");
 		
@@ -54,12 +58,13 @@ public class SelectAttendListServlet extends HttpServlet {
 			request.setAttribute("attendList", attendList);
 			request.setAttribute("studentList", list);
 			request.setAttribute("classNum", classNum);
-			request.getRequestDispatcher(page).forward(request, response);
+			
 		}else {
-			System.out.println("출석부 불러오기 실패!");
+			request.setAttribute("errorCode", "attendListViewFail");
+			page = "viewAcademy/common/commonError.jsp";
 		}
 		
-		
+		request.getRequestDispatcher(page).forward(request, response);
 	
 	
 	}

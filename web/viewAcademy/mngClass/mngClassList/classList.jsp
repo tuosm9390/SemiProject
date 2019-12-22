@@ -2,12 +2,22 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngClass.mngClassList.model.vo.Class, hagong.academy.mngStudent.mngCouns.model.vo.*"%>
 <%
 	ArrayList<Class> list = (ArrayList<Class>) request.getAttribute("list");
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
+
+	PageInfo pi = (PageInfo) request.getAttribute("pi");	
 	int listCount = pi.getListCount();		//총 게시글 갯수
 	int currentPage = pi.getCurrentPage();	//현재 페이지
 	int maxPage = pi.getMaxPage();			//마지막 게시글 페이지 번호 
 	int startPage = pi.getStartPage();		//시작 페이지 번호
 	int endPage = pi.getEndPage();			//끝 페이지 번호
+	
+	java.util.Date now = new java.util.Date();
+	System.out.println("Value of java.util.Date : " + now);
+	
+	java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+	System.out.println("Converted value of java.sql.Date : " + sqlDate);
+	
+	String srchCnt = (String) request.getAttribute("srchCnt");
+	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
 <!DOCTYPE html>
 <html>
@@ -122,7 +132,7 @@
 	}
 	
 	.pagingArea {margin-bottom:30px;}
-	.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
+	.pagingArea button{display:inline-block;font-family: "Nanum Gothic"; border:none;}
 </style>
 </head>
 <body>
@@ -149,13 +159,14 @@
 						<th>대상 학생</th>
 						<th>정원</th>
 						<th>기간</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<% for(int i=0; i<list.size(); i++) { %>
 					<tr>
 						<td><%= i+1 %><input type="hidden" value="<%=list.get(i).getClsNo()%>"></td>
-						<td><%=list.get(i).getSubName()%></td>
+						<td><%=list.get(i).getSubId()%></td>
 						<td><%=list.get(i).getClsName()%></td>
 						<td><%=list.get(i).getName()%></td>
 						<td><%	String grade = "";
@@ -170,18 +181,31 @@
 								} %><%=grade%></td>
 						<td><%=list.get(i).getClsMax()%>명</td>
 						<td><%=list.get(i).getClsStart()%>~<%=list.get(i).getClsEnd()%></td>
+						<% java.util.Date clsEnd = new java.util.Date(list.get(i).getClsEnd().getTime());
+							System.out.println("clsEnd : " + clsEnd);
+							
+							int compare = clsEnd.compareTo(now);
+							
+							if(compare>0) { %>
+							<td style="color:blue;">진행중</td>
+						<%	}else if(compare<0) { %>
+							<td style="color:red;">종료</td>
+						<%	}else { %>
+							<td style="color:red;">종료</td>
+						<%	} %>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
 		</form>
 		
+		
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=1'"><<</button>
+			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage - 1%>'"><</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
@@ -189,26 +213,28 @@
 			%>
 				<button disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=p%>'"><%=p %></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage + 1%>'">></button>
+			<button onclick="location.href='<%=request.getContextPath()%>/alistClassList.class?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%= request.getContextPath()%>/alistClassList.class?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
-	
+		
+		
 		<div align="center">
 			<select id="searchCondition" style="border-radius:5px;">
 				<option value="" selected disabled hidden>검색 조건</option>
 				<option name="searchClassCondition">과목</option>
 				<option name="searchClassCondition">강좌명</option>
 				<option name="searchClassCondition">담당 강사</option>
+				<option name="searchClassCondition">상태</option>
 			</select>
 			<input type="search" id="searchClass" name="searchClass" style="border-radius:5px; border:1px solid lightgray;">
 			<button id="searchBtn">검색</button>
@@ -235,26 +261,7 @@
 				</tr>
 				<tr>
 					<td>대상 학생</td>
-					<td id="studentField"><%-- <%	String school = "";
-								switch(classDetail.getClsStudent()) { 
-								case "MID1" : school = "중등"; break;
-								case "MID2" : school = "중등"; break;
-								case "MID3" : school = "중등"; break;
-								case "HIGH1" : school = "고등"; break;
-								case "HIGH2" : school = "고등"; break;
-								case "HIGH3" : school = "고등"; break;
-								case "ETC" : school = "기타"; break;
-							} %><%=school%><%=classDetail.getSubName()%> / 
-					<%	String grade = "";
-							switch(classDetail.getClsStudent()) { 
-							case "MID1" : grade = "1"; break;
-							case "MID2" : grade = "2"; break;
-							case "MID3" : grade = "3"; break;
-							case "HIGH1" : grade = "1"; break;
-							case "HIGH2" : grade = "2"; break;
-							case "HIGH3" : grade = "3"; break;
-							case "ETC" : grade = "기타"; break;
-						} %><%=grade%>학년	 --%>				
+					<td id="studentField">			
 					</td>
 				</tr>
 				<tr>
@@ -530,9 +537,14 @@
 	          });
 	         
 	         
-	         $("#searchCondition").change(function(){
-	        	 
-	         });
+	         $("#searchBtn").click(function(){
+					var selectCondition = $("#searchCondition option:selected").val();
+					var searchWord = $("input[type=search]").val();
+					
+					location.href = "<%=request.getContextPath()%>/searchClass.class?selectCondition=" + selectCondition + "&searchWord=" + searchWord;
+
+						
+			});
 	
 		});
 		

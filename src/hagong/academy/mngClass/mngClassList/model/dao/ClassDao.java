@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
 
@@ -52,7 +53,7 @@ public class ClassDao {
 				Class c = new Class();
 				
 				c.setClsNo(rset.getInt("CLS_NO"));
-				c.setSubName(rset.getString("SUB_NAME"));
+				c.setSubId(rset.getString("SUB_ID"));
 				c.setClsName(rset.getString("CLS_NAME"));
 				c.setName(rset.getString("NAME"));
 				c.setClsStudent(rset.getString("CLS_STUDENT"));
@@ -317,6 +318,110 @@ public class ClassDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Class> searchClass(Connection con, String selectCondition, String searchWord) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Class> list = null;
+		
+		if(selectCondition.equals("과목")) {
+			String query = prop.getProperty("searchClassBySubId");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, searchWord);
+				
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<>();
+				while(rset.next()) {
+					Class c = new Class();
+					
+					c.setSubId(rset.getString("SUB_ID"));
+					c.setClsName(rset.getString("CLS_NAME"));
+					c.setName(rset.getString("NAME"));
+					c.setClsStudent(rset.getString("CLS_STUDENT"));
+					c.setClsMax(rset.getInt("CLS_MAX"));
+					c.setClsStart(rset.getDate("CLS_START"));
+					c.setClsEnd(rset.getDate("CLS_END"));	
+					
+					list.add(c);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rset);
+			}
+			
+		}else if(selectCondition.equals("강좌명")) {
+			String query = prop.getProperty("searchClassByClsName");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, searchWord);
+
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<>();
+				while(rset.next()) {
+					Class c = new Class();
+					
+					c.setSubId(rset.getString("SUB_ID"));
+					c.setClsName(rset.getString("CLS_NAME"));
+					c.setName(rset.getString("NAME"));
+					c.setClsStudent(rset.getString("CLS_STUDENT"));
+					c.setClsMax(rset.getInt("CLS_MAX"));
+					c.setClsStart(rset.getDate("CLS_START"));
+					c.setClsEnd(rset.getDate("CLS_END"));	
+					
+					list.add(c);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rset);
+			}
+			
+		}else if(selectCondition.equals("담당 강사")) {
+			String query = prop.getProperty("searchClassByName");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, searchWord);
+				
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<>();
+				while(rset.next()) {
+					Class c = new Class();
+					
+					c.setSubId(rset.getString("SUB_ID"));
+					c.setClsName(rset.getString("CLS_NAME"));
+					c.setName(rset.getString("NAME"));
+					c.setClsStudent(rset.getString("CLS_STUDENT"));
+					c.setClsMax(rset.getInt("CLS_MAX"));
+					c.setClsStart(rset.getDate("CLS_START"));
+					c.setClsEnd(rset.getDate("CLS_END"));	
+					
+					list.add(c);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rset);
+			}
+		}
+		
+		
+		
+		return list;
 	}
 
 	

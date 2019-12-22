@@ -53,7 +53,8 @@
 </head>
 <body>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
-	<%-- <%= if(loginUser.getUserId() == "admin") { %> --%>
+	<% if(loginUser != null) { %>
+	<% if(loginUser.getUserType().equals("MASTER")) { %>
 	<div align="center">
       		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 관리　</h1></legend>
@@ -85,111 +86,79 @@
 						<td><%=list.get(i).getSubId()%></td>
 						<td><%=list.get(i).getClsName()%></td>
 						<td><%=list.get(i).getName()%></td>
-						<% if(list.get(i).getClsStudent().equals("MID1")) { %>
-							<td>중학교 1학년</td>		
-						<% }else if(list.get(i).getClsStudent().equals("MID2")) {%>
-							<td>중학교 2학년</td>
-						<% } %>
+						<td><%	String grade = "";
+								switch(list.get(i).getClsStudent()) { 
+								case "MID1" : grade = "중1"; break;
+								case "MID2" : grade = "중2"; break;
+								case "MID3" : grade = "중3"; break;
+								case "HIGH1" : grade = "고1"; break;
+								case "HIGH2" : grade = "고2"; break;
+								case "HIGH3" : grade = "고3"; break;
+								case "ETC" : grade = "기타"; break;
+								} %><%=grade%></td>
 						<td><%=list.get(i).getClsMax()%></td>
 						<td><%=list.get(i).getClsStart()%> ~ <%=list.get(i).getClsEnd()%></td>
 					</tr>
 				<% } %>
 			</table>
 	</div> <!-- listArea end -->
-	<%-- <% }else { %>
+	<% }else if(loginUser.getUserType().equals("TEACHER")){ %>
 	<!-- 로그인 유저가 강사일 경우 -->
-	<div id="head">
-		<h2 align="center">출결 관리</h2>
-		<select>
-			<option value="" selected disabled hidden>기간별 검색</option>
-			<option value="year">2019</option>
-			<option value="year">2018</option>
-		</select>
-		<button id="searchClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline">검색</button>
-		<button id="writeClass" style="margin:10px; border:1px solid green; background:white; color:black; display:inline" onclick="location.href='insertClassInfo.jsp'">입력</button>
+		<div align="center">
+      		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
+         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 관리　</h1></legend>
+      		</fieldset>
+    </div>
+	<div class="listArea">
+		<button class="searchBtn">검색</button>
 		<input type="search" id="searchClass" name="searchClass">
-				<select style="float:right">
-			<option value="" selected disabled hidden>조건별 검색</option>
+		<select id="selectCondition" style="float:right; border-radius:5px;">
+			<option value="" selected disabled hidden>검색 조건</option>
 			<option name="searchClassCondition">과목</option>
 			<option name="searchClassCondition">강좌명</option>
 			<option name="searchClassCondition">담당 강사</option>
 		</select>
-			<table>
-				<thead>
+			<table class="classList table" align="center">
+				<tr>
+					<th>No.</th>
+					<th>과목</th>
+					<th>강좌명</th>
+					<th>담당 강사</th>
+					<th>대상 학생</th>
+					<th>정원</th>
+					<th>기간</th>
+				</tr>
+				<% for (int i=0; i<list.size(); i++) { 
+					if(list.get(i).getName().equals(loginUser.getName())) { %>
 					<tr>
-						<th>No.</th>
-						<th>과목</th>
-						<th>강좌명</th>
-						<th>기간</th>
-						<th>강의실</th>
+						<td><%= i+1 %></td>
+						<input id="clsNo<%= i %>" type="hidden" value="<%=list.get(i).getClsNo()%>">
+						<td><%=list.get(i).getSubId()%></td>
+						<td><%=list.get(i).getClsName()%></td>
+						<td><%=list.get(i).getName()%></td>
+						<td><%	String grade = "";
+								switch(list.get(i).getClsStudent()) { 
+								case "MID1" : grade = "중1"; break;
+								case "MID2" : grade = "중2"; break;
+								case "MID3" : grade = "중3"; break;
+								case "HIGH1" : grade = "고1"; break;
+								case "HIGH2" : grade = "고2"; break;
+								case "HIGH3" : grade = "고3"; break;
+								case "ETC" : grade = "기타"; break;
+								} %><%=grade%></td>
+						<td><%=list.get(i).getClsMax()%></td>
+						<td><%=list.get(i).getClsStart()%> ~ <%=list.get(i).getClsEnd()%></td>
 					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td class="user-name">1</td>
-						<td class="user-email">고등 입시 국어</td>
-						<td class="user-phone">2019.11.10~2020.03.21</td>
-						<td class="user-mobile">2층 C클래스</td>
-					</tr>
-					<tr>
-						<td class="user-name">2</td>
-						<td class="user-email">중등 영어</td>
-						<td class="user-phone">2019.11.02~2020.03.21</td>
-						<td class="user-mobile">1층 B클래스</td>
-					</tr>
-					<tr>
-						<td class="user-name">3</td>
-						<td class="user-email">김상찬 수학교실</td>
-						<td class="user-phone">2019.09.01~2020.03.21</td>
-						<td class="user-mobile">3층 A클래스</td>
-					</tr>
-					<tr>
-						<td class="user-name">4</td>
-						<td class="user-email"></td>
-						<td class="user-phone"></td>
-						<td class="user-mobile"></td>
-					</tr>
-					<tr>
-						<td class="user-name">5</td>
-						<td class="user-email"></td>
-						<td class="user-phone"></td>
-						<td class="user-mobile"></td>
-					</tr>
-					<tr>
-						<td class="user-name"></td>
-						<td class="user-email"></td>
-						<td class="user-phone"></td>
-						<td class="user-mobile"></td>
-					</tr>
-					<tr>
-						<td class="user-name"></td>
-						<td class="user-email"></td>
-						<td class="user-phone"></td>
-						<td class="user-mobile"></td>
-					</tr>
-					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(724)-705-3555</td>
-						<td class="user-mobile">(764)-841-2531</td>
-					</tr>
-					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(774)-205-7754</td>
-						<td class="user-mobile">(639)-267-9728</td>
-					</tr>
-					<tr>
-						<td class="user-name"></td>
-						<td class="user-email" ></td>
-						<td class="user-phone">(723)-243-7706</td>
-						<td class="user-mobile">(172)-597-3422</td>
-					</tr>
-				</tbody>
+				<% }
+				} %>
 			</table>
-	</div> <!-- head end --> 
-	<% } %> --%>
+	</div> <!-- listArea end -->
+	<% }
+	}else { %>
+		<script>
+			alert('접근권한이 없습니다.');
+		</script>
+	<% } %>
 	<script>
 		$(function(){
 			$(".classList td").mouseenter(function(){
@@ -197,7 +166,8 @@
 			}).click(function(){
 				var index = $(this).parent().children().eq(0).text();
 				var classNum = $("#clsNo"+(index-1)).val();
-				location.href="<%=request.getContextPath()%>/alistStudent.attend?classNum="+classNum;
+				location.href="<%=request.getContextPath()%>/alistStudent.attend?classNum="+classNum+"&year="+<%=purYear%>+"&month="+<%=purMonth%>;
+				
 			});
 			
 			$(".searchBtn").click(function(){
