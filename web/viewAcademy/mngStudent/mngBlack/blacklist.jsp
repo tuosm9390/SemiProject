@@ -121,6 +121,9 @@ input, select, textarea {
 .dArea.dArea2 .dCtn.consDate{margin-right:160px;}
 .pagingArea {margin-bottom:30px;}
 .pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
+.pagingBtn{border:none;}
+.pagingBtn.pBtn{border:none;border-bottom: 1px solid;border-radius: 0px;}
+.pagingBtn:hover{color:#333; background:white;border:none;}
 </style>
 </head>
 <body>
@@ -189,30 +192,30 @@ input, select, textarea {
 	</section>
 
 			<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button class="pagingBtn" disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-				<button disabled><%= p %></button>			
+				<button class="pagingBtn pBtn" disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+				<button class="pagingBtn pBtn" onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button class="pagingBtn" disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
 
 </body>

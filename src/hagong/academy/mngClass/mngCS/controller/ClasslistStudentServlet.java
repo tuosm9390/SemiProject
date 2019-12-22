@@ -97,7 +97,7 @@ public class ClasslistStudentServlet extends HttpServlet {
 		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
 			 cslist = new CSService().selectCSlistWithPaging(currentPage, limit);			
 		}else {
-			//cslist = new BlacklistService().searchBlacklistWithPaging(currentPage, limit, searchCondition, srchCnt);			
+			cslist = new CSService().searchCSlistWithPaging(currentPage, limit, searchCondition, srchCnt);			
 		}
 		
 		

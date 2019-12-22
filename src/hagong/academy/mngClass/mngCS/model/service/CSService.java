@@ -108,6 +108,16 @@ public class CSService {
 		
 		return result;
 	}
+
+	public ArrayList<CS> searchCSlistWithPaging(int currentPage, int limit, String searchCondition, String srchCnt) {
+		Connection con = getConnection();
+		
+		ArrayList<CS> cslist = new CSDao().searchCSlistWithPaging(con, currentPage, limit, searchCondition, srchCnt);
+		
+		close(con);
+		
+		return cslist;
+	}
 	
 
 }

@@ -232,7 +232,7 @@ font-size:18px;
 		<ul class="accordion">
 			<% for(int i = 0; i < detailCounsList.size(); i++) {%>
 			<li class="accordion__item"><a class="accordion__title"
-				href="javascript:void(0)"><%= detailCounsList.get(i).getCouTitle() %>
+				href="javascript:void(0)"><%= detailCounsList.get(i).getCouTitle() %><span style="float:right;"><%= detailCounsList.get(i).getCouDate() %></span>
 					<div class="bmenu x7">
 						<span class="btop"></span><span class="bmid"></span><span
 							class="bbot"></span>

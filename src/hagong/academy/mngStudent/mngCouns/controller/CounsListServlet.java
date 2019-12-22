@@ -100,10 +100,11 @@ public class CounsListServlet extends HttpServlet {
 		//현재 페이지에 보여 줄 시작 페이지 수 (10개씩 보여지게 할 경우)
 		//아래 쪽 페이지 수가 10개씩 보여지게 한다면
 		//1, 11, 21, 31...
-		startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * 10 + 1;
+		startPage = (((int)((double) currentPage / 5 + 0.8)) - 1) * 5 + 1;
+		//startPage = currentPage;
 		
 		//목록 아래 쪽에 보여질 마지막 페이지 수 
-		endPage = startPage + 10 - 1;
+		endPage = startPage + 5 - 1;
 		
 		if(maxPage < endPage) {
 			endPage = maxPage;

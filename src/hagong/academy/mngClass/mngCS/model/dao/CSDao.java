@@ -361,6 +361,54 @@ public class CSDao {
 		
 		return result;
 	}
+
+	public ArrayList<CS> searchCSlistWithPaging(Connection con, int currentPage, int limit, String searchCondition,
+			String srchCnt) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CS> cslist = null;
+		
+		String query = "";
+		if(searchCondition.equals("title")) {
+			query = prop.getProperty("selectCSlistByClassName");
+		}else if(searchCondition.equals("place")){
+			query = prop.getProperty("selectCSlistByClassRoom");
+		}
+		//조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit -1;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, srchCnt);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			cslist = new ArrayList<>();
+			
+			while(rset.next()) {
+				CS cs = new CS();
+				
+				cs.setRnum(rset.getInt("RNUM"));
+				cs.setClsNo(rset.getInt("CLS_NO"));
+				cs.setClsName(rset.getString("CLS_NAME"));
+				cs.setName(rset.getString("NAME"));
+				cs.setClsStart(rset.getDate("CLS_START"));
+				cs.setClsEnd(rset.getDate("CLS_END"));
+				cs.setClassName(rset.getString("CLR_NAME"));
+				
+				cslist.add(cs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return cslist;
+	}
 	
 	
 	
