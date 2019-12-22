@@ -92,7 +92,7 @@ public class InsertStudentServlet extends HttpServlet {
 			String reftel1 = multiRequest.getParameter("reftel1");
 			String reftel2 = multiRequest.getParameter("reftel2");
 			String reftel3 = multiRequest.getParameter("reftel3");
-			String refPhone = reftel1 + reftel2 + reftel3; // 학부모전화번호
+			String refPhone = reftel1 + "-" + reftel2 + "-" + reftel3; // 학부모전화번호
 			String inflowPath = multiRequest.getParameter("inflowPath"); // 유입경로
 			String school = multiRequest.getParameter("school"); // 학교
 			int grade = Integer.parseInt(multiRequest.getParameter("grade")); // 학년

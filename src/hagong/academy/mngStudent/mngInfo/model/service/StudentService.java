@@ -285,4 +285,13 @@ public class StudentService {
 		return list;
 	}
 
+	public ArrayList<Student> refIdCheck(String refId, int check) {
+		Connection con = getConnection();
+		ArrayList<Student> list = new StudentDao().refIdCheck(con, refId, check);
+		
+		close(con);
+		
+		return list;
+	}
+
 }
