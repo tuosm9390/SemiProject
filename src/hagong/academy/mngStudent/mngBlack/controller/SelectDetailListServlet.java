@@ -36,8 +36,6 @@ public class SelectDetailListServlet extends HttpServlet {
 		int status = Integer.parseInt(request.getParameter("status"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		System.out.println("status : " + status);
-		System.out.println("userNo : " + userNo);
 		
 		ArrayList<MemberCouns> detailBlacklist = new BlacklistService().selectOneBlacklist(userNo);
 		

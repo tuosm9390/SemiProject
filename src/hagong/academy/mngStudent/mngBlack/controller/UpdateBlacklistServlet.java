@@ -40,7 +40,6 @@ public class UpdateBlacklistServlet extends HttpServlet {
 		String consres = request.getParameter("consres");
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		String couBlack = request.getParameter("isblack");
-		System.out.println("couBlack : " + couBlack);
 		if(couBlack == null) {
 			couBlack = "N";
 		}

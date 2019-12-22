@@ -114,7 +114,7 @@
 			<div class="cArea inClassStudentLsit" align="center">
 				<h3>해당 강좌 수강생 목록</h3>
 				<div class="studentList">
-					<input type="search" class="inputSrch" placeholder="학생이름검색">
+					<input id="srchStu2" type="search" class="inputSrch" placeholder="학생이름검색">
 					<div id="thisSt" class="tableArea">
 					<table class="table" id="thisTable">
 						<% if(!csslist.isEmpty()) {%>
@@ -218,7 +218,63 @@
 					type:"get",
 					data:{name:name, clsNo:clsNo},
 					success:function(data){
+						$table = $("#allTable");
 						
+						$table.html('');
+						for(var key in data){
+							var srchName = data[key];
+						
+							var $tr = $("<tr>");
+							var $name = $("<td>").text(srchName.stuName);
+							var $userId = $("<td>").text(srchName.userId);
+							var $school = $("<td>").text(srchName.school);
+							var $grade = $("<td>").text(srchName.gradeName);
+								
+								$tr.append($name);
+								$tr.append($userId);
+								$tr.append($school);
+								$tr.append($grade);
+								
+								$table.append($tr);
+							
+						}
+					},
+					error:function(data){
+						console.log("에러!");
+					}
+				});
+			});
+			
+			
+			$("#srchStu2").change(function(){
+				var name2 = $("#srchStu2").val();
+				var clsNo2 = $("#clsNo").val();
+				console.log("name : " + name2);
+				$.ajax({
+					url:"srchName.cs",
+					type:"get",
+					data:{name:name2, clsNo:clsNo2},
+					success:function(data){
+						$table = $("#thisTable");
+						
+						$table.html('');
+						for(var key in data){
+							var srchName = data[key];
+						
+							var $tr = $("<tr>");
+							var $name = $("<td>").text(srchName.stuName);
+							var $userId = $("<td>").text(srchName.userId);
+							var $school = $("<td>").text(srchName.school);
+							var $grade = $("<td>").text(srchName.gradeName);
+								
+								$tr.append($name);
+								$tr.append($userId);
+								$tr.append($school);
+								$tr.append($grade);
+								
+								$table.append($tr);
+							
+						}
 					},
 					error:function(data){
 						console.log("에러!");
