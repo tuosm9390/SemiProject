@@ -8,6 +8,8 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	int limit = pi.getLimit();
+	int startRow = listCount - ((currentPage - 1) * limit) + 1;
 %>
 <!DOCTYPE html>
 <html>
@@ -29,8 +31,9 @@
    fieldset {
       width:25%
    }
-   .pagingArea{
-   		display:inline-flex;
+   .pagingArea button{
+   		display:inline;
+   		border:none;
    }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -52,7 +55,7 @@
                <option value="content">내용</option>
             </select>&nbsp;&nbsp;
             <input type="search" style="border-radius:5px; border:1px solid lightgray;">&nbsp;&nbsp;
-            <button type="submit">검색하기</button>
+            <button type="submit">검색</button>
       </div> <!-- searchArea end -->
       
       <div style="width:90%; margin:auto auto;">
@@ -67,9 +70,9 @@
             <% for(int i=0; i < list.size(); i++){ %>
             <tr>
             	<input type="hidden" name="nno" value="<%=list.get(i).getNno() %>">
-            	<td><%= i+1 %></td>
+            	<td><%= startRow-- %></td>
             	<td><%= list.get(i).getnTitle() %></td>
-            	<td><%= list.get(i).getnAuthor() %></td>
+            	<td><%= list.get(i).getName() %></td>
             	<td><%= list.get(i).getnDate() %></td>
             	<td><%= list.get(i).getnCount() %></td>
             </tr>
@@ -78,12 +81,12 @@
          </table>
       </div>
       <div class="pagingArea" align="center">
-      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=1'"><<</button>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=1'">◀◀</button>
       	
       	<% if(currentPage <= 1) { %>
-      	<button disabled><</button>
+      	<button disabled>◀</button>
       	<% } else { %>
-      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage - 1 %>'"><</button>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage - 1 %>'">◀</button>
       	<% } %>
       	
       	<% for(int p = startPage; p <= endPage; p++){
@@ -96,17 +99,17 @@
       	} %>
       	
       	<% if(currentPage >= maxPage){ %>
-      	<button disabled><</button>
+      	<button disabled>▶</button>
       	<% } else { %>
-      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage + 1 %>'">></button>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=currentPage + 1 %>'">▶</button>
       	<% } %>
       	
-      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=maxPage %>'">>></button>
+      	<button onclick="location.href='<%=request.getContextPath() %>/alist.no?currentPage=<%=maxPage %>'">▶▶</button>
       	
       </div>
       
       <div id="write">
-         <button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/insertNotice.jsp'">글쓰기</button>
+         <button type="button" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/insertNotice.jsp'" style="margin-bottom:20px;">작성</button>
       </div>
       <script>
       $(function(){

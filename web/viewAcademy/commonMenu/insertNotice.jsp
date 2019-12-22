@@ -61,8 +61,9 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
+						<input type="hidden"  name="writer" value="<%= loginUser.getUserNo() %>">
 						<td>
-							<input style="border-radius:5px; border:1px solid lightgray;" type="text" name="writer">
+							<input style="border-radius:5px; border:1px solid lightgray;" type="text" value="<%= loginUser.getName()%> " readonly>
 						</td>
 						<td>작성일</td>
 						<td><input type="date" name="date" style="border-radius:5px; border:1px solid lightgray;"></td>
@@ -87,8 +88,8 @@
 				</table>
 				<br><br>
 				<div class="cancleSubmit" align="center">
-					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/noticeList.jsp'" style="margin-right:5px;">취소하기</button>
-					<button id="submit" onclick="insertNotice();" >등록하기</button>
+					<button type="reset" id="cancle" onclick="location.href='<%=request.getContextPath()%>/alist.no?startPage='" style="margin-right:5px;">취소</button>
+					<button id="submit" onclick="insertNotice();" >등록</button>
 				</div>
 			</form>
 		</div> <!-- tableArea end -->
@@ -106,7 +107,7 @@
 					if(isConfirm){
 						$("#insertForm").submit();
 						swal({
-							title:"등록되었습니다",
+							title:"등록완료",
 							icon:"success"
 						});
 					}
