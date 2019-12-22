@@ -21,7 +21,7 @@ public class MngLevelService {
 		
 		return result;
 	}
-
+ 
 	// 권한 조회
 	public ArrayList<MngLevel> selectMngLevel() {
 		

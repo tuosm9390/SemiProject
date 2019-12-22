@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			Member loginUser = new MemberService().loginCheck(requestMember);
 			System.out.println(loginUser.getPhone());
 			String page = "";
-			
+			 
 			if(loginUser != null) {
 				request.setAttribute("loginUser", loginUser);
 				page = "viewAcademy/common/newPwd1.jsp";

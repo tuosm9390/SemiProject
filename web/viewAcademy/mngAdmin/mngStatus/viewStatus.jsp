@@ -11,7 +11,7 @@
 <meta  charset="UTF-8">
 <title>HAGONG</title>
 	<style>
-
+ 
 	.outer{
 		width:100%;
 		margin-left: 5%;

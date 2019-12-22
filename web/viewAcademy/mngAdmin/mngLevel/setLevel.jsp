@@ -125,7 +125,7 @@ border-right: none;
                   <tr class="trname">
                
                      <td class="tdclass" colspan="5">　　관계자</td>
-
+ 
                   </tr>
                   <!-- 학생개인정보 -->
                   <tr>

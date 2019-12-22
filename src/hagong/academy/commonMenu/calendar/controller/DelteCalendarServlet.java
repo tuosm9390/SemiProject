@@ -39,7 +39,7 @@ public class DelteCalendarServlet extends HttpServlet {
 		}else {
 			response.getWriter().print("fail");
 		}
-		
+		 
 	}
 
 	/**

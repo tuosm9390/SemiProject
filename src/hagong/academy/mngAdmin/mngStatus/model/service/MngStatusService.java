@@ -27,3 +27,4 @@ public class MngStatusService {
 		return list;
 	}
 }
+ 

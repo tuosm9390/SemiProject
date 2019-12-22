@@ -124,7 +124,7 @@ public class MngLevelDao {
 		
 		int result = 0;
 		String query = prop.getProperty("updateDefaultMngLevel");
-		
+		 
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);

@@ -20,7 +20,7 @@ import hagong.academy.mngAdmin.mngStatus.model.vo.MngStatus;
 @WebServlet("/adetail.status")
 public class SelectMngStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

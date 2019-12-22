@@ -41,7 +41,7 @@ public class SelectMenuLevelServlet extends HttpServlet {
 		
 		if(list != null) {
 			page = "viewAcademy/main.jsp";
-			
+			 
 			request.getSession().setAttribute("list", list);
 			
 		}else {

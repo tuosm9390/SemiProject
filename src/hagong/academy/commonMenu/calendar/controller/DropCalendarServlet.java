@@ -33,7 +33,7 @@ public class DropCalendarServlet extends HttpServlet {
 		String exstart = request.getParameter("start");
 		String exend = request.getParameter("end");
 		int cno = Integer.parseInt(request.getParameter("cno"));
-		
+		 
 		 String start = exstart.substring(0, 4)+"-"+exstart.substring(5,7)+"-"+exstart.substring(8,10)+" "+exstart.substring(11,13)+":"+exstart.substring(14,16);
 		 String end = exend.substring(0, 4)+"-"+exend.substring(5,7)+"-"+exend.substring(8,10)+" "+exend.substring(11,13)+":"+exend.substring(14,16);
 		 Calendar c = new Calendar();

@@ -35,7 +35,7 @@ public class UpdateDefaultMenuLevelServlet extends HttpServlet {
 		
 		if(result > 0 ) {
 			page = "aselect.level";
-		
+		 
 			
 		}else {
 			page = "/hagong/viewAcademy/common/commonError.jsp";
