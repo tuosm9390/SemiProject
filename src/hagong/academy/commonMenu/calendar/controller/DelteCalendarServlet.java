@@ -30,7 +30,7 @@ public class DelteCalendarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int cno =Integer.parseInt( request.getParameter("cno"));
-		System.out.println("cno = " +cno);
+
 		
 		int result = new CalendarService().deleteCal(cno);
 		

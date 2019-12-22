@@ -38,7 +38,7 @@ public class UpdateCalendarServlet extends HttpServlet {
 	    String title = request.getParameter("title");
 	    String type = request.getParameter("type");
 	    String content = request.getParameter("content");
-	    String backgroundColor = request.getParameter("backgroundColor");
+	  
 	 
 	    if(type.equals("상담")) {
 	    	type = "COUNS";

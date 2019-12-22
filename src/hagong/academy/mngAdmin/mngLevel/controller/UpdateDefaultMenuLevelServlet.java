@@ -38,7 +38,7 @@ public class UpdateDefaultMenuLevelServlet extends HttpServlet {
 		
 			
 		}else {
-			page = "errorPage.jsp";
+			page = "/hagong/viewAcademy/common/commonError.jsp";
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

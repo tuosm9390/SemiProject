@@ -38,13 +38,13 @@ public class LoginServlet extends HttpServlet {
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath()+"/viewAcademy/main.jsp");
+				page = "aselect.level";
 			}else {
 				//로그인 실패 시 팝업창..
 				page = "viewAcademy/common/commonError.jsp";
 				request.setAttribute("errorCode", "loginFail");
-				request.getRequestDispatcher(page).forward(request, response);
 			}
+			request.getRequestDispatcher(page).forward(request, response);
 			
 		}else {
 			System.out.println("최초 로그인!!");

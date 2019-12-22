@@ -40,12 +40,12 @@ public class SelectMenuLevelServlet extends HttpServlet {
 		String page = "";
 		
 		if(list != null) {
-			page = "viewAcademy/mngAdmin/mngLevel/setLevel.jsp";
+			page = "viewAcademy/main.jsp";
 			
 			request.getSession().setAttribute("list", list);
 			
 		}else {
-			page = "errorPage.jsp";
+			page = "/hagong/viewAcademy/common/commonError.jsp";
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}

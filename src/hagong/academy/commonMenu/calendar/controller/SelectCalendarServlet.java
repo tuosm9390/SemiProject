@@ -41,7 +41,7 @@ public class SelectCalendarServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int uno = Integer.parseInt(request.getParameter("uno"));
-		System.out.println("asdddddddddddddddddddddddddd");
+		
 		ArrayList<Calendar> list = new ArrayList<>();
 		
 		list = new CalendarService().selectCal(uno);

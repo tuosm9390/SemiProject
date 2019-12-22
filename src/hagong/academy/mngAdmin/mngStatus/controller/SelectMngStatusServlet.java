@@ -50,7 +50,7 @@ public class SelectMngStatusServlet extends HttpServlet {
 			request.getSession().setAttribute("list", list); 
 			response.sendRedirect(page);
 		}else {
-			page = "errorPage.jsp";
+			page = "/hagong/viewAcademy/common/commonError.jsp";
 			request.getRequestDispatcher(page).forward(request, response);
 		}
 	

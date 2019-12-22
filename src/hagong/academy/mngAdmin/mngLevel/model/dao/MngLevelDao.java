@@ -104,7 +104,7 @@ public class MngLevelDao {
 				MngLevel m = new MngLevel();
 				m.setAttend1(rset.getInt(3));
 				list.add(m);
-				System.out.println("m입  : " + m);
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

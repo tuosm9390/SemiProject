@@ -96,8 +96,8 @@ border-right: none;
                      <th>&nbsp;</th>
                      <th>&nbsp;</th>
                      <th>전체조회</th>
-                     <th>일부등록</th>
-                     <th>수정/삭제</th>
+                     <th>일부조회</th>
+                     <th>등록/수정</th>
                   </tr>
                   <!-- 공통 -->
                   <tr class="trname">
@@ -334,13 +334,13 @@ border-right: none;
                   <tr>
                   
                      <td>메뉴권한관리</td>
-                     <td><select class="menu" name="menu1" id="menu1">
+                     <td><select class="menu" name="menu1" id="menu1"  >
                            <option value="1">원장</option>
                            <option value="2">행정</option>
                            <option value="3">강사</option>
                      </select></td>
                      <td></td>
-                     <td><select class="menu" name="menu3" id="menu3">
+                     <td><select class="menu" name="menu3" id="menu3"  >
                      		<option value="1">원장</option>
                            <option value="2">행정</option>
                            <option value="3">강사</option>
@@ -437,8 +437,9 @@ border-right: none;
    		$('#info1').val(<%=list.get(17).getAttend1()%>);
    		$('#info2').val(<%=list.get(18).getAttend1()%>);
    		$('#info3').val(<%=list.get(19).getAttend1()%>);
-   		$('#menu1').val(<%=list.get(20).getAttend1()%>);
-   		$('#menu3').val(<%=list.get(21).getAttend1()%>);
+   		$('#menu1').val(<%=list.get(19).getAttend1()%>);
+   		$('#menu3').val(<%=list.get(19).getAttend1()%>);
+   		
    		$('#modifyInfo1').val(<%=list.get(22).getAttend1()%>);
    		$('#modifyInfo3').val(<%=list.get(23).getAttend1()%>);
    		$('#pAtt').val(<%=list.get(24).getAttend1()%>);
