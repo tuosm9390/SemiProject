@@ -20,6 +20,7 @@ public class MngStatusService {
 			list = new MngStatusDao().selectChart(con);
 			if(list != null) {
 				list.add(status);
+				System.out.println("list 확인 : " +list);
 			}
 		}
 		close(con);

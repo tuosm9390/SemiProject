@@ -91,6 +91,7 @@ public class MngStatusDao {
 			   m.settName(rset.getString(1));
 			   m.setCnt(rset.getInt(2));
 			   list.add(m);
+			   
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
