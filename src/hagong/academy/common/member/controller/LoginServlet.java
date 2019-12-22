@@ -51,18 +51,18 @@ public class LoginServlet extends HttpServlet {
 			requestMember.setUserPwd(password);
 			
 			Member loginUser = new MemberService().loginCheck(requestMember);
-			
+			System.out.println(loginUser.getPhone());
 			String page = "";
 			
 			if(loginUser != null) {
-				//request.setAttribute("userId", userId);
-				response.sendRedirect(request.getContextPath()+"/viewAcademy/common/newPwd1.jsp?userId="+userId);
+				request.setAttribute("loginUser", loginUser);
+				page = "viewAcademy/common/newPwd1.jsp";
 			}else {
-				//로그인 실패 시 팝업창..
 				page = "viewAcademy/common/commonError.jsp";
-				request.setAttribute("errorCode", "loginFail");
-				request.getRequestDispatcher(page).forward(request, response);
+				request.setAttribute("errorCode", "loginFail");			
 			}
+			
+			request.getRequestDispatcher(page).forward(request, response);
 		}
 		
 	}

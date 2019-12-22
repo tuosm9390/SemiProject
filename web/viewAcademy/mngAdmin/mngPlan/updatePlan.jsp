@@ -106,8 +106,8 @@
    	    </fieldset>
     </div>
     <div class="btnArea">
-		<button id="addRow" style="float:left">행 추가</button>
-		<button id="deleteRow" style="float:left">행 삭제</button>
+		<button id="addRow" style="float:left">항목 추가</button>
+		<button id="deleteRow" style="float:left">항목 삭제</button>
 		<button id="writeBtn" style="float:right">저장</button>
 	</div> <!-- btnArea end -->
 	<div class="listArea">
@@ -116,7 +116,7 @@
 			<table id="planTableArea" class="table">
 			<thead>
 				<tr>
-					<th id="mainTh"></th>
+					<th id="mainTh">항목</th>
 					<th>1월</th>
 					<th>2월</th>
 					<th>3월</th>
@@ -193,6 +193,10 @@
 		</div> <!-- deleteArea end -->
 		<script>	
 			$(function(){
+				var temptitle = '<%=title%>';
+				var titleArr = temptitle.substring(1, temptitle.length-1);
+				var title = titleArr.split(', ');
+				console.log(title[0]);
 				var writeBtn = document.getElementById('writeBtn');
 				var addRowBtn = document.getElementById('addRow');
 				var deleteRowBtn = document.getElementById('deleteRow');				
@@ -211,10 +215,7 @@
 				
 				//저장 버튼 클릭 시
 				writeBtn.onclick = function() {				
-					
-					for(var i=0; i<title.size; i++) {
-						
-					if(addRowName != title.get(i)) {
+
 					var arr = [];
 					var one = $("#one").val();
 					var two = $("#two").val();
@@ -274,8 +275,7 @@
 							
 						}
 					});
-					}
-				}
+
 
 			}
 				
@@ -285,11 +285,11 @@
 				
 				//행 추가 버튼 클릭 시
 				addRowBtn.onclick = function() {
-					addRowName = window.prompt('행 이름 입력');
-					
-					for(var i=0; i<title.size; i++)  {
+					addRowName = window.prompt('항목 이름 입력');
+
+					for(var i=0; i<title.length; i++)  {
 						
-						if(addRowName != title.get(i)) {
+						if(addRowName != title[i]) { 
 							$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
 												+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
 												+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
@@ -303,8 +303,16 @@
 												+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
 												+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
 												+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
+						}else {
+							swal ({
+								title: "항목 추가 실패",
+								text: "이미 존재하는 항목입니다.",
+								icon: "warning",
+								button: "확인"
+							});
+							
 						}
-					}
+					} 
 				}
 				
 				deleteRowBtn.onclick = function() {

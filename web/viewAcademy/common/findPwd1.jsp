@@ -59,7 +59,7 @@
          <table>
             <tr>
                <td width="20%">아이디</td>
-               <td colspan="2" width="80%"><input type="password" id="newPwd" name="newPwd" placeholder=" 아이디 입력"></td>
+               <td colspan="2" width="80%"><input type="userId" id="userId" name="userId" placeholder=" 아이디 입력"></td>
             </tr>
             <tr>
                   <td>전화번호</td>
@@ -68,7 +68,7 @@
             <input type="tel" maxlength="4"> -
             <input type="tel" maxlength="4">
             </td>
-                  <td style="align-items: center;"><div align="right"><button style="height: 30px;">인증하기</button></div></td>
+                  <td style="align-items: center;"><div align="right"><button style="height: 30px;" id="sendMsg">인증하기</button></div></td>
             </tr>
             <tr>
                <td>인증번호</td>
@@ -82,5 +82,68 @@
       </div>
    </div>
    </div>
+   <script>
+  	 $("#sendMsg").click(function(){
+			var phone = "";
+			$("input[name = tel]").filter(function(value){
+				phone += this.value;
+			});
+			console.log("phone : " + phone);
+			var userId = $("input[name = userId]").val();
+			
+		$.ajax({
+			url:"<%= request.getContextPath()%>/sendMsg.cm",
+			type:"get",
+			data:{
+				userId:userId,
+				phone:phone
+			},
+			success:function(data){
+				console.log(data);
+				$(".msgArea").append('<span class="sendMsg">인증번호를 발송했습니다.</span>');
+				$("#number").prop("disabled", false);
+			},
+			error:function(data){
+				console.log("실패!");
+			}
+		});
+		});
+		
+		$("#number").change(function(){
+			var phoneCk = "";
+			$("input[name = tel]").filter(function(value){
+				phoneCk += this.value;
+			});
+			console.log("phone : " + phoneCk);
+			var userIdCk = $("input[name = userId]").val();
+			
+			$.ajax({
+				url:"<%= request.getContextPath() %>/checkMsg.cm",
+				type:"get",
+				data:{
+					userId:userIdCk,
+					phone:phoneCk
+				},
+				success:function(data){
+		   			if($("#number").val() == data){
+		   				$(".msgArea").text('');
+		   				$(".msgArea").append('<span class="sendMsg">인증번호가 일치합니다</span>');
+		   				$("#number").css("border","1px solid green")
+		   				$("#smsck").val("true");
+		   			}else{
+		   				$(".msgArea").text('');
+		   				$(".msgArea").append('<span class="sendMsg">인증번호가 일치하지 않습니다.</span>');
+		   				$(".sendMsg").css("color","red");
+		   				$("#number").css("border","1px solid red");
+		   				$("#smsck").val("false");
+		   			}
+				},
+				error:function(data){
+					console.log("실패!");
+				}
+			}); 
+
+		});
+   </script>
 </body>
 </html>

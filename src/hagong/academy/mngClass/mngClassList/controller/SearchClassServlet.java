@@ -1,4 +1,4 @@
-package hagong.academy.mngClass.mngAttend.controller;
+package hagong.academy.mngClass.mngClassList.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,30 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hagong.academy.mngClass.mngAttend.model.service.AttendService;
-import hagong.academy.mngClass.mngAttend.model.vo.ClassSubject;
+import hagong.academy.mngClass.mngClassList.model.vo.Class;
+import hagong.academy.mngStudent.mngCouns.model.vo.PageInfo;
+import hagong.academy.mngClass.mngClassList.model.service.ClassService;
 
-@WebServlet("/searchClass.attend")
+@WebServlet(name = "SearchClassServlet2", urlPatterns = { "/searchClass.class" })
 public class SearchClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     public SearchClassServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String selectCondition = request.getParameter("selectCondition");
 		String searchWord = request.getParameter("searchWord");
 		
-		System.out.println(selectCondition + ", " + searchWord);
+		ArrayList<Class> list = new ClassService().searchClass(selectCondition, searchWord);
+		System.out.println("SearchClassList의 list : " + list);
 		
-		ArrayList<ClassSubject> list = new AttendService().searchClass(selectCondition, searchWord);
-		 
 		String page = "";
 		if(list != null) {
-			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";
+			page = "/viewAcademy/mngClass/mngClassList/classList.jsp";
 			request.setAttribute("list", list);
-			request.setAttribute("check", "noPaging");
 		}else {
 			System.out.println("검색어로 강좌 조회 실패!");
 		}
@@ -41,6 +41,7 @@ public class SearchClassServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

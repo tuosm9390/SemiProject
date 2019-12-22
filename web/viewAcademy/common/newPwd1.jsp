@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userId = (String) request.getParameter("userId");
+	Member User = (Member) request.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@
          <table>
             <tr>
                <td width="20%">아이디</td>
-               <td colspan="2" width="80%"><input type="text" name="userId" value="<%= userId %>" readonly></td>
+               <td colspan="2" width="80%"><input type="text" name="userId" value="<%=User.getUserId() %>" readonly></td>
             </tr>
             <tr>
                   <td>전화번호</td>
@@ -101,29 +101,37 @@
    		});
 
    		$("#sendMsg").click(function(){
+   			var userPhone = '<%=User.getPhone()%>';
    			var phone = "";
    			$("input[name = tel]").filter(function(value){
    				phone += this.value;
    			});
-   			console.log("phone : " + phone);
-   			var userId = $("input[name = userId]").val();
    			
-			$.ajax({
-				url:"<%= request.getContextPath()%>/sendMsg.cm",
-				type:"get",
-				data:{
-					userId:userId,
-					phone:phone
-				},
-				success:function(data){
-					console.log(data);
-					$(".msgArea").append('<span class="sendMsg">인증번호를 발송했습니다.</span>');
-					$("#number").prop("disabled", false);
-				},
-				error:function(data){
-					console.log("실패!");
-				}
-			});
+   			if(phone == userPhone) {
+   				console.log("phone : " + phone);  			
+   				var userId = $("input[name = userId]").val();
+   			
+				$.ajax({
+					url:"<%= request.getContextPath()%>/sendMsg.cm",
+					type:"get",
+					data:{
+						userId:userId,
+						phone:phone
+					},
+					success:function(data){
+						console.log(data);
+						$(".msgArea").append('<span class="sendMsg">인증번호를 발송했습니다.</span>');
+						$("#number").prop("disabled", false);
+					},
+					error:function(data){
+						console.log("실패!");
+					}
+				});
+   			}else {
+   				swal("전화번호가 일치하지 않습니다.", {  		    		
+					icon: "warning",
+   		    	});
+   			}
    		});
    		
    		$("#number").change(function(){

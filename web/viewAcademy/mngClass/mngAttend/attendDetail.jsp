@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, java.text.*, hagong.academy.mngClass.mngAttend.model.vo.*, hagong.academy.mngStudent.mngPurchase.model.vo.SelectDate"%>
 <% 
 	String classNum = (String) request.getAttribute("classNum");
 	ArrayList<HashMap<String, ArrayList<Attendance>>> attendList = (ArrayList<HashMap<String, ArrayList<Attendance>>>) request.getAttribute("attendList");
@@ -27,6 +27,8 @@
 	Calendar cal = Calendar.getInstance();
     int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
     int month = cal.get(Calendar.MONTH) + 1;
+    
+    SelectDate selectDate = (SelectDate) request.getAttribute("selectDate");
 %>
 <!DOCTYPE html>
 <html>
@@ -146,6 +148,16 @@
 	.btnArea span {
 		margin-left: 85%;
 	}
+	
+	.month {
+	display: inline;
+	}
+	
+	.selectMonth {
+		border: none;
+		font-size: 30px;
+		height: 50px;
+	}
 </style>
 </head>
 <body>
@@ -160,7 +172,7 @@
     </div> <!-- center end -->
     
     
-<%--     			<!-- 년/월 선택 부분 -->
+     		<!-- 년/월 선택 부분 -->
 			<div align="center" class="monthArea">
 				<button class="month nextBtn">◀</button>&nbsp;
 				<select id="selectYear" class="month selectMonth" onchange="changeDate();">
@@ -191,7 +203,7 @@
 					<% } %>
 				</select> <label style="font-size:20px">월</label>&nbsp;
 				<button class="month nextBtn">▶</button>
-			</div> <!-- monthArea end --> --%>
+			</div> <!-- monthArea end -->
 			
 			
    <div class="selectArea">
@@ -214,7 +226,7 @@
                   <th id="stuInfo" nowrap>정보</th>
                   <% for(int i=0; i<dayOfMonth; i++) {
                     	 String name = "date"+(i+1);  %>
-                  <th id="<%=name%>" class="date"><%=month%>/<% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
+                  <th id="<%=name%>" class="date"><%=month%> / <% if((i+1)<=9) { %>0<%=i+1%><% }else {%><%=i+1%><%} %></th>
                   <% } %>
                </tr>
                      <% for(int i=0; i<attendList.size(); i++) {
@@ -223,13 +235,13 @@
                         ArrayList<Attendance> list = null;
                         
                         Iterator<String> iter = hmap.keySet().iterator();
-                        while(iter.hasNext()){
+                      %><tr><%  while(iter.hasNext()){
                            String keys = (String) iter.next();
                            list = hmap.get(keys);   %>
-                        <tr>
+
                            <td><input type="checkbox" id="checkOne" name="checkboxName"></td>
-                           <td><%= keys %></td>
-                           <td id="Infocol<%=i%>"><% if(mem.get(i).getName().equals(keys)){ %>
+                           <td style="padding:10px;"><%= keys %></td>
+                           <td id="Infocol<%=i%>" style="padding:10px;"><% if(mem.get(i).getName().equals(keys)){ %>
                            					<%=stu.get(i).getSchool()%><br>
                            					<%=stu.get(i).getGrade()%>학년<br>
                            					<%=mem.get(i).getPhone()%>
@@ -303,18 +315,21 @@
                               for(int l=0; l<attendCheck.length; l++) {
                             	  String name = "reasonWrite" + (l+1);
                                  if(attendCheck[l].equals("1")) { %>
-                                 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:red">결석</a></td>
+                                 <td style="padding:10px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:red">결석</a></td>
                               <% }else if(attendCheck[l].equals("2")) {  %>
-                                 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">지각</a></td>
+                                 <td style="padding:15px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">지각</a></td>
                               <% }else if(attendCheck[l].equals("3")) {	%>
-                              	 <td style="padding:20px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">조퇴</a></td>
-                   			  <% }else { %>          	
-                              	 <td>출석</td>
-                              <% }
-                               } %>
-                         </tr>                          
+                              	 <td style="padding:15px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">조퇴</a></td>
+                   			  <% }else if(attendCheck[l].equals("0")) { %>          	
+                              	 <td style="padding:15px" id="<%=name%>" class="reasonWrite" value="<%=l+1%>">출석</td>
+                              <% }else { %>
+                              	<td>X</td>
+                              <% } %>
+                                                      
                       <%  }
-                        } %>
+                              
+                        } %>  </tr>
+                  <%   }  %>
                    
              </table>
          </form>
@@ -364,14 +379,10 @@
         	 var result = "";
         	         	 
         	 $.ajax({
-        		 url:"aselectAttendReasonDetail.attend",
-        		 data:{
-        			 classNum:classNum,
-        			 date:date,
-        			 userNo:userNo
-        		 },
-        		 type:"get",
-        		 success:function(data){
+        		 url: "aselectAttendReasonDetail.attend",
+        		 data: { classNum:classNum, date:date, userNo:userNo },
+        		 type: "get",
+        		 success: function(data){
         			 var reason = decodeURIComponent(data.reason);
         			 result = reason.replace(/\+/gi, ' ');
         			
@@ -414,15 +425,10 @@
       $(function() {
     	 var checkedPerson = [];
  		 var selectAttend = "";
-    	  $(document).on("click", "input[name='checkboxName']", function(){
+    	  $(document).on("change", "input[name='checkboxName']", function(){
     		  if($("input[name='checkboxName']").prop("checked")) {
     		  		checkedPerson.push($(this).parent().siblings().eq(1).children("input[type=hidden]").val());
-    		  		console.log($(this).parent().siblings().eq(1).children("input[type=hidden]").val());
-    		  }else {
-    			  console.log("여기로 넘어왔으면 좋겠다..안되네 ㅅㅂ");
-    			  /* for(var i=0; i<checkedPerson.length; i++){
-    				  if(checkedPerson[i]==$(this))
-    			  } */
+    		  		console.log(checkedPerson);
     		  }
     		
     	  });
@@ -434,27 +440,7 @@
 	    		console.log("selectAttend : " + selectAttend);
 		    	console.log("checkedPersonString : " + checkedPersonString);
 		    	console.log("classNum : " + classNum);
-		    	
-		    	/* jQuery.ajaxSettings.traditional = true;
-		    	
-		    	$.ajax({
-		    		url:"aupdateAttend.attend",
-        			data:{
-        				selectAttend:selectAttend,
-        				checkedPersonString:checkedPersonString,
-        				classNum:classNum
-        			 },
-        			 type:"post",
-        			 traditional: true,
-        			 success:function(data){
-        				 console.log(data);
-        				 alert('출결 수정 완료!');
-        				 
-        			 },
-        			 error:function(data){
-        				console.log("에러.."); 
-        			 }
-		    	}); */
+
 		    	
 		    	location.href="<%=request.getContextPath()%>/aupdateAttend.attend?selectAttend="+selectAttend+"&checkedPersonString="+checkedPersonString+"&classNum="+classNum;
 	      });
