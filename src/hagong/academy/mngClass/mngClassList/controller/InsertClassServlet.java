@@ -23,14 +23,14 @@ public class InsertClassServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String subject = request.getParameter("selectSubject"); System.out.println("subject : " + subject);
-		String teacher = request.getParameter("selectTeacher"); System.out.println("teacher : " + teacher);
-		String classTitle = request.getParameter("classTitle"); System.out.println("classTitle : " + classTitle);
-		String clsStudent = request.getParameter("selectStudent"); System.out.println("selectStudent : " + clsStudent);
-		String numOfClass = request.getParameter("numOfClass"); System.out.println("numOfClass : " + numOfClass);
-		String s = request.getParameter("startDate"); System.out.println("startDate : " + s);
-		String e = request.getParameter("endDate"); System.out.println("endDate : " + e);
-		String[] dayArr = request.getParameterValues("day"); System.out.println("dayArr : " + dayArr);
+		String subject = request.getParameter("selectSubject");
+		String teacher = request.getParameter("selectTeacher");
+		String classTitle = request.getParameter("classTitle");
+		String clsStudent = request.getParameter("selectStudent");
+		String numOfClass = request.getParameter("numOfClass"); 
+		String s = request.getParameter("startDate"); 
+		String e = request.getParameter("endDate"); 
+		String[] dayArr = request.getParameterValues("day"); 
 		String day = "";
 		for(int k=0; k<dayArr.length; k++) {
 			if(k != dayArr.length-1) {
@@ -39,11 +39,10 @@ public class InsertClassServlet extends HttpServlet {
 				day += dayArr[k];
 			}
 		}
-		System.out.println("day : " + day);
-		String classroom = request.getParameter("classroom"); System.out.println("classroom : " + classroom);
-		String startTime = request.getParameter("startTime"); System.out.println("startTime : " + startTime);
-		String endTime = request.getParameter("endTime"); System.out.println("endTime : " + endTime);
-		String tuition = request.getParameter("money"); System.out.println("tuition : " + tuition);
+		String classroom = request.getParameter("classroom");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		String tuition = request.getParameter("money");
 		String cntOfClass = request.getParameter("cntOfClass");
 		
 		java.sql.Date startDate=java.sql.Date.valueOf(s);
@@ -68,7 +67,6 @@ public class InsertClassServlet extends HttpServlet {
 		
 		String page = "";
 		if(result > 0) {
-			System.out.println("성공");
 			page = "alistClassList.class";
 			response.sendRedirect(page);
 		}else {

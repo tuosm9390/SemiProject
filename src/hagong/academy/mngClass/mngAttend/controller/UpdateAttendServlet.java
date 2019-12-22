@@ -23,17 +23,11 @@ public class UpdateAttendServlet extends HttpServlet {
 		String attStatus = request.getParameter("selectAttend");
 		String checkedPersonArr = request.getParameter("checkedPersonString");
 		String classNum = request.getParameter("classNum");
-		
-		System.out.println("attStatus : " + attStatus);
-		System.out.println("classNum : " + classNum);
-		
+
 		String checkedPerson = checkedPersonArr.replaceAll("'", "");
 		
 		String[] students = checkedPerson.split(",");
 		
-		for(int i=0; i<students.length; i++) {
-			System.out.println("students[" + i + "] : " + students[i]);
-		}
 		
 		int result = new AttendService().updateAttend(classNum, attStatus, students);
 		

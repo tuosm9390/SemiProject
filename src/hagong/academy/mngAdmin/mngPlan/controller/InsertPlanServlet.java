@@ -21,7 +21,7 @@ public class InsertPlanServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");	System.out.println("title : " + title);
+		String title = request.getParameter("title");
 		String one = request.getParameter("one");
 		String two = request.getParameter("two");
 		String three = request.getParameter("three");

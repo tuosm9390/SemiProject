@@ -37,7 +37,9 @@ public class SelectAllStaffServlet extends HttpServlet {
 			request.getSession().setAttribute("totalStaff", new Integer(totalStaff));
 			request.getSession().setAttribute("totalStudent", new Integer(totalStudent));
 		}else {
-			System.out.println("총 직원 수 조회 실패");
+			page = "viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "selectAllStaffFailed");
+			request.getRequestDispatcher(page).forward(request, response);
 			
 		}
 		

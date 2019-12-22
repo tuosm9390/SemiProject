@@ -45,11 +45,8 @@ public class SelectStudentServlet extends HttpServlet {
 		selectDate.setSelectYear(curYear); selectDate.setSelectMonth(curMonth);
 		
 		String classNum = request.getParameter("classNum");
-		System.out.println("alistStudent의 classNum : " + classNum);
 		
 		ArrayList<HashMap<String, Object>> list = new AttendService().selectStudent(classNum);   
-		
-		System.out.println("alistStudent의 list : " + list);
 		
 		String page = "";
 		if(list != null) {

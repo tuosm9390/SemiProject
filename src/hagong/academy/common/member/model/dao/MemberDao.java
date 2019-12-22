@@ -57,7 +57,7 @@ public class MemberDao {
 				loginUser.setStatus(rset.getString("STATUS"));
 				loginUser.setInflowPath(rset.getString("INFLOW_PATH"));
 				loginUser.setUserType(rset.getString("USER_TYPE"));
-		
+
 			}
 			
 		} catch (SQLException e) {

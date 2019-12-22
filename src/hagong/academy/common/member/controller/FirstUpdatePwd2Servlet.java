@@ -24,16 +24,18 @@ public class FirstUpdatePwd2Servlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-		String userId = loginUser.getUserId();
-		String changePwd = request.getParameter("pwd2");
+		//Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		System.out.println("userId : " + userId);
+		System.out.println("userPwd : " + userPwd);
 		
 		Member changePwdMember = new Member();
 		changePwdMember.setUserId(userId);
-		changePwdMember.setUserPwd(changePwd);
+		changePwdMember.setUserPwd(userPwd);
 		
 		int change = new MemberService().changePwd(changePwdMember);
-		
+		System.out.println("change : " + change);
 		String page = "";
 		if(change > 0) {
 			JSONObject result = new JSONObject(); 

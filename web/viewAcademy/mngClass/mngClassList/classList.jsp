@@ -11,11 +11,8 @@
 	int endPage = pi.getEndPage();			//끝 페이지 번호
 	
 	java.util.Date now = new java.util.Date();
-	System.out.println("Value of java.util.Date : " + now);
-	
-	System.out.println("수업시작일 : " + list.get(0).getClsStart());
+
 	java.sql.Date sqlDate = new java.sql.Date(now.getTime());
-	System.out.println("Converted value of java.sql.Date : " + sqlDate);
 	
 	String srchCnt = (String) request.getAttribute("searchWord");
 	String searchCondition = (String) request.getAttribute("searchCondition");
@@ -230,7 +227,6 @@
 				<option name="searchClassCondition">과목</option>
 				<option name="searchClassCondition">강좌명</option>
 				<option name="searchClassCondition">담당 강사</option>
-				<option name="searchClassCondition">상태</option>
 			</select>
 			<input type="search" id="searchClass" name="searchClass" style="border-radius:5px; border:1px solid lightgray;">
 			<button id="searchBtn">검색</button>

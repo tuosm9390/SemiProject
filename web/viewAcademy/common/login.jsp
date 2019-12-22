@@ -67,9 +67,9 @@
 			<ul>
 				<li>
 				<div style="display:inline">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="checkbox" name="loginMaintain" checked><label for="loginMaintain">아이디 저장하기</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label><a href="../common/findPwd1.jsp" style="color:black">비밀번호 찾기</a></label>
 				</div>
 				</li>
 				<br><br>

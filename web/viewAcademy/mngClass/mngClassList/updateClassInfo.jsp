@@ -111,14 +111,6 @@
                <td>과목 : </td>
                <td>
                <select id="selectSubject" name="selectSubject" style="margin-bottom:20px">
-                  <!-- <option value="" selected disabled hidden>과목 선택</option>
-                  <option value="국어">국어</option>
-                  <option value="수학">수학</option>
-                  <option value="영어">영어</option>
-                  <option value="사회">사회</option>
-                  <option value="과학">과학</option>
-                  <option value="제2외국어">제2외국어</option>
-                  <option value="기타">기타</option> -->
                </select>
                </td>
                <td>
@@ -134,15 +126,7 @@
                <label>대상 학년 : </label>
                </td>
                <td>
-               <select id="selectStudent" name="selectStudent" style="margin-bottom:20px">
-                  <!-- <option value="" selected disabled hidden>학년 선택</option>
-                  <option value="MID1">중1</option>
-                  <option value="MID2">중2</option>
-                  <option value="MID3">중3</option>
-                  <option value="HIGH1">고1</option>
-                  <option value="HIGH2">고2</option>
-                  <option value="HIGH3">고3</option>
-                  <option value="ETC">기타</option> -->
+               <select id="selectStudent" name="selectStudent" style="margin-bottom:20px">                
                </select>
                </td>
                <td>
@@ -213,34 +197,8 @@
                </td>
                <td colspan="3">
                   <select id="startTime" name="startTime" style="width:150px;">
-                     <!-- <option>09:00</option>
-                     <option>10:00</option>
-                     <option>11:00</option>
-                     <option>12:00</option>
-                     <option>13:00</option>
-                     <option>14:00</option>
-                     <option>15:00</option>
-                     <option>16:00</option>
-                     <option>17:00</option>
-                     <option>18:00</option>
-                     <option>19:00</option>
-                     <option>20:00</option>
-                     <option>21:00</option> -->
                   </select> ~
                   <select id="endTime" name="endTime" style="width:150px;">
-                    <!--  <option>10:00</option>
-                     <option>11:00</option>
-                     <option>12:00</option>
-                     <option>13:00</option>
-                     <option>14:00</option>
-                     <option>15:00</option>
-                     <option>16:00</option>
-                     <option>17:00</option>
-                     <option>18:00</option>
-                     <option>19:00</option>
-                     <option>20:00</option>
-                     <option>21:00</option>
-                     <option>22:00</option> -->
                   </select>
                </td>
             </tr>    

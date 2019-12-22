@@ -24,7 +24,6 @@ public class SelectPlanForDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		String deleteTitle = request.getParameter("title");
-		System.out.println(deleteTitle);
 		
 		int result = new PlanService().deletePlan(deleteTitle);
 		

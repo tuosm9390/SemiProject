@@ -28,14 +28,7 @@ public class SelectPlanByYearServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		
 		HashMap<String, Object> hmap = new PlanService().selectByYear(year);
-		System.out.println(hmap);
-		/*
-		 * ArrayList<String> title = (ArrayList<String>) hmap.get("title");
-		 * System.out.println("title : " + title); ArrayList<ArrayList<Plan>> content =
-		 * (ArrayList<ArrayList<Plan>>) hmap.get("content");
-		 * System.out.println("content : " + content);
-		 */
-		
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		new Gson().toJson(hmap, response.getWriter());

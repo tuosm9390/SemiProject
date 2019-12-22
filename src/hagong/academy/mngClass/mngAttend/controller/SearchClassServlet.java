@@ -23,16 +23,14 @@ public class SearchClassServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String selectCondition = request.getParameter("selectCondition");
 		String searchWord = request.getParameter("searchWord");
-		
-		System.out.println(selectCondition + ", " + searchWord);
-		
+
 		ArrayList<ClassSubject> list = new AttendService().searchClass(selectCondition, searchWord);
 		 
 		String page = "";
 		if(list != null) {
 			page = "/viewAcademy/mngClass/mngAttend/attendList.jsp";
 			request.setAttribute("list", list);
-			request.setAttribute("check", "noPaging");
+			
 		}else {
 			System.out.println("검색어로 강좌 조회 실패!");
 		}

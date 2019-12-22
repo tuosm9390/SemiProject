@@ -196,7 +196,7 @@
 				var temptitle = '<%=title%>';
 				var titleArr = temptitle.substring(1, temptitle.length-1);
 				var title = titleArr.split(', ');
-				console.log(title[0]);
+
 				var writeBtn = document.getElementById('writeBtn');
 				var addRowBtn = document.getElementById('addRow');
 				var deleteRowBtn = document.getElementById('deleteRow');				
@@ -317,23 +317,6 @@
 				
 				deleteRowBtn.onclick = function() {
 					var deleteRowName = window.prompt('삭제할 행 이름 입력');
-<%-- 					var title1 = '<%=title%>';
-					var title = title1.split(", ");
-					console.log(title);
-					
-					title.splice(title.indexOf(deleteRowName),1);
-					console.log(title);
-					
-					
-					var String = "";
-					for(var i=0; i<title.length; i++) {
-						if(i==(title.length-1)){
-							String += title[i];
-						}else {
-							String += title[i]+", ";
-						}
-					}
-					console.log(String); --%>
 					
 					$.ajax({
 						url: "alistForDelete.plan",
@@ -352,11 +335,6 @@
 							console.log('실패');
 						}
 					});
-					
-					//시험용 삭제
-					//$("tbody tr[value='"+ deleteRowName + "']").remove();
-					
-					
 				}
 				
 				
