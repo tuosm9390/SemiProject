@@ -12,6 +12,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 
+ .tdclass{
+ font-weight: bold;
+ }
+  
 select {
 	border-radius:5px;
 }
@@ -57,12 +61,19 @@ tr {
 #tst{
 border-right: none; 
 }
+
+.fixed-header th { position: sticky !important; top: 120px; left:0; }
+
+  #pid{
+  float: right;
+  margin-top:-30px;
+  }
 </style>
 </head>
 
 <body>
    <header>
-      <%@ include file="/viewAcademy/common/menubar.jsp"%>
+    <%@ include file="/viewAcademy/common/menubar.jsp"%>
 
    </header>
    <section>
@@ -75,17 +86,18 @@ border-right: none;
                   <h1 align="center" style="font-family: 'Do Hyeon';">　권한부여 관리　</h1>
                </legend>
             </fieldset>
+                  <p id="pid">* 모든 메뉴에 대해 원장님만 삭제기능을 가집니다.</p>
          </div>
          <!--  -->
          <div align="center">
-            <form name="menuLevel" action="<%=request.getContextPath()%>/aupdate.level" method="post">
+            <form name="menuLevel" method="post" id="menuLevel">
                <table class="table">
-                  <tr align="right">
+                  <tr align="right" class="fixed-header">
                      <th>&nbsp;</th>
                      <th>&nbsp;</th>
                      <th>전체조회</th>
                      <th>일부등록</th>
-                     <th>수정/삭제/</th>
+                     <th>수정/삭제</th>
                   </tr>
                   <!-- 공통 -->
                   <tr class="trname">
@@ -385,21 +397,19 @@ border-right: none;
                   </tr>
                </table>
                <div class="btndiv">
-               <button type="submit" class="btns" id="submit">적용</button>
-               <button type="button" class="btns" id="default">기본값 설정</button>
+               <button class="btns" type="button"  onclick="submitt()">적용</button>
+               <button class="btns" type="button" onclick="default()">기본값 설정</button>
                </div>
-               <br> <br>
             </form>
+               <br> <br>
          </div>
       </article>
    </section>
    <script>
- 	$(function(){
- 		$("#default").click(function(){
- 			location.href="<%=request.getContextPath()%>/aupdateDefault.level";
- 		})
- 	})
    
+   
+   
+ 
    	$(function(){
    		
    		$('#attend1').val(<%=list.get(0).getAttend1()%>);
@@ -465,7 +475,6 @@ border-right: none;
    		// 학부모 체크
    		if(<%=list.get(24).getAttend1()<=5%>){
       		 $("input:checkbox[id='pAtt']").prop("checked", true);
-      		 <%System.out.println(list.get(29).getAttend1());%>
       		}
    		if(<%=list.get(30).getAttend1()<=5%>){
      		 $("input:checkbox[id='pScore']").prop("checked", true);
@@ -479,6 +488,22 @@ border-right: none;
    		
    	});
  	
+   </script>
+   <script>
+   function submitt(){
+		swal({
+			  text: "제출 하시겠습니까?",
+			  buttons: true,
+			})
+			.then((value) =>{
+			  if (value) {
+			    swal("제출되었습니다!", {});
+			    //ok 눌렀을떄 폼 전송
+			    $("#menuLevel").attr("action", "<%=request.getContextPath()%>/aupdate.level");
+			    console.log("완료");
+			  } 
+			});
+	}
    </script>
 </body>
 </html>

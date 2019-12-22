@@ -191,10 +191,12 @@ public class UpdateMenuLevelServlet extends HttpServlet {
 		String page = "";
 		
 		if(result > 0 ) {
+			System.out.println("되고있음.");
 			page = "aselect.level";
 			response.sendRedirect(page);
 			
 		}else {
+			System.out.println("에에러");
 			page = "errorPage.jsp";
 			request.getRequestDispatcher(page).forward(request, response);
 		}
