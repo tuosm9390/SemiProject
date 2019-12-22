@@ -87,11 +87,6 @@ public class CounsListServlet extends HttpServlet {
 		
 		//전체 목록 갯수 조회
 		int listCount = counsList.size();
-		
-		//System.out.println("listCount : " + listCount);
-				
-		//		System.out.println("listCount : " + listCount);
-		
 		//총 페이지 수 계산
 		//예를들면 목록 수가 126개이면 페이지는 13페이지가 필요함
 		//짜투리 목록이 최소 1개일 때, 1페이지가 추가되는 로직 작성

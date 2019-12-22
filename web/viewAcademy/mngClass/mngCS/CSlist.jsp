@@ -17,12 +17,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>HAGONG</title>
-<!-- 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" /> -->
-		<!--[if IE]>
-  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+
 <style>
 	#classStudent .table *{
 		text-align:center;
@@ -57,7 +52,7 @@
 					<div class="srchArea">
 						<button class="srchBtn">검색</button>
 						<input type="search" id="searchStudent" name="searchStudent" autocomplete="off">
-						<select style="float:right">
+						<select style="float:right"  name="searchCondition">
 							<option value="" selected disabled hidden>검색 조건</option>
 							<option value="title">강의명</option>
 							<option value="place">강의실</option>
@@ -121,7 +116,6 @@
 		<!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<!-- <script src="js/jquery.stickyheader.js"></script> -->
 		<script>
 			$(function(){
 				$("#classlist tr").click(function(){

@@ -514,6 +514,57 @@ public class CSDao {
 		
 		return srchStu;
 	}
+
+	public ArrayList<CSStudent> srchByName2(Connection con, String name, int clsNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CSStudent> srchStu = null;
+		
+		String query = prop.getProperty("srchStudentByName2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+		
+			pstmt.setInt(1, clsNo);
+			pstmt.setString(2, name);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			srchStu = new ArrayList<>();
+			while(rset.next()) {
+				CSStudent css = new CSStudent();
+				
+			
+				css.setGrade(rset.getInt("GRADE"));
+				css.setSchool(rset.getString("SCHOOL"));
+				css.setStuName(rset.getString("NAME"));
+				css.setUserId(rset.getString("USER_ID"));
+				css.setUserNo(rset.getInt("USER_NO"));
+				
+				switch(css.getGrade()) {
+				case 1: css.setGradeName("중등 1학년");break;
+				case 2: css.setGradeName("중등 2학년");break;
+				case 3: css.setGradeName("중등 3학년");break;
+				case 4: css.setGradeName("고등 1학년");break;
+				case 5: css.setGradeName("고등 2학년");break;
+				case 6: css.setGradeName("고등 3학년");break;
+				}
+				
+				srchStu.add(css);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return srchStu;
+	}
 	
 	
 	
