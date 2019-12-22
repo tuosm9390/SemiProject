@@ -142,6 +142,7 @@ tr, td {
 		<% if(type.equals("detail")) { %>
 		<button class="bottomBtn" style="margin-right: 5%;"
 			onclick="location.href='<%=request.getContextPath()%>/adetail.satis?satNo=' + '<%=list.get(0).get("satNo") %>' + '&type=update'">수정</button>
+		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/adelete.satis?satNo=' + <%=list.get(0).get("satNo")%>">삭제</button>
 		<% } %>
 		<button class="bottomBtn" onclick="location.href='<%=request.getContextPath()%>/alist.satis'">취소</button>
 		</fieldset>

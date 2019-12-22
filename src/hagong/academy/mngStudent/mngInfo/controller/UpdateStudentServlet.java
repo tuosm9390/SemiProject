@@ -87,9 +87,11 @@ public class UpdateStudentServlet extends HttpServlet {
 			String reftel3 = multiRequest.getParameter("reftel3");
 			String refPhone = reftel1 + "-" + reftel2 + "-" + reftel3; // 학부모전화번호
 			String school = multiRequest.getParameter("school"); // 학교
+			System.out.println("school : " + school);
 			int grade = Integer.parseInt(multiRequest.getParameter("grade")); // 학년
 			String track = multiRequest.getParameter("track"); // 계열
 			String college = multiRequest.getParameter("college"); // 희망대학
+			System.out.println("college : " + college);
 			String major = multiRequest.getParameter("major"); // 희망학과
 			String status = multiRequest.getParameter("status"); // 재원여부
 

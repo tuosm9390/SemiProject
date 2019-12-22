@@ -65,6 +65,9 @@ h2 {
 #score tr th:last-child:hover, #score tr td:last-child:hover {
 	background: white !important;
 }
+input[type=file]{
+	display:none;
+}
 </style>
 </head>
 <body>
@@ -112,10 +115,10 @@ h2 {
 			<h2 style="width: 150px;">
 				<li>학생 성적</li>
 			</h2>
-			<button id="addexcel">엑셀로 성적 일괄 등록</button>
+			<button id="addexcel" style="float: right;  margin-right: 11.2%;">엑셀로 성적 일괄 등록</button>
 			<input type="file" id="excelfile" onchange="loadExcel(this);">
 			<input type="hidden" id="selectExcel">
-			<button id="addRow" style="float: right; margin-right: 11.2%;">성적
+			<button id="addRow" style="float: right;">성적
 				추가</button>
 			<button id="searchCondition" style="float: right;">검색</button>
 			<!-- DatePicker -->
@@ -131,7 +134,7 @@ h2 {
 				<option value="SUB_ID">과목</option>
 			</select>
 			<!-- 학생 성적 테이블 -->
-			<table id="score" class="table" id="point" style="width: 97%;">
+			<table id="score" class="table" id="point" style="width: 95.7%;">
 				<thead>
 					<tr>
 						<th style='width: 119px;'></th>

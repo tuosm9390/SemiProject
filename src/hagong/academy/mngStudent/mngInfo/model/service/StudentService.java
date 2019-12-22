@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
+import hagong.academy.mngStudent.mngBlack.model.dao.BlacklistDao;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 import hagong.academy.mngStudent.mngInfo.model.vo.Student;
 import hagong.academy.mngStudent.mngInfo.model.vo.StudentProfile;
@@ -185,10 +187,10 @@ public class StudentService {
 		return result;
 	}
 
-	public ArrayList<Student> selectList() {
+	public ArrayList<Student> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 
-		ArrayList<Student> list = new StudentDao().selectList(con);
+		ArrayList<Student> list = new StudentDao().selectList(con, currentPage, limit);
 
 		close(con);
 
@@ -259,6 +261,26 @@ public class StudentService {
 		ArrayList<StudentProfile> list = new StudentDao().selectProfile(con, userNo);
 		
 		close(con);
+		
+		return list;
+	}
+
+	public int listCount() {
+		Connection con = getConnection();
+		
+		int listCount = new StudentDao().listCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<Student> selectList(int currentPage, int limit, String searchCondition, String srchCnt) {
+		Connection con = getConnection();
+		ArrayList<Student> list = new StudentDao().selectList(con, currentPage, limit, searchCondition, srchCnt);
+		
+		close(con);
+		
 		
 		return list;
 	}

@@ -15,6 +15,7 @@ public class SatisfyInfo {
 	private String benType;
 	private double benRate;
 	private Date today;
+	private String status;
 
 	// 질문
 	private int queNo;
@@ -138,6 +139,14 @@ public class SatisfyInfo {
 		this.today = today;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public int getQueNo() {
 		return queNo;
 	}
@@ -182,8 +191,9 @@ public class SatisfyInfo {
 	public String toString() {
 		return "SatisfyInfo [rowNum=" + rowNum + ", satNo=" + satNo + ", satTitle=" + satTitle + ", start=" + start
 				+ ", end=" + end + ", target=" + target + ", benNo=" + benNo + ", benCondition=" + benCondition
-				+ ", benType=" + benType + ", benRate=" + benRate + ", today=" + today + ", queNo=" + queNo
-				+ ", queContent=" + queContent + ", ansNo=" + ansNo + ", ansContent=" + ansContent + ", userNo="
-				+ userNo + "]";
+				+ ", benType=" + benType + ", benRate=" + benRate + ", today=" + today + ", status=" + status
+				+ ", queNo=" + queNo + ", queContent=" + queContent + ", ansNo=" + ansNo + ", ansContent=" + ansContent
+				+ ", userNo=" + userNo + "]";
 	}
+
 }
