@@ -13,6 +13,7 @@ import java.util.Properties;
 import static hagong.common.JDBCTemplate.*;
 
 import hagong.academy.mngClass.mngSatisfy.model.vo.SatisfyInfo;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngInfo.model.dao.StudentDao;
 
 public class SatisfyDao {
@@ -37,13 +38,13 @@ public class SatisfyDao {
 
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
+
 			rset = pstmt.executeQuery();
 
 			list = new ArrayList<>();
@@ -58,7 +59,7 @@ public class SatisfyDao {
 				si.setEnd(rset.getDate("SAT_END"));
 				si.setTarget(rset.getString("TARGET"));
 				si.setStatus(rset.getString("STATUS"));
-				
+
 				list.add(si);
 			}
 		} catch (SQLException e) {
@@ -100,7 +101,7 @@ public class SatisfyDao {
 				}
 				si.setBenRate(rset.getDouble("BEN_RATE"));
 				si.setToday(rset.getDate("SYSDATE"));
-				
+
 				blist.add(si);
 			}
 
@@ -356,68 +357,68 @@ public class SatisfyDao {
 	public int updateSatis(Connection con, SatisfyInfo si) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("updateSatis");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, si.getSatTitle());
 			pstmt.setDate(2, si.getStart());
 			pstmt.setDate(3, si.getEnd());
 			pstmt.setString(4, si.getTarget());
 			pstmt.setInt(5, si.getBenNo());
 			pstmt.setInt(6, si.getSatNo());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
 	public int deleteque(Connection con, SatisfyInfo si) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("deleteque");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setInt(1, si.getSatNo());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
 	public int deleteans(Connection con, SatisfyInfo si) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("deleteans");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setInt(1, si.getSatNo());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
@@ -444,6 +445,58 @@ public class SatisfyDao {
 		}
 
 		return listCount;
+	}
+
+	public ArrayList<SatisfyInfo> selectList(Connection con, int currentPage, int limit, String searchCondition,
+			String srchCnt) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SatisfyInfo> list = null;
+
+		// 조회를 시작할 행 번호와 마지막 행 번호 계산
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+
+		String query = "";
+
+		if (searchCondition.equals("className")) {
+			query = prop.getProperty("selectListByClassName");
+		} else {
+			query = prop.getProperty("selectListByStatus");
+		}
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, srchCnt);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while (rset.next()) {
+				SatisfyInfo si = new SatisfyInfo();
+
+				si.setRowNum(rset.getInt("RNUM"));
+				si.setSatNo(rset.getInt("SAT_NO"));
+				si.setSatTitle(rset.getString("SAT_TITLE"));
+				si.setStart(rset.getDate("SAT_START"));
+				si.setEnd(rset.getDate("SAT_END"));
+				si.setTarget(rset.getString("TARGET"));
+				si.setStatus(rset.getString("STATUS"));
+
+				list.add(si);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return list;
 	}
 
 }

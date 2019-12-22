@@ -44,15 +44,15 @@ public class InsertBenefitServlet extends HttpServlet {
 		
 		int result = new SatisfyService().insertBen(si);
 		
+		ArrayList<SatisfyInfo> list = null;
+		
 		if(result > 0) {
-			ArrayList<SatisfyInfo> list = new SatisfyService().selectBenList();
-			
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			new Gson().toJson(list, response.getWriter());
-		} else {
-			
+			list = new SatisfyService().selectBenList();
 		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

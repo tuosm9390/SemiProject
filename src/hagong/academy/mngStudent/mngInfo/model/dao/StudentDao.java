@@ -752,9 +752,6 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;
-
 		String query = "";
 
 		if (searchCondition.equals("name")) {
@@ -769,6 +766,9 @@ public class StudentDao {
 			query = prop.getProperty("selectListByGrade");
 		}
 
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -782,6 +782,8 @@ public class StudentDao {
 
 			while (rset.next()) {
 				Student s = new Student();
+				
+				s.setRnum(rset.getInt("RNUM"));
 				s.setUserId(rset.getString("ID"));
 				s.setName(rset.getString("NAME"));
 				s.setAge(rset.getInt("AGE"));
@@ -798,6 +800,7 @@ public class StudentDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return list;
 	}
 

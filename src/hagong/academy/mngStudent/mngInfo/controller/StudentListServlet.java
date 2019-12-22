@@ -65,12 +65,12 @@ public class StudentListServlet extends HttpServlet {
 		// 현재 페이지에 보여 줄 시작 페이지 수 (10개씩 보여지게 할 경우)
 		// 아래 쪽 페이지 수가 10개씩 보여지게 한다면
 		// 1, 11, 21, 31...
-		startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * 10 + 1;
-
-		// 목록 아래 쪽에 보여질 마지막 페이지 수
-		endPage = startPage + 10 - 1;
-
-		if (maxPage < endPage) {
+		startPage = (((int)((double) currentPage / 5 + 0.8)) - 1) * 5 + 1;
+		
+		//목록 아래 쪽에 보여질 마지막 페이지 수 
+		endPage = startPage + 5 - 1;
+		
+		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
 
@@ -83,7 +83,7 @@ public class StudentListServlet extends HttpServlet {
 
 		String searchCondition = request.getParameter("searchCondition");
 		String srchCnt = request.getParameter("searchStudent");
-		
+
 		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("srchCnt : " + srchCnt);
 
@@ -99,10 +99,10 @@ public class StudentListServlet extends HttpServlet {
 		String page = "";
 		if (list != null) {
 			page = "/viewAcademy/mngStudent/mngInfo/studentList.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
 			request.setAttribute("searchCondition", searchCondition);
 			request.setAttribute("srchCnt", srchCnt);
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectStudentListFail");

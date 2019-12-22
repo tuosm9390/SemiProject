@@ -34,18 +34,18 @@ public class StudentService {
 		Connection con = getConnection();
 		System.out.println("부모생성서비스");
 		int refresult = new StudentDao().insertParent(con, s);
-		
-		if(refresult > 0) {
+
+		if (refresult > 0) {
 			commit(con);
 		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
-		
+
 		return refresult;
 	}
-	
+
 	public int insertMember(Student s, ArrayList<StudentProfile> fileList) {
 		Connection con = getConnection();
 
@@ -104,45 +104,45 @@ public class StudentService {
 					fileList.get(i).setUserNo(s.getUserNo());
 				}
 			}
-
 			// 학부모 정보수정
 			int result1 = new StudentDao().updateParent(con, s);
 			if (result1 > 0) {
 				commit(con);
-				if (fileList != null) {
-					int fileresult = new StudentDao().insertFile(con, fileList);
-					if (fileresult > 0) {
+				// 학교 정보수정
+				int result2 = new StudentDao().updateStudent(con, s);
+				System.out.println(s.getGrade());
+				if (result2 > 0) {
+					commit(con);
+					// 희망학교학과 정보수정
+					int result3 = new StudentDao().updateStudentHope(con, s);
+					if (result3 > 0) {
 						commit(con);
-						for (int i = 0; i < fileList.size(); i++) {
-							int profileCnt = new StudentDao().selectProfileCnt(con, s.getUserNo());
-							if (profileCnt > 1) {
-								int fileNo = new StudentDao().selectFileNo(con, fileList.get(i));
-								int updateOldProfileResult = new StudentDao().updateOldProfile(con, fileNo,
-										s.getUserNo());
-								if (updateOldProfileResult > 0) {
-									commit(con);
-									// 학교 정보수정
-									int result2 = new StudentDao().updateStudent(con, s);
-									if (result2 > 0) {
-										commit(con);
-										// 희망학교학과 정보수정
-										int result3 = new StudentDao().updateStudentHope(con, s);
-										if (result3 > 0) {
+						if (fileList != null) {
+							int fileresult = new StudentDao().insertFile(con, fileList);
+							if (fileresult > 0) {
+								commit(con);
+								for (int i = 0; i < fileList.size(); i++) {
+									int profileCnt = new StudentDao().selectProfileCnt(con, s.getUserNo());
+									if (profileCnt > 1) {
+										int fileNo = new StudentDao().selectFileNo(con, fileList.get(i));
+										int updateOldProfileResult = new StudentDao().updateOldProfile(con, fileNo,
+												s.getUserNo());
+										if (updateOldProfileResult > 0) {
 											commit(con);
 										} else {
 											rollback(con);
 										}
-									} else {
-										rollback(con);
 									}
-								} else {
-									rollback(con);
 								}
+							} else {
+								rollback(con);
 							}
 						}
 					} else {
 						rollback(con);
 					}
+				} else {
+					rollback(con);
 				}
 			} else {
 				rollback(con);
@@ -259,38 +259,37 @@ public class StudentService {
 	public ArrayList<StudentProfile> selectProfile(String userNo) {
 		Connection con = getConnection();
 		ArrayList<StudentProfile> list = new StudentDao().selectProfile(con, userNo);
-		
+
 		close(con);
-		
+
 		return list;
 	}
 
 	public int listCount() {
 		Connection con = getConnection();
-		
+
 		int listCount = new StudentDao().listCount(con);
-		
+
 		close(con);
-		
+
 		return listCount;
 	}
 
 	public ArrayList<Student> selectList(int currentPage, int limit, String searchCondition, String srchCnt) {
 		Connection con = getConnection();
 		ArrayList<Student> list = new StudentDao().selectList(con, currentPage, limit, searchCondition, srchCnt);
-		
+
 		close(con);
-		
-		
+
 		return list;
 	}
 
 	public ArrayList<Student> refIdCheck(String refId, int check) {
 		Connection con = getConnection();
 		ArrayList<Student> list = new StudentDao().refIdCheck(con, refId, check);
-		
+
 		close(con);
-		
+
 		return list;
 	}
 

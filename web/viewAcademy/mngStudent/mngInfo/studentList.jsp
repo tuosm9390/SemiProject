@@ -54,9 +54,12 @@ tr:not(:first-child){
 .srchArea{margin-bottom:10px; margin-right: 5%;}
 .srchArea input{float:right;margin:0px 10px 7px 10px;height:19px;border-radius:5px;border:1px solid gray;}
 .srchArea select{float:right;border-radius:5px;border:1px solid gray;}
-.srchArea button{float:right; height:25px;}
+.srchArea button{float:right;height:25px;}
 .pagingArea {margin-bottom:30px;}
-.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
+.pagingArea button{display:inline-block;}
+.pagingBtn{border:none;}
+.pagingBtn.pBtn{border:none;border-bottom: 1px solid;border-radius: 0px;}
+.pagingBtn:hover{color:#333; background:white;border:none;}
 </style>
 </head>
 <body>
@@ -100,7 +103,7 @@ tr:not(:first-child){
 				for (Student s : list) {
 			%>
 			<tr>
-				<td><%=s.getUserId()%></td>
+				<td><%=s.getUserId()%><input type="hidden" value="<%= s.getRnum()%>"></td>
 				<td><%=s.getName() %></td>
 				<td><%=s.getAge() %></td>
 				<td><%=s.getPhone() %></td>
@@ -113,31 +116,31 @@ tr:not(:first-child){
 	</div>
 	</section>
 	<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button class="pagingBtn" disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-				<button disabled><%= p %></button>			
+				<button class="pagingBtn pBtn" disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+				<button class="pagingBtn pBtn" onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button class="pagingBtn" disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.info?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
-	</div> <!-- pagingArea end  -->
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
+		</div> <!-- pagingArea end  -->
 	<script>
 		$("#addstudent").click(function(){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/enrollStudent.jsp";
