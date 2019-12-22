@@ -34,6 +34,9 @@
 	.srchArea button{float:right;width:60px; height:25px;}
 	.pagingArea {margin-bottom:30px;}
 	.pagingArea button{display:inline-block;font-family: "Nanum Gothic";}
+	.pagingBtn{border:none;}
+	.pagingBtn.pBtn{border:none;border-bottom: 1px solid;border-radius: 0px;}
+	.pagingBtn:hover{color:#333; background:white;border:none;}
 </style>
 	</head>
 	<body>
@@ -50,15 +53,18 @@
 	         			<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　강좌 목록　</h1></legend>
 	      			</fieldset>
 	      		</div>
-				<div class="srchArea">
-					<button class="srchBtn">검색</button>
-					<input type="search" id="searchStudent" name="searchStudent">
-					<select style="float:right">
-						<option value="" selected disabled hidden>검색 조건</option>
-						<option name="searchClassCondition" value="title">강의명</option>
-						<option name="searchClassCondition" value="place">강의실</option>
-					</select>
-				</div>
+	      		<form action="<%= request.getContextPath()%>/alist.cs" method="post">
+					<div class="srchArea">
+						<button class="srchBtn">검색</button>
+						<input type="search" id="searchStudent" name="searchStudent" autocomplete="off">
+						<select style="float:right">
+							<option value="" selected disabled hidden>검색 조건</option>
+							<option value="title">강의명</option>
+							<option value="place">강의실</option>
+						</select>
+					</div>
+				</form>
+							
 				<table id="classlist" class="table">
 					<thead>
 						<tr>
@@ -85,30 +91,30 @@
 		</div>
 		</section>
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.cs?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button class="pagingBtn" disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.cs?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-				<button disabled><%= p %></button>			
+				<button class="pagingBtn pBtn" disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+				<button class="pagingBtn pBtn" onclick="location.href='<%=request.getContextPath()%>/alist.cs?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button class="pagingBtn" disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.black?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.cs?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.black?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.cs?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
 					
 	

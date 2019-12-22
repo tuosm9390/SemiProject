@@ -133,6 +133,9 @@ input, select, textarea {
     max-width: 1600px;
     overflow: hidden;
 }
+.pagingBtn{border:none;}
+.pagingBtn.pBtn{border:none;border-bottom: 1px solid;border-radius: 0px;}
+.pagingBtn:hover{color:#333; background:white;border:none;}
 </style>
 <body>
 	<header>
@@ -150,7 +153,7 @@ input, select, textarea {
 				<form action="<%= request.getContextPath()%>/alist.couns" method="post">
 					<div class="srchArea">
 						<button type="submit" class="srchBtn">검색</button>
-						<input type="search" id="search" name="srchCnt">
+						<input type="search" id="search" name="srchCnt" autocomplete="off">
 						<select style="float:right" id="searchCondition" name="searchCondition">
 							<option selected disabled hidden>검색 조건</option>
 							<option value="name">학생명</option>
@@ -184,36 +187,36 @@ input, select, textarea {
 							<td class="cons-list"><button onclick="conslist(<%= i %>);">상담일지</button></td>
 							<td><button onclick="addCouns(<%= i %>);">상담추가</button></td>
 						</tr>
-					<% } %>					
+					<% }%>					
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><<</button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=1&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀◀</button>
 			<% if(currentPage <= 1) {%>
-			<button disabled><</button>
+			<button class="pagingBtn" disabled>◀</button>
 			<%}else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><</button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage - 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">◀</button>
 			<% }%>
 			
 			<% for(int p = startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-				<button disabled><%= p %></button>			
+				<button class="pagingBtn pBtn" disabled><%= p %></button>			
 			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
+				<button class="pagingBtn pBtn" onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=p%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'"><%=p %></button>
 			<% } 
 			}
 			%>
 			
 			<% if(currentPage >= maxPage){ %>
-			<button disabled>></button>
+			<button class="pagingBtn" disabled>▶</button>
 			<%} else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">></button>
+			<button class="pagingBtn" onclick="location.href='<%=request.getContextPath()%>/alist.couns?currentPage=<%=currentPage + 1%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶</button>
 			<% } %>
 			
-			<button onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">>></button>
+			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.couns?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
 	</section>
 
@@ -230,12 +233,12 @@ input, select, textarea {
 							<div class="dArea dArea1">
 								<div class="dCtn consTitle">
 									<label class="dTit">상담제목</label>
-									<input name="cTitle" type="text" class="inputCons" value="학원생활 관련 상담(1)">
+									<input name="cTitle" type="text" class="inputCons" value="" placeholder="상담제목입력" autocomplete="off">
 								</div>
 							<div class="names">
 								<div class="dCtn consDate"> 
 									<label class="dTit">상담일자</label>
-									<input type="text" class="inputCons" id="from" name="from" value="">
+									<input type="text" class="inputCons" id="from" name="from" value="" placeholder="상담일자입력" autocomplete="off">
 								</div>
 								<div class="dCtn category">
 									<label class="dTit">상담종류</label>
