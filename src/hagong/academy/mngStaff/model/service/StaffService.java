@@ -16,10 +16,11 @@ import hagong.academy.mngStaff.model.vo.StaffFile;
 
 public class StaffService { 
 
-	public ArrayList<Staff> staffList() {
+	public ArrayList<Staff> staffList(int curPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<Staff> staffList = new StaffDao().staffList(con);
+		ArrayList<Staff> staffList = new StaffDao().staffList(con, curPage, limit);
 		close(con);
+		System.out.println(staffList);
 		return staffList;
 	}
 
@@ -118,6 +119,34 @@ public class StaffService {
 		}
 		close(con);
 		return result;
+	}
+
+	public ArrayList<Staff> staffListById(int curPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Staff> staffList = new StaffDao().staffListById(con, curPage, limit);
+		close(con);
+		return staffList;
+	}
+
+	public ArrayList<Staff> staffListBySub(int curPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Staff> staffList = new StaffDao().staffListBySub(con, curPage, limit);
+		close(con);
+		return staffList;
+	}
+
+	public ArrayList<Staff> staffListByDay(int curPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Staff> staffList = new StaffDao().staffListByDay(con, curPage, limit);
+		close(con);
+		return staffList;
+	}
+
+	public int countStaff() {
+		Connection con = getConnection();
+		int listCnt = new StaffDao().countStaff(con);
+		close(con);
+		return listCnt;
 	}
 
 }

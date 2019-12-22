@@ -312,7 +312,7 @@ section {
 		//직원 관리 메뉴 클릭 시
 	     $("#employee").click(function() {
 	        $(".detailmenu").css("display", "none");
-	        location.href="<%= request.getContextPath() %>/alist.staff";
+	        location.href="<%= request.getContextPath() %>/alist.staff?how=uName&page=1";
 	     });
 
 		//수업 관리 메뉴 클릭 시

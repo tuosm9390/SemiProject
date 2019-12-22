@@ -81,14 +81,17 @@ public class PurchaseService {
 
 	public int updatePurDetail(Purchase purchase) {
 		Connection con = getConnection();
+		Purchase newPurchase = new PurchaseDao().selectPurchaseDetail(con, purchase.getPurchaseNo());
 		int result = 0;
 		
 		if(purchase.getPayMemo().equals("student")) {
-			Purchase newPurchase = new PurchaseDao().selectPurchaseDetail(con, purchase.getPurchaseNo());
-			System.out.println(newPurchase);
-			
 			purchase.setPayMemo("REFUND");
-			
+			/*purchase
+			-> pay_status : N --- 수납 처리X 상태
+			-> pay_money
+			-> rfd_id --- rfd_date(1N3) : C2
+			                rfd_date(1N2) : C3
+			-> refund_day*/
 		} else if(purchase.getPayMemo().equals("academy")) {
 			
 		} else {

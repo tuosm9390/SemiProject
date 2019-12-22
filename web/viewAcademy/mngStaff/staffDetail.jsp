@@ -224,7 +224,7 @@ fieldset {
 			}
 			
 			function goList(){
-				location.href = "<%= request.getContextPath() %>/alist.staff";
+				location.href = "<%= request.getContextPath() %>/alist.staff?how=uName&page=1";
 			}
 			
 			$(function(){
@@ -235,6 +235,7 @@ fieldset {
 				});
 				
 				if("<%= profile %>" === " ") {
+					$("#profile").attr("src", "<%= request.getContextPath() %>/images/user.png");
 				} else {
 					$("#profile").attr("src", "<%=request.getContextPath()%>/uploadFiles/<%= profile %>");
 				}

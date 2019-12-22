@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, hagong.academy.mngStaff.model.vo.*"%>
-<% ArrayList<Staff> staffList = (ArrayList<Staff>) request.getAttribute("staffList"); %>
+<% ArrayList<Staff> staffList = (ArrayList<Staff>) request.getAttribute("staffList"); 
+   String how = (String) request.getAttribute("selectedFilter");
+   PageInfo pageinfo = (PageInfo) request.getAttribute("pageInfo");
+   int listCnt = pageinfo.getListCnt();
+   int curPage = pageinfo.getCurPage();
+   int maxPage = pageinfo.getMaxPage();
+   int startPage = pageinfo.getStartPage();
+   int endPage = pageinfo.getEndPage();
+%>
 <!DOCTYPE html>
 <html> 
 <head>
@@ -13,9 +21,10 @@
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+	height:490px;
 }
 .btnArea {
-	margin-left: 88.4%;
+	margin-left: 5%;
 	margin-bottom: 5px;
 }
 
@@ -40,12 +49,21 @@
 	width: 90%;
 }
 
+.btn {
+	display: inline;
+}
+
 input[type=file] {
 	display: none;
 }
 
 fieldset {
 	width:17%;
+}
+
+.pagingArea button {
+	border:none !important;
+	display: inline;
 }
 </style>
 </head>
@@ -60,7 +78,13 @@ fieldset {
       		</fieldset>
       	</div>
 		<div class="btnArea">
-			<button class="enrollStaff" id="enrollPage">직원 등록</button>
+			<select id="staffFilter" class="btn" style="border-radius:5px;">
+				<option value="uName" selected>이름순</option>
+				<option value="uId">ID순</option>
+				<option value="subject">담당과목순</option>
+				<option value="inDay">최근입사순</option>
+			</select>
+			<button class="btn enrollStaff" id="enrollPage" style="margin-left:80%;">직원 등록</button>
 		</div>
 		<!-- btnArea end -->
 		<div class="listArea">
@@ -89,8 +113,42 @@ fieldset {
 			</table>
 		</div>
 		<!-- listArea end -->
+		
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/alist.staff?how=<%= how %>&page=<%= startPage %>'">◀◀</button>
+			
+			<% if(curPage <= 1) { %>
+				<button disabled>◀</button>
+			<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/alist.staff?how=<%= how %>&page=<%= curPage - 1 %>'">◀</button>
+			<% } %>
+			
+			<% for(int p = startPage; p <= endPage; p++) {
+				if(p == curPage) { %>
+				<button disabled style="text-decoration:underline"><%= p %></button>
+			<%  } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/alist.staff?how=<%= how %>&page=<%= p %>'"><%= p %></button>
+			<%  }
+			   } %>
+			   
+			<% if(curPage >= maxPage) { %>
+				<button disabled>▶</button>
+			<% } else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/alist.staff?how=<%= how %>&page=<%= curPage + 1 %>'">▶</button>
+			<% } %>
+			
+			<button onclick="location.href='<%= request.getContextPath() %>/alist.staff?how=<%= how %>&page=<%= maxPage %>'">▶▶</button>
+		</div> <!-- pagingArea end -->
+		
 		<script>
 		$(function(){
+			$("#staffFilter option").each(function(){
+				if($(this).val() == "<%= how %>") {
+					$("#staffFilter option[value='uName']").prop("selected", false);
+					$(this).prop("selected", true);
+				}
+			});
+			
 			$("#enrollPage").click(function(){
 				location.href = "<%= request.getContextPath() %>/viewAcademy/mngStaff/enrollStaff.jsp";
 			});
@@ -106,6 +164,11 @@ fieldset {
 					location.href = "<%=request.getContextPath()%>/adetail.staff?type=view&no=" + userNo;
 				});
 			});
+		
+		$("#staffFilter").change(function(){
+			var how = $(this).val();
+			location.href="<%= request.getContextPath() %>/alist.staff?how=" + how + "&page=1";
+		});
 		</script>
 	</section>
 	<footer> </footer>
