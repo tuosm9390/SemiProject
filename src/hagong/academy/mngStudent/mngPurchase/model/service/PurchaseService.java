@@ -86,11 +86,21 @@ public class PurchaseService {
 		
 		if(purchase.getPayMemo().equals("student")) {
 			purchase.setPayMemo("REFUND");
-			String result2 = new PurchaseDao().calRefundRate(con, purchase.getRefundDay(), newPurchase.getClassStart(), newPurchase.getClassEnd());
-			
+			purchase.setNotifyDate(newPurchase.getNotifyDate());
+			purchase.setClassStart(newPurchase.getClassStart());
+			purchase.setClassEnd(newPurchase.getClassEnd());
+			String result2 = new PurchaseDao().calRefundRate(con, purchase);
+			if(result2 != null) {
+				if(result2.equals("NONE")) {
+					return 1;
+				} else {
+					purchase.setRefundPoint(result2);
+					result = new PurchaseDao().updateRefundStu(con, purchase);
+				}
+			}
 		} else if(purchase.getPayMemo().equals("academy")) {
 			purchase.setPayMemo("REFUND");
-			purchase.setRefundRate(purchase.getFaultDays() / newPurchase.getClassDays());
+			purchase.setRefundRate((double)purchase.getFaultDays() / (double)newPurchase.getClassDays());
 			int result1 = new PurchaseDao().insertRefund(con, purchase);
 			if(result1 > 0) {
 				commit(con);

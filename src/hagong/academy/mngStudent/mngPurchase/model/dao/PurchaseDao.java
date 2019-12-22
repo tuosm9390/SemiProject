@@ -277,11 +277,11 @@ public class PurchaseDao {
 				if(oldRefundRate.equals("ALL")) {
 					refundRate = 1;
 				} else if(oldRefundRate.equals("2N3")) {
-					refundRate = 2/3;
+					refundRate = (double)2/3;
 				} else if(oldRefundRate.equals("1N2")) {
-					refundRate = 1/2;
-				} else if(oldRefundRate.equals("ACA")){
-					refundRate = faultDays / classDays;
+					refundRate = (double)1/2;
+				} else if(purchase.getRefundPoint().equals("ACA")){
+					refundRate = Double.parseDouble(oldRefundRate);
 				} else {
 					refundRate = 0;
 				}
@@ -310,6 +310,7 @@ public class PurchaseDao {
 						profit = classPrice - refundPrice;
 					}
 				}
+				purchase.setProfit(profit);
 				
 				String detailStatus;
 				String payStatus = rset.getString("PAY_STATUS");
@@ -411,7 +412,7 @@ public class PurchaseDao {
 		return result;
 	}
 	
-	public String calRefundRate(Connection con, Date refundDay, Date classStart, Date classEnd) {
+	public String calRefundRate(Connection con, Purchase purchase) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String result = null;
@@ -419,24 +420,48 @@ public class PurchaseDao {
 		String query = prop.getProperty("calRefundRate");
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setDate(1, refundDay);
-			pstmt.setDate(2, classStart);
-			pstmt.setDate(3, classEnd);
-			pstmt.setDate(4, classStart);
+			pstmt.setDate(1, purchase.getNotifyDate());
+			pstmt.setDate(2, purchase.getNotifyDate());
+			pstmt.setDate(3, purchase.getNotifyDate());
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				double days = rset.getDouble(1);
-				int classdays = rset.getInt(2);
-				
+				int classdays = rset.getInt(1);
+				double days = rset.getDouble(2);
 				double refundRate = days / classdays;
 				
-				//if(refundRate )
+				if(refundRate <= (double)1/3) {
+					result = "C2";
+				} else if(refundRate <= (double)1/2) {
+					result = "C3";
+				} else {
+					result = "NONE";
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateRefundStu(Connection con, Purchase purchase) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateRefundStu");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, purchase.getPayPrice());
+			pstmt.setString(2, purchase.getRefundPoint());
+			pstmt.setDate(3, purchase.getRefundDay());
+			pstmt.setInt(4, purchase.getPurchaseNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			close(pstmt);
 		}
 		return result;

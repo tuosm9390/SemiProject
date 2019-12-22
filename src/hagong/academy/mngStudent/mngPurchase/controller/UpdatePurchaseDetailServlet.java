@@ -34,7 +34,6 @@ public class UpdatePurchaseDetailServlet extends HttpServlet {
 			purchase.setPayMemo("student");
 			java.sql.Date rfdDay = java.sql.Date.valueOf(payDetail);
 			purchase.setRefundDay(rfdDay);
-			
 		} else if(payMemo.equals("academy")) {
 			purchase.setPayMemo("academy");
 			purchase.setFaultDays(Integer.parseInt(payDetail));

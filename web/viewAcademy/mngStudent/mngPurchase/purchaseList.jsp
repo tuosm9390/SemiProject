@@ -118,7 +118,7 @@
 .btnmenu {
 	float:right;
 	font-size: 12px;
-	width: 350px;
+	width: 250px;
 	height: 30px;
 	display: inline;
 	margin-top:0.5%;
@@ -350,7 +350,7 @@ fieldset {
 						<div class="accordion__content">
 							<div class="btnmenu">
 								<button class="actionBtn" id="doComplete" onclick="donePay(<%= j %>);">수납 처리</button>
-								<button class="actionBtn" id="giveBill" onclick="sendBill(<%= j %>);">고지서 발급</button>
+								<%-- <button class="actionBtn" id="giveBill" onclick="sendBill(<%= j %>);">고지서 발급</button> --%>
 								<button class="actionBtn" id="giveRecipt" onclick="sendRecipt(<%= j %>);">영수증 발급</button>
 							</div>
 							<div class="tableArea">
@@ -816,17 +816,26 @@ fieldset {
 								$("#refundPrice").parent().hide();
 								$("#profit").parent().hide();
 							} else if(data.refundRate == 1/2 && data.faultDays == 0) {
+								$("#refundPoint").parent().show();
+								$("#refundPrice").parent().show();
+								$("#profit").parent().show();
 								$("#refundPoint").text("수업 시작 1/2 경과 전");
-								$("#refundPrice").text(data.refundPrice);
-								$("#profit").text(data.profit);
+								$("#refundPrice").text(data.refundPrice + " 원");
+								$("#profit").text(data.profit + " 원");
 							} else if(data.refundRate == 2/3 && data.faultDays == 0) {
+								$("#refundPoint").parent().show();
+								$("#refundPrice").parent().show();
+								$("#profit").parent().show();
 								$("#refundPoint").text("수업 시작 1/3 경과 전");
-								$("#refundPrice").text(data.refundPrice);
-								$("#profit").text(data.profit);
+								$("#refundPrice").text(data.refundPrice + " 원");
+								$("#profit").text(data.profit + " 원");
 							} else {
+								$("#refundPoint").parent().show();
+								$("#refundPrice").parent().show();
+								$("#profit").parent().show();
 								$("#refundPoint").text("학원귀책 " + data.faultDays + " 회분");
-								$("#refundPrice").text(data.refundPrice);
-								$("#profit").text(data.profit);
+								$("#refundPrice").text(data.refundPrice + " 원");
+								$("#profit").text(data.profit + " 원");
 							}
 							
 							$("#purNoForModify").val(data.purchaseNo);
@@ -842,6 +851,9 @@ fieldset {
 			function modifyDetail(){
 				$("#detailView").hide();
 				$("#detailModify").show();
+				$("#couponArea").hide();
+				$("#studentArea").hide();
+				$("#academyArea").hide();
 				var num = $("#purNoForModify").val();
 				
 				$.ajax({
@@ -869,9 +881,11 @@ fieldset {
 									if(data.faultDays == 0) {
 										$("#note").val("student").prop("selected", true);
 										$("#rfdDay").val(data.refundDay);
+										$("#studentArea").show();
 									} else {
 										$("#note").val("academy").prop("selected", true);
 										$("#faultDays").val(data.faultDays);
+										$("#academyArea").show();
 									}
 								} else if(data.payMemo == "BENEFIT") {
 									$("#note").val("coupon").prop("selected", true);

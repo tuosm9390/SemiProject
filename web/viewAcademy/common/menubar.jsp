@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*, java.text.SimpleDateFormat"%>
+	pageEncoding="UTF-8" import="hagong.academy.common.member.model.vo.*, java.text.SimpleDateFormat, java.util.*, hagong.academy.mngAdmin.mngLevel.model.vo.*"%>
 <%
 	Member loginUser = (Member) session.getAttribute("loginUser");
 
@@ -9,7 +9,7 @@
 	int purYear = Integer.parseInt(todayArr[0]);
 	int purMonth = Integer.parseInt(todayArr[1]);
 
-	
+	ArrayList<MngLevel> list = (ArrayList<MngLevel>) request.getSession().getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -265,10 +265,16 @@ section {
 						style="margin-right: 4%; background: none; border: none; font-size: large;">
 						<%= loginUser.getName() %>님
 					</button>
+				<% if(!loginUser.getUserId().equals("admin")) {%>
 					<button
                   style="margin-left: 15px; background: none; border: none; text-decoration: underline;"
                   onclick="location.href='<%= request.getContextPath() %>/adetail.ps?type=view&no=<%= loginUser.getUserNo()%>'">개인정보 관리</button>
 				</div>
+				<% } else { %>
+					<label
+                  style="background: none; border: none; margin-top:2px;"
+                  >접속을 환영합니다 : )</label>
+				<% } %>
 				<% }%>
 			</div>
 		</div>

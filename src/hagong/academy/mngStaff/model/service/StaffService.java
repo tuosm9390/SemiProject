@@ -20,7 +20,6 @@ public class StaffService {
 		Connection con = getConnection();
 		ArrayList<Staff> staffList = new StaffDao().staffList(con, curPage, limit);
 		close(con);
-		System.out.println(staffList);
 		return staffList;
 	}
 
