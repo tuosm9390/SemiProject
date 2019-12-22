@@ -346,6 +346,7 @@ public class ClassDao {
 				while(rset.next()) {
 					Class c = new Class();
 					
+					c.setClsNo(rset.getInt("CLS_NO"));
 					c.setSubId(rset.getString("SUB_ID"));
 					c.setClsName(rset.getString("CLS_NAME"));
 					c.setName(rset.getString("NAME"));
@@ -379,6 +380,7 @@ public class ClassDao {
 				while(rset.next()) {
 					Class c = new Class();
 					
+					c.setClsNo(rset.getInt("CLS_NO"));
 					c.setSubId(rset.getString("SUB_ID"));
 					c.setClsName(rset.getString("CLS_NAME"));
 					c.setName(rset.getString("NAME"));
@@ -412,6 +414,7 @@ public class ClassDao {
 				while(rset.next()) {
 					Class c = new Class();
 					
+					c.setClsNo(rset.getInt("CLS_NO"));
 					c.setSubId(rset.getString("SUB_ID"));
 					c.setClsName(rset.getString("CLS_NAME"));
 					c.setName(rset.getString("NAME"));

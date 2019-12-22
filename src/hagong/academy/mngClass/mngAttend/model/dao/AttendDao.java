@@ -86,6 +86,7 @@ public class AttendDao {
 				while(rset.next()) {
 					ClassSubject cs = new ClassSubject();
 					
+					cs.setClsNo(rset.getInt("CLS_NO"));
 					cs.setSubId(rset.getString("SUB_ID"));
 					cs.setClsName(rset.getString("CLS_NAME"));
 					cs.setName(rset.getString("NAME"));
@@ -117,6 +118,7 @@ public class AttendDao {
 				while(rset.next()) {
 					ClassSubject cs = new ClassSubject();
 					
+					cs.setClsNo(rset.getInt("CLS_NO"));
 					cs.setSubId(rset.getString("SUB_ID"));
 					cs.setClsName(rset.getString("CLS_NAME"));
 					cs.setName(rset.getString("NAME"));
@@ -148,6 +150,7 @@ public class AttendDao {
 				while(rset.next()) {
 					ClassSubject cs = new ClassSubject();
 					
+					cs.setClsNo(rset.getInt("CLS_NO"));
 					cs.setSubId(rset.getString("SUB_ID"));
 					cs.setClsName(rset.getString("CLS_NAME"));
 					cs.setName(rset.getString("NAME"));

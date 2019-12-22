@@ -86,33 +86,30 @@
             if(pwd1 != pwd2) {
             	console.log("다름");
                $("#checkPwd").show();
-               
-               
-               $("#okBtn").click(function(){
-            	   console.log('다를때 온클릭');
-            	  swal ({
-	       				text: "비밀번호와 비밀번호 확인이 일치하지 않습니다.",
-	       				icon: "warning",
-	       				button: "확인"
-       				});
-       				
-               });
+                        
             }else {
             	console.log("같음");
                $("#checkPwd").hide();
               	
                $("#okBtn").click(function() {
-            	   console.log("온클릭됐음");
-            	   //영문,숫자,특수문자 혼합하여 8자리~20자리 이내.(비밀번호 표준)
-            	  /* 	var num = pwd1.search(/[0-9]/g);
-            	    var eng = pwd1.search(/[a-z]/ig);
-            	    var spe = pwd1.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); */
-            	   if((pwd1!='0000' && pwd2!='0000') && (pwd1.length > 8 || pwd1.length < 20)) {
-           	 	
-	       			$.ajax({
+            	console.log("온클릭됐음");
+   				var userPwd = pwd2;
+
+				var pw = userPwd;
+				var num = pw.search(/[0-9]/g);
+				var eng = pw.search(/[a-z]/ig);
+				var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+				if(pw.length < 8 || pw.length > 20){
+					alert('비밀번호는 8~20자 사이로 설정해 주세요.');
+				} else if(pw.search(/₩s/) != -1){
+					alert('비밀번호는 공백 없이 설정해 주세요.');
+				} else if(num < 0 || eng < 0 || spe < 0 ){
+					alert('비밀번호는 영문자,숫자,특수문자를 혼합해 설정해 주세요.');
+				} else {
+					$.ajax({
 	       				url: "<%=request.getContextPath()%>/firstUpdate2.cm",
 	       				data: {
-	       					pwd2:pwd2
+	       					pwd2:userPwd
 	       				},
 	       				type: "post",
 	       				success: function(data) {
@@ -127,22 +124,13 @@
 	       				error: function(data) {	       					
 	       				}
 	       			});
-            	   }else {
-            		   swal ({
-   	       				text: "변경하실 비밀번호는 영문, 숫자, 특수문자를 혼합하여 8자리 ~ 20자리 이내로 입력해주세요.",
-   	       				icon: "warning",
-   	       				button: "확인"
-          				});
-            	   }
-       			});
-               
-               
-            
-         		}
-         	}
-      });
-      
-      
+				} //if문 끝
+				
+               }); //ok버튼 온클릭 끝
+            } //else문 끝
+         } 
+});
+    
    </script>
 </body>
 </html>

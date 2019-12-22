@@ -23,8 +23,11 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("userPwd");
 		
-		if(!password.equals("0000")) {
+		System.out.println("password : " + password);
+		
+		if(!password.equals("xgAdWyrD3zFCBKj516AOFQPJq6D9RThkXeS/TMfiVVz+n/nQI2vzJ+0+kHhJqY300zDEvqVRAX1GW0wdm4C8sA==")) {
 			//최초 로그인이 아닐 때
+			System.out.println("최초로그인 아님..");
 			Member requestMember = new Member();
 			requestMember.setUserId(userId);
 			requestMember.setUserPwd(password);
