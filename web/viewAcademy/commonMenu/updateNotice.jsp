@@ -59,8 +59,8 @@
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
-					<button  id="delete" style="margin-right:5px;">삭제하기</button>
-					<button  id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정 완료</button>
+					<button  id="delete" style="margin-right:5px;">삭제</button>
+					<button  id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정</button>
 				</div>
 			</form>
 				<script>
@@ -94,10 +94,10 @@
 				}).then(function(isConfirm){
 					if(isConfirm){
 						swal({
-							title:"삭제되었습니다",
+							title:"삭제완료",
 							icon:"success"
 						}).then(function(){
-							location.href='<%=request.getContextPath()%>/alist.no';
+							location.href='<%=request.getContextPath()%>/alist.no?currentPage=1';
 						})
 					}
 					
