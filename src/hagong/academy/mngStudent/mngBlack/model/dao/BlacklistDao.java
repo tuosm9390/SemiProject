@@ -19,7 +19,7 @@ public class BlacklistDao {
 	Properties prop = new Properties();
 	
 	public BlacklistDao() {
-		String fileName = CounselingDao.class.getResource("/sql/blacklist.properties").getPath();
+		String fileName = CounselingDao.class.getResource("/sql/student/blacklist-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));
@@ -102,6 +102,9 @@ public class BlacklistDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		return blacklist;
@@ -254,6 +257,9 @@ public class BlacklistDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
 		}
 		
 		return blacklist;
