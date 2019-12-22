@@ -148,6 +148,7 @@ select {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+		<% if(loginUser != null) { %>
 		<div align="center">
 			<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 				<legend align="center" style="font-family:'Do Hyeon';"><h1>　개인정보 수정　</h1></legend>
@@ -420,6 +421,10 @@ select {
 				}
 			}
 		</script>
+		<% } else { 
+		request.setAttribute("errorCode", "NotFoundError");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+	   } %>
 	</section>
 	<footer>
 	</footer>

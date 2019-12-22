@@ -50,6 +50,18 @@
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
+	   
+	<%-- <%  int viewLevel = 0;
+		int modiLevel = 0;
+		for(int i = 0; i < menuLevelList.size(); i++) {
+			if(menuLevelList.get(i).getMmid().equals("MODIFYINFO1")) {
+				viewLevel = menuLevelList.get(i).getMlevel();
+			}  else if(menuLevelList.get(i).getMmid().equals("MODIFYINFO2")) {
+				modiLevel = menuLevelList.get(i).getMlevel();
+			}
+		}
+	%> --%>
+	<%-- <% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %> --%>
 	<div class="background">	
 	<div align="center" id="container">
 		<form id="loginArea" method="post">
@@ -94,5 +106,9 @@
 			});
 		}
 	</script>
+	<% } else { 
+		request.setAttribute("errorCode", "NotFoundError");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+	   } %>
 </body>
 </html>

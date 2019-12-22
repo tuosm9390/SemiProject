@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 			
 			if(loginUser != null) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				page = "aselect.level";
+				page = "/aselect.level";
 			}else {
 				page = "viewAcademy/common/commonError.jsp";
 				request.setAttribute("errorCode", "loginFail");

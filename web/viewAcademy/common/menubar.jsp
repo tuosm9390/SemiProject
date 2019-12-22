@@ -9,7 +9,10 @@
 	int purYear = Integer.parseInt(todayArr[0]);
 	int purMonth = Integer.parseInt(todayArr[1]);
 
-	ArrayList<MngLevel> list = (ArrayList<MngLevel>) request.getSession().getAttribute("list");
+	ArrayList<MenuLevel> menuLevelList = null;
+	if(loginUser != null) {
+		menuLevelList = (ArrayList<MenuLevel>) request.getSession().getAttribute("list");
+	}
 %>
 <!DOCTYPE html>
 <html>

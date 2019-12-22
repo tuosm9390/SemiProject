@@ -3,7 +3,6 @@ package hagong.academy.mngAdmin.mngLevel.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hagong.academy.mngAdmin.mngLevel.model.service.MngLevelService;
-import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
+import hagong.academy.mngAdmin.mngLevel.model.vo.MenuLevel;
 
 /**
  * Servlet implementation class SelectMenuLevelServlet
@@ -33,7 +32,7 @@ public class SelectMenuLevelServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<MngLevel> list = new ArrayList<MngLevel>();
+		ArrayList<MenuLevel> list = new ArrayList<MenuLevel>();
 		
 		list =	new MngLevelService().selectMngLevel();
 		
