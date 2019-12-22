@@ -333,4 +333,20 @@ public class PurchaseDao {
 		return purchase;
 	}
 
+	public int updatePayPrice(Connection con, Purchase purchase) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updatePayPrice");
+		try {
+			pstmt = con.prepareStatement(query);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }
