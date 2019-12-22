@@ -72,8 +72,8 @@ int picket = (int)Math.round((list.get(6).getInPicket()/(double)sum)*100);
 int friend = (int)Math.round((list.get(6).getInFriend()/(double)sum)*100);
 int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 %>
-
 	<header><%@ include file="/viewAcademy/common/menubar.jsp" %></header>
+<% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 <%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")) {%>/ --%>
 	<section>
 <div class="outer">
@@ -129,6 +129,10 @@ int etc = (int)Math.round((list.get(6).getInEtc()/(double)sum)*100);
 		<div id="chart8"></div>
 	</div>
 </div><!-- outer end -->
+<% } else{ 
+		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request,response);
+	}%>
 	<script>
 		var options = {
 			'legend':{

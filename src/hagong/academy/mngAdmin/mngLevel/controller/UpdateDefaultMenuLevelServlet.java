@@ -35,12 +35,12 @@ public class UpdateDefaultMenuLevelServlet extends HttpServlet {
 		
 		if(result > 0 ) {
 			page = "aselect.level";
-			response.sendRedirect(page);
+		
 			
 		}else {
 			page = "errorPage.jsp";
-			request.getRequestDispatcher(page).forward(request, response);
 		}
+		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

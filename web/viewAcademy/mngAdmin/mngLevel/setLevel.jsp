@@ -74,7 +74,7 @@ border-right: none;
 <body>
    <header>
     <%@ include file="/viewAcademy/common/menubar.jsp"%>
-
+<% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
    </header>
    <section>
       <article> 
@@ -90,7 +90,7 @@ border-right: none;
          </div>
          <!--  -->
          <div align="center">
-            <form name="menuLevel" method="post" id="menuLevel">
+          <form name="menuLevel" method="post" id="menuLevel" action="<%=request.getContextPath()%>/aupdate.level">
                <table class="table">
                   <tr align="right" class="fixed-header">
                      <th>&nbsp;</th>
@@ -398,13 +398,17 @@ border-right: none;
                </table>
                <div class="btndiv">
                <button class="btns" type="button"  onclick="submitt()">적용</button>
-               <button class="btns" type="button" onclick="default()">기본값 설정</button>
+               <button class="btns" type="button" onclick="defaultt()">기본값 설정</button>
                </div>
             </form>
                <br> <br>
          </div>
       </article>
    </section>
+   <% } else{ 
+		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request,response);
+	}%>
    <script>
    
    
@@ -499,11 +503,30 @@ border-right: none;
 			  if (value) {
 			    swal("제출되었습니다!", {});
 			    //ok 눌렀을떄 폼 전송
-			    $("#menuLevel").attr("action", "<%=request.getContextPath()%>/aupdate.level");
+		
+			    
+			    $("#menuLevel").submit();
 			    console.log("완료");
 			  } 
 			});
 	}
+  function defaultt(){
+		swal({
+			  text: "제출 하시겠습니까?",
+			  buttons: true,
+			})
+			.then((value) =>{
+			  if (value) {
+			    swal("제출되었습니다!", {});
+			    //ok 눌렀을떄 폼 전송
+				
+			    location.href="<%=request.getContextPath()%>/aupdateDefault.level";
+			   
+			    console.log("완료");
+			  } 
+			});
+	}
+
    </script>
 </body>
 </html>
