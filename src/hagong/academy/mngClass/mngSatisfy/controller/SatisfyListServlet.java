@@ -79,9 +79,6 @@ public class SatisfyListServlet extends HttpServlet {
 		// 검색관련 값 받아오기
 		String srchCnt = request.getParameter("searchSatis");
 
-		System.out.println("condition : " + searchCondition);
-		System.out.println("srchCnt : " + srchCnt);
-		
 		ArrayList<SatisfyInfo> list = null;
 		if((searchCondition == null || srchCnt == null) || (searchCondition.equals("null") || srchCnt.equals("null"))) {
 			list = new SatisfyService().selectList(currentPage, limit);

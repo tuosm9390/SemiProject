@@ -1,11 +1,14 @@
 package hagong.academy.mngClass.mngSatisfy.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import hagong.academy.mngClass.mngSatisfy.model.service.SatisfyService;
 
 /**
  * Servlet implementation class DeleteSatisfyServlet
@@ -26,10 +29,20 @@ public class DeleteSatisfyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String satNo = request.getParameter("satNo");
-		System.out.println("satNo : " + satNo);
+		int satNo = Integer.parseInt(request.getParameter("satNo"));
+		
+		int result = new SatisfyService().deleteSatis(satNo);
+
+		String page = "";
+		if(result > 0) {
+			page = "alist.satis";
+			response.sendRedirect(page);
+		} else {
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "deleteSatisfyFail");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
+		
 	}
 
 	/**

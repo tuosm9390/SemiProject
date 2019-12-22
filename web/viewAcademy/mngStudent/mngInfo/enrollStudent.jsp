@@ -55,6 +55,8 @@ input[type='file'] {
 section button {
 	font-size: 18px;
 	margin-left: 1%;
+	padding-top: 0;
+	padding-bottom: 0;
 	font-weight: bold;
 	border: 2px solid green;
 }
@@ -189,9 +191,9 @@ section button:hover {
 							<tr>
 								<td></td>
 								<td><li>희망대학 / 학과 (*)</li></td>
-								<td><input type="text" placeholder="희망 대학 입력" name="college" style="width: 110px;" value="">
+								<td><input type="text" placeholder="희망 대학 입력" id="college" name="college" style="width: 110px;" value="">
 									<label style="color: black;">대학교</label>&emsp;
-									<input type="text" placeholder="희망 학과 입력" name="major" style="width: 110px;" value=""></td>
+									<input type="text" placeholder="희망 학과 입력" id="major" name="major" style="width: 110px;" value=""></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -414,7 +416,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 								}
 							},
 							error : function() {
-								console.log("Failed");
 							}
 						});
 					} else {
@@ -501,7 +502,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 								}
 							},
 							error : function(data) {
-								console.log("Failed");
 							}
 						});
 					} else {
@@ -538,6 +538,12 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 				return false;
 			} else if ($("#datepicker").val() === "") {
 				alert("생년월일을 확인해 주세요.");
+				return false;
+			} else if ($("#college").val() === ""){
+				alert("희망대학을 입력해주세요.");
+				return false;
+			} else if ($("#major").val() === ""){
+				alert("희망학과를 입력해주세요.");
 				return false;
 			} else if ($("#refidSpan").prop("class") === "redText"){
 				alert("학부모 ID를 확인해 주세요.");

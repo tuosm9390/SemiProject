@@ -21,6 +21,8 @@
 <style>
 section button {
 	float: right;
+	padding-top: 0;
+	padding-bottom: 0;
 	margin-bottom: 5px;
 	margin-left: 1%;
 	font-size: 18px;

@@ -26,7 +26,7 @@ public class SatisfyService {
 	public ArrayList<SatisfyInfo> selectBenList() {
 		Connection con = getConnection();
 		ArrayList<SatisfyInfo> blist = new SatisfyDao().selectBenList(con);
-		
+
 		close(con);
 
 		return blist;
@@ -55,14 +55,11 @@ public class SatisfyService {
 	}
 
 	public int deleteBen(int benNo) {
-		System.out.println("삭제서비스");
 		Connection con = getConnection();
 		int result = new SatisfyDao().deleteBen(con, benNo);
 		if (result > 0) {
-			System.out.println("삭제성공");
 			commit(con);
 		} else {
-			System.out.println("삭제실패");
 			rollback(con);
 		}
 		return result;
@@ -85,7 +82,6 @@ public class SatisfyService {
 					commit(con);
 					// 문항의 번호 뽑아옴
 					int selectQueNo = new SatisfyDao().selectQueNo(con, qrr[i], selectSatNo);
-					System.out.println("selectQueNo : " + selectQueNo);
 					// 답변목록 입력
 					int aresult = 0;
 					for (int j = 0; j < arr.length; j++) {
@@ -115,8 +111,8 @@ public class SatisfyService {
 
 	public int updateSatis(SatisfyInfo si, String[] qrr, String[] arr, String[] questionNum, String[] answerNum) {
 		Connection con = getConnection();
-		int result = new SatisfyDao().updateSatis(con, si);
 
+		int result = new SatisfyDao().updateSatis(con, si);
 		if (result > 0) {
 			commit(con);
 			int ansdel = new SatisfyDao().deleteans(con, si);
@@ -168,21 +164,48 @@ public class SatisfyService {
 
 	public int listCount() {
 		Connection con = getConnection();
-		
+
 		int listCount = new SatisfyDao().listCount(con);
-		
+
 		close(con);
-		
+
 		return listCount;
 	}
 
 	public ArrayList<SatisfyInfo> selectList(int currentPage, int limit, String searchCondition, String srchCnt) {
 		Connection con = getConnection();
 		ArrayList<SatisfyInfo> list = new SatisfyDao().selectList(con, currentPage, limit, searchCondition, srchCnt);
-		
+
 		close(con);
-		
+
 		return list;
+	}
+
+	public int deleteSatis(int satNo) {
+		Connection con = getConnection();
+		int result = 0;
+		int ansdel = new SatisfyDao().deleteans(con, satNo);
+		if (ansdel > 0) {
+			commit(con);
+			int quedel = new SatisfyDao().deleteque(con, satNo);
+			if (quedel > 0) {
+				commit(con);
+				result = new SatisfyDao().deleteSatis(con, satNo);
+				if (result > 0) {
+					commit(con);
+				} else {
+					rollback(con);
+				}
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return result;
 	}
 
 }

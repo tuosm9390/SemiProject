@@ -30,14 +30,19 @@ public class DeleteStudentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Student loginUser = (Student) request.getSession().getAttribute("loginUser");
-		String userId = loginUser.getUserId();
+		String userId = request.getParameter("userId");
 		
-		Student s = new Student();
-		s.setUserId(userId);
+		int result = new StudentService().deleteStudent(userId);
 		
-		int result = new StudentService().deleteStudent(s);
-		
+		String page = "";
+		if(result > 0) {
+			page = "alist.info";
+			response.sendRedirect(page);
+		} else {
+			page = "/viewAcademy/common/commonError.jsp";
+			request.setAttribute("errorCode", "deleteStudentFail");
+			request.getRequestDispatcher(page).forward(request, response);
+		}
 	}
 
 	/**

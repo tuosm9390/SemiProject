@@ -84,9 +84,6 @@ public class StudentListServlet extends HttpServlet {
 		String searchCondition = request.getParameter("searchCondition");
 		String srchCnt = request.getParameter("searchStudent");
 
-		System.out.println("searchCondition : " + searchCondition);
-		System.out.println("srchCnt : " + srchCnt);
-
 		// 검색기능인지 아닌지 판별하여 값가져오기
 		ArrayList<Student> list = null;
 		if ((searchCondition == null || srchCnt == null)
@@ -106,7 +103,6 @@ public class StudentListServlet extends HttpServlet {
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectStudentListFail");
-			System.out.println("학생 리스트 조회 실패");
 		}
 
 		request.getRequestDispatcher(page).forward(request, response);

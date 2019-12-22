@@ -32,10 +32,8 @@ public class SatisfyResult extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int satNo = Integer.parseInt(request.getParameter("satNo"));
-		System.out.println(satNo);
 		
 		ArrayList<HashMap<String, Object>> list = new SatisfyService().selectSatis(satNo);
-		System.out.println("list : " + list);
 		
 		String page = "";
 		if(list != null) {

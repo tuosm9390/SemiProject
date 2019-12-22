@@ -23,7 +23,6 @@ public class StudentService {
 		Connection con = getConnection();
 
 		int userNo = new StudentDao().findUserNo(con, userId);
-		System.out.println("userNo : " + userNo);
 
 		close(con);
 
@@ -32,7 +31,6 @@ public class StudentService {
 
 	public int insertParent(Student s) {
 		Connection con = getConnection();
-		System.out.println("부모생성서비스");
 		int refresult = new StudentDao().insertParent(con, s);
 
 		if (refresult > 0) {
@@ -51,23 +49,18 @@ public class StudentService {
 
 		int result = new StudentDao().insertMember(con, s);
 
-		System.out.println("result : " + result);
 		if (result > 0) {
 			int studentNo = new StudentDao().selectUserNo(con, s);
 			s.setUserNo(studentNo);
-			System.out.println("studentNo : " + studentNo);
 			for (int i = 0; i < fileList.size(); i++) {
 				fileList.get(i).setUserNo(studentNo);
 			}
 
 			commit(con);
 			int result1 = new StudentDao().insertStudent(con, s);
-			System.out.println("result1 : " + result1);
 			if (result1 > 0) {
 				commit(con);
 				int result2 = new StudentDao().insertStudentHope(con, s);
-
-				System.out.println("result2 : " + result2);
 				if (result2 > 0) {
 					commit(con);
 					int resultFile = new StudentDao().insertFile(con, fileList);
@@ -110,7 +103,6 @@ public class StudentService {
 				commit(con);
 				// 학교 정보수정
 				int result2 = new StudentDao().updateStudent(con, s);
-				System.out.println(s.getGrade());
 				if (result2 > 0) {
 					commit(con);
 					// 희망학교학과 정보수정
@@ -156,10 +148,10 @@ public class StudentService {
 		return result;
 	}
 
-	public int deleteStudent(Student s) {
+	public int deleteStudent(String userId) {
 		Connection con = getConnection();
 
-		int result = new StudentDao().deleteStudent(con, s);
+		int result = new StudentDao().deleteStudent(con, userId);
 
 		if (result > 0) {
 			commit(con);
@@ -231,7 +223,6 @@ public class StudentService {
 	}
 
 	public ArrayList<Student> searchScore(String condition, String op, String userId) {
-		System.out.println("condition : " + condition);
 		Connection con = getConnection();
 		ArrayList<Student> list = null;
 		if (condition.equals("YEAR")) {
