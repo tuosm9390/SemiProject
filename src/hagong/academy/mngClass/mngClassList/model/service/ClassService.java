@@ -11,6 +11,7 @@ import hagong.academy.mngClass.mngClassList.model.dao.ClassDao;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngClass.mngClassList.model.vo.Classroom;
 import hagong.academy.mngStudent.mngBlack.model.dao.BlacklistDao;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 
 public class ClassService {
 
@@ -170,12 +171,12 @@ public class ClassService {
 		return result;
 	}
 
-	public ArrayList<Class> searchClass(String selectCondition, String searchWord) {
+	public ArrayList<Class> selectClassList(int currentPage, int limit, String selectCondition, String searchWord) {
 		Connection con = getConnection();
-		
-		ArrayList<Class> list = new ClassDao().searchClass(con, selectCondition, searchWord);
+		ArrayList<Class> list = new ClassDao().selectClassList(con, currentPage, limit, selectCondition, searchWord);
 		
 		close(con);
+		
 		
 		return list;
 	}

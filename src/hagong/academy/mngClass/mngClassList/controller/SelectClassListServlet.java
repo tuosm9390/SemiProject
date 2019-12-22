@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import hagong.academy.mngClass.mngClassList.model.service.ClassService;
 import hagong.academy.mngClass.mngClassList.model.vo.Class;
 import hagong.academy.mngStudent.mngBlack.model.service.BlacklistService;
+import hagong.academy.mngStudent.mngBlack.model.vo.BlacklistInfo;
 import hagong.academy.mngStudent.mngCouns.model.vo.PageInfo;
 
 @WebServlet("/alistClassList.class")
@@ -44,11 +45,7 @@ public class SelectClassListServlet extends HttpServlet {
 				
 				//전체 목록 갯수 조회
 				int listCount = new ClassService().listCount();
-				
-				//System.out.println("listCount : " + listCount);
-						
-				//		System.out.println("listCount : " + listCount);
-				
+
 				//총 페이지 수 계산
 				//예를들면 목록 수가 126개이면 페이지는 13페이지가 필요함
 				//짜투리 목록이 최소 1개일 때, 1페이지가 추가되는 로직 작성
@@ -73,20 +70,32 @@ public class SelectClassListServlet extends HttpServlet {
 				int startRow = (currentPage - 1) * limit + 1;
 				int endRow = startRow + limit -1;
 				
-				ArrayList<Class> list = new ClassService().selectClassList(currentPage, limit);
-		
-		String page = "";
-		if(list != null) {
-			page = "viewAcademy/mngClass/mngClassList/classList.jsp";
-			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
-			request.setAttribute("check", "paging");
-		}else {
-			page = "viewAcademy/common/commonError.jsp";
-			request.setAttribute("errorCode", "selectClassListFailed");
-		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
+				//검색 결과값 받아오기
+				//검색관련 값 받아오기
+				String selectCondition = request.getParameter("selectCondition");
+				String searchWord = request.getParameter("searchWord");
+				
+				//검색기능인지 아닌지 판별하여 값가져오기
+				ArrayList<Class> list = null;
+				if((selectCondition == null || searchWord == null) || (selectCondition.equals("null") || searchWord.equals("null"))) {
+					list = new ClassService().selectClassList(currentPage, limit);		
+				}else {
+					list = new ClassService().selectClassList(currentPage, limit, selectCondition, searchWord);			
+				}
+				
+				String page = "";
+				if(list != null) {
+					page = "viewAcademy/mngClass/mngClassList/classList.jsp";
+					request.setAttribute("searchCondition", selectCondition);
+					request.setAttribute("srchCnt", searchWord);
+					request.setAttribute("list", list);
+					request.setAttribute("pi", pi);
+				}else {
+					page = "viewAcademy/common/commonError.jsp";
+					request.setAttribute("errorCode", "selectClassListFailed");
+				}
+				
+				request.getRequestDispatcher(page).forward(request, response);
 
 	}
 
