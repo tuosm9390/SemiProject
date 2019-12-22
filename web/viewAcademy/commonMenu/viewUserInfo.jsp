@@ -125,6 +125,7 @@ img {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
+	<% if(loginUser != null) { %>
 		<div align="center">
 			<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 				<legend align="center" style="font-family:'Do Hyeon';"><h1>　<%= userDetail.get(0).getName() %> 님의 개인정보　</h1></legend>
@@ -245,6 +246,10 @@ img {
 				}
 			});
 		</script>
+		<% } else { 
+		request.setAttribute("errorCode", "NotFoundError");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+	   } %>
 	</section>
 	<footer>
 	</footer>

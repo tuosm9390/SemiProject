@@ -1,5 +1,7 @@
 package hagong.academy.mngAdmin.mngLevel.model.dao;
 
+import static hagong.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import hagong.academy.mngAdmin.mngLevel.model.vo.MenuLevel;
 import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
-import static hagong.common.JDBCTemplate.*;
 public class MngLevelDao {
 	private Properties prop = new Properties();
 	
@@ -89,10 +91,10 @@ public class MngLevelDao {
 		
 		return result;
 	}
-	public ArrayList<MngLevel> selectMngLevel(Connection con) {
+	public ArrayList<MenuLevel> selectMngLevel(Connection con) {
 		Statement stmt  = null;
 		ResultSet rset = null;
-		ArrayList<MngLevel> list = new ArrayList<MngLevel>();
+		ArrayList<MenuLevel> list = new ArrayList<MenuLevel>();
 		String query = prop.getProperty("selectMngLevel");
 		
 		try {
@@ -101,19 +103,21 @@ public class MngLevelDao {
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				MngLevel m = new MngLevel();
+				/*MngLevel m = new MngLevel();
 				m.setAttend1(rset.getInt(3));
+				list.add(m);*/
+				MenuLevel m = new MenuLevel();
+				m.setMmid(rset.getString(1));
+				m.setMmtitle(rset.getString(2));
+				m.setMlevel(rset.getInt(3));
 				list.add(m);
-			
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(stmt);
 			close(rset);
 		}
-	
 		return list;
 	}
 	

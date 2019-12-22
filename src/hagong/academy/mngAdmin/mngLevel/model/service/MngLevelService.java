@@ -1,11 +1,16 @@
 package hagong.academy.mngAdmin.mngLevel.model.service;
 
-import hagong.academy.mngAdmin.mngLevel.model.dao.MngLevelDao;
-import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
-import static hagong.common.JDBCTemplate.*;
+import static hagong.common.JDBCTemplate.close;
+import static hagong.common.JDBCTemplate.commit;
+import static hagong.common.JDBCTemplate.getConnection;
+import static hagong.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import hagong.academy.mngAdmin.mngLevel.model.dao.MngLevelDao;
+import hagong.academy.mngAdmin.mngLevel.model.vo.MenuLevel;
+import hagong.academy.mngAdmin.mngLevel.model.vo.MngLevel;
 public class MngLevelService {
 	// 메뉴 업데이트 
 	public int updateMngLevel(MngLevel m) {
@@ -23,11 +28,11 @@ public class MngLevelService {
 	}
  
 	// 권한 조회
-	public ArrayList<MngLevel> selectMngLevel() {
+	public ArrayList<MenuLevel> selectMngLevel() {
 		
 		Connection con = getConnection();
 		
-		ArrayList<MngLevel> list = new MngLevelDao().selectMngLevel(con);
+		ArrayList<MenuLevel> list = new MngLevelDao().selectMngLevel(con);
 		
 		close(con);
 		
