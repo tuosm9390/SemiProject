@@ -16,6 +16,7 @@
 	
 	String srchCnt = (String) request.getAttribute("searchWord");
 	String searchCondition = (String) request.getAttribute("searchCondition");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -136,7 +137,22 @@
 <body>
 	<header>
 		<%@ include file="../../common/menubar.jsp" %>
-	</header>
+	</header>	
+	  <% 	int viewListLevel = 0;
+	   	 	int viewDetailLevel = 0;
+	    	int modiLevel = 0;
+	    	
+	    for(int i = 0; i < menuLevelList.size(); i++) {
+	       if(menuLevelList.get(i).getMmid().equals("STAFF1")) {
+	          viewListLevel = menuLevelList.get(i).getMlevel();
+	       } else if(menuLevelList.get(i).getMmid().equals("STAFF2")) {
+	          viewDetailLevel = menuLevelList.get(i).getMlevel();
+	       } else if(menuLevelList.get(i).getMmid().equals("STAFF3")) {
+	          modiLevel = menuLevelList.get(i).getMlevel();
+	       }
+	    }
+	    
+	    if(loginUser != null && loginUser.getLevel() <= viewListLevel) { %>
 	<section>
 	<div class="listArea">
 		<div align="center">
@@ -543,6 +559,10 @@
 		
 	</script>
 	</section>
+	<% } else { 
+      request.setAttribute("errorCode", "NotFoundError");
+      request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+      } %>
 	<footer></footer>
 </body>
 </html>
