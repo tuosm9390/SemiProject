@@ -274,6 +274,9 @@ public class PurchaseDao {
 				double beneRate = rset.getInt("BEN_RATE");
 				double refundRate;
 				String oldRefundRate = rset.getString("RFD_RATE");
+				if(purchase.getRefundPoint() == null) {
+					purchase.setRefundPoint("");
+				}
 				if(oldRefundRate.equals("ALL")) {
 					refundRate = 1;
 				} else if(oldRefundRate.equals("2N3")) {

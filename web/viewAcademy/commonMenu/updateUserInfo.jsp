@@ -25,6 +25,8 @@
 		userDetail.get(0).setAddress("");
 	}
 	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -148,18 +150,6 @@ select {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<%  int viewLevel = 0;
-		int modiLevel = 0;
-		for(int i = 0; i < menuLevelList.size(); i++) {
-			if(menuLevelList.get(i).getMmid().equals("MODIFYINFO1")) {
-				viewLevel = menuLevelList.get(i).getMlevel();
-			}  else if(menuLevelList.get(i).getMmid().equals("MODIFYINFO2")) {
-				modiLevel = menuLevelList.get(i).getMlevel();
-			}
-		}
-	%>
-	
-	<% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %>
 		<div align="center">
 			<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 				<legend align="center" style="font-family:'Do Hyeon';"><h1>　개인정보 수정　</h1></legend>
@@ -366,7 +356,7 @@ select {
 				$("#imgBtn").click(function(){
 					$("#imgFile").click();
 				});
-				0
+				
 				$("#docBtn").click(function(){
 					$("#docFile" + docCnt).click();
 				});
@@ -411,16 +401,15 @@ select {
 				}
 				
 				if(window.confirm("정말로 수정하시겠습니까?")) {
-					if($("#pwdSpan").prop("class") === "redText" && $("#copyPwd").val() != ' ') {
+					if($("#copyPwd").val() == " ") {
+						alert("비밀번호를 입력해 주세요.")
+					} else if($("#pwdSpan").prop("class") === "redText" && $("#copyPwd").val() != ' ') {
 						alert("부적합한 비밀번호 입니다.");
 					} else if($("#pwdCkSpan").prop("class") === "redText" && $("#copyPwd").val() != ' ') {
 						alert("비밀번호 확인이 틀렸습니다.");
 					} else if($("#tel1").val() === "" || $("#tel2").val() === "" || $("#tel3").val() === "") {
 						alert("전화번호를 확인해 주세요.");
 					} else {
-						if($("#copyPwd").val() == ' ') {
-							$("#userPwd").val(<%= loginUser.getUserPwd() %>);							
-						}
 						$("#updateForm").submit();
 					}
 				}
@@ -428,14 +417,10 @@ select {
 			
 			function doCancel(){
 				if(window.confirm("수정을 취소하시겠습니까?")) {
-					location.href = "<%= request.getContextPath() %>/viewAcademy/commonMenu/viewUserInfo.jsp";
+					location.href = "<%= request.getContextPath() %>/adetail.ps?type=view&no=<%= loginUser.getUserNo()%>";
 				}
 			}
 		</script>
-		<% } else { 
-		request.setAttribute("errorCode", "NotFoundError");
-		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
-	   } %>
 	</section>
 	<footer>
 	</footer>
