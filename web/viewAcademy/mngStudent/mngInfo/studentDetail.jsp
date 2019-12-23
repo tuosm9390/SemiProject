@@ -144,7 +144,7 @@ input[type=file]{
 				<option value="SUB_ID">과목</option>
 			</select>
 			<!-- 학생 성적 테이블 -->
-			<table id="score" class="table" id="point" style="width: 95.7%;">
+			<table id="score" class="table" id="point" style="width: 97%;">
 				<thead>
 					<tr>
 						<th style='width: 119px;'></th>

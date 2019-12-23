@@ -207,8 +207,7 @@ section {
 				<img src="<%=request.getContextPath()%>/images/notice.png"
 					style="height: 30px;">
 			</h3>
-			<h3 id="sms"
-				onclick="location.href='<%=request.getContextPath()%>/viewAcademy/commonMenu/SMS.jsp'">
+			<h3 id="sms">
 				<img src="<%=request.getContextPath()%>/images/sms.png"
 					style="height: 30px;">
 			</h3>
@@ -292,6 +291,13 @@ section {
 
 	<!-- 스크립트 -->
 	<script>
+		$("#sms").click(function(){
+			var str = "sdfsdkfldfk";
+			swal("★ SMS OPEN 예정 ★\n2019년 12월 32일 오픈!\n조금만 기다려 주세요 : )", {
+	    		buttons : ["확인"],
+	    	})
+		});
+		
 		//로그인 버튼 클릭 시
 		$("#login").click(function() {
        		location.href="<%=request.getContextPath()%>/viewAcademy/common/login.jsp";

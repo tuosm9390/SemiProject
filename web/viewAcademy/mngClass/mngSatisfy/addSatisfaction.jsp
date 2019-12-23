@@ -86,7 +86,7 @@ tr, td {
 							style="border: 1px solid lightgray; border-radius: 5px; height: 30px">
 						<option selected>선택</option>
 						<% for(int i = 0; i < clist.size(); i++) { %>
-						<option value="<%=clist.get(i).getClsNo() %>">
+						<option value="<%=clist.get(i).getClsName() %>">
 						<%=clist.get(i).getClsName() %></option>
 						<% } %>
 					</select>
