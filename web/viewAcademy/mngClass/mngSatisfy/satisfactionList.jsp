@@ -120,13 +120,30 @@ select:focus {
 #searchOption, #searchSatis{
 	display: none;
 }
-<%int test = 1;%>
 </style>
 </head>
 <body>
 	<header>
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
+	<%
+		int viewListLevel = 0;
+		int viewDetailLevel = 0;
+		int modiLevel = 0;
+		for (int i = 0; i < menuLevelList.size(); i++) {
+			if (menuLevelList.get(i).getMmid().equals("SATISFY1")) {
+				viewListLevel = menuLevelList.get(i).getMlevel();
+			} else if (menuLevelList.get(i).getMmid().equals("SATISFY2")) {
+				viewDetailLevel = menuLevelList.get(i).getMlevel();
+			} else if (menuLevelList.get(i).getMmid().equals("SATISFY3")) {
+				modiLevel = menuLevelList.get(i).getMlevel();
+			}
+		}
+		
+	%>
+	<%
+		if (loginUser != null && loginUser.getLevel() <= viewListLevel) {
+	%>
 	<section>
 		<div align="center">
 			<fieldset
@@ -138,14 +155,9 @@ select:focus {
 		</div>
 		<!-- 권한별 버튼 -->
 		<div class="srchArea">
-			<%
-				if (test == 1) {
-			%>
+
 			<button id="addSatisfaction">만족도 조사 등록</button>
 			<button id="benefitBtn">혜택 관리</button>
-			<%
-				}
-			%>
 			<form action="<%= request.getContextPath()%>/alist.satis" method="post">
 				<button class="srchBtn">검색</button>
 				<input type="search" id="searchSatis" name="searchSatis">
@@ -273,6 +285,12 @@ select:focus {
 			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.satis?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
 	<footer> </footer>
+			<%
+				} else {
+					request.setAttribute("errorCode", "NotFoundError");
+					request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+				}
+			%>
 	<script>
 		$("#searchCondition").change(function(){
 			if($(this).val() == "className"){
