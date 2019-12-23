@@ -125,7 +125,18 @@ img {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<% if(loginUser != null) { %>
+	<%  int viewLevel = 0;
+		int modiLevel = 0;
+		for(int i = 0; i < menuLevelList.size(); i++) {
+			if(menuLevelList.get(i).getMmid().equals("MODIFYINFO1")) {
+				viewLevel = menuLevelList.get(i).getMlevel();
+			}  else if(menuLevelList.get(i).getMmid().equals("MODIFYINFO2")) {
+				modiLevel = menuLevelList.get(i).getMlevel();
+			}
+		}
+	%>
+	
+	<% if(loginUser != null && loginUser.getLevel() <= viewLevel) { %>
 		<div align="center">
 			<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 				<legend align="center" style="font-family:'Do Hyeon';"><h1>　<%= userDetail.get(0).getName() %> 님의 개인정보　</h1></legend>
