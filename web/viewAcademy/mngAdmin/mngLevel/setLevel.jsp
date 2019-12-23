@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="hagong.academy.mngAdmin.mngLevel.model.vo.*, java.util.*"%>
    
-   <% ArrayList<MngLevel> list = (ArrayList<MngLevel>) request.getSession().getAttribute("list"); %>
+  
  
   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>HAGONG</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
@@ -334,13 +335,13 @@ border-right: none;
                   <tr>
                   
                      <td>메뉴권한관리</td>
-                     <td><select class="menu" name="menu1" id="menu1"  >
+                     <td><select class="menu" name="menu1" id="menu1"  disabled>
                            <option value="1">원장</option>
                            <option value="2">행정</option>
                            <option value="3">강사</option>
                      </select></td>
                      <td></td>
-                     <td><select class="menu" name="menu3" id="menu3"  >
+                     <td><select class="menu" name="menu3" id="menu3"  disabled>
                      		<option value="1">원장</option>
                            <option value="2">행정</option>
                            <option value="3">강사</option>
@@ -405,12 +406,14 @@ border-right: none;
          </div>
       </article>
    </section>
-   <% } else{ 
-		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
-		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request,response);
-	}%>
+   
+  
+   
    
    <script>
+   
+ 
+   
    function submitt(){
 		swal({
 			  text: "제출 하시겠습니까?",
@@ -445,5 +448,90 @@ border-right: none;
 	}
 
    </script>
+   <script>
+  	$(function(){
+   		
+   		$('#attend1').val(<%=menuLevelList.get(0).getMlevel()%>);
+   		$('#attend2').val(<%=menuLevelList.get(1).getMlevel()%>);
+   		$('#attend3').val(<%=menuLevelList.get(2).getMlevel()%>);
+   		$('#black1').val(<%=menuLevelList.get(3).getMlevel()%>);
+   		$('#black2').val(<%=menuLevelList.get(4).getMlevel()%>);
+   		$('#black3').val(<%=menuLevelList.get(5).getMlevel()%>);
+   		$('#class1').val(<%=menuLevelList.get(6).getMlevel()%>);
+   		$('#class2').val(<%=menuLevelList.get(7).getMlevel()%>);
+   		$('#class3').val(<%=menuLevelList.get(8).getMlevel()%>);
+   		$('#condition1').val(<%=menuLevelList.get(9).getMlevel()%>);
+   		$('#condition3').val(<%=menuLevelList.get(10).getMlevel()%>);
+   		$('#counseling1').val(<%=menuLevelList.get(11).getMlevel()%>);
+   		$('#counseling2').val(<%=menuLevelList.get(12).getMlevel()%>);
+   		$('#counseling3').val(<%=menuLevelList.get(13).getMlevel()%>);
+   		$('#enroll1').val(<%=menuLevelList.get(14).getMlevel()%>);
+   		$('#enroll2').val(<%=menuLevelList.get(15).getMlevel()%>);
+   		$('#enroll3').val(<%=menuLevelList.get(16).getMlevel()%>);
+   		
+   		$('#info1').val(<%=menuLevelList.get(17).getMlevel()%>);
+   		$('#info2').val(<%=menuLevelList.get(18).getMlevel()%>);
+   		$('#info3').val(<%=menuLevelList.get(19).getMlevel()%>);
+   		$('#menu1').val(<%=menuLevelList.get(20).getMlevel()%>);
+   		$('#menu3').val(<%=menuLevelList.get(21).getMlevel()%>);
+   		$('#modifyInfo1').val(<%=menuLevelList.get(22).getMlevel()%>);
+   		$('#modifyInfo3').val(<%=menuLevelList.get(23).getMlevel()%>);
+   		$('#pAtt').val(<%=menuLevelList.get(24).getMlevel()%>);
+   		$('#plan1').val(<%=menuLevelList.get(25).getMlevel()%>);
+   		$('#plan2').val(<%=menuLevelList.get(26).getMlevel()%>);
+   		$('#plan3').val(<%=menuLevelList.get(27).getMlevel()%>);
+   		$('#pReceipt').val(<%=menuLevelList.get(28).getMlevel()%>);
+   		$('#pSatisfy').val(<%=menuLevelList.get(29).getMlevel()%>);
+   		$('#pScore').val(<%=menuLevelList.get(30).getMlevel()%>);
+   		$('#purchase1').val(<%=menuLevelList.get(31).getMlevel()%>);
+   		$('#purchase2').val(<%=menuLevelList.get(32).getMlevel()%>);
+   		$('#purchase3').val(<%=menuLevelList.get(33).getMlevel()%>);
+   		$('#satisfy1').val(<%=menuLevelList.get(34).getMlevel()%>);
+   		$('#satisfy2').val(<%=menuLevelList.get(35).getMlevel()%>);
+   		$('#satisfy3').val(<%=menuLevelList.get(36).getMlevel()%>);
+   		$('#sAtt').val(<%=menuLevelList.get(37).getMlevel()%>);
+   		$('#sReceipt').val(<%=menuLevelList.get(38).getMlevel()%>);
+   		$('#sSatisfy').val(<%=menuLevelList.get(39).getMlevel()%>);
+   		$('#sScore').val(<%=menuLevelList.get(40).getMlevel()%>);
+   		$('#staff1').val(<%=menuLevelList.get(41).getMlevel()%>);
+   		$('#staff2').val(<%=menuLevelList.get(42).getMlevel()%>);
+   		$('#staff3').val(<%=menuLevelList.get(43).getMlevel()%>);
+   		
+   	    // 학생 체크
+   		if(<%=menuLevelList.get(37).getMlevel()<=5%>){
+   		 $("input:checkbox[id='sAtt']").prop("checked", true);
+   			}
+   		if(<%=menuLevelList.get(40).getMlevel()<=5%>){
+      		 $("input:checkbox[id='sScore']").prop("checked", true);
+      		}
+   		if(<%=menuLevelList.get(39).getMlevel()<=5%>){
+      		 $("input:checkbox[id='sSatisfy']").prop("checked", true);
+      		}
+   		if(<%=menuLevelList.get(38).getMlevel()<=5%>){
+      		 $("input:checkbox[id='sReceipt']").prop("checked", true);
+      		}
+   		
+   		// 학부모 체크
+   		if(<%=menuLevelList.get(24).getMlevel()<=5%>){
+      		 $("input:checkbox[id='pAtt']").prop("checked", true);
+      		}
+   		if(<%=menuLevelList.get(30).getMlevel()<=5%>){
+     		 $("input:checkbox[id='pScore']").prop("checked", true);
+     		}
+   		if(<%=menuLevelList.get(29).getMlevel()<=5%>){
+     		 $("input:checkbox[id='pSatisfy']").prop("checked", true);
+     		}
+   		if(<%=menuLevelList.get(28).getMlevel()<=5%>){
+     		 $("input:checkbox[id='pReceipt']").prop("checked", true);
+     		}
+   		
+   	});
+ 	
+   </script>
+    <% } else{ 
+		request.setAttribute("errorCode", "NotFoundError");
+		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request,response);
+	}%>
+   
 </body>
 </html>

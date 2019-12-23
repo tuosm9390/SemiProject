@@ -96,6 +96,20 @@
 <%@ include file="/viewAcademy/common/menubar.jsp" %>
 </header>
 <section>
+	<%  int viewListLevel = 0;
+      int viewDetailLevel = 0;
+      int modiLevel = 0;
+      for(int i = 0; i < menuLevelList.size(); i++) {
+         if(menuLevelList.get(i).getMmid().equals("STAFF1")) {
+            viewListLevel = menuLevelList.get(i).getMlevel();
+         } else if(menuLevelList.get(i).getMmid().equals("STAFF2")) {
+            viewDetailLevel = menuLevelList.get(i).getMlevel();
+         } else if(menuLevelList.get(i).getMmid().equals("STAFF3")) {
+            modiLevel = menuLevelList.get(i).getMlevel();
+         }
+      }
+      
+      if(loginUser != null && loginUser.getLevel() <= viewListLevel) {  %>	
 	<div align="center">
     	<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black; width: 15%">
         	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon'">　연간계획　</h1></legend>
@@ -205,39 +219,8 @@
 				
 				deleteByMonth.onclick = function() {
 					deleteArea.style.display = "block";				
-					
-					
-						
-					//체크된 월 삭제 기능 실행됨
-				
-					
-					//기능이 다 실행된 후 결과값에 따라 성공 시, 삭제 결과가 반영된 연간계획 페이지 / 실패 시 에러페이지로 이동
+
 				}
-				
-				/* $("input[name=monthBtn]").click(function(){
-					var checked = [];
-					$("input[name=monthBtn]:checked").each(function(i){
-						checked.push($(this).val());
-						
-					});
-					console.log(checked);
-					
-					$("#okbtn").click(function(){
-						console.log(checked);
-					//삭제 서블릿 실행
-						$.ajax({
-							url: "adelete.plan",
-							data: { checkedMonth:checked },
-							type: "get",
-							success: function(data){
-								
-							},
-							error: function(data){
-								
-							}
-						});
-					});
-				}); */
 				
 				$("#selectYear").change(function(){
 					var select = $("#selectYear option:selected").val();
@@ -270,6 +253,10 @@
 			
 			
 		</script>
+		<% } else { 
+      		request.setAttribute("errorCode", "NotFoundError");
+      		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+      	} %>
 </section>
 <footer></footer>	
 </body>

@@ -53,7 +53,21 @@
 </head>
 <body>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
-	<% if(loginUser != null) { %>
+	<% if(loginUser != null) { 
+		int viewListLevel = 0;
+	    int viewDetailLevel = 0;
+	    int modiLevel = 0;
+	    for(int i = 0; i < menuLevelList.size(); i++) {
+	       if(menuLevelList.get(i).getMmid().equals("STAFF1")) {
+	          viewListLevel = menuLevelList.get(i).getMlevel();
+	       } else if(menuLevelList.get(i).getMmid().equals("STAFF2")) {
+	          viewDetailLevel = menuLevelList.get(i).getMlevel();
+	       } else if(menuLevelList.get(i).getMmid().equals("STAFF3")) {
+	          modiLevel = menuLevelList.get(i).getMlevel();
+	       }
+	    }
+
+	%>
 	<% if(loginUser.getUserType().equals("MASTER")) { %>
 	<div align="center">
       		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
@@ -154,11 +168,10 @@
 			</table>
 	</div> <!-- listArea end -->
 	<% }
-	}else { %>
-		<script>
-			alert('접근권한이 없습니다.');
-		</script>
-	<% } %>
+	 }else { 
+	      request.setAttribute("errorCode", "NotFoundError");
+	      request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
+	 } %>
 	<script>
 		$(function(){
 			$(".classList td").mouseenter(function(){
