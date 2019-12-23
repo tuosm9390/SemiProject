@@ -51,7 +51,7 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 	   
-	<%-- <%  int viewLevel = 0;
+	<%  int viewLevel = 0;
 		int modiLevel = 0;
 		for(int i = 0; i < menuLevelList.size(); i++) {
 			if(menuLevelList.get(i).getMmid().equals("MODIFYINFO1")) {
@@ -60,8 +60,8 @@
 				modiLevel = menuLevelList.get(i).getMlevel();
 			}
 		}
-	%> --%>
-	<%-- <% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %> --%>
+	%>
+	<% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %>
 	<div class="background">	
 	<div align="center" id="container">
 		<form id="loginArea" method="post">
