@@ -115,21 +115,6 @@ fieldset {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<%  int viewListLevel = 0;
-		int viewDetailLevel = 0;
-		int modiLevel = 0;
-		for(int i = 0; i < menuLevelList.size(); i++) {
-			if(menuLevelList.get(i).getMmid().equals("STAFF1")) {
-				viewListLevel = menuLevelList.get(i).getMlevel();
-			} else if(menuLevelList.get(i).getMmid().equals("STAFF2")) {
-				viewDetailLevel = menuLevelList.get(i).getMlevel();
-			} else if(menuLevelList.get(i).getMmid().equals("STAFF3")) {
-				modiLevel = menuLevelList.get(i).getMlevel();
-			}
-		}
-	%>
-	
-	<% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %>
 		<div align="center">
       		<fieldset style="margin-bottom:-30px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          		<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　직원 등록　</h1></legend>
@@ -510,10 +495,6 @@ O 영상정보는 인터넷에 연결되지 않은 내부 전용시스템으로 
 						});
 			});
 		</script>
-		<% } else { 
-		request.setAttribute("errorCode", "NotFoundError");
-		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
-	   } %>
 	</section>
 	<footer>
 	</footer>

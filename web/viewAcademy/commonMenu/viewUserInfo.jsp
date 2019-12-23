@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, hagong.academy.commonMenu.info.model.vo.*"%>
 <% 
 	ArrayList<UserDetail> userDetail = (ArrayList<UserDetail>) request.getAttribute("userDetail");
-
+	System.out.println(userDetail);
 	String profile = " ";
 	ArrayList<String> pay = new ArrayList<>(); ArrayList<Integer> payReal = new ArrayList<>();
 	ArrayList<String> doc = new ArrayList<>(); ArrayList<Integer> docReal = new ArrayList<>();
@@ -125,18 +125,6 @@ img {
 		<%@ include file="../common/menubar.jsp"%>
 	</header>
 	<section>
-	<%  int viewLevel = 0;
-		int modiLevel = 0;
-		for(int i = 0; i < menuLevelList.size(); i++) {
-			if(menuLevelList.get(i).getMmid().equals("MODIFYINFO1")) {
-				viewLevel = menuLevelList.get(i).getMlevel();
-			}  else if(menuLevelList.get(i).getMmid().equals("MODIFYINFO2")) {
-				modiLevel = menuLevelList.get(i).getMlevel();
-			}
-		}
-	%>
-	
-	<% if(loginUser != null && loginUser.getLevel() <= viewLevel) { %>
 		<div align="center">
 			<fieldset style="border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 				<legend align="center" style="font-family:'Do Hyeon';"><h1>　<%= userDetail.get(0).getName() %> 님의 개인정보　</h1></legend>
@@ -257,10 +245,6 @@ img {
 				}
 			});
 		</script>
-		<% } else { 
-		request.setAttribute("errorCode", "NotFoundError");
-		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
-	   } %>
 	</section>
 	<footer>
 	</footer>

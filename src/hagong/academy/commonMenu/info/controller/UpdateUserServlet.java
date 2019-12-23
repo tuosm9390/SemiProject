@@ -1,6 +1,7 @@
 package hagong.academy.commonMenu.info.controller;
 
 import java.io.File;
+import static hagong.wrapper.LoginWrapper.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -19,6 +20,7 @@ import hagong.academy.commonMenu.info.model.service.UserService;
 import hagong.academy.commonMenu.info.model.vo.UserDetail;
 import hagong.academy.mngStaff.model.vo.StaffFile;
 import hagong.common.RenameFilePolicy;
+import hagong.wrapper.LoginWrapper;
 
 @WebServlet("/aupdate.ps")
 public class UpdateUserServlet extends HttpServlet {
@@ -54,7 +56,7 @@ public class UpdateUserServlet extends HttpServlet {
 			}
 			
 			int userNo = Integer.parseInt(multiRequest.getParameter("userNo"));
-			String userPwd = multiRequest.getParameter("userPwd");
+			String userPwd = getSha512(multiRequest.getParameter("userPwd"));
 			String phone = multiRequest.getParameter("tel1") + "-" + multiRequest.getParameter("tel2") + "-" + multiRequest.getParameter("tel3");
 			String email = multiRequest.getParameter("email");
 			String address = multiRequest.getParameter("address");

@@ -227,21 +227,6 @@ fieldset {
 		<%@ include file="../../common/menubar.jsp"%>
 	</header>
 	<section>
-	<%  int viewListLevel = 0;
-		int viewDetailLevel = 0;
-		int modiLevel = 0;
-		for(int i = 0; i < menuLevelList.size(); i++) {
-			if(menuLevelList.get(i).getMmid().equals("PURCHASE1")) {
-				viewListLevel = menuLevelList.get(i).getMlevel();
-			} else if(menuLevelList.get(i).getMmid().equals("PURCHASE2")) {
-				viewDetailLevel = menuLevelList.get(i).getMlevel();
-			} else if(menuLevelList.get(i).getMmid().equals("PURCHASE3")) {
-				modiLevel = menuLevelList.get(i).getMlevel();
-			}
-		}
-	%>
-	
-	<% if(loginUser != null && loginUser.getLevel() <= viewListLevel) { %>
 		<div align="center">
 	      <fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
 	         <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　수납 내역　</h1></legend>
@@ -386,11 +371,7 @@ fieldset {
 											<td><%= purList.get(k).getStuName() %></td>
 											<td><%= purList.get(k).getRealPrice() %></td>
 											<td><%= purList.get(k).getPayStatus() %></td>
-											<% if(loginUser != null && loginUser.getLevel() <= viewDetailLevel) { %>
 											<td><label id="callDetail<%= purList.get(k).getPurchaseNo() %>" onclick="showDetail(<%= purList.get(k).getPurchaseNo() %>);" style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
-											<% } else { %>
-									      	<td><label id="callDetail<%= purList.get(k).getPurchaseNo() %>" style="border-bottom:1px solid lightgray;" class="viewDetailBtn">상세보기</label></td>
-									    	<% } %>
 										</tr>
 									<% } } %>
 								</table>
@@ -456,9 +437,7 @@ fieldset {
 					</table>
 					<br>
 					<input type="hidden" id="purNoForModify" value="">
-					<% if(loginUser != null && loginUser.getLevel() <= modiLevel) { %>
 					<button onclick="modifyDetail();" style="font-size:18px; width:100px;">수정</button>
-					<% } %>
 				</div>
 				
 				<!-- 상세보기 수정 -->
@@ -926,10 +905,6 @@ fieldset {
 			
 		</script>
 		</div> <!-- outArea end -->
-		<% } else { 
-		request.setAttribute("errorCode", "NotFoundError");
-		request.getRequestDispatcher("/viewAcademy/common/commonError.jsp").forward(request, response);
-	   } %>
 	</section>
 	<footer>
 	</footer>
