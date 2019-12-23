@@ -139,6 +139,7 @@ select:focus {
 				modiLevel = menuLevelList.get(i).getMlevel();
 			}
 		}
+		
 	%>
 	<%
 		if (loginUser != null && loginUser.getLevel() <= viewListLevel) {

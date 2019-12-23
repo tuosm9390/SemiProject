@@ -10,6 +10,7 @@
 	int startPage = pi.getStartPage();		//시작 페이지 번호
 	int endPage = pi.getEndPage();			//끝 페이지 번호 
 	
+	
 	String srchCnt = (String) request.getAttribute("srchCnt");
 	String searchCondition = (String) request.getAttribute("searchCondition");
 %>
