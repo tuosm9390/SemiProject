@@ -24,6 +24,8 @@
 		stu.add((Student) map.get("student"+j));
 	}
 	
+	System.out.println("사람 이름 : " + mem);
+	
 	Calendar cal = Calendar.getInstance();
     int dayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
     int month = cal.get(Calendar.MONTH) + 1;
@@ -170,42 +172,7 @@
             <legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 상세　</h1></legend>
             </fieldset>
     </div> <!-- center end -->
-    
-    
-     		<!-- 년/월 선택 부분 -->
-			<div align="center" class="monthArea">
-				<button class="month nextBtn">◀</button>&nbsp;
-				<select id="selectYear" class="month selectMonth" onchange="changeDate();">
-					<% for(int i = selectDate.getStartYear(); i <= selectDate.getEndYear(); i++) { %>
-					<% if(i == selectDate.getSelectYear()) { %>
-					<option selected><%= i %></option>
-					<% } else { %>
-					<option><%= i %></option>
-					<% } } %>
-				</select> <label style="font-size:20px">년</label>
-				<select id="selectMonth" class="month selectMonth" onchange="changeDate();">
-					<% if(selectDate.getStartYear() == selectDate.getEndYear()) { %>
-						<% for(int i = selectDate.getStartMonth(); i <= selectDate.getEndMonth(); i++) { %>
-							<% if(i == selectDate.getSelectMonth()) { %>
-							<option selected><%= i %></option>
-							<% } else { %>
-							<option><%= i %></option>
-							<% } %>
-						<% } %>
-					<% } else { %>
-						<% for(int i = 1; i < 13; i++) { %>
-							<% if(i == selectDate.getSelectMonth()) { %>
-							<option selected><%= i %></option>
-							<% } else { %>
-							<option><%= i %></option>
-							<% } %>
-						<% } %>
-					<% } %>
-				</select> <label style="font-size:20px">월</label>&nbsp;
-				<button class="month nextBtn">▶</button>
-			</div> <!-- monthArea end -->
-			
-			
+		
    <div class="selectArea">
       <select id="selectAttend" style="margin-bottom:1%;">
          <option value="0">출석</option>
@@ -305,7 +272,7 @@
                                     			attendCheck[q] = "3";
                                     		}else if(dateArr.get(k).substring(dateArr.get(k).length()-1, dateArr.get(k).length()).equals("N")){
                                     			attendCheck[q] = "1";
-                                    		}                                                                              
+                                    		}                                                                          
                                     	}
                                 	}	
                                  }
@@ -320,10 +287,14 @@
                                  <td style="padding:15px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">지각</a></td>
                               <% }else if(attendCheck[l].equals("3")) {	%>
                               	 <td style="padding:15px"><a id="<%=name%>" class="reasonWrite" value="<%=l+1%>" style="color:orangered">조퇴</a></td>
-                   			  <% }else if(attendCheck[l].equals("0")) { %>          	
+                   			  <% }else if(attendCheck[l].equals("0")) { 
+                   			  		if(l<=23) { %>          	
                               	 <td style="padding:15px" id="<%=name%>" class="reasonWrite" value="<%=l+1%>">출석</td>
+                              	 <% }else { %>
+                              	 <td> </td>
+                              	 <% } %>
                               <% }else { %>
-                              	<td> </td>
+                              	<td></td>
                               <% } %>
                                                       
                       <%  }
@@ -436,7 +407,7 @@
 	    		var checkedPersonString = "'"+ checkedPerson + "'";
 	    		 var classNum = $("#classNum").val();
 		    	
-		    	location.href="<%=request.getContextPath()%>/aupdateAttend.attend?selectAttend="+selectAttend+"&checkedPersonString="+checkedPersonString+"&classNum="+classNum;
+		    	location.href="<%=request.getContextPath()%>/aupdateAttend.attend?selectAttend="+selectAttend+"&checkedPersonString="+checkedPersonString+"&classNum="+classNum+"&year="+<%=purYear%>+"&month="+<%=purMonth%>;
 	      });
       });
       

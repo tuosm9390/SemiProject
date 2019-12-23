@@ -54,21 +54,7 @@
 <body>
 	<%@ include file="/viewAcademy/common/menubar.jsp" %>
 	<% if(loginUser != null) { 
-		int viewListLevel = 0;
-	    int viewDetailLevel = 0;
-	    int modiLevel = 0;
-	    for(int i = 0; i < menuLevelList.size(); i++) {
-	       if(menuLevelList.get(i).getMmid().equals("STAFF1")) {
-	          viewListLevel = menuLevelList.get(i).getMlevel();
-	       } else if(menuLevelList.get(i).getMmid().equals("STAFF2")) {
-	          viewDetailLevel = menuLevelList.get(i).getMlevel();
-	       } else if(menuLevelList.get(i).getMmid().equals("STAFF3")) {
-	          modiLevel = menuLevelList.get(i).getMlevel();
-	       }
-	    }
-
-	%>
-	<% if(loginUser.getUserType().equals("MASTER")) { %>
+		 if(loginUser.getUserType().equals("MASTER")) { %>
 	<div align="center">
       		<fieldset style="margin-bottom:-15px;border-left:none; border-right:none; border-bottom:none; border-top-color:black;">
          	<legend align="center"><h1 align="center" style="font-family:'Do Hyeon';">　출결 관리　</h1></legend>

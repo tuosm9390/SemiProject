@@ -184,6 +184,7 @@ public class ClassDao {
 			pstmt.setInt(9, c.getClrNo());
 			pstmt.setInt(10, c.getTuition());
 			pstmt.setDate(11, c.getClsEnd());
+			pstmt.setInt(12, c.getCntOfClass());
 			
 			result = pstmt.executeUpdate();			
 		} catch (SQLException e) {
