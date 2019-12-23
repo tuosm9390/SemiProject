@@ -39,6 +39,18 @@ public class LoginServlet extends HttpServlet {
 			String page = "";
 			
 			if(loginUser != null) {
+				if(loginUser.getUserType().equals("MASTER")) {
+					loginUser.setLevel(1);
+				}else if(loginUser.getUserType().equals("STAFF")) {
+					loginUser.setLevel(2);
+				}else if(loginUser.getUserType().equals("TEACHER")) {
+					loginUser.setLevel(3);
+				}else if(loginUser.getUserType().equals("STUDENT")) {
+					loginUser.setLevel(4);
+				}else {
+					loginUser.setLevel(5);
+				}
+				
 				request.getSession().setAttribute("loginUser", loginUser);
 				page = "/aselect.level";
 			}else {
