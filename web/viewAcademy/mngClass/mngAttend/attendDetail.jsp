@@ -160,6 +160,10 @@
 		font-size: 30px;
 		height: 50px;
 	}
+	
+	.reasonWrite {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -337,17 +341,24 @@
 	
       //출결 상세 사유 불러오기 + 수정하기 기능
       $(function() {
+    	  var idx;
+    	  var date;
+    	  var userNo;
+    	  var classNum;
+    	  var result;
          $(document).on("click", ".reasonWrite", function() {
+        	 $("#reasonArea").find("text").remove();
+        	 
              $(".detailReasonArea").css("visibility","visible");
-             var idx = $(this).parent().index()-2;
+             idx = $(this).parent().index()-2;
         	 
-        	 var date = $(this).parent().parent().siblings().eq(0).children("th")[idx+2].innerText;
+        	 date = $(this).parent().parent().siblings().eq(0).children("th")[idx+2].innerText;
         	 
-        	 var userNo = $(this).parent().siblings().eq(2).children("input")[0].value;
+        	 userNo = $(this).parent().siblings().eq(2).children("input")[0].value;
         	 
-        	 var classNum = $("#classNum").val();
+        	 classNum = $("#classNum").val();
         	 
-        	 var result = "";
+        	 result = "";
         	         	 
         	 $.ajax({
         		 url: "aselectAttendReasonDetail.attend",
@@ -363,32 +374,32 @@
         			console.log('실패'); 
         		 }
         	 });
-         
-        		
-        	$("#writeBtn").click(function(){       	
-        		var content = $("#reasonArea").val();
-        		
-        		if(result != content) {       			
-	        		$.ajax({
-	        			url:"aupdateAttendReason.attend",
-	        			data:{
-	        				classNum:classNum,
-	        				date:date,
-	        				userNo:userNo,
-	        				content:content
-	        			 },
-	        			 type:"get",
-	        			 success:function(data){
-	        				 alert('수정 완료!');
-	        				 
-	        			 },
-	        			 error:function(data){
-	        				console.log("에러.."); 
-	        			 }
-	        		});
-        		}
-        	 });
+
          });
+         
+     	$("#writeBtn").click(function(){       	
+    		var content = $("#reasonArea").val();
+    		
+    		    if(result != content) { 			
+        		$.ajax({
+        			url:"aupdateAttendReason.attend",
+        			data:{
+        				classNum:classNum,
+        				date:date,
+        				userNo:userNo,
+        				content:content
+        			 },
+        			 type:"get",
+        			 success:function(data){
+        				 alert('수정 완료!');
+        				 
+        			 },
+        			 error:function(data){
+        				console.log("에러.."); 
+        			 }
+        		});
+    		    }
+    	 });
       	
       });
       

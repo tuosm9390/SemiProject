@@ -376,7 +376,7 @@
 						$clsMaxField.text(data.clsMax+"명");
 						$clsDayField.text(data.clsStart + "~" + data.clsEnd);
 						$clsTimeField.text(data.clsTime);
-						$tuitionField.text(data.tuition + "만원");
+						$tuitionField.text(data.tuition);
 						
 						updateBtn.onclick = function() {
 							//수업정보 등록일 때: checkStatus=0, 수업정보 수정일 때: checkStatus=1
