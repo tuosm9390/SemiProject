@@ -11,7 +11,7 @@
 
 	ArrayList<MenuLevel> menuLevelList = null;
 	if(loginUser != null) {
-		menuLevelList = (ArrayList<MenuLevel>) request.getSession().getAttribute("list");
+		menuLevelList = (ArrayList<MenuLevel>) request.getSession().getAttribute("menuList");
 		System.out.println(menuLevelList);
 	}
 %>

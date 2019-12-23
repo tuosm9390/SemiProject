@@ -22,6 +22,7 @@
 	#edit-color{
 		display: none;
 	}
+	
 	#edit-color2{
 		display: none;
 	}
@@ -263,9 +264,9 @@ z-index:0 !important;
          if (editAllDay.is(':checked')) {
              eventData.start = moment(eventData.start).format('YYYY-MM-DD HH:mm');
              //render시 날짜표기수정
-             eventData.end = moment(eventData.end).format('YYYY-MM-DD HH:mm');
+             eventData.end = moment(eventData.end).add("days",1).format('YYYY-MM-DD HH:mm');
              //DB에 넣을때(선택)
-             realEndDay = moment(eventData.end).format('YYYY-MM-DD HH:mm');
+             realEndDay = moment(eventData.end).add("days",1).format('YYYY-MM-DD HH:mm');
 
              eventData.allDay = true;
          }
@@ -464,7 +465,7 @@ var calendar = $('#calendar').fullCalendar({
 						title:response[key].title,
 						description:response[key].content,
 						start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
-						end:moment(response[key].end).format('YYYY-MM-DD hh:mm'),
+						end:moment(response[key].end).add(1,"days").format('YYYY-MM-DD hh:mm'),
 						type:response[key].type,
 						textColor:"white",
 						backgroundColor:response[key].backgroundColor,
