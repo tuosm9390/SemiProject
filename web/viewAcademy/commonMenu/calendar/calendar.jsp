@@ -19,20 +19,20 @@
 
 <style>
 
-	#edit-color{
-		display: none;
-	}
-	
-	#edit-color2{
-		display: none;
-	}
+   #edit-color{
+      display: none;
+   }
+   
+   #edit-color2{
+      display: none;
+   }
 
-	.alldayday{
-		display: none;
-	}
-	#edit-allDay{
-	display:none;}
-	button, button:focus {
+   .alldayday{
+      display: none;
+   }
+   #edit-allDay{
+   display:none;}
+   button, button:focus {
 z-index:0 !important;
 }
 
@@ -98,7 +98,7 @@ z-index:0 !important;
             <div id="calendar"></div>
         </div>
 
-	 <%@ include file="/viewAcademy/common/menubar.jsp"%>
+    <%@ include file="/viewAcademy/common/menubar.jsp"%>
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
             <div class="modal-dialog" role="document">
@@ -248,7 +248,7 @@ z-index:0 !important;
              uno:<%=loginUser.getUserNo()%>,
              allDay: false
          };
-	
+   
          if (eventData.start > eventData.end) {
              alert('끝나는 날짜가 앞설 수 없습니다.');
              return false;
@@ -264,7 +264,7 @@ z-index:0 !important;
          if (editAllDay.is(':checked')) {
              eventData.start = moment(eventData.start).format('YYYY-MM-DD HH:mm');
              //render시 날짜표기수정
-             eventData.end = moment(eventData.end).add("days",1).format('YYYY-MM-DD HH:mm');
+             eventData.end = moment(eventData.end).format('YYYY-MM-DD HH:mm');
              //DB에 넣을때(선택)
              realEndDay = moment(eventData.end).add("days",1).format('YYYY-MM-DD HH:mm');
 
@@ -294,7 +294,7 @@ z-index:0 !important;
                  $('#calendar').fullCalendar('refetchEvents');
              },
              error:function(data){
-             	console.log("조회실패");
+                console.log("조회실패");
              }
          });
      });
@@ -437,42 +437,42 @@ var calendar = $('#calendar').fullCalendar({
    * ************** */
  
   events: function (start, end, timezone, callback) {
-	  var uno = <%=loginUser.getUserNo()%>
-	  
+     var uno = <%=loginUser.getUserNo()%>
+     
     $.ajax({
       type: "get",
       url: "/hagong/aselect.cal",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
-    	  uno:uno
+         uno:uno
       },
       success: function (response) {
-    	  //테스트
-    	  var events=[];
-    	  
-    	  for(var key in response){
-    		 
-    		  switch(response[key].type){
-    		  case "ETC": response[key].backgroundColor="skyblue"; break;
-    		  case "PER": response[key].backgroundColor="#a2b2de"; break;
-    		  case "EVENT": response[key].backgroundColor="#f56e94"; break;
-    		  case "COUNS": response[key].backgroundColor="#b8dea2"; break;
-    		  }
-    		  
-    		  
-				var evt={
-						_id:response[key].cno,
-						title:response[key].title,
-						description:response[key].content,
-						start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
-						end:moment(response[key].end).add(1,"days").format('YYYY-MM-DD hh:mm'),
-						type:response[key].type,
-						textColor:"white",
-						backgroundColor:response[key].backgroundColor,
-						allDay:false
-				};
-				events.push(evt);
-			}
+         //테스트
+         var events=[];
+         
+         for(var key in response){
+           
+            switch(response[key].type){
+            case "ETC": response[key].backgroundColor="skyblue"; break;
+            case "PER": response[key].backgroundColor="#a2b2de"; break;
+            case "EVENT": response[key].backgroundColor="#f56e94"; break;
+            case "COUNS": response[key].backgroundColor="#b8dea2"; break;
+            }
+            
+            
+            var evt={
+                  _id:response[key].cno,
+                  title:response[key].title,
+                  description:response[key].content,
+                  start:moment(response[key].start).format('YYYY-MM-DD hh:mm'),
+                  end:moment(response[key].end).add(1,"days").format('YYYY-MM-DD hh:mm'),
+                  type:response[key].type,
+                  textColor:"white",
+                  backgroundColor:response[key].backgroundColor,
+                  allDay:false
+            };
+            events.push(evt);
+         }
         callback(events);
       }
     });
