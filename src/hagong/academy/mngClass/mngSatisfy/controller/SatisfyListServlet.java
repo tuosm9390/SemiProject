@@ -99,12 +99,13 @@ public class SatisfyListServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("blist", blist);
 			request.setAttribute("pi", pi);
+			//response.sendRedirect(page);
 		} else {
 			page = "/viewAcademy/common/commonError.jsp";
 			request.setAttribute("errorCode", "selectSatisfyListFail");
 		}
-
 		request.getRequestDispatcher(page).forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

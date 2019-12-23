@@ -256,19 +256,19 @@ public class StudentDao {
 		int result = 0;
 
 		String query = prop.getProperty("deleteStudent");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, userId);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
@@ -782,7 +782,7 @@ public class StudentDao {
 
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -796,7 +796,7 @@ public class StudentDao {
 
 			while (rset.next()) {
 				Student s = new Student();
-				
+
 				s.setRnum(rset.getInt("RNUM"));
 				s.setUserId(rset.getString("ID"));
 				s.setName(rset.getString("NAME"));
@@ -814,7 +814,7 @@ public class StudentDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+
 		return list;
 	}
 
@@ -827,21 +827,21 @@ public class StudentDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, refId);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			list = new ArrayList<>();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				Student s = new Student();
 				s.setUserNo(rset.getInt("USER_NO"));
 				s.setUserId(rset.getString("USER_ID"));
 				s.setName(rset.getString("NAME"));
 				s.setPhone(rset.getString("PHONE"));
 				s.setCheck(check);
-				
+
 				list.add(s);
 			}
 		} catch (SQLException e) {

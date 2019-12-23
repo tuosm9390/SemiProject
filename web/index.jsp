@@ -5,7 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>HAGONG</title>
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 body {
 	font-family:'Do Hyeon';
@@ -80,11 +86,14 @@ body {
 		<script>
 			function goAcademy(){
 				location.href="<%=request.getContextPath()%>/allStaff.cm";
-			}
+			};
 			
 			function goClient(){
-				location.href="viewClient/common/login.jsp";
-			}
+				//location.href="viewClient/common/login.jsp";
+				swal("★ 학원고객 페이지 OPEN 예정 ★\n2019년 12월 32일 오픈!\n조금만 기다려 주세요 : )", {
+			    	buttons : ["확인"],
+			    });
+			};
 			
 		</script>
 	</section>
