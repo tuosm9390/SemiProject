@@ -144,6 +144,8 @@ tr:not(:first-child){
 			<button class="pagingBtn" onclick="location.href='<%= request.getContextPath()%>/alist.info?currentPage=<%=maxPage%>&srchCnt=<%=srchCnt%>&searchCondition=<%=searchCondition%>'">▶▶</button>
 		</div> <!-- pagingArea end  -->
 	<script>
+		console.log("<%= loginUser.getLevel()%>");
+		
 		$("#addstudent").click(function(){
 			location.href="<%=request.getContextPath()%>/viewAcademy/mngStudent/mngInfo/enrollStudent.jsp";
 		});
