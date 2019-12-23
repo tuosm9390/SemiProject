@@ -286,23 +286,12 @@
 				//행 추가 버튼 클릭 시
 				addRowBtn.onclick = function() {
 					addRowName = window.prompt('항목 이름 입력');
-
+					
+					var check = false;
 					for(var i=0; i<title.length; i++)  {
 						
 						if(addRowName != title[i]) { 
-							$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
-												+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='three' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='four' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='five' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='six' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='seven' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='eight' style='background:none; border:none; resize:none;'></textarea></td>"										
-												+ "<td><textarea id='nine' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
-												+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
+							check = true;							
 						}else {
 							swal ({
 								title: "항목 추가 실패",
@@ -313,6 +302,22 @@
 							
 						}
 					} 
+					
+					if(check == true) {
+						$("#tbody").append("<tr value='" + addRowName + "'><td id='title' name='rowName'>"+ addRowName + "</td>"
+								+ "<td><textarea id='one' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='two' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='three' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='four' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='five' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='six' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='seven' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='eight' style='background:none; border:none; resize:none;'></textarea></td>"										
+								+ "<td><textarea id='nine' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='ten' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='eleven' style='background:none; border:none; resize:none;'></textarea></td>"
+								+ "<td><textarea id='twelve' style='background:none; border:none; resize:none;'></textarea></td></tr>");
+					}
 				}
 				
 				deleteRowBtn.onclick = function() {
