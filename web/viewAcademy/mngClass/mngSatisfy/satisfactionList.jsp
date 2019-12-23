@@ -174,13 +174,13 @@ select:focus {
 					<%=si.getStart() + " ~ " + si.getEnd()%><input type="hidden" id="end" name="end" value="<%=si.getEnd()%>">
 					</td>
 					<% if(si.getStatus().equals("detail")) { %>
-					<td style="color:green; font-size: 20px; font-weight: bold;">진행 예정
+					<td style="color:green; font-weight: bold;">진행 예정
 					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } else if(si.getStatus().equals("select")) {%>
-					<td style="color:blue; font-size: 20px; font-weight: bold;">진행중
+					<td style="color:blue; font-weight: bold;">진행중
 					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } else { %>
-					<td style="color:red; font-size: 20px; font-weight: bold;">종료
+					<td style="color:red; font-weight: bold;">종료
 					<input type="hidden" id="status" value="<%= si.getStatus()%>"></td>
 					<% } %>
 				</tr>
