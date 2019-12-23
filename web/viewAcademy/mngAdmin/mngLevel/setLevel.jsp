@@ -416,12 +416,12 @@ border-right: none;
    
    function submitt(){
 		swal({
-			  text: "제출 하시겠습니까?",
+			  text: "변경하시겠습니까?",
 			  buttons: true,
 			})
 			.then((value) =>{
 			  if (value) {
-			    swal("제출되었습니다!", {});
+			    swal("변경되었습니다!", {});
 			    //ok 눌렀을떄 폼 전송
 		
 			    
@@ -432,12 +432,12 @@ border-right: none;
 	}
   function defaultt(){
 		swal({
-			  text: "제출 하시겠습니까?",
+			  text: "변경하시겠습니까?",
 			  buttons: true,
 			})
 			.then((value) =>{
 			  if (value) {
-			    swal("제출되었습니다!", {});
+			    swal("변경되었습니다!", {});
 			    //ok 눌렀을떄 폼 전송
 				
 			    location.href="<%=request.getContextPath()%>/aupdateDefault.level";
