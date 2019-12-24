@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 
 <title>HAGONG</title>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 
  .tdclass{
