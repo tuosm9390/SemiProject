@@ -40,7 +40,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		String page = "";
 		if(result > 0) {
 			System.out.println("success");
-			response.sendRedirect("/hagong/alist.no");
+			response.sendRedirect("/hagong/alist.no?currentPage=1");
 		}else {
 			//page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 삭제 실패!");

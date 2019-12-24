@@ -21,8 +21,6 @@
       width:25%
    }
 </style>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -59,8 +57,8 @@
 				</table>
 				<br>
 				<div class="completeDelete" align="center"> 
-					<button  id="delete" style="margin-right:5px;">삭제</button>
-					<button  id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정</button>
+					<button type="button" id="delete" style="margin-right:5px;">삭제</button>
+					<button type="button" id="complete" <%-- "location.href='<%=request.getContextPath()%>/aupdate.no?num=<%=n.getNno()%> --%>>수정</button>
 				</div>
 			</form>
 				<script>
@@ -70,6 +68,7 @@
 					
 					$("#complete").on("click",function(){
 						$("#updateForm").attr("action", "<%=request.getContextPath()%>/aupdate.no");
+						$("#updateForm").submit();
 					});
 					
 					<%-- function deleteNotice() {
@@ -78,32 +77,27 @@
 					
 					
 					$("#delete").on("click",function(){
-						$("#updateForm").attr("action", "<%=request.getContextPath()%>/adelete.no");
+						swal({
+							title:"삭제하기",
+							text:"삭제하시겠습니까?",
+							
+							buttons:["취소", "삭제"]
+							
+						}).then(function(isConfirm){
+							if(isConfirm){
+								swal({
+									title:"삭제완료",
+									icon:"success"
+								}).then(function(){
+									$("#updateForm").attr("action", "<%=request.getContextPath()%>/adelete.no");
+									$("#updateForm").submit();
+								})
+							}
+						});
 					})
 				</script>
 		</div> <!-- tableArea end -->
 		</div> <!-- outer end -->
-		<script>
-			function updateNotice(){
-				swal({
-					title:"삭제하기",
-					text:"삭제하시겠습니까?",
-					
-					buttons:["취소", "삭제"]
-					
-				}).then(function(isConfirm){
-					if(isConfirm){
-						swal({
-							title:"삭제완료",
-							icon:"success"
-						}).then(function(){
-							location.href='<%=request.getContextPath()%>/alist.no?currentPage=1';
-						})
-					}
-					
-				});
-			}
-		</script>
 	</section>
 	<footer>
 	</footer>
